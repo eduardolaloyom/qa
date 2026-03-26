@@ -1,0 +1,39 @@
+appId: ${APP_PACKAGE}
+name: "APP-5: Precios y promociones"
+
+---
+
+# APP-5-01: Precio base correcto
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 10000
+# Verificar precio esperado del producto de prueba
+- assertVisible:
+    text: ".*${TEST_PRODUCT_PRICE}.*"
+
+---
+
+# APP-5-02: Promoción activa visible
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+# Buscar producto con promoción
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PROMO_PRODUCT_NAME}.*"
+    timeout: 10000
+# Verificar que se muestra el precio con descuento
+- assertVisible:
+    text: ".*${TEST_PROMO_PRODUCT_PRICE_FINAL}.*"

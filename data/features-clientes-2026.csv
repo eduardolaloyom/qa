@@ -1,0 +1,197 @@
+﻿Feature,Objetivo,Producto,Herramientas,Cliente,Req. Integración
+Acciones automáticas,Automatizar interacciones clave para mejorar la retención de clientes.,Retención,,Todos,
+Agregar fecha despacho,Permite seleccionar y especificar la fecha de despacho de los pedidos,Venta,"APP, B2B",Todos,"Variable por integración: En la colección commerces, en un array llamado deliveryDays. Aquí se cargan las fechas en formato ISO 8601, que determinan todas las fechas disponibles. La estructura se muestra aquí: https://docs.yom.ai/Comercios-e7b673e8bad145ad83c1da4ac87afadc
+
+Particularidad de la app 
+1. Hacer la activación de la variable de sitio enableAskDeliveryDate en las observaciones. Aquí se activa el calendario."
+Agregar observaciones,Permite a los usuarios agregar notas u observaciones a sus pedidos,Venta,"APP, B2B","Bastién, Cedisur, Codelpa Perú, Coéxito, ExpressDent, GlobalWines, Marley Coffee, Prisa, Surtiventas","B2B. 
+Esta funcionalidad viene activa por defecto.
+APP. 
+Esta funcionalidad viene activa por defecto."
+Anuncio,Publicar anuncios,Marketing,B2B,Todos,Pendiente validar.
+Banners,Mostrar contenido promocional o informativo en la plataforma a través de banners,Marketing,B2B,Todos,Esta funcionalidad viene activa por defecto y es editable desde Administrador. Se edita con una imagen y una URL.
+Bloqueo,Restringir la capacidad de venta a usuarios en función de su estado crediticio y otros criterios.,Ejecución del punto,"APP, Admin",Soprole,
+Bloqueo de carro en casos de precios anómalos,,,"B2B, APP",Soprole,"B2B y APP. 
+Esta funcionalidad requiere la activación de la variable de entorno(pendiente nombre variable y estructura)."
+Botones de acceso configurables (deprecado),,Marketing,,Soprole,"Esta funcionalidad requiere estructuración de los textos en los botones y las rutas a las que los llevan, por medio de las variables de entorno(pendiente nombres de variables y estructura)."
+Búsqueda de comercios,Búsqueda de comercios específicos dentro de la plataforma,Venta,APP,Todos,
+Búsqueda de productos,Búsqueda de productos específicos dentro de la plataforma,Venta,"APP, B2B",Todos,"B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Cambio de contraseña,,,"APP, B2B, Admin","Coéxito, Soprole","En todas las herramientas estas funcionalidades vienen activas por defecto.
+Nota: Cambio de contraseña no funciona en staging para ninguna de las herramientas."
+Cambios de formato,"Ofrece la posibilidad de seleccionar diferentes formatos de presentación de los productos, como pack, unidad, caja, entre otros",Venta,APP,"Prisa, Softys-Cencocal, Surtiventas",
+Canasta base,Sugerir productos básicos basados en compras anteriores del cliente.,Recomendaciones,"B2B, APP",Todos,"B2B y APP. 
+Son funcionalidades opcionales y para ser activadas, requieren de la información de ordenes y/o transacciones con mínimo 13 meses hacia atrás(sugerido).
+
+Explicación técnica (integraciones)
+    • f1_optimizer: La canasta base utiliza varios parámetros para ajustar las sugerencias:
+    ◦ NMONTHS: Determina cuántos meses de órdenes se considerarán para generar las recomendaciones.
+    ◦ MINSIZE: Define el tamaño mínimo de la canasta (por defecto, 5 productos).
+    ◦ MAXSIZE: Establece el tamaño máximo de la canasta.
+    ◦ ALPHA: Ajusta el número de productos sugeridos. Si el modelo determina que 5 productos maximizan el puntaje F1 y ALPHA es 2, el sistema recomendará 10 productos, siempre y cuando se respeten las restricciones de MINSIZE y MAXSIZE.
+• lgbm: El modelo también utiliza ""features"" de productos, comercios y el historial de rotación de órdenes para predecir tanto la rotación como el desabastecimiento de productos. Además, esta información ayuda a identificar comercios similares, mejorando las sugerencias desde el inicio. Más información disponible en https://github.com/YOMCL/yom-features.
+• user_popular: Este ""job"" gestiona el cold start de la Canasta Base para comercios sin suficiente historial de compras. Identifica los productos más populares entre todos los comercios y los sugiere a nuevos clientes hasta que sus datos sean suficientes para generar recomendaciones más personalizadas.
+• substrategy: Combina las sugerencias regulares con las generadas por el cold start, manteniendo estas últimas solo si las sugerencias regulares no alcanzan el mínimo. Actualmente, este valor está definido como 5 productos, lo que significa que si se generan 5 o más sugerencias regulares, se mostrarán esas; de lo contrario, se mostrarán las 5 mejores combinando sugerencias regulares y cold start.
+
+Nota: Para nuevos comercios se genera una canasta base inicial a partir de un cold start, basado en transacciones de comercios similares."
+Canasta Estratégica: Exploración,Expandir el mix y profundidad de productos del cliente al ofrecerle una selección personalizada de productos exitosos en comercios similares,Recomendaciones,"B2B, APP",Todos,"B2B y APP. 
+Son funcionalidades opcionales y para ser activadas, requieren de la información de ordenes y/o transacciones con mínimo 13 meses hacia atrás(sugerido)."
+Canasta Estratégica: Foco,Priorizar SKUs estratégicos en la canasta del cliente.,Recomendaciones,"B2B, APP",Todos,"B2B y APP. 
+Son funcionalidades opcionales y para ser activadas, requieren de la información del SAF(Pendiente), esto se refiere a productos que la marca quiere impulsar."
+Canasta Estratégica: General,Armar sugerencias a partir de la estrategia comercial de los clientes. ,Recomendaciones,"B2B, APP",Todos,
+Canasta Estratégica: Innovación,Introducir productos innovadores en la canasta del cliente.,Recomendaciones,"APP, B2B",Todos,
+Carro de compras,Resumir y gestionar los detalles de los pedidos antes de la confirmación,Venta,"B2B, APP",Todos,"B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Catálogo,Organiza y permite el acceso a productos y recomendaciones personalizadas,Venta,"B2B, APP",Todos,"B2B. 
+Esta funcionalidad viene activa por defecto. Requiere de la integración de las tablas de “Products” y “Overrides” del cliente.
+Opcional. Tiene la posibilidad de integrar imágenes con su repositorio.
+Nota: No se puede integrar con Stock.
+
+APP. 
+Esta funcionalidad viene activa por defecto. Se puede realizar un filtrado de productos según los productos que sean parte del portafolio del vendedor. Estos se parametrizan en un listado (Pendiente array) dentro de la tabla “Sellers” del vendedor.
+Opcional. Tiene la posibilidad de integrar imágenes con su repositorio y Stock con la tabla Stock.
+
+**Revisar definición de catalogo en que la imagen y el stock no son requerimientos."
+Clientes,Ofrecer una visión detallada de los clientes y sus comportamientos.,Retención,Admin,Todos,
+Cobranza y facturación,Gestionar la cobranza y facturación a través de la aplicación,Fintech,APP,"Codelpa, Softys-Cencocal, Soprole",
+Combos,Crear paquetes de productos combinados.,Recomendaciones,"B2B, APP, Admin",Todos,Pendiente validar.
+Compartir el pedido,Permite a los usuarios compartir los detalles de su pedido con otros usuarios o miembros del equipo,Venta,APP,Todos,
+Compartir la sugerencia,Función que permite compartir sugerencias de productos o promociones,Venta,APP,Todos,
+Compra mínima,,,,Soprole,
+Configuraciones,Configura las distintas opciones y parámetros de la aplicación,"Ejecución del punto, Venta, Fintech, Recomendaciones, Marketing, Retención",APP,Todos,
+Contacto,Transmitir el contacto de los comercios a los clientes para solucionar sus inquietudes.,,B2B,"Codelpa, ExpressDent, Marley Coffee, Soprole, Surtiventas",Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración.
+Creación de cuentas,Facilitar el registro de nuevos usuarios en la plataforma mediante diferentes métodos de creación de cuenta.,"Venta, Fintech, Recomendaciones, Ejecución del punto, Retención",APP,"Prisa, Surtiventas",
+Creación de roles para administradores,,,,Todos,
+Crear pedido,Facilita la creación y gestión de pedidos.,Venta,"APP, B2B",Todos,"B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Cupón de descuento,Implementa códigos de descuento configurables para promociones específicas.,Venta,B2B,"Bastién, Cedisur, Codelpa, Codelpa Perú, Coéxito, ExpressDent, GlobalWines, Marley Coffee, Prisa, Softys-Cencocal, Softys-Dimak, Soprole, Surtiventas",Esta funcionalidad viene activa por defecto
+Dashboards,"Ofrece visualización para monitorear la interacción y comportamiento del usuario, proporcionando insights valiosos para la toma de decisiones estratégicas","Venta, Fintech, Recomendaciones, Marketing, Retención",Metabase,Todos,
+Descuentos manuales,Gestión de descuentos aplicados de manera manual,Venta,APP,"Cedisur, Codelpa, Coéxito, Softys-Cencocal",
+Descuentos por volumen,Gestiona descuentos escalonados que aumentan con el volumen de compra,Venta,"B2B, APP","Cedisur, Coéxito, ExpressDent, Prisa, Surtiventas","B2B y APP. 
+Esta funcionalidad viene activa por defecto. Requiere integración por medio de la tabla “Promotions”. (pendiente linkear la estructura).
+
+Nota: Su integración presenta campos adicionales y especificos para el funcionamiento de las escalas(pendiente linkear la estructura)."
+Detalle del producto,"Proporciona información detallada sobre cada producto, incluyendo descripción, especificaciones, imágenes y precios",Venta,APP,Todos,
+Documentos manuales,,Fintech,APP,"Codelpa, Soprole","Pendiente revisión.
+
+Nota: Solo esta en B2B."
+Edición de store,Personalizar la identidad visual de la plataforma en el navegador,Venta,"B2B, Admin",Todos,Esta funcionalidad viene activa por defecto. No requiere ningun tipo de integración.
+Escalones obligados,Obligatoriedad de comprar productos de a múltiplos de un número.,Venta,B2B,Todos,"Este es un requerimiento para los descuentos de volumen(pendiente linkear la estructura).
+
+Nota: Está en B2B y APP."
+Estado crediticio,Mostrar el estado crediticio de los clientes y permitir acciones basadas en su situación financiera,Fintech,"APP, B2B",Softys-Cencocal,"B2B. 
+Esta funcionalidad viene activa por defecto. 
+
+APP. Esta funcionalidad debe activarse mediante una variable(pendiente confirmación) de producto. Puede traer consigo reglas especificas de negocio para la realización de pedidos, pues establece el estado OK, alerta y bloqueado de un comercio.
+
+Nota: Requiere la integración de la variable “State” en la tabla “Credit” para ambas herramientas. "
+Estado de retención,Clasificar a los clientes según diferentes criterios para entender su nivel de compromiso y comportamiento.,Retención,APP,Todos,
+Estados de orden según ERP,Sincronizar los estados de las órdenes entre el ERP del cliente y la plataforma,Ejecución del punto,"B2B, Admin, APP","Codelpa, Softys-Cencocal",Pendiente revisión (esta documentación en proceso).
+Exportación de datos,Facilita la exportación de datos de la app,Venta,APP,Todos,
+FAQ,Sección de preguntas frecuentes para encontrar soluciones rápidas a problemas comunes tanto sobre la plataforma como otros,Venta,B2B,Soprole,Esta funcionalidad viene activa por defecto. 
+Favicon,Personalizar la identidad visual de la plataforma en el navegador,Venta,B2B,"Codelpa, ExpressDent, GlobalWines, Soprole, Surtiventas","Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración.
+Para configurarla, en el administrador se puede subir la imagen en: 
+Tienda → Ícono"
+Filtros de comercios,Permite filtrar comercios según criterios específicos,Venta,APP,"Coéxito, Softys-Cencocal, Surtiventas",
+Filtros de productos,Permite filtrar los productos según criterios específicos,Venta,APP,Todos,
+Funcionamiento offline,Permite utilizar la app sin conexión a internet.,Venta,APP,Todos,"No requiere ninguna integración, es el comportamiento natural de la app móvil."
+Georreferencia,,Ejecución del punto,APP,"Codelpa, Softys-Cencocal",
+Gestión comercial,"Proporciona herramientas para la gestión integral de ventas, incluyendo seguimiento de desempeño y análisis de resultados",Venta,Admin,Todos,
+Gestión de administradores,,,,Todos,
+Gestión de pedidos,,,"B2B, APP","Codelpa, Softys-Cencocal, Soprole, Surtiventas","B2B y APP. 
+Esta funcionalidad viene activa por defecto. No necesita ningún tipo de integración."
+Gestión de tareas,Administrar tareas de ejecución y encuestas para los usuarios,Ejecución del punto,"APP, Admin","Cedisur, Codelpa, Coéxito, Softys-Cencocal, Softys-Dimak",
+Historial de facturas,,,"B2B, APP",Soprole,
+Historial de pagos,Ofrecer un historial detallado de todas las facturas y pagos realizados por los clientes,Fintech,APP,"Softys-Cencocal, Soprole","B2B y APP. 
+No requiere activación por medio de variables de entorno pero requiere la integración de la tabla “PendingDocuments”(pendiente linkear estructura).  "
+Historial de pedidos,Registro de todos los pedidos realizados por los clientes.,Venta,APP,Todos,"B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Icons,,,B2B,"Codelpa, ExpressDent, GlobalWines, Marley Coffee, Soprole, Surtiventas",
+Impresión,Permitir la conexión con máquinas para imprimir recibos y resúmenes diarios.,Fintech,APP,Softys-Cencocal,Pendiente validar.
+Impuestos para productos,,,,"Coéxito, ExpressDent, Prisa, Softys-Cencocal, Soprole, Surtiventas",
+Ingreso productos (deprecada),Permitir el ingreso de productos a través de un formulario.,Venta,Admin,Todos,
+Integración con Google Analytics,Proporcionar un análisis detallado del comportamiento de los usuarios en la plataforma permitiendo la toma de decisiones basada en datos.,Venta,Admin,"Codelpa, Soprole",
+Inyección de recomendaciones,Incorporar sugerencias de productos en el proceso de compra,Recomendaciones,,Todos,
+Inyectar pedido,Enviar pedidos desde la plataforma YOM al ERP y recibir estados de confirmación,Venta,"B2B, APP","Codelpa, Softys-Cencocal","B2B y APP. 
+Esta funcionalidad requiere de la creación de un hook de integración, en el cual se debe configurar su tiempo máximo de espera."
+Jobs de integración,,,,Todos,"B2B y APP. 
+Esta funcionalidad requiere la creación de CronJobs que cumplan con los requerimientos del cliente.
+
+Nota: Se pueden crear tantos como sean necesarios para operar en distintos horarios y con distintos servicios."
+Justificaciones,,Fintech,APP,Todos,
+Labels en productos,"Permite etiquetar productos con distintivos como ""Nuevos"" o ""Destacados""",Venta,B2B,Todos,"Esta funcionalidad requiere de la integración de los campos new y featured en la tabla products. Son booleanos, donde true significa que sí tendrá la etiqueta."
+Limitación productos,Permite limitar la cantidad de unidades de venta máxima,Venta,"APP, B2B, Admin","Prisa, Surtiventas",Pendiente validar.
+Límite de descuento,Controla y limita los descuentos aplicados a productos o pedidos,Venta,APP,"Cedisur, Codelpa, Coéxito, Softys-Cencocal","B2B y APP. 
+Esta funcionalidad se configura por medio de ajustes en las variables de entorno(pendientes nombres y estructura)."
+List view (admin),Permite visualizar el estado del comercio en un formato de lista detallada.,Venta,APP,Todos,
+Lista categorías,Permite gestionar las categorías de productos,Venta,"APP, B2B",Todos,"B2B. 
+Esta funcionalidad requiere la integración de la tabla “Categories”(pendiente linkear estructura).
+
+Nota: En APP no se visualiza pero si se usa a traves de Back. "
+Lista de comercios,"Gestiona la lista de comercios, permitiendo la invitación, activación y bloqueo de comercios para acceder a la tienda virtual",Venta,"Admin, APP","Bastién, Cedisur, Codelpa Perú, Coéxito, ExpressDent, GlobalWines, Marley Coffee, Prisa, Softys-Cencocal, Softys-Dimak, Surtiventas",
+Lista de cotizaciones (deprecada),"Gestiona las cotizaciones que hacen los clientes en el catálogo, permitiendo diferentes niveles de acceso a los pedidos según el usuario",Venta,Admin,"Codelpa, Coéxito",
+Listas de precio,Permite la creación y gestión de listas de precios personalizadas para diferentes clientes o segmentos,Venta,"B2B, APP","Codelpa, Soprole","B2B y APP. 
+Esta funcionalidad viene activa por defecto. Requiere la integración de las tablas “Overrides” y “Segments” (pendiente linkear estructura)."
+Log in App,Auth del vendedor,,APP,"Coéxito, Soprole",
+Log in B2B,Proporcionar el acceso a las plataformas a través de múltiples métodos de autenticación.,Venta,B2B,"Codelpa, Soprole",
+Máximos de compra (items),Establece un límite máximo en la cantidad de productos que se pueden comprar.,Venta,APP,"Prisa, Surtiventas",Pendiente validación. Revisar si esta repetida.
+Método de pago,,,,"Bastién, Cedisur, Codelpa Perú, Coéxito, ExpressDent, Marley Coffee, Prisa, Softys-Cencocal, Soprole, Surtiventas",
+Minibanners,,,B2B,Todos,
+Mínimos de compra (productos),Establece un límite mínimo en la cantidad de productos que se pueden comprar,Venta,B2B,Soprole,Esta funcionalidad requiere de la integración del campo “MinUnit” en el subsegmento “Measurement” de la tabla “Product”. (pendiente linkear estructura).
+Notificaciones push,Enviar mensajes masivos a segmentos de usuarios de manera programada.,Marketing,B2B,Todos,
+Notificaciones push app,Envía notificaciones push a los usuarios con información relevante.,Venta,APP,Todos,
+Notificaciones y alertas,"Informar a los usuarios sobre el estado de pedidos y facturas, así como enviar alertas importantes",Marketing,"B2B, APP",Soprole,"B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Ordenar,"Función para ordenar productos según diferentes criterios (precio, nombre, etc.)",Venta,APP,Todos,
+Packs de productos,Crear conjuntos de productos que se vendan juntos con descuento,Venta,"APP, B2B, Admin",Todos,Nota: Estamos a la espera de las modificaciones por parte de producto para revisar integraciones.
+Pedido Sugerido,"Proporciona herramientas para la gestión integral de ventas, incluyendo seguimiento de desempeño y análisis de resultados","Recomendaciones, Venta",Metabase,Todos,
+Precio despacho,Administra y visualiza los costos de despacho para los pedidos,Venta,APP,"Bastién, Cedisur, Codelpa, Codelpa Perú, Coéxito, ExpressDent, GlobalWines, Marley Coffee, Prisa, Softys-Cencocal, Softys-Dimak, Surtiventas",
+Precio futuro,Permite visualizar y gestionar precios futuros de los productos,Venta,B2B,Soprole,"Se necesita agregar la consulta al endpoint GET https://api.youorder.me/api/v2/commerces/delivery
+Eso debe retornar una fecha con el siguiente formato
+
+{
+    ""nextVisit"": ""24-09-2024"",
+    ""nextDelivery"": [
+        {
+            ""nextDelivery"": ""26-09-2024"",
+            ""primary"": true,
+            ""label"": ""Fecha estimada de despacho""
+        }
+    ]
+}
+
+La primera fecha de nextDelivery será usada como la fecha de despacho con la que se preguntará el precio https://api.youorder.me/api/v2/cart/products?deliveryDate=2024-09-04
+Además se debe configurar la variable yom-stores.sites.enablePriceOracle a true en la base de datos"
+Precio unitario,Permite gestionar y visualizar los precios unitarios de los productos,Venta,APP,Todos,
+Precios brutos o neto,Ofrecer flexibilidad en la visualización de precios según la preferencia del cliente.,Venta,"B2B, APP","Coéxito, ExpressDent, Prisa, Softys-Cencocal, Soprole, Surtiventas","B2B y APP. 
+Esta funcionalidad permite configuración para visualizar los precios con impuestos o sin impuestos. Su configuración requiere la modificación de la variable de entorno(pendiente por linkear)."
+Priorización de visitas y acción,Enfocar esfuerzos en acciones que generen más valor sobre la base de clientes.,Retención,,Todos,
+Promociones de catálogo,Administra descuentos estándar aplicables a productos específicos o categorías durante ciertos periodos,Venta,"B2B, APP","Cedisur, Coéxito, ExpressDent, Prisa, Surtiventas","B2B y APP. 
+Esta funcionalidad viene activa por defecto. Requiere integración por medio de la tabla “Promotions”. (pendiente linkear la estructura)"
+Promociones personalizadas,Gestionar promociones adaptadas a cada cliente,Recomendaciones,"B2B, APP","Cedisur, Coéxito, ExpressDent, Prisa, Surtiventas",
+Prompt Analytics,Interactuar con los datos comerciales usando lenguaje natural,,,Todos,
+Re-hacer un pedido anterior,Permite repetir pedidos anteriores,Venta,APP,Codelpa,
+Recaudación diaria,Visualizar el resumen de la recaudación diaria de pagos y ventas.,Fintech,APP,Softys-Cencocal,"B2B y APP. 
+No requiere activación por medio de variables de entorno pero requiere la integración de la tabla “PendingDocuments”(pendiente linkear estructura).  "
+Redirección a pago de facturas,Facilitar el pago de facturas mediante redirección a las plataformas de pago de la empresa,Fintech,"B2B, APP","ExpressDent, Marley Coffee, Softys-Cencocal, Soprole",Pendiente validar.
+Regalos,Ofrecer productos complementarios como incentivos o bonificaciones para los clientes,Venta,APP,Todos,
+Registro de visita,Documentar interacciones con clientes y alimentar el motor de asignaciones.,Retención,,Todos,
+Registro por # cliente,,,,Codelpa,
+Registros de visitas,"Registra las visitas realizadas a los clientes con tareas, recopilando información de clientes que realizaron o no, compras, a través de una encuesta.",Venta,APP,"Cedisur, Codelpa, Coéxito, Softys-Cencocal, Softys-Dimak",
+Resumen de venta,Ofrece un resumen detallado de las ventas realizadas en un periodo específico,Venta,APP,Todos,
+Ruta del día,,,APP,Todos,
+Seguimiento de pedidos,"Permite el seguimiento de pedidos tanto en la plataforma como en otros pedidos. Incluye información como total, facturas, notas de crédito, detalle y estado de pedido, y fecha de creación.",Venta,"B2B, APP",Codelpa,"B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Selección de método de pago,,,,"Bastién, Cedisur, Codelpa, Codelpa Perú, Coéxito, ExpressDent, Marley Coffee, Prisa, Softys-Cencocal, Soprole, Surtiventas",
+Separación de marcas,Facilita la gestión y separación de diferentes marcas dentro de la plataforma,Venta,APP,Todos,
+Sincronización de sistemas,Garantizar la actualización automática de datos entre la plataforma y otros sistemas del cliente,"Ejecución del punto, Venta, Fintech, Recomendaciones, Marketing, Retención",APP,"Codelpa, Softys-Cencocal",
+Soporte,Proporcionar asistencia técnica y soporte a los usuarios de la aplicación,"Ejecución del punto, Venta, Fintech, Recomendaciones, Retención",APP,Todos,
+Soporte,Proporcionar asistencia técnica y soporte a los usuarios de la aplicación,"Ejecución del punto, Venta, Fintech, Recomendaciones, Retención",APP,Todos,
+Ticket promedio,Permite calcular y mostrar el valor promedio de compra por cliente,Venta,APP,Todos,
+Tomador de pedidos,Módulo de la aplicación que permite registrar y gestionar los pedidos de los clientes,Venta,APP,Todos,
+Transferencia de pedidos,Facilita la integración con otras herramientas o plataformas.,Venta,"B2B, APP","Codelpa, Softys-Cencocal, Soprole, Surtiventas","B2B y APP. 
+Esta funcionalidad viene activa por defecto. No requiere ningún tipo de integración."
+Visibilidad y acceso al catálogo,"Gestionar la visibilidad del catálogo, permitiendo acceso solo a usuarios con cuentas verificadas o a todos los usuarios, según las preferencias del cliente.",Venta,B2B,"Codelpa, ExpressDent, Soprole, Surtiventas",
+Vista de catálogo post-registro,,Venta,B2B,Todos,
+Visualización de datos comercio,"Permite la visualización de los principales datos de los comercios, como contacto, datos crediticios, dirección, ticket promedio, último pedido, y formas de pago",Venta,APP,Softys-Cencocal,
+Visualización de stock,Permite a los usuarios visualizar el stock disponible de los productos,Venta,APP,"Codelpa, Prisa, Softys-Cencocal, Surtiventas",

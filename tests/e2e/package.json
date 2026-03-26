@@ -1,0 +1,21 @@
+{
+  "name": "yom-qa-e2e",
+  "version": "1.0.0",
+  "description": "E2E tests for YOM B2B platform",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --debug",
+    "test:login": "npx playwright test b2b/login.spec.ts",
+    "test:catalog": "npx playwright test b2b/catalog.spec.ts",
+    "test:cart": "npx playwright test b2b/cart.spec.ts",
+    "test:checkout": "npx playwright test b2b/checkout.spec.ts",
+    "test:prices": "npx playwright test b2b/prices.spec.ts",
+    "report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "dotenv": "^16.4.0"
+  }
+}

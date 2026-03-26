@@ -1,0 +1,43 @@
+appId: ${APP_PACKAGE}
+name: "APP-2: Sincronización de datos"
+
+---
+
+# APP-2-01: Sync inicial post-login
+- runFlow: helpers/login.yaml
+# Después del login, la app sincroniza datos automáticamente
+# Verificar que productos del catálogo están disponibles
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 30000
+
+---
+
+# APP-2-02: Datos de productos correctos
+- runFlow: helpers/login.yaml
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 30000
+# Verificar que el precio se muestra
+- assertVisible:
+    text: ".*${TEST_PRODUCT_PRICE}.*"
+
+---
+
+# APP-2-04: Sync manual (pull-to-refresh)
+- runFlow: helpers/login.yaml
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 30000
+# Forzar refresh (swipe down)
+- swipe:
+    direction: DOWN
+    duration: 1000
+# Verificar que los datos siguen correctos post-refresh
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 15000

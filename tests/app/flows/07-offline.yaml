@@ -1,0 +1,49 @@
+appId: ${APP_PACKAGE}
+name: "APP-6: Modo offline"
+
+# NOTA: Los tests de offline requieren control de red.
+# En Maestro se puede usar toggleAirplaneMode (requiere permisos).
+# Alternativa: usar adb para controlar la red del emulador.
+#
+# Si Maestro no soporta toggle de red, ejecutar estos tests
+# manualmente o con un script wrapper que use:
+#   adb shell svc wifi disable && adb shell svc data disable
+#   adb shell svc wifi enable && adb shell svc data enable
+
+---
+
+# APP-6-01: Navegar offline (datos de Realm disponibles)
+# Pre-requisito: login y sync ya completados
+- runFlow: helpers/login.yaml
+
+# Esperar sync completo
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 30000
+
+# Desactivar red
+- runScript:
+    script: |
+      exec("adb shell svc wifi disable")
+      exec("adb shell svc data disable")
+    continueOnError: true
+
+# Verificar que el catálogo sigue visible (datos en Realm)
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 5000
+
+# Restaurar red
+- runScript:
+    script: |
+      exec("adb shell svc wifi enable")
+      exec("adb shell svc data enable")
+    continueOnError: true

@@ -1,0 +1,54 @@
+appId: ${APP_PACKAGE}
+name: "APP-4: Toma de pedido"
+
+---
+
+# APP-4-01 al APP-4-05: Flujo completo de pedido
+# Este test cubre el flujo crítico de punta a punta:
+# Login → Comercio → Agregar producto → Confirmar pedido → Ver en historial
+
+- runFlow: helpers/login.yaml
+
+# Seleccionar comercio
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+
+# Buscar y agregar producto al carro
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 10000
+- tapOn:
+    text: ".*${TEST_PRODUCT_NAME}.*"
+
+# Agregar al carro (ajustar según UI: botón +, "agregar", etc.)
+- tapOn:
+    text: ".*[Aa]gregar.*|.*\\+.*"
+    optional: true
+
+# Ir al carro / confirmar
+- tapOn:
+    text: ".*[Cc]arro.*|.*[Pp]edido.*|.*[Vv]er pedido.*"
+    optional: true
+
+# Verificar que el producto está en el carro con precio correcto
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 5000
+- assertVisible:
+    text: ".*${TEST_PRODUCT_PRICE}.*"
+
+# Confirmar pedido
+- tapOn:
+    text: ".*[Cc]onfirmar.*|.*[Ee]nviar.*|.*[Ff]inalizar.*"
+
+# Verificar confirmación
+- extendedWaitUntil:
+    visible:
+      text: ".*[Cc]onfirmad.*|.*[Ee]nviad.*|.*[Éé]xito.*|.*[Cc]read.*"
+    timeout: 10000

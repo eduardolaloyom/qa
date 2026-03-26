@@ -1,0 +1,59 @@
+appId: ${APP_PACKAGE}
+name: "APP-1: Login y carga de configuración"
+
+---
+
+# APP-1-01: Login exitoso
+- clearState
+- launchApp
+- tapOn:
+    text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+- inputText: ${TEST_SELLER_EMAIL}
+- tapOn:
+    text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
+- inputText: ${TEST_SELLER_PASSWORD}
+- hideKeyboard
+- tapOn:
+    text: ".*[Ii]ngresar.*|.*[Ii]niciar.*|.*[Ee]ntrar.*|.*[Ll]ogin.*"
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_CLIENT_NAME}.*"
+    timeout: 15000
+
+---
+
+# APP-1-02: Login con email inválido
+- clearState
+- launchApp
+- tapOn:
+    text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+- inputText: "noexiste@falso.com"
+- tapOn:
+    text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
+- inputText: "cualquier-password"
+- hideKeyboard
+- tapOn:
+    text: ".*[Ii]ngresar.*|.*[Ii]niciar.*|.*[Ee]ntrar.*|.*[Ll]ogin.*"
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ee]rror.*|.*[Ii]nválido.*|.*[Ii]ncorrecto.*|.*[Nn]o autorizado.*"
+    timeout: 10000
+
+---
+
+# APP-1-03: Login con password incorrecto
+- clearState
+- launchApp
+- tapOn:
+    text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+- inputText: ${TEST_SELLER_EMAIL}
+- tapOn:
+    text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
+- inputText: "password-malo-12345"
+- hideKeyboard
+- tapOn:
+    text: ".*[Ii]ngresar.*|.*[Ii]niciar.*|.*[Ee]ntrar.*|.*[Ll]ogin.*"
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ee]rror.*|.*[Ii]nválido.*|.*[Ii]ncorrecto.*|.*[Nn]o autorizado.*"
+    timeout: 10000

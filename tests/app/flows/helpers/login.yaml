@@ -1,0 +1,17 @@
+appId: ${APP_PACKAGE}
+---
+- clearState
+- launchApp
+- tapOn:
+    text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+- inputText: ${TEST_SELLER_EMAIL}
+- tapOn:
+    text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
+- inputText: ${TEST_SELLER_PASSWORD}
+- hideKeyboard
+- tapOn:
+    text: ".*[Ii]ngresar.*|.*[Ii]niciar.*|.*[Ee]ntrar.*|.*[Ll]ogin.*"
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_CLIENT_NAME}.*"
+    timeout: 15000

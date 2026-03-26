@@ -1,0 +1,39 @@
+appId: ${APP_PACKAGE}
+name: "APP-3 (cont): Catálogo y búsqueda"
+
+---
+
+# APP-3-03: Ver catálogo de productos
+- runFlow: helpers/login.yaml
+# Navegar al catálogo (puede requerir seleccionar comercio primero)
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+# Verificar que hay productos visibles
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 10000
+
+---
+
+# APP-3-04: Buscar producto
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+# Buscar producto por nombre
+- tapOn:
+    text: ".*[Bb]uscar.*|.*[Ss]earch.*"
+    optional: true
+- inputText: ${TEST_PRODUCT_NAME}
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 5000

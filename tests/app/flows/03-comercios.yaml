@@ -1,0 +1,30 @@
+appId: ${APP_PACKAGE}
+name: "APP-3: Navegación de comercios"
+
+---
+
+# APP-3-01: Ver lista de comercios asignados
+- runFlow: helpers/login.yaml
+# Navegar a lista de comercios (ajustar navegación según UI real)
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_COMMERCE_NAME}.*"
+    timeout: 10000
+
+---
+
+# APP-3-02: Seleccionar comercio y ver datos
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+# Verificar que se cargaron los datos del comercio
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_COMMERCE_NAME}.*"
+    timeout: 5000

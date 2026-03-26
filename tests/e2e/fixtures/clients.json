@@ -1,0 +1,100 @@
+{
+  "tienda": {
+    "name": "Tienda",
+    "baseURL": "https://tienda.youorder.me",
+    "loginPath": "/auth/jwt/login",
+    "credentials": {
+      "email": "eduardo+tienda+comercio@yom.ai",
+      "password": "lalojyom26"
+    },
+    "config": {
+      "anonymousAccess": true,
+      "enableCoupons": true,
+      "enableOrderApproval": true,
+      "purchaseOrderEnabled": true,
+      "editAddress": true,
+      "hideReceiptType": false,
+      "disableCart": false,
+      "hidePrices": false,
+      "currency": "clp"
+    }
+  },
+  "soprole": {
+    "name": "Soprole",
+    "baseURL": "https://soprole.solopide.me",
+    "loginPath": "/login",
+    "credentials": {
+      "email": "alejandro+chatbot@yom.ai",
+      "password": "password123"
+    },
+    "config": {
+      "anonymousAccess": false,
+      "enableCoupons": true,
+      "enablePriceOracle": true,
+      "enableOrderApproval": false,
+      "ordersRequireAuthorization": true,
+      "hidePrices": false,
+      "disableCart": false,
+      "enablePayments": true,
+      "useMongoPricing": true,
+      "currency": "clp"
+    }
+  },
+  "surtiventas": {
+    "name": "Surtiventas",
+    "baseURL": "https://surtiventas.solopide.me",
+    "loginPath": "/auth/jwt/login",
+    "credentials": {
+      "email": "max+surtiventasadmin@yom.ai",
+      "password": "password123"
+    },
+    "config": {
+      "anonymousAccess": false,
+      "enableCoupons": true,
+      "enableChooseSaleUnit": true,
+      "limitAddingByStock": true,
+      "useNewPromotions": true,
+      "includeTaxRateInPrices": true,
+      "hidePrices": false,
+      "disableCart": false,
+      "currency": "cop"
+    }
+  },
+  "marleycoffee": {
+    "name": "Marley Coffee",
+    "baseURL": "https://marleycoffee.solopide.me",
+    "loginPath": "/auth/jwt/login",
+    "credentials": {
+      "email": "daniel+marleycoffe@yom.ai",
+      "password": "admin12345"
+    },
+    "config": {
+      "anonymousAccess": false,
+      "enableCoupons": true,
+      "hidePrices": false,
+      "disableCart": false,
+      "currency": "clp"
+    }
+  },
+  "codelpa": {
+    "name": "Codelpa",
+    "baseURL": "https://codelpa.solopide.me",
+    "loginPath": "/login",
+    "credentials": {
+      "email": "felipe.munoz+codelpastagingb2b@youorder.me",
+      "password": "1qazxsw23edc"
+    },
+    "config": {
+      "anonymousAccess": false,
+      "enableCoupons": true,
+      "enableOrderApproval": true,
+      "enableOrderValidation": true,
+      "useMongoPricing": true,
+      "enableSellerDiscount": true,
+      "hideReceiptType": true,
+      "hidePrices": false,
+      "disableCart": false,
+      "currency": "clp"
+    }
+  }
+}
