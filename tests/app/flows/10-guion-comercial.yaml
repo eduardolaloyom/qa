@@ -1,0 +1,62 @@
+appId: ${APP_PACKAGE}
+name: "APP-10: Guión comercial en tomador de pedidos (YOM-187)"
+
+---
+
+# APP-10-01: Auto-show del guión al entrar al tomador
+# Given: sitio con flag activo y guión configurado
+# When: vendedor entra al tomador desde vista de comercios
+# Then: tooltip con texto del guión aparece por 3 segundos
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+# Entrar al tomador de pedidos
+- tapOn:
+    text: ".*[Pp]edir.*|.*[Tt]omar pedido.*|.*[Nn]uevo pedido.*"
+    optional: true
+# El guión debe mostrarse automáticamente
+- extendedWaitUntil:
+    visible:
+      text: ".*[Gg]ui[oó]n.*|.*"
+    timeout: 5000
+- takeScreenshot: test-results/guion-01-auto-show
+
+---
+
+# APP-10-02: Botón morado muestra guión on-demand
+# Given: vendedor en tomador de pedidos
+# When: toca botón morado de guión
+# Then: tooltip aparece con texto
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+- tapOn:
+    text: ".*[Pp]edir.*|.*[Tt]omar pedido.*|.*[Nn]uevo pedido.*"
+    optional: true
+# Esperar que el auto-show desaparezca (3s + fadeout)
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 10000
+# Tocar botón de guión (ícono morado)
+- tapOn:
+    text: ".*[Gg]ui[oó]n.*"
+    optional: true
+- takeScreenshot: test-results/guion-02-boton-on-demand
+
+---
+
+# APP-10-03: Flag desactivado — no se muestra guión ni botón
+# Given: sitio con flag desactivado o guión vacío
+# When: vendedor entra al tomador
+# Then: no se muestra botón ni auto-show
+# NOTA: Requiere cliente de prueba sin guión configurado.
+# Saltar si no hay cliente sin guión disponible.

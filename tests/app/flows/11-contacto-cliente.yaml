@@ -1,0 +1,137 @@
+appId: ${APP_PACKAGE}
+name: "APP-11: Acciones de contacto en página de cliente (YOM-188)"
+
+---
+
+# APP-11-01: Íconos de contacto visibles y accionables
+# Given: cliente con datos de contacto (teléfono, email, dirección)
+# When: vendedor entra a página del cliente
+# Then: íconos de contacto visibles
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+# Verificar que hay íconos de contacto
+- extendedWaitUntil:
+    visible:
+      text: ".*[Tt]el[eé]fono.*|.*[Ww]hats[Aa]pp.*|.*[Ee]mail.*|.*[Dd]irecci[oó]n.*"
+    timeout: 10000
+- takeScreenshot: test-results/contacto-01-iconos-visibles
+
+---
+
+# APP-11-02: Tap en teléfono abre app de llamadas
+# Given: cliente con número de teléfono
+# When: vendedor toca ícono de teléfono
+# Then: se abre app de llamadas (o intent de llamada)
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+- tapOn:
+    text: ".*[Tt]el[eé]fono.*|.*[Ll]lamar.*"
+    optional: true
+- takeScreenshot: test-results/contacto-02-llamada
+# Volver a la app
+- pressKey: back
+
+---
+
+# APP-11-03: Tap en WhatsApp abre WhatsApp con guión
+# Given: cliente con guión comercial y número WhatsApp
+# When: vendedor toca ícono WhatsApp
+# Then: se abre WhatsApp con texto del guión
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+- tapOn:
+    text: ".*[Ww]hats[Aa]pp.*"
+    optional: true
+- takeScreenshot: test-results/contacto-03-whatsapp
+- pressKey: back
+
+---
+
+# APP-11-04: Agregar nuevo dato de contacto
+# Given: vendedor en página de cliente
+# When: toca "Agregar", elige tipo y escribe valor
+# Then: dato se guarda y aparece como principal
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    optional: true
+# Seleccionar tipo teléfono
+- tapOn:
+    text: ".*[Tt]el[eé]fono.*"
+    optional: true
+- inputText: "912345678"
+- tapOn:
+    text: ".*[Gg]uardar.*|.*[Cc]onfirmar.*|.*[Aa]ceptar.*"
+    optional: true
+# Verificar que el dato nuevo aparece
+- extendedWaitUntil:
+    visible:
+      text: ".*912345678.*"
+    timeout: 5000
+- takeScreenshot: test-results/contacto-04-nuevo-contacto
+
+---
+
+# APP-11-05: Validación de formato inválido
+# Given: vendedor agrega contacto
+# When: ingresa email inválido
+# Then: muestra error de validación
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    optional: true
+- tapOn:
+    text: ".*[Ee]mail.*"
+    optional: true
+- inputText: "esto-no-es-email"
+- tapOn:
+    text: ".*[Gg]uardar.*|.*[Cc]onfirmar.*|.*[Aa]ceptar.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ee]rror.*|.*[Ii]nv[aá]lid.*|.*formato.*"
+    timeout: 5000
+- takeScreenshot: test-results/contacto-05-validacion
+
+---
+
+# APP-11-06: Ver más contactos (popup)
+# Given: cliente con múltiples datos de contacto del mismo tipo
+# When: vendedor toca "Ver más"
+# Then: popup con todos los contactos, cada uno accionable
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+- tapOn:
+    text: ".*[Vv]er m[aá]s.*"
+    optional: true
+- takeScreenshot: test-results/contacto-06-ver-mas
+# Cerrar popup
+- tapOn:
+    text: ".*[Cc]errar.*|.*✕.*|.*X.*"
+    optional: true

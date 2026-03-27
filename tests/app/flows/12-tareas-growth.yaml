@@ -1,0 +1,107 @@
+appId: ${APP_PACKAGE}
+name: "APP-12: Tareas de Growth / Retención (YOM-182)"
+
+---
+
+# APP-12-01: Ver tareas pendientes (comercios + leads)
+# Given: vendedor con tareas asignadas
+# When: entra a vista de tareas
+# Then: ve tareas de comercios activos Y de solicitudes/leads
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Tt]area.*|.*[Pp]endiente.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Tt]area.*"
+    timeout: 10000
+- takeScreenshot: test-results/growth-01-tareas-pendientes
+
+---
+
+# APP-12-02: Distinguir tareas de lead vs comercio activo
+# Given: vista de tareas con ambos tipos
+# When: vendedor mira la lista
+# Then: tareas de leads tienen badge/indicador visual distinto
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Tt]area.*|.*[Pp]endiente.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ll]ead.*|.*[Ss]olicitud.*"
+    timeout: 10000
+- takeScreenshot: test-results/growth-02-lead-vs-comercio
+
+---
+
+# APP-12-03: Filtrar tareas por tipo
+# Given: vista de tareas
+# When: vendedor usa filtro "solo solicitudes"
+# Then: solo muestra tareas de leads
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Tt]area.*|.*[Pp]endiente.*"
+    optional: true
+- tapOn:
+    text: ".*[Ff]iltro.*|.*[Tt]odos.*"
+    optional: true
+- tapOn:
+    text: ".*[Ss]olicitud.*|.*[Ll]ead.*"
+    optional: true
+- takeScreenshot: test-results/growth-03-filtro-solicitudes
+
+---
+
+# APP-12-04: Completar tarea de lead
+# Given: tarea de lead pendiente
+# When: vendedor la marca como completada
+# Then: cambia de estado correctamente
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Tt]area.*|.*[Pp]endiente.*"
+    optional: true
+- tapOn:
+    text: ".*[Ll]ead.*|.*[Ss]olicitud.*"
+    optional: true
+- tapOn:
+    text: ".*[Cc]ompletar.*|.*[Hh]echo.*|.*✓.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Cc]ompletad.*|.*[Hh]ech.*"
+    timeout: 5000
+- takeScreenshot: test-results/growth-04-tarea-completada
+
+---
+
+# APP-12-05: Indicador de crédito en tarjeta de comercio
+# Given: comercio con estado de crédito
+# When: vendedor ve lista de comercios
+# Then: círculo de color con símbolo en esquina superior derecha
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_COMMERCE_NAME}.*"
+    timeout: 10000
+# Verificar visualmente — screenshot para revisión manual
+- takeScreenshot: test-results/growth-05-indicador-credito
+
+---
+
+# APP-12-06: Ver tareas desde detalle de solicitud
+# Given: solicitud con tareas asignadas por Reten
+# When: vendedor entra al detalle de la solicitud
+# Then: tarea visible y accionable
+- runFlow: helpers/login.yaml
+- tapOn:
+    text: ".*[Ss]olicitud.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Tt]area.*"
+    timeout: 10000
+- takeScreenshot: test-results/growth-06-tarea-en-solicitud
