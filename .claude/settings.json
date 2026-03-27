@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx playwright *)",
+      "Bash(npx playwright test *)",
+      "Bash(npx playwright show-report *)",
+      "Bash(npx playwright install *)",
+      "Bash(maestro test *)",
+      "Bash(maestro record *)",
+      "Bash(python3 tools/checklist-generator.py *)",
+      "Bash(python3 data/mongo-extractor.py *)",
+      "Bash(python3 tools/generate_features_csv.py *)",
+      "Bash(./tools/run-qa.sh *)",
+      "Bash(cd tests/e2e && npm install)",
+      "Bash(cd tests/e2e && npx playwright *)"
+    ],
+    "deny": [
+      "Bash(rm -rf .git)",
+      "Bash(git push --force *)",
+      "Bash(*mongosh*drop*)",
+      "Bash(*mongosh*delete*)"
+    ]
+  }
+}
