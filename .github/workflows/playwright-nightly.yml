@@ -28,26 +28,37 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Run Playwright tests (B2B)
+      - name: Run Codelpa tests
         env:
           BASE_URL: https://tienda.youorder.me
           CODELPA_EMAIL: ${{ secrets.CODELPA_EMAIL }}
           CODELPA_PASSWORD: ${{ secrets.CODELPA_PASSWORD }}
+        working-directory: tests/e2e
+        run: |
+          rm -rf playwright-report
+          npx playwright test --project=b2b b2b/codelpa.spec.ts --reporter=html,list
+
+      - name: Copy Codelpa results
+        if: always()
+        run: |
+          mkdir -p public/codelpa
+          cp -r tests/e2e/playwright-report/* public/codelpa/
+
+      - name: Run Surtiventas tests
+        env:
+          BASE_URL: https://tienda.youorder.me
           SURTIVENTAS_EMAIL: ${{ secrets.SURTIVENTAS_EMAIL }}
           SURTIVENTAS_PASSWORD: ${{ secrets.SURTIVENTAS_PASSWORD }}
         working-directory: tests/e2e
         run: |
-          npx playwright test --project=b2b b2b/codelpa.spec.ts b2b/surtiventas.spec.ts --reporter=html,list
+          rm -rf playwright-report
+          npx playwright test --project=b2b b2b/surtiventas.spec.ts --reporter=html,list
 
-      - name: Copy test results to public
+      - name: Copy Surtiventas results
         if: always()
         run: |
-          mkdir -p public/reports
-          cp -r tests/e2e/playwright-report/* public/reports/
-          # Also copy grouped report if it exists
-          if [ -f tests/e2e/playwright-report/grouped-report.html ]; then
-            cp tests/e2e/playwright-report/grouped-report.html public/
-          fi
+          mkdir -p public/surtiventas
+          cp -r tests/e2e/playwright-report/* public/surtiventas/
 
       - name: Update dashboard timestamp
         if: always()
