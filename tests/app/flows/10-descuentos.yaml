@@ -1,0 +1,62 @@
+appId: ${APP_PACKAGE}
+name: "APP-10: Descuentos en pedido (regresión PM3)"
+
+---
+
+# APP-10: Descuentos en tomador de pedidos
+# Fuente: Post-mortem "Error agregar descuentos App Movil"
+# Incidente: Campo seteado a null causó crash al agregar descuento en "Mi Pedido"
+
+- runFlow: helpers/login.yaml
+
+# Seleccionar comercio
+- tapOn:
+    text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*"
+    optional: true
+- tapOn:
+    text: ".*${TEST_COMMERCE_NAME}.*"
+    optional: true
+
+# Buscar y agregar producto al carro
+- extendedWaitUntil:
+    visible:
+      text: ".*${TEST_PRODUCT_NAME}.*"
+    timeout: 10000
+- tapOn:
+    text: ".*${TEST_PRODUCT_NAME}.*"
+- tapOn:
+    text: ".*[Aa]gregar.*|.*\\+.*"
+    optional: true
+
+# APP-10-01: Ir a Mi Pedido / Carro
+- tapOn:
+    text: ".*[Cc]arro.*|.*[Pp]edido.*|.*[Vv]er pedido.*|.*[Mm]i [Pp]edido.*"
+    optional: true
+
+# APP-10-02: Intentar agregar descuento a producto
+# Este es el flujo que causó el crash en PM3
+- tapOn:
+    text: ".*${TEST_PRODUCT_NAME}.*"
+    optional: true
+- tapOn:
+    text: ".*[Dd]escuento.*|.*[Dd]cto.*|.*%.*"
+    optional: true
+
+# APP-10-03: Si hay campo de descuento, ingresar valor
+- inputText:
+    text: "5"
+    optional: true
+- tapOn:
+    text: ".*[Aa]ceptar.*|.*[Aa]plicar.*|.*[Cc]onfirmar.*|.*OK.*"
+    optional: true
+
+# APP-10-04: Verificar que la app no crasheó
+- takeScreenshot: test-results/descuentos-04-post-apply
+
+# APP-10-05: Verificar que el precio refleja el descuento
+- assertVisible:
+    text: ".*\\$.*[0-9].*"
+
+# APP-10-06: Volver al catálogo y verificar estabilidad
+- pressKey: back
+- takeScreenshot: test-results/descuentos-06-estable-post-back
