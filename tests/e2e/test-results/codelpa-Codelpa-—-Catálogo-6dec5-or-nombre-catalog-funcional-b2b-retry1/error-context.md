@@ -1,0 +1,121 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - paragraph [ref=e8]: Si haces un pedido hoy, te llegará al siguiente día hábil.
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img [ref=e14]
+        - generic [ref=e15]:
+          - combobox "Buscar productos" [ref=e18]
+          - button [ref=e20] [cursor=pointer]:
+            - img [ref=e21]
+        - generic [ref=e23]:
+          - button "Iniciar sesión" [ref=e24] [cursor=pointer]
+          - button "0 $0" [ref=e25] [cursor=pointer]:
+            - generic [ref=e27]:
+              - img [ref=e28]
+              - generic: "0"
+            - paragraph [ref=e30]: $0
+      - region "scrollable content" [ref=e37]:
+        - navigation [ref=e39]:
+          - link "Categorías de productos" [ref=e43] [cursor=pointer]:
+            - /url: /products
+            - img [ref=e45]
+            - generic [ref=e48]: Categorías de productos
+          - link "Abarrotes" [ref=e52] [cursor=pointer]:
+            - /url: /products?category=abarrotes
+            - generic [ref=e54]: Abarrotes
+    - main [ref=e56]:
+      - main [ref=e57]:
+        - generic [ref=e59]:
+          - img [ref=e60] [cursor=pointer]
+          - heading "Bienvenido a Tienda" [level=3] [ref=e61]
+          - paragraph [ref=e62]: Utiliza tu cuenta YouOrder.me para acceder al catálogo de Tienda.
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - generic: Correo
+              - generic [ref=e66]:
+                - textbox "Correo" [ref=e67]
+                - group:
+                  - generic: Correo
+              - generic [ref=e68]: El Email es requerido
+            - generic [ref=e69]:
+              - generic: Contraseña
+              - generic [ref=e70]:
+                - textbox "Contraseña" [ref=e71]
+                - button [ref=e73] [cursor=pointer]:
+                  - img [ref=e74]
+                - group:
+                  - generic: Contraseña
+              - generic [ref=e76]: La Contraseña es requerida
+            - link "¿Olvidaste la contraseña?" [ref=e77] [cursor=pointer]:
+              - /url: /auth/jwt/recover
+            - button "Iniciar sesión" [ref=e78] [cursor=pointer]: Iniciar sesión
+          - iframe [ref=e81]:
+            - button "Acceder con Google. Se abre en una pestaña nueva" [ref=f1e3] [cursor=pointer]:
+              - generic [ref=f1e5]:
+                - img [ref=f1e7]
+                - generic [ref=f1e14]: Acceder con Google
+          - button "Ingresar con Facebook" [ref=e82] [cursor=pointer]:
+            - img [ref=e84]
+            - text: Ingresar con Facebook
+          - paragraph [ref=e86]:
+            - text: ¿Nuevo en Tienda?
+            - link "Regístrate aquí" [ref=e87] [cursor=pointer]:
+              - /url: /auth/jwt/register
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - link [ref=e92] [cursor=pointer]:
+          - /url: /
+          - img [ref=e93]
+        - generic [ref=e94]:
+          - img [ref=e96]
+          - paragraph [ref=e98]:
+            - text: "Correo:"
+            - generic [ref=e99]: contacto@youorder.me
+        - generic [ref=e100]:
+          - img [ref=e102]
+          - paragraph [ref=e106]:
+            - text: "Detalles de entrega:"
+            - generic [ref=e107]: Se reciben pedidos hasta las 18:00 y se despachan dentro de las siguientes 24 horas hábiles, con excepeción de Batuco (sólo días Jueves), Colina (sólo días Lunes, Miércoles y Viernes), Lampa (sólo días Martes, Jueves y Sábado) y Cerro Navia (sólo días Lunes, Miércoles y Viernes).
+        - generic [ref=e108]:
+          - img [ref=e110]
+          - paragraph [ref=e114]:
+            - text: "Horarios de entrega:"
+            - generic [ref=e115]: De lunes a sábado, 08:00 - 17:30 hr
+        - paragraph [ref=e116]: Comprometidos con mejorar la calidad de vida de los almacenes de barrio.
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - paragraph [ref=e119]: ENLACES ÚTILES
+          - generic [ref=e120]:
+            - link "Ofertas" [ref=e121] [cursor=pointer]:
+              - /url: /offers
+              - paragraph [ref=e122]: Ofertas
+            - link "Nuevos Productos" [ref=e123] [cursor=pointer]:
+              - /url: /products?new=true
+              - paragraph [ref=e124]: Nuevos Productos
+            - link "Destacados" [ref=e125] [cursor=pointer]:
+              - /url: /products?featured=true
+              - paragraph [ref=e126]: Destacados
+            - link "Productos Recomendados" [ref=e127] [cursor=pointer]:
+              - /url: /products?suggestions=true
+              - paragraph [ref=e128]: Productos Recomendados
+        - generic [ref=e129]:
+          - paragraph [ref=e130]: CENTRO DE AYUDA
+          - generic [ref=e131]:
+            - link "Contacto" [ref=e132] [cursor=pointer]:
+              - /url: /contact
+              - paragraph [ref=e133]: Contacto
+            - link "Preguntas Frecuentes" [ref=e134] [cursor=pointer]:
+              - /url: /faq
+              - paragraph [ref=e135]: Preguntas Frecuentes
+            - paragraph [ref=e136] [cursor=pointer]: Condiciones de Despacho
+            - link "Terminos y Condiciones" [ref=e137] [cursor=pointer]:
+              - /url: /terms
+              - paragraph [ref=e138]: Terminos y Condiciones
+```
