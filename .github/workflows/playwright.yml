@@ -1,13 +1,13 @@
 name: Playwright Tests → GitHub Pages
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'tests/e2e/**'
-      - '.github/workflows/playwright.yml'
+  # Run tests once daily at 2 AM UTC (11 PM Chile time)
+  schedule:
+    - cron: '0 2 * * *'
+  # Run on pull requests to main
   pull_request:
     branches: [main]
+  # Allow manual trigger from Actions tab
   workflow_dispatch:
 
 concurrency:
