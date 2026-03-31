@@ -147,9 +147,26 @@ for (const [key, client] of Object.entries(clients)) {
       await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(5000);
 
-      const zeroPrices = page.locator('text=/\\$\\s*0(?:[,.]0+)?\\s*$/');
-      const count = await zeroPrices.count();
-      expect(count).toBe(0);
+      const productCards = page.locator('[class*="ProductCard"], [class*="product-card"], [class*="card"]').filter({ has: page.locator('text=/\\$\\s*[\\d.,]+/') });
+      const cardCount = await productCards.count();
+
+      const zeroProducts: string[] = [];
+      for (let i = 0; i < cardCount; i++) {
+        const card = productCards.nth(i);
+        const hasZero = await card.locator('text=/\\$\\s*0(?:[,.]0+)?\\s*$/').count();
+        if (hasZero > 0) {
+          const name = await card.locator('h2, h3, h4, a, [class*="name"], [class*="title"]').first().textContent().catch(() => `Producto #${i + 1}`);
+          zeroProducts.push(name?.trim() || `Producto #${i + 1}`);
+        }
+      }
+
+      if (zeroProducts.length > 0) {
+        test.info().annotations.push({
+          type: 'error',
+          description: `Productos con $0: ${zeroProducts.join(', ')}`,
+        });
+      }
+      expect(zeroProducts.length).toBe(0);
 
       await context.close();
     });

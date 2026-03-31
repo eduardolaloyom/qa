@@ -32,7 +32,9 @@ El B2B de YOM es una plataforma e-commerce multi-tenant en **Next.js** donde cad
 
 ---
 
-## Estrategia: 3 capas
+## Estrategia: 3 capas (Cowork primero)
+
+> **Decisión (30-03-2026):** Cowork es la herramienta primaria de QA. Simula interacción humana real, valida que la config del cliente se vea correctamente. Playwright es complementario para regresión automatizada. Tests unitarios no son foco de QA — son dominio de Diego. Fuente: reunión QA con Diego.
 
 ### Capa 1 — E2E automatizado (complementar Cypress con Playwright)
 
@@ -99,9 +101,9 @@ El B2B de YOM es una plataforma e-commerce multi-tenant en **Next.js** donde cad
 
 ---
 
-### Capa 3 — QA operacional con Claude Cowork
+### Capa 3 — QA operacional con Claude Cowork (PRIMARIA)
 
-**Objetivo:** Validación funcional "como humano" usando IA. Complementa E2E automatizado con verificación visual y de UX.
+**Objetivo:** Validación funcional "como humano" usando IA. Es la capa principal: valida que lo que el equipo configura se vea y funcione correctamente desde la perspectiva del usuario.
 
 **Cómo funciona:**
 1. Cowork se conecta a tienda.yom.ai (o subdominio de cliente)

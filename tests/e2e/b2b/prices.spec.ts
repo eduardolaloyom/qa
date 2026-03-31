@@ -15,18 +15,25 @@ test.describe('C3 — Precios y descuentos', () => {
     await page.goto('/');
     await expect(page.locator('text=/\\$\\s*[\\d.,]+/')).toBeVisible({ timeout: 15_000 });
 
-    // Buscar textos que contengan $0 como precio
-    const zeroPrices = page.locator('text=/\\$\\s*0(?:[,.]0+)?\\s/');
-    const count = await zeroPrices.count();
+    const productCards = page.locator('[class*="ProductCard"], [class*="product-card"], [class*="card"]').filter({ has: page.locator('text=/\\$\\s*[\\d.,]+/') });
+    const cardCount = await productCards.count();
 
-    // Reportar como warning — es dato de staging, no necesariamente un bug
-    if (count > 0) {
+    const zeroProducts: string[] = [];
+    for (let i = 0; i < cardCount; i++) {
+      const card = productCards.nth(i);
+      const hasZero = await card.locator('text=/\\$\\s*0(?:[,.]0+)?\\s*$/').count();
+      if (hasZero > 0) {
+        const name = await card.locator('h2, h3, h4, a, [class*="name"], [class*="title"]').first().textContent().catch(() => `Producto #${i + 1}`);
+        zeroProducts.push(name?.trim() || `Producto #${i + 1}`);
+      }
+    }
+
+    if (zeroProducts.length > 0) {
       test.info().annotations.push({
         type: 'warning',
-        description: `${count} elemento(s) con precio $0 encontrado(s) en catalogo`,
+        description: `Productos con $0: ${zeroProducts.join(', ')}`,
       });
     }
-    // No deberia haber precios $0 en produccion, pero en staging se tolera
   });
 
   test('C3-03: Precios consistentes catalogo vs carro', async ({ authedPage: page }) => {

@@ -3,6 +3,12 @@
 Suite de QA para YOM (You Order Me): B2B web, APP mobile, Admin.
 11 checklists (~280 casos), 15 Playwright specs, 12 Maestro flows, herramientas Python.
 
+## Estrategia de testing
+
+**Cowork (Claude) es la herramienta primaria de QA.** Simula interacción humana real con la app, valida que la configuración del cliente se vea correctamente (banners, fechas, datos, flujos completos). Playwright es complementario: corre regresión automatizada y detecta roturas conocidas (post-mortems). Los tests unitarios no son foco de QA.
+
+Prioridad: Cowork (validación visual + config) > Playwright (regresión E2E) > Maestro (APP mobile) > Checklists manuales (servicios backend)
+
 ## Estructura
 
 ```
@@ -50,7 +56,7 @@ Mismo código, distintos subdominios: `{slug}.youorder.me`
 ## Fuentes de verdad
 
 - **Linear**: deuda técnica, features en desarrollo, bugs asignados
-- **Notion**: estado de clientes, features por cliente, post-mortems, wiki técnica
+- **Notion**: features por cliente, post-mortems, wiki técnica (puede tener lag — cruzar con Slack/git si el status importa)
 - **Slack #engineering/#tech**: bugs en producción, coordinación con Diego y Rodrigo
 
 ## Documentos principales

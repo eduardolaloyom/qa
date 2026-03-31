@@ -4,51 +4,49 @@ Suite de QA para la plataforma YOM: B2B, APP mobile y Admin.
 
 Cubre testing automatizado (Playwright E2E, Maestro mobile), generación de checklists por cliente desde MongoDB, y proceso operacional de puesta en marcha.
 
+## Documentos clave
+
+| Documento | Para quién | Contenido |
+|-----------|-----------|-----------|
+| [GUIA-OPERACIONAL-QA.md](GUIA-OPERACIONAL-QA.md) | **QA + Devs** | Qué, cuándo, quién y cómo se aplica cada artefacto |
+| [checklists/INDICE.md](checklists/INDICE.md) | **QA + Devs** | Mapa completo: checklist → test automatizado → cobertura |
+| [qa-master-prompt.md](qa-master-prompt.md) | **QA** | Casos de prueba madre (~80 casos), fixtures, esquemas |
+| [playbook-qa-cliente-nuevo.md](playbook-qa-cliente-nuevo.md) | **QA** | Paso a paso para onboarding de cliente nuevo |
+| [plan-qa-b2b.md](plan-qa-b2b.md) | **Devs** | Estrategia QA B2B (3 capas) |
+| [qa-app-strategy.md](qa-app-strategy.md) | **QA** | Estrategia QA APP mobile |
+
 ## Estructura
 
 ```
 qa/
-├── data/                          # Datos de clientes y config
-│   ├── mongo-extractor.py         # Extrae config de MongoDB por cliente
-│   ├── qa-matrix.json             # Config extraída (generado, no commitear)
-│   ├── features-clientes-2026.csv # Features activas por cliente
-│   ├── variables-por-cliente.md   # Diccionario de variables MongoDB
-│   └── cruce-tests-variables-clientes.md  # Matriz tests × variables × clientes
+├── checklists/                    # Checklists QA organizadas por categoría
+│   ├── INDICE.md                  # Mapa maestro: checklist → test → cobertura
+│   ├── regresion/                 # Basadas en post-mortems (incidentes reales)
+│   ├── deuda-tecnica/             # Basadas en deuda técnica (Notion)
+│   ├── servicios/                 # Backend: ERP, Khipu, Validator, Webhooks
+│   └── funcional/                 # Producto: pricing, carrito, GA4, app
 │
 ├── tests/
-│   ├── e2e/                       # Playwright — E2E para B2B web
-│   │   ├── b2b/                   # Specs: login, catalog, cart, checkout, prices
-│   │   ├── fixtures/              # Auth helper, clients config
+│   ├── e2e/                       # Playwright — E2E browser (B2B + Admin)
+│   │   ├── b2b/                   # 13 specs: login, cart, coupons, pricing, etc.
+│   │   ├── admin/                 # 2 specs: login, orders
+│   │   ├── fixtures/              # Auth helper
 │   │   └── playwright.config.ts
-│   └── app/                       # Maestro — Smoke tests APP mobile
-│       ├── flows/                 # YAML flows: login, sync, pedido, etc.
-│       └── config/                # Env config para Maestro
+│   └── app/                       # Maestro — APP mobile Android
+│       ├── flows/                 # 10 flows: login, pedido, pagos, concurrencia
+│       └── config/                # Env config
 │
-├── tools/
-│   ├── checklist-generator.py     # Genera checklist QA por cliente
-│   ├── generate_features_csv.py   # Genera CSV features × clientes desde Excel
-│   ├── run-qa.sh                  # Script orquestador: mongo → checklist → playwright
-│   └── cowork-qa-b2b.md          # Prompt para QA con Claude Cowork
-│
-├── templates/
-│   ├── qa-report-template.md      # Template reporte QA con health score
-│   └── escalation-templates.md    # Templates Slack por tipo de issue
-│
-├── references/
-│   └── issue-taxonomy.md          # Severidades, categorías, escalamiento
-│
+├── data/                          # Datos de clientes y config
+├── tools/                         # Scripts: extractor, generador, orquestador
+├── templates/                     # Templates de reporte y escalamiento
+├── references/                    # Taxonomía de issues
 ├── QA/                            # Resultados por cliente y fecha
-│   ├── Soprole/2026-03-25/
-│   └── Tienda/2026-03-25/
 │
+├── GUIA-OPERACIONAL-QA.md         # Guía operacional (quién hace qué, cuándo)
 ├── plan-qa-b2b.md                 # Estrategia QA B2B (3 capas)
 ├── qa-app-strategy.md             # Estrategia QA APP mobile
-├── qa-master-prompt.md            # Documento madre: ~80 casos, fixtures, esquemas
-├── playbook-qa-cliente-nuevo.md   # Paso a paso para QA de cliente nuevo
-├── checklist-puesta-en-marcha-app.md  # Checklist APP ejecutado (Tienda)
-├── casos-prioritarios-diego.md    # Casos de test priorizados para Diego (B2B)
-├── reunion-qa-automatizado.md     # Acta reunión con Tech (25/03/2026)
-├── reporte-exploracion-repos.md   # Hallazgos reales de repos YOM
+├── qa-master-prompt.md            # Documento madre: ~80 casos
+├── playbook-qa-cliente-nuevo.md   # Paso a paso onboarding cliente nuevo
 └── SKILL.md                       # Flujo operacional QA PeM
 ```
 
