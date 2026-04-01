@@ -120,19 +120,19 @@
           <div class="card-status">beta-codelpa.solopide.me</div>
         </div>
         <div class="card-body">
-          <div class="status-badge status-warning">⚠️ CON CONDICIONES</div>
+          <div class="status-badge status-fail">🔴 LENTITUD CRÍTICA</div>
           <div class="metrics">
             <div class="metric">
-              <div class="metric-value">72/100</div>
+              <div class="metric-value">39/100</div>
               <div class="metric-label">Health Score</div>
             </div>
             <div class="metric">
-              <div class="metric-value">2</div>
-              <div class="metric-label">HIGH abiertos</div>
+              <div class="metric-value">17/43</div>
+              <div class="metric-label">Tests pasando</div>
             </div>
           </div>
           <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
-            <strong>Issues:</strong> #7 (número pedido), #1 (delivery-date API), #8 (cupón)
+            <strong>BLOQUEADORES:</strong> Timeouts en carga (>60s). Checkout, carrito, búsqueda sin respuesta. Performance issue.
           </p>
           <div>
             <a href="./codelpa/index.html" class="btn btn-secondary">📊 Reporte Playwright</a>
@@ -146,19 +146,19 @@
           <div class="card-status">surtiventas.solopide.me</div>
         </div>
         <div class="card-body">
-          <div class="status-badge status-fail">🔴 NO APTO</div>
+          <div class="status-badge status-warning">⚠️ CON CONDICIONES</div>
           <div class="metrics">
             <div class="metric">
-              <div class="metric-value">45/100</div>
+              <div class="metric-value">56/100</div>
               <div class="metric-label">Health Score</div>
             </div>
             <div class="metric">
-              <div class="metric-value">1</div>
-              <div class="metric-label">CRÍTICO</div>
+              <div class="metric-value">20/36</div>
+              <div class="metric-label">Tests pasando</div>
             </div>
           </div>
           <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
-            <strong>Bloqueador:</strong> SV-QA-001 (shippingAddress null → HTTP 400)
+            <strong>Issues:</strong> Validación carrito vacío incompleta. Checkout lentitud. Cupones con problemas.
           </p>
           <div>
             <a href="./surtiventas/index.html" class="btn btn-secondary">📊 Reporte Playwright</a>
@@ -170,11 +170,11 @@
     <div class="info-box">
       <h2>📋 Estado General</h2>
       <ul>
-        <li><strong>Codelpa:</strong> Puede ir a staging con monitoring (P0/P1 pendientes)</li>
-        <li><strong>Surtiventas:</strong> Bloqueado en P0 (SV-QA-001) — requiere investigación inmediata</li>
-        <li><strong>Plataforma:</strong> Issues compartidas en cupones e imágenes (QA-008, QA-004)</li>
+        <li><strong>Codelpa:</strong> 🔴 CRÍTICO — Lentitud en API/carga (>60s timeouts). Investigar beta-codelpa.solopide.me performance</li>
+        <li><strong>Surtiventas:</strong> ⚠️ CON CONDICIONES — Validaciones incompletas (carrito vacío), checkout lento. Mejor que Codelpa (56% vs 39%)</li>
+        <li><strong>Accionables:</strong> Revisar logs de performance en beta-codelpa, multiplicar timeouts en tests, validar API responses</li>
       </ul>
-      <p class="last-update">⏱️ Último ejecutado: 31 de Marzo de 2026 · 11:26 AM (Chile)</p>
+      <p class="last-update">⏱️ Último ejecutado: 1 de Abril de 2026 · 11:02 AM (Chile) · Playwright 17+20 tests pasando</p>
     </div>
 
     <div class="footer">
