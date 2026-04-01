@@ -168,19 +168,32 @@
     </div>
 
     <div class="info-box">
+      <h2>🚨 Accionables Críticos (P0)</h2>
+      <ul style="margin-bottom: 1.5rem;">
+        <li><strong>Codelpa + Surtiventas:</strong> Config-validation login falla (12 tests). getByLabel('Correo') no existe → cambiar a placeholder</li>
+        <li><strong>Codelpa:</strong> Carrito/checkout 35+ segundos. API performance issue</li>
+        <li><strong>Surtiventas:</strong> Botón "Confirmar" activo con carrito vacío → permite órdenes vacías</li>
+      </ul>
+      <a href="https://github.com/eduardolaloyom/qa/blob/main/ACCIONABLES.md" style="display: inline-block; padding: 1rem 2rem; background: #ff6b6b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-bottom: 1.5rem;">📋 Ver ACCIONABLES.md (Completo con fixes)</a>
+    </div>
+
+    <div class="info-box">
       <h2>📋 Estado General (con config-validation)</h2>
       <ul>
         <li><strong>Codelpa:</strong> 22/38 pasando (58%) — Config-validation falla (6/6). API timeouts en login.</li>
         <li><strong>Surtiventas:</strong> 20/31 pasando (65%) — Config-validation falla (6/6). Carrito no desactiva botón vacío.</li>
-        <li><strong>Accionables P0:</strong> Config-validation tests fallan en login. Revisar why getByLabel('Correo') no existe.</li>
-        <li><strong>Accionables P1:</strong> Codelpa performance (timeouts >60s). Surtiventas validaciones incompletas.</li>
+        <li><strong>Evidencia:</strong> Ver reportes detallados con screenshots, tiempos de ejecución, y error messages exactos</li>
       </ul>
-      <p class="last-update">⏱️ Último ejecutado: 1 de Abril de 2026 · 11:30 AM (Chile) · Con config-validation (25+19 flags MongoDB)</p>
+      <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+        <a href="./codelpa/index.html" style="padding: 0.75rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📊 Reporte Codelpa</a>
+        <a href="./surtiventas/index.html" style="padding: 0.75rem 1rem; background: #667eea; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem;">📊 Reporte Surtiventas</a>
+      </div>
+      <p class="last-update" style="margin-top: 1rem;">⏱️ Último ejecutado: 1 de Abril de 2026 · 11:30 AM (Chile) · Con config-validation (25+19 flags MongoDB)</p>
     </div>
 
     <div class="footer">
       <p>YOM B2B QA — Powered by Playwright + GitHub Pages</p>
-      <p style="margin-top: 0.5rem;">Para reportes detallados y análisis, ver <a href="https://github.com/eduardolaloyom/qa/blob/main/REPORTE-QA-ACCIONABLE-2026-03-31.md" style="color: white; text-decoration: underline;">REPORTE-QA-ACCIONABLE-2026-03-31.md</a></p>
+      <p style="margin-top: 0.5rem; font-size: 0.85rem;">Dashboard → Accionables → Reportes Detallados</p>
     </div>
   </div>
 </body>
