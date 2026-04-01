@@ -34,13 +34,13 @@ jobs:
 
       - name: Run Codelpa tests
         env:
-          BASE_URL: https://tienda.youorder.me
+          BASE_URL: https://beta-codelpa.solopide.me
           CODELPA_EMAIL: ${{ secrets.CODELPA_EMAIL }}
           CODELPA_PASSWORD: ${{ secrets.CODELPA_PASSWORD }}
         working-directory: tests/e2e
         run: |
           rm -rf playwright-report
-          npx playwright test --project=b2b b2b/codelpa.spec.ts --reporter=html,"./reporters/grouped-report.ts",list
+          npx playwright test --project=b2b --grep="^Codelpa" --reporter=html,"./reporters/grouped-report.ts",list
 
       - name: Copy Codelpa results
         if: always()
@@ -50,13 +50,13 @@ jobs:
 
       - name: Run Surtiventas tests
         env:
-          BASE_URL: https://tienda.youorder.me
+          BASE_URL: https://surtiventas.solopide.me
           SURTIVENTAS_EMAIL: ${{ secrets.SURTIVENTAS_EMAIL }}
           SURTIVENTAS_PASSWORD: ${{ secrets.SURTIVENTAS_PASSWORD }}
         working-directory: tests/e2e
         run: |
           rm -rf playwright-report
-          npx playwright test --project=b2b b2b/surtiventas.spec.ts --reporter=html,"./reporters/grouped-report.ts",list
+          npx playwright test --project=b2b --grep="^Surtiventas" --reporter=html,"./reporters/grouped-report.ts",list
 
       - name: Copy Surtiventas results
         if: always()
