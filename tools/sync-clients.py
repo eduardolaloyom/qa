@@ -89,6 +89,7 @@ interface ClientConfig {{
   config: Record<string, any>;
   coupons?: Array<{{ code: string; discount: any }}>; // From yom-promotions
   banners?: Array<{{ title: string; position: string }}>; // From b2b-marketing
+  promotions?: Array<any>; // From yom-promotions
 }}
 
 const clients: Record<string, ClientConfig> = {{
@@ -102,6 +103,7 @@ const clients: Record<string, ClientConfig> = {{
         variables = client_data.get("variables", {})
         coupons = client_data.get("coupons", [])
         banners = client_data.get("banners", [])
+        promotions = client_data.get("promotions", [])
         active_tests = client_data.get("activeTests", {})
 
         # Determine login path
@@ -149,6 +151,11 @@ const clients: Record<string, ClientConfig> = {{
             ]
             banners_str = f"[\n{', '.join(banner_items)}\n  ]"
 
+        # Format promotions array
+        promotions_str = "[]"
+        if promotions:
+            promotions_str = json.dumps(promotions[:5])
+
         # Conditional tests comment
         conditional_comment = format_conditional_tests(active_tests)
 
@@ -159,6 +166,7 @@ const clients: Record<string, ClientConfig> = {{
     credentials: creds("{client_key.upper()}"),
     coupons: {coupons_str},
     banners: {banners_str},
+    promotions: {promotions_str},
     {conditional_comment}
     config: {{
 {config_str}

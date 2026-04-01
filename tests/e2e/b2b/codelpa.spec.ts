@@ -54,7 +54,7 @@ test.describe('Codelpa — Login', () => {
   });
 
   test('Login fallido con password incorrecto @login @crítico', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(CLIENT.baseURL);
     await page.waitForLoadState('domcontentloaded');
     await page.getByLabel('Correo').fill(EMAIL);
     await page.getByLabel('Contraseña').fill('WrongPassword123');

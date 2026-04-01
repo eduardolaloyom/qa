@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { loginHelper } from '../fixtures/login';
 import clients from '../fixtures/clients';
 
 // Correr los flujos críticos contra cada cliente
@@ -22,22 +23,8 @@ for (const [key, client] of Object.entries(clients)) {
         await page.waitForLoadState('domcontentloaded');
       }
 
-      // Soportar B2B nuevo (MUI labels) y antiguo (placeholders)
-      const emailField = page.getByLabel('Correo')
-        .or(page.getByPlaceholder('Email'))
-        .or(page.locator('input[type="email"]'));
-      const passField = page.getByLabel('Contraseña')
-        .or(page.getByPlaceholder('Contraseña'))
-        .or(page.locator('input[type="password"]'));
-      const submitBtn = page.locator('form').getByRole('button', { name: /iniciar sesión|entrar/i })
-        .or(page.getByRole('button', { name: /entrar/i }));
-
-      await emailField.fill(client.credentials.email);
-      await passField.fill(client.credentials.password);
-      await submitBtn.click();
-
-      // Debe salir de la página de login
-      await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+      // Login con helper robusto
+      await loginHelper(page, client.credentials.email, client.credentials.password, client.loginPath, client.baseURL);
 
       await context.close();
     });
@@ -72,13 +59,7 @@ for (const [key, client] of Object.entries(clients)) {
 
       // Login si es necesario
       if (!client.config.anonymousAccess) {
-        const emailF = page.getByLabel('Correo').or(page.getByPlaceholder('Email')).or(page.locator('input[type="email"]'));
-        const passF = page.getByLabel('Contraseña').or(page.getByPlaceholder('Contraseña')).or(page.locator('input[type="password"]'));
-        const submitF = page.locator('form').getByRole('button', { name: /iniciar sesión|entrar/i }).or(page.getByRole('button', { name: /entrar/i }));
-        await emailF.fill(client.credentials.email);
-        await passF.fill(client.credentials.password);
-        await submitF.click();
-        await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+        await loginHelper(page, client.credentials.email, client.credentials.password, client.loginPath, client.baseURL);
       }
 
       // Verificar precios visibles
@@ -99,10 +80,7 @@ for (const [key, client] of Object.entries(clients)) {
 
         // Login
         if (!client.config.anonymousAccess) {
-          await page.getByLabel('Correo').fill(client.credentials.email);
-          await page.getByLabel('Contraseña').fill(client.credentials.password);
-          await page.locator('form').getByRole('button', { name: /iniciar sesión/i }).click();
-          await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+          await loginHelper(page, client.credentials.email, client.credentials.password, client.loginPath, client.baseURL);
         }
 
         // Ir a productos
@@ -133,13 +111,7 @@ for (const [key, client] of Object.entries(clients)) {
 
       // Login si necesario
       if (!client.config.anonymousAccess) {
-        const emailF = page.getByLabel('Correo').or(page.getByPlaceholder('Email')).or(page.locator('input[type="email"]'));
-        const passF = page.getByLabel('Contraseña').or(page.getByPlaceholder('Contraseña')).or(page.locator('input[type="password"]'));
-        const submitF = page.locator('form').getByRole('button', { name: /iniciar sesión|entrar/i }).or(page.getByRole('button', { name: /entrar/i }));
-        await emailF.fill(client.credentials.email);
-        await passF.fill(client.credentials.password);
-        await submitF.click();
-        await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+        await loginHelper(page, client.credentials.email, client.credentials.password, client.loginPath, client.baseURL);
       }
 
       // Ir a catálogo de productos

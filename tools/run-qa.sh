@@ -24,6 +24,11 @@ echo "📦 Extrayendo config de MongoDB..."
 python3 "$QA_ROOT/data/mongo-extractor.py" --cliente "$CLIENT"
 echo ""
 
+# 1b. Regenerar clients.ts desde qa-matrix.json
+echo "🔄 Regenerando clients.ts..."
+python3 "$QA_ROOT/tools/sync-clients.py"
+echo ""
+
 # 2. Generar checklist
 OUTPUT_DIR="$QA_ROOT/QA/$CLIENT/$DATE"
 mkdir -p "$OUTPUT_DIR"

@@ -46,10 +46,11 @@ Mismo código, distintos subdominios: `{slug}.youorder.me`
 
 | Comando | Qué hace |
 |---------|----------|
-| `./tools/run-qa.sh {CLIENTE}` | Extrae MongoDB + genera checklist + corre Playwright |
+| `./tools/run-qa.sh {CLIENTE}` | Orquesta el pipeline completo: **1)** extrae de MongoDB con mongo-extractor.py **2)** regenera clients.ts con sync-clients.py **3)** genera checklist **4)** corre Playwright |
+| `python3 data/mongo-extractor.py` | Extrae config de clientes desde MongoDB → `data/qa-matrix.json` |
+| `python3 tools/sync-clients.py` | Genera `tests/e2e/fixtures/clients.ts` desde `data/qa-matrix.json` (AUTO-GENERADO, no editar manualmente) |
 | `python3 tools/checklist-generator.py` | Genera checklist personalizado por cliente desde CSV |
-| `python3 data/mongo-extractor.py` | Extrae config de clientes desde MongoDB |
-| `npx playwright test --project=b2b` | Corre E2E B2B |
+| `npx playwright test --project=b2b` | Corre E2E B2B contra clientes en `clients.ts` |
 | `npx playwright test --project=admin` | Corre E2E Admin |
 | `maestro test tests/app/flows/` | Corre todos los flows APP |
 
@@ -71,9 +72,32 @@ Mismo código, distintos subdominios: `{slug}.youorder.me`
 | `checklists/INDICE.md` | Mapa de cobertura: checklist → test → estado |
 | `SKILL.md` | Documento operacional del flujo QA PeM (NO es un skill de Claude) |
 
+## Pipeline QA — Cómo funciona
+
+El pipeline de QA está basado en MongoDB como fuente de verdad:
+
+```
+MongoDB (yom-stores, yom-production, yom-promotions, b2b-marketing)
+    ↓ (mongo-extractor.py)
+data/qa-matrix.json
+    ↓ (sync-clients.py)
+tests/e2e/fixtures/clients.ts (AUTO-GENERADO)
+    ↓ (loginHelper + tests multi-cliente)
+Playwright E2E
+    ↓
+grouped-report.html en public/
+```
+
+**Puntos clave:**
+- `clients.ts` es **AUTO-GENERADO** por `sync-clients.py` desde `qa-matrix.json` — **NO EDITAR MANUALMENTE**
+- Si editas datos de clientes, SIEMPRE correr: `python3 tools/sync-clients.py` para sincronizar
+- Los specs multi-cliente (config-validation.spec.ts, mongo-data.spec.ts, codelpa.spec.ts, etc.) usan `clients.ts` importado directamente
+- El fixture `auth.ts` está ELIMINADO — fue reemplazado por `loginHelper` + `clients.ts`
+
 ## Reglas para Claude en este repo
 
 - Credenciales NUNCA en código — usar `.env`, `tests/e2e/.env`, `tests/app/config/env.yaml`
+- `clients.ts` es AUTO-GENERADO — no editar, correr sync-clients.py si hay cambios en qa-matrix.json
 - Antes de crear un test nuevo, verificar `checklists/INDICE.md` para no duplicar
 - Para reportes QA usar `templates/qa-report-template.md`
 - Para escalar issues usar `templates/escalation-templates.md`
