@@ -1,0 +1,149 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e7]:
+        - img [ref=e9]
+        - paragraph [ref=e11]: Test de anuncio
+      - generic [ref=e14]:
+        - link [ref=e15] [cursor=pointer]:
+          - /url: /
+          - img [ref=e16]
+        - generic [ref=e17]:
+          - combobox "Buscar productos" [ref=e20]
+          - button [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+        - button "Iniciar sesión" [ref=e26] [cursor=pointer]
+      - region "scrollable content" [ref=e33]:
+        - navigation [ref=e35]:
+          - link "Categorías de productos" [ref=e39] [cursor=pointer]:
+            - /url: /products
+            - img [ref=e41]
+            - generic [ref=e44]: Categorías de productos
+          - generic [ref=e46]:
+            - link "Bateria Auto" [ref=e48] [cursor=pointer]:
+              - /url: /products?category=bateria+auto
+              - generic [ref=e50]: Bateria Auto
+            - link "Concentrados" [ref=e52] [cursor=pointer]:
+              - /url: /products?category=concentrados
+              - generic [ref=e54]: Concentrados
+            - link "Decorativo" [ref=e56] [cursor=pointer]:
+              - /url: /products?category=decorativo
+              - generic [ref=e58]: Decorativo
+            - link "Especialidades" [ref=e60] [cursor=pointer]:
+              - /url: /products?category=especialidades
+              - generic [ref=e62]: Especialidades
+            - link "Maderas" [ref=e64] [cursor=pointer]:
+              - /url: /products?category=maderas
+              - generic [ref=e66]: Maderas
+            - link "Pastas y Texturas" [ref=e68] [cursor=pointer]:
+              - /url: /products?category=pastas+y+texturas
+              - generic [ref=e70]: Pastas y Texturas
+            - link "Spray" [ref=e72] [cursor=pointer]:
+              - /url: /products?category=spray
+              - generic [ref=e74]: Spray
+    - main [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e79]:
+          - link "banner" [ref=e83] [cursor=pointer]:
+            - /url: ""
+            - img "banner" [ref=e84]
+          - button [ref=e86] [cursor=pointer]
+        - generic [ref=e87]:
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - generic [ref=e93]:
+                  - img [ref=e94]
+                  - generic [ref=e96]: Destacados
+                - generic [ref=e97]:
+                  - paragraph [ref=e98]: Mira estos productos increibles
+                  - paragraph [ref=e99]: Nuestra selección dejará a tus clientes fascinados
+                - link "¡Los quiero!" [ref=e100] [cursor=pointer]:
+                  - /url: https://codelpa.solopide.me/v2/products?featured=true
+                  - button "¡Los quiero!" [ref=e101]:
+                    - text: ¡Los quiero!
+                    - img [ref=e103]
+              - img "Promotion" [ref=e106]
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - generic [ref=e109]:
+                  - img [ref=e110]
+                  - generic [ref=e112]: Descuentos
+                - generic [ref=e113]:
+                  - paragraph [ref=e114]: Aprovecha estas promociones
+                  - paragraph [ref=e115]: Precios bajos para tus clientes siempre
+                - link "¡Quiero ahorrar!" [ref=e116] [cursor=pointer]:
+                  - /url: https://codelpa.solopide.me/v2/products?promotions=true
+                  - button "¡Quiero ahorrar!" [ref=e117]:
+                    - text: ¡Quiero ahorrar!
+                    - img [ref=e119]
+              - img "Promotion" [ref=e122]
+          - link "Ver más productos" [ref=e125] [cursor=pointer]:
+            - /url: /products
+            - button "Ver más productos" [ref=e126]
+          - generic [ref=e127]:
+            - generic [ref=e129]:
+              - img [ref=e130]
+              - generic [ref=e132]:
+                - paragraph [ref=e133]: Entrega sin falta
+                - paragraph [ref=e134]: Nunca fallamos en tu día de entrega, si no llegamos, ¡es gratis!
+            - generic [ref=e136]:
+              - img [ref=e137]
+              - generic [ref=e139]:
+                - paragraph [ref=e140]: Precios de otro mundo
+                - paragraph [ref=e141]: No hay otro empresa con esta calidad a estos precios
+            - generic [ref=e143]:
+              - img [ref=e144]
+              - generic [ref=e146]:
+                - paragraph [ref=e147]: Precios con IVA
+                - paragraph [ref=e148]: Sin letra chica, lo que ves es lo que pagas
+    - generic [ref=e151]:
+      - generic [ref=e152]:
+        - link [ref=e153] [cursor=pointer]:
+          - /url: /
+          - img [ref=e154]
+        - generic [ref=e155]:
+          - img [ref=e157]
+          - paragraph [ref=e159]:
+            - text: "Correo:"
+            - generic [ref=e160]: info@codelpa.cl
+        - generic [ref=e161]:
+          - img [ref=e163]
+          - paragraph [ref=e167]:
+            - text: "Horarios de entrega:"
+            - generic [ref=e168]: De lunes a sábado, 00:00 - 24:00 hr
+        - paragraph [ref=e169]: Grupo Codelpa Colores del Pacífico, es la empresa de pinturas y revestimientos más grande del país, agrupando marcas de pinturas como Ceresita, Sipa, Soquina, Chilcorrofín, Pinmor y Titanium 2K de Sipa.
+      - generic [ref=e170]:
+        - generic [ref=e171]:
+          - paragraph [ref=e172]: ENLACES ÚTILES
+          - generic [ref=e173]:
+            - link "Ofertas" [ref=e174] [cursor=pointer]:
+              - /url: /offers
+              - paragraph [ref=e175]: Ofertas
+            - link "Nuevos Productos" [ref=e176] [cursor=pointer]:
+              - /url: /products?new=true
+              - paragraph [ref=e177]: Nuevos Productos
+            - link "Destacados" [ref=e178] [cursor=pointer]:
+              - /url: /products?featured=true
+              - paragraph [ref=e179]: Destacados
+            - link "Productos Recomendados" [ref=e180] [cursor=pointer]:
+              - /url: /products?suggestions=true
+              - paragraph [ref=e181]: Productos Recomendados
+        - generic [ref=e182]:
+          - paragraph [ref=e183]: CENTRO DE AYUDA
+          - generic [ref=e184]:
+            - link "Contacto" [ref=e185] [cursor=pointer]:
+              - /url: /contact
+              - paragraph [ref=e186]: Contacto
+            - link "Preguntas Frecuentes" [ref=e187] [cursor=pointer]:
+              - /url: /faq
+              - paragraph [ref=e188]: Preguntas Frecuentes
+            - paragraph [ref=e189] [cursor=pointer]: Condiciones de Despacho
+            - link "Terminos y Condiciones" [ref=e190] [cursor=pointer]:
+              - /url: /terms
+              - paragraph [ref=e191]: Terminos y Condiciones
+```
