@@ -1,0 +1,223 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e7]:
+        - img [ref=e9]
+        - paragraph [ref=e11]: Test de anuncio
+      - generic [ref=e14]:
+        - link [ref=e15] [cursor=pointer]:
+          - /url: /
+          - img [ref=e16]
+        - generic [ref=e17]:
+          - combobox "Buscar productos" [ref=e20]
+          - button [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+        - generic [ref=e25]:
+          - button "Felipe" [ref=e26] [cursor=pointer]:
+            - img [ref=e29]
+            - paragraph [ref=e31]: Felipe
+            - img [ref=e33]
+          - button "0" [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - generic: "0"
+          - button "2 $96.540" [ref=e41] [cursor=pointer]:
+            - generic [ref=e43]:
+              - img [ref=e44]
+              - generic [ref=e46]: "2"
+            - paragraph [ref=e47]: $96.540
+      - generic [ref=e48]:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - region "scrollable content":
+                    - generic:
+                      - navigation
+    - main [ref=e50]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e55]:
+            - paragraph [ref=e57]:
+              - img [ref=e58]
+              - text: Seleccione las opciones de entrega
+            - generic [ref=e61]:
+              - generic [ref=e62]: Dirección
+              - generic [ref=e63]:
+                - combobox [ref=e64] [cursor=pointer]: AV. CARLOS PEÑA OTAEGUI 11900 LOCAL 6, LAS CONDES -LAS CONDES
+                - textbox: 672be00c1ef33305af309ae4
+                - img
+                - group:
+                  - generic: Dirección
+            - paragraph [ref=e65]: Se despacha los días lunes, martes, miércoles, jueves, viernes, sábado. desde 00:00 hasta 24:00
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - paragraph [ref=e68]: Mi carrito
+              - generic [ref=e69]:
+                - paragraph [ref=e70]: 2 Productos
+                - button "Eliminar todos" [ref=e71] [cursor=pointer]
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - link [ref=e74] [cursor=pointer]:
+                  - /url: /products/5e820419f0a4abc8b812edb6
+                - generic [ref=e78]:
+                  - generic [ref=e79]:
+                    - link "CHILCOBLOCK NF BLANCO (3 GL)" [ref=e82] [cursor=pointer]:
+                      - /url: /products/5e820419f0a4abc8b812edb6
+                      - paragraph [ref=e83]: CHILCOBLOCK NF BLANCO (3 GL)
+                    - button [ref=e85] [cursor=pointer]:
+                      - img [ref=e86]
+                  - generic [ref=e88]:
+                    - generic [ref=e91]:
+                      - button [ref=e93] [cursor=pointer]:
+                        - img [ref=e94]
+                      - generic [ref=e97]:
+                        - spinbutton [ref=e98]: "1"
+                        - group
+                      - button [ref=e100] [cursor=pointer]:
+                        - img [ref=e101]
+                    - generic [ref=e104]:
+                      - generic [ref=e106]:
+                        - paragraph [ref=e107]: $54.480
+                        - paragraph [ref=e108]: / Total
+                      - generic [ref=e111]:
+                        - paragraph [ref=e112]: $54.480
+                        - paragraph [ref=e113]: /Unidad
+              - generic [ref=e114]:
+                - link [ref=e115] [cursor=pointer]:
+                  - /url: /products/610d4a0afa80b03a70a95579
+                - generic [ref=e119]:
+                  - generic [ref=e120]:
+                    - link "TEXTURA ELASTOMERICA G-10 BLANCO 4GL" [ref=e123] [cursor=pointer]:
+                      - /url: /products/610d4a0afa80b03a70a95579
+                      - paragraph [ref=e124]: TEXTURA ELASTOMERICA G-10 BLANCO 4GL
+                    - button [ref=e126] [cursor=pointer]:
+                      - img [ref=e127]
+                  - generic [ref=e129]:
+                    - generic [ref=e132]:
+                      - button [ref=e134] [cursor=pointer]:
+                        - img [ref=e135]
+                      - generic [ref=e138]:
+                        - spinbutton [ref=e139]: "1"
+                        - group
+                      - button [ref=e141] [cursor=pointer]:
+                        - img [ref=e142]
+                    - generic [ref=e145]:
+                      - generic [ref=e147]:
+                        - paragraph [ref=e148]: $42.060
+                        - paragraph [ref=e149]: / Total
+                      - generic [ref=e152]:
+                        - paragraph [ref=e153]: $42.060
+                        - paragraph [ref=e154]: /Unidad
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - generic [ref=e159]:
+              - paragraph [ref=e160]: "Facturación:"
+              - generic [ref=e161]:
+                - generic [ref=e162]:
+                  - generic [ref=e163]:
+                    - paragraph [ref=e164]: "Neto:"
+                    - paragraph [ref=e165]: $96.540
+                  - generic [ref=e166]:
+                    - paragraph [ref=e167]: "Descuento:"
+                    - paragraph [ref=e168]: $0
+                  - generic [ref=e169]:
+                    - paragraph [ref=e170]: "Subtotal:"
+                    - paragraph [ref=e171]: $96.540
+                  - separator [ref=e172]
+                  - generic [ref=e173]:
+                    - paragraph [ref=e174]: "Impuestos:"
+                    - paragraph [ref=e175]: $18.343
+                  - generic [ref=e176]:
+                    - paragraph [ref=e177]: "Despacho:"
+                    - paragraph [ref=e178]: $0
+                - generic [ref=e179]:
+                  - generic [ref=e180]:
+                    - generic: Ingresar cupón
+                    - generic [ref=e181]:
+                      - textbox [ref=e182]
+                      - group:
+                        - generic: Ingresar cupón
+                  - button "Aplicar" [ref=e183] [cursor=pointer]
+            - alert [ref=e185]:
+              - img [ref=e187]
+              - generic [ref=e191]: Te faltan $3.460 para cumplir con el monto mínimo de $100.000.
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - paragraph [ref=e194]: "Total:"
+                - paragraph [ref=e195]: $114.883
+              - paragraph [ref=e196]: Recuerda que llevas disponible $5.340.305 en tu linea de credito.
+          - generic [ref=e197]:
+            - generic [ref=e198]:
+              - img [ref=e200]
+              - paragraph [ref=e202]: Agrega informaciones y observaciones a tu pedido
+            - generic [ref=e206]:
+              - textbox "ingresar observaciones" [ref=e207]
+              - group
+          - button "Confirmar pedido" [disabled]
+    - generic [ref=e210]:
+      - generic [ref=e211]:
+        - link [ref=e212] [cursor=pointer]:
+          - /url: /
+          - img [ref=e213]
+        - generic [ref=e214]:
+          - img [ref=e216]
+          - paragraph [ref=e218]:
+            - text: "Correo:"
+            - generic [ref=e219]: info@codelpa.cl
+        - generic [ref=e220]:
+          - img [ref=e222]
+          - paragraph [ref=e226]:
+            - text: "Horarios de entrega:"
+            - generic [ref=e227]: De lunes a sábado, 00:00 - 24:00 hr
+        - paragraph [ref=e228]: Grupo Codelpa Colores del Pacífico, es la empresa de pinturas y revestimientos más grande del país, agrupando marcas de pinturas como Ceresita, Sipa, Soquina, Chilcorrofín, Pinmor y Titanium 2K de Sipa.
+      - generic [ref=e229]:
+        - generic [ref=e230]:
+          - paragraph [ref=e231]: CUENTA
+          - generic [ref=e232]:
+            - link "Mis Datos" [ref=e233] [cursor=pointer]:
+              - /url: /profile
+              - paragraph [ref=e234]: Mis Datos
+            - link "Carrito de Compra" [ref=e235] [cursor=pointer]:
+              - /url: /cart
+              - paragraph [ref=e236]: Carrito de Compra
+            - link "Mis pedidos" [ref=e237] [cursor=pointer]:
+              - /url: /orders
+              - paragraph [ref=e238]: Mis pedidos
+        - generic [ref=e239]:
+          - paragraph [ref=e240]: ENLACES ÚTILES
+          - generic [ref=e241]:
+            - link "Pagos" [ref=e242] [cursor=pointer]:
+              - /url: /payment-documents
+              - paragraph [ref=e243]: Pagos
+            - link "Ofertas" [ref=e244] [cursor=pointer]:
+              - /url: /products?promotions=true
+              - paragraph [ref=e245]: Ofertas
+            - link "Nuevos Productos" [ref=e246] [cursor=pointer]:
+              - /url: /products?new=true
+              - paragraph [ref=e247]: Nuevos Productos
+            - link "Destacados" [ref=e248] [cursor=pointer]:
+              - /url: /products?featured=true
+              - paragraph [ref=e249]: Destacados
+            - link "Productos Recomendados" [ref=e250] [cursor=pointer]:
+              - /url: /products?suggestions=true
+              - paragraph [ref=e251]: Productos Recomendados
+        - generic [ref=e252]:
+          - paragraph [ref=e253]: CENTRO DE AYUDA
+          - generic [ref=e254]:
+            - link "Contacto" [ref=e255] [cursor=pointer]:
+              - /url: /contact
+              - paragraph [ref=e256]: Contacto
+            - link "Preguntas Frecuentes" [ref=e257] [cursor=pointer]:
+              - /url: /faq
+              - paragraph [ref=e258]: Preguntas Frecuentes
+            - paragraph [ref=e259] [cursor=pointer]: Condiciones de Despacho
+            - link "Terminos y Condiciones" [ref=e260] [cursor=pointer]:
+              - /url: /terms
+              - paragraph [ref=e261]: Terminos y Condiciones
+```

@@ -155,11 +155,11 @@
                 <span>Total Tests</span>
               </div>
               <div class="summary-item">
-                <strong>1</strong>
+                <strong>20</strong>
                 <span>Passed</span>
               </div>
               <div class="summary-item">
-                <strong>35</strong>
+                <strong>16</strong>
                 <span>Failed</span>
               </div>
               <div class="summary-item">
@@ -173,339 +173,210 @@
         <div class="type-section">
           <div class="type-header">
             <h2>🟡 🟡 Funcionales</h2>
-            <span class="stats">1/20 passed (5%)</span>
+            <span class="stats">17/20 passed (85%)</span>
           </div>
 
           
               <div class="feature-group">
-                <h3>📌 catalog (0/4)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
-                      <span class="duration">33117ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">No hay productos con precio $0 </span>
-                      <span class="duration">33430ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Carrito muestra items agregados </span>
-                      <span class="duration">33073ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Modificar cantidad en carrito </span>
-                      <span class="duration">33358ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 checkout (0/2)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Flujo completo: catálogo → carrito → checkout </span>
-                      <span class="duration">33472ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Pedido aparece en historial post-checkout </span>
-                      <span class="duration">33202ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 config (0/4)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">hasStockEnabled=true + hasSingleDistributionCenter: Stock visible en tarjetas (sin multicentro) </span>
-                      <span class="duration">33312ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">enableSellerDiscount=true: Descuento visible en carrito/checkout </span>
-                      <span class="duration">34502ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">useNewPromotions=true: Promociones deben estar visibles </span>
-                      <span class="duration">34347ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">hasMultiUnitEnabled=true: Selector de unidad de compra (caja/unidad/etc) </span>
-                      <span class="duration">34179ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 coupons (0/1)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Campo de cupón visible en carrito </span>
-                      <span class="duration">33157ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 detalle (0/1)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
-                      <span class="duration">33289ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 login (1/2)</h3>
+                <h3>📌 catalog (4/4)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
-                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
-                      <span class="duration">12456ms</span>
+                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
+                      <span class="duration">6435ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">No hay productos con precio $0 </span>
+                      <span class="duration">10680ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Carrito muestra items agregados </span>
+                      <span class="duration">10433ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Modificar cantidad en carrito </span>
+                      <span class="duration">10670ms</span>
+                      
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 checkout (1/2)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Pedido aparece en historial post-checkout </span>
+                      <span class="duration">6489ms</span>
                       
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
+                      <span class="test-title">Flujo completo: catálogo → carrito → checkout </span>
+                      <span class="duration">38919ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+Expected pattern: [32m/confirmation/[39m
+Received string:  [31m&quot;https://surtiventas.solopide.me/cart&quot;[39m
+Timeout: 30000ms
+
+Call log:
+[2m  - Expect &quot;toHaveURL&quot; with timeout 30000ms[22m
+[2m    34 × unexpected value &quot;https://surtiventas.solopide.me/cart&quot;[22m
+</pre>
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 config (4/4)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">hasStockEnabled=true + hasSingleDistributionCenter: Stock visible en tarjetas (sin multicentro) </span>
+                      <span class="duration">8536ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">enableSellerDiscount=true: Descuento visible en carrito/checkout </span>
+                      <span class="duration">8548ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">useNewPromotions=true: Promociones deben estar visibles </span>
+                      <span class="duration">8370ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">hasMultiUnitEnabled=true: Selector de unidad de compra (caja/unidad/etc) </span>
+                      <span class="duration">8377ms</span>
+                      
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 coupons (1/1)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Campo de cupón visible en carrito </span>
+                      <span class="duration">9391ms</span>
+                      
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 detalle (1/1)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
+                      <span class="duration">7041ms</span>
+                      
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 login (2/2)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
+                      <span class="duration">11715ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Login exitoso </span>
-                      <span class="duration">32962ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                      <span class="duration">6006ms</span>
+                      
                     </li>
                   
                 </ul>
               </div>
             
               <div class="feature-group">
-                <h3>📌 pedidos (0/2)</h3>
+                <h3>📌 pedidos (2/2)</h3>
                 <ul class="tests">
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Historial de pedidos muestra tabla con estados -y-estados </span>
-                      <span class="duration">33123ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                      <span class="duration">8690ms</span>
+                      
                     </li>
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Estados de pedido son válidos (no "No disponible") -y-estados </span>
-                      <span class="duration">33302ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                      <span class="duration">9852ms</span>
+                      
                     </li>
                   
                 </ul>
               </div>
             
               <div class="feature-group">
-                <h3>📌 pricing (0/2)</h3>
+                <h3>📌 pricing (1/2)</h3>
                 <ul class="tests">
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Precios en formato CLP ($ sin decimales) </span>
-                      <span class="duration">33284ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                      <span class="duration">6156ms</span>
+                      
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Precios consistentes catálogo vs carrito </span>
-                      <span class="duration">32919ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="duration">7960ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
+Locator: locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;)
+Expected: visible
+Error: strict mode violation: locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;) resolved to 6 elements:
+    1) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-hqifo1&quot;&gt;$0&lt;/p&gt; aka getByTestId(&#039;side-cart-button&#039;)
+    2) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-18k3lyo&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(1)
+    3) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-44t9ny&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(2)
+    4) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-7gzez4&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(3)
+    5) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-18k3lyo&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(4)
+    6) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-7gzez4&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(5)
 
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
+[2m  - Expect &quot;toBeVisible&quot; with timeout 10000ms[22m
+[2m  - waiting for locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;)[22m
 </pre>
                     </li>
                   
@@ -513,38 +384,32 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 validaciones (0/2)</h3>
+                <h3>📌 validaciones (1/2)</h3>
                 <ul class="tests">
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Carrito vacío no permite confirmar pedido </span>
-                      <span class="duration">33438ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Monto mínimo muestra mensaje si no se alcanza </span>
+                      <span class="duration">10902ms</span>
+                      
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
-                      <span class="test-title">Monto mínimo muestra mensaje si no se alcanza </span>
-                      <span class="duration">33386ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="test-title">Carrito vacío no permite confirmar pedido </span>
+                      <span class="duration">23195ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeDisabled[2m([22m[2m)[22m failed
 
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
+Locator:  getByRole(&#039;button&#039;, { name: /confirmar pedido/i })
+Expected: disabled
+Received: enabled
+Timeout:  15000ms
 
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
+[2m  - Expect &quot;toBeDisabled&quot; with timeout 15000ms[22m
+[2m  - waiting for getByRole(&#039;button&#039;, { name: /confirmar pedido/i })[22m
+[2m    19 × locator resolved to &lt;button tabindex=&quot;0&quot; type=&quot;button&quot; class=&quot;MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-mf16ev&quot;&gt;…&lt;/button&gt;[22m
+[2m       - unexpected value &quot;enabled&quot;[22m
 </pre>
                     </li>
                   
@@ -556,44 +421,26 @@ Call log:
         <div class="type-section">
           <div class="type-header">
             <h2>⚪ ⚪ Otros</h2>
-            <span class="stats">0/16 passed (0%)</span>
+            <span class="stats">3/16 passed (19%)</span>
           </div>
 
           
               <div class="feature-group">
-                <h3>📌 config (0/2)</h3>
+                <h3>📌 config (2/2)</h3>
                 <ul class="tests">
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">disableCommerceEdit=false: Campos de perfil comercio son EDITABLES ón</span>
-                      <span class="duration">33362ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                      <span class="duration">9910ms</span>
+                      
                     </li>
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">editAddress=true: Dirección es editable en checkout ón</span>
-                      <span class="duration">33092ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
-</pre>
+                      <span class="duration">8214ms</span>
+                      
                     </li>
                   
                 </ul>
@@ -606,16 +453,10 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Cupón inválido muestra error (no crash) ítico</span>
-                      <span class="duration">33150ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
+                      <span class="duration">38199ms</span>
+                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
+[2m  - waiting for getByLabel(/cup[oó]n/i).or(getByPlaceholder(/cup[oó]n/i)).first()[22m
 </pre>
                     </li>
                   
@@ -629,7 +470,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: anonymousAccess=false</span>
-                      <span class="duration">12267ms</span>
+                      <span class="duration">12047ms</span>
                       <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
 
 Expected pattern: [32m/auth|login/[39m
@@ -645,17 +486,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: disableCart=false</span>
-                      <span class="duration">32284ms</span>
-                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">surtiventas: enableCoupons=true</span>
-                      <span class="duration">32336ms</span>
+                      <span class="duration">31982ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
@@ -665,7 +496,17 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: hidePrices=false</span>
-                      <span class="duration">32546ms</span>
+                      <span class="duration">31990ms</span>
+                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
+</pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">surtiventas: enableCoupons=true</span>
+                      <span class="duration">32163ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
@@ -675,7 +516,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: hideReceiptType=false</span>
-                      <span class="duration">32251ms</span>
+                      <span class="duration">31517ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
@@ -685,7 +526,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: Sin acceso anónimo redirige a login</span>
-                      <span class="duration">16951ms</span>
+                      <span class="duration">16919ms</span>
                       <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
 
 Expected pattern: [32m/auth|login/[39m
@@ -701,7 +542,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: currency=clp</span>
-                      <span class="duration">31756ms</span>
+                      <span class="duration">31468ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
@@ -711,7 +552,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: Login exitoso</span>
-                      <span class="duration">31846ms</span>
+                      <span class="duration">31577ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;).or(getByPlaceholder(&#039;Email&#039;)).or(locator(&#039;input[type=&quot;email&quot;]&#039;))[22m
@@ -721,7 +562,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: Catálogo muestra productos con precios</span>
-                      <span class="duration">32000ms</span>
+                      <span class="duration">31475ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;).or(getByPlaceholder(&#039;Email&#039;)).or(locator(&#039;input[type=&quot;email&quot;]&#039;))[22m
@@ -731,7 +572,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: Agregar producto al carro</span>
-                      <span class="duration">31914ms</span>
+                      <span class="duration">31716ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
@@ -741,7 +582,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">surtiventas: No hay productos con precio $0</span>
-                      <span class="duration">31728ms</span>
+                      <span class="duration">31743ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(&#039;Correo&#039;).or(getByPlaceholder(&#039;Email&#039;)).or(locator(&#039;input[type=&quot;email&quot;]&#039;))[22m
@@ -752,32 +593,23 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 login (0/2)</h3>
+                <h3>📌 login (1/2)</h3>
                 <ul class="tests">
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Login fallido con password incorrecto ítico</span>
-                      <span class="duration">31557ms</span>
-                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
-</pre>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Sesión persistente ón</span>
+                      <span class="duration">7232ms</span>
+                      
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
-                      <span class="test-title">Sesión persistente ón</span>
-                      <span class="duration">33115ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://tienda.youorder.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
+                      <span class="test-title">Login fallido con password incorrecto ítico</span>
+                      <span class="duration">31503ms</span>
+                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://tienda.youorder.me/auth/jwt/login&quot;[22m
+[2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
 </pre>
                     </li>
                   
@@ -788,7 +620,7 @@ Call log:
       
 
           <footer>
-            Generated on 01-04-2026, 11:06:00 a. m.
+            Generated on 01-04-2026, 11:38:06 a. m.
           </footer>
         </div>
       </body>
