@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { loginHelper } from '../fixtures/login';
 import clients from '../fixtures/clients';
 
 /**
- * Validación de config: verifica que lo que dice MongoDB (clients.json)
+ * Validación de config: verifica que lo que dice MongoDB (clients.ts auto-generado)
  * coincida con lo que el frontend realmente muestra.
  *
  * Si MongoDB dice enableCoupons=true pero el campo de cupón no aparece → bug de config.
@@ -16,10 +17,7 @@ for (const [key, client] of Object.entries(clients)) {
       await page.goto(client.baseURL);
       await page.waitForLoadState('domcontentloaded');
       if (!client.config.anonymousAccess) {
-        await page.getByLabel('Correo').fill(client.credentials.email);
-        await page.getByLabel('Contraseña').fill(client.credentials.password);
-        await page.locator('form').getByRole('button', { name: /iniciar sesión/i }).click();
-        await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+        await loginHelper(page, client.credentials.email, client.credentials.password, client.loginPath, client.baseURL);
       }
     }
 

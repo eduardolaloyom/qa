@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { loginHelper } from '../fixtures/login';
 
 const EMAIL = process.env.COMMERCE_EMAIL || '';
 const PASSWORD = process.env.COMMERCE_PASSWORD || '';
@@ -17,16 +18,13 @@ test.describe('C1 — Login de Comercio', () => {
     await page.getByText('Iniciar sesión').first().click();
     await page.waitForLoadState('domcontentloaded');
 
-    await page.getByLabel('Correo').fill(EMAIL);
-    await page.getByLabel('Contraseña').fill(PASSWORD);
-
+    // Use loginHelper with robust selectors
     const [response] = await Promise.all([
       page.waitForResponse(resp => resp.url().includes('/auth/') && resp.status() === 200),
-      page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click(),
+      loginHelper(page, EMAIL, PASSWORD, '/auth/jwt/login'),
     ]);
 
     expect(response.ok()).toBeTruthy();
-    await expect(page).not.toHaveURL(/auth\/jwt\/login/, { timeout: 30_000 });
   });
 
   test('C1-02: Login fallido con password incorrecto', async ({ page }) => {
@@ -35,8 +33,18 @@ test.describe('C1 — Login de Comercio', () => {
     await page.getByText('Iniciar sesión').first().click();
     await page.waitForLoadState('domcontentloaded');
 
-    await page.getByLabel('Correo').fill(EMAIL);
-    await page.getByLabel('Contraseña').fill('WrongPassword123');
+    // Use loginHelper but with wrong password
+    const emailInput = page.getByLabel('Correo')
+      .or(page.getByPlaceholder(/correo|email/i))
+      .or(page.locator('input[type="email"]'))
+      .first();
+    const passwordInput = page.getByLabel('Contraseña')
+      .or(page.getByPlaceholder(/contraseña|password/i))
+      .or(page.locator('input[type="password"]'))
+      .first();
+
+    await emailInput.fill(EMAIL);
+    await passwordInput.fill('WrongPassword123');
 
     await page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click();
 
@@ -53,10 +61,7 @@ test.describe('C1 — Login de Comercio', () => {
     await page.waitForLoadState('domcontentloaded');
     await page.getByText('Iniciar sesión').first().click();
     await page.waitForLoadState('domcontentloaded');
-    await page.getByLabel('Correo').fill(EMAIL);
-    await page.getByLabel('Contraseña').fill(PASSWORD);
-    await page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click();
-    await expect(page).not.toHaveURL(/auth\/jwt\/login/, { timeout: 30_000 });
+    await loginHelper(page, EMAIL, PASSWORD, '/auth/jwt/login');
 
     // Buscar menu de usuario — el B2B muestra el nombre del usuario como boton
     const userMenu = page.getByRole('button', { name: /eduardo/i })
@@ -78,10 +83,7 @@ test.describe('C1 — Login de Comercio', () => {
     await page.waitForLoadState('domcontentloaded');
     await page.getByText('Iniciar sesión').first().click();
     await page.waitForLoadState('domcontentloaded');
-    await page.getByLabel('Correo').fill(EMAIL);
-    await page.getByLabel('Contraseña').fill(PASSWORD);
-    await page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click();
-    await expect(page).not.toHaveURL(/auth\/jwt\/login/, { timeout: 30_000 });
+    await loginHelper(page, EMAIL, PASSWORD, '/auth/jwt/login');
 
     // Guardar estado de la sesion (cookies, localStorage)
     const storageState = await context.storageState();

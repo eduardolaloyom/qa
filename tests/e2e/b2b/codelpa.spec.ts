@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { loginHelper } from '../fixtures/login';
+import clients from '../fixtures/clients';
 
 /**
  * QA E2E — Codelpa (beta-codelpa.solopide.me)
@@ -13,23 +15,19 @@ import { test, expect } from '@playwright/test';
  * - Checkout: button "Confirmar pedido"
  */
 
-const EMAIL = process.env.COMMERCE_EMAIL || '';
-const PASSWORD = process.env.COMMERCE_PASSWORD || '';
+const CLIENT = clients.codelpa;
+const EMAIL = process.env.CODELPA_EMAIL || process.env.COMMERCE_EMAIL || '';
+const PASSWORD = process.env.CODELPA_PASSWORD || process.env.COMMERCE_PASSWORD || '';
 
 // Helper: login en Codelpa — navega directo al form de login
 async function login(page: any) {
-  await page.goto('/auth/jwt/login');
-  await page.waitForLoadState('domcontentloaded');
-  await page.getByLabel('Correo').fill(EMAIL);
-  await page.getByLabel('Contraseña').fill(PASSWORD);
-  await page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click();
-  await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+  await loginHelper(page, EMAIL, PASSWORD, CLIENT.loginPath, CLIENT.baseURL);
 }
 
 test.describe('Codelpa — Login', () => {
 
   test('Home sin login — redirige a login o muestra catálogo anónimo @login @funcional', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(CLIENT.baseURL);
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(10_000);
 

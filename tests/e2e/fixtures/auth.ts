@@ -1,4 +1,5 @@
 import { test as base, expect } from '@playwright/test';
+import { loginHelper } from './login';
 
 const EMAIL = process.env.COMMERCE_EMAIL || '';
 const PASSWORD = process.env.COMMERCE_PASSWORD || '';
@@ -16,10 +17,8 @@ async function login(page: any) {
     await page.waitForLoadState('domcontentloaded');
   }
 
-  await page.getByLabel('Correo').fill(EMAIL);
-  await page.getByLabel('Contraseña').fill(PASSWORD);
-  await page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click();
-  await expect(page).not.toHaveURL(/auth\/jwt\/login/, { timeout: 30_000 });
+  // Use unified login helper with robust selectors
+  await loginHelper(page, EMAIL, PASSWORD, '/auth/jwt/login');
 }
 
 /**

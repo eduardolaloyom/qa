@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { loginHelper } from '../fixtures/login';
+import clients from '../fixtures/clients';
 
 /**
  * QA E2E — Surtiventas (surtiventas.solopide.me)
@@ -14,23 +16,19 @@ import { test, expect } from '@playwright/test';
  * - Checkout: button "Confirmar pedido"
  */
 
-const EMAIL = process.env.SURTIVENTAS_EMAIL || '';
-const PASSWORD = process.env.SURTIVENTAS_PASSWORD || '';
+const CLIENT = clients.surtiventas;
+const EMAIL = process.env.SURTIVENTAS_EMAIL || process.env.COMMERCE_EMAIL || '';
+const PASSWORD = process.env.SURTIVENTAS_PASSWORD || process.env.COMMERCE_PASSWORD || '';
 
 // Helper: login en Surtiventas — navega directo al form de login
 async function login(page: any) {
-  await page.goto('/auth/jwt/login');
-  await page.waitForLoadState('domcontentloaded');
-  await page.getByLabel('Correo').fill(EMAIL);
-  await page.getByLabel('Contraseña').fill(PASSWORD);
-  await page.locator('form').getByRole('button', { name: 'Iniciar sesión' }).click();
-  await expect(page).not.toHaveURL(/auth\/jwt\/login|\/login$/, { timeout: 30_000 });
+  await loginHelper(page, EMAIL, PASSWORD, CLIENT.loginPath, CLIENT.baseURL);
 }
 
 test.describe('Surtiventas — Login', () => {
 
   test('Home sin login — redirige a login o muestra catálogo anónimo @login @funcional', async ({ page }) => {
-    await page.goto('/');
+    await page.goto(CLIENT.baseURL);
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(10_000);
 
@@ -257,9 +255,14 @@ test.describe('Surtiventas — Precios', () => {
   });
 
   test('Precios consistentes catálogo vs carrito @pricing @funcional', async ({ page }) => {
-    // Capturar primer precio visible
-    const firstPrice = page.locator('text=/\\$\\s*[\\d.,]+/').first();
+    // Capturar primer producto y su precio
+    const firstProduct = page.locator('.product-card').first();
+    const firstPrice = firstProduct.locator('text=/\\$\\s*[\\d.,]+/').first();
     const catalogPrice = await firstPrice.textContent();
+    const productName = await firstProduct.locator('[class*="name"]').first().textContent().catch(() => 'Producto desconocido');
+
+    console.log(`\n📦 Producto a testear: ${productName}`);
+    console.log(`💰 Precio en catálogo: ${catalogPrice}\n`);
 
     // Agregar ese producto
     await Promise.all([

@@ -264,6 +264,58 @@ def get_active_tests(variables: dict) -> Dict[str, List[str]]:
 # Collection extraction (products, commerces, orders, etc.)
 # ─────────────────────────────────────────────
 
+def extract_promotions_data(promotions_db: Any, marketing_db: Any, domain: str, cid_obj: Any) -> dict:
+    """Extract coupons and promotions for QA validation.
+
+    Returns dict with:
+    - coupons: active coupons with codes that can be tested
+    - promotions: active promotions for price validation
+    - banners: active banners for UI validation
+    """
+    result = {}
+
+    try:
+        # ── COUPONS (from yom-promotions) ──
+        coupons = []
+        for coupon in promotions_db.coupons.find({"customerId": cid_obj, "active": True}).limit(10):
+            coupons.append(serialize({
+                "code": coupon.get("code", ""),
+                "discount": coupon.get("discount", {}),
+                "minOrderAmount": coupon.get("minOrderAmount"),
+                "expiresAt": coupon.get("expiresAt"),
+            }))
+        result["coupons"] = coupons
+
+        # ── PROMOTIONS (from yom-promotions) ──
+        promotions = []
+        for promo in promotions_db.promotions.find({"customerId": cid_obj, "status": "active"}).limit(10):
+            promotions.append(serialize({
+                "name": promo.get("name", ""),
+                "type": promo.get("type", ""),
+                "priority": promo.get("priority"),
+                "triggerRules": promo.get("triggerRules", []),
+                "discountRules": promo.get("discountRules", []),
+            }))
+        result["promotions"] = promotions
+
+        # ── BANNERS (from b2b-marketing) ──
+        banners = []
+        for banner in marketing_db.banners.find({"domain": domain, "active": True}).limit(5):
+            banners.append(serialize({
+                "title": banner.get("title", ""),
+                "position": banner.get("position", ""),
+                "startDate": banner.get("startDate"),
+                "endDate": banner.get("endDate"),
+            }))
+        result["banners"] = banners
+
+    except Exception as e:
+        print(f"Warning: Promotions extraction failed: {e}", file=sys.stderr)
+        result = {"coupons": [], "promotions": [], "banners": []}
+
+    return result
+
+
 def extract_collections(db: Any, domain: str, cid_obj: Any) -> dict:
     """Extract stats and details from additional MongoDB collections.
 
@@ -439,6 +491,8 @@ def extract(client_filter: Optional[str] = None, full_extract: bool = False) -> 
 
     sites_db = micro_client["yom-stores"]
     legacy_db = legacy_client["yom-production"]
+    promotions_db = micro_client["yom-promotions"]
+    marketing_db = micro_client["b2b-marketing"]
 
     # Get all sites
     sites = list(sites_db.sites.find({}))
@@ -531,6 +585,13 @@ def extract(client_filter: Optional[str] = None, full_extract: bool = False) -> 
             },
         }
 
+        # Extract promotions and banners for QA validation (always)
+        if cid_obj:
+            promo_data = extract_promotions_data(promotions_db, marketing_db, domain, cid_obj)
+            client_obj["coupons"] = promo_data.get("coupons", [])
+            client_obj["promotions"] = promo_data.get("promotions", [])
+            client_obj["banners"] = promo_data.get("banners", [])
+
         # Extract additional collections if --full flag is set
         if full_extract and cid_obj:
             client_obj["collections"] = extract_collections(legacy_db, domain, cid_obj)
@@ -541,6 +602,8 @@ def extract(client_filter: Optional[str] = None, full_extract: bool = False) -> 
     legacy_client.close()
 
     print(f"Extracted {len(result['clients'])} clients")
+    print(f"  - Databases: yom-stores, yom-promotions, b2b-marketing (MICRO)")
+    print(f"  - Databases: yom-production (LEGACY)")
     return result
 
 
