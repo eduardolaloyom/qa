@@ -30,12 +30,8 @@ for (const [key, client] of Object.entries(clients)) {
         }
       }
 
-      if (zeroProducts.length > 0) {
-        test.info().annotations.push({
-          type: 'warning',
-          description: `Productos con $0: ${zeroProducts.join(', ')}`,
-        });
-      }
+      // FAIL si hay productos con precio $0 — es un bug de datos
+      expect(zeroProducts.length).toBe(0);
     });
 
     test(`${key}: C3-03 Precios consistentes catalogo vs carro`, async ({ authedPage: page }) => {
@@ -79,14 +75,10 @@ for (const [key, client] of Object.entries(clients)) {
         .or(page.locator('del, s, [class*="discount" i], [class*="strike" i], [class*="before" i]'));
       const count = await discountIndicators.count();
 
-      if (count > 0) {
-        test.info().annotations.push({
-          type: 'info',
-          description: `${count} indicador(es) de descuento encontrado(s)`,
-        });
+      // Si la feature está habilitada, debe haber al menos UN indicador de descuento visible
+      if (client.config.enableSellerDiscount && !client.config.disableShowDiscount) {
+        expect(count).toBeGreaterThan(0);
       }
-      // Verificar que la feature esta activa — al menos debe haber productos con descuento
-      expect(count).toBeGreaterThanOrEqual(0);
     });
 
     test(`${key}: C3-05 Campo de cupon visible en carro`, async ({ authedPage: page }) => {
@@ -146,9 +138,11 @@ for (const [key, client] of Object.entries(clients)) {
       // Al menos debe mostrar un total
       expect(hasTotal).toBeTruthy();
 
-      // Si muestra impuesto, verificar que no sea incoherente (ej: neto + impuesto = total)
+      // Si muestra impuesto, debe haber coherencia (neto + impuesto ≈ total)
       if (hasImpuesto && hasNeto) {
         const amounts = (bodyText || '').match(/\$\s*[\d.,]+/g) || [];
+        // Al menos debe haber 3 montos (neto, impuesto, total)
+        expect(amounts.length).toBeGreaterThanOrEqual(3);
         test.info().annotations.push({
           type: 'info',
           description: `Montos encontrados: ${amounts.slice(0, 10).join(', ')}`,
@@ -169,20 +163,16 @@ for (const [key, client] of Object.entries(clients)) {
         // Si hay sugerencias, verificar que tienen boton de agregar
         const suggestionArea = suggestions.first();
         const addBtn = suggestionArea.locator('..').locator('..').getByRole('button', { name: /agregar|añadir/i }).first();
-        const canAdd = await addBtn.isVisible({ timeout: 5_000 }).catch(() => false);
 
-        test.info().annotations.push({
-          type: 'info',
-          description: `Sugerencias visibles: ${await suggestions.count()}, boton agregar: ${canAdd}`,
-        });
+        await expect(addBtn).toBeVisible({ timeout: 5_000 });
 
-        if (canAdd) {
-          await Promise.all([
-            page.waitForResponse(resp => resp.url().includes('/cart') && resp.request().method() === 'POST'),
-            addBtn.click(),
-          ]);
-          // Verificar que se agrego (no error)
-        }
+        const response = await Promise.all([
+          page.waitForResponse(resp => resp.url().includes('/cart') && resp.request().method() === 'POST'),
+          addBtn.click(),
+        ]).then(([res]) => res);
+
+        // Debe devolver éxito (2xx), no error (4xx, 5xx)
+        expect(response.status()).toBeLessThan(400);
       } else {
         // No hay sugerencias — registrar pero no fallar (depende de config del cliente)
         test.info().annotations.push({
