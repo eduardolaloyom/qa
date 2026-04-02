@@ -1,0 +1,379 @@
+---
+description: Frontend development standards, best practices, and conventions for React and Next.js projects including component patterns, state management, UI/UX guidelines, and testing practices. Adapt the stack-specific sections to match the project's actual technology choices.
+globs: ["src/**/*.{js,jsx,ts,tsx}", "app/**/*.{ts,tsx}", "cypress/**/*.{ts,js}", "tsconfig.json", "package.json"]
+alwaysApply: true
+---
+
+# Frontend Project Standards and Best Practices
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Coding Standards](#coding-standards)
+- [Component Conventions](#component-conventions)
+- [State Management](#state-management)
+- [API Communication](#api-communication)
+- [UI/UX Standards](#uiux-standards)
+- [Testing Standards](#testing-standards)
+- [Performance Best Practices](#performance-best-practices)
+- [Development Workflow](#development-workflow)
+
+---
+
+## Overview
+
+This document defines the standards for frontend development. All projects use React with TypeScript. New projects default to **Next.js (App Router)**; legacy projects may use Create React App or Vite.
+
+> **Project-specific note**: This is a base template. Adapt the Technology Stack and Project Structure sections to match the actual project.
+
+---
+
+## Technology Stack
+
+### Core Technologies (adapt per project)
+- **Framework**: Next.js 14+ (App Router) for new projects, or React 18+ for SPAs
+- **Language**: TypeScript (strict mode — required for all new files)
+- **Styling**: Tailwind CSS (preferred for new projects) or CSS Modules
+- **UI Components**: Shadcn/ui, Radix UI, or React Bootstrap (check project before adding new ones)
+
+### State Management & Data Flow
+- **Server state**: TanStack Query (`@tanstack/react-query`) for data fetching and caching
+- **Local state**: React `useState` / `useReducer` for component-level state
+- **Global state**: Zustand or React Context (for simple global state only)
+- **Forms**: React Hook Form + Zod for validation
+
+### Testing Framework
+- **Unit & Component**: Jest + React Testing Library
+- **E2E**: Cypress
+- **Coverage threshold**: 80% on component logic (business logic in hooks/services)
+
+### HTTP Client
+- **Axios** or native `fetch` (Next.js) — be consistent per project
+- Centralize all API calls in a service layer
+
+---
+
+## Project Structure
+
+### Next.js (App Router)
+```
+src/
+├── app/                     # Next.js App Router pages and layouts
+│   ├── (auth)/              # Route groups
+│   ├── layout.tsx           # Root layout
+│   └── page.tsx             # Home page
+├── components/              # Reusable UI components
+│   ├── ui/                  # Base atoms (Button, Input, Card — Shadcn/ui)
+│   ├── shared/              # Shared composite components
+│   └── [feature]/           # Feature-specific components
+├── hooks/                   # Custom React hooks
+├── services/                # API communication layer
+├── lib/                     # Utility functions, constants, configs
+├── types/                   # Shared TypeScript types and interfaces
+└── styles/                  # Global styles
+cypress/
+└── e2e/                     # E2E tests organized by feature
+```
+
+### React SPA (Vite/CRA)
+```
+src/
+├── components/              # Reusable UI components
+├── pages/                   # Page-level components
+├── services/                # API service layer
+├── hooks/                   # Custom hooks
+├── types/                   # TypeScript types
+├── utils/                   # Utility functions
+├── App.tsx                  # Root component with routing
+└── index.tsx                # Entry point
+cypress/
+└── e2e/                     # E2E tests organized by feature
+```
+
+---
+
+## Coding Standards
+
+### Naming Conventions
+- **Components**: `PascalCase` — `CandidateCard.tsx`, `PositionDetails.tsx`
+- **Hooks**: `camelCase` with `use` prefix — `useCandidate.ts`, `useFormValidation.ts`
+- **Services**: `camelCase` with `Service` suffix — `candidateService.ts`
+- **Constants**: `UPPER_SNAKE_CASE` — `MAX_CANDIDATES_PER_PAGE`
+- **Types/Interfaces**: `PascalCase` — `CandidateData`, `PositionProps`
+- **CSS classes**: `kebab-case` — `candidate-card`, `position-details`
+- **Files**: component files `PascalCase.tsx`, utility files `camelCase.ts`
+
+### TypeScript
+- Strict mode enabled — no `any` in new code
+- Define explicit TypeScript types for all component props and hook return values
+- Use `type` for simple shapes, `interface` for extensible contracts
+- Prefer `unknown` over `any` when the type is genuinely unknown
+
+```typescript
+// Good: Explicit typed props
+type CandidateCardProps = {
+  candidate: Candidate;
+  onSelect: (candidate: Candidate) => void;
+  isSelected?: boolean;
+};
+
+const CandidateCard: React.FC<CandidateCardProps> = ({ candidate, onSelect, isSelected = false }) => {
+  // ...
+};
+```
+
+### Language
+- All variable names, comments, error messages, and console logs must be in English
+- Never use non-English identifiers in code
+
+---
+
+## Component Conventions
+
+### Functional Components Only
+- Always use functional components with hooks
+- No class components in new code
+
+### Component Composition (Atomic Design)
+- **Atoms**: Basic UI elements (Button, Input, Badge) — usually from UI library
+- **Molecules**: Combinations of atoms (SearchBar, FormField)
+- **Organisms**: Complex UI sections (CandidateList, PositionCard)
+- **Pages/Templates**: Full page layouts
+
+### Props
+- Destructure props in the function signature
+- Provide default values for optional props
+- Never pass raw objects — define a type for props
+
+```typescript
+const Button: React.FC<ButtonProps> = ({
+  children,
+  variant = 'primary',
+  disabled = false,
+  onClick,
+}) => { /* ... */ };
+```
+
+### Error and Loading States
+Every component that fetches data must handle all three states:
+
+```typescript
+const CandidateList: React.FC = () => {
+  const { data: candidates, isLoading, error } = useCandidates();
+
+  if (isLoading) return <Spinner />;
+  if (error) return <ErrorMessage message="Failed to load candidates" />;
+  if (!candidates?.length) return <EmptyState message="No candidates found" />;
+
+  return <ul>{candidates.map(c => <CandidateCard key={c.id} candidate={c} />)}</ul>;
+};
+```
+
+---
+
+## State Management
+
+### Server State (TanStack Query)
+Use TanStack Query for all server data — it handles caching, revalidation, and loading/error states:
+
+```typescript
+export function useCandidates(filters?: CandidateFilters) {
+  return useQuery({
+    queryKey: ['candidates', filters],
+    queryFn: () => candidateService.getAll(filters),
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+export function useCreateCandidate() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: candidateService.create,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['candidates'] }),
+  });
+}
+```
+
+### Local State
+- Use `useState` for simple component-level state
+- Use `useReducer` for complex state logic with multiple sub-values
+- Extract complex stateful logic into custom hooks
+
+### Forms (React Hook Form + Zod)
+```typescript
+const schema = z.object({
+  firstName: z.string().min(2).max(100),
+  email: z.string().email(),
+  phone: z.string().optional(),
+});
+
+type FormData = z.infer<typeof schema>;
+
+const CandidateForm: React.FC = () => {
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('firstName')} />
+      {errors.firstName && <span>{errors.firstName.message}</span>}
+      <button type="submit" disabled={isSubmitting}>Save</button>
+    </form>
+  );
+};
+```
+
+---
+
+## API Communication
+
+### Service Layer
+Centralize all API calls in service files. Components never call APIs directly.
+
+```typescript
+// services/candidateService.ts
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? process.env.REACT_APP_API_URL;
+
+export const candidateService = {
+  getAll: async (filters?: CandidateFilters): Promise<Candidate[]> => {
+    const response = await axios.get(`${API_BASE_URL}/candidates`, { params: filters });
+    return response.data;
+  },
+
+  create: async (data: CreateCandidateDto): Promise<Candidate> => {
+    const response = await axios.post(`${API_BASE_URL}/candidates`, data);
+    return response.data;
+  },
+
+  updateById: async (id: string, data: Partial<Candidate>): Promise<Candidate> => {
+    const response = await axios.patch(`${API_BASE_URL}/candidates/${id}`, data);
+    return response.data;
+  },
+};
+```
+
+### Environment Variables
+- Next.js: `NEXT_PUBLIC_*` for client-side variables
+- CRA: `REACT_APP_*`
+- Never hardcode API URLs in component or service files
+
+---
+
+## UI/UX Standards
+
+### Accessibility
+- Use semantic HTML (`nav`, `main`, `article`, `button` — not `div` for interactive elements)
+- Every interactive element must have an `aria-label` if purpose isn't clear from visible text
+- Keyboard navigation must work for all interactive elements
+- Images must have `alt` text
+
+### Responsive Design
+- Mobile-first approach
+- Use Tailwind responsive prefixes (`sm:`, `md:`, `lg:`) or Bootstrap grid
+
+### Loading & Feedback
+- Show loading state during async operations (Spinner or skeleton)
+- Show success/error feedback after form submissions
+- Disable submit buttons during loading to prevent double-submit
+
+---
+
+## Testing Standards
+
+### Cypress E2E Tests
+
+Use `data-testid` attributes for all element selection — never CSS classes or text content:
+
+```typescript
+// cypress/e2e/candidates.cy.ts
+describe('Candidate Registration', () => {
+  beforeEach(() => {
+    cy.intercept('POST', '/api/candidates', { statusCode: 201, body: { id: '1' } }).as('createCandidate');
+    cy.visit('/candidates/new');
+  });
+
+  it('should create a new candidate successfully', () => {
+    cy.get('[data-testid="first-name-input"]').type('John');
+    cy.get('[data-testid="email-input"]').type('john@example.com');
+    cy.get('[data-testid="submit-button"]').click();
+
+    cy.wait('@createCandidate');
+    cy.get('[data-testid="success-message"]').should('be.visible');
+  });
+
+  it('should display validation errors for invalid input', () => {
+    cy.get('[data-testid="submit-button"]').click();
+    cy.get('[data-testid="email-error"]').should('contain', 'Email is required');
+  });
+});
+```
+
+### Component Tests (React Testing Library)
+
+```typescript
+import { render, screen, fireEvent } from '@testing-library/react';
+
+describe('CandidateCard', () => {
+  it('should call onSelect when clicked', () => {
+    const onSelect = jest.fn();
+    const candidate = createMockCandidate({ id: '1' });
+
+    render(<CandidateCard candidate={candidate} onSelect={onSelect} />);
+    fireEvent.click(screen.getByRole('button', { name: /john doe/i }));
+
+    expect(onSelect).toHaveBeenCalledWith(candidate);
+  });
+});
+```
+
+### Test Organization
+- Group by feature: `candidates.cy.ts`, `positions.cy.ts`
+- Test user workflows, not implementation details
+- Never use `cy.wait(ms)` for timing — use `cy.intercept` + `cy.wait('@alias')`
+
+---
+
+## Performance Best Practices
+
+### Component Optimization
+- Use `React.memo` for components with stable props that re-render unnecessarily
+- Use `useMemo` for expensive calculations
+- Use `useCallback` for functions passed as props to memoized children
+- Lazy load heavy components: `const Heavy = lazy(() => import('./Heavy'))`
+
+### Next.js Specific
+- Use `next/image` for all images (automatic optimization)
+- Use `next/font` for web fonts (zero CLS)
+- Prefer Server Components for data fetching; use `'use client'` only where interactivity is needed
+
+### Bundle Size
+- Never import an entire library when you need one function
+- Use tree-shakeable imports: `import { debounce } from 'lodash-es'` not `import _ from 'lodash'`
+
+---
+
+## Development Workflow
+
+### Git Workflow
+- Feature branches: `feature/[ticket-id]-frontend`
+- Bugfix branches: `fix/[ticket-id]-description`
+- Commit messages follow Conventional Commits: `feat:`, `fix:`, `style:`, `test:`, `refactor:`
+
+### Pre-commit Checklist
+1. `npm run lint` — zero linting errors
+2. `tsc --noEmit` — zero TypeScript errors
+3. `npm test` — all unit/component tests pass
+4. Update `ai-specs/specs/api-spec.yml` if new API calls were added
+
+### Development Scripts
+```bash
+npm run dev           # Development server
+npm test              # Unit and component tests
+npm run test:e2e      # Cypress E2E tests
+npm run cypress:open  # Cypress interactive mode
+npm run build         # Production build
+npm run lint          # ESLint
+```

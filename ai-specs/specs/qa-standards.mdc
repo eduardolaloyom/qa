@@ -1,0 +1,287 @@
+# QA Standards — YOM Testing Framework
+
+Core standards for writing, organizing, and executing tests across Cowork, Playwright, Maestro, and manual checklists.
+
+## Philosophy
+
+**Cowork (Claude) is primary.** Human-driven QA that simulates real user interaction, validates configuration correctness, and catches what automated tests miss. Automated tests (Playwright, Maestro) are **regression detectors** and **coverage completers**, not substitutes.
+
+**Multi-client first.** Same code, different clients. Tests must validate that each client's configuration (payment methods, promotions, domain rules, banners) is correctly surfaced in the app.
+
+**Clear ownership.** Each test has a clear owner:
+- **Tier 1 (Critical)**: Must pass before deployment (auth, payment, order creation)
+- **Tier 2 (High)**: Regression detection (known features, post-mortems)
+- **Tier 3 (Low)**: Edge cases, UX refinements
+
+## Test Coverage Model
+
+### Cowork (Human-Driven QA)
+**Scope:** Validating client configuration visibility and complete user journeys.
+
+- ✓ Visual correctness (banners, logos, styling match client config)
+- ✓ Configuration flows (client-specific payment methods, domain rules)
+- ✓ Complex multi-step journeys (order → payment → confirmation)
+- ✓ Real-world scenarios (network latency, concurrent users)
+- ✗ Unit test coverage (not our focus)
+- ✗ Exhaustive permutations (manually unsustainable)
+
+**Who:** QA Coordinator (Claude), with context from Linear/Notion.
+
+### Playwright E2E (Regression Detection)
+**Scope:** Multi-client configuration validation, feature regression detection.
+
+**File naming:**
+```
+tests/e2e/b2b/               # B2B tienda.youorder.me
+tests/e2e/admin/             # admin.youorder.me
+tests/e2e/fixtures/          # clients.ts (auto-gen), loginHelper
+```
+
+**Spec naming:** `{feature}.spec.ts` (e.g., `cart.spec.ts`, `payment-config.spec.ts`)
+
+**Conventions:**
+```typescript
+// Use AAA pattern (Arrange, Act, Assert)
+test('should validate payment config for multi-client', async ({ page }) => {
+  // Arrange
+  const client = clients['codelpa'];
+
+  // Act
+  await loginHelper(page, client);
+  await page.goto('/payment-methods');
+
+  // Assert
+  await expect(page.locator('[data-testid="payment-method"]'))
+    .toContainText(client.paymentMethods[0]);
+});
+
+// Multi-client iteration
+clients.forEach(client => {
+  test(`should work for ${client.name}`, async ({ page }) => {
+    // Test logic
+  });
+});
+```
+
+**Do's:**
+- ✓ Test client-specific configuration (via `clients.ts`)
+- ✓ Use `loginHelper` for authentication
+- ✓ Validate multi-step flows (auth → dashboard → action)
+- ✓ Test both B2B and Admin separately
+
+**Don'ts:**
+- ✗ Duplicate Checklist scenarios
+- ✗ Manually edit `clients.ts` (always regenerate via `sync-clients.py`)
+- ✗ Hardcode credentials in specs (use `.env` or `clients.ts`)
+
+### Maestro (APP Mobile)
+**Scope:** Critical Android user journeys (order creation, payment, profile management).
+
+**File naming:** `{NN}-{feature}.yaml` (e.g., `05-pedido.yaml`, `09-concurrencia.yaml`)
+
+**Conventions:**
+```yaml
+appId: me.youorder.mobile
+---
+# 05 - Crear Pedido
+- launchApp
+- tapOn:
+    id: "product_list"
+- assertVisible:
+    id: "order_summary"
+```
+
+**Do's:**
+- ✓ Use stable element IDs or XPath
+- ✓ Add explicit waits for async operations
+- ✓ Test complete workflows (auth → order → payment)
+- ✓ Handle network latency (pause before assertion)
+
+**Don'ts:**
+- ✗ Use hard-coded coordinates (fragile)
+- ✗ Assume instant app response (add waits)
+- ✗ Create flows longer than 50 lines (break into smaller flows)
+
+### Checklists (Manual Testing)
+**Scope:** Backend services, edge cases, non-automated scenarios.
+
+**File naming:** `checklist-{category}-{area}.md`
+
+**Conventions:**
+- Case ID: `{PREFIX}-{NN}` (e.g., `PM1` for post-mortem-1, `CART-01` for cart-01)
+- Status: ✓ (pass), ✗ (fail), ⏳ (pending), ⚠ (partial)
+- Severity link: If fail, reference Linear ticket or known issue
+
+**Structure:**
+```markdown
+# Checklist: Regresion — Pagos
+
+## Post-Mortem: PM1 — Payment Gateway Auth Timeout
+
+| Case | Scenario | Expected | Actual | Status |
+|------|----------|----------|--------|--------|
+| PM1-01 | Login with Soprole credentials | Success | Auth rejected | ✗ YOM-182 |
+```
+
+## Multi-Tenant Architecture
+
+**Principle:** Same code runs on different subdomains with client-specific config.
+
+**Database source of truth:**
+```
+MongoDB (yom-stores, yom-production, yom-promotions, b2b-marketing)
+  ↓ mongo-extractor.py
+data/qa-matrix.json
+  ↓ sync-clients.py
+tests/e2e/fixtures/clients.ts (AUTO-GENERATED)
+```
+
+**Rules:**
+- `clients.ts` is auto-generated. **Never manually edit.**
+- After MongoDB config changes, run: `python3 tools/sync-clients.py`
+- Environment variables per client: `{SLUG}_COMMERCE_EMAIL`, `{SLUG}_COMMERCE_PASSWORD`
+- Staging URLs: `https://{slug}.solopide.me` (development/QA)
+- Production URLs: `https://{slug}.youorder.me`
+
+## Fixture Management
+
+### clients.ts (Auto-Generated)
+```typescript
+export const clients = [
+  {
+    name: 'codelpa',
+    slug: 'codelpa',
+    email: 'test@codelpa.cl',
+    password: process.env.CODELPA_PASSWORD,
+    paymentMethods: ['STRIPE', 'LOCAL_TRANSFER'],
+    // ... more config from MongoDB
+  },
+  // ... other clients
+];
+```
+
+**Never edit manually.** Always regenerate via:
+```bash
+python3 tools/sync-clients.py --mongo-uri "mongodb://..." --output tests/e2e/fixtures/clients.ts
+```
+
+### loginHelper
+```typescript
+export async function loginHelper(page, client) {
+  await page.goto(`https://${client.slug}.youorder.me/login`);
+  await page.fill('[data-testid="email"]', client.email);
+  await page.fill('[data-testid="password"]', client.password);
+  await page.click('[data-testid="submit"]');
+  await page.waitForURL('**/dashboard');
+}
+```
+
+**Usage:**
+```typescript
+const client = clients[0]; // or find by name
+await loginHelper(page, client);
+```
+
+## Naming Conventions
+
+### Test Case IDs (Checklists)
+```
+{PREFIX}-{NN}
+
+PM1, PM2, ...           # Post-mortems
+ERP-01, ERP-02, ...     # ERP integration
+CART-01, CART-02, ...   # Cart functionality
+KHP-01, KHP-02, ...     # Client-specific (e.g., Karaokes House Peru)
+```
+
+### Issue IDs (QA Reports)
+```
+{CLIENT}-QA-{NNN}
+
+Codelpa-QA-001
+Surtiventas-QA-042
+Seis-Sur-QA-015
+```
+
+Sequential per client. Do not skip numbers.
+
+### Spec Files
+```
+{feature}.spec.ts
+
+cart.spec.ts
+payment-validation.spec.ts
+config-validation.spec.ts
+```
+
+### Maestro Flows
+```
+{NN}-{feature}.yaml
+
+01-auth.yaml
+05-pedido.yaml
+09-concurrencia.yaml
+```
+
+## Test Data Strategy
+
+### Production Data Mirroring
+Use `mongo-extractor.py` to extract **live client config** (not dummy data):
+- Payment methods, promotions, domain rules
+- Store settings, logos, banners
+- Custom workflows, integrations
+
+### Staging Credentials
+Store in `.env` or `tests/app/config/env.yaml`:
+```bash
+BASE_URL=https://codelpa.solopide.me
+COMMERCE_EMAIL=test@codelpa.cl
+COMMERCE_PASSWORD=<secure>
+```
+
+Environment variable naming (bash-safe):
+```
+{SLUG} → hyphens converted to underscores
+codelpa → CODELPA_PASSWORD
+seis-sur → SEIS_SUR_PASSWORD
+```
+
+## Coverage Map
+
+**Reference:** `checklists/INDICE.md`
+
+Before creating new tests:
+1. Check if coverage already exists in checklists, Playwright, Maestro
+2. If creating new test, update `checklists/INDICE.md` with entry:
+   ```
+   | Feature | Checklist | Playwright | Maestro | Status |
+   |---------|-----------|-----------|---------|--------|
+   | Payment | PM1-05 | payment-validation.spec.ts | 06-payment.yaml | ✓ |
+   ```
+
+## Success Metrics
+
+- **Coverage:** Tier 1 features = 100% test pass rate
+- **Regression detection:** Post-mortem issues linked to test coverage
+- **Client-specific validation:** All 17+ clients tested in each Playwright run
+- **Execution time:** Full QA suite < 30 minutes
+
+## Tools & Commands
+
+| Command | Purpose |
+|---------|---------|
+| `./tools/run-qa.sh {CLIENT}` | Full pipeline: MongoDB extract → sync clients → generate checklist → run Playwright |
+| `python3 data/mongo-extractor.py` | Extract MongoDB config → qa-matrix.json |
+| `python3 tools/sync-clients.py` | Generate clients.ts from qa-matrix.json |
+| `npx playwright test --project=b2b` | Run B2B E2E tests |
+| `npx playwright test --project=admin` | Run Admin E2E tests |
+| `maestro test tests/app/flows/` | Run all Maestro flows |
+| `python3 tools/checklist-generator.py --cliente NOMBRE` | Generate checklist |
+
+## Key Files
+
+- `qa-master-prompt.md` — Canonical test cases (Tier 1-3 reference)
+- `checklists/INDICE.md` — Coverage map (which test covers what)
+- `plan-qa-b2b.md` — B2B testing strategy
+- `qa-app-strategy.md` — APP mobile strategy
+- `GUIA-OPERACIONAL-QA.md` — Operational guide (who does what, when)

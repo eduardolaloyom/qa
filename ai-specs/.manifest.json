@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "ai-specs update manifest. Classifies framework files by update strategy.",
+  "version": "1.0.0",
+  "categories": {
+    "safe_to_overwrite": {
+      "description": "Generic framework files that are NOT customized per project. These get replaced directly from upstream on update.",
+      "files": [
+        "ai-specs/.manifest.json",
+        "ai-specs/.commands/create-adr.md",
+        "ai-specs/.commands/develop-backend.md",
+        "ai-specs/.commands/develop-frontend.md",
+        "ai-specs/.commands/diagnose-repo.md",
+        "ai-specs/.commands/enrich-us.md",
+        "ai-specs/.commands/fix-review-comments.md",
+        "ai-specs/.commands/meta-prompt.md",
+        "ai-specs/.commands/plan-backend-ticket.md",
+        "ai-specs/.commands/plan-frontend-ticket.md",
+        "ai-specs/.commands/review-architecture.md",
+        "ai-specs/.commands/setup-mkdocs.md",
+        "ai-specs/.commands/ship-it.md",
+        "ai-specs/.commands/update-docs.md",
+        "ai-specs/.commands/update-ai-specs.md",
+        "ai-specs/.commands/write-tests.md",
+        "ai-specs/specs/base-standards.mdc",
+        "ai-specs/specs/documentation-standards.mdc",
+        "ai-specs/.agents/software-architect.md",
+        "ai-specs/.agents/mkdocs-specialist.md",
+        ".agent/workflows/create-adr.md",
+        ".agent/workflows/develop-backend.md",
+        ".agent/workflows/develop-frontend.md",
+        ".agent/workflows/diagnose-repo.md",
+        ".agent/workflows/enrich-ticket.md",
+        ".agent/workflows/fix-review-comments.md",
+        ".agent/workflows/meta-prompt.md",
+        ".agent/workflows/plan-backend-ticket.md",
+        ".agent/workflows/plan-frontend-ticket.md",
+        ".agent/workflows/review-architecture.md",
+        ".agent/workflows/setup-mkdocs.md",
+        ".agent/workflows/ship-it.md",
+        ".agent/workflows/update-docs.md",
+        ".agent/workflows/update-ai-specs.md",
+        ".agent/workflows/write-tests.md",
+        ".cursor/rules/use-base-rules.mdc"
+      ]
+    },
+    "adapted": {
+      "description": "Files customized per project during the setup prompt. These require manual/AI-assisted review before updating.",
+      "files": [
+        "ai-specs/specs/backend-standards.mdc",
+        "ai-specs/specs/frontend-standards.mdc",
+        "ai-specs/specs/data-model.md",
+        "ai-specs/specs/api-spec.yml",
+        "ai-specs/specs/development_guide.md",
+        "ai-specs/specs/qa-standards.mdc",
+        "ai-specs/.agents/backend-developer.md",
+        "ai-specs/.agents/frontend-developer.md",
+        "ai-specs/.agents/testing-specialist.md",
+        "ai-specs/.agents/qa-coordinator.md",
+        "ai-specs/.agents/playwright-specialist.md",
+        "ai-specs/.agents/maestro-specialist.md",
+        "ai-specs/.commands/qa-plan-client.md",
+        "ai-specs/.commands/run-playwright.md",
+        "ai-specs/.commands/report-qa.md",
+        "CLAUDE.md",
+        ".agent/rules/development-standards.md"
+      ]
+    },
+    "symlinks": {
+      "description": "Symlinks that should be recreated if missing but never overwritten. They point to files already managed above.",
+      "files": [
+        ".claude/commands/create-adr.md",
+        ".claude/commands/develop-backend.md",
+        ".claude/commands/develop-frontend.md",
+        ".claude/commands/diagnose-repo.md",
+        ".claude/commands/enrich-us.md",
+        ".claude/commands/fix-review-comments.md",
+        ".claude/commands/meta-prompt.md",
+        ".claude/commands/plan-backend-ticket.md",
+        ".claude/commands/plan-frontend-ticket.md",
+        ".claude/commands/review-architecture.md",
+        ".claude/commands/setup-mkdocs.md",
+        ".claude/commands/ship-it.md",
+        ".claude/commands/update-docs.md",
+        ".claude/commands/write-tests.md",
+        ".claude/agents/backend-developer.md",
+        ".claude/agents/frontend-developer.md",
+        ".claude/commands/update-ai-specs.md",
+        "AGENTS.md",
+        "GEMINI.md",
+        "codex.md"
+      ]
+    },
+    "ignored": {
+      "description": "Project-specific generated files. Never touched during updates.",
+      "patterns": [
+        "ai-specs/changes/*"
+      ]
+    }
+  }
+}
