@@ -15,6 +15,7 @@ Workflow:
 
 import json
 import sys
+import argparse
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -207,8 +208,16 @@ export default clients;
 
 def main():
     """Main entry point."""
-    print("Loading qa-matrix.json...")
-    qa_matrix = load_qa_matrix()
+    parser = argparse.ArgumentParser(description="Generate clients.ts from qa-matrix.json")
+    parser.add_argument(
+        "--input",
+        default="data/qa-matrix.json",
+        help="Path to qa-matrix.json (default: data/qa-matrix.json)"
+    )
+    args = parser.parse_args()
+
+    print(f"Loading {args.input}...")
+    qa_matrix = load_qa_matrix(args.input)
 
     print(f"Generating clients.ts from {len(qa_matrix.get('clients', {}))} clients...")
     clients_ts = generate_clients_ts(qa_matrix)
