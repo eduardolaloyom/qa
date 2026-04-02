@@ -79,7 +79,6 @@ REAL_CLIENTS = {
     "prisa.youorder.me": "Prisa",
     "prisa.solopide.me": "Surtiventas (staging)",
     "prisur.youorder.me": "Prisur",
-    "prisur.solopide.me": "Prisur (staging)",
     "soprole.youorder.me": "Soprole",
     "new-soprole.youorder.me": "Soprole (new)",
     "surtiventas.youorder.me": "Surtiventas",
