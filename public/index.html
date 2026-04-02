@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QA Dashboard — YOM B2B Tests</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -39,17 +40,17 @@
             opacity: 0.9;
         }
 
-        .status-card {
+        .card {
             background: white;
             border-radius: 12px;
-            padding: 40px;
+            padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -79,11 +80,9 @@
             border-radius: 20px;
             font-weight: bold;
             font-size: 1.1em;
-        }
-
-        .status-pass {
             background: #10b981;
             color: white;
+            margin-bottom: 20px;
         }
 
         .timestamp {
@@ -92,10 +91,19 @@
             margin-top: 10px;
         }
 
+        .section-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #111827;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         th {
@@ -105,6 +113,7 @@
             border-bottom: 2px solid #e5e7eb;
             font-weight: 600;
             color: #111827;
+            font-size: 0.95em;
         }
 
         td {
@@ -125,43 +134,127 @@
             font-weight: 600;
         }
 
-        .section-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #111827;
-            margin: 30px 0 15px 0;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
+        .fail-badge {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .report-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .report-link:hover {
+            text-decoration: underline;
         }
 
         .client-section {
             background: #f9fafb;
             padding: 20px;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .client-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .client-header:hover {
+            opacity: 0.8;
         }
 
         .client-name {
             font-size: 1.1em;
             font-weight: bold;
             color: #111827;
+        }
+
+        .expand-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .expand-icon.expanded {
+            transform: rotate(180deg);
+        }
+
+        .client-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .client-details.show {
+            display: block;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 15px;
         }
 
-        .coverage-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e5e7eb;
+        .detail-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
         }
 
-        .coverage-item:last-child {
-            border-bottom: none;
+        .detail-label {
+            font-size: 0.85em;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
-        .check {
-            color: #10b981;
+        .detail-value {
+            font-size: 1.1em;
+            color: #111827;
             font-weight: bold;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #ecfdf5;
+            color: #065f46;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 25px 0;
+        }
+
+        .chart-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 15px;
         }
 
         footer {
@@ -170,6 +263,38 @@
             margin-top: 40px;
             opacity: 0.8;
             font-size: 0.9em;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -180,182 +305,302 @@
             <p class="subtitle">Playwright E2E Test Suite</p>
         </header>
 
-        <div class="status-card">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <span class="status-badge status-pass">✅ ALL PASSED</span>
+        <div class="card">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span class="status-badge" id="statusBadge">✅ Loading...</span>
             </div>
 
-            <div class="summary-grid">
-                <div class="stat-box">
-                    <div class="stat-value">133</div>
-                    <div class="stat-label">Total Tests</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">133</div>
-                    <div class="stat-label">Passed</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Failed</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">23.9m</div>
-                    <div class="stat-label">Duration</div>
-                </div>
+            <div class="summary-grid" id="summaryGrid">
+                <div class="loading">Cargando datos...</div>
             </div>
 
-            <p class="timestamp">Execution Date: 2026-04-02 13:58 UTC</p>
+            <p class="timestamp" id="timestamp"></p>
 
-            <div class="section-title">Test Breakdown by Suite</div>
+            <!-- Test Suites Section -->
+            <div class="section-title">Test Suites by File</div>
 
-            <table>
+            <table id="suitesTable">
                 <thead>
                     <tr>
                         <th>Suite</th>
                         <th style="width: 100px; text-align: center;">Tests</th>
-                        <th style="width: 120px; text-align: center;">Status</th>
+                        <th style="width: 80px; text-align: center;">Passed</th>
+                        <th style="width: 80px; text-align: center;">Failed</th>
+                        <th style="width: 100px; text-align: center;">Status</th>
+                        <th style="width: 140px; text-align: center;">Ver Reporte</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>config-validation.spec.ts</td>
-                        <td style="text-align: center;">12</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>mongo-data.spec.ts</td>
-                        <td style="text-align: center;">6</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>codelpa.spec.ts</td>
-                        <td style="text-align: center;">32</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>surtiventas.spec.ts</td>
-                        <td style="text-align: center;">25</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>coupons.spec.ts</td>
-                        <td style="text-align: center;">8</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>prices.spec.ts</td>
-                        <td style="text-align: center;">16</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>promotions.spec.ts</td>
-                        <td style="text-align: center;">6</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>login.spec.ts</td>
-                        <td style="text-align: center;">5</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>multi-client.spec.ts</td>
-                        <td style="text-align: center;">10</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>payments.spec.ts</td>
-                        <td style="text-align: center;">4</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr>
-                        <td>step-pricing.spec.ts</td>
-                        <td style="text-align: center;">4</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASS</span></td>
-                    </tr>
-                    <tr style="font-weight: bold; background: #f3f4f6;">
-                        <td>TOTAL</td>
-                        <td style="text-align: center;">133</td>
-                        <td style="text-align: center;"><span class="pass-badge">✅ PASSED</span></td>
-                    </tr>
+                <tbody id="suitesTableBody">
+                    <tr><td colspan="6" class="loading">Cargando suites...</td></tr>
                 </tbody>
             </table>
 
+            <!-- Clients Section -->
             <div class="section-title">Clients Tested</div>
-
-            <div class="client-section">
-                <div class="client-name">🏪 Codelpa (beta-codelpa.solopide.me)</div>
-                <div class="coverage-item">
-                    <span>MongoDB Variables Validated</span>
-                    <span class="check">✓ 54 variables</span>
-                </div>
-                <div class="coverage-item">
-                    <span>Coupons</span>
-                    <span class="check">✓ 3 (PROMO10, CODELPA20, DSCTO5K)</span>
-                </div>
-                <div class="coverage-item">
-                    <span>Banners</span>
-                    <span class="check">✓ 2 banners</span>
-                </div>
-                <div class="coverage-item">
-                    <span>Promotions</span>
-                    <span class="check">✓ 2 promotions</span>
-                </div>
-                <div class="coverage-item">
-                    <span>E2E Flows</span>
-                    <span class="check">✓ login → catalog → cart → checkout</span>
-                </div>
+            <div id="clientsContainer">
+                <div class="loading">Cargando clientes...</div>
             </div>
 
-            <div class="client-section">
-                <div class="client-name">🏪 Surtiventas (surtiventas.solopide.me)</div>
-                <div class="coverage-item">
-                    <span>MongoDB Variables Validated</span>
-                    <span class="check">✓ 92 variables</span>
-                </div>
-                <div class="coverage-item">
-                    <span>Coupons</span>
-                    <span class="check">✓ 3 (SURTI15, WELCOME10, BULK3K)</span>
-                </div>
-                <div class="coverage-item">
-                    <span>Banners</span>
-                    <span class="check">✓ 1 banner</span>
-                </div>
-                <div class="coverage-item">
-                    <span>Promotions</span>
-                    <span class="check">✓ 2 promotions</span>
-                </div>
-                <div class="coverage-item">
-                    <span>E2E Flows</span>
-                    <span class="check">✓ login → catalog → cart → checkout</span>
-                </div>
-            </div>
-
-            <div class="section-title">Key Validations</div>
-
-            <div class="client-section">
-                <div class="coverage-item" style="padding: 12px 0;">
-                    <span>✅ MongoDB Integration</span>
-                    <span style="color: #6b7280; font-size: 0.9em;">Variables extracted from yom-production with multi-client isolation</span>
-                </div>
-                <div class="coverage-item" style="padding: 12px 0;">
-                    <span>✅ Data Validation</span>
-                    <span style="color: #6b7280; font-size: 0.9em;">Coupons lookup, banners visibility, promotion pricing impact</span>
-                </div>
-                <div class="coverage-item" style="padding: 12px 0;">
-                    <span>✅ Multi-Client Isolation</span>
-                    <span style="color: #6b7280; font-size: 0.9em;">Codelpa and Surtiventas isolated with proper configuration</span>
-                </div>
-                <div class="coverage-item" style="padding: 12px 0;">
-                    <span>✅ Feature Flags</span>
-                    <span style="color: #6b7280; font-size: 0.9em;">6 critical flags validated per client (12 total tests)</span>
-                </div>
+            <!-- Historical Trend -->
+            <div class="section-title">Test Trend (Last 30 Days)</div>
+            <div class="chart-container">
+                <div class="chart-title" id="chartTitle"></div>
+                <canvas id="trendChart"></canvas>
             </div>
         </div>
 
         <footer>
-            <p>QA Dashboard — YOM B2B Platform | Last Updated: 2026-04-02 13:58 UTC</p>
-            <p style="margin-top: 10px; opacity: 0.7;">For detailed test results, see test-results.md</p>
+            <p>QA Dashboard — YOM B2B Platform</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Última actualización: <span id="footerTimestamp"></span></p>
         </footer>
     </div>
+
+    <script>
+        let latestRun = null;
+        let allRuns = [];
+
+        async function loadHistoryIndex() {
+            try {
+                const response = await fetch('history/index.json');
+                if (!response.ok) throw new Error('Failed to load history index');
+                const data = await response.json();
+                allRuns = data.runs || [];
+                return allRuns;
+            } catch (error) {
+                console.error('Error loading history index:', error);
+                return [];
+            }
+        }
+
+        async function loadRunDetails(date) {
+            try {
+                const response = await fetch(`history/${date}.json`);
+                if (!response.ok) throw new Error(`Failed to load run ${date}`);
+                return await response.json();
+            } catch (error) {
+                console.error(`Error loading run ${date}:`, error);
+                return null;
+            }
+        }
+
+        async function initDashboard() {
+            // Load history
+            allRuns = await loadHistoryIndex();
+
+            if (allRuns.length === 0) {
+                document.getElementById('summaryGrid').innerHTML = '<div class="error">No test runs found</div>';
+                return;
+            }
+
+            // Get latest run
+            const latestDate = allRuns[0].date;
+            latestRun = await loadRunDetails(latestDate);
+
+            if (!latestRun) {
+                document.getElementById('summaryGrid').innerHTML = '<div class="error">Could not load latest run details</div>';
+                return;
+            }
+
+            // Update summary
+            updateSummary();
+            updateSuitesTable();
+            updateClientsSection();
+            updateTrendChart();
+        }
+
+        function updateSummary() {
+            // Status badge
+            const status = latestRun.failed === 0 ? '✅ ALL PASSED' : '⚠️ SOME FAILED';
+            document.getElementById('statusBadge').textContent = status;
+
+            // Summary grid
+            const summaryGrid = document.getElementById('summaryGrid');
+            const durationMins = (latestRun.duration / 60).toFixed(1);
+            summaryGrid.innerHTML = `
+                <div class="stat-box">
+                    <div class="stat-value">${latestRun.total}</div>
+                    <div class="stat-label">Total Tests</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${latestRun.passed}</div>
+                    <div class="stat-label">Passed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${latestRun.failed}</div>
+                    <div class="stat-label">Failed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">${durationMins}m</div>
+                    <div class="stat-label">Duration</div>
+                </div>
+            `;
+
+            // Timestamp
+            const date = new Date(latestRun.timestamp);
+            const formattedDate = date.toLocaleString('es-CL');
+            document.getElementById('timestamp').textContent = `Execution Date: ${formattedDate}`;
+            document.getElementById('footerTimestamp').textContent = formattedDate;
+        }
+
+        function updateSuitesTable() {
+            const tbody = document.getElementById('suitesTableBody');
+            tbody.innerHTML = latestRun.suites.map(suite => {
+                const statusBadge = suite.failed === 0 ?
+                    `<span class="pass-badge">✅ PASS</span>` :
+                    `<span class="fail-badge">❌ ${suite.failed} FAIL</span>`;
+
+                const reportLink = suite.reportUrl ?
+                    `<a href="${suite.reportUrl}" class="report-link" target="_blank">→ View Report</a>` :
+                    '<span style="color: #9ca3af;">—</span>';
+
+                return `
+                    <tr>
+                        <td><strong>${suite.name}</strong></td>
+                        <td style="text-align: center;">${suite.tests}</td>
+                        <td style="text-align: center;">${suite.passed}</td>
+                        <td style="text-align: center;">${suite.failed}</td>
+                        <td style="text-align: center;">${statusBadge}</td>
+                        <td style="text-align: center;">${reportLink}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateClientsSection() {
+            const clientsContainer = document.getElementById('clientsContainer');
+            const clientsHtml = Object.entries(latestRun.clients).map(([key, client]) => `
+                <div class="client-section">
+                    <div class="client-header" onclick="toggleClientDetails(this)">
+                        <div>
+                            <div class="client-name">🏪 ${client.name}</div>
+                            <small style="color: #6b7280;">${client.url}</small>
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="client-details">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <div class="detail-label">Variables Validated</div>
+                                <div class="detail-value">${client.variables}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Tests Run</div>
+                                <div class="detail-value">${client.tests}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Tests Passed</div>
+                                <div class="detail-value" style="color: #10b981;">${client.passed}</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <strong style="color: #6b7280; font-size: 0.95em;">Coverage:</strong>
+                            <div class="tags">
+                                ${client.coupons.map(c => `<span class="tag">💰 ${c}</span>`).join('')}
+                                ${Array(client.banners).fill(0).map((_, i) => `<span class="tag">🎯 Banner ${i+1}</span>`).join('')}
+                                ${Array(client.promotions).fill(0).map((_, i) => `<span class="tag">📢 Promo ${i+1}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <a href="${client.reportUrl}" class="report-link" target="_blank">→ Detailed Report for ${client.name}</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            clientsContainer.innerHTML = clientsHtml;
+        }
+
+        function toggleClientDetails(header) {
+            const icon = header.querySelector('.expand-icon');
+            const details = header.parentElement.querySelector('.client-details');
+
+            icon.classList.toggle('expanded');
+            details.classList.toggle('show');
+        }
+
+        async function updateTrendChart() {
+            // Load all run details for the chart
+            const runDates = [];
+            const passedCounts = [];
+            const failedCounts = [];
+
+            for (const run of allRuns) {
+                runDates.push(run.date);
+                passedCounts.push(run.passed);
+                failedCounts.push(run.failed);
+            }
+
+            // Reverse to show oldest first
+            runDates.reverse();
+            passedCounts.reverse();
+            failedCounts.reverse();
+
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: runDates,
+                    datasets: [
+                        {
+                            label: 'Tests Passed',
+                            data: passedCounts,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.05)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#10b981',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'Tests Failed',
+                            data: failedCounts,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#ef4444',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: { size: 14, weight: 'bold' },
+                                padding: 15,
+                                usePointStyle: true
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 10 },
+                            grid: { drawBorder: false }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('chartTitle').textContent = `${runDates.length} test run${runDates.length !== 1 ? 's' : ''} • Last 30 days`;
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
 </body>
 </html>

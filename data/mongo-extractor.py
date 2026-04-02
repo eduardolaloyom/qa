@@ -568,8 +568,14 @@ def extract_integrations_data(integrations_client, domain: str, cid_obj) -> dict
 # Main extraction
 # ─────────────────────────────────────────────
 
-def extract(client_filter: Optional[str] = None, full_extract: bool = False) -> dict:
-    """Extract all data from MongoDB and return the qa-matrix structure."""
+def extract(client_filter: Optional[str] = None, full_extract: bool = False, staging_only: bool = False) -> dict:
+    """Extract all data from MongoDB and return the qa-matrix structure.
+
+    Args:
+        client_filter: Filter by client name
+        full_extract: Also extract products, commerces, etc.
+        staging_only: Only extract staging clients (*.solopide.me)
+    """
     print("Connecting to MongoDB clusters...")
 
     micro_client = None
@@ -622,6 +628,12 @@ def extract(client_filter: Optional[str] = None, full_extract: bool = False) -> 
             continue
 
         display_name = REAL_CLIENTS[domain]
+
+        # Filter by staging/production if requested
+        if staging_only and not domain.endswith(".solopide.me"):
+            continue
+        if not staging_only and domain.endswith(".solopide.me"):
+            continue
 
         # Apply client filter if specified
         if client_filter and client_filter.lower() not in display_name.lower():
@@ -737,14 +749,21 @@ def main():
                         help="Output file path (default: data/qa-matrix.json)")
     parser.add_argument("--full", action="store_true",
                         help="Also extract products, commerces, promotions, orders, etc. (slower)")
+    parser.add_argument("--staging", action="store_true",
+                        help="Only extract staging clients (*.solopide.me), ignore production")
     args = parser.parse_args()
 
-    data = extract(client_filter=args.cliente, full_extract=args.full)
+    # Adjust output path if staging
+    output_path = args.output
+    if args.staging and args.output == "data/qa-matrix.json":
+        output_path = "data/qa-matrix-staging.json"
 
-    with open(args.output, "w", encoding="utf-8") as f:
+    data = extract(client_filter=args.cliente, full_extract=args.full, staging_only=args.staging)
+
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    print(f"\nOutput: {args.output}")
+    print(f"\nOutput: {output_path}")
     for key, client in data["clients"].items():
         test_info = f"{client['testCount']['total']} tests ({client['testCount']['standard']} std + {client['testCount']['conditional']} cond)"
 

@@ -1,0 +1,115 @@
+{
+  "date": "2026-04-02",
+  "timestamp": "2026-04-02T13:58:00Z",
+  "total": 133,
+  "passed": 133,
+  "failed": 0,
+  "duration": 1434,
+  "suites": [
+    {
+      "name": "config-validation.spec.ts",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "mongo-data.spec.ts",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "codelpa.spec.ts",
+      "tests": 32,
+      "passed": 32,
+      "failed": 0,
+      "reportUrl": "codelpa/index.html"
+    },
+    {
+      "name": "surtiventas.spec.ts",
+      "tests": 25,
+      "passed": 25,
+      "failed": 0,
+      "reportUrl": "surtiventas/index.html"
+    },
+    {
+      "name": "coupons.spec.ts",
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "prices.spec.ts",
+      "tests": 16,
+      "passed": 16,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "promotions.spec.ts",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "login.spec.ts",
+      "tests": 5,
+      "passed": 5,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "multi-client.spec.ts",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payments.spec.ts",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "step-pricing.spec.ts",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "codelpa": {
+      "name": "Codelpa",
+      "url": "https://beta-codelpa.solopide.me",
+      "tests": 54,
+      "passed": 54,
+      "reportUrl": "codelpa/index.html",
+      "variables": 54,
+      "coupons": ["PROMO10", "CODELPA20", "DSCTO5K"],
+      "banners": 2,
+      "promotions": 2
+    },
+    "surtiventas": {
+      "name": "Surtiventas",
+      "url": "https://surtiventas.solopide.me",
+      "tests": 54,
+      "passed": 54,
+      "reportUrl": "surtiventas/index.html",
+      "variables": 92,
+      "coupons": ["SURTI15", "WELCOME10", "BULK3K"],
+      "banners": 1,
+      "promotions": 2
+    }
+  },
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}
