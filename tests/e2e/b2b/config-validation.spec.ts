@@ -181,5 +181,133 @@ for (const [key, client] of Object.entries(clients)) {
 
       await context.close();
     });
+
+    // ── NUEVAS VARIABLES DE ALTA PRIORIDAD ──
+
+    // inMaintenance
+    if (client.config.inMaintenance !== undefined) {
+      test(`${key}: inMaintenance=${client.config.inMaintenance}`, async ({ browser }) => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(client.baseURL);
+        await page.waitForLoadState('networkidle');
+
+        if (client.config.inMaintenance) {
+          // Debe mostrar pantalla de mantenimiento
+          const maintenanceText = page.getByText(/mantenimiento|maintenance|en construcción/i);
+          await expect(maintenanceText).toBeVisible({ timeout: 10_000 });
+        } else {
+          // No debe mostrar mantenimiento
+          const maintenanceText = page.getByText(/mantenimiento|maintenance|en construcción/i);
+          await expect(maintenanceText).not.toBeVisible({ timeout: 5_000 });
+        }
+
+        await context.close();
+      });
+    }
+
+    // anonymousHideCart y anonymousHidePrice
+    if (client.config.anonymousAccess === true) {
+      if (client.config.anonymousHideCart !== undefined) {
+        test(`${key}: anonymousHideCart=${client.config.anonymousHideCart}`, async ({ browser }) => {
+          const context = await browser.newContext();
+          const page = await context.newPage();
+          await page.goto(`${client.baseURL}`);
+          await page.waitForLoadState('networkidle');
+
+          const cartIcon = page.locator('[class*="cart" i], [aria-label*="carro" i], [aria-label*="carrito" i]').first();
+
+          if (client.config.anonymousHideCart) {
+            // No debe mostrar ícono del carrito
+            const isVisible = await cartIcon.isVisible({ timeout: 5_000 }).catch(() => false);
+            expect(isVisible).toBeFalsy();
+          } else {
+            // Debe mostrar ícono del carrito
+            await expect(cartIcon).toBeVisible({ timeout: 10_000 });
+          }
+
+          await context.close();
+        });
+      }
+
+      if (client.config.anonymousHidePrice !== undefined) {
+        test(`${key}: anonymousHidePrice=${client.config.anonymousHidePrice}`, async ({ browser }) => {
+          const context = await browser.newContext();
+          const page = await context.newPage();
+          await page.goto(`${client.baseURL}/products`);
+          await page.waitForLoadState('networkidle');
+
+          const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
+          const priceCount = await prices.count();
+
+          if (client.config.anonymousHidePrice) {
+            // No debe mostrar precios sin login
+            expect(priceCount).toBe(0);
+          } else {
+            // Debe mostrar precios
+            expect(priceCount).toBeGreaterThan(0);
+          }
+
+          await context.close();
+        });
+      }
+    }
+
+    // enablePayments / disablePayments
+    if (client.config.enablePayments !== undefined) {
+      test(`${key}: enablePayments=${client.config.enablePayments}`, async ({ browser }) => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+
+        // Agregar producto al carrito para llegar a checkout
+        await page.goto(`${client.baseURL}/products`);
+        await page.waitForLoadState('networkidle');
+
+        const addButton = page.getByRole('button', { name: 'Agregar' }).first();
+        await expect(addButton).toBeVisible({ timeout: 15_000 });
+        await addButton.click();
+        await page.waitForLoadState('networkidle');
+
+        await page.goto(`${client.baseURL}/cart`);
+        await page.waitForLoadState('networkidle');
+
+        // Buscar sección de pagos en checkout
+        const paymentsSection = page.locator('[class*="payment" i], [class*="pago" i]').first();
+
+        if (client.config.enablePayments) {
+          // Debe haber sección de pagos
+          await expect(paymentsSection).toBeVisible({ timeout: 10_000 });
+        } else {
+          // NO debe haber sección de pagos
+          const isVisible = await paymentsSection.isVisible({ timeout: 5_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        }
+
+        await context.close();
+      });
+    }
+
+    // ordersRequireAuthorization
+    if (client.config.ordersRequireAuthorization !== undefined) {
+      test(`${key}: ordersRequireAuthorization=${client.config.ordersRequireAuthorization}`, async ({ browser }) => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+
+        // Ir a historial de órdenes
+        await page.goto(`${client.baseURL}/orders`);
+        await page.waitForLoadState('networkidle');
+
+        if (client.config.ordersRequireAuthorization) {
+          // Debe mostrar badge/estado de aprobación pendiente
+          const approvalBadge = page.getByText(/pendiente|aprobación|autorización|autorizar/i);
+          const hasApprovalUI = await approvalBadge.isVisible({ timeout: 5_000 }).catch(() => false);
+          expect(hasApprovalUI).toBeTruthy();
+        }
+
+        await context.close();
+      });
+    }
   });
 }
