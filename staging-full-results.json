@@ -1,0 +1,769 @@
+{
+  "config": {
+    "configFile": "/Users/lalojimenez/qa/tests/e2e/playwright.config.ts",
+    "rootDir": "/Users/lalojimenez/qa/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/lalojimenez/qa/tests/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "b2b",
+        "name": "b2b",
+        "testDir": "/Users/lalojimenez/qa/tests/e2e/b2b",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/lalojimenez/qa/tests/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "admin",
+        "name": "admin",
+        "testDir": "/Users/lalojimenez/qa/tests/e2e/admin",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "/Users/lalojimenez/qa/tests/e2e/reporters/grouped-report.ts",
+        null
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "b2b/staging-multi-client.spec.ts",
+      "file": "b2b/staging-multi-client.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Codelpa (staging) (https://beta-codelpa.solopide.me)",
+          "file": "b2b/staging-multi-client.spec.ts",
+          "line": 12,
+          "column": 8,
+          "specs": [
+            {
+              "title": "codelpa-staging: Login exitoso",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 65112,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:19:18",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                          "column": 18,
+                          "line": 19
+                        },
+                        "snippet": "  17 |       const page = await context.newPage();\n  18 |\n> 19 |       await page.goto(client.baseURL);\n     |                  ^\n  20 |       await page.waitForLoadState('domcontentloaded');\n  21 |\n  22 |       // Si anonymousAccess=true, ir directo al login path"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                            "column": 18,
+                            "line": 19
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n\n  17 |       const page = await context.newPage();\n  18 |\n> 19 |       await page.goto(client.baseURL);\n     |                  ^\n  20 |       await page.waitForLoadState('domcontentloaded');\n  21 |\n  22 |       // Si anonymousAccess=true, ir directo al login path\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:19:18"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:30:44.652Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                        "column": 18,
+                        "line": 19
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-e93f6e5abc00ab8a8883",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 15,
+              "column": 9
+            },
+            {
+              "title": "codelpa-staging: Sin acceso anónimo redirige a login",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 65116,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:51:20",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                          "column": 20,
+                          "line": 51
+                        },
+                        "snippet": "  49 |         const context = await browser.newContext();\n  50 |         const page = await context.newPage();\n> 51 |         await page.goto(client.baseURL);\n     |                    ^\n  52 |         // Debe redirigir a login\n  53 |         await expect(page).toHaveURL(/auth|login/, { timeout: 15_000 });\n  54 |         await context.close();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                            "column": 20,
+                            "line": 51
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n\n  49 |         const context = await browser.newContext();\n  50 |         const page = await context.newPage();\n> 51 |         await page.goto(client.baseURL);\n     |                    ^\n  52 |         // Debe redirigir a login\n  53 |         await expect(page).toHaveURL(/auth|login/, { timeout: 15_000 });\n  54 |         await context.close();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:51:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:30:44.658Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                        "column": 20,
+                        "line": 51
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-6b780056acab5309531e",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 48,
+              "column": 11
+            },
+            {
+              "title": "codelpa-staging: Catálogo muestra productos con precios",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 65118,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:62:18",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                          "column": 18,
+                          "line": 62
+                        },
+                        "snippet": "  60 |       const context = await browser.newContext();\n  61 |       const page = await context.newPage();\n> 62 |       await page.goto(client.baseURL);\n     |                  ^\n  63 |       await page.waitForLoadState('domcontentloaded');\n  64 |\n  65 |       // Login si es necesario"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                            "column": 18,
+                            "line": 62
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n\n  60 |       const context = await browser.newContext();\n  61 |       const page = await context.newPage();\n> 62 |       await page.goto(client.baseURL);\n     |                  ^\n  63 |       await page.waitForLoadState('domcontentloaded');\n  64 |\n  65 |       // Login si es necesario\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:62:18"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:30:44.650Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                        "column": 18,
+                        "line": 62
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-8b4a929e32d641275076",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 59,
+              "column": 9
+            },
+            {
+              "title": "codelpa-staging: Agregar producto al carro",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 65118,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:83:20",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                          "column": 20,
+                          "line": 83
+                        },
+                        "snippet": "  81 |         const context = await browser.newContext();\n  82 |         const page = await context.newPage();\n> 83 |         await page.goto(client.baseURL);\n     |                    ^\n  84 |         await page.waitForLoadState('domcontentloaded');\n  85 |\n  86 |         // Login"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                            "column": 20,
+                            "line": 83
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://beta-codelpa.solopide.me/\", waiting until \"load\"\u001b[22m\n\n\n  81 |         const context = await browser.newContext();\n  82 |         const page = await context.newPage();\n> 83 |         await page.goto(client.baseURL);\n     |                    ^\n  84 |         await page.waitForLoadState('domcontentloaded');\n  85 |\n  86 |         // Login\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:83:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:30:44.649Z",
+                      "annotations": [],
+                      "attachments": [],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                        "column": 20,
+                        "line": 83
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-21cf3d5cec77a4168d46",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 80,
+              "column": 11
+            },
+            {
+              "title": "codelpa-staging: No hay productos con precio $0",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 87714,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:79:20)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:119:9",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 20,
+                          "line": 79
+                        },
+                        "snippet": "   at fixtures/login.ts:79\n\n  77 |\n  78 |   // Fill email and password\n> 79 |   await emailInput.fill(email);\n     |                    ^\n  80 |   await passwordInput.fill(password);\n  81 |\n  82 |   // Submit button (usually in a form, but could be a button outside)"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 20,
+                            "line": 79
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n\n\n   at fixtures/login.ts:79\n\n  77 |\n  78 |   // Fill email and password\n> 79 |   await emailInput.fill(email);\n     |                    ^\n  80 |   await passwordInput.fill(password);\n  81 |\n  82 |   // Submit button (usually in a form, but could be a button outside)\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:79:20)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:119:9"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:31:50.944Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Codel-ba7d2--hay-productos-con-precio-0-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Codel-ba7d2--hay-productos-con-precio-0-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 20,
+                        "line": 79
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-34e3a77a537a67772ed8",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 111,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "Surtiventas (staging) (https://surtiventas.solopide.me)",
+          "file": "b2b/staging-multi-client.spec.ts",
+          "line": 12,
+          "column": 8,
+          "specs": [
+            {
+              "title": "surtiventas-staging: Login exitoso",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 95548,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://surtiventas.solopide.me/auth/jwt/login\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://surtiventas.solopide.me/auth/jwt/login\", waiting until \"load\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:22:14)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:32:24",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 14,
+                          "line": 22
+                        },
+                        "snippet": "   at fixtures/login.ts:22\n\n  20 |\n  21 |   // First, try to navigate to login path\n> 22 |   await page.goto(url);\n     |              ^\n  23 |   await page.waitForLoadState('domcontentloaded');\n  24 |   await page.waitForTimeout(1000);\n  25 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 14,
+                            "line": 22
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://surtiventas.solopide.me/auth/jwt/login\", waiting until \"load\"\u001b[22m\n\n\n   at fixtures/login.ts:22\n\n  20 |\n  21 |   // First, try to navigate to login path\n> 22 |   await page.goto(url);\n     |              ^\n  23 |   await page.waitForLoadState('domcontentloaded');\n  24 |   await page.waitForTimeout(1000);\n  25 |\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:22:14)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:32:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:31:50.953Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-2c98f-entas-staging-Login-exitoso-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-2c98f-entas-staging-Login-exitoso-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 14,
+                        "line": 22
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-393edbd41bbdbe767355",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 15,
+              "column": 9
+            },
+            {
+              "title": "surtiventas-staging: Sin acceso anónimo redirige a login",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 51805,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/auth|login/\u001b[39m\nReceived string:  \u001b[31m\"https://surtiventas.solopide.me/\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 15000ms\u001b[22m\n\u001b[2m    19 × unexpected value \"https://surtiventas.solopide.me/\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/auth|login/\u001b[39m\nReceived string:  \u001b[31m\"https://surtiventas.solopide.me/\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 15000ms\u001b[22m\n\u001b[2m    19 × unexpected value \"https://surtiventas.solopide.me/\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:53:28",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                          "column": 28,
+                          "line": 53
+                        },
+                        "snippet": "  51 |         await page.goto(client.baseURL);\n  52 |         // Debe redirigir a login\n> 53 |         await expect(page).toHaveURL(/auth|login/, { timeout: 15_000 });\n     |                            ^\n  54 |         await context.close();\n  55 |       });\n  56 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                            "column": 28,
+                            "line": 53
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/auth|login/\u001b[39m\nReceived string:  \u001b[31m\"https://surtiventas.solopide.me/\"\u001b[39m\nTimeout: 15000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 15000ms\u001b[22m\n\u001b[2m    19 × unexpected value \"https://surtiventas.solopide.me/\"\u001b[22m\n\n\n  51 |         await page.goto(client.baseURL);\n  52 |         // Debe redirigir a login\n> 53 |         await expect(page).toHaveURL(/auth|login/, { timeout: 15_000 });\n     |                            ^\n  54 |         await context.close();\n  55 |       });\n  56 |     }\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:53:28"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:31:50.939Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-680f3-so-anónimo-redirige-a-login-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-680f3-so-anónimo-redirige-a-login-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts",
+                        "column": 28,
+                        "line": 53
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-cd4320f924361f923dfe",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 48,
+              "column": 11
+            },
+            {
+              "title": "surtiventas-staging: Catálogo muestra productos con precios",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 95596,
+                      "error": {
+                        "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://surtiventas.solopide.me/auth/jwt/login\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://surtiventas.solopide.me/auth/jwt/login\", waiting until \"load\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:22:14)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:67:26",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 14,
+                          "line": 22
+                        },
+                        "snippet": "   at fixtures/login.ts:22\n\n  20 |\n  21 |   // First, try to navigate to login path\n> 22 |   await page.goto(url);\n     |              ^\n  23 |   await page.waitForLoadState('domcontentloaded');\n  24 |   await page.waitForTimeout(1000);\n  25 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 14,
+                            "line": 22
+                          },
+                          "message": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://surtiventas.solopide.me/auth/jwt/login\", waiting until \"load\"\u001b[22m\n\n\n   at fixtures/login.ts:22\n\n  20 |\n  21 |   // First, try to navigate to login path\n> 22 |   await page.goto(url);\n     |              ^\n  23 |   await page.waitForLoadState('domcontentloaded');\n  24 |   await page.waitForTimeout(1000);\n  25 |\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:22:14)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:67:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:31:50.939Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-c2b36-estra-productos-con-precios-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-c2b36-estra-productos-con-precios-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 14,
+                        "line": 22
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-590d61ddf14b9dd78742",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 59,
+              "column": 9
+            },
+            {
+              "title": "surtiventas-staging: Agregar producto al carro",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 76209,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:79:20)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:88:11",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 20,
+                          "line": 79
+                        },
+                        "snippet": "   at fixtures/login.ts:79\n\n  77 |\n  78 |   // Fill email and password\n> 79 |   await emailInput.fill(email);\n     |                    ^\n  80 |   await passwordInput.fill(password);\n  81 |\n  82 |   // Submit button (usually in a form, but could be a button outside)"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 20,
+                            "line": 79
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n\n\n   at fixtures/login.ts:79\n\n  77 |\n  78 |   // Fill email and password\n> 79 |   await emailInput.fill(email);\n     |                    ^\n  80 |   await passwordInput.fill(password);\n  81 |\n  82 |   // Submit button (usually in a form, but could be a button outside)\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:79:20)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:88:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:32:43.806Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-e7cd8-g-Agregar-producto-al-carro-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-e7cd8-g-Agregar-producto-al-carro-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 20,
+                        "line": 79
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-5c0bef9bf8157062974d",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 80,
+              "column": 11
+            },
+            {
+              "title": "surtiventas-staging: No hay productos con precio $0",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 53725,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:79:20)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:119:9",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 20,
+                          "line": 79
+                        },
+                        "snippet": "   at fixtures/login.ts:79\n\n  77 |\n  78 |   // Fill email and password\n> 79 |   await emailInput.fill(email);\n     |                    ^\n  80 |   await passwordInput.fill(password);\n  81 |\n  82 |   // Submit button (usually in a form, but could be a button outside)"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 20,
+                            "line": 79
+                          },
+                          "message": "TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Correo').or(getByPlaceholder(/correo|email/i)).or(locator('input[type=\"email\"]')).or(locator('input[type=\"text\"][placeholder*=\"email\" i]')).or(locator('input[placeholder*=\"correo\" i]')).or(locator('input[name=\"email\"]')).first()\u001b[22m\n\n\n   at fixtures/login.ts:79\n\n  77 |\n  78 |   // Fill email and password\n> 79 |   await emailInput.fill(email);\n     |                    ^\n  80 |   await passwordInput.fill(password);\n  81 |\n  82 |   // Submit button (usually in a form, but could be a button outside)\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:79:20)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/staging-multi-client.spec.ts:119:9"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T17:33:19.715Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-6b465--hay-productos-con-precio-0-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/staging-multi-client-Surti-6b465--hay-productos-con-precio-0-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 20,
+                        "line": 79
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f5e0fbc69f4b22c726b7-403ab2eae41223c06a0d",
+              "file": "b2b/staging-multi-client.spec.ts",
+              "line": 111,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-02T17:30:43.973Z",
+    "duration": 210025.945,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 10,
+    "flaky": 0
+  }
+}
