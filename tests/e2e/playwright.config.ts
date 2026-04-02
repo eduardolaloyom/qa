@@ -11,6 +11,7 @@ export default defineConfig({
   workers: 4,
   reporter: [
     ['html', { open: 'never' }],
+    ['json', { outputFile: 'playwright-report/results.json' }],
     ['./reporters/grouped-report.ts'],
     ['list'],
   ],
