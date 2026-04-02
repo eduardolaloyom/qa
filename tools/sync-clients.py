@@ -160,7 +160,10 @@ const clients: Record<string, ClientConfig> = {{
         # Conditional tests comment
         conditional_comment = format_conditional_tests(active_tests)
 
-        entry = f'''  {client_key}: {{
+        # Quote client keys that have hyphens or start with numbers (invalid TS identifiers)
+        client_key_str = f'"{client_key}"' if '-' in client_key or client_key[0].isdigit() else client_key
+
+        entry = f'''  {client_key_str}: {{
     name: "{name}",
     baseURL: "{baseurl}",
     loginPath: "{login_path}",
