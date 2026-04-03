@@ -33,7 +33,7 @@ interface ClientConfig {
 }
 
 const clients: Record<string, ClientConfig> = {
-  "codelpa-staging": {
+  codelpa: {
     name: "Codelpa (staging)",
     baseURL: "https://beta-codelpa.solopide.me",
     loginPath: "/login",
@@ -108,7 +108,7 @@ const clients: Record<string, ClientConfig> = {
       weightInfo: false,
     },
   },
-  "prisa-staging": {
+  surtiventas: {
     name: "Surtiventas (staging)",
     baseURL: "https://surtiventas.solopide.me",
     loginPath: "/auth/jwt/login",
