@@ -1,16 +1,16 @@
 {
   "date": "2026-04-03",
-  "timestamp": "2026-04-03T19:12:13.483244+00:00",
-  "total": 0,
-  "passed": 0,
-  "failed": 0,
+  "timestamp": "2026-04-03T19:14:21.351021+00:00",
+  "total": 142,
+  "passed": 18,
+  "failed": 122,
   "duration": 586,
   "suites": [
     {
       "name": "config-validation.spec.ts",
-      "tests": 0,
-      "passed": 0,
-      "failed": 0,
+      "tests": 29,
+      "passed": 14,
+      "failed": 13,
       "reportUrl": "reports/index.html"
     },
     {
@@ -22,37 +22,37 @@
     },
     {
       "name": "codelpa.spec.ts",
-      "tests": 0,
-      "passed": 0,
-      "failed": 0,
+      "tests": 32,
+      "passed": 1,
+      "failed": 31,
       "reportUrl": "codelpa/index.html"
     },
     {
       "name": "surtiventas.spec.ts",
-      "tests": 0,
-      "passed": 0,
-      "failed": 0,
+      "tests": 25,
+      "passed": 1,
+      "failed": 24,
       "reportUrl": "surtiventas/index.html"
     },
     {
       "name": "coupons.spec.ts",
-      "tests": 0,
+      "tests": 8,
       "passed": 0,
-      "failed": 0,
+      "failed": 8,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "prices.spec.ts",
-      "tests": 0,
+      "tests": 14,
       "passed": 0,
-      "failed": 0,
+      "failed": 14,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "promotions.spec.ts",
-      "tests": 0,
+      "tests": 6,
       "passed": 0,
-      "failed": 0,
+      "failed": 6,
       "reportUrl": "reports/index.html"
     },
     {
@@ -64,23 +64,23 @@
     },
     {
       "name": "multi-client.spec.ts",
-      "tests": 0,
-      "passed": 0,
-      "failed": 0,
+      "tests": 20,
+      "passed": 2,
+      "failed": 18,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "payments.spec.ts",
-      "tests": 0,
+      "tests": 4,
       "passed": 0,
-      "failed": 0,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "step-pricing.spec.ts",
-      "tests": 0,
+      "tests": 4,
       "passed": 0,
-      "failed": 0,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     }
   ],
