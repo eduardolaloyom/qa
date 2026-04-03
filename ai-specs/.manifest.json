@@ -45,23 +45,23 @@
       ]
     },
     "adapted": {
-      "description": "Files customized per project during the setup prompt. These require manual/AI-assisted review before updating.",
+      "description": "YOM QA-specific files. Require review before updating — never safe to overwrite blindly.",
       "files": [
-        "ai-specs/specs/backend-standards.mdc",
-        "ai-specs/specs/frontend-standards.mdc",
-        "ai-specs/specs/data-model.md",
-        "ai-specs/specs/api-spec.yml",
-        "ai-specs/specs/development_guide.md",
         "ai-specs/specs/qa-standards.mdc",
-        "ai-specs/.agents/backend-developer.md",
-        "ai-specs/.agents/frontend-developer.md",
-        "ai-specs/.agents/testing-specialist.md",
+        "ai-specs/specs/maestro-standards.mdc",
+        "ai-specs/specs/admin-testing-standards.mdc",
+        "ai-specs/specs/qa-coverage-mapping.mdc",
         "ai-specs/.agents/qa-coordinator.md",
         "ai-specs/.agents/playwright-specialist.md",
         "ai-specs/.agents/maestro-specialist.md",
+        "ai-specs/.agents/backend-developer.md",
+        "ai-specs/.agents/frontend-developer.md",
+        "ai-specs/.agents/testing-specialist.md",
         "ai-specs/.commands/qa-plan-client.md",
         "ai-specs/.commands/run-playwright.md",
         "ai-specs/.commands/report-qa.md",
+        "ai-specs/.commands/qa-coverage-analysis.md",
+        "ai-specs/.commands/qa-client-validation.md",
         "CLAUDE.md",
         ".agent/rules/development-standards.md"
       ]
@@ -92,9 +92,10 @@
       ]
     },
     "ignored": {
-      "description": "Project-specific generated files. Never touched during updates.",
+      "description": "Project-specific generated files and archived content. Never touched during updates.",
       "patterns": [
-        "ai-specs/changes/*"
+        "ai-specs/changes/*",
+        "_archived/*"
       ]
     }
   }

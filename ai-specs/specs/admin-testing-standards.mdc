@@ -1,0 +1,225 @@
+# Admin Testing Standards — YOM Admin Portal
+
+Standards for testing the YOM Admin portal (`admin.youorder.me`).
+
+## What is Admin
+
+The Admin portal is used by **CLIENT_ADMIN** and **ADMIN** roles to manage the YOM platform for their client:
+
+- Product management (catalog, pricing, promotions)
+- Commerce management (invite, activate, block businesses)
+- Order management (view, update status)
+- Banner and branding configuration
+- Store settings (payment methods, delivery dates, domain rules)
+- User management (admin users, permissions)
+- Reports and analytics
+
+**Key difference from B2B:** Admin users manage the platform configuration. B2B users (comercios) buy products. Testing Admin means testing the configuration surface that affects all B2B users.
+
+## Coverage Model
+
+### What Cowork Tests
+
+- Visual correctness of Admin pages
+- Banner preview (does it look right for a given client?)
+- Configuration flows that are hard to automate (e.g., image uploads, complex form interactions)
+- First-time setup flows for new client onboarding
+- Configuration that requires judgment (does this logo look right?)
+
+### What Playwright Tests
+
+- Authentication and authorization (role-based access control)
+- CRUD operations (products, promotions, banners, commerces)
+- Configuration flags that affect B2B (e.g., anonymous access, Khipu payments)
+- Order status management
+- Regression for Admin-driven incidents
+
+### What Checklists Test
+
+- Permissions matrix (which roles can do what)
+- Order management edge cases (bulk updates, status transitions)
+- Integration configuration (ERP hooks, webhooks setup)
+- Report generation and data export
+
+## File Organization
+
+```
+tests/e2e/admin/
+├── login.spec.ts              # Auth + role validation (exists)
+├── orders.spec.ts             # Order management (exists)
+├── stores.spec.ts             # Store configuration (TO CREATE)
+├── users.spec.ts              # User and permission management (TO CREATE)
+├── reports.spec.ts            # Reports and exports (TO CREATE)
+└── config-validation.spec.ts  # Admin config flags affecting B2B (TO CREATE)
+
+checklists/admin/
+├── checklist-admin-acceso.md  # Access control and permissions (TO CREATE)
+├── checklist-admin-ordenes.md # Order management workflows (TO CREATE)
+└── checklist-admin-reportes.md # Reports and analytics (TO CREATE)
+```
+
+## Authentication and Authorization
+
+**Admin URL:** `https://admin.youorder.me`
+
+Admin uses separate authentication from B2B.
+
+```typescript
+// Admin login credentials (from .env)
+ADMIN_EMAIL=admin@client.com
+ADMIN_PASSWORD=${ADMIN_PASSWORD}
+
+// Admin login flow
+test('should login to admin', async ({ page }) => {
+  await page.goto('https://admin.youorder.me/auth/login');
+  await page.fill('input[name="email"]', process.env.ADMIN_EMAIL!);
+  await page.fill('input[name="password"]', process.env.ADMIN_PASSWORD!);
+  await page.click('button[type="submit"]');
+  await expect(page).toHaveURL(/\/dashboard/);
+});
+```
+
+### Role Validation (Critical)
+
+Admin must enforce role-based access control:
+
+```typescript
+test('should deny access to commerce role token', async ({ page }) => {
+  // Login as commerce user (B2B credentials)
+  await loginAsCommerce(page);
+  // Try to access admin
+  await page.goto('https://admin.youorder.me/dashboard');
+  // Should redirect to login or show 403
+  await expect(page).not.toHaveURL(/\/dashboard/);
+});
+
+test('should deny unauthenticated access', async ({ page }) => {
+  await page.goto('https://admin.youorder.me/dashboard');
+  await expect(page).toHaveURL(/\/auth\/login/);
+});
+```
+
+## Key Admin Flows
+
+### Order Management
+
+Test case IDs follow `ADM-ORD-{NN}` pattern.
+
+| Scenario | What to Validate |
+|----------|-----------------|
+| View orders list | Orders visible, filterable by status/date |
+| View order detail | Items, amounts, commerce info, ERP status |
+| Update order status | Status change reflected in B2B and APP |
+| Filter orders by client | Multi-tenant isolation (admin sees own client's orders) |
+| Export orders CSV | File downloads, data is correct |
+
+### Store Configuration
+
+Configuration changes in Admin affect what B2B users see. This is the highest-risk area.
+
+```typescript
+test('should save anonymous access setting', async ({ page }) => {
+  await adminLogin(page);
+  await page.goto('/settings/store');
+
+  const toggle = page.locator('[data-testid="anonymous-access-toggle"]');
+  await toggle.click();
+  await page.locator('button:has-text("Guardar")').click();
+
+  await expect(page.locator('.success-toast')).toBeVisible();
+
+  // Verify reflected in B2B
+  const b2bPage = await context.newPage();
+  await b2bPage.goto(`https://${client.slug}.youorder.me/products`);
+  // If anonymous access enabled, should not redirect to login
+  await expect(b2bPage).not.toHaveURL(/\/auth\/login/);
+});
+```
+
+### Banner Management
+
+| Scenario | What to Validate |
+|----------|-----------------|
+| Create banner with image | Banner saves, preview correct |
+| Set banner URL | Link navigates to correct destination |
+| Activate/deactivate banner | Visible/invisible in B2B |
+| Set banner date range | Shows only in configured period |
+
+### Promotion Management
+
+| Scenario | What to Validate |
+|----------|-----------------|
+| Create catalog promotion | Promotion visible in B2B (discounted price shows) |
+| Edit promotion percentage | Price reflects new discount |
+| Set promotion date range | Starts and ends at configured times |
+| Deactivate promotion | Price returns to normal in B2B |
+
+## Spec Template
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+const ADMIN_URL = 'https://admin.youorder.me';
+
+test.describe('Admin - {Feature}', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`${ADMIN_URL}/auth/login`);
+    await page.fill('input[name="email"]', process.env.ADMIN_EMAIL!);
+    await page.fill('input[name="password"]', process.env.ADMIN_PASSWORD!);
+    await page.click('button[type="submit"]');
+    await page.waitForURL(/\/dashboard/);
+  });
+
+  test('should {action} {context}', async ({ page }) => {
+    // Arrange
+    await page.goto(`${ADMIN_URL}/{path}`);
+
+    // Act
+    await page.locator('[data-testid="{element}"]').click();
+
+    // Assert
+    await expect(page.locator('[data-testid="{result}"]')).toBeVisible();
+  });
+});
+```
+
+## Naming Conventions
+
+**Spec files:** `{feature}.spec.ts`
+- `login.spec.ts`
+- `orders.spec.ts`
+- `stores.spec.ts`
+
+**Test case IDs (checklists):**
+- `ADM-ACC-{NN}` — Admin access control
+- `ADM-ORD-{NN}` — Admin orders
+- `ADM-STR-{NN}` — Admin store config
+- `ADM-RPT-{NN}` — Admin reports
+
+## Cross-Platform Validation
+
+Admin configuration changes should be verified in B2B. After admin tests, run:
+
+```bash
+# Verify config changes reflected in B2B
+npx playwright test --project=b2b config-validation
+```
+
+Key flags to validate cross-platform:
+
+| Admin Config | B2B Effect |
+|-------------|------------|
+| `anonymousAccess` | Catálogo accessible sin login |
+| `anonymousHidePrice` | Precios visibles/ocultos |
+| `enablePaymentDocumentsB2B` | Botón facturas visible |
+| `enableKhipu` | Opción Khipu en checkout |
+| `disableObservationInput` | Campo notas en carrito |
+| Banner enabled | Banner visible en header |
+| Promotion active | Precio con descuento en catálogo |
+
+## Key Documents
+
+- `qa-master-guide.md` — A1 (Admin Login) test cases
+- `checklists/admin/` — Admin-specific checklists
+- `tests/e2e/admin/` — Playwright specs
+- `B2B_REFERENCE.md` — Cross-reference for B2B effects of Admin config

@@ -14,10 +14,9 @@ Prioridad: Cowork (validación visual + config) > Playwright (regresión E2E) > 
 | Comando | Propósito |
 |---------|-----------|
 | `/qa-plan-client {CLIENTE}` | Planificar QA para un cliente: config validation, specs, checklists |
+| `/qa-client-validation {CLIENTE} {ENV}` | Ejecutar suite QA completa para un cliente (MongoDB→Playwright→Maestro→reporte) |
+| `/qa-coverage-analysis` | Comparar casos esperados vs. tests existentes — identificar gaps |
 | `/run-playwright {PROJECT}` | Ejecutar tests Playwright (b2b, admin, staging) |
-| `/validate-config {CLIENTE}` | Validar configuración MongoDB de un cliente |
-| `/generate-checklist {CLIENTE}` | Generar checklist personalizado desde CSV |
-| `/sync-clients` | Regenerar `clients.ts` desde `qa-matrix.json` |
 | `/report-qa {CLIENTE} {FECHA}` | Generar reporte QA completo con hallazgos |
 | `/audit-maestro {FLOW}` | Auditar flow Maestro en APP |
 
@@ -97,12 +96,15 @@ QA/{CLIENTE}/{FECHA}/ (reporte HTML)
 
 | Documento | Propósito |
 |-----------|-----------|
-| `GUIA-OPERACIONAL-QA.md` | Quién hace qué, cuándo usar cada checklist |
-| `qa-master-prompt.md` | ~80 casos madre (Tier 1-3), fixtures, esquemas |
+| `qa-master-guide.md` | Fuente única: filosofía, responsabilidades, casos Tier 1-3, fixtures |
+| `B2B_REFERENCE.md` | Referencia UI B2B: selectores, componentes, código Playwright |
 | `playbook-qa-cliente-nuevo.md` | Onboarding QA completo (6 fases) |
-| `plan-qa-b2b.md` | Estrategia 3 capas B2B |
 | `qa-app-strategy.md` | Estrategia APP mobile |
 | `checklists/INDICE.md` | Mapa de cobertura |
+| `ai-specs/specs/qa-standards.mdc` | Estándares de testing: naming, cobertura, fixtures |
+| `ai-specs/specs/maestro-standards.mdc` | Estándares Maestro flows APP |
+| `ai-specs/specs/admin-testing-standards.mdc` | Estándares testing Admin |
+| `ai-specs/specs/qa-coverage-mapping.mdc` | Cómo usar y mantener el mapa de cobertura |
 
 ## Patrones de prompting efectivos
 

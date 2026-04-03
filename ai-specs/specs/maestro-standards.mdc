@@ -1,0 +1,309 @@
+# Maestro Standards — YOM APP Mobile Testing
+
+Standards for writing, organizing, and maintaining Maestro YAML flows for the YOM mobile APP.
+
+## What Maestro Tests in YOM
+
+The YOM mobile APP is used by **vendedores** (sellers) to take orders on behalf of **comercios** (clients). Maestro tests validate:
+
+- Seller authentication and session management
+- Commerce navigation and order taking
+- Price validation (per-commerce segment overrides)
+- Payment and collection workflows
+- Offline mode and sync behavior
+- Concurrent order handling
+- Growth tasks and client contact
+
+## File Organization
+
+```
+tests/app/flows/
+├── helpers/
+│   └── login.yaml             # Reusable login helper
+├── 01-login.yaml              # Auth + session validation
+├── 02-sync.yaml               # Data sync on startup
+├── 03-comercios.yaml          # Commerce navigation
+├── 04-catalogo.yaml           # Catalog and search
+├── 05-pedido.yaml             # Order taking (critical path)
+├── 06-precios.yaml            # Price validation
+├── 07-offline.yaml            # Offline mode
+├── 08-pagos.yaml              # Payment and collection
+├── 09-concurrencia.yaml       # Concurrent orders
+├── 10-descuentos.yaml         # Discounts (PM3 regression)
+├── 11-contacto-cliente.yaml   # Client contact
+├── 12-guion-comercial.yaml    # Commercial script (YOM-187)
+└── 13-tareas-growth.yaml      # Growth tasks (YOM-182)
+
+tests/app/config/
+├── env.example.yaml           # Template de variables
+└── config.yaml                # Configuración Maestro
+```
+
+## Naming Convention
+
+**Pattern:** `{NN}-{feature}.yaml`
+
+- `NN` — Two-digit sequential number (01, 02, ..., 13)
+- `feature` — Kebab-case name of the feature or user journey
+- **No duplicates** in number prefix — each flow has a unique number
+
+Examples:
+```
+05-pedido.yaml          ✓
+10-descuentos.yaml      ✓
+10-guion-comercial.yaml ✗  (duplicate number — use 12 or next available)
+```
+
+## Flow Structure
+
+### Basic Template
+
+```yaml
+appId: me.youorder.mobile
+---
+# {NN} - {Feature Name}
+# Tests: {brief description of what this flow tests}
+# Related: {checklist ID or post-mortem reference}
+
+- launchApp
+
+- tapOn:
+    id: "element_id"
+
+- assertVisible:
+    id: "element_id"
+```
+
+### With Environment Variables
+
+```yaml
+appId: me.youorder.mobile
+---
+# 01 - Login
+# Tests: seller authentication and session loading
+
+- launchApp
+
+- tapOn:
+    id: "email_input"
+- inputText:
+    text: ${SELLER_EMAIL}
+
+- tapOn:
+    id: "password_input"
+- inputText:
+    text: ${SELLER_PASSWORD}
+
+- tapOn:
+    id: "login_button"
+
+- assertVisible:
+    id: "commerce_list"
+```
+
+### With Helper Reuse
+
+```yaml
+appId: me.youorder.mobile
+---
+# 05 - Crear Pedido
+# Tests: complete order creation flow (V1 Tier 1)
+
+- runFlow: helpers/login.yaml
+
+- tapOn:
+    id: "commerce_list_item"
+    index: 0
+
+- tapOn:
+    id: "catalog_tab"
+
+- tapOn:
+    id: "add_to_cart_button"
+    index: 0
+
+- assertVisible:
+    id: "cart_badge"
+```
+
+## Element Selectors (Stability Priority)
+
+**Use this order of preference:**
+
+1. **`id`** — Most stable, tied to `testID` in React Native
+   ```yaml
+   - tapOn:
+       id: "order_confirm_button"
+   ```
+
+2. **`text`** — Good for labels that don't change
+   ```yaml
+   - tapOn:
+       text: "Confirmar Pedido"
+   ```
+
+3. **`accessibilityLabel`** — For accessibility-aware components
+   ```yaml
+   - tapOn:
+       accessibilityLabel: "Abrir catálogo"
+   ```
+
+4. **XPath** — Last resort, fragile
+   ```yaml
+   - tapOn:
+       xpath: "//android.widget.Button[@text='Confirmar']"
+   ```
+
+**Never use:** hard-coded coordinates (`point`). These break when layout changes.
+
+## Async Handling
+
+Always add explicit waits before asserting on elements that load asynchronously:
+
+```yaml
+# After login — wait for data to load
+- tapOn:
+    id: "login_button"
+- waitForAnimationToEnd
+
+# After network request
+- tapOn:
+    id: "sync_button"
+- extendedWaitUntil:
+    visible:
+      id: "sync_complete_icon"
+    timeout: 10000
+
+# Before asserting on dynamic content
+- pause:
+    duration: 1000
+- assertVisible:
+    id: "commerce_list_item"
+```
+
+## Retry Logic
+
+For flaky network operations (sync, ERP push, payment):
+
+```yaml
+- retry:
+    maxRetries: 3
+    delay: 2000
+    action:
+      tapOn:
+        id: "sync_button"
+
+- assertVisible:
+    id: "success_banner"
+```
+
+## Testing Edge Cases
+
+### Offline Mode (07-offline.yaml)
+
+```yaml
+# Disable network
+- setLocation:
+    lat: -33.4489
+    long: -70.6693
+# OR use device airplane mode via Maestro CLI:
+# maestro test --offline 07-offline.yaml
+
+- assertVisible:
+    id: "offline_indicator"
+
+- tapOn:
+    id: "add_to_cart_button"
+    index: 0
+
+- assertVisible:
+    id: "offline_order_queued"
+```
+
+### Concurrent Orders (09-concurrencia.yaml)
+
+Test that orders submitted simultaneously don't corrupt each other:
+
+```yaml
+# Note: true concurrency testing requires running 2 instances
+# This flow tests the UI behavior when sync detects conflicts
+
+- assertVisible:
+    id: "conflict_resolution_dialog"
+- tapOn:
+    text: "Mantener mi versión"
+- assertVisible:
+    id: "order_confirmed"
+```
+
+## Environment Configuration
+
+`tests/app/config/env.example.yaml`:
+
+```yaml
+env:
+  SELLER_EMAIL: "seller@client.com"
+  SELLER_PASSWORD: "${SELLER_PASSWORD}"  # From shell env
+  APP_PACKAGE: "me.youorder.mobile"
+  BASE_URL: "https://staging.youorder.me"
+```
+
+**Credentials:** Always from env vars. Never hardcode in flow files.
+
+## Running Flows
+
+```bash
+# All flows
+maestro test tests/app/flows/
+
+# Single flow
+maestro test tests/app/flows/05-pedido.yaml
+
+# Interactive recording (for creating new flows)
+maestro record
+
+# With environment override
+SELLER_EMAIL=test@client.com maestro test tests/app/flows/01-login.yaml
+
+# All flows with custom config
+maestro test --config tests/app/config/config.yaml tests/app/flows/
+```
+
+## Coverage Mapping
+
+Flows are linked to QA Master Guide sections and checklists:
+
+| Flow | QA Tier | Related Checklist | Linear Ticket |
+|------|---------|-------------------|---------------|
+| 01-login.yaml | Tier 1 (V1-01) | checklist-puesta-en-marcha-app.md | — |
+| 05-pedido.yaml | Tier 1 (V1-03, V1-04) | checklist-puesta-en-marcha-app.md | — |
+| 07-offline.yaml | Tier 1 (V1-05, V1-06) | checklist-puesta-en-marcha-app.md | — |
+| 08-pagos.yaml | Tier 1 | checklist-deuda-tecnica-pagos.md | — |
+| 09-concurrencia.yaml | Tier 2 | checklist-deuda-tecnica-general.md | — |
+| 10-descuentos.yaml | Tier 2 (PM3) | checklist-regresion-postmortems.md | — |
+| 12-guion-comercial.yaml | Tier 2 | — | YOM-187 |
+| 13-tareas-growth.yaml | Tier 2 | — | YOM-182 |
+
+## Debugging Failed Flows
+
+1. **Check selectors** — Element ID may have changed with app update
+   ```bash
+   maestro studio  # Interactive element inspector
+   ```
+
+2. **Check timing** — Add `pause` or `extendedWaitUntil` before failing assertion
+
+3. **Check environment** — Verify env vars are set and credentials work
+
+4. **Check app state** — Flow may leave app in unexpected state; add `launchApp` at start to reset
+
+5. **Verbose output**
+   ```bash
+   maestro test --verbose tests/app/flows/05-pedido.yaml
+   ```
+
+## Key Documents
+
+- `qa-master-guide.md` — Tier 1 cases requiring Maestro coverage
+- `checklists/INDICE.md` — Which checklists map to which flows
+- `qa-app-strategy.md` — APP mobile testing strategy and priorities
