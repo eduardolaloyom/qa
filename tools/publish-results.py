@@ -59,13 +59,28 @@ def copy_test_results_artifacts(src: Path, dst: Path) -> None:
         print(f"✅ Copied {png_count} screenshot(s) to {dst}")
 
 
+def flatten_tests(suite: dict, file_hint: str = "") -> list:
+    """Recursively extract all tests from Playwright JSON suite structure."""
+    tests = []
+    file_name = suite.get("file", file_hint)
+    for spec in suite.get("specs", []):
+        for test in spec.get("tests", []):
+            tests.append({"file": file_name, "status": test.get("status")})
+    for sub in suite.get("suites", []):
+        tests.extend(flatten_tests(sub, file_name))
+    return tests
+
+
 def extract_suite_stats(results: dict, suite_name: str) -> dict:
     """Extract stats for a specific suite from Playwright results."""
-    tests = results.get("tests", [])
-    suite_tests = [t for t in tests if suite_name in t.get("file", "")]
+    all_tests = []
+    for suite in results.get("suites", []):
+        all_tests.extend(flatten_tests(suite))
 
-    passed = sum(1 for t in suite_tests if t.get("status") == "passed")
-    failed = sum(1 for t in suite_tests if t.get("status") == "failed")
+    suite_tests = [t for t in all_tests if suite_name in t.get("file", "")]
+
+    passed = sum(1 for t in suite_tests if t.get("status") == "expected")
+    failed = sum(1 for t in suite_tests if t.get("status") == "unexpected")
     skipped = sum(1 for t in suite_tests if t.get("status") == "skipped")
 
     return {
