@@ -79,7 +79,7 @@ def extract_suite_stats(results: dict, suite_name: str) -> dict:
 
     suite_tests = [t for t in all_tests if suite_name in t.get("file", "")]
 
-    passed = sum(1 for t in suite_tests if t.get("status") == "expected")
+    passed = sum(1 for t in suite_tests if t.get("status") in ("expected", "flaky"))
     failed = sum(1 for t in suite_tests if t.get("status") == "unexpected")
     skipped = sum(1 for t in suite_tests if t.get("status") == "skipped")
 
@@ -109,7 +109,7 @@ def generate_run_json(results: dict, date: str) -> dict:
     for file_path in ran_files:
         suite_name = file_path.split("/")[-1] if "/" in file_path else file_path
         suite_tests = [t for t in all_tests_flat if t.get("file") == file_path]
-        passed = sum(1 for t in suite_tests if t.get("status") == "expected")
+        passed = sum(1 for t in suite_tests if t.get("status") in ("expected", "flaky"))
         failed = sum(1 for t in suite_tests if t.get("status") == "unexpected")
         suites.append({
             "name": suite_name,
