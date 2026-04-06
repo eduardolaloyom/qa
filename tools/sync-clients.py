@@ -36,13 +36,18 @@ def map_domain_to_baseurl(domain: str) -> str:
 
     yom.me = production
     solopide.me = staging
+
+    Some staging clients have a different MongoDB domain vs actual frontend URL.
+    These overrides ensure clients.ts always points to the real deployed URL.
     """
-    if ".youorder.me" in domain:
-        return f"https://{domain}"
-    elif ".solopide.me" in domain:
-        return f"https://{domain}"
-    else:
-        return f"https://{domain}"
+    FRONTEND_URL_OVERRIDES = {
+        # MongoDB domain          -> actual frontend URL
+        "codelpa.solopide.me":    "https://beta-codelpa.solopide.me",
+        "prisa.solopide.me":      "https://surtiventas.solopide.me",
+    }
+    if domain in FRONTEND_URL_OVERRIDES:
+        return FRONTEND_URL_OVERRIDES[domain]
+    return f"https://{domain}"
 
 
 def format_conditional_tests(active_tests: dict) -> str:
