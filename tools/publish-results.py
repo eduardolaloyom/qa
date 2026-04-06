@@ -106,38 +106,67 @@ def strip_ansi(text: str) -> str:
 
 
 def classify_error(error: str) -> tuple:
-    """Classify a test error into a category and short reason."""
+    """
+    Classify a test error into (category, reason, owner, action).
+    owner: 'dev' | 'qa'
+    action: concrete next step
+    """
     error = strip_ansi(error)
     if not error:
-        return ("real-bug", "Aserción fallida — la app devolvió un valor incorrecto")
+        return ("real-bug", "Aserción fallida — la app devolvió un valor incorrecto",
+                "dev", "Revisar el Trace del test para ver qué devolvió la app y reportar al equipo dev")
     e = error.lower()
+
     if "element(s) not found" in e or ("not found" in e and "locator" in e):
         match = re.search(r"locator\('([^']+)'\)", error)
         locator = match.group(1) if match else "locator desconocido"
-        return ("selector", f"Elemento no existe en el DOM: `{locator}`")
+        return ("selector", f"Elemento no existe en el DOM: `{locator}`",
+                "qa", f"Inspeccionar el sitio staging en el navegador → buscar el elemento real → actualizar el selector `{locator}` en el spec")
+
     if "tobevisible" in e and "timeout" in e:
         match = re.search(r"locator\('([^']+)'\)", error)
         locator = match.group(1) if match else "locator desconocido"
-        return ("selector", f"Elemento no visible (timeout): `{locator}`")
+        return ("selector", f"Elemento no visible tras timeout: `{locator}`",
+                "qa", f"Verificar si el elemento `{locator}` existe en staging o si cambió de clase/estructura")
+
     if "waitforresponse" in e and "timeout" in e:
-        return ("selector", "Request HTTP esperada nunca ocurrió (botón no encontrado antes)")
+        return ("selector", "Request HTTP esperada nunca ocurrió (botón no se pudo clickear antes)",
+                "qa", "Se resuelve solo al arreglar el selector del botón de carrito en el grupo anterior")
+
     if "locator.fill" in e or "locator.click" in e:
         match = re.search(r"waiting for (.+?)[\n\r]", error)
         detail = match.group(1).strip()[:80] if match else "locator desconocido"
-        return ("selector", f"No se pudo interactuar con: `{detail}`")
+        return ("selector", f"No se pudo interactuar con: `{detail}`",
+                "qa", "Inspeccionar el sitio staging → verificar que el campo existe y tiene el label/placeholder correcto → actualizar el selector en el spec")
+
     if "navigation" in e and "timeout" in e:
-        return ("timeout", "La página tardó demasiado en cargar")
+        return ("timeout", "La página tardó demasiado en cargar",
+                "qa", "Verificar que el ambiente staging esté activo. Si el problema persiste, aumentar navigationTimeout en playwright.config.ts")
+
     if "expected:" in e and "received:" in e:
         m_exp = re.search(r"expected:\s*(.+)", error, re.IGNORECASE)
         m_rec = re.search(r"received:\s*(.+)", error, re.IGNORECASE)
         exp = m_exp.group(1).strip()[:50] if m_exp else "?"
         rec = m_rec.group(1).strip()[:50] if m_rec else "?"
-        return ("real-bug", f"Expected: {exp} → Received: {rec}")
+        reason = f"Expected: {exp} → Received: {rec}"
+        # More specific actions based on what was received
+        if "no disponible" in e or "disponible" in rec.lower():
+            action = "Reportar al equipo dev: hay pedidos con estado sin mapear en el frontend de este cliente"
+        elif rec.strip() not in ("?", "0", "false"):
+            action = "Abrir el Trace del test → ver qué devolvió la app → reportar la URL o el valor incorrecto al equipo dev"
+        else:
+            action = "Abrir el Trace del test → ver el estado de la app al momento del fallo → reportar al equipo dev"
+        return ("real-bug", reason, "dev", action)
+
     if "tohaveurl" in e:
-        return ("real-bug", "La app no redirigió a la URL esperada")
+        return ("real-bug", "La app no redirigió a la URL esperada",
+                "dev", "Abrir el Trace → ver en qué URL quedó la app → reportar al equipo dev si es un flujo roto")
+
     if "401" in error or "unauthorized" in e:
-        return ("credentials", "Error de autenticación")
-    return ("unknown", error[:100])
+        return ("credentials", "Error de autenticación (401)",
+                "qa", "Verificar que las credenciales en .env sean correctas para este cliente")
+
+    return ("unknown", error[:100], "qa", "Abrir el Trace del test para investigar manualmente")
 
 
 CATEGORY_ORDER = {"real-bug": 0, "selector": 1, "timeout": 2, "credentials": 3, "unknown": 4}
@@ -164,22 +193,22 @@ def generate_failure_groups(results: dict) -> list:
     cause_map: dict = {}
 
     for t in failed:
-        # Get last error from raw results — flatten_tests only gives status/file
-        # We need to re-extract the error; re-flatten with errors
-        category, reason = classify_error(t.get("error", ""))
+        category, reason, owner, action = classify_error(t.get("error", ""))
         key = f"{category}::{reason}"
         groups[key].append(f"[{t['file']}] {t['title']}")
-        cause_map[key] = (category, reason)
+        cause_map[key] = (category, reason, owner, action)
 
     sorted_keys = sorted(groups.keys(), key=lambda k: CATEGORY_ORDER.get(cause_map[k][0], 9))
 
     result = []
     for key in sorted_keys:
-        category, reason = cause_map[key]
+        category, reason, owner, action = cause_map[key]
         result.append({
             "category": category,
             "label": CATEGORY_LABELS.get(category, category),
             "reason": reason,
+            "owner": owner,
+            "action": action,
             "count": len(groups[key]),
             "tests": groups[key],
         })
@@ -189,6 +218,8 @@ def generate_failure_groups(results: dict) -> list:
             "category": "flaky",
             "label": "⚠️ Flaky",
             "reason": "Pasaron en retry — no son bugs confirmados",
+            "owner": "qa",
+            "action": "Monitorear en próximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
             "count": len(flaky),
             "tests": [f"[{t['file']}] {t['title']}" for t in flaky],
         })

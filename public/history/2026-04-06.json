@@ -1,6 +1,6 @@
 {
   "date": "2026-04-06",
-  "timestamp": "2026-04-06T20:29:45.873651+00:00",
+  "timestamp": "2026-04-06T20:52:06.333407+00:00",
   "total": 57,
   "passed": 44,
   "failed": 11,
@@ -44,6 +44,8 @@
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
       "reason": "Expected: 0 \u2192 Received: 1",
+      "owner": "dev",
+      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
       "count": 1,
       "tests": [
         "[codelpa.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola-y-errores @funcional"
@@ -53,6 +55,8 @@
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
       "reason": "Expected: 0 \u2192 Received: 10",
+      "owner": "dev",
+      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
       "count": 1,
       "tests": [
         "[codelpa.spec.ts] Estados de pedido son v\u00e1lidos (no \"No disponible\") @pedidos-y-estados @funcional"
@@ -62,6 +66,8 @@
       "category": "selector",
       "label": "\ud83d\udd27 Selector / Infraestructura",
       "reason": "Elemento no existe en el DOM: `.add-new-product-to-cart-button`",
+      "owner": "qa",
+      "action": "Inspeccionar el sitio staging en el navegador \u2192 buscar el elemento real \u2192 actualizar el selector `.add-new-product-to-cart-button` en el spec",
       "count": 6,
       "tests": [
         "[codelpa.spec.ts] Agregar producto al carrito @cart @funcional",
@@ -75,7 +81,9 @@
     {
       "category": "selector",
       "label": "\ud83d\udd27 Selector / Infraestructura",
-      "reason": "Request HTTP esperada nunca ocurri\u00f3 (bot\u00f3n no encontrado antes)",
+      "reason": "Request HTTP esperada nunca ocurri\u00f3 (bot\u00f3n no se pudo clickear antes)",
+      "owner": "qa",
+      "action": "Se resuelve solo al arreglar el selector del bot\u00f3n de carrito en el grupo anterior",
       "count": 2,
       "tests": [
         "[codelpa.spec.ts] Precios consistentes cat\u00e1logo vs carrito @pricing @funcional",
@@ -86,6 +94,8 @@
       "category": "selector",
       "label": "\ud83d\udd27 Selector / Infraestructura",
       "reason": "No se pudo interactuar con: `getByLabel(/cup[o\u00f3]n/i).or(getByPlaceholder(/cup[o\u00f3]n/i)).first()`",
+      "owner": "qa",
+      "action": "Inspeccionar el sitio staging \u2192 verificar que el campo existe y tiene el label/placeholder correcto \u2192 actualizar el selector en el spec",
       "count": 1,
       "tests": [
         "[surtiventas.spec.ts] Cup\u00f3n inv\u00e1lido muestra error (no crash) @coupons @cr\u00edtico"
@@ -95,6 +105,8 @@
       "category": "flaky",
       "label": "\u26a0\ufe0f Flaky",
       "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
       "count": 6,
       "tests": [
         "[codelpa.spec.ts] Productos sin imagen muestran placeholder (no broken) @catalog @funcional",
