@@ -154,19 +154,19 @@
             </div>
             <div class="summary">
               <div class="summary-item">
-                <strong>82</strong>
+                <strong>74</strong>
                 <span>Total Tests</span>
               </div>
               <div class="summary-item">
-                <strong>38</strong>
+                <strong>44</strong>
                 <span>Passed</span>
               </div>
               <div class="summary-item">
-                <strong>41</strong>
+                <strong>28</strong>
                 <span>Failed</span>
               </div>
               <div class="summary-item">
-                <strong>0</strong>
+                <strong>2</strong>
                 <span>Skipped</span>
               </div>
             </div>
@@ -176,80 +176,166 @@
         <div class="type-section">
           <div class="type-header">
             <h2>🟡 🟡 Funcionales</h2>
-            <span class="stats">34/68 passed (50%)</span>
+            <span class="stats">37/63 passed (59%)</span>
           </div>
 
           
               <div class="feature-group">
-                <h3>📌 cart (3/6)</h3>
+                <h3>📌 cart (1/5)</h3>
                 <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Carrito muestra items agregados </span>
+                      <span class="duration">23772ms</span>
+                      
+                    </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
-                      <span class="test-title">Modificar cantidad en carrito </span>
-                      <span class="duration">62759ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="test-title">Agregar producto al carrito </span>
+                      <span class="duration">45412ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://beta-codelpa.solopide.me/[7mauth/jwt/login[27m&quot;[39m
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
 Timeout: 30000ms
+Error: element(s) not found
 
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;[22m
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
 </pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
-                      <span class="test-title">Carrito muestra items agregados </span>
-                      <span class="duration">62843ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="test-title">Modificar cantidad en carrito </span>
+                      <span class="duration">52609ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://beta-codelpa.solopide.me/[7mauth/jwt/login[27m&quot;[39m
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
 Timeout: 30000ms
+Error: element(s) not found
 
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;[22m
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
 </pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Agregar producto al carrito </span>
-                      <span class="duration">65211ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="duration">48709ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://beta-codelpa.solopide.me/[7mauth/jwt/login[27m&quot;[39m
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
 Timeout: 30000ms
+Error: element(s) not found
 
 Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;[22m
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
 </pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">Modificar cantidad en carrito </span>
+                      <span class="duration">41776ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 catalog (9/10)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
+                      <span class="duration">19956ms</span>
+                      
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
-                      <span class="test-title">Agregar producto al carrito </span>
-                      <span class="duration">63211ms</span>
+                      <span class="test-title">No hay productos con precio $0 </span>
+                      <span class="duration">24468ms</span>
+                      
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">Productos sin imagen muestran placeholder (no broken) </span>
+                      <span class="duration">21119ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m0[39m
+Received: [31m2[39m</pre>
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Buscar producto por nombre </span>
+                      <span class="duration">36962ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Búsqueda sin resultados muestra feedback </span>
+                      <span class="duration">32375ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Productos sin imagen muestran placeholder (no broken) </span>
+                      <span class="duration">21933ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
+                      <span class="duration">11837ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">No hay productos con precio $0 </span>
+                      <span class="duration">16190ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Carrito muestra items agregados </span>
-                      <span class="duration">70257ms</span>
+                      <span class="duration">17918ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Modificar cantidad en carrito </span>
-                      <span class="duration">76027ms</span>
+                      <span class="duration">20616ms</span>
                       
                     </li>
                   
@@ -257,279 +343,201 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 catalog (4/14)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">No hay productos con precio $0 </span>
-                      <span class="duration">65291ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
-                      <span class="duration">65294ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Productos sin imagen muestran placeholder (no broken) </span>
-                      <span class="duration">65288ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Buscar producto por nombre </span>
-                      <span class="duration">65132ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Productos sin imagen muestran placeholder (no broken) </span>
-                      <span class="duration">65600ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">No hay productos con precio $0 </span>
-                      <span class="duration">67596ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test timedOut">
-                      <span class="status-icon">⊘</span>
-                      <span class="test-title">Buscar producto por nombre </span>
-                      <span class="duration">120385ms</span>
-                      <pre class="error">[31mTest timeout of 120000ms exceeded.[39m</pre>
-                    </li>
-                  
-                    <li class="test timedOut">
-                      <span class="status-icon">⊘</span>
-                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
-                      <span class="duration">120372ms</span>
-                      <pre class="error">[31mTest timeout of 120000ms exceeded while running &quot;beforeEach&quot; hook.[39m</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Búsqueda sin resultados muestra feedback </span>
-                      <span class="duration">65093ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://beta-codelpa.solopide.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Búsqueda sin resultados muestra feedback </span>
-                      <span class="duration">109919ms</span>
-                      <pre class="error">TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.</pre>
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Catálogo muestra productos con precios CLP </span>
-                      <span class="duration">46238ms</span>
-                      
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">No hay productos con precio $0 </span>
-                      <span class="duration">49092ms</span>
-                      
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Carrito muestra items agregados </span>
-                      <span class="duration">46637ms</span>
-                      
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Modificar cantidad en carrito </span>
-                      <span class="duration">54422ms</span>
-                      
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 checkout (2/6)</h3>
+                <h3>📌 checkout (3/5)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Pedido aparece en historial post-checkout </span>
-                      <span class="duration">62732ms</span>
+                      <span class="duration">24982ms</span>
                       
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Flujo completo: catálogo → carrito → checkout </span>
-                      <span class="duration">101349ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="duration">66108ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Expected pattern: [32m/confirmation/[39m
-Received string:  [31m&quot;https://beta-codelpa.solopide.me/cart&quot;[39m
-Timeout: 30000ms
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 45000ms
+Error: element(s) not found
 
 Call log:
-[2m  - Expect &quot;toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/cart&quot;[22m
+[2m  - Expect &quot;toBeVisible&quot; with timeout 45000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
 </pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Flujo completo: catálogo → carrito → checkout </span>
-                      <span class="duration">75205ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="duration">58167ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Expected pattern: [32m/confirmation/[39m
-Received string:  [31m&quot;https://beta-codelpa.solopide.me/cart&quot;[39m
-Timeout: 30000ms
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 45000ms
+Error: element(s) not found
 
 Call log:
-[2m  - Expect &quot;toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/cart&quot;[22m
+[2m  - Expect &quot;toBeVisible&quot; with timeout 45000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
 </pre>
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Pedido aparece en historial post-checkout </span>
-                      <span class="duration">39311ms</span>
+                      <span class="duration">20556ms</span>
                       
                     </li>
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Flujo completo: catálogo → carrito → checkout </span>
-                      <span class="duration">79889ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: [32m/confirmation/[39m
-Received string:  [31m&quot;https://surtiventas.solopide.me/cart&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://surtiventas.solopide.me/cart&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Flujo completo: catálogo → carrito → checkout </span>
-                      <span class="duration">76100ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
-
-Expected pattern: [32m/confirmation/[39m
-Received string:  [31m&quot;https://surtiventas.solopide.me/cart&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://surtiventas.solopide.me/cart&quot;[22m
-</pre>
+                      <span class="duration">28285ms</span>
+                      
                     </li>
                   
                 </ul>
               </div>
             
               <div class="feature-group">
-                <h3>📌 config (8/8)</h3>
+                <h3>📌 config (7/12)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">disableCommerceEdit: Campos de perfil comercio son read-only </span>
-                      <span class="duration">36493ms</span>
+                      <span class="duration">18285ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">hasStockEnabled + hasAllDistributionCenters: Stock visible en tarjetas (multicentro) </span>
-                      <span class="duration">32453ms</span>
+                      <span class="duration">17501ms</span>
                       
                     </li>
                   
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
                       <span class="test-title">purchaseOrderEnabled: Campo OC (Orden de Compra) visible en checkout </span>
-                      <span class="duration">39247ms</span>
-                      
+                      <span class="duration">41527ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">enableOrderApproval: Órdenes pueden estar en estado "pending_approval" </span>
-                      <span class="duration">33518ms</span>
+                      <span class="duration">17929ms</span>
                       
                     </li>
                   
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">useNewPromotions=true: Promociones deben estar visibles </span>
-                      <span class="duration">34362ms</span>
-                      
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">purchaseOrderEnabled: Campo OC (Orden de Compra) visible en checkout </span>
+                      <span class="duration">44371ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">hasStockEnabled=true + hasSingleDistributionCenter: Stock visible en tarjetas (sin multicentro) </span>
-                      <span class="duration">36932ms</span>
+                      <span class="duration">31220ms</span>
+                      
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">enableSellerDiscount=true: Descuento visible en carrito/checkout </span>
+                      <span class="duration">70281ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">hasMultiUnitEnabled=true: Selector de unidad de compra (caja/unidad/etc) </span>
+                      <span class="duration">61863ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">useNewPromotions=true: Promociones deben estar visibles </span>
+                      <span class="duration">74713ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
+Received string: [31m&quot;https://surtiventas.solopide.me/[7mauth/jwt/login[27m&quot;[39m
+Timeout: 45000ms
+
+Call log:
+[2m  - Expect &quot;not toHaveURL&quot; with timeout 45000ms[22m
+[2m    48 × unexpected value &quot;https://surtiventas.solopide.me/auth/jwt/login&quot;[22m
+</pre>
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">useNewPromotions=true: Promociones deben estar visibles </span>
+                      <span class="duration">16996ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">enableSellerDiscount=true: Descuento visible en carrito/checkout </span>
-                      <span class="duration">41315ms</span>
+                      <span class="duration">39490ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">hasMultiUnitEnabled=true: Selector de unidad de compra (caja/unidad/etc) </span>
-                      <span class="duration">24740ms</span>
+                      <span class="duration">26338ms</span>
                       
                     </li>
                   
@@ -543,130 +551,41 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Sin requests 4xx/5xx durante navegación -y-errores </span>
-                      <span class="duration">91347ms</span>
-                      <pre class="error">TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.</pre>
+                      <span class="duration">42285ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m0[39m
+Received: [31m1[39m</pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Sin requests 4xx/5xx durante navegación -y-errores </span>
-                      <span class="duration">101768ms</span>
-                      <pre class="error">TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.</pre>
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 coupons (2/3)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Campo de cupón visible en carrito </span>
-                      <span class="duration">62865ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+                      <span class="duration">44115ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
 
-Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
-Received string: [31m&quot;https://beta-codelpa.solopide.me/[7mauth/jwt/login[27m&quot;[39m
-Timeout: 30000ms
-
-Call log:
-[2m  - Expect &quot;not toHaveURL&quot; with timeout 30000ms[22m
-[2m    34 × unexpected value &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Campo de cupón visible en carrito </span>
-                      <span class="duration">68631ms</span>
-                      
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Campo de cupón visible en carrito </span>
-                      <span class="duration">50404ms</span>
-                      
+Expected: [32m0[39m
+Received: [31m1[39m</pre>
                     </li>
                   
                 </ul>
               </div>
             
               <div class="feature-group">
-                <h3>📌 detalle (2/2)</h3>
+                <h3>📌 coupons (1/2)</h3>
                 <ul class="tests">
                   
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
-                      <span class="duration">34030ms</span>
-                      
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
-                      <span class="duration">48126ms</span>
-                      
-                    </li>
-                  
-                </ul>
-              </div>
-            
-              <div class="feature-group">
-                <h3>📌 login (2/6)</h3>
-                <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Login exitoso </span>
-                      <span class="duration">65113ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
-                      <span class="duration">65112ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/&quot;, waiting until &quot;load&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
-                      <span class="duration">67654ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/&quot;, waiting until &quot;load&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test timedOut">
+                    <li class="test skipped">
                       <span class="status-icon">⊘</span>
-                      <span class="test-title">Login exitoso </span>
-                      <span class="duration">120384ms</span>
-                      <pre class="error">[31mTest timeout of 120000ms exceeded.[39m</pre>
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Login exitoso </span>
-                      <span class="duration">45137ms</span>
+                      <span class="test-title">Campo de cupón visible en carrito </span>
+                      <span class="duration">63ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
-                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
-                      <span class="duration">64715ms</span>
+                      <span class="test-title">Campo de cupón visible en carrito </span>
+                      <span class="duration">19519ms</span>
                       
                     </li>
                   
@@ -674,21 +593,131 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 monto (2/2)</h3>
+                <h3>📌 detalle (1/3)</h3>
+                <ul class="tests">
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
+                      <span class="duration">40888ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
+                      <span class="duration">44458ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Click en producto abre detalle/modal -de-producto </span>
+                      <span class="duration">19241ms</span>
+                      
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 login (4/4)</h3>
+                <ul class="tests">
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
+                      <span class="duration">24390ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Login exitoso </span>
+                      <span class="duration">31079ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Login exitoso </span>
+                      <span class="duration">14359ms</span>
+                      
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Home sin login — redirige a login o muestra catálogo anónimo </span>
+                      <span class="duration">21996ms</span>
+                      
+                    </li>
+                  
+                </ul>
+              </div>
+            
+              <div class="feature-group">
+                <h3>📌 monto (1/3)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Carrito vacío no permite confirmar pedido -mínimo-y-validaciones </span>
-                      <span class="duration">40920ms</span>
+                      <span class="duration">17108ms</span>
                       
                     </li>
                   
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
                       <span class="test-title">Monto mínimo muestra mensaje si no se alcanza -mínimo-y-validaciones </span>
-                      <span class="duration">50012ms</span>
-                      
+                      <span class="duration">43369ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">Monto mínimo muestra mensaje si no se alcanza -mínimo-y-validaciones </span>
+                      <span class="duration">42388ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
                     </li>
                   
                 </ul>
@@ -701,14 +730,14 @@ Call log:
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Historial de pagos carga </span>
-                      <span class="duration">24029ms</span>
+                      <span class="duration">12993ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Montos no muestran valores negativos confusos </span>
-                      <span class="duration">29576ms</span>
+                      <span class="duration">14822ms</span>
                       
                     </li>
                   
@@ -716,20 +745,36 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 pedidos (4/6)</h3>
+                <h3>📌 pedidos (3/5)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Historial de pedidos muestra tabla con estados -y-estados </span>
-                      <span class="duration">42056ms</span>
+                      <span class="duration">14116ms</span>
                       
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Estados de pedido son válidos (no "No disponible") -y-estados </span>
-                      <span class="duration">32791ms</span>
+                      <span class="duration">54317ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mpage[39m[2m).not.[22mtoHaveURL[2m([22m[32mexpected[39m[2m)[22m failed
+
+Expected pattern: not [32m/auth\/jwt\/login|\/login$/[39m
+Received string: [31m&quot;https://beta-codelpa.solopide.me/[7mauth/jwt/login[27m&quot;[39m
+Timeout: 45000ms
+
+Call log:
+[2m  - Expect &quot;not toHaveURL&quot; with timeout 45000ms[22m
+[2m    48 × unexpected value &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;[22m
+</pre>
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">Estados de pedido son válidos (no "No disponible") -y-estados </span>
+                      <span class="duration">20534ms</span>
                       <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
 
 Expected: [32m0[39m
@@ -738,31 +783,15 @@ Received: [31m10[39m</pre>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
-                      <span class="test-title">Estados de pedido son válidos (no "No disponible") -y-estados </span>
-                      <span class="duration">35375ms</span>
-                      
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
                       <span class="test-title">Historial de pedidos muestra tabla con estados -y-estados </span>
-                      <span class="duration">41489ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
-
-Received: [31mfalse[39m</pre>
-                    </li>
-                  
-                    <li class="test passed">
-                      <span class="status-icon">✓</span>
-                      <span class="test-title">Estados de pedido son válidos (no "No disponible") -y-estados </span>
-                      <span class="duration">61163ms</span>
+                      <span class="duration">18087ms</span>
                       
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
-                      <span class="test-title">Historial de pedidos muestra tabla con estados -y-estados </span>
-                      <span class="duration">39564ms</span>
+                      <span class="test-title">Estados de pedido son válidos (no "No disponible") -y-estados </span>
+                      <span class="duration">16781ms</span>
                       
                     </li>
                   
@@ -770,146 +799,76 @@ Received: [31mfalse[39m</pre>
               </div>
             
               <div class="feature-group">
-                <h3>📌 pricing (2/8)</h3>
+                <h3>📌 pricing (3/7)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Precios en formato CLP ($ sin decimales) </span>
-                      <span class="duration">42563ms</span>
+                      <span class="duration">13940ms</span>
                       
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Precios consistentes catálogo vs carrito </span>
-                      <span class="duration">44720ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-
-Locator: locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;)
-Expected: visible
-Error: strict mode violation: locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;) resolved to 8 elements:
-    1) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-hqifo1&quot;&gt;$0&lt;/p&gt; aka getByTestId(&#039;side-cart-button&#039;)
-    2) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-18k3lyo&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(1)
-    3) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-44t9ny&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(2)
-    4) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-7gzez4&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(3)
-    5) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-18k3lyo&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(4)
-    6) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-44t9ny&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(5)
-    7) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-7gzez4&quot;&gt;$0&lt;/p&gt; aka locator(&#039;.MuiBox-root.css-ami6bh &gt; p:nth-child(2)&#039;)
-    8) &lt;b&gt;$5.340.305&lt;/b&gt; aka getByText(&#039;$5.340.305&#039;)
-
-Call log:
-[2m  - Expect &quot;toBeVisible&quot; with timeout 10000ms[22m
-[2m  - waiting for locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;)[22m
-</pre>
+                      <span class="duration">40579ms</span>
+                      <pre class="error">TimeoutError: page.waitForResponse: Timeout 30000ms exceeded while waiting for event &quot;response&quot;</pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">hideReceiptType=true — no muestra selector de boleta/factura </span>
-                      <span class="duration">40611ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeFalsy[2m()[22m
-
-Received: [31mtrue[39m</pre>
+                      <span class="duration">43155ms</span>
+                      <pre class="error">TimeoutError: page.waitForResponse: Timeout 30000ms exceeded while waiting for event &quot;response&quot;</pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Precios consistentes catálogo vs carrito </span>
-                      <span class="duration">48934ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
-
-Locator: locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;)
-Expected: visible
-Error: strict mode violation: locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;) resolved to 8 elements:
-    1) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-hqifo1&quot;&gt;$0&lt;/p&gt; aka getByTestId(&#039;side-cart-button&#039;)
-    2) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-18k3lyo&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(1)
-    3) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-44t9ny&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(2)
-    4) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-7gzez4&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(3)
-    5) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-18k3lyo&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(4)
-    6) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-44t9ny&quot;&gt;$0&lt;/p&gt; aka getByText(&#039;$&#039;).nth(5)
-    7) &lt;p class=&quot;MuiTypography-root MuiTypography-body1 css-7gzez4&quot;&gt;$0&lt;/p&gt; aka locator(&#039;.MuiBox-root.css-ami6bh &gt; p:nth-child(2)&#039;)
-    8) &lt;b&gt;$5.340.305&lt;/b&gt; aka getByText(&#039;$5.340.305&#039;)
-
-Call log:
-[2m  - Expect &quot;toBeVisible&quot; with timeout 10000ms[22m
-[2m  - waiting for locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;)[22m
-</pre>
+                      <span class="duration">41592ms</span>
+                      <pre class="error">TimeoutError: page.waitForResponse: Timeout 30000ms exceeded while waiting for event &quot;response&quot;</pre>
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">hideReceiptType=true — no muestra selector de boleta/factura </span>
-                      <span class="duration">48504ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeFalsy[2m()[22m
-
-Received: [31mtrue[39m</pre>
+                      <span class="duration">41598ms</span>
+                      <pre class="error">TimeoutError: page.waitForResponse: Timeout 30000ms exceeded while waiting for event &quot;response&quot;</pre>
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Precios en formato CLP ($ sin decimales) </span>
-                      <span class="duration">35630ms</span>
+                      <span class="duration">19728ms</span>
                       
                     </li>
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Precios consistentes catálogo vs carrito </span>
-                      <span class="duration">74807ms</span>
-                      <pre class="error">TimeoutError: locator.textContent: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for locator(&#039;.product-card&#039;).first().locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;).first()[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Precios consistentes catálogo vs carrito </span>
-                      <span class="duration">68419ms</span>
-                      <pre class="error">TimeoutError: locator.textContent: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for locator(&#039;.product-card&#039;).first().locator(&#039;text=/\\$\\s*[\\d.,]+/&#039;).first()[22m
-</pre>
+                      <span class="duration">20056ms</span>
+                      
                     </li>
                   
                 </ul>
               </div>
             
               <div class="feature-group">
-                <h3>📌 validaciones (1/3)</h3>
+                <h3>📌 validaciones (2/3)</h3>
                 <ul class="tests">
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Carrito vacío no permite confirmar pedido </span>
-                      <span class="duration">55258ms</span>
-                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeDisabled[2m([22m[2m)[22m failed
-
-Locator:  getByRole(&#039;button&#039;, { name: /confirmar pedido/i })
-Expected: disabled
-Received: enabled
-Timeout:  15000ms
-
-Call log:
-[2m  - Expect &quot;toBeDisabled&quot; with timeout 15000ms[22m
-[2m  - waiting for getByRole(&#039;button&#039;, { name: /confirmar pedido/i })[22m
-[2m    19 × locator resolved to &lt;button tabindex=&quot;0&quot; type=&quot;button&quot; class=&quot;MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-mf16ev&quot;&gt;…&lt;/button&gt;[22m
-[2m       - unexpected value &quot;enabled&quot;[22m
-</pre>
-                    </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Monto mínimo muestra mensaje si no se alcanza </span>
-                      <span class="duration">49237ms</span>
+                      <span class="duration">21298ms</span>
                       
                     </li>
                   
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Carrito vacío no permite confirmar pedido </span>
-                      <span class="duration">57106ms</span>
+                      <span class="duration">31691ms</span>
                       <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeDisabled[2m([22m[2m)[22m failed
 
 Locator:  getByRole(&#039;button&#039;, { name: /confirmar pedido/i })
@@ -923,6 +882,13 @@ Call log:
 [2m    19 × locator resolved to &lt;button tabindex=&quot;0&quot; type=&quot;button&quot; class=&quot;MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-mf16ev&quot;&gt;…&lt;/button&gt;[22m
 [2m       - unexpected value &quot;enabled&quot;[22m
 </pre>
+                    </li>
+                  
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Carrito vacío no permite confirmar pedido </span>
+                      <span class="duration">35840ms</span>
+                      
                     </li>
                   
                 </ul>
@@ -933,25 +899,42 @@ Call log:
         <div class="type-section">
           <div class="type-header">
             <h2>⚪ ⚪ Otros</h2>
-            <span class="stats">4/14 passed (29%)</span>
+            <span class="stats">7/11 passed (64%)</span>
           </div>
 
           
               <div class="feature-group">
-                <h3>📌 config (2/2)</h3>
+                <h3>📌 config (2/3)</h3>
                 <ul class="tests">
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">disableCommerceEdit=false: Campos de perfil comercio son EDITABLES ón</span>
-                      <span class="duration">44825ms</span>
+                      <span class="duration">34057ms</span>
                       
+                    </li>
+                  
+                    <li class="test failed">
+                      <span class="status-icon">✗</span>
+                      <span class="test-title">editAddress=true: Dirección es editable en checkout ón</span>
+                      <span class="duration">89013ms</span>
+                      <pre class="error">Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+Locator: locator(&#039;.add-new-product-to-cart-button&#039;).first()
+Expected: visible
+Timeout: 30000ms
+Error: element(s) not found
+
+Call log:
+[2m  - Expect &quot;toBeVisible&quot; with timeout 30000ms[22m
+[2m  - waiting for locator(&#039;.add-new-product-to-cart-button&#039;).first()[22m
+</pre>
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">editAddress=true: Dirección es editable en checkout ón</span>
-                      <span class="duration">44333ms</span>
+                      <span class="duration">44613ms</span>
                       
                     </li>
                   
@@ -965,7 +948,7 @@ Call log:
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Navegación sin errores JS en consola -y-errores ítico</span>
-                      <span class="duration">43467ms</span>
+                      <span class="duration">22628ms</span>
                       
                     </li>
                   
@@ -973,13 +956,20 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 coupons (0/4)</h3>
+                <h3>📌 coupons (0/3)</h3>
                 <ul class="tests">
                   
+                    <li class="test skipped">
+                      <span class="status-icon">⊘</span>
+                      <span class="test-title">Cupón inválido muestra error (no crash) ítico</span>
+                      <span class="duration">44ms</span>
+                      
+                    </li>
+                  
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Cupón inválido muestra error (no crash) ítico</span>
-                      <span class="duration">103177ms</span>
+                      <span class="duration">54035ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(/cup[oó]n/i).or(getByPlaceholder(/cup[oó]n/i)).first()[22m
@@ -989,27 +979,7 @@ Call log:
                     <li class="test failed">
                       <span class="status-icon">✗</span>
                       <span class="test-title">Cupón inválido muestra error (no crash) ítico</span>
-                      <span class="duration">75729ms</span>
-                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByLabel(/cup[oó]n/i).or(getByPlaceholder(/cup[oó]n/i)).first()[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Cupón inválido muestra error (no crash) ítico</span>
-                      <span class="duration">79784ms</span>
-                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByLabel(/cup[oó]n/i).or(getByPlaceholder(/cup[oó]n/i)).first()[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Cupón inválido muestra error (no crash) ítico</span>
-                      <span class="duration">87929ms</span>
+                      <span class="duration">51371ms</span>
                       <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
 Call log:
 [2m  - waiting for getByLabel(/cup[oó]n/i).or(getByPlaceholder(/cup[oó]n/i)).first()[22m
@@ -1020,74 +990,35 @@ Call log:
               </div>
             
               <div class="feature-group">
-                <h3>📌 login (1/7)</h3>
+                <h3>📌 login (4/4)</h3>
                 <ul class="tests">
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Sesión persistente ón</span>
-                      <span class="duration">65248ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Login fallido con password incorrecto ítico</span>
-                      <span class="duration">65113ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;load&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Sesión persistente ón</span>
-                      <span class="duration">65292ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;domcontentloaded&quot;[22m
-</pre>
-                    </li>
-                  
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Login fallido con password incorrecto ítico</span>
-                      <span class="duration">67579ms</span>
-                      <pre class="error">TimeoutError: page.goto: Timeout 60000ms exceeded.
-Call log:
-[2m  - navigating to &quot;https://beta-codelpa.solopide.me/auth/jwt/login&quot;, waiting until &quot;load&quot;[22m
-</pre>
+                      <span class="duration">29553ms</span>
+                      
                     </li>
                   
                     <li class="test passed">
                       <span class="status-icon">✓</span>
                       <span class="test-title">Sesión persistente ón</span>
-                      <span class="duration">75295ms</span>
+                      <span class="duration">59698ms</span>
                       
                     </li>
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
                       <span class="test-title">Login fallido con password incorrecto ítico</span>
-                      <span class="duration">79954ms</span>
-                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
-</pre>
+                      <span class="duration">15867ms</span>
+                      
                     </li>
                   
-                    <li class="test failed">
-                      <span class="status-icon">✗</span>
-                      <span class="test-title">Login fallido con password incorrecto ítico</span>
-                      <span class="duration">49967ms</span>
-                      <pre class="error">TimeoutError: locator.fill: Timeout 30000ms exceeded.
-Call log:
-[2m  - waiting for getByLabel(&#039;Correo&#039;)[22m
-</pre>
+                    <li class="test passed">
+                      <span class="status-icon">✓</span>
+                      <span class="test-title">Sesión persistente ón</span>
+                      <span class="duration">17874ms</span>
+                      
                     </li>
                   
                 </ul>
@@ -1097,7 +1028,7 @@ Call log:
       
 
           <footer>
-            Generated on 06-04-2026, 10:58:09 a. m.
+            Generated on 06-04-2026, 1:48:58 p. m.
           </footer>
         </div>
       </body>
