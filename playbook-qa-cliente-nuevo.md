@@ -7,18 +7,13 @@
 
 ## Prerequisitos
 
-Antes de empezar QA, confirmar que el equipo entregó:
+Antes de empezar QA, completar el checklist de pre-producción:
 
-| Item | Quién lo entrega | Cómo verificar |
-|---|---|---|
-| Subdominio B2B activo | Tech (Diego/Rodrigo) | Abrir `https://{cliente}.youorder.me` |
-| Usuario vendedor APP | Tech | Login en APP con las credenciales |
-| Usuario comercio B2B | Tech | Login en B2B con las credenciales |
-| Features configuradas en MongoDB | Tech + Analytics | `checklist-generator.py` las extrae |
-| Catálogo cargado | Analytics (Diego F/Nicole) | Productos visibles post-login |
-| Integraciones activas (ERP, etc.) | Tech + Analytics | Ver Fase 1.4 abajo |
-| Segmento base con overrides | Analytics | Todos los comercios en segmento base, overrides con enabled/precio |
-| Documentación tributaria configurada | Tech | Tipo de documento (factura/boleta), datos fiscales del cliente |
+**→ [`checklists/integraciones/checklist-preproduccion-cliente.md`](checklists/integraciones/checklist-preproduccion-cliente.md)**
+
+El checklist cubre: config MongoDB, catálogo y datos, acceso y usuarios, integraciones externas, documentos tributarios. Incluye gate de aprobación con veredicto LISTO / CON CONDICIONES / BLOQUEADO.
+
+**Si el veredicto es BLOQUEADO → no avanzar a Fase 1.**
 
 ---
 

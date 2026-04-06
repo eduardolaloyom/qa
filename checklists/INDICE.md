@@ -49,6 +49,12 @@ qa/
 | Upgrade Node.js | [general](deuda-tecnica/checklist-deuda-tecnica-general.md#3) | — | Manual (al migrar) |
 | Migración SSR | [general](deuda-tecnica/checklist-deuda-tecnica-general.md#4) | — | Manual (al migrar) |
 
+### Pre-producción (integraciones de cliente)
+
+| Checklist | Cuándo usar | Cobertura |
+|-----------|-------------|-----------|
+| [Pre-producción cliente](integraciones/checklist-preproduccion-cliente.md) | Cliente nuevo + re-validación por deuda técnica | Config MongoDB, catálogo, usuarios, ERP, docs tributarios |
+
 ### Servicios backend
 
 | Servicio | Checklist | Test automatizado | Cobertura |
