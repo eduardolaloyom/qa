@@ -1,23 +1,23 @@
 {
   "date": "2026-04-07",
-  "timestamp": "2026-04-07T21:21:06.006366+00:00",
-  "total": 14,
-  "passed": 11,
-  "failed": 2,
-  "duration": 281,
+  "timestamp": "2026-04-07T21:50:19.835392+00:00",
+  "total": 57,
+  "passed": 46,
+  "failed": 9,
+  "duration": 279,
   "suites": [
     {
       "name": "codelpa.spec.ts",
-      "tests": 10,
-      "passed": 8,
-      "failed": 1,
+      "tests": 32,
+      "passed": 26,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "surtiventas.spec.ts",
-      "tests": 4,
-      "passed": 3,
-      "failed": 1,
+      "tests": 25,
+      "passed": 20,
+      "failed": 5,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -25,21 +25,56 @@
     "codelpa": {
       "name": "Codelpa",
       "url": "https://beta-codelpa.solopide.me",
-      "tests": 10,
-      "passed": 8,
-      "failed": 1,
+      "tests": 32,
+      "passed": 26,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     },
     "surtiventas": {
       "name": "Surtiventas",
       "url": "https://surtiventas.solopide.me",
-      "tests": 4,
-      "passed": 3,
-      "failed": 1,
+      "tests": 25,
+      "passed": 20,
+      "failed": 5,
       "reportUrl": "reports/index.html"
     }
   },
   "failure_groups": [
+    {
+      "category": "real-bug",
+      "label": "\ud83d\udd34 Bug Real",
+      "reason": "Expected: 0 \u2192 Received: 1",
+      "owner": "dev",
+      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
+      "count": 2,
+      "tests": [
+        "[codelpa.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola-y-errores @funcional",
+        "[surtiventas.spec.ts] No hay productos con precio $0 @catalog @funcional"
+      ]
+    },
+    {
+      "category": "real-bug",
+      "label": "\ud83d\udd34 Bug Real",
+      "reason": "Expected: 0 \u2192 Received: 10",
+      "owner": "dev",
+      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
+      "count": 1,
+      "tests": [
+        "[codelpa.spec.ts] Estados de pedido son v\u00e1lidos (no \"No disponible\") @pedidos-y-estados @funcional"
+      ]
+    },
+    {
+      "category": "selector",
+      "label": "\ud83d\udd27 Selector / Infraestructura",
+      "reason": "No se pudo interactuar con: `getByRole('button', { name: /confirmar pedido/i })`",
+      "owner": "qa",
+      "action": "Inspeccionar el sitio staging \u2192 verificar que el campo existe y tiene el label/placeholder correcto \u2192 actualizar el selector en el spec",
+      "count": 2,
+      "tests": [
+        "[codelpa.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional",
+        "[surtiventas.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional"
+      ]
+    },
     {
       "category": "selector",
       "label": "\ud83d\udd27 Selector / Infraestructura",
@@ -52,6 +87,17 @@
       ]
     },
     {
+      "category": "selector",
+      "label": "\ud83d\udd27 Selector / Infraestructura",
+      "reason": "Elemento no existe en el DOM: `table tr, [class*=\"order\" i]`",
+      "owner": "qa",
+      "action": "Inspeccionar el sitio staging en el navegador \u2192 buscar el elemento real \u2192 actualizar el selector `table tr, [class*=\"order\" i]` en el spec",
+      "count": 1,
+      "tests": [
+        "[surtiventas.spec.ts] Pedido aparece en historial post-checkout @checkout @funcional"
+      ]
+    },
+    {
       "category": "unknown",
       "label": "\u2753 Desconocido",
       "reason": "Error: expect(received).toBeFalsy()\n\nReceived: true",
@@ -60,6 +106,17 @@
       "count": 1,
       "tests": [
         "[codelpa.spec.ts] hideReceiptType=true \u2014 no muestra selector de boleta/factura @pricing @funcional"
+      ]
+    },
+    {
+      "category": "unknown",
+      "label": "\u2753 Desconocido",
+      "reason": "Error: expect(received).toBeTruthy()\n\nReceived: false",
+      "owner": "qa",
+      "action": "Abrir el Trace del test para investigar manualmente",
+      "count": 1,
+      "tests": [
+        "[surtiventas.spec.ts] Historial de pedidos muestra tabla con estados @pedidos-y-estados @funcional"
       ]
     }
   ],
