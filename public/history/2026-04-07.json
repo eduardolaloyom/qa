@@ -1,23 +1,23 @@
 {
   "date": "2026-04-07",
-  "timestamp": "2026-04-07T16:08:45.639092+00:00",
-  "total": 57,
-  "passed": 21,
-  "failed": 34,
-  "duration": 815,
+  "timestamp": "2026-04-07T21:21:06.006366+00:00",
+  "total": 14,
+  "passed": 11,
+  "failed": 2,
+  "duration": 281,
   "suites": [
     {
       "name": "codelpa.spec.ts",
-      "tests": 32,
-      "passed": 1,
-      "failed": 29,
+      "tests": 10,
+      "passed": 8,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "surtiventas.spec.ts",
-      "tests": 25,
-      "passed": 20,
-      "failed": 5,
+      "tests": 4,
+      "passed": 3,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -25,32 +25,21 @@
     "codelpa": {
       "name": "Codelpa",
       "url": "https://beta-codelpa.solopide.me",
-      "tests": 32,
-      "passed": 1,
-      "failed": 29,
+      "tests": 10,
+      "passed": 8,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     "surtiventas": {
       "name": "Surtiventas",
       "url": "https://surtiventas.solopide.me",
-      "tests": 25,
-      "passed": 20,
-      "failed": 5,
+      "tests": 4,
+      "passed": 3,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     }
   },
   "failure_groups": [
-    {
-      "category": "real-bug",
-      "label": "\ud83d\udd34 Bug Real",
-      "reason": "Expected: disabled \u2192 Received: enabled",
-      "owner": "dev",
-      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
-      "count": 1,
-      "tests": [
-        "[surtiventas.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional"
-      ]
-    },
     {
       "category": "selector",
       "label": "\ud83d\udd27 Selector / Infraestructura",
@@ -65,63 +54,12 @@
     {
       "category": "unknown",
       "label": "\u2753 Desconocido",
-      "reason": "TimeoutError: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n  - waiting for getByLabel('Corre",
-      "owner": "qa",
-      "action": "Abrir el Trace del test para investigar manualmente",
-      "count": 30,
-      "tests": [
-        "[codelpa.spec.ts] Login exitoso @login @funcional",
-        "[codelpa.spec.ts] Login fallido con password incorrecto @login @cr\u00edtico",
-        "[codelpa.spec.ts] Sesi\u00f3n persistente @login @configuraci\u00f3n",
-        "[codelpa.spec.ts] Cat\u00e1logo muestra productos con precios CLP @catalog @funcional",
-        "[codelpa.spec.ts] No hay productos con precio $0 @catalog @funcional",
-        "[codelpa.spec.ts] Buscar producto por nombre @catalog @funcional",
-        "[codelpa.spec.ts] Productos sin imagen muestran placeholder (no broken) @catalog @funcional",
-        "[codelpa.spec.ts] B\u00fasqueda sin resultados muestra feedback @catalog @funcional",
-        "[codelpa.spec.ts] Agregar producto al carrito @cart @funcional",
-        "[codelpa.spec.ts] Carrito muestra items agregados @cart @funcional",
-        "[codelpa.spec.ts] Modificar cantidad en carrito @cart @funcional",
-        "[codelpa.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional",
-        "[codelpa.spec.ts] Pedido aparece en historial post-checkout @checkout @funcional",
-        "[codelpa.spec.ts] Precios en formato CLP ($ sin decimales) @pricing @funcional",
-        "[codelpa.spec.ts] Precios consistentes cat\u00e1logo vs carrito @pricing @funcional",
-        "[codelpa.spec.ts] hideReceiptType=true \u2014 no muestra selector de boleta/factura @pricing @funcional",
-        "[codelpa.spec.ts] Click en producto abre detalle/modal @detalle-de-producto @funcional",
-        "[codelpa.spec.ts] Navegaci\u00f3n sin errores JS en consola @consola-y-errores @cr\u00edtico",
-        "[codelpa.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola-y-errores @funcional",
-        "[codelpa.spec.ts] Carrito vac\u00edo no permite confirmar pedido @monto-m\u00ednimo-y-validaciones @funcional",
-        "[codelpa.spec.ts] Monto m\u00ednimo muestra mensaje si no se alcanza @monto-m\u00ednimo-y-validaciones @funcional",
-        "[codelpa.spec.ts] Historial de pedidos muestra tabla con estados @pedidos-y-estados @funcional",
-        "[codelpa.spec.ts] Estados de pedido son v\u00e1lidos (no \"No disponible\") @pedidos-y-estados @funcional",
-        "[codelpa.spec.ts] Historial de pagos carga @pagos @funcional",
-        "[codelpa.spec.ts] Montos no muestran valores negativos confusos @pagos @funcional",
-        "[codelpa.spec.ts] purchaseOrderEnabled: Campo OC (Orden de Compra) visible en checkout @config @funcional",
-        "[codelpa.spec.ts] disableCommerceEdit: Campos de perfil comercio son read-only @config @funcional",
-        "[codelpa.spec.ts] hasStockEnabled + hasAllDistributionCenters: Stock visible en tarjetas (multicentro) @config @funcional",
-        "[codelpa.spec.ts] enableOrderApproval: \u00d3rdenes pueden estar en estado \"pending_approval\" @config @funcional",
-        "[surtiventas.spec.ts] enableSellerDiscount=true: Descuento visible en carrito/checkout @config @funcional"
-      ]
-    },
-    {
-      "category": "unknown",
-      "label": "\u2753 Desconocido",
-      "reason": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://surtiventas.",
+      "reason": "Error: expect(received).toBeFalsy()\n\nReceived: true",
       "owner": "qa",
       "action": "Abrir el Trace del test para investigar manualmente",
       "count": 1,
       "tests": [
-        "[surtiventas.spec.ts] useNewPromotions=true: Promociones deben estar visibles @config @funcional"
-      ]
-    },
-    {
-      "category": "unknown",
-      "label": "\u2753 Desconocido",
-      "reason": "Test timeout of 120000ms exceeded.",
-      "owner": "qa",
-      "action": "Abrir el Trace del test para investigar manualmente",
-      "count": 1,
-      "tests": [
-        "[surtiventas.spec.ts] hasMultiUnitEnabled=true: Selector de unidad de compra (caja/unidad/etc) @config @funcional"
+        "[codelpa.spec.ts] hideReceiptType=true \u2014 no muestra selector de boleta/factura @pricing @funcional"
       ]
     }
   ],
