@@ -823,10 +823,19 @@ function openLinear(i) {
     const g = getGroup(i);
     if (!g) return;
     const date = latestRun.date || '';
-    const title = encodeURIComponent(`[QA ${date}] ${g.label}: ${g.reason.slice(0, 60)}`);
-    const desc = encodeURIComponent(`**Categoría:** ${g.label}\n**Causa:** ${g.reason}\n**Owner:** ${g.owner === 'dev' ? 'Dev' : 'QA'}\n\n**Acción:** ${g.action}\n\n**Tests afectados (${g.count}):**\n${g.tests.map(t => '- ' + t).join('\n')}\n\n_Generado por QA Dashboard_`);
-    // Linear create issue URL format
-    window.open(`https://linear.app/new?title=${title}&description=${desc}`, '_blank');
+
+    // Título con mismo formato que bugs existentes en Linear: fix(scope): descripción
+    const scope = g.category === 'real-bug' ? 'b2b' : g.category === 'selector' ? 'qa' : g.category === 'timeout' ? 'staging' : 'qa';
+    const rawTitle = `fix(${scope}): ${g.reason.slice(0, 70)}`;
+
+    // Descripción siguiendo el formato de bugs reales en Linear (YOM-218, YOM-209, etc.)
+    const affectedTests = g.tests.map(t => `- ${t}`).join('\n');
+    const rawDesc = `## Bug\n\nDetectado por QA automatizado — ${date}\n\n**Categoría:** ${g.label}\n**Owner:** ${g.owner === 'dev' ? 'Dev' : 'QA'}\n\n## Root Cause\n\n${g.reason}\n\n## Acción requerida\n\n${g.action}\n\n## Tests afectados (${g.count})\n\n${affectedTests}\n\n---\n_Generado automáticamente por QA Dashboard — YOM B2B_`;
+
+    // URL al workspace correcto yom-tech, label Bug pre-seleccionado
+    const title = encodeURIComponent(rawTitle);
+    const desc  = encodeURIComponent(rawDesc);
+    window.open(`https://linear.app/yom-tech/issue/new?title=${title}&description=${desc}`, '_blank');
 }
 
 function showToast(msg) {
