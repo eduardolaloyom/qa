@@ -193,9 +193,17 @@ test.describe('Codelpa — Carrito', () => {
 
   test.beforeEach(async ({ page }) => {
     await login(page);
+    // Limpiar carrito antes de cada test para evitar que el botón "Agregar"
+    // haya sido reemplazado por +/- de cantidad de una ejecución anterior
+    await page.goto('/cart');
+    await page.waitForLoadState('domcontentloaded');
+    const eliminarTodos = page.getByRole('button', { name: /eliminar todos/i });
+    if (await eliminarTodos.isVisible({ timeout: 5_000 }).catch(() => false)) {
+      await eliminarTodos.click();
+      await page.waitForTimeout(1_000);
+    }
     await page.goto('/products');
     await page.waitForLoadState('domcontentloaded');
-    // Esperar a que carguen los botones de agregar
     await expect(
       page.locator('.add-new-product-to-cart-button').first()
     ).toBeVisible({ timeout: 30_000 });
