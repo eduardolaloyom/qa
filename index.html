@@ -6,776 +6,1047 @@
     <title>QA Dashboard — YOM B2B Tests</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 40px 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1280px; margin: 0 auto; }
 
+        /* ── Header ── */
         header {
-            text-align: center;
-            color: white;
-            margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .header-content {
-            flex: 1;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-staging {
-            background: rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 12px 20px;
-            border-radius: 6px;
+            margin-bottom: 28px;
+            gap: 16px;
+        }
+        .header-content h1 { font-size: 2.2em; margin-bottom: 4px; }
+        .header-content p { opacity: 0.85; font-size: 1em; }
+        .header-actions { display: flex; gap: 10px; flex-shrink: 0; }
+
+        .btn-ghost {
+            background: rgba(255,255,255,0.18);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            transition: background 0.2s, border-color 0.2s;
+            font-size: 0.9em;
             white-space: nowrap;
         }
+        .btn-ghost:hover { background: rgba(255,255,255,0.3); border-color: white; }
 
-        .btn-staging:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: white;
-        }
-
+        /* ── Card ── */
         .card {
             background: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+        }
+        .card-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .summary-grid {
+        /* ── Summary row ── */
+        .summary-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 220px;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: stretch;
         }
-
         .stat-box {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 20px 16px;
+            border-radius: 10px;
             text-align: center;
         }
+        .stat-box.green  { background: linear-gradient(135deg, #10b981, #059669); }
+        .stat-box.red    { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .stat-box.amber  { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .stat-value { font-size: 2.4em; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+        .stat-label { font-size: 0.82em; opacity: 0.9; font-weight: 600; letter-spacing: 0.03em; }
 
-        .stat-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .donut-box {
+            background: #f9fafb;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            position: relative;
         }
 
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
+        /* ── Status badge ── */
         .status-badge {
-            display: inline-block;
-            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-weight: bold;
-            font-size: 1.1em;
+            font-weight: 700;
+            font-size: 1em;
             background: #10b981;
             color: white;
             margin-bottom: 20px;
         }
 
-        .timestamp {
-            color: #6b7280;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-
-        .section-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #111827;
-            margin: 25px 0 15px 0;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th {
+        /* ── Filters toolbar ── */
+        .filters-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+            padding: 12px 16px;
             background: #f3f4f6;
-            padding: 12px;
-            text-align: left;
-            border-bottom: 2px solid #e5e7eb;
-            font-weight: 600;
-            color: #111827;
-            font-size: 0.95em;
+            border-radius: 8px;
         }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        tr:hover {
-            background: #f9fafb;
-        }
-
-        .pass-badge {
-            background: #d1fae5;
-            color: #065f46;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .fail-badge {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .report-link {
-            color: #667eea;
-            text-decoration: none;
+        .filter-label { font-size: 0.82em; color: #6b7280; font-weight: 600; white-space: nowrap; }
+        .filter-btn {
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1.5px solid #d1d5db;
+            background: white;
+            font-size: 0.82em;
             font-weight: 600;
             cursor: pointer;
+            color: #374151;
+            transition: all 0.15s;
+        }
+        .filter-btn:hover { border-color: #667eea; color: #667eea; }
+        .filter-btn.active { background: #667eea; border-color: #667eea; color: white; }
+        .filter-btn.active-red { background: #ef4444; border-color: #ef4444; color: white; }
+        .filter-btn.active-green { background: #10b981; border-color: #10b981; color: white; }
+        .filter-btn.active-amber { background: #f59e0b; border-color: #f59e0b; color: white; }
+
+        .search-input {
+            padding: 5px 12px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 20px;
+            font-size: 0.82em;
+            outline: none;
+            width: 200px;
+            transition: border-color 0.15s;
+        }
+        .search-input:focus { border-color: #667eea; }
+        .filter-count {
+            margin-left: auto;
+            font-size: 0.8em;
+            color: #9ca3af;
+            font-weight: 600;
         }
 
-        .report-link:hover {
-            text-decoration: underline;
-        }
-
-        .client-section {
+        /* ── Table ── */
+        table { width: 100%; border-collapse: collapse; }
+        th {
             background: #f9fafb;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border-left: 4px solid #667eea;
-        }
-
-        .client-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 11px 14px;
+            text-align: left;
+            border-bottom: 2px solid #e5e7eb;
+            font-weight: 700;
+            color: #374151;
+            font-size: 0.82em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             cursor: pointer;
             user-select: none;
         }
+        th:hover { background: #f3f4f6; }
+        th .sort-icon { margin-left: 4px; opacity: 0.5; font-size: 0.85em; }
+        td { padding: 11px 14px; border-bottom: 1px solid #f3f4f6; font-size: 0.9em; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #fafafa; }
 
-        .client-header:hover {
-            opacity: 0.8;
-        }
-
-        .client-name {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #111827;
-        }
-
-        .expand-icon {
-            font-size: 1.5em;
-            transition: transform 0.3s;
-            display: inline-block;
-        }
-
-        .expand-icon.expanded {
-            transform: rotate(180deg);
-        }
-
-        .client-details {
-            display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .client-details.show {
-            display: block;
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .detail-item {
-            background: white;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .detail-label {
-            font-size: 0.85em;
-            color: #6b7280;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            font-size: 1.1em;
-            color: #111827;
-            font-weight: bold;
-        }
-
-        .tags {
+        .progress-bar-wrap {
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             gap: 8px;
-            margin-top: 10px;
         }
-
-        .tag {
-            background: #ecfdf5;
-            color: #065f46;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: 500;
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
         }
-
-        .chart-container {
-            position: relative;
-            height: 400px;
-            margin: 25px 0;
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: #10b981;
+            transition: width 0.4s ease;
         }
+        .progress-bar-fill.red { background: #ef4444; }
 
-        .chart-title {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #111827;
-            margin-bottom: 15px;
+        .pass-badge {
+            background: #d1fae5; color: #065f46;
+            padding: 3px 10px; border-radius: 4px;
+            font-size: 0.8em; font-weight: 700;
+        }
+        .fail-badge {
+            background: #fee2e2; color: #991b1b;
+            padding: 3px 10px; border-radius: 4px;
+            font-size: 0.8em; font-weight: 700;
+        }
+        .report-link { color: #667eea; text-decoration: none; font-weight: 600; font-size: 0.85em; }
+        .report-link:hover { text-decoration: underline; }
+
+        /* ── Failure Groups ── */
+        .failure-filters {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
         }
 
         .failure-group {
-            border-radius: 8px;
-            margin-bottom: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
             overflow: hidden;
-            border: 1px solid #e5e7eb;
+            border: 1.5px solid #e5e7eb;
+            transition: box-shadow 0.2s;
         }
+        .failure-group:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 
         .failure-group-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 14px 18px;
+            align-items: flex-start;
+            padding: 16px 18px;
             cursor: pointer;
             user-select: none;
+            gap: 16px;
         }
+        .failure-group-header:hover { opacity: 0.93; }
 
-        .failure-group-header:hover { opacity: 0.85; }
+        .failure-group.real-bug   .failure-group-header { background: #fff1f2; }
+        .failure-group.selector   .failure-group-header { background: #fefce8; }
+        .failure-group.timeout    .failure-group-header { background: #fff7ed; }
+        .failure-group.credentials .failure-group-header { background: #f5f3ff; }
+        .failure-group.flaky      .failure-group-header { background: #fffbeb; }
+        .failure-group.unknown    .failure-group-header { background: #f9fafb; }
 
-        .failure-group.real-bug .failure-group-header    { background: #fee2e2; }
-        .failure-group.selector .failure-group-header    { background: #fef9c3; }
-        .failure-group.timeout .failure-group-header     { background: #fff7ed; }
-        .failure-group.credentials .failure-group-header { background: #ede9fe; }
-        .failure-group.flaky .failure-group-header       { background: #fff7ed; }
-        .failure-group.unknown .failure-group-header     { background: #f3f4f6; }
-
-        .fg-left { display: flex; align-items: center; gap: 12px; flex: 1; }
-        .fg-label { font-weight: 700; font-size: 1em; color: #111827; }
-        .fg-reason { font-size: 0.85em; color: #374151; margin-top: 2px; font-family: monospace; }
-        .fg-action {
-            font-size: 0.88em;
-            color: #1e40af;
-            margin-top: 8px;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.6);
-            border-radius: 6px;
-            border-left: 3px solid currentColor;
-        }
+        .fg-left { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+        .fg-top-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .fg-label { font-weight: 800; font-size: 1em; color: #111827; }
         .fg-owner {
-            display: inline-block;
-            font-size: 0.75em;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.74em;
             font-weight: 700;
-            padding: 2px 8px;
+            padding: 2px 9px;
             border-radius: 10px;
-            margin-top: 4px;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.04em;
         }
         .owner-dev { background: #fee2e2; color: #991b1b; }
         .owner-qa  { background: #dbeafe; color: #1e40af; }
+        .fg-reason {
+            font-size: 0.84em;
+            color: #374151;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: rgba(0,0,0,0.04);
+            padding: 3px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .fg-action {
+            font-size: 0.85em;
+            color: #1d4ed8;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+            border-left: 3px solid #3b82f6;
+            line-height: 1.5;
+        }
+
+        .fg-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
         .fg-count {
-            background: rgba(0,0,0,0.1);
-            padding: 3px 10px;
+            background: rgba(0,0,0,0.09);
+            padding: 4px 12px;
             border-radius: 12px;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.9em;
             color: #111827;
             white-space: nowrap;
         }
+        .expand-icon {
+            font-size: 1.2em;
+            transition: transform 0.25s;
+            color: #9ca3af;
+        }
+        .expand-icon.expanded { transform: rotate(180deg); }
 
+        /* Action buttons */
+        .fg-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.78em;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1.5px solid;
+            text-decoration: none;
+            transition: all 0.15s;
+            background: white;
+        }
+        .action-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .btn-copy    { border-color: #6b7280; color: #374151; }
+        .btn-linear  { border-color: #5b44c4; color: #5b44c4; }
+        .btn-slack   { border-color: #611f69; color: #611f69; }
+        .btn-copy:hover   { background: #f9fafb; }
+        .btn-linear:hover { background: #f5f3ff; }
+        .btn-slack:hover  { background: #fdf4ff; }
+
+        /* Tests list */
         .failure-group-tests {
             display: none;
-            padding: 12px 18px;
+            padding: 12px 18px 16px;
             background: #f9fafb;
             border-top: 1px solid #e5e7eb;
         }
-
         .failure-group-tests.show { display: block; }
-
+        .failure-group-tests ul { list-style: none; }
         .failure-group-tests li {
-            font-size: 0.9em;
+            font-size: 0.84em;
             color: #374151;
-            padding: 4px 0;
+            padding: 6px 0;
             border-bottom: 1px solid #e5e7eb;
-            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-
         .failure-group-tests li:last-child { border-bottom: none; }
+        .test-file-tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            font-size: 0.78em;
+            padding: 1px 7px;
+            border-radius: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
 
-        footer {
-            text-align: center;
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #111827;
             color: white;
-            margin-top: 40px;
-            opacity: 0.8;
-            font-size: 0.9em;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.88em;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.25s;
+            z-index: 1000;
+            pointer-events: none;
         }
+        .toast.show { opacity: 1; transform: translateY(0); }
 
-        .loading {
+        /* ── Client cards ── */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .client-card {
+            border: 1.5px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .client-card-header {
+            padding: 14px 18px;
+            background: #f9fafb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .client-card-header:hover { background: #f3f4f6; }
+        .client-name { font-weight: 700; color: #111827; }
+        .client-url  { font-size: 0.78em; color: #9ca3af; margin-top: 2px; }
+        .pass-rate-badge {
+            font-weight: 800;
+            font-size: 1.1em;
+        }
+        .client-card-body {
+            display: none;
+            padding: 16px 18px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .client-card-body.show { display: block; }
+        .client-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .client-stat {
             text-align: center;
-            padding: 20px;
+            padding: 10px 8px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .client-stat-val { font-size: 1.6em; font-weight: 800; color: #111827; }
+        .client-stat-lbl { font-size: 0.75em; color: #6b7280; font-weight: 600; }
+        .client-progress { margin: 12px 0 14px; }
+        .client-progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
             color: #6b7280;
+            margin-bottom: 4px;
         }
 
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 10px 0;
+        /* ── Chart ── */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        .donut-container {
+            position: relative;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+        }
+        .chart-subtitle {
+            font-size: 0.82em;
+            color: #9ca3af;
+            margin-bottom: 10px;
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
+        /* ── Footer ── */
+        footer { text-align: center; color: white; opacity: 0.75; font-size: 0.85em; margin-top: 32px; }
+        footer p { margin-bottom: 4px; }
 
-            .header-content {
-                width: 100%;
-            }
+        /* ── Utilities ── */
+        .loading { text-align: center; padding: 20px; color: #9ca3af; }
+        .timestamp { font-size: 0.82em; color: #9ca3af; margin-top: 6px; }
+        .hidden { display: none; }
+        .divider { height: 1px; background: #f3f4f6; margin: 16px 0; }
 
-            .header-actions {
-                width: 100%;
-            }
-
-            .btn-staging {
-                width: 100%;
-                text-align: center;
-            }
-
-            .summary-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            h1 {
-                font-size: 1.8em;
-            }
-
-            table {
-                font-size: 0.9em;
-            }
-
-            th, td {
-                padding: 8px;
-            }
+        @media (max-width: 900px) {
+            .summary-row { grid-template-columns: 1fr 1fr; }
+            .donut-box { display: none; }
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; }
+            .summary-row { grid-template-columns: 1fr 1fr; }
+            .clients-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>🧪 QA Dashboard — YOM B2B</h1>
-                <p class="subtitle">Playwright E2E Test Suite</p>
-            </div>
-            <div class="header-actions">
-                <a href="staging-report.html" class="btn-staging" target="_blank">📊 Staging Tests</a>
-            </div>
-        </header>
+<div class="container">
 
-        <div class="card">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <span class="status-badge" id="statusBadge">✅ Loading...</span>
-            </div>
+    <header>
+        <div class="header-content">
+            <h1>🧪 QA Dashboard — YOM</h1>
+            <p>Playwright E2E · B2B Platform</p>
+        </div>
+        <div class="header-actions">
+            <a href="staging-report.html" class="btn-ghost" target="_blank">📊 Staging</a>
+            <a href="reports/index.html" class="btn-ghost" target="_blank">🔬 Playwright Report</a>
+        </div>
+    </header>
 
-            <div class="summary-grid" id="summaryGrid">
-                <div class="loading">Cargando datos...</div>
-            </div>
+    <!-- Summary card -->
+    <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <span class="status-badge" id="statusBadge">⏳ Cargando...</span>
+            <span class="timestamp" id="timestamp"></span>
+        </div>
 
-            <p class="timestamp" id="timestamp"></p>
+        <div class="summary-row" id="summaryRow">
+            <div class="loading" style="grid-column:1/-1">Cargando datos...</div>
+        </div>
+    </div>
 
-            <!-- Test Suites Section -->
-            <div class="section-title">Test Suites by File</div>
+    <!-- Failure analysis -->
+    <div class="card" id="failureCard" style="display:none;">
+        <div class="card-title">⚠️ Análisis de Fallos</div>
 
-            <table id="suitesTable">
-                <thead>
-                    <tr>
-                        <th>Suite</th>
-                        <th style="width: 100px; text-align: center;">Tests</th>
-                        <th style="width: 80px; text-align: center;">Passed</th>
-                        <th style="width: 80px; text-align: center;">Failed</th>
-                        <th style="width: 100px; text-align: center;">Status</th>
-                        <th style="width: 140px; text-align: center;">Ver Reporte</th>
-                    </tr>
-                </thead>
-                <tbody id="suitesTableBody">
-                    <tr><td colspan="6" class="loading">Cargando suites...</td></tr>
-                </tbody>
-            </table>
-
-            <!-- Clients Section -->
-            <div class="section-title">Clients Tested</div>
-            <div id="clientsContainer">
-                <div class="loading">Cargando clientes...</div>
-            </div>
-
-            <!-- Failure Analysis -->
-            <div id="failureAnalysisSection" style="display:none;">
-                <div class="section-title">Por qué fallaron</div>
-                <div id="failureGroupsContainer"></div>
-            </div>
-
-            <!-- Historical Trend -->
-            <div class="section-title">Test Trend (Last 30 Days)</div>
-            <div class="chart-container">
-                <div class="chart-title" id="chartTitle"></div>
-                <canvas id="trendChart"></canvas>
+        <!-- Failure filters -->
+        <div class="failure-filters">
+            <span class="filter-label">Filtrar por:</span>
+            <button class="filter-btn active" onclick="filterFailures('all', this)">Todos</button>
+            <button class="filter-btn" onclick="filterFailures('real-bug', this)" style="color:#991b1b;border-color:#fca5a5">🔴 Bug Real</button>
+            <button class="filter-btn" onclick="filterFailures('selector', this)" style="color:#92400e;border-color:#fcd34d">🔧 Selector</button>
+            <button class="filter-btn" onclick="filterFailures('timeout', this)" style="color:#92400e;border-color:#fdba74">⏱ Timeout</button>
+            <button class="filter-btn" onclick="filterFailures('credentials', this)" style="color:#5b21b6;border-color:#c4b5fd">🔑 Credenciales</button>
+            <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+                <span class="filter-label">Owner:</span>
+                <button class="filter-btn" onclick="filterOwner('all', this)">Todos</button>
+                <button class="filter-btn" onclick="filterOwner('dev', this)" style="color:#991b1b;border-color:#fca5a5">👨‍💻 Dev</button>
+                <button class="filter-btn" onclick="filterOwner('qa', this)" style="color:#1e40af;border-color:#93c5fd">🧪 QA</button>
             </div>
         </div>
 
-        <footer>
-            <p>QA Dashboard — YOM B2B Platform</p>
-            <p style="margin-top: 10px; opacity: 0.7;">Última actualización: <span id="footerTimestamp"></span></p>
-        </footer>
+        <div id="failureGroupsContainer"></div>
     </div>
 
-    <script>
-        let latestRun = null;
-        let allRuns = [];
+    <!-- Test suites table -->
+    <div class="card">
+        <div class="card-title">📋 Test Suites</div>
 
-        async function loadHistoryIndex() {
-            try {
-                const response = await fetch('history/index.json');
-                if (!response.ok) throw new Error('Failed to load history index');
-                const data = await response.json();
-                allRuns = data.runs || [];
-                return allRuns;
-            } catch (error) {
-                console.error('Error loading history index:', error);
-                return [];
-            }
-        }
+        <div class="filters-bar">
+            <span class="filter-label">Mostrar:</span>
+            <button class="filter-btn active" onclick="filterSuites('all', this)">Todos</button>
+            <button class="filter-btn" onclick="filterSuites('failed', this)">Solo fallos</button>
+            <button class="filter-btn" onclick="filterSuites('passed', this)">Solo OK</button>
+            <input class="search-input" type="text" placeholder="Buscar suite..." oninput="searchSuites(this.value)" id="suiteSearch">
+            <span class="filter-count" id="suiteFilterCount"></span>
+        </div>
 
-        async function loadRunDetails(date) {
-            try {
-                const response = await fetch(`history/${date}.json`);
-                if (!response.ok) throw new Error(`Failed to load run ${date}`);
-                return await response.json();
-            } catch (error) {
-                console.error(`Error loading run ${date}:`, error);
-                return null;
-            }
-        }
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable('name')">Suite <span class="sort-icon" id="sort-name">↕</span></th>
+                    <th onclick="sortTable('tests')" style="width:90px;text-align:center;">Tests <span class="sort-icon" id="sort-tests">↕</span></th>
+                    <th onclick="sortTable('passed')" style="width:90px;text-align:center;">Passed <span class="sort-icon" id="sort-passed">↕</span></th>
+                    <th onclick="sortTable('failed')" style="width:90px;text-align:center;">Failed <span class="sort-icon" id="sort-failed">↕</span></th>
+                    <th style="width:160px;">Pass rate</th>
+                    <th style="width:80px;text-align:center;">Estado</th>
+                    <th style="width:110px;text-align:center;">Reporte</th>
+                </tr>
+            </thead>
+            <tbody id="suitesTableBody">
+                <tr><td colspan="7" class="loading">Cargando suites...</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-        async function initDashboard() {
-            // Load history
-            allRuns = await loadHistoryIndex();
+    <!-- Clients -->
+    <div class="card">
+        <div class="card-title">🏪 Clientes Testeados</div>
+        <div class="clients-grid" id="clientsContainer">
+            <div class="loading">Cargando clientes...</div>
+        </div>
+    </div>
 
-            if (allRuns.length === 0) {
-                document.getElementById('summaryGrid').innerHTML = '<div class="error">No test runs found</div>';
-                return;
-            }
-
-            // Get latest run
-            const latestDate = allRuns[0].date;
-            latestRun = await loadRunDetails(latestDate);
-
-            if (!latestRun) {
-                document.getElementById('summaryGrid').innerHTML = '<div class="error">Could not load latest run details</div>';
-                return;
-            }
-
-            // Update summary
-            updateSummary();
-            updateSuitesTable();
-            updateClientsSection();
-            updateFailureGroups();
-            updateTrendChart();
-        }
-
-        function updateSummary() {
-            // Status badge
-            const status = latestRun.failed === 0 ? '✅ ALL PASSED' : '⚠️ SOME FAILED';
-            document.getElementById('statusBadge').textContent = status;
-
-            // Summary grid
-            const summaryGrid = document.getElementById('summaryGrid');
-            const durationMins = (latestRun.duration / 60).toFixed(1);
-            summaryGrid.innerHTML = `
-                <div class="stat-box">
-                    <div class="stat-value">${latestRun.total}</div>
-                    <div class="stat-label">Total Tests</div>
+    <!-- Trend chart -->
+    <div class="card">
+        <div class="card-title">📈 Tendencia Histórica</div>
+        <div class="chart-grid">
+            <div>
+                <p class="chart-subtitle" id="chartTitle"></p>
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-value">${latestRun.passed}</div>
-                    <div class="stat-label">Passed</div>
+            </div>
+            <div>
+                <p class="chart-subtitle">Distribución actual</p>
+                <div class="donut-container">
+                    <canvas id="donutChart"></canvas>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-value">${latestRun.failed}</div>
-                    <div class="stat-label">Failed</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">${durationMins}m</div>
-                    <div class="stat-label">Duration</div>
-                </div>
-            `;
+            </div>
+        </div>
+    </div>
 
-            // Timestamp
-            const date = new Date(latestRun.timestamp);
-            const formattedDate = date.toLocaleString('es-CL');
-            document.getElementById('timestamp').textContent = `Execution Date: ${formattedDate}`;
-            document.getElementById('footerTimestamp').textContent = formattedDate;
+    <footer>
+        <p>QA Dashboard — YOM B2B Platform</p>
+        <p style="opacity:0.7;margin-top:4px;">Última actualización: <span id="footerTimestamp"></span></p>
+    </footer>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+let latestRun = null;
+let allRuns = [];
+let allSuites = [];
+let suiteFilter = 'all';
+let suiteSearch = '';
+let suiteSort = { key: 'failed', dir: -1 };
+let activeFailureFilter = 'all';
+let activeOwnerFilter = 'all';
+
+// ── Data loading ──────────────────────────────────────────
+
+async function loadHistoryIndex() {
+    const r = await fetch('history/index.json');
+    if (!r.ok) throw new Error('No history index');
+    const data = await r.json();
+    allRuns = data.runs || [];
+    return allRuns;
+}
+
+async function loadRunDetails(date) {
+    const r = await fetch(`history/${date}.json`);
+    if (!r.ok) return null;
+    return r.json();
+}
+
+async function initDashboard() {
+    try {
+        allRuns = await loadHistoryIndex();
+        if (!allRuns.length) {
+            document.getElementById('summaryRow').innerHTML = '<div class="loading">No hay runs de tests aún.</div>';
+            return;
         }
+        latestRun = await loadRunDetails(allRuns[0].date);
+        if (!latestRun) return;
 
-        function updateSuitesTable() {
-            const tbody = document.getElementById('suitesTableBody');
-            tbody.innerHTML = latestRun.suites.map(suite => {
-                const statusBadge = suite.failed === 0 ?
-                    `<span class="pass-badge">✅ PASS</span>` :
-                    `<span class="fail-badge">❌ ${suite.failed} FAIL</span>`;
+        updateSummary();
+        updateFailureGroups();
+        updateSuitesTable();
+        updateClients();
+        updateTrendChart();
+    } catch (e) {
+        console.error(e);
+    }
+}
 
-                const reportLink = suite.reportUrl ?
-                    `<a href="${suite.reportUrl}" class="report-link" target="_blank">→ View Report</a>` :
-                    '<span style="color: #9ca3af;">—</span>';
+// ── Summary ───────────────────────────────────────────────
 
-                return `
-                    <tr>
-                        <td><strong>${suite.name}</strong></td>
-                        <td style="text-align: center;">${suite.tests}</td>
-                        <td style="text-align: center;">${suite.passed}</td>
-                        <td style="text-align: center;">${suite.failed}</td>
-                        <td style="text-align: center;">${statusBadge}</td>
-                        <td style="text-align: center;">${reportLink}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
+function updateSummary() {
+    const { total, passed, failed, duration, timestamp } = latestRun;
+    const passRate = total > 0 ? Math.round(passed / total * 100) : 0;
+    const durationMins = (duration / 60).toFixed(1);
 
-        function updateClientsSection() {
-            const clientsContainer = document.getElementById('clientsContainer');
-            const clientsHtml = Object.entries(latestRun.clients).map(([key, client]) => {
-                const passRate = client.tests > 0 ? Math.round((client.passed / client.tests) * 100) : 0;
-                const statusColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
-                const failed = client.failed || (client.tests - client.passed);
-                return `
-                <div class="client-section">
-                    <div class="client-header" onclick="toggleClientDetails(this)">
-                        <div>
-                            <div class="client-name">🏪 ${client.name}</div>
-                            <small style="color: #6b7280;">${client.url}</small>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <span style="font-weight: bold; color: ${statusColor};">${passRate}% pass</span>
-                            <span class="expand-icon">▼</span>
-                        </div>
+    document.getElementById('statusBadge').textContent =
+        failed === 0 ? '✅ ALL PASSED' : `⚠️ ${failed} FALLARON`;
+    document.getElementById('statusBadge').style.background =
+        failed === 0 ? '#10b981' : '#ef4444';
+
+    const ts = new Date(timestamp);
+    document.getElementById('timestamp').textContent = ts.toLocaleString('es-CL');
+    document.getElementById('footerTimestamp').textContent = ts.toLocaleString('es-CL');
+
+    document.getElementById('summaryRow').innerHTML = `
+        <div class="stat-box"><div class="stat-value">${total}</div><div class="stat-label">Total Tests</div></div>
+        <div class="stat-box green"><div class="stat-value">${passed}</div><div class="stat-label">Passed</div></div>
+        <div class="stat-box red"><div class="stat-value">${failed}</div><div class="stat-label">Failed</div></div>
+        <div class="stat-box amber"><div class="stat-value">${durationMins}m</div><div class="stat-label">Duración</div></div>
+        <div class="donut-box">
+            <canvas id="summaryDonut" width="180" height="180"></canvas>
+        </div>
+    `;
+
+    // Mini donut en summary
+    const dCtx = document.getElementById('summaryDonut').getContext('2d');
+    new Chart(dCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Passed', 'Failed'],
+            datasets: [{ data: [passed, failed],
+                backgroundColor: ['#10b981', '#ef4444'],
+                borderWidth: 0 }]
+        },
+        options: {
+            responsive: false,
+            cutout: '68%',
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: true },
+            },
+            animation: { animateRotate: true }
+        },
+        plugins: [{
+            id: 'centerText',
+            beforeDraw(chart) {
+                const { ctx, width, height } = chart;
+                ctx.save();
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#111827';
+                ctx.font = 'bold 28px -apple-system, sans-serif';
+                ctx.fillText(`${passRate}%`, width / 2, height / 2 - 8);
+                ctx.fillStyle = '#9ca3af';
+                ctx.font = '11px -apple-system, sans-serif';
+                ctx.fillText('pass rate', width / 2, height / 2 + 14);
+                ctx.restore();
+            }
+        }]
+    });
+}
+
+// ── Failure Groups ────────────────────────────────────────
+
+function updateFailureGroups() {
+    const groups = latestRun.failure_groups;
+    if (!groups || !groups.length) return;
+
+    document.getElementById('failureCard').style.display = 'block';
+    renderFailureGroups();
+}
+
+function renderFailureGroups() {
+    const groups = (latestRun.failure_groups || []).filter(g => {
+        const catOk = activeFailureFilter === 'all' || g.category === activeFailureFilter;
+        const ownOk = activeOwnerFilter === 'all' || g.owner === activeOwnerFilter;
+        return catOk && ownOk;
+    });
+
+    const ownerLabel = { dev: '👨‍💻 Dev', qa: '🧪 QA' };
+    const container = document.getElementById('failureGroupsContainer');
+
+    if (!groups.length) {
+        container.innerHTML = '<div class="loading" style="color:#9ca3af;">No hay grupos que coincidan con el filtro.</div>';
+        return;
+    }
+
+    container.innerHTML = groups.map((g, i) => {
+        const tests = g.tests.map(t => {
+            const match = t.match(/^\[([^\]]+)\]\s*(.+)$/);
+            const file = match ? match[1] : '';
+            const name = match ? match[2] : t;
+            return `<li>
+                <span class="test-file-tag">${file}</span>
+                ${escapeHtml(name)}
+            </li>`;
+        }).join('');
+
+        return `
+        <div class="failure-group ${g.category}" data-category="${g.category}" data-owner="${g.owner}" id="fg-${i}">
+            <div class="failure-group-header" onclick="toggleGroup(this)">
+                <div class="fg-left">
+                    <div class="fg-top-row">
+                        <span class="fg-label">${g.label}</span>
+                        <span class="fg-owner ${g.owner === 'dev' ? 'owner-dev' : 'owner-qa'}">${ownerLabel[g.owner] || g.owner}</span>
                     </div>
-                    <div class="client-details">
-                        <div class="detail-grid">
-                            <div class="detail-item">
-                                <div class="detail-label">Total Tests</div>
-                                <div class="detail-value">${client.tests}</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Passed</div>
-                                <div class="detail-value" style="color: #10b981;">✅ ${client.passed}</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Failed</div>
-                                <div class="detail-value" style="color: ${failed > 0 ? '#ef4444' : '#10b981'};">${failed > 0 ? '❌ ' + failed : '✅ 0'}</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Pass Rate</div>
-                                <div class="detail-value" style="color: ${statusColor};">${passRate}%</div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <a href="${client.reportUrl}" class="report-link" target="_blank">→ Ver reporte completo de ${client.name}</a>
-                        </div>
+                    <div class="fg-reason">${escapeHtml(g.reason)}</div>
+                    <div class="fg-action">→ ${escapeHtml(g.action)}</div>
+                    <div class="fg-actions" onclick="event.stopPropagation()">
+                        <button class="action-btn btn-copy" onclick="copyFailureGroup(${i})">📋 Copiar</button>
+                        <button class="action-btn btn-linear" onclick="openLinear(${i})">🔗 Crear ticket Linear</button>
+                        <button class="action-btn btn-slack" onclick="copySlack(${i})">💬 Copiar para Slack</button>
                     </div>
                 </div>
-            `}).join('');
-
-            clientsContainer.innerHTML = clientsHtml;
-        }
-
-        function toggleClientDetails(header) {
-            const icon = header.querySelector('.expand-icon');
-            const details = header.parentElement.querySelector('.client-details');
-
-            icon.classList.toggle('expanded');
-            details.classList.toggle('show');
-        }
-
-        function updateFailureGroups() {
-            const groups = latestRun.failure_groups;
-            if (!groups || groups.length === 0) return;
-
-            document.getElementById('failureAnalysisSection').style.display = 'block';
-            const container = document.getElementById('failureGroupsContainer');
-
-            const ownerLabel = { dev: '👨‍💻 Acción: Dev', qa: '🧪 Acción: QA' };
-            container.innerHTML = groups.map((g, i) => `
-                <div class="failure-group ${g.category}">
-                    <div class="failure-group-header" onclick="toggleGroup(this)">
-                        <div class="fg-left">
-                            <div style="flex:1">
-                                <div class="fg-label">${g.label}</div>
-                                <div class="fg-reason">${g.reason}</div>
-                                <div class="fg-action">→ ${g.action}</div>
-                                <span class="fg-owner ${g.owner === 'dev' ? 'owner-dev' : 'owner-qa'}">${ownerLabel[g.owner] || g.owner}</span>
-                            </div>
-                        </div>
-                        <div style="display:flex;align-items:center;gap:10px;margin-left:12px;">
-                            <span class="fg-count">${g.count} test${g.count !== 1 ? 's' : ''}</span>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                    </div>
-                    <ul class="failure-group-tests">
-                        ${g.tests.map(t => `<li>${t}</li>`).join('')}
-                    </ul>
+                <div class="fg-right">
+                    <span class="fg-count">${g.count} test${g.count !== 1 ? 's' : ''}</span>
+                    <span class="expand-icon">▼</span>
                 </div>
-            `).join('');
-        }
+            </div>
+            <div class="failure-group-tests">
+                <ul>${tests}</ul>
+            </div>
+        </div>`;
+    }).join('');
+}
 
-        function toggleGroup(header) {
-            header.querySelector('.expand-icon').classList.toggle('expanded');
-            header.nextElementSibling.classList.toggle('show');
-        }
+function filterFailures(cat, btn) {
+    activeFailureFilter = cat;
+    document.querySelectorAll('.failure-filters .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderFailureGroups();
+}
 
-        async function updateTrendChart() {
-            // Load all run details for the chart
-            const runDates = [];
-            const passedCounts = [];
-            const failedCounts = [];
+function filterOwner(owner, btn) {
+    activeOwnerFilter = owner;
+    const ownerBtns = document.querySelectorAll('.failure-filters .filter-btn[onclick*="filterOwner"]');
+    ownerBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderFailureGroups();
+}
 
-            for (const run of allRuns) {
-                runDates.push(run.date);
-                passedCounts.push(run.passed);
-                failedCounts.push(run.failed);
+function toggleGroup(header) {
+    header.querySelector('.expand-icon').classList.toggle('expanded');
+    header.nextElementSibling.classList.toggle('show');
+}
+
+// ── Action buttons ────────────────────────────────────────
+
+function getGroup(i) {
+    const groups = (latestRun.failure_groups || []).filter(g => {
+        const catOk = activeFailureFilter === 'all' || g.category === activeFailureFilter;
+        const ownOk = activeOwnerFilter === 'all' || g.owner === activeOwnerFilter;
+        return catOk && ownOk;
+    });
+    return groups[i];
+}
+
+function copyFailureGroup(i) {
+    const g = getGroup(i);
+    if (!g) return;
+    const text = `${g.label} — ${g.reason}\n\nAcción: ${g.action}\nOwner: ${g.owner === 'dev' ? 'Dev' : 'QA'}\n\nTests afectados (${g.count}):\n${g.tests.map(t => '  • ' + t).join('\n')}`;
+    navigator.clipboard.writeText(text).then(() => showToast('✅ Copiado al portapapeles'));
+}
+
+function copySlack(i) {
+    const g = getGroup(i);
+    if (!g) return;
+    const date = latestRun.date || 'hoy';
+    const text = `*${g.label}* — QA Run ${date}\n>${g.reason}\n*Acción requerida (${g.owner === 'dev' ? 'Dev' : 'QA'}):* ${g.action}\n*Tests afectados:* ${g.count}\n${g.tests.slice(0, 5).map(t => '  • `' + t + '`').join('\n')}${g.tests.length > 5 ? `\n  _(+${g.tests.length - 5} más)_` : ''}`;
+    navigator.clipboard.writeText(text).then(() => showToast('✅ Mensaje Slack copiado'));
+}
+
+function openLinear(i) {
+    const g = getGroup(i);
+    if (!g) return;
+    const date = latestRun.date || '';
+    const title = encodeURIComponent(`[QA ${date}] ${g.label}: ${g.reason.slice(0, 60)}`);
+    const desc = encodeURIComponent(`**Categoría:** ${g.label}\n**Causa:** ${g.reason}\n**Owner:** ${g.owner === 'dev' ? 'Dev' : 'QA'}\n\n**Acción:** ${g.action}\n\n**Tests afectados (${g.count}):**\n${g.tests.map(t => '- ' + t).join('\n')}\n\n_Generado por QA Dashboard_`);
+    // Linear create issue URL format
+    window.open(`https://linear.app/new?title=${title}&description=${desc}`, '_blank');
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── Suites Table ─────────────────────────────────────────
+
+function updateSuitesTable() {
+    allSuites = [...(latestRun.suites || [])];
+    renderSuitesTable();
+}
+
+function filterSuites(f, btn) {
+    suiteFilter = f;
+    document.querySelectorAll('.filters-bar .filter-btn').forEach(b => b.classList.remove('active', 'active-red', 'active-green'));
+    if (f === 'failed') btn.classList.add('active-red');
+    else if (f === 'passed') btn.classList.add('active-green');
+    else btn.classList.add('active');
+    renderSuitesTable();
+}
+
+function searchSuites(val) {
+    suiteSearch = val.toLowerCase();
+    renderSuitesTable();
+}
+
+function sortTable(key) {
+    if (suiteSort.key === key) suiteSort.dir *= -1;
+    else { suiteSort.key = key; suiteSort.dir = -1; }
+    document.querySelectorAll('.sort-icon').forEach(el => el.textContent = '↕');
+    const icon = document.getElementById(`sort-${key}`);
+    if (icon) icon.textContent = suiteSort.dir === 1 ? '↑' : '↓';
+    renderSuitesTable();
+}
+
+function renderSuitesTable() {
+    let rows = allSuites.filter(s => {
+        const nameMatch = s.name.toLowerCase().includes(suiteSearch);
+        if (suiteFilter === 'failed') return s.failed > 0 && nameMatch;
+        if (suiteFilter === 'passed') return s.failed === 0 && nameMatch;
+        return nameMatch;
+    });
+
+    rows.sort((a, b) => {
+        const av = a[suiteSort.key] || 0;
+        const bv = b[suiteSort.key] || 0;
+        return typeof av === 'string'
+            ? av.localeCompare(bv) * suiteSort.dir
+            : (av - bv) * suiteSort.dir;
+    });
+
+    document.getElementById('suiteFilterCount').textContent =
+        rows.length < allSuites.length ? `${rows.length} de ${allSuites.length}` : `${allSuites.length} suites`;
+
+    const tbody = document.getElementById('suitesTableBody');
+    if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="loading">No hay suites que coincidan.</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = rows.map(s => {
+        const passRate = s.tests > 0 ? Math.round(s.passed / s.tests * 100) : 0;
+        const barColor = passRate === 100 ? '' : passRate >= 70 ? '' : 'red';
+        const statusBadge = s.failed === 0
+            ? `<span class="pass-badge">✅ OK</span>`
+            : `<span class="fail-badge">❌ ${s.failed}</span>`;
+        const link = s.reportUrl
+            ? `<a href="${s.reportUrl}" class="report-link" target="_blank">Ver →</a>`
+            : '—';
+        return `<tr>
+            <td><strong>${escapeHtml(s.name)}</strong></td>
+            <td style="text-align:center;">${s.tests}</td>
+            <td style="text-align:center;color:#10b981;font-weight:700;">${s.passed}</td>
+            <td style="text-align:center;color:${s.failed > 0 ? '#ef4444' : '#10b981'};font-weight:700;">${s.failed}</td>
+            <td>
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill ${barColor}" style="width:${passRate}%"></div>
+                    </div>
+                    <span style="font-size:0.8em;color:#6b7280;white-space:nowrap;">${passRate}%</span>
+                </div>
+            </td>
+            <td style="text-align:center;">${statusBadge}</td>
+            <td style="text-align:center;">${link}</td>
+        </tr>`;
+    }).join('');
+}
+
+// ── Clients ───────────────────────────────────────────────
+
+function updateClients() {
+    const clients = latestRun.clients || {};
+    const container = document.getElementById('clientsContainer');
+
+    container.innerHTML = Object.entries(clients).map(([key, c]) => {
+        const failed = c.failed ?? (c.tests - c.passed);
+        const passRate = c.tests > 0 ? Math.round(c.passed / c.tests * 100) : 0;
+        const rateColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
+        return `
+        <div class="client-card">
+            <div class="client-card-header" onclick="toggleCard(this)">
+                <div>
+                    <div class="client-name">🏪 ${c.name}</div>
+                    <div class="client-url">${c.url}</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span class="pass-rate-badge" style="color:${rateColor}">${passRate}%</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+            </div>
+            <div class="client-card-body">
+                <div class="client-stats">
+                    <div class="client-stat">
+                        <div class="client-stat-val">${c.tests}</div>
+                        <div class="client-stat-lbl">Total</div>
+                    </div>
+                    <div class="client-stat">
+                        <div class="client-stat-val" style="color:#10b981">${c.passed}</div>
+                        <div class="client-stat-lbl">Passed</div>
+                    </div>
+                    <div class="client-stat">
+                        <div class="client-stat-val" style="color:${failed > 0 ? '#ef4444' : '#10b981'}">${failed}</div>
+                        <div class="client-stat-lbl">Failed</div>
+                    </div>
+                </div>
+                <div class="client-progress">
+                    <div class="client-progress-label">
+                        <span>Pass rate</span><span style="font-weight:700;color:${rateColor}">${passRate}%</span>
+                    </div>
+                    <div class="progress-bar" style="height:8px">
+                        <div class="progress-bar-fill ${passRate < 70 ? 'red' : ''}" style="width:${passRate}%"></div>
+                    </div>
+                </div>
+                <a href="${c.reportUrl}" class="report-link" target="_blank">→ Ver reporte Playwright</a>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleCard(header) {
+    header.querySelector('.expand-icon').classList.toggle('expanded');
+    header.nextElementSibling.classList.toggle('show');
+}
+
+// ── Charts ────────────────────────────────────────────────
+
+async function updateTrendChart() {
+    const labels = allRuns.map(r => r.date).reverse();
+    const passedData = allRuns.map(r => r.passed).reverse();
+    const failedData = allRuns.map(r => r.failed).reverse();
+
+    document.getElementById('chartTitle').textContent =
+        `${labels.length} run${labels.length !== 1 ? 's' : ''} · últimos 30 días`;
+
+    new Chart(document.getElementById('trendChart').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                { label: 'Passed', data: passedData, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.06)', borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 5, pointBackgroundColor: '#10b981', pointBorderColor: '#fff', pointBorderWidth: 2 },
+                { label: 'Failed',  data: failedData,  borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.06)',  borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 5, pointBackgroundColor: '#ef4444', pointBorderColor: '#fff', pointBorderWidth: 2 }
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: true, position: 'top', labels: { font: { size: 13, weight: 'bold' }, padding: 14, usePointStyle: true } } },
+            scales: {
+                y: { beginAtZero: true, grid: { drawBorder: false }, ticks: { stepSize: 10 } },
+                x: { grid: { display: false } }
             }
-
-            // Reverse to show oldest first
-            runDates.reverse();
-            passedCounts.reverse();
-            failedCounts.reverse();
-
-            const ctx = document.getElementById('trendChart').getContext('2d');
-            const chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: runDates,
-                    datasets: [
-                        {
-                            label: 'Tests Passed',
-                            data: passedCounts,
-                            borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.05)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#10b981',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2
-                        },
-                        {
-                            label: 'Tests Failed',
-                            data: failedCounts,
-                            borderColor: '#ef4444',
-                            backgroundColor: 'rgba(239, 68, 68, 0.05)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#ef4444',
-                            pointBorderColor: '#fff',
-                            pointBorderWidth: 2
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: { size: 14, weight: 'bold' },
-                                padding: 15,
-                                usePointStyle: true
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 10 },
-                            grid: { drawBorder: false }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    }
-                }
-            });
-
-            document.getElementById('chartTitle').textContent = `${runDates.length} test run${runDates.length !== 1 ? 's' : ''} • Last 30 days`;
         }
+    });
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', initDashboard);
-    </script>
+    // Distribution donut (large)
+    const { passed, failed } = latestRun;
+    const passRate = passed + failed > 0 ? Math.round(passed / (passed + failed) * 100) : 0;
+    new Chart(document.getElementById('donutChart').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Passed', 'Failed'],
+            datasets: [{ data: [passed, failed], backgroundColor: ['#10b981', '#ef4444'], borderWidth: 0, hoverOffset: 4 }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false, cutout: '65%',
+            plugins: {
+                legend: { display: true, position: 'bottom', labels: { font: { size: 13 }, padding: 12, usePointStyle: true } }
+            }
+        },
+        plugins: [{
+            id: 'centerLabel',
+            beforeDraw(c) {
+                const { ctx, width, height } = c;
+                ctx.save();
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const cy = height / 2 - 18;
+                ctx.fillStyle = '#111827';
+                ctx.font = `bold ${Math.min(32, width * 0.16)}px -apple-system, sans-serif`;
+                ctx.fillText(`${passRate}%`, width / 2, cy);
+                ctx.fillStyle = '#9ca3af';
+                ctx.font = `${Math.min(11, width * 0.055)}px -apple-system, sans-serif`;
+                ctx.fillText('pass rate', width / 2, cy + 22);
+                ctx.restore();
+            }
+        }]
+    });
+}
+
+// ── Utils ─────────────────────────────────────────────────
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', initDashboard);
+</script>
 </body>
 </html>
