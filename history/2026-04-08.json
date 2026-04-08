@@ -1,30 +1,16 @@
 {
   "date": "2026-04-08",
-  "timestamp": "2026-04-08T16:48:58.257798+00:00",
-  "total": 89,
-  "passed": 63,
-  "failed": 10,
-  "duration": 709,
+  "timestamp": "2026-04-08T16:53:38.983891+00:00",
+  "total": 32,
+  "passed": 14,
+  "failed": 1,
+  "duration": 250,
   "suites": [
-    {
-      "name": "codelpa.spec.ts",
-      "tests": 32,
-      "passed": 26,
-      "failed": 4,
-      "reportUrl": "reports/index.html"
-    },
     {
       "name": "new-soprole.spec.ts",
       "tests": 32,
-      "passed": 17,
+      "passed": 14,
       "failed": 1,
-      "reportUrl": "reports/index.html"
-    },
-    {
-      "name": "surtiventas.spec.ts",
-      "tests": 25,
-      "passed": 20,
-      "failed": 5,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -32,51 +18,21 @@
     "codelpa": {
       "name": "Codelpa",
       "url": "https://beta-codelpa.solopide.me",
-      "tests": 32,
-      "passed": 26,
-      "failed": 4,
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     "surtiventas": {
       "name": "Surtiventas",
       "url": "https://surtiventas.solopide.me",
-      "tests": 25,
-      "passed": 20,
-      "failed": 5,
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     }
   },
   "failure_groups": [
-    {
-      "category": "real-bug",
-      "label": "\ud83d\udd34 Bug Real",
-      "reason": "Expected: 0 \u2192 Received: 1",
-      "owner": "dev",
-      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
-      "count": 2,
-      "tests": [
-        "[codelpa.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola-y-errores @funcional",
-        "[surtiventas.spec.ts] No hay productos con precio $0 @catalog @funcional"
-      ],
-      "clients": [
-        "codelpa",
-        "surtiventas"
-      ]
-    },
-    {
-      "category": "real-bug",
-      "label": "\ud83d\udd34 Bug Real",
-      "reason": "Expected: 0 \u2192 Received: 10",
-      "owner": "dev",
-      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
-      "count": 1,
-      "tests": [
-        "[codelpa.spec.ts] Estados de pedido son v\u00e1lidos (no \"No disponible\") @pedidos-y-estados @funcional"
-      ],
-      "clients": [
-        "codelpa"
-      ]
-    },
     {
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
@@ -89,97 +45,6 @@
       ],
       "clients": [
         "soprole new"
-      ]
-    },
-    {
-      "category": "selector",
-      "label": "\ud83d\udd27 Selector / Infraestructura",
-      "reason": "No se pudo interactuar con: `getByRole('button', { name: /confirmar pedido/i })`",
-      "owner": "qa",
-      "action": "Inspeccionar el sitio staging \u2192 verificar que el campo existe y tiene el label/placeholder correcto \u2192 actualizar el selector en el spec",
-      "count": 2,
-      "tests": [
-        "[codelpa.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional",
-        "[surtiventas.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional"
-      ],
-      "clients": [
-        "codelpa",
-        "surtiventas"
-      ]
-    },
-    {
-      "category": "selector",
-      "label": "\ud83d\udd27 Selector / Infraestructura",
-      "reason": "No se pudo interactuar con: `getByLabel(/cup[o\u00f3]n/i).or(getByPlaceholder(/cup[o\u00f3]n/i)).first()`",
-      "owner": "qa",
-      "action": "Inspeccionar el sitio staging \u2192 verificar que el campo existe y tiene el label/placeholder correcto \u2192 actualizar el selector en el spec",
-      "count": 1,
-      "tests": [
-        "[surtiventas.spec.ts] Cup\u00f3n inv\u00e1lido muestra error (no crash) @coupons @cr\u00edtico"
-      ],
-      "clients": [
-        "surtiventas"
-      ]
-    },
-    {
-      "category": "selector",
-      "label": "\ud83d\udd27 Selector / Infraestructura",
-      "reason": "Elemento no existe en el DOM: `table tr, [class*=\"order\" i]`",
-      "owner": "qa",
-      "action": "Inspeccionar el sitio staging en el navegador \u2192 buscar el elemento real \u2192 actualizar el selector `table tr, [class*=\"order\" i]` en el spec",
-      "count": 1,
-      "tests": [
-        "[surtiventas.spec.ts] Pedido aparece en historial post-checkout @checkout @funcional"
-      ],
-      "clients": [
-        "surtiventas"
-      ]
-    },
-    {
-      "category": "unknown",
-      "label": "\u2753 Desconocido",
-      "reason": "Error: expect(received).toBeFalsy()\n\nReceived: true",
-      "owner": "qa",
-      "action": "Abrir el Trace del test para investigar manualmente",
-      "count": 1,
-      "tests": [
-        "[codelpa.spec.ts] hideReceiptType=true \u2014 no muestra selector de boleta/factura @pricing @funcional"
-      ],
-      "clients": [
-        "codelpa"
-      ]
-    },
-    {
-      "category": "unknown",
-      "label": "\u2753 Desconocido",
-      "reason": "Error: expect(received).toBeTruthy()\n\nReceived: false",
-      "owner": "qa",
-      "action": "Abrir el Trace del test para investigar manualmente",
-      "count": 1,
-      "tests": [
-        "[surtiventas.spec.ts] Historial de pedidos muestra tabla con estados @pedidos-y-estados @funcional"
-      ],
-      "clients": [
-        "surtiventas"
-      ]
-    },
-    {
-      "category": "flaky",
-      "label": "\u26a0\ufe0f Flaky",
-      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
-      "owner": "qa",
-      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
-      "count": 5,
-      "tests": [
-        "[new-soprole.spec.ts] Home sin login \u2014 redirige a login @login @funcional",
-        "[new-soprole.spec.ts] Carrito muestra items agregados @cart @funcional",
-        "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional",
-        "[new-soprole.spec.ts] Campo de cup\u00f3n visible en carrito @coupons @funcional",
-        "[surtiventas.spec.ts] Modificar cantidad en carrito @catalog @funcional"
-      ],
-      "clients": [
-        "soprole new",
-        "surtiventas"
       ]
     }
   ],
