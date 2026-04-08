@@ -6,7 +6,7 @@
 
 ```
 HANDOFF — new-soprole — Modo A — 2026-04-08
-Completado: [C1 ✓] [C2 ✗] [C3 N/A] [C7 N/A] [A1 N/A]
+Completado: [C1 ✓] [C2 ✓ con issues] [C3 N/A] [C7 N/A] [A1 N/A]
 Issues encontrados:
   SOPROLE-QA-002 | P1 | C2-12 | Doble submit crea pedidos duplicados — botón no se deshabilita, sin idempotencia en API
   SOPROLE-QA-001 | P2 | C2-06 | Click en "−" con qty mínima elimina item directamente sin confirmación
