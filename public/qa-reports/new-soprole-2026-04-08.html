@@ -41,6 +41,7 @@
         .p1 { background: #fee2e2; color: #991b1b; }
         .p2 { background: #fef3c7; color: #92400e; }
         .p3 { background: #e0e7ff; color: #3730a3; }
+        .p-badge { white-space: nowrap; }
         /* Gate */
         .gate-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; }
         .gate-row:last-child { border-bottom: none; }
@@ -94,55 +95,50 @@
         <table class="modes-table">
             <thead>
                 <tr>
-                    <th>Modo</th>
-                    <th>Flujos</th>
-                    <th>C1 Login</th>
-                    <th>C2 Compra</th>
-                    <th>C3 Precios</th>
-                    <th>C7 Docs</th>
-                    <th>C9/C5</th>
+                    <th>Sesión</th>
+                    <th>Login</th>
+                    <th>Flujo de compra</th>
+                    <th>Precios y descuentos</th>
+                    <th>Documentos tributarios</th>
+                    <th>Búsqueda y sugerencias</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>A</strong> Login + Compra</td>
-                    <td>C1, C2</td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-red">✗</span></td>
-                    <td><span class="badge badge-gray">N/A</span></td>
-                    <td><span class="badge badge-gray">N/A</span></td>
-                    <td><span class="badge badge-gray">N/A</span></td>
+                    <td><strong>A</strong> — Login + Compra</td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-red">Falla</span></td>
+                    <td><span class="badge badge-gray">No aplica</span></td>
+                    <td><span class="badge badge-gray">No aplica</span></td>
+                    <td><span class="badge badge-gray">No aplica</span></td>
                 </tr>
                 <tr>
-                    <td><strong>B</strong> Precios + Config</td>
-                    <td>C3, flags</td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-red">✗</span></td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-gray">N/A</span></td>
-                    <td><span class="badge badge-gray">N/A</span></td>
+                    <td><strong>B</strong> — Precios + Config</td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-red">Falla</span></td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-gray">No aplica</span></td>
+                    <td><span class="badge badge-gray">No aplica</span></td>
                 </tr>
                 <tr>
-                    <td><strong>C</strong> Documentos</td>
-                    <td>C7</td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-red">✗</span></td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-amber">✓*</span></td>
-                    <td><span class="badge badge-gray">N/A</span></td>
+                    <td><strong>C</strong> — Documentos</td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-red">Falla</span></td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-amber">Parcial</span></td>
+                    <td><span class="badge badge-gray">No aplica</span></td>
                 </tr>
                 <tr>
-                    <td><strong>D</strong> Tier 2</td>
-                    <td>C9, C5</td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-red">✗</span></td>
-                    <td><span class="badge badge-green">✓</span></td>
-                    <td><span class="badge badge-amber">✓*</span></td>
-                    <td><span class="badge badge-green">✓</span></td>
+                    <td><strong>D</strong> — Búsqueda y extras</td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-red">Falla</span></td>
+                    <td><span class="badge badge-green">OK</span></td>
+                    <td><span class="badge badge-amber">Parcial</span></td>
+                    <td><span class="badge badge-green">OK</span></td>
                 </tr>
             </tbody>
         </table>
-        <div style="margin-top:10px;font-size:0.78em;color:#9ca3af;">* C7 parcial: documento descargable OK pero sin acceso desde menú lateral (solo footer + tab /orders)</div>
+        <div style="margin-top:10px;font-size:0.78em;color:#9ca3af;">⚠️ Documentos tributarios parcial: el documento se descarga correctamente, pero no hay acceso desde el menú lateral — solo desde el footer y la pestaña en /orders.</div>
     </div>
 
     <!-- Issues -->
@@ -153,7 +149,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Sev</th>
-                    <th>Área</th>
+                    <th>Dónde</th>
                     <th>Descripción</th>
                     <th>Estado</th>
                 </tr>
@@ -162,37 +158,90 @@
                 <tr>
                     <td><strong>SOPROLE-QA-002</strong></td>
                     <td><span class="p-badge p1">P1</span></td>
-                    <td>C2-12</td>
-                    <td>Doble submit crea pedidos duplicados — botón no se deshabilita tras primer click, API sin idempotencia</td>
+                    <td>Confirmar pedido</td>
+                    <td>Doble click en "Enviar pedido" crea pedidos duplicados. El botón no se deshabilita tras el primer click y la API no tiene protección contra duplicados.</td>
                     <td><span class="badge badge-red">Abierto</span></td>
                 </tr>
                 <tr>
                     <td><strong>SOPROLE-QA-001</strong></td>
                     <td><span class="p-badge p2">P2</span></td>
-                    <td>C2-06</td>
-                    <td>Click "−" con qty en mínimo elimina item directamente sin diálogo de confirmación</td>
+                    <td>Carrito</td>
+                    <td>Al bajar la cantidad al mínimo con "−", el producto se elimina directamente del carrito sin pedir confirmación al usuario.</td>
                     <td><span class="badge badge-red">Abierto</span></td>
                 </tr>
                 <tr>
                     <td><strong>SOPROLE-QA-003</strong></td>
                     <td><span class="p-badge p3">P3</span></td>
-                    <td>C2-11</td>
-                    <td>"Número de pedido: #No disponible" en /confirmation — en /orders sí aparece el número</td>
+                    <td>Página de confirmación</td>
+                    <td>Tras enviar un pedido, la página de confirmación muestra "Número de pedido: #No disponible". El número sí aparece en el historial de pedidos.</td>
                     <td><span class="badge badge-red">Abierto</span></td>
                 </tr>
                 <tr>
                     <td><strong>SOPROLE-QA-004</strong></td>
                     <td><span class="p-badge p3">P3</span></td>
-                    <td>FLAGS</td>
-                    <td>Badge pendingDocuments no visible en campana (MuiBadge-invisible) — flag enablePaymentDocumentsB2B=true confirmado</td>
+                    <td>Campana de notificaciones</td>
+                    <td>Hay un documento pendiente de pago pero la campana no muestra el badge rojo indicador. El flag está habilitado en la configuración del cliente.</td>
                     <td><span class="badge badge-red">Abierto</span></td>
                 </tr>
                 <tr>
                     <td><strong>SOPROLE-QA-005</strong></td>
                     <td><span class="p-badge p3">P3</span></td>
-                    <td>UX</td>
-                    <td>Espaciado blanco excesivo en /orders/{id}</td>
+                    <td>Detalle de pedido</td>
+                    <td>Hay un espacio en blanco excesivo en la página de detalle de un pedido, lo que desplaza el contenido hacia abajo innecesariamente.</td>
                     <td><span class="badge badge-red">Abierto</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Accionables -->
+    <div class="card">
+        <h2>Accionables</h2>
+        <table class="issues-table">
+            <thead>
+                <tr>
+                    <th style="width:140px;">Issue</th>
+                    <th style="width:70px;">Prioridad</th>
+                    <th>Qué hacer</th>
+                    <th style="width:100px;">Owner</th>
+                    <th style="width:110px;">Cuándo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:#fff5f5;">
+                    <td><strong>SOPROLE-QA-002</strong></td>
+                    <td><span class="p-badge p1">Antes de go-live</span></td>
+                    <td>Deshabilitar el botón "Enviar pedido" tras el primer click. Agregar idempotencia en la API de creación de pedidos para evitar duplicados.</td>
+                    <td>Dev Backend</td>
+                    <td>Bloqueante</td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-001</strong></td>
+                    <td><span class="p-badge p2">Alta</span></td>
+                    <td>Mostrar diálogo de confirmación "¿Eliminar producto del carrito?" antes de remover el item cuando la cantidad llega al mínimo.</td>
+                    <td>Dev Frontend</td>
+                    <td>Próximo sprint</td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-003</strong></td>
+                    <td><span class="p-badge p3">Media</span></td>
+                    <td>Asegurar que el número de pedido esté disponible en la respuesta de la API antes de renderizar la página /confirmation.</td>
+                    <td>Dev Frontend</td>
+                    <td>Próximo sprint</td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-004</strong></td>
+                    <td><span class="p-badge p3">Media</span></td>
+                    <td>Revisar por qué MuiBadge tiene clase "invisible" cuando hay documentos pendientes. Verificar que el componente recibe el conteo correcto.</td>
+                    <td>Dev Frontend</td>
+                    <td>Próximo sprint</td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-005</strong></td>
+                    <td><span class="p-badge p3">Baja</span></td>
+                    <td>Revisar CSS en la vista /orders/{id} para eliminar el margen/padding excesivo que genera el espacio en blanco.</td>
+                    <td>Dev Frontend</td>
+                    <td>Backlog</td>
                 </tr>
             </tbody>
         </table>
