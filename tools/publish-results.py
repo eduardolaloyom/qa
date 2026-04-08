@@ -61,10 +61,11 @@ def copy_test_results_artifacts(src: Path, dst: Path) -> None:
         print(f"✅ Copied {png_count} screenshot(s) to {dst}")
 
 
-def flatten_tests(suite: dict, file_hint: str = "") -> list:
+def flatten_tests(suite: dict, file_hint: str = "", suite_title: str = "") -> list:
     """Recursively extract all tests from Playwright JSON suite structure."""
     tests = []
     file_name = suite.get("file", file_hint)
+    current_title = suite.get("title", suite_title) or suite_title
     for spec in suite.get("specs", []):
         for test in spec.get("tests", []):
             results = test.get("results", [])
@@ -73,11 +74,12 @@ def flatten_tests(suite: dict, file_hint: str = "") -> list:
             tests.append({
                 "file": file_name.split("/")[-1] if file_name else file_name,
                 "title": spec.get("title", ""),
+                "suite_title": current_title,
                 "status": test.get("status"),
                 "error": error_msg,
             })
     for sub in suite.get("suites", []):
-        tests.extend(flatten_tests(sub, file_name))
+        tests.extend(flatten_tests(sub, file_name, current_title))
     return tests
 
 
@@ -188,15 +190,32 @@ def generate_failure_groups(results: dict) -> list:
     failed = [t for t in all_tests if t.get("status") == "unexpected"]
     flaky  = [t for t in all_tests if t.get("status") == "flaky"]
 
+    def extract_client(t: dict) -> str:
+        """Extract client name from suite_title or file name."""
+        suite = t.get("suite_title", "")
+        if suite:
+            # suite_title is often "Codelpa — Login" or "codelpa (https://...)"
+            # Take the part before ' —', ' (', or ':'
+            m = re.match(r'^([^—(\-:]+)', suite)
+            if m:
+                return m.group(1).strip().lower()
+        # Fallback: derive from file name (codelpa.spec.ts → codelpa)
+        f = t.get("file", "")
+        if f:
+            return re.sub(r'\.spec\.ts$', '', f.split("/")[-1]).lower()
+        return "unknown"
+
     # Group failures by (category, reason)
     groups: dict = defaultdict(list)
     cause_map: dict = {}
+    group_clients: dict = defaultdict(set)
 
     for t in failed:
         category, reason, owner, action = classify_error(t.get("error", ""))
         key = f"{category}::{reason}"
         groups[key].append(f"[{t['file']}] {t['title']}")
         cause_map[key] = (category, reason, owner, action)
+        group_clients[key].add(extract_client(t))
 
     sorted_keys = sorted(groups.keys(), key=lambda k: CATEGORY_ORDER.get(cause_map[k][0], 9))
 
@@ -211,9 +230,11 @@ def generate_failure_groups(results: dict) -> list:
             "action": action,
             "count": len(groups[key]),
             "tests": groups[key],
+            "clients": sorted(group_clients[key]),
         })
 
     if flaky:
+        flaky_clients = sorted(set(extract_client(t) for t in flaky))
         result.append({
             "category": "flaky",
             "label": "⚠️ Flaky",
@@ -222,6 +243,7 @@ def generate_failure_groups(results: dict) -> list:
             "action": "Monitorear en próximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
             "count": len(flaky),
             "tests": [f"[{t['file']}] {t['title']}" for t in flaky],
+            "clients": flaky_clients,
         })
 
     return result

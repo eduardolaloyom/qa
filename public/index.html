@@ -362,6 +362,16 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
+        .test-client-tag {
+            background: #d1fae5;
+            color: #065f46;
+            font-size: 0.78em;
+            padding: 1px 7px;
+            border-radius: 4px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
 
         /* Toast */
         .toast {
@@ -527,6 +537,11 @@
                 <button class="filter-btn" onclick="filterOwner('qa', this)" style="color:#1e40af;border-color:#93c5fd">🧪 QA</button>
             </div>
         </div>
+        <!-- Client filter row -->
+        <div class="failure-filters" id="clientFilterBar" style="display:none;padding-top:8px;border-top:1px solid #f0f0f0;margin-top:4px;">
+            <span class="filter-label">🏪 Cliente:</span>
+            <div id="clientFilterBtns" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+        </div>
 
         <div id="failureGroupsContainer"></div>
     </div>
@@ -607,6 +622,7 @@ let suiteSearch = '';
 let suiteSort = { key: 'failed', dir: -1 };
 let activeFailureFilter = 'all';
 let activeOwnerFilter = 'all';
+let activeClientFilter = 'all';
 
 // ── Data loading ──────────────────────────────────────────
 
@@ -715,6 +731,28 @@ function updateFailureGroups() {
     if (!groups || !groups.length) return;
 
     document.getElementById('failureCard').style.display = 'block';
+    buildClientFilter();
+    renderFailureGroups();
+}
+
+function buildClientFilter() {
+    const groups = latestRun.failure_groups || [];
+    const allClients = [...new Set(groups.flatMap(g => g.clients || []))].sort();
+
+    const bar = document.getElementById('clientFilterBar');
+    const btns = document.getElementById('clientFilterBtns');
+
+    if (!allClients.length) { bar.style.display = 'none'; return; }
+    bar.style.display = 'flex';
+
+    btns.innerHTML = `<button class="filter-btn active" onclick="filterClient('all', this)">Todos</button>` +
+        allClients.map(c => `<button class="filter-btn" onclick="filterClient('${c}', this)" style="font-size:0.78em;">${c}</button>`).join('');
+}
+
+function filterClient(client, btn) {
+    activeClientFilter = client;
+    document.querySelectorAll('#clientFilterBtns .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     renderFailureGroups();
 }
 
@@ -722,7 +760,8 @@ function renderFailureGroups() {
     const groups = (latestRun.failure_groups || []).filter(g => {
         const catOk = activeFailureFilter === 'all' || g.category === activeFailureFilter;
         const ownOk = activeOwnerFilter === 'all' || g.owner === activeOwnerFilter;
-        return catOk && ownOk;
+        const cliOk = activeClientFilter === 'all' || (g.clients || []).includes(activeClientFilter);
+        return catOk && ownOk && cliOk;
     });
 
     const ownerLabel = { dev: '👨‍💻 Dev', qa: '🧪 QA' };
@@ -737,10 +776,15 @@ function renderFailureGroups() {
         const tests = g.tests.map(t => {
             const match = t.match(/^\[([^\]]+)\]\s*(.+)$/);
             const file = match ? match[1] : '';
-            const name = match ? match[2] : t;
+            const fullName = match ? match[2] : t;
+            // Extract client prefix: "codelpa: C2-05 test name" → client="codelpa", desc="C2-05 test name"
+            const clientMatch = fullName.match(/^([^:]+):\s*(.+)$/);
+            const clientTag = clientMatch ? `<span class="test-client-tag">${escapeHtml(clientMatch[1].trim())}</span>` : '';
+            const desc = clientMatch ? clientMatch[2] : fullName;
             return `<li>
                 <span class="test-file-tag">${file}</span>
-                ${escapeHtml(name)}
+                ${clientTag}
+                ${escapeHtml(desc)}
             </li>`;
         }).join('');
 
@@ -751,6 +795,7 @@ function renderFailureGroups() {
                     <div class="fg-top-row">
                         <span class="fg-label">${g.label}</span>
                         <span class="fg-owner ${g.owner === 'dev' ? 'owner-dev' : 'owner-qa'}">${ownerLabel[g.owner] || g.owner}</span>
+                        ${(g.clients || []).map(c => `<span class="test-client-tag">${escapeHtml(c)}</span>`).join('')}
                     </div>
                     <div class="fg-reason">${escapeHtml(g.reason)}</div>
                     <div class="fg-action">→ ${escapeHtml(g.action)}</div>
