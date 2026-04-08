@@ -3,9 +3,9 @@
     {
       "date": "2026-04-08",
       "total": 32,
-      "passed": 14,
-      "failed": 1,
-      "duration": 250
+      "passed": 28,
+      "failed": 4,
+      "duration": 320
     },
     {
       "date": "2026-04-07",

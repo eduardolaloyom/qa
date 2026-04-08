@@ -113,12 +113,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 8021,
+                      "duration": 6817,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:26.694Z",
+                      "startTime": "2026-04-08T18:36:42.364Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -150,12 +150,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7011,
+                      "duration": 6089,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:26.695Z",
+                      "startTime": "2026-04-08T18:36:42.364Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -187,12 +187,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7740,
+                      "duration": 6450,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:34.298Z",
+                      "startTime": "2026-04-08T18:36:49.171Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -223,46 +223,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 86,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 11328,
+                      "status": "passed",
+                      "duration": 12200,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:35.301Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 86,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:36:49.897Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-f0d142637bc10bdf891a",
@@ -280,46 +260,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 86,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 11153,
+                      "status": "passed",
+                      "duration": 17164,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:42.045Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 86,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:36:55.627Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-ae4b63c6e0c8357eddcd",
@@ -337,46 +297,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 86,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 11078,
+                      "status": "passed",
+                      "duration": 27641,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:46.636Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 86,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:37:02.104Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-faf6412020a3acd2ea99",
@@ -396,44 +336,34 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 86,
-                        "column": 12
-                      }
+                      "type": "pass",
+                      "description": "Selector de unidad visible (hasMultiUnitEnabled=true)"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 11324,
+                      "status": "passed",
+                      "duration": 16732,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:53.205Z",
+                      "startTime": "2026-04-08T18:37:12.797Z",
                       "annotations": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 86,
-                            "column": 12
-                          }
+                          "type": "pass",
+                          "description": "Selector de unidad visible (hasMultiUnitEnabled=true)"
                         }
                       ],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-1c92d759a061b8b92882",
@@ -453,44 +383,34 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 86,
-                        "column": 12
-                      }
+                      "type": "warning",
+                      "description": "Stock no visible — verificar con Cowork"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 11502,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 16698,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:49:57.722Z",
+                      "startTime": "2026-04-08T18:37:29.540Z",
                       "annotations": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 86,
-                            "column": 12
-                          }
+                          "type": "warning",
+                          "description": "Stock no visible — verificar con Cowork"
                         }
                       ],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-96e1f8224fac900fbb98",
@@ -516,46 +436,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de carrito",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 167,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 11230,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14614,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:04.536Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de carrito",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 167,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:37:29.751Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-1b750a1e160aed7679df",
@@ -573,46 +473,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de carrito",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 167,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 11280,
+                      "status": "passed",
+                      "duration": 15051,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:09.230Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de carrito",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 167,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:37:44.373Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-b7234d69af95cd4baae4",
@@ -622,7 +502,7 @@
             },
             {
               "title": "Carrito vacío no permite confirmar pedido @validaciones @funcional",
-              "ok": true,
+              "ok": false,
               "tags": [
                 "validaciones",
                 "funcional"
@@ -630,46 +510,119 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de carrito",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 167,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 11479,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 32056,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /confirmar pedido/i })\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /confirmar pedido/i })\u001b[22m\n\u001b[2m    19 × locator resolved to <button tabindex=\"0\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1pgr1jq\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /confirmar pedido/i })\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /confirmar pedido/i })\u001b[22m\n\u001b[2m    19 × locator resolved to <button tabindex=\"0\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1pgr1jq\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:205:35",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                          "column": 35,
+                          "line": 205
+                        },
+                        "snippet": "  203 |     const confirmButton = page.getByRole('button', { name: /confirmar pedido/i });\n  204 |     if (await confirmButton.isVisible({ timeout: 5_000 }).catch(() => false)) {\n> 205 |       await expect(confirmButton).toBeDisabled();\n      |                                   ^\n  206 |     }\n  207 |   });\n  208 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                            "column": 35,
+                            "line": 205
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /confirmar pedido/i })\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /confirmar pedido/i })\u001b[22m\n\u001b[2m    19 × locator resolved to <button tabindex=\"0\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1pgr1jq\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n\n\n  203 |     const confirmButton = page.getByRole('button', { name: /confirmar pedido/i });\n  204 |     if (await confirmButton.isVisible({ timeout: 5_000 }).catch(() => false)) {\n> 205 |       await expect(confirmButton).toBeDisabled();\n      |                                   ^\n  206 |     }\n  207 |   });\n  208 |\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:205:35"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:15.773Z",
-                      "annotations": [
+                      "startTime": "2026-04-08T18:37:46.247Z",
+                      "annotations": [],
+                      "attachments": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de carrito",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 167,
-                            "column": 12
-                          }
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--0bd73-dido-validaciones-funcional-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--0bd73-dido-validaciones-funcional-b2b/error-context.md"
                         }
                       ],
-                      "attachments": []
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                        "column": 35,
+                        "line": 205
+                      }
+                    },
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 31385,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /confirmar pedido/i })\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /confirmar pedido/i })\u001b[22m\n\u001b[2m    19 × locator resolved to <button tabindex=\"0\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1pgr1jq\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /confirmar pedido/i })\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /confirmar pedido/i })\u001b[22m\n\u001b[2m    19 × locator resolved to <button tabindex=\"0\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1pgr1jq\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:205:35",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                          "column": 35,
+                          "line": 205
+                        },
+                        "snippet": "  203 |     const confirmButton = page.getByRole('button', { name: /confirmar pedido/i });\n  204 |     if (await confirmButton.isVisible({ timeout: 5_000 }).catch(() => false)) {\n> 205 |       await expect(confirmButton).toBeDisabled();\n      |                                   ^\n  206 |     }\n  207 |   });\n  208 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                            "column": 35,
+                            "line": 205
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeDisabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('button', { name: /confirmar pedido/i })\nExpected: disabled\nReceived: enabled\nTimeout:  15000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeDisabled\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('button', { name: /confirmar pedido/i })\u001b[22m\n\u001b[2m    19 × locator resolved to <button tabindex=\"0\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1pgr1jq\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"enabled\"\u001b[22m\n\n\n  203 |     const confirmButton = page.getByRole('button', { name: /confirmar pedido/i });\n  204 |     if (await confirmButton.isVisible({ timeout: 5_000 }).catch(() => false)) {\n> 205 |       await expect(confirmButton).toBeDisabled();\n      |                                   ^\n  206 |     }\n  207 |   });\n  208 |\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:205:35"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-08T18:38:18.837Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--0bd73-dido-validaciones-funcional-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--0bd73-dido-validaciones-funcional-b2b-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--0bd73-dido-validaciones-funcional-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--0bd73-dido-validaciones-funcional-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                        "column": 35,
+                        "line": 205
+                      }
                     }
                   ],
-                  "status": "skipped"
+                  "status": "unexpected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-015eb8498ac75bf99efc",
@@ -695,52 +648,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Cuenta sin comercio — no se puede agregar productos al carrito"
-                    },
-                    {
-                      "type": "skip",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 224,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 12310,
+                      "status": "passed",
+                      "duration": 15103,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:20.516Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Cuenta sin comercio — no se puede agregar productos al carrito"
-                        },
-                        {
-                          "type": "skip",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 224,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:37:59.429Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-34efcfc4ce49c4a08f91",
@@ -766,46 +693,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 254,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 11116,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13437,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:27.259Z",
-                      "annotations": [
-                        {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 254,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:38:14.539Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-391e5fbf2d27cbb3f45f",
@@ -815,7 +722,7 @@
             },
             {
               "title": "hideReceiptType=true — no muestra selector boleta/factura @pricing @funcional",
-              "ok": true,
+              "ok": false,
               "tags": [
                 "pricing",
                 "funcional"
@@ -823,46 +730,119 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 254,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 11181,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 15034,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeFalsy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mtrue\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeFalsy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mtrue\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:280:21",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                          "column": 21,
+                          "line": 280
+                        },
+                        "snippet": "  278 |     const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);\n  279 |     const visible = await receiptType.isVisible({ timeout: 5_000 }).catch(() => false);\n> 280 |     expect(visible).toBeFalsy();\n      |                     ^\n  281 |   });\n  282 |\n  283 | });"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                            "column": 21,
+                            "line": 280
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeFalsy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mtrue\u001b[39m\n\n  278 |     const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);\n  279 |     const visible = await receiptType.isVisible({ timeout: 5_000 }).catch(() => false);\n> 280 |     expect(visible).toBeFalsy();\n      |                     ^\n  281 |   });\n  282 |\n  283 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:280:21"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:32.833Z",
-                      "annotations": [
+                      "startTime": "2026-04-08T18:38:27.983Z",
+                      "annotations": [],
+                      "attachments": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — catálogo no disponible",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 254,
-                            "column": 12
-                          }
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--eece3-a-factura-pricing-funcional-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--eece3-a-factura-pricing-funcional-b2b/error-context.md"
                         }
                       ],
-                      "attachments": []
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                        "column": 21,
+                        "line": 280
+                      }
+                    },
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 15072,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeFalsy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mtrue\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeFalsy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mtrue\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:280:21",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                          "column": 21,
+                          "line": 280
+                        },
+                        "snippet": "  278 |     const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);\n  279 |     const visible = await receiptType.isVisible({ timeout: 5_000 }).catch(() => false);\n> 280 |     expect(visible).toBeFalsy();\n      |                     ^\n  281 |   });\n  282 |\n  283 | });"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                            "column": 21,
+                            "line": 280
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeFalsy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mtrue\u001b[39m\n\n  278 |     const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);\n  279 |     const visible = await receiptType.isVisible({ timeout: 5_000 }).catch(() => false);\n> 280 |     expect(visible).toBeFalsy();\n      |                     ^\n  281 |   });\n  282 |\n  283 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:280:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-08T18:38:43.548Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--eece3-a-factura-pricing-funcional-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--eece3-a-factura-pricing-funcional-b2b-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--eece3-a-factura-pricing-funcional-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--eece3-a-factura-pricing-funcional-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                        "column": 21,
+                        "line": 280
+                      }
                     }
                   ],
-                  "status": "skipped"
+                  "status": "unexpected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-94339c287414c5ec52c6",
@@ -888,52 +868,26 @@
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Cuenta sin comercio — historial de pedidos no disponible"
-                    },
-                    {
-                      "type": "skip",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 296,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "expectedStatus": "skipped",
+                  "annotations": [],
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 4,
                       "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 10382,
+                      "status": "passed",
+                      "duration": 10326,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:38.383Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Cuenta sin comercio — historial de pedidos no disponible"
-                        },
-                        {
-                          "type": "skip",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 296,
-                            "column": 12
-                          }
-                        }
-                      ],
+                      "startTime": "2026-04-08T18:38:51.555Z",
+                      "annotations": [],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-928ec108116a43db3576",
@@ -957,15 +911,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 11722,
+                      "duration": 10557,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:44.022Z",
+                      "startTime": "2026-04-08T18:38:59.872Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1002,15 +956,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 4,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 11245,
+                      "duration": 8862,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:48.771Z",
+                      "startTime": "2026-04-08T18:39:02.397Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1052,15 +1006,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 15633,
+                      "duration": 14764,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:50:55.751Z",
+                      "startTime": "2026-04-08T18:39:11.015Z",
                       "annotations": [
                         {
                           "type": "warning",
@@ -1098,50 +1052,34 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "warning",
-                      "description": "Cuenta sin comercio — catálogo no disponible para verificar unidad de venta"
-                    },
-                    {
-                      "type": "skip",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 381,
-                        "column": 12
-                      }
+                      "type": "pass",
+                      "description": "Selector de unidad de venta visible"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 4,
                       "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 11827,
+                      "status": "passed",
+                      "duration": 10151,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:00.022Z",
+                      "startTime": "2026-04-08T18:39:11.265Z",
                       "annotations": [
                         {
-                          "type": "warning",
-                          "description": "Cuenta sin comercio — catálogo no disponible para verificar unidad de venta"
-                        },
-                        {
-                          "type": "skip",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 381,
-                            "column": 12
-                          }
+                          "type": "pass",
+                          "description": "Selector de unidad de venta visible"
                         }
                       ],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-c23204f13332eb4f181d",
@@ -1169,44 +1107,34 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 409,
-                        "column": 12
-                      }
+                      "type": "pass",
+                      "description": "Sección de pagos visible (enablePayments=true)"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 13292,
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 15750,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:11.391Z",
+                      "startTime": "2026-04-08T18:39:21.427Z",
                       "annotations": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 409,
-                            "column": 12
-                          }
+                          "type": "pass",
+                          "description": "Sección de pagos visible (enablePayments=true)"
                         }
                       ],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-5a3e70cdeace405d9b7a",
@@ -1226,44 +1154,34 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 409,
-                        "column": 12
-                      }
+                      "type": "warning",
+                      "description": "Wallet no encontrado — puede requerir saldo disponible en cuenta"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 13328,
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14713,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:11.855Z",
+                      "startTime": "2026-04-08T18:39:25.792Z",
                       "annotations": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 409,
-                            "column": 12
-                          }
+                          "type": "warning",
+                          "description": "Wallet no encontrado — puede requerir saldo disponible en cuenta"
                         }
                       ],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-c9969a7083722a87fbba",
@@ -1273,7 +1191,7 @@
             },
             {
               "title": "confirmCartText — botón muestra texto \"Pasar a confirmación del pedido\" @config @funcional",
-              "ok": true,
+              "ok": false,
               "tags": [
                 "config",
                 "funcional"
@@ -1283,44 +1201,132 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 409,
-                        "column": 12
-                      }
+                      "type": "warning",
+                      "description": "Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 14187,
-                      "errors": [],
+                      "workerIndex": 4,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 16216,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:458:27",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                          "column": 27,
+                          "line": 458
+                        },
+                        "snippet": "  456 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  457 |     }\n> 458 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  459 |   });\n  460 |\n  461 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                            "column": 27,
+                            "line": 458
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  456 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  457 |     }\n> 458 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  459 |   });\n  460 |\n  461 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:458:27"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:24.689Z",
+                      "startTime": "2026-04-08T18:39:37.185Z",
                       "annotations": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 409,
-                            "column": 12
-                          }
+                          "type": "warning",
+                          "description": "Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout"
                         }
                       ],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                        "column": 27,
+                        "line": 458
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 16569,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:458:27",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                          "column": 27,
+                          "line": 458
+                        },
+                        "snippet": "  456 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  457 |     }\n> 458 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  459 |   });\n  460 |\n  461 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                            "column": 27,
+                            "line": 458
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  456 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  457 |     }\n> 458 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  459 |   });\n  460 |\n  461 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:458:27"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-08T18:39:53.890Z",
+                      "annotations": [
+                        {
+                          "type": "warning",
+                          "description": "Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout"
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
+                        "column": 27,
+                        "line": 458
+                      }
                     }
                   ],
-                  "status": "skipped"
+                  "status": "unexpected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-6abc28d84b750b42b197",
@@ -1340,44 +1346,34 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "skip",
-                      "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                      "location": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "line": 409,
-                        "column": 12
-                      }
+                      "type": "pass",
+                      "description": "Resumen de impuestos visible (taxes.showSummary=true)"
                     }
                   ],
-                  "expectedStatus": "skipped",
+                  "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "skipped",
-                      "duration": 13075,
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15337,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:25.190Z",
+                      "startTime": "2026-04-08T18:39:40.514Z",
                       "annotations": [
                         {
-                          "type": "skip",
-                          "description": "Cuenta sin comercio asignado — requiere cuenta tipo buyer para tests de pagos",
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "line": 409,
-                            "column": 12
-                          }
+                          "type": "pass",
+                          "description": "Resumen de impuestos visible (taxes.showSummary=true)"
                         }
                       ],
                       "attachments": []
                     }
                   ],
-                  "status": "skipped"
+                  "status": "expected"
                 }
               ],
               "id": "bfdc275249af9acd6eac-9760fdc100ff9a3f8a5b",
@@ -1414,15 +1410,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 10280,
+                      "duration": 10256,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:38.271Z",
+                      "startTime": "2026-04-08T18:39:55.857Z",
                       "annotations": [
                         {
                           "type": "pass",
@@ -1460,8 +1456,8 @@
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "warning",
-                      "description": "/payment-documents carga pero sin contenido visible"
+                      "type": "pass",
+                      "description": "Documentos de pago accesibles en /payment-documents"
                     }
                   ],
                   "expectedStatus": "passed",
@@ -1469,19 +1465,19 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 10316,
+                      "duration": 10559,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:38.883Z",
+                      "startTime": "2026-04-08T18:40:06.118Z",
                       "annotations": [
                         {
-                          "type": "warning",
-                          "description": "/payment-documents carga pero sin contenido visible"
+                          "type": "pass",
+                          "description": "Documentos de pago accesibles en /payment-documents"
                         }
                       ],
                       "attachments": []
@@ -1516,15 +1512,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 7,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9941,
+                      "duration": 16719,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:48.557Z",
+                      "startTime": "2026-04-08T18:40:11.699Z",
                       "annotations": [
                         {
                           "type": "pass",
@@ -1571,15 +1567,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 9027,
+                      "duration": 9205,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:49.205Z",
+                      "startTime": "2026-04-08T18:40:16.683Z",
                       "annotations": [
                         {
                           "type": "warning",
@@ -1626,15 +1622,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 8958,
+                      "duration": 9767,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:58.240Z",
+                      "startTime": "2026-04-08T18:40:25.896Z",
                       "annotations": [
                         {
                           "type": "pass",
@@ -1673,15 +1669,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 7,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9064,
+                      "duration": 9978,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:51:58.503Z",
+                      "startTime": "2026-04-08T18:40:28.910Z",
                       "annotations": [
                         {
                           "type": "pass",
@@ -1728,15 +1724,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 9921,
+                      "duration": 10793,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:52:07.204Z",
+                      "startTime": "2026-04-08T18:40:35.668Z",
                       "annotations": [
                         {
                           "type": "pass",
@@ -1778,15 +1774,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 7,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 13818,
+                      "duration": 14278,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:52:07.573Z",
+                      "startTime": "2026-04-08T18:40:38.896Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1812,11 +1808,11 @@
                   "annotations": [
                     {
                       "type": "warning",
-                      "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/categories"
+                      "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/categories, 404 https://k8s.solopide.me/api/v3/b2b-auth/transactions/upago/redirect-url/0109446793"
                     },
                     {
                       "type": "error",
-                      "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
+                      "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
                     }
                   ],
                   "expectedStatus": "passed",
@@ -1824,13 +1820,13 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 37881,
+                      "duration": 37695,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33",
                         "location": {
                           "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
                           "column": 33,
@@ -1845,21 +1841,21 @@
                             "column": 33,
                             "line": 673
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\n  671 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  672 |     }\n> 673 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  674 |   });\n  675 |\n  676 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n\n  671 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  672 |     }\n> 673 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  674 |   });\n  675 |\n  676 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-08T16:52:17.131Z",
+                      "startTime": "2026-04-08T18:40:46.467Z",
                       "annotations": [
                         {
                           "type": "warning",
-                          "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/categories"
+                          "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/categories, 404 https://k8s.solopide.me/api/v3/b2b-auth/transactions/upago/redirect-url/0109446793"
                         },
                         {
                           "type": "error",
-                          "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
+                          "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
                         }
                       ],
                       "attachments": [
@@ -1881,13 +1877,13 @@
                       }
                     },
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 8,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 40412,
+                      "duration": 37353,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33",
                         "location": {
                           "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
                           "column": 33,
@@ -1902,21 +1898,21 @@
                             "column": 33,
                             "line": 673
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\n  671 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  672 |     }\n> 673 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  674 |   });\n  675 |\n  676 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n\n  671 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  672 |     }\n> 673 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  674 |   });\n  675 |\n  676 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:673:33"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-08T16:52:55.520Z",
+                      "startTime": "2026-04-08T18:41:24.693Z",
                       "annotations": [
                         {
                           "type": "warning",
-                          "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/categories"
+                          "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/categories, 404 https://k8s.solopide.me/api/v3/b2b-auth/transactions/upago/redirect-url/0109446793"
                         },
                         {
                           "type": "error",
-                          "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
+                          "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
                         }
                       ],
                       "attachments": [
@@ -1963,11 +1959,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-08T16:49:26.180Z",
-    "duration": 250498.90600000002,
-    "expected": 14,
-    "skipped": 17,
-    "unexpected": 1,
+    "startTime": "2026-04-08T18:36:41.884Z",
+    "duration": 320972.77800000005,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 4,
     "flaky": 0
   }
 }

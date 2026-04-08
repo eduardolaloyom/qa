@@ -1,16 +1,16 @@
 {
   "date": "2026-04-08",
-  "timestamp": "2026-04-08T16:53:38.983891+00:00",
+  "timestamp": "2026-04-08T18:42:22.124198+00:00",
   "total": 32,
-  "passed": 14,
-  "failed": 1,
-  "duration": 250,
+  "passed": 28,
+  "failed": 4,
+  "duration": 320,
   "suites": [
     {
       "name": "new-soprole.spec.ts",
       "tests": 32,
-      "passed": 14,
-      "failed": 1,
+      "passed": 28,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -36,12 +36,54 @@
     {
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
-      "reason": "Expected: 0 \u2192 Received: 3",
+      "reason": "Expected: disabled \u2192 Received: enabled",
+      "owner": "dev",
+      "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
+      "count": 1,
+      "tests": [
+        "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional"
+      ],
+      "clients": [
+        "soprole new"
+      ]
+    },
+    {
+      "category": "real-bug",
+      "label": "\ud83d\udd34 Bug Real",
+      "reason": "Expected: 0 \u2192 Received: 4",
       "owner": "dev",
       "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola @funcional"
+      ],
+      "clients": [
+        "soprole new"
+      ]
+    },
+    {
+      "category": "unknown",
+      "label": "\u2753 Desconocido",
+      "reason": "Error: expect(received).toBeFalsy()\n\nReceived: true",
+      "owner": "qa",
+      "action": "Abrir el Trace del test para investigar manualmente",
+      "count": 1,
+      "tests": [
+        "[new-soprole.spec.ts] hideReceiptType=true \u2014 no muestra selector boleta/factura @pricing @funcional"
+      ],
+      "clients": [
+        "soprole new"
+      ]
+    },
+    {
+      "category": "unknown",
+      "label": "\u2753 Desconocido",
+      "reason": "Error: expect(received).toBeTruthy()\n\nReceived: false",
+      "owner": "qa",
+      "action": "Abrir el Trace del test para investigar manualmente",
+      "count": 1,
+      "tests": [
+        "[new-soprole.spec.ts] confirmCartText \u2014 bot\u00f3n muestra texto \"Pasar a confirmaci\u00f3n del pedido\" @config @funcional"
       ],
       "clients": [
         "soprole new"
