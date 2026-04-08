@@ -85,7 +85,7 @@
             </div>
         </div>
         <div style="margin-top:16px;padding:12px 16px;background:#fef3c7;border-radius:8px;font-size:0.85em;color:#92400e;">
-            <strong>Veredicto:</strong> CON CONDICIONES — Flujo de compra bloqueado por doble submit (SOPROLE-QA-002). Resto de flujos operativos. Requiere fix antes de go-live.
+            <strong>Veredicto:</strong> CON CONDICIONES — El flujo de compra se completa pero con riesgo real: doble submit puede crear pedidos duplicados (SOPROLE-QA-002 · P1). Requiere fix antes de go-live.
         </div>
     </div>
 
@@ -107,7 +107,7 @@
                 <tr>
                     <td><strong>A</strong> — Login + Compra</td>
                     <td><span class="badge badge-green">OK</span></td>
-                    <td><span class="badge badge-red">Falla</span></td>
+                    <td><span class="badge badge-amber">OK con issues</span></td>
                     <td><span class="badge badge-gray">No aplica</span></td>
                     <td><span class="badge badge-gray">No aplica</span></td>
                     <td><span class="badge badge-gray">No aplica</span></td>
@@ -252,7 +252,7 @@
         <h2>Gate de Rollout</h2>
         <div class="gate-row"><span>Zero Critical abiertos</span><span class="gate-icon">✅</span></div>
         <div class="gate-row"><span>Zero P1 sin plan de fix</span><span class="gate-icon">❌ — SOPROLE-QA-002 pendiente</span></div>
-        <div class="gate-row"><span>Compra B2B funcional</span><span class="gate-icon">❌ — bloqueado por QA-002</span></div>
+        <div class="gate-row"><span>Compra B2B funcional</span><span class="gate-icon">⚠️ funciona con riesgo — QA-002 puede duplicar pedidos</span></div>
         <div class="gate-row"><span>Precios y descuentos correctos</span><span class="gate-icon">✅</span></div>
         <div class="gate-row"><span>Documentos tributarios descargables</span><span class="gate-icon">⚠️ parcial — sin acceso desde menú</span></div>
         <div class="gate-row"><span>Health Score &ge; 80</span><span class="gate-icon">❌ — 72/100</span></div>
