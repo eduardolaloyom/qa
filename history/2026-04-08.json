@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "timestamp": "2026-04-08T15:34:14.935025+00:00",
+  "timestamp": "2026-04-08T15:44:45.770558+00:00",
   "total": 75,
   "passed": 57,
   "failed": 16,
@@ -57,6 +57,10 @@
       "tests": [
         "[codelpa.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola-y-errores @funcional",
         "[surtiventas.spec.ts] No hay productos con precio $0 @catalog @funcional"
+      ],
+      "clients": [
+        "codelpa",
+        "surtiventas"
       ]
     },
     {
@@ -68,6 +72,9 @@
       "count": 1,
       "tests": [
         "[codelpa.spec.ts] Estados de pedido son v\u00e1lidos (no \"No disponible\") @pedidos-y-estados @funcional"
+      ],
+      "clients": [
+        "codelpa"
       ]
     },
     {
@@ -79,6 +86,9 @@
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola @funcional"
+      ],
+      "clients": [
+        "soprole new"
       ]
     },
     {
@@ -91,6 +101,10 @@
       "tests": [
         "[codelpa.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional",
         "[surtiventas.spec.ts] Flujo completo: cat\u00e1logo \u2192 carrito \u2192 checkout @checkout @funcional"
+      ],
+      "clients": [
+        "codelpa",
+        "surtiventas"
       ]
     },
     {
@@ -105,6 +119,9 @@
         "[new-soprole.spec.ts] Carrito muestra items agregados @cart @funcional",
         "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional",
         "[new-soprole.spec.ts] Campo de cup\u00f3n visible en carrito @coupons @funcional"
+      ],
+      "clients": [
+        "soprole new"
       ]
     },
     {
@@ -116,6 +133,9 @@
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] hideReceiptType=true \u2014 no muestra selector boleta/factura @pricing @funcional"
+      ],
+      "clients": [
+        "soprole new"
       ]
     },
     {
@@ -127,6 +147,9 @@
       "count": 1,
       "tests": [
         "[surtiventas.spec.ts] Cup\u00f3n inv\u00e1lido muestra error (no crash) @coupons @cr\u00edtico"
+      ],
+      "clients": [
+        "surtiventas"
       ]
     },
     {
@@ -138,6 +161,9 @@
       "count": 1,
       "tests": [
         "[surtiventas.spec.ts] Pedido aparece en historial post-checkout @checkout @funcional"
+      ],
+      "clients": [
+        "surtiventas"
       ]
     },
     {
@@ -149,6 +175,9 @@
       "count": 1,
       "tests": [
         "[codelpa.spec.ts] hideReceiptType=true \u2014 no muestra selector de boleta/factura @pricing @funcional"
+      ],
+      "clients": [
+        "codelpa"
       ]
     },
     {
@@ -161,6 +190,10 @@
       "tests": [
         "[new-soprole.spec.ts] Historial de pedidos carga @pedidos @funcional",
         "[surtiventas.spec.ts] Historial de pedidos muestra tabla con estados @pedidos-y-estados @funcional"
+      ],
+      "clients": [
+        "soprole new",
+        "surtiventas"
       ]
     }
   ],
