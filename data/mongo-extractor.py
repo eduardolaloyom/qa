@@ -81,6 +81,7 @@ REAL_CLIENTS = {
     "prisur.youorder.me": "Prisur",
     "soprole.youorder.me": "Soprole",
     "new-soprole.youorder.me": "Soprole (new)",
+    "new-soprole.solopide.me": "Soprole (new staging)",
     "surtiventas.youorder.me": "Surtiventas",
     "softys-cencocal.youorder.me": "Softys-Cencocal",
     "softys-dimak.youorder.me": "Softys-Dimak",
