@@ -88,13 +88,13 @@ Pregunta si no tienes esta información. No hagas suposiciones sobre qué flags 
 
 ---
 
-## 4. Tests B2B — Tier 1 (Críticos)
+## 4. Tests B2B — Tier 1 · Modos A + B
 
 Ejecuta **en este orden**. **Regla:** Si encuentras un P0 en cualquier flujo — detén todo, produce el reporte del error, y espera instrucción antes de continuar con el siguiente flujo.
 
 ---
 
-### [C1] Login de Comercio
+### [C1] Login de Comercio · `Modo A`
 
 **URL:** `{base_url}/auth/jwt/login`  
 **Tiempo:** ~5 min
@@ -121,7 +121,7 @@ C1-08 Logout: PASS/FAIL — [observación]
 
 ---
 
-### [C2] Flujo de Compra Completo
+### [C2] Flujo de Compra Completo · `Modo A`
 
 **URL inicio:** `{base_url}/products`  
 **Tiempo:** ~15 min
@@ -150,7 +150,7 @@ C2-13 En historial: PASS/FAIL — [orden visible]
 
 ---
 
-### [C3] Precios y Descuentos
+### [C3] Precios y Descuentos · `Modo B`
 
 **URL:** `/products`, `/cart`  
 **Tiempo:** ~10 min
@@ -181,7 +181,7 @@ C3-17/18 Precios por segmento: PASS/FAIL/N/A — [observación]
 
 ---
 
-### [C7] Documentos Tributarios
+### [C7] Documentos Tributarios · `Modo C`
 
 **URL:** `/orders`, `/payment-documents`  
 **Tiempo:** ~5 min — solo si el cliente tiene `enablePaymentDocumentsB2B: true`
@@ -196,7 +196,7 @@ C3-17/18 Precios por segmento: PASS/FAIL/N/A — [observación]
 
 ---
 
-### Validación de Configuración B2B
+### Validación de Configuración B2B · `Modo B`
 
 Después del flujo de compra, valida que los flags del cliente se reflejan correctamente:
 
@@ -221,7 +221,7 @@ Después del flujo de compra, valida que los flags del cliente se reflejan corre
 
 ---
 
-## 5. Tests Admin — Tier 1
+## 5. Tests Admin — Tier 1 · Modo C
 
 **URL:** `https://admin.youorder.me`  
 **Credenciales:** Pide `ADMIN_EMAIL` y `ADMIN_PASSWORD` si no las tienes.
@@ -250,7 +250,7 @@ A1-08 Gestión banners: PASS/FAIL — [cantidad banners activos]
 
 ---
 
-## 6. Flujos Tier 2 (Ejecutar después de Tier 1 sin fallas P0)
+## 6. Flujos Tier 2 · Modo D
 
 | ID | Flujo | Plataforma | Cómo validar |
 |----|-------|-----------|--------------|
