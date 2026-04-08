@@ -507,6 +507,45 @@
         .hidden { display: none; }
         .divider { height: 1px; background: #f3f4f6; margin: 16px 0; }
 
+        /* ── Cowork Reports ── */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .report-card {
+            border: 1.5px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .report-card:hover { border-color: #6366f1; box-shadow: 0 4px 16px rgba(99,102,241,0.12); }
+        .report-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .report-client { font-weight: 700; color: #111827; font-size: 0.95em; }
+        .report-date { font-size: 0.75em; color: #9ca3af; }
+        .report-modes { display: flex; gap: 5px; flex-wrap: wrap; }
+        .mode-badge {
+            font-size: 0.7em; font-weight: 700; padding: 2px 7px;
+            border-radius: 99px; background: #f3f4f6; color: #374151;
+        }
+        .mode-badge.done { background: #d1fae5; color: #065f46; }
+        .report-verdict {
+            font-size: 0.8em; font-weight: 700; padding: 3px 10px;
+            border-radius: 99px; align-self: flex-start;
+        }
+        .verdict-listo { background: #d1fae5; color: #065f46; }
+        .verdict-condiciones { background: #fef3c7; color: #92400e; }
+        .verdict-bloqueado { background: #fee2e2; color: #991b1b; }
+        .verdict-pending { background: #f3f4f6; color: #6b7280; }
+        .report-score { font-size: 1.4em; font-weight: 800; color: #111827; }
+        .report-score span { font-size: 0.55em; color: #9ca3af; font-weight: 600; }
+        .reports-empty { color: #9ca3af; font-size: 0.88em; padding: 8px 0; }
+
         @media (max-width: 900px) {
             .summary-row { grid-template-columns: 1fr 1fr; }
             .chart-grid { grid-template-columns: 1fr; }
@@ -527,6 +566,7 @@
             <p>Playwright E2E · B2B Platform</p>
         </div>
         <div class="header-actions">
+<a href="qa-reports/" class="btn-ghost" target="_blank">📋 Reportes Cowork</a>
 <a href="reports/index.html" class="btn-ghost" target="_blank">🔬 Playwright Report</a>
         </div>
     </header>
@@ -608,6 +648,14 @@
         <div class="card-title">🏪 Clientes Testeados</div>
         <div class="clients-grid" id="clientsContainer">
             <div class="loading">Cargando clientes...</div>
+        </div>
+    </div>
+
+    <!-- Cowork QA Reports -->
+    <div class="card">
+        <div class="card-title">📋 Reportes QA Cowork</div>
+        <div class="reports-grid" id="coworkReportsGrid">
+            <div class="loading">Cargando reportes...</div>
         </div>
     </div>
 
@@ -1099,6 +1147,48 @@ function escapeHtml(str) {
 }
 
 document.addEventListener('DOMContentLoaded', initDashboard);
+
+// ── Cowork Reports ────────────────────────────────────────
+
+async function loadCoworkReports() {
+    const grid = document.getElementById('coworkReportsGrid');
+    try {
+        const r = await fetch('qa-reports/manifest.json?v=' + Date.now());
+        if (!r.ok) throw new Error('no manifest');
+        const data = await r.json();
+        const reports = (data.reports || []).sort((a, b) => b.date.localeCompare(a.date));
+        if (reports.length === 0) {
+            grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>/report-qa {CLIENTE} {FECHA}</code> para generar el primero.</p>';
+            return;
+        }
+        grid.innerHTML = reports.map(rep => {
+            const verdictClass = rep.verdict === 'LISTO' ? 'verdict-listo'
+                : rep.verdict === 'CON CONDICIONES' ? 'verdict-condiciones'
+                : rep.verdict === 'BLOQUEADO' ? 'verdict-bloqueado'
+                : 'verdict-pending';
+            const modesHtml = ['A','B','C','D'].map(m => {
+                const done = (rep.modes_done || []).includes(m);
+                return `<span class="mode-badge ${done ? 'done' : ''}">${m}</span>`;
+            }).join('');
+            const scoreHtml = rep.score ? `<div class="report-score">${rep.score}<span>/100</span></div>` : '';
+            return `<a class="report-card" href="qa-reports/${rep.file}" target="_blank">
+                <div class="report-card-header">
+                    <div>
+                        <div class="report-client">${escapeHtml(rep.client)}</div>
+                        <div class="report-date">${rep.date}</div>
+                    </div>
+                    ${scoreHtml}
+                </div>
+                <div class="report-modes">${modesHtml}</div>
+                <span class="report-verdict ${verdictClass}">${rep.verdict || 'En progreso'}</span>
+            </a>`;
+        }).join('');
+    } catch {
+        grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>/report-qa {CLIENTE} {FECHA}</code> para generar el primero.</p>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadCoworkReports);
 </script>
 </body>
 </html>
