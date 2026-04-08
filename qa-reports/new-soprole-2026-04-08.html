@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Report — Soprole (new staging) — 2026-04-08</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f9fafb; color: #111827; }
+        .topbar { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px 32px; display: flex; align-items: center; gap: 24px; }
+        .topbar a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.88em; }
+        .topbar a:hover { color: white; }
+        .topbar h1 { font-size: 1.4em; flex: 1; }
+        .verdict-badge { padding: 6px 16px; border-radius: 99px; font-weight: 700; font-size: 0.9em; background: #fef3c7; color: #92400e; }
+        .container { max-width: 960px; margin: 32px auto; padding: 0 24px 60px; }
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        .card h2 { font-size: 1em; font-weight: 700; color: #374151; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #f3f4f6; }
+        /* Summary stats */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .stat { background: #f9fafb; border-radius: 8px; padding: 14px; text-align: center; }
+        .stat-val { font-size: 1.8em; font-weight: 800; line-height: 1; }
+        .stat-lbl { font-size: 0.72em; color: #6b7280; font-weight: 600; margin-top: 4px; }
+        .stat.red .stat-val { color: #dc2626; }
+        .stat.amber .stat-val { color: #d97706; }
+        .stat.green .stat-val { color: #059669; }
+        .stat.purple .stat-val { color: #7c3aed; }
+        /* Modes table */
+        .modes-table { width: 100%; border-collapse: collapse; }
+        .modes-table th { background: #f9fafb; padding: 8px 12px; font-size: 0.8em; color: #6b7280; font-weight: 700; text-align: left; }
+        .modes-table td { padding: 10px 12px; border-top: 1px solid #f3f4f6; font-size: 0.88em; }
+        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }
+        .badge-green { background: #d1fae5; color: #065f46; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .badge-gray { background: #f3f4f6; color: #6b7280; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+        /* Issues table */
+        .issues-table { width: 100%; border-collapse: collapse; }
+        .issues-table th { background: #f9fafb; padding: 8px 12px; font-size: 0.78em; color: #6b7280; font-weight: 700; text-align: left; }
+        .issues-table td { padding: 10px 12px; border-top: 1px solid #f3f4f6; font-size: 0.85em; vertical-align: top; }
+        .p-badge { padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.78em; }
+        .p1 { background: #fee2e2; color: #991b1b; }
+        .p2 { background: #fef3c7; color: #92400e; }
+        .p3 { background: #e0e7ff; color: #3730a3; }
+        /* Gate */
+        .gate-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; }
+        .gate-row:last-child { border-bottom: none; }
+        .gate-icon { font-size: 1.1em; }
+        /* Slack block */
+        .slack-block { background: #1a1d23; color: #e2e8f0; border-radius: 8px; padding: 18px 20px; font-family: 'SF Mono', Consolas, monospace; font-size: 0.82em; line-height: 1.7; position: relative; }
+        .copy-btn { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.1); border: none; color: white; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.78em; }
+        .copy-btn:hover { background: rgba(255,255,255,0.2); }
+        @media (max-width: 600px) { .stats-row { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="../">← Dashboard</a>
+    <h1>QA Report — Soprole (new staging)</h1>
+    <span class="verdict-badge">CON CONDICIONES</span>
+</div>
+
+<div class="container">
+
+    <!-- Resumen -->
+    <div class="card">
+        <h2>Resumen ejecutivo</h2>
+        <div class="stats-row">
+            <div class="stat red">
+                <div class="stat-val">1</div>
+                <div class="stat-lbl">P1 Bloqueante</div>
+            </div>
+            <div class="stat amber">
+                <div class="stat-val">1</div>
+                <div class="stat-lbl">P2 Alto</div>
+            </div>
+            <div class="stat purple">
+                <div class="stat-val">3</div>
+                <div class="stat-lbl">P3 Medio</div>
+            </div>
+            <div class="stat green">
+                <div class="stat-val">72</div>
+                <div class="stat-lbl">Health Score</div>
+            </div>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;background:#fef3c7;border-radius:8px;font-size:0.85em;color:#92400e;">
+            <strong>Veredicto:</strong> CON CONDICIONES — Flujo de compra bloqueado por doble submit (SOPROLE-QA-002). Resto de flujos operativos. Requiere fix antes de go-live.
+        </div>
+    </div>
+
+    <!-- Resultados por modo -->
+    <div class="card">
+        <h2>Resultados por modo</h2>
+        <table class="modes-table">
+            <thead>
+                <tr>
+                    <th>Modo</th>
+                    <th>Flujos</th>
+                    <th>C1 Login</th>
+                    <th>C2 Compra</th>
+                    <th>C3 Precios</th>
+                    <th>C7 Docs</th>
+                    <th>C9/C5</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>A</strong> Login + Compra</td>
+                    <td>C1, C2</td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-red">✗</span></td>
+                    <td><span class="badge badge-gray">N/A</span></td>
+                    <td><span class="badge badge-gray">N/A</span></td>
+                    <td><span class="badge badge-gray">N/A</span></td>
+                </tr>
+                <tr>
+                    <td><strong>B</strong> Precios + Config</td>
+                    <td>C3, flags</td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-red">✗</span></td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-gray">N/A</span></td>
+                    <td><span class="badge badge-gray">N/A</span></td>
+                </tr>
+                <tr>
+                    <td><strong>C</strong> Documentos</td>
+                    <td>C7</td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-red">✗</span></td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-amber">✓*</span></td>
+                    <td><span class="badge badge-gray">N/A</span></td>
+                </tr>
+                <tr>
+                    <td><strong>D</strong> Tier 2</td>
+                    <td>C9, C5</td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-red">✗</span></td>
+                    <td><span class="badge badge-green">✓</span></td>
+                    <td><span class="badge badge-amber">✓*</span></td>
+                    <td><span class="badge badge-green">✓</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:0.78em;color:#9ca3af;">* C7 parcial: documento descargable OK pero sin acceso desde menú lateral (solo footer + tab /orders)</div>
+    </div>
+
+    <!-- Issues -->
+    <div class="card">
+        <h2>Issues encontrados (5)</h2>
+        <table class="issues-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Sev</th>
+                    <th>Área</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SOPROLE-QA-002</strong></td>
+                    <td><span class="p-badge p1">P1</span></td>
+                    <td>C2-12</td>
+                    <td>Doble submit crea pedidos duplicados — botón no se deshabilita tras primer click, API sin idempotencia</td>
+                    <td><span class="badge badge-red">Abierto</span></td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-001</strong></td>
+                    <td><span class="p-badge p2">P2</span></td>
+                    <td>C2-06</td>
+                    <td>Click "−" con qty en mínimo elimina item directamente sin diálogo de confirmación</td>
+                    <td><span class="badge badge-red">Abierto</span></td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-003</strong></td>
+                    <td><span class="p-badge p3">P3</span></td>
+                    <td>C2-11</td>
+                    <td>"Número de pedido: #No disponible" en /confirmation — en /orders sí aparece el número</td>
+                    <td><span class="badge badge-red">Abierto</span></td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-004</strong></td>
+                    <td><span class="p-badge p3">P3</span></td>
+                    <td>FLAGS</td>
+                    <td>Badge pendingDocuments no visible en campana (MuiBadge-invisible) — flag enablePaymentDocumentsB2B=true confirmado</td>
+                    <td><span class="badge badge-red">Abierto</span></td>
+                </tr>
+                <tr>
+                    <td><strong>SOPROLE-QA-005</strong></td>
+                    <td><span class="p-badge p3">P3</span></td>
+                    <td>UX</td>
+                    <td>Espaciado blanco excesivo en /orders/{id}</td>
+                    <td><span class="badge badge-red">Abierto</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Gate de Rollout -->
+    <div class="card">
+        <h2>Gate de Rollout</h2>
+        <div class="gate-row"><span>Zero Critical abiertos</span><span class="gate-icon">✅</span></div>
+        <div class="gate-row"><span>Zero P1 sin plan de fix</span><span class="gate-icon">❌ — SOPROLE-QA-002 pendiente</span></div>
+        <div class="gate-row"><span>Compra B2B funcional</span><span class="gate-icon">❌ — bloqueado por QA-002</span></div>
+        <div class="gate-row"><span>Precios y descuentos correctos</span><span class="gate-icon">✅</span></div>
+        <div class="gate-row"><span>Documentos tributarios descargables</span><span class="gate-icon">⚠️ parcial — sin acceso desde menú</span></div>
+        <div class="gate-row"><span>Health Score &ge; 80</span><span class="gate-icon">❌ — 72/100</span></div>
+        <div style="margin-top:14px;padding:10px 14px;background:#fef3c7;border-radius:8px;font-size:0.85em;color:#92400e;">
+            <strong>Veredicto:</strong> CON CONDICIONES — Fix SOPROLE-QA-002 requerido antes de go-live
+        </div>
+    </div>
+
+    <!-- Ship Readiness -->
+    <div class="card">
+        <h2>Ship Readiness — bloque para Slack</h2>
+        <div class="slack-block" id="slackBlock">
+*QA Report — Soprole (new staging) — 2026-04-08*
+Health Score: *72/100* | Veredicto: *CON CONDICIONES*
+
+Issues encontrados: 5 total (0 Critical · 1 P1 · 1 P2 · 3 P3)
+Issues resueltos durante QA: 0
+Issues abiertos: 5
+
+Flujos validados: C1 ✅ C2 ❌ C3 ✅ C7 ⚠️ C9 ✅ C5 ✅
+
+*Bloqueante:*
+• SOPROLE-QA-002 (P1) — Doble submit crea pedidos duplicados → botón sin deshabilitar, API sin idempotencia
+
+*Requiere antes de go-live:*
+• Fix QA-002 + re-validación flujo de compra
+• Fix menú lateral para acceso a documentos (C7-11)
+        <button class="copy-btn" onclick="copySlack()">Copiar</button>
+        </div>
+    </div>
+
+    <!-- Notas de contexto -->
+    <div class="card">
+        <h2>Notas de sesión</h2>
+        <ul style="font-size:0.85em;color:#374151;line-height:1.8;padding-left:20px;">
+            <li>Credenciales: <code>eduardo+newsoproleadmin@yom.ai</code> / <code>laloyom123</code></li>
+            <li>Código de cliente debe ingresarse manualmente antes de navegar a /products</li>
+            <li>Pedidos de prueba #18, #19, #20 pendientes de limpiar en staging</li>
+            <li>C10 sin cobertura — requiere comercio BLOQUEADO para testear</li>
+            <li>Doc pendiente confirmado: $169.364, ID 6041832100</li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+function copySlack() {
+    const text = document.getElementById('slackBlock').innerText.replace('Copiar','').trim();
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '✓ Copiado';
+        setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+}
+</script>
+</body>
+</html>
