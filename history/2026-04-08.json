@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "timestamp": "2026-04-08T19:20:37.573669+00:00",
+  "timestamp": "2026-04-08T21:12:18.262129+00:00",
   "total": 32,
   "passed": 29,
   "failed": 3,
@@ -38,7 +38,7 @@
       "label": "\ud83d\udd34 Bug Real",
       "reason": "Bot\u00f3n 'confirmar pedido' habilitado cuando deber\u00eda estar deshabilitado",
       "owner": "dev",
-      "action": "El bot\u00f3n 'confirmar pedido' est\u00e1 habilitado con carrito vac\u00edo. Dev debe agregar validaci\u00f3n en el componente del carrito: deshabilitar el bot\u00f3n cuando no hay productos.",
+      "action": "Se debe agregar validaci\u00f3n en el componente del carrito para deshabilitar el bot\u00f3n 'confirmar pedido' cuando no hay productos.",
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional"
@@ -52,7 +52,7 @@
       "label": "\ud83d\udd34 Bug Real",
       "reason": "confirmCartText no se aplica \u2014 texto del bot\u00f3n no coincide con la config",
       "owner": "dev",
-      "action": "El campo confirmCartText en MongoDB dice 'Pasar a confirmaci\u00f3n del pedido' pero el bot\u00f3n muestra otro texto. Dev debe verificar que el componente del carrito lee confirmCartText desde la config del cliente.",
+      "action": "Se debe verificar que el componente del carrito lee confirmCartText desde la config del cliente. En MongoDB est\u00e1 configurado como 'Pasar a confirmaci\u00f3n del pedido' pero el bot\u00f3n muestra otro texto.",
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] confirmCartText \u2014 bot\u00f3n muestra texto \"Pasar a confirmaci\u00f3n del pedido\" @config @funcional"
@@ -66,7 +66,7 @@
       "label": "\ud83d\udd34 Bug Real",
       "reason": "Error de servidor (5xx) en: `https://api.solopide.me/api/v2/commerces/delivery` (500)",
       "owner": "dev",
-      "action": "Reportar a Dev \u2014 endpoint(s) fallando en staging: https://api.solopide.me/api/v2/commerces/delivery. M\u00e9todo: GET. Ambiente: staging. Dev debe revisar logs del servidor para ese endpoint y cliente.",
+      "action": "Se debe revisar los logs del servidor para el endpoint https://api.solopide.me/api/v2/commerces/delivery (GET, staging). El servidor retorna 500 \u2014 se debe identificar y corregir el error interno.",
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola @funcional"
