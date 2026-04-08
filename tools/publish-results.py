@@ -112,7 +112,7 @@ def strip_ansi(text: str) -> str:
     return re.sub(r'\x1b\[[0-9;]*m', '', text)
 
 
-def classify_error(error: str, annotations: list = None) -> tuple:
+def classify_error(error: str, annotations: list = None, title: str = "") -> tuple:
     """
     Classify a test error into (category, reason, owner, action).
     owner: 'dev' | 'qa'
@@ -131,13 +131,16 @@ def classify_error(error: str, annotations: list = None) -> tuple:
         urls_raw = server_error_match.group(1).strip()
         # Parse "500 https://..., 500 https://..."
         entries = [e.strip() for e in urls_raw.split(",") if e.strip()]
-        # Group by unique URL
+        # Group by unique URL — extract only the URL part (not sub-annotations noise)
         url_codes: dict = {}
         for entry in entries:
             parts = entry.split(" ", 1)
             if len(parts) == 2:
                 code, url = parts[0], parts[1]
-                url_codes[url] = code
+                # Clean: take only up to first space or "Requests" substring
+                url = re.split(r'\s+Requests', url)[0].strip()
+                if re.match(r'https?://', url):
+                    url_codes[url] = code
         unique_urls = list(url_codes.keys())
         url_list = ", ".join(f"`{url}` ({url_codes[url]})" for url in unique_urls[:3])
         reason = f"Error de servidor (5xx) en: {url_list}"
@@ -157,6 +160,26 @@ def classify_error(error: str, annotations: list = None) -> tuple:
                 "dev", "Revisar el Trace del test para ver qué devolvió la app y reportar al equipo dev")
 
     e = error.lower()
+    t = title.lower()
+
+    # ── toBeDisabled failures — must check before expected/received ──────────
+    if "tobedisabled" in e or ("expected: disabled" in e and "received: enabled" in e):
+        # Extract button name from error
+        btn_match = re.search(r"name:\s*/([^/]+)/i?\)", error)
+        btn_name = btn_match.group(1) if btn_match else "confirmar pedido"
+        return ("real-bug",
+                f"Botón '{btn_name}' habilitado cuando debería estar deshabilitado",
+                "dev",
+                f"El botón '{btn_name}' está habilitado con carrito vacío. "
+                f"Dev debe agregar validación en el componente del carrito: deshabilitar el botón cuando no hay productos.")
+
+    # ── confirmCartText not applied ──────────────────────────────────────────
+    if "confirmcarttext" in t or "pasar a confirmación" in t:
+        return ("real-bug",
+                "confirmCartText no se aplica — texto del botón no coincide con la config",
+                "dev",
+                "El campo confirmCartText en MongoDB dice 'Pasar a confirmación del pedido' pero el botón muestra otro texto. "
+                "Dev debe verificar que el componente del carrito lee confirmCartText desde la config del cliente.")
 
     if "element(s) not found" in e or ("not found" in e and "locator" in e):
         match = re.search(r"locator\('([^']+)'\)", error)
@@ -195,24 +218,23 @@ def classify_error(error: str, annotations: list = None) -> tuple:
         rec = m_rec.group(1).strip()[:50] if m_rec else "?"
         reason = f"Expected: {exp} → Received: {rec}"
         if "no disponible" in e or "disponible" in rec.lower():
-            action = "Reportar al equipo dev: hay pedidos con estado sin mapear en el frontend de este cliente"
+            action = "Hay pedidos con estado 'No disponible' — Dev debe verificar el mapeo de estados de pedido para este cliente en el frontend"
         elif ann_texts:
-            action = f"Contexto del test: {ann_texts[:150]}. Reportar al equipo dev con esta info."
-        elif rec.strip() not in ("?", "0", "false"):
-            action = "Abrir el Trace del test → ver qué devolvió la app → reportar la URL o el valor incorrecto al equipo dev"
+            action = f"{ann_texts[:200]}"
         else:
-            action = "Abrir el Trace del test → ver el estado de la app al momento del fallo → reportar al equipo dev"
+            action = f"Test '{title}' falló con valor inesperado. Dev debe revisar el comportamiento de esta funcionalidad en staging."
         return ("real-bug", reason, "dev", action)
 
     if "tohaveurl" in e:
         return ("real-bug", "La app no redirigió a la URL esperada",
-                "dev", "Abrir el Trace → ver en qué URL quedó la app → reportar al equipo dev si es un flujo roto")
+                "dev", "El flujo de navegación está roto — la app quedó en la misma URL en lugar de avanzar. Dev debe revisar el routing de este flujo.")
 
     if "401" in error or "unauthorized" in e:
         return ("credentials", "Error de autenticación (401)",
                 "qa", "Verificar que las credenciales en .env sean correctas para este cliente")
 
-    return ("unknown", error[:100], "qa", "Abrir el Trace del test para investigar manualmente")
+    return ("unknown", f"{title}: {error[:80]}" if title else error[:100],
+            "qa", f"Test '{title}' falló con resultado inesperado. Revisar manualmente en staging." if title else "Revisar manualmente en staging.")
 
 
 CATEGORY_ORDER = {"real-bug": 0, "selector": 1, "timeout": 2, "credentials": 3, "unknown": 4}
@@ -255,7 +277,7 @@ def generate_failure_groups(results: dict) -> list:
     group_clients: dict = defaultdict(set)
 
     for t in failed:
-        category, reason, owner, action = classify_error(t.get("error", ""), t.get("annotations", []))
+        category, reason, owner, action = classify_error(t.get("error", ""), t.get("annotations", []), t.get("title", ""))
         key = f"{category}::{reason}"
         groups[key].append(f"[{t['file']}] {t['title']}")
         cause_map[key] = (category, reason, owner, action)

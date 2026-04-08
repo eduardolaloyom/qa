@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "timestamp": "2026-04-08T19:15:25.661267+00:00",
+  "timestamp": "2026-04-08T19:20:37.573669+00:00",
   "total": 32,
   "passed": 29,
   "failed": 3,
@@ -36,9 +36,9 @@
     {
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
-      "reason": "Elemento deber\u00eda estar deshabilitado pero est\u00e1 habilitado",
+      "reason": "Bot\u00f3n 'confirmar pedido' habilitado cuando deber\u00eda estar deshabilitado",
       "owner": "dev",
-      "action": "El bot\u00f3n de confirmar pedido est\u00e1 habilitado con carrito vac\u00edo \u2014 Dev debe agregar validaci\u00f3n en el frontend para deshabilitar el bot\u00f3n cuando no hay productos en el carrito",
+      "action": "El bot\u00f3n 'confirmar pedido' est\u00e1 habilitado con carrito vac\u00edo. Dev debe agregar validaci\u00f3n en el componente del carrito: deshabilitar el bot\u00f3n cuando no hay productos.",
       "count": 1,
       "tests": [
         "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional"
@@ -50,26 +50,26 @@
     {
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
-      "reason": "Error de servidor (5xx) en: `https://api.solopide.me/api/v2/commerces/delivery` (500), `https://api.solopide.me/api/v2/commerces/delivery Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery` (500)",
+      "reason": "confirmCartText no se aplica \u2014 texto del bot\u00f3n no coincide con la config",
       "owner": "dev",
-      "action": "Reportar a Dev \u2014 endpoint(s) fallando en staging: https://api.solopide.me/api/v2/commerces/delivery, https://api.solopide.me/api/v2/commerces/delivery Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery. M\u00e9todo: GET. Ambiente: staging. Dev debe revisar logs del servidor para ese endpoint y cliente.",
+      "action": "El campo confirmCartText en MongoDB dice 'Pasar a confirmaci\u00f3n del pedido' pero el bot\u00f3n muestra otro texto. Dev debe verificar que el componente del carrito lee confirmCartText desde la config del cliente.",
       "count": 1,
       "tests": [
-        "[new-soprole.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola @funcional"
+        "[new-soprole.spec.ts] confirmCartText \u2014 bot\u00f3n muestra texto \"Pasar a confirmaci\u00f3n del pedido\" @config @funcional"
       ],
       "clients": [
         "soprole new"
       ]
     },
     {
-      "category": "unknown",
-      "label": "\u2753 Desconocido",
-      "reason": "Error: expect(received).toBeTruthy()\n\nReceived: false",
-      "owner": "qa",
-      "action": "Abrir el Trace del test para investigar manualmente",
+      "category": "real-bug",
+      "label": "\ud83d\udd34 Bug Real",
+      "reason": "Error de servidor (5xx) en: `https://api.solopide.me/api/v2/commerces/delivery` (500)",
+      "owner": "dev",
+      "action": "Reportar a Dev \u2014 endpoint(s) fallando en staging: https://api.solopide.me/api/v2/commerces/delivery. M\u00e9todo: GET. Ambiente: staging. Dev debe revisar logs del servidor para ese endpoint y cliente.",
       "count": 1,
       "tests": [
-        "[new-soprole.spec.ts] confirmCartText \u2014 bot\u00f3n muestra texto \"Pasar a confirmaci\u00f3n del pedido\" @config @funcional"
+        "[new-soprole.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola @funcional"
       ],
       "clients": [
         "soprole new"
