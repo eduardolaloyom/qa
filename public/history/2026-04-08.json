@@ -1,10 +1,10 @@
 {
   "date": "2026-04-08",
-  "timestamp": "2026-04-08T15:44:45.770558+00:00",
-  "total": 75,
-  "passed": 57,
-  "failed": 16,
-  "duration": 716,
+  "timestamp": "2026-04-08T16:48:58.257798+00:00",
+  "total": 89,
+  "passed": 63,
+  "failed": 10,
+  "duration": 709,
   "suites": [
     {
       "name": "codelpa.spec.ts",
@@ -15,9 +15,9 @@
     },
     {
       "name": "new-soprole.spec.ts",
-      "tests": 18,
-      "passed": 11,
-      "failed": 7,
+      "tests": 32,
+      "passed": 17,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
@@ -80,7 +80,7 @@
     {
       "category": "real-bug",
       "label": "\ud83d\udd34 Bug Real",
-      "reason": "Expected: 0 \u2192 Received: 8",
+      "reason": "Expected: 0 \u2192 Received: 3",
       "owner": "dev",
       "action": "Abrir el Trace del test \u2192 ver qu\u00e9 devolvi\u00f3 la app \u2192 reportar la URL o el valor incorrecto al equipo dev",
       "count": 1,
@@ -105,37 +105,6 @@
       "clients": [
         "codelpa",
         "surtiventas"
-      ]
-    },
-    {
-      "category": "selector",
-      "label": "\ud83d\udd27 Selector / Infraestructura",
-      "reason": "Elemento no existe en el DOM: `.add-new-product-to-cart-button`",
-      "owner": "qa",
-      "action": "Inspeccionar el sitio staging en el navegador \u2192 buscar el elemento real \u2192 actualizar el selector `.add-new-product-to-cart-button` en el spec",
-      "count": 4,
-      "tests": [
-        "[new-soprole.spec.ts] Agregar producto al carrito @cart @funcional",
-        "[new-soprole.spec.ts] Carrito muestra items agregados @cart @funcional",
-        "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional",
-        "[new-soprole.spec.ts] Campo de cup\u00f3n visible en carrito @coupons @funcional"
-      ],
-      "clients": [
-        "soprole new"
-      ]
-    },
-    {
-      "category": "selector",
-      "label": "\ud83d\udd27 Selector / Infraestructura",
-      "reason": "Request HTTP esperada nunca ocurri\u00f3 (bot\u00f3n no se pudo clickear antes)",
-      "owner": "qa",
-      "action": "Se resuelve solo al arreglar el selector del bot\u00f3n de carrito en el grupo anterior",
-      "count": 1,
-      "tests": [
-        "[new-soprole.spec.ts] hideReceiptType=true \u2014 no muestra selector boleta/factura @pricing @funcional"
-      ],
-      "clients": [
-        "soprole new"
       ]
     },
     {
@@ -186,10 +155,27 @@
       "reason": "Error: expect(received).toBeTruthy()\n\nReceived: false",
       "owner": "qa",
       "action": "Abrir el Trace del test para investigar manualmente",
-      "count": 2,
+      "count": 1,
       "tests": [
-        "[new-soprole.spec.ts] Historial de pedidos carga @pedidos @funcional",
         "[surtiventas.spec.ts] Historial de pedidos muestra tabla con estados @pedidos-y-estados @funcional"
+      ],
+      "clients": [
+        "surtiventas"
+      ]
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 5,
+      "tests": [
+        "[new-soprole.spec.ts] Home sin login \u2014 redirige a login @login @funcional",
+        "[new-soprole.spec.ts] Carrito muestra items agregados @cart @funcional",
+        "[new-soprole.spec.ts] Carrito vac\u00edo no permite confirmar pedido @validaciones @funcional",
+        "[new-soprole.spec.ts] Campo de cup\u00f3n visible en carrito @coupons @funcional",
+        "[surtiventas.spec.ts] Modificar cantidad en carrito @catalog @funcional"
       ],
       "clients": [
         "soprole new",
