@@ -1,8 +1,8 @@
 {
-  "extractedAt": "2026-04-09T16:43:56.435757+00:00",
+  "extractedAt": "2026-04-09T18:52:32.237930+00:00",
   "totalSites": 64,
-  "totalCustomers": 265,
-  "totalSalesterms": 45,
+  "totalCustomers": 67,
+  "totalSalesterms": 46,
   "fullExtract": false,
   "clients": {
     "codelpa-staging": {
@@ -11,8 +11,8 @@
       "customerId": "5d0bb5337be16c6494f4e3c6",
       "currency": "clp",
       "inMaintenance": false,
-      "hasCustomer": false,
-      "hasSalesterms": false,
+      "hasCustomer": true,
+      "hasSalesterms": true,
       "variables": {
         "taxes.showSummary": true,
         "taxes.useTaxRate": false,
@@ -86,8 +86,52 @@
           "description"
         ]
       },
-      "salesterms": {},
-      "customer": {},
+      "salesterms": {
+        "coverage.text": "",
+        "delivery.text": "",
+        "delivery.daysOfWeek": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday"
+        ],
+        "delivery.fromHours": 0.0,
+        "delivery.toHours": 86400.0,
+        "order.text": null,
+        "order.discountPercentageMax": 0.2,
+        "order.minTotalPrice": 100000.0,
+        "order.orderTotalCreditMax": true,
+        "order.orderTotalCreditMaxText": "Pedido supera el saldo disponible, esta orden entrará como cotización y será vista en el área de Credito y Cobranza de Codelpa",
+        "payment.paymentTypes": [
+          {
+            "key": "checkToDate",
+            "text": "Cheque a fecha"
+          },
+          {
+            "key": "check",
+            "text": "Cheque"
+          }
+        ]
+      },
+      "customer": {
+        "name": "codelpa",
+        "domain": "codelpa.solopide.me",
+        "eventOptions": {
+          "newOrderEvent": false
+        },
+        "integrationHooks": {
+          "createOrderHook": "https://api.solopide.me/hooks/codelpa/create-order",
+          "shippingCostHook": "https://api.solopide.me/hooks/codelpa/shipping-cost",
+          "updateTrafficLightHook": "https://api.solopide.me/hooks/codelpa/update-traffic-light",
+          "getPendingDocumentsHook": "https://api.solopide.me/hooks/codelpa/get-pending-documents",
+          "createPaymentHook": "https://api.solopide.me/hooks/codelpa/create-payment",
+          "updateStockHook": "yom-hooks.codelpa.getStock",
+          "webpushMessageHook": "https://message-sender-570360699009.southamerica-west1.run.app/api/v1/webhooks/receive/yom"
+        },
+        "mailingList": []
+      },
       "activeTests": {
         "standard": [
           "C1-01",
@@ -170,8 +214,10 @@
         ],
         "conditional": [
           "C1-A1",
+          "C2-E10",
           "C2-E4",
           "C2-E5",
+          "C2-E9",
           "C3-E3",
           "C3-E4",
           "C3-E6",
@@ -193,24 +239,717 @@
       },
       "testCount": {
         "standard": 77,
-        "conditional": 20,
-        "total": 97
+        "conditional": 22,
+        "total": 99
       },
       "coupons": [],
       "promotions": [],
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 0,
-          "items": []
+          "total": 28,
+          "items": [
+            {
+              "name": "B-ANT042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-ANT0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-CAL042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-CON042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-CON0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-COQ042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-PTO042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-RAN042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-RAN0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-SAN042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-SAN0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-VIN042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B-VIN0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BASE",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "CHMT0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "FERB092022",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Ferretería A 09-24",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Ferretería B 09-24",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Ferreterías A 04-20",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "IND0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "IND_042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Lapiz Lopez 05-19",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "PERS042020",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "PROMOTIONTEST",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "SANTB0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "SSACK0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "VINAB0924",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "nombre_segmento",
+              "code": "",
+              "active": true
+            }
+          ]
         },
         "overrides": {
-          "total": 0,
-          "items": []
+          "total": 5343,
+          "items": [
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            }
+          ]
         },
         "userSegments": {
-          "total": 0,
-          "items": []
+          "total": 41880,
+          "items": [
+            {
+              "name": "",
+              "segmentId": "670e7d50f328113264f5979a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "67507fac3d79db9109b55e92",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "670e7d50f328113264f5979a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "5f8dba3ab9622407cbeb5886",
+              "userCount": 0
+            }
+          ]
         }
       }
     },
@@ -220,8 +959,8 @@
       "customerId": "681f7cd5a202e8b9b76cbcb1",
       "currency": "clp",
       "inMaintenance": false,
-      "hasCustomer": false,
-      "hasSalesterms": false,
+      "hasCustomer": true,
+      "hasSalesterms": true,
       "variables": {
         "externalAccess": false,
         "anonymousAccess": true,
@@ -318,8 +1057,54 @@
         "contact.email": "servicioalcliente@marleycoffee.cl",
         "contact.about": "La principal marca cafetera orgánica del mundo, siempre respetando el legado de Bob Marley, manifestándolo en cada taza."
       },
-      "salesterms": {},
-      "customer": {},
+      "salesterms": {
+        "coverage.text": "Todo Chile con excepción de las regiones de Aysén del General Carlos Ibáñez del Campo y de Magallanes y de la Antártica Chilena, junto con Isla de Pascua (contactar a distribuidor de la zona)",
+        "delivery.text": "Tiempos de entrega varían según ubicación, consulte los términos y condiciones",
+        "delivery.daysOfWeek": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ],
+        "delivery.fromHours": 32400,
+        "delivery.toHours": 66600,
+        "order.text": "Costos de despacho varían según ubicación, consulte los términos y condiciones o revise su carrito de compras para más información",
+        "order.orderTotalCreditMax": true,
+        "order.orderTotalCreditMaxMustBlockOrder": true,
+        "order.disableOrder": false,
+        "saleConfig.noSellReasons": [],
+        "payment.paymentTypes": [
+          {
+            "key": "cash",
+            "text": "Efectivo"
+          },
+          {
+            "key": "check",
+            "text": "Cheque"
+          },
+          {
+            "key": "transfer",
+            "text": "Transferencia"
+          }
+        ]
+      },
+      "customer": {
+        "name": "Marley Coffee",
+        "domain": "marleycoffee.solopide.me",
+        "currency": "clp",
+        "mailingList": [],
+        "contactMailingList": [
+          "servicioalcliente@marleycoffee.cl"
+        ],
+        "registerMailingList": [],
+        "eventOptions": {
+          "newOrderEvent": false
+        },
+        "integrationHooks": {
+          "createOrderHook": "https://api.solopide.me/hooks/marleycoffee/create-order"
+        }
+      },
       "activeTests": {
         "standard": [
           "C1-01",
@@ -402,6 +1187,7 @@
         ],
         "conditional": [
           "C1-A1",
+          "C2-E10",
           "P1-05",
           "P2-03",
           "P3-01",
@@ -411,24 +1197,827 @@
       },
       "testCount": {
         "standard": 77,
-        "conditional": 6,
-        "total": 83
+        "conditional": 7,
+        "total": 84
       },
       "coupons": [],
       "promotions": [],
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 0,
-          "items": []
+          "total": 71,
+          "items": [
+            {
+              "name": "Aramark",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Arriendo Maquinarias",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Asesorias Jurídicas",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Austral Vending",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B2B_Bronze",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B2B_Distri_Horeca",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B2B_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B2B_Official",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "B2B_Silver",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BRONZE-2024",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Base",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Cencosud",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Cencosud Horeca",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Comodato (35.990)",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Comodato (41.990)",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Comodato 32.990",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Comunicaciones",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Comunidad Religiosa",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Construccion",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Dimerc",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Discoteque",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Diseño-Montaje y Produc",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Distribuidores 2022",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Esmax (27.250)",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Food Solution",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "GOLD-2024",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Gold_2025",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "IVI",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Indust. de Productos",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Inversiones",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Kamen",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Las Docas",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Lista Bruta Boletas",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Lista Nueva 24.090",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "M.Propia 25.990",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Maq. Propia (28.990)",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Maq. Propia (34.990)",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Maq.Propia 25.490",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Naviera",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "OCS Cencosud",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "OFICIAL-2024",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Oficial_2025",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Oficina 2 $ 23.450$7.990.",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Oficina 2022",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Ok market",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "One Cup",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "PRUEBA",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Pods 360 + 380",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Pods 420/ 25.990",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Publico 22.950",
+              "code": "",
+              "active": true
+            }
+          ]
         },
         "overrides": {
-          "total": 0,
-          "items": []
+          "total": 1875,
+          "items": [
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            }
+          ]
         },
         "userSegments": {
-          "total": 0,
-          "items": []
+          "total": 26668,
+          "items": [
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc55",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc55",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "681f87b8ef99970d76df28bc",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc55",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc44",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "687e67f7bd2911acd32bcd93",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc44",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc44",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "682690351e1eae43fcc2bc51",
+              "userCount": 0
+            }
+          ]
         }
       }
     },
@@ -438,8 +2027,8 @@
       "customerId": "6830e584a025801f67f770ea",
       "currency": "clp",
       "inMaintenance": false,
-      "hasCustomer": false,
-      "hasSalesterms": false,
+      "hasCustomer": true,
+      "hasSalesterms": true,
       "variables": {
         "externalAccess": false,
         "anonymousAccess": true,
@@ -544,8 +2133,40 @@
         "flagFeatures.reactNativeOrderTakerForAll": false,
         "flagFeatures.reactNativeOrderTakerSellers": []
       },
-      "salesterms": {},
-      "customer": {},
+      "salesterms": {
+        "coverage.text": "Envíos a todo Chile",
+        "delivery.text": "Despachamos desde 24 horas hábiles",
+        "delivery.daysOfWeek": [
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday"
+        ],
+        "delivery.fromHours": 32400,
+        "delivery.toHours": 66600,
+        "order.text": "Despacho gratis en RM",
+        "order.orderTotalCreditMax": false,
+        "order.orderTotalCreditMaxMustBlockOrder": false,
+        "order.disableOrder": false,
+        "saleConfig.noSellReasons": [],
+        "payment.paymentTypes": []
+      },
+      "customer": {
+        "name": "Prisa",
+        "domain": "prisa.solopide.me",
+        "currency": "clp",
+        "mailingList": [],
+        "contactMailingList": [],
+        "registerMailingList": [],
+        "eventOptions": {
+          "newOrderEvent": false
+        },
+        "integrationHooks": {
+          "createOrderHook": "https://api.solopide.me/hooks/surtiventas/create-order",
+          "createCommerceHook": "yom-hooks.surtiventas.createCommerce"
+        }
+      },
       "activeTests": {
         "standard": [
           "C1-01",
@@ -653,16 +2274,579 @@
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 0,
-          "items": []
+          "total": 2,
+          "items": [
+            {
+              "name": "Lista de precios",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "segmento-base-yom",
+              "code": "",
+              "active": true
+            }
+          ]
         },
         "overrides": {
-          "total": 0,
-          "items": []
+          "total": 7867,
+          "items": [
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": true
+            }
+          ]
         },
         "userSegments": {
-          "total": 0,
-          "items": []
+          "total": 2771,
+          "items": [
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "68386df11e1eae43fcc59cdb",
+              "userCount": 0
+            }
+          ]
         }
       }
     },
@@ -672,8 +2856,8 @@
       "customerId": "6914eb95754912ae2f318743",
       "currency": "clp",
       "inMaintenance": false,
-      "hasCustomer": false,
-      "hasSalesterms": false,
+      "hasCustomer": true,
+      "hasSalesterms": true,
       "variables": {
         "externalAccess": true,
         "anonymousAccess": false,
@@ -901,8 +3085,39 @@
         "enableHome": true,
         "enableChooseSaleUnit": true
       },
-      "salesterms": {},
-      "customer": {},
+      "salesterms": {
+        "delivery.daysOfWeek": [],
+        "order.orderTotalCreditMax": false,
+        "order.orderTotalCreditMaxMustBlockOrder": false,
+        "order.disableOrder": false,
+        "saleConfig.noSellReasons": [],
+        "payment.paymentTypes": [
+          {
+            "key": "cash",
+            "text": "Efectivo"
+          },
+          {
+            "key": "check",
+            "text": "Cheque"
+          },
+          {
+            "key": "checkToDate",
+            "text": "Cheque a fecha"
+          }
+        ]
+      },
+      "customer": {
+        "name": "New Soprole",
+        "domain": "new-soprole.solopide.me",
+        "currency": "clp",
+        "mailingList": [],
+        "contactMailingList": [],
+        "registerMailingList": [],
+        "eventOptions": {
+          "newOrderEvent": false
+        },
+        "creditReturnStates": []
+      },
       "activeTests": {
         "standard": [
           "C1-01",
@@ -1026,16 +3241,819 @@
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 0,
-          "items": []
+          "total": 42427,
+          "items": [
+            {
+              "name": "2100|*|*|*|*|001|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|004|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|006|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|014|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|015|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|018|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|028|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|031|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|039|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|055|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|062|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|071|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|092|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|093|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|098|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|100|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|104|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|106|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|107|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|109|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|115|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|116|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|120|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|133|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|134|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|135|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|150|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|161|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|162|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|210|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|212|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|215|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|218|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|224|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|225|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|226|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|277|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|279|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|281|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|307|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|323|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|333|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|335|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|337|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|338|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|381|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|402|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|408|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|411|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "2100|*|*|*|*|457|*|*|*|*|*|*|*|",
+              "code": "",
+              "active": true
+            }
+          ]
         },
         "overrides": {
-          "total": 0,
-          "items": []
+          "total": 6261,
+          "items": [
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            },
+            {
+              "productId": "",
+              "price": null,
+              "discount": null,
+              "enabled": false
+            }
+          ]
         },
         "userSegments": {
-          "total": 0,
-          "items": []
+          "total": 322616,
+          "items": [
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69308846f3bbf69eb79d83c5",
+              "userCount": 0
+            }
+          ]
         }
       }
     }
