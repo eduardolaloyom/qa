@@ -2,26 +2,22 @@
 """
 b2b-feature-validator.py
 
-Two-step check for each MongoDB config variable:
-  1. Is it in @yomcl/types Store type? (YOMCL/monorepo)
-     → If not, definitely not implemented (skip code search)
-  2. Is it actually used in YOMCL/b2b **staging** branch source code?
-     → Downloads the staging tarball once, then greps locally (fast + accurate)
-     → If in type but 0 results in b2b staging → stub (defined but not consumed by UI)
-     → Only if both pass → implemented: true
+Single check for each MongoDB config variable:
+  - Is it in @yomcl/types Store type? (YOMCL/monorepo)
+    → Yes → relevant for B2B (frontend or backend reads it) → implemented: true
+    → No  → not B2B (mobile/backend-only) → implemented: false, skip tests
 
-Note: uses the staging branch of YOMCL/b2b (not the default 'production' branch)
-because staging env (*.solopide.me) runs the staging branch.
-
-Nested var handling: payment.walletEnabled → searches for 'walletEnabled' (leaf name)
-because B2B code does `const { payment } = useStore()` then `payment?.walletEnabled`.
+Why only one step:
+  Many variables affect B2B via backend logic (e.g. hidePrices → API returns
+  products without prices). The frontend never reads them directly but the
+  feature IS present in the B2B experience. @yomcl/types Store is the contract
+  that defines what belongs to the B2B product.
 
 Usage:
     python3 tools/b2b-feature-validator.py --input data/qa-matrix-staging.json
     python3 tools/b2b-feature-validator.py --var confirmCartText
     python3 tools/b2b-feature-validator.py --skip-api   # use existing JSON only
-    python3 tools/b2b-feature-validator.py --force      # re-check all vars
-    python3 tools/b2b-feature-validator.py --refresh-source  # re-download b2b tarball
+    python3 tools/b2b-feature-validator.py --force      # re-check all
 
 Output:
     data/b2b-feature-status.json
@@ -30,25 +26,17 @@ Output:
 import json
 import re
 import sys
-import time
 import base64
-import shutil
-import tarfile
 import argparse
-import tempfile
-import subprocess
 import urllib.request
 import urllib.parse
-import urllib.error
 from pathlib import Path
 from datetime import datetime, timezone
 
 
-B2B_REPO       = "YOMCL/b2b"
-B2B_BRANCH     = "staging"
-TYPES_REPO     = "YOMCL/monorepo"
-STATUS_FILE    = Path("data/b2b-feature-status.json")
-SOURCE_CACHE   = Path("data/.b2b-source-cache")  # extracted tarball lives here
+B2B_REPO    = "YOMCL/b2b"
+TYPES_REPO  = "YOMCL/monorepo"
+STATUS_FILE = Path("data/b2b-feature-status.json")
 
 SKIP_VARS = {
     "_id", "__v", "createdAt", "updatedAt", "domain", "customerId",
@@ -56,7 +44,6 @@ SKIP_VARS = {
 }
 HOOK_PREFIX = "hooks."
 
-# Store type files in the monorepo
 STORE_TYPE_FILES = [
     "packages/types/src/store/store.ts",
     "packages/types/src/store/payment.ts",
@@ -108,7 +95,6 @@ def save_status(status: dict) -> None:
 
 
 def gh_get_file(repo: str, path: str, token: str):
-    """Fetch raw file content from GitHub API."""
     url = f"https://api.github.com/repos/{repo}/contents/{urllib.parse.quote(path)}"
     req = urllib.request.Request(url)
     req.add_header("Accept", "application/vnd.github.v3+json")
@@ -123,99 +109,7 @@ def gh_get_file(repo: str, path: str, token: str):
         return None
 
 
-def download_b2b_source(token: str, refresh: bool = False) -> Path:
-    """
-    Download and extract YOMCL/b2b staging branch tarball to SOURCE_CACHE.
-    Returns the path to the extracted source directory.
-    Skips download if cache already exists (unless refresh=True).
-    """
-    src_dir = SOURCE_CACHE / "src"
-    if src_dir.exists() and not refresh:
-        print(f"📁 Using cached b2b source: {SOURCE_CACHE}")
-        return SOURCE_CACHE
-
-    print(f"⬇️  Downloading YOMCL/b2b@{B2B_BRANCH} tarball...")
-    url = f"https://api.github.com/repos/{B2B_REPO}/tarball/{B2B_BRANCH}"
-    req = urllib.request.Request(url)
-    req.add_header("Accept", "application/vnd.github.v3+json")
-    req.add_header("User-Agent", "YOM-QA-Validator/1.0")
-    if token:
-        req.add_header("Authorization", f"token {token}")
-
-    tmp_tar = Path(tempfile.mktemp(suffix=".tar.gz"))
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            tmp_tar.write_bytes(resp.read())
-        print(f"   Downloaded {tmp_tar.stat().st_size // 1024} KB")
-    except Exception as e:
-        print(f"❌ Failed to download tarball: {e}", file=sys.stderr)
-        sys.exit(1)
-
-    # Clean previous cache
-    if SOURCE_CACHE.exists():
-        shutil.rmtree(SOURCE_CACHE)
-    SOURCE_CACHE.mkdir(parents=True)
-
-    print(f"📦 Extracting to {SOURCE_CACHE}...")
-    with tarfile.open(tmp_tar) as tar:
-        tar.extractall(SOURCE_CACHE)
-    tmp_tar.unlink()
-
-    # GitHub tarball creates a subdir like YOMCL-b2b-abc1234/
-    subdirs = [d for d in SOURCE_CACHE.iterdir() if d.is_dir()]
-    if len(subdirs) == 1:
-        # Flatten: move contents up
-        extracted = subdirs[0]
-        for item in extracted.iterdir():
-            shutil.move(str(item), SOURCE_CACHE / item.name)
-        extracted.rmdir()
-
-    print(f"   ✅ Source ready at {SOURCE_CACHE}")
-    return SOURCE_CACHE
-
-
-def search_in_local_source(var_name: str, source_dir: Path) -> tuple:
-    """
-    Search for var_name in local b2b source files (*.ts, *.tsx).
-
-    For nested vars like payment.walletEnabled:
-      - Search for the leaf name 'walletEnabled' as a word boundary
-      - More accurate than searching the dotted path (B2B uses optional chaining)
-
-    Returns (found: bool, files: list[str])
-    """
-    src_path = source_dir / "src"
-    if not src_path.exists():
-        src_path = source_dir  # fallback
-
-    # For nested vars, use the leaf name; for top-level use full name
-    if "." in var_name:
-        search_term = var_name.split(".")[-1]  # e.g. payment.walletEnabled → walletEnabled
-    else:
-        search_term = var_name
-
-    matches = []
-    pattern = re.compile(r'\b' + re.escape(search_term) + r'\b')
-
-    for ext in ("*.ts", "*.tsx"):
-        for filepath in src_path.rglob(ext):
-            # Skip test files and type definition files
-            if any(p in str(filepath) for p in ("__tests__", "__mocks__", ".test.", ".spec.", ".d.ts")):
-                continue
-            try:
-                content = filepath.read_text(encoding="utf-8", errors="ignore")
-                if pattern.search(content):
-                    # Return relative path from source_dir
-                    rel = str(filepath.relative_to(source_dir))
-                    matches.append(rel)
-            except Exception:
-                continue
-
-    return (len(matches) > 0, matches[:5])
-
-
 def extract_type_fields(content: str) -> set:
-    """Extract field names from a TypeScript type/interface definition."""
     fields = set()
     for line in content.splitlines():
         m = re.match(r'^\s+(\w+)\??:', line)
@@ -225,10 +119,6 @@ def extract_type_fields(content: str) -> set:
 
 
 def build_store_type_fields(token: str) -> set:
-    """
-    Fetch @yomcl/types Store type and all nested types.
-    Returns set of all known field names (top-level and prefixed like payment.walletEnabled).
-    """
     print("📦 Loading @yomcl/types Store definition from monorepo...")
     all_fields = set()
 
@@ -268,19 +158,18 @@ def extract_variables(qa_matrix: dict) -> list:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Validate B2B feature implementation (staging branch)")
+    parser = argparse.ArgumentParser(description="Validate B2B variables against @yomcl/types Store")
     parser.add_argument("--input", default="data/qa-matrix.json")
     parser.add_argument("--var", help="Check a single variable")
     parser.add_argument("--skip-api", action="store_true", help="Use existing JSON only")
     parser.add_argument("--force", action="store_true", help="Re-check all variables")
-    parser.add_argument("--refresh-source", action="store_true", help="Re-download b2b staging source")
     args = parser.parse_args()
 
     token = load_env_token()
     if token:
         print(f"🔑 GitHub token found")
     else:
-        print(f"⚠️  No GITHUB_TOKEN in .env — private repo access will fail")
+        print(f"⚠️  No GITHUB_TOKEN in .env")
 
     status = load_status_cache()
     cached_vars = status.get("variables", {})
@@ -300,14 +189,8 @@ def main():
     variables = [args.var] if args.var else extract_variables(qa_matrix)
     print(f"📋 {len(variables)} variables to check\n")
 
-    # Step 1: Load Store type fields
     store_fields = build_store_type_fields(token)
 
-    # Step 2: Download/cache b2b staging source
-    source_dir = download_b2b_source(token, refresh=args.refresh_source)
-    print()
-
-    # Determine which need checking
     to_check = [v for v in variables if args.force or v not in cached_vars]
     already_cached = len(variables) - len(to_check)
     if already_cached:
@@ -318,46 +201,20 @@ def main():
         print_summary(cached_vars)
         return
 
-    # Step 3: Filter by Store type
-    not_in_type = []
-    to_code_search = []
-
-    print("🔍 Step 1 — Filter by Store type:")
+    print("🔍 Checking against @yomcl/types Store:")
     for var in to_check:
         in_type = is_in_store_type(var, store_fields)
-        if not in_type:
-            not_in_type.append(var)
-            cached_vars[var] = {"implemented": False, "files": [], "reason": "not in @yomcl/types Store"}
+        if in_type:
+            cached_vars[var] = {"implemented": True, "files": []}
+            print(f"  ✓ {var}")
+        else:
+            cached_vars[var] = {"implemented": False, "files": [], "reason": "not in @yomcl/types Store — mobile/backend only"}
             print(f"  ✗ {var} — not in Store type")
-        else:
-            to_code_search.append(var)
-
-    # Step 4: Local source search in staging branch
-    print(f"\n🔍 Step 2 — Local search in YOMCL/b2b@{B2B_BRANCH} ({len(to_code_search)} vars):")
-
-    for i, var_name in enumerate(to_code_search, 1):
-        leaf = var_name.split(".")[-1] if "." in var_name else var_name
-        display = f"{var_name} (→ '{leaf}')" if "." in var_name else var_name
-        print(f"  [{i:02d}/{len(to_code_search):02d}] {display}... ", end="", flush=True)
-
-        found, files = search_in_local_source(var_name, source_dir)
-
-        if found:
-            print(f"✓ ({len(files)} file{'s' if len(files) != 1 else ''})")
-            cached_vars[var_name] = {"implemented": True, "files": files}
-        else:
-            print(f"✗ stub (in type, not used in b2b@{B2B_BRANCH})")
-            cached_vars[var_name] = {
-                "implemented": False,
-                "files": [],
-                "reason": f"in @yomcl/types but not used in b2b@{B2B_BRANCH}",
-            }
 
     status["variables"] = cached_vars
     status["b2bRepo"] = B2B_REPO
-    status["b2bBranch"] = B2B_BRANCH
     status["typesRepo"] = TYPES_REPO
-    status["note"] = f"Two-step: @yomcl/types Store type + local search in YOMCL/b2b@{B2B_BRANCH}"
+    status["note"] = "Single step: @yomcl/types Store type check only"
     save_status(status)
     print()
     print_summary(cached_vars)
@@ -366,23 +223,15 @@ def main():
 def print_summary(variables: dict) -> None:
     implemented     = [k for k, v in variables.items() if v.get("implemented") is True]
     not_implemented = [k for k, v in variables.items() if v.get("implemented") is False]
-    unknown         = [k for k, v in variables.items() if v.get("implemented") is None]
 
     print(f"\n📊 Summary:")
-    print(f"   ✓ Implemented (type + code):  {len(implemented)}")
-    print(f"   ✗ Not implemented:            {len(not_implemented)}")
-    if unknown:
-        print(f"   ? Unknown:                   {len(unknown)}")
+    print(f"   ✓ In @yomcl/types Store (B2B relevant):  {len(implemented)}")
+    print(f"   ✗ Not in Store type (skip tests):        {len(not_implemented)}")
 
     if not_implemented:
-        not_in_type = [k for k, v in variables.items() if v.get("implemented") is False and "not in @yomcl" in v.get("reason", "")]
-        stubs       = [k for k, v in variables.items() if v.get("implemented") is False and "not used in b2b" in v.get("reason", "")]
-        if not_in_type:
-            print(f"\n   ✗ Not in Store type ({len(not_in_type)}):")
-            for v in sorted(not_in_type): print(f"     - {v}")
-        if stubs:
-            print(f"\n   ✗ In type but not used in b2b@{B2B_BRANCH} ({len(stubs)}):")
-            for v in sorted(stubs): print(f"     - {v}")
+        print(f"\n   ✗ Variables to skip ({len(not_implemented)}):")
+        for v in sorted(not_implemented):
+            print(f"     - {v}")
         print(f"\n   → These tests will be SKIPPED in Playwright.")
 
 
