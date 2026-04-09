@@ -139,6 +139,7 @@
     "contact.about": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-no-delivery-date-message.ts",
         "src/app/(dashboard)/contact/_components/view.tsx",
         "src/components/footer/components/commerce-info.tsx"
       ]
@@ -146,6 +147,7 @@
     "contact.branchesContactInformation": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-no-delivery-date-message.ts",
         "src/app/(dashboard)/contact/_components/view.tsx",
         "src/components/footer/components/commerce-info.tsx"
       ]
@@ -153,6 +155,7 @@
     "contact.email": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-no-delivery-date-message.ts",
         "src/app/(dashboard)/contact/_components/view.tsx",
         "src/components/footer/components/commerce-info.tsx"
       ]
@@ -160,6 +163,7 @@
     "contact.phone": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-no-delivery-date-message.ts",
         "src/app/(dashboard)/contact/_components/view.tsx",
         "src/components/footer/components/commerce-info.tsx"
       ]
@@ -251,14 +255,18 @@
       "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableDistributionCentersSelector": {
-      "implemented": null,
-      "files": [],
-      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
+      "implemented": true,
+      "files": [
+        "src/auth/guard/guest-guard.tsx",
+        "src/components/sections/auth/components/user-info-default-form.tsx"
+      ]
     },
     "enableInvoicesList": {
       "implemented": true,
       "files": [
-        "src/app/(authenticated)/(documents)/layout.tsx"
+        "src/app/(authenticated)/(documents)/layout.tsx",
+        "src/app/(authenticated)/(documents)/external-orders/guard/external-order-guard.tsx",
+        "src/lib/routes/guards/external-order-guard.tsx"
       ]
     },
     "enableMassiveOrderSend": {
@@ -301,9 +309,10 @@
       "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enablePriceOracle": {
-      "implemented": null,
-      "files": [],
-      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
+      "implemented": true,
+      "files": [
+        "src/lib/hooks/use-show-delivery-date.ts"
+      ]
     },
     "enableSellerDiscount": {
       "implemented": null,
@@ -316,9 +325,13 @@
       "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "externalAccess": {
-      "implemented": null,
-      "files": [],
-      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
+      "implemented": true,
+      "files": [
+        "src/components/sections/auth/hooks/use-user-info-custom-form.ts",
+        "src/auth/guard/guest-guard.tsx",
+        "src/components/sections/auth/components/user-info-default-form.tsx",
+        "src/components/sections/auth/components/user-info-form/distribution-fields.tsx"
+      ]
     },
     "filterGroupedSuggestionsBy": {
       "implemented": null,
@@ -501,9 +514,10 @@
       "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "productDetailViewConfiguration.tabsOrder": {
-      "implemented": null,
-      "files": [],
-      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
+      "implemented": true,
+      "files": [
+        "src/app/(authenticated)/products/[uuid]/_components/sections/description/description-tabs/description-tabs.tsx"
+      ]
     },
     "productVariability": {
       "implemented": true,
@@ -531,7 +545,8 @@
       "implemented": true,
       "files": [
         "src/components/minimals/layouts/dashboard/nav-horizontal/nav-horizontal.tsx",
-        "src/components/minimals/layouts/dashboard/header/components/categories-drawer-content.tsx"
+        "src/components/minimals/layouts/dashboard/header/components/categories-drawer-content.tsx",
+        "src/lib/hooks/fetcher-hooks/catalog/use-categories.tsx"
       ]
     },
     "showMinOne": {
@@ -572,6 +587,7 @@
     "taxes.showSummary": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-product-pricing-calculator.ts",
         "src/app/(authenticated)/products/[uuid]/_components/sections/description/common/steps/description-steps.tsx",
         "src/app/(authenticated)/cart/_components/sections/cart-pricing-details.tsx",
         "src/lib/contexts/cart/cart-provider.tsx"
@@ -580,6 +596,7 @@
     "taxes.taxRate": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-product-pricing-calculator.ts",
         "src/app/(authenticated)/products/[uuid]/_components/sections/description/common/steps/description-steps.tsx",
         "src/app/(authenticated)/cart/_components/sections/cart-pricing-details.tsx",
         "src/lib/contexts/cart/cart-provider.tsx"
@@ -588,6 +605,7 @@
     "taxes.useTaxRate": {
       "implemented": true,
       "files": [
+        "src/lib/hooks/use-product-pricing-calculator.ts",
         "src/app/(authenticated)/products/[uuid]/_components/sections/description/common/steps/description-steps.tsx",
         "src/app/(authenticated)/cart/_components/sections/cart-pricing-details.tsx",
         "src/lib/contexts/cart/cart-provider.tsx"
@@ -631,6 +649,6 @@
   },
   "typesRepo": "YOMCL/monorepo",
   "note": "3-state: false=skip(not in type) | null=unknown | true=confirmed in frontend",
-  "generatedAt": "2026-04-09T20:25:03.033385+00:00",
+  "generatedAt": "2026-04-09T20:31:30.873398+00:00",
   "b2bBranch": "staging"
 }

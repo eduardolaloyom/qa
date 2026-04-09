@@ -159,22 +159,33 @@ def download_b2b_source(token: str, refresh: bool = False) -> Path:
 
 def extract_usestore_vars(source_dir: Path) -> dict:
     """
-    Extract all variables/objects destructured from useStore() across the codebase.
-    Returns {varName: [files]} for every field that appears in:
-        const { foo, bar } = useStore();
-        const { foo: alias } = useStore();
+    Extract all variables/objects read from the store via useStore() across the codebase.
+    Returns {varName: [files]}.
 
-    This is the ground truth of what the B2B frontend actually reads from store config.
+    Captures three patterns:
+      1. const { foo, bar } = useStore();          → destructuring
+      2. const store = useStore(); store.foo        → whole-object access
+      3. const site = useStore(); site.foo          → alias access
     """
     src_path = source_dir / "src"
     if not src_path.exists():
         src_path = source_dir
 
-    # Match: const { foo, bar, baz: alias } = useStore();
-    destructure_pattern = re.compile(r'const\s*\{([^}]+)\}\s*=\s*useStore\(\)')
-    var_pattern = re.compile(r'(\w+)(?:\s*:\s*\w+)?')  # extracts original name before alias
+    # Pattern 1: destructuring
+    destructure_re = re.compile(r'const\s*\{([^}]+)\}\s*=\s*useStore\(\)')
+    field_re = re.compile(r'(\w+)(?:\s*:\s*\w+)?')
+
+    # Pattern 2 & 3: const ALIAS = useStore() → ALIAS.prop
+    alias_re = re.compile(r'const\s+(\w+)\s*=\s*useStore\(\)')
 
     var_files: dict = {}
+
+    def add(field, rel):
+        if field not in var_files:
+            var_files[field] = []
+        if rel not in var_files[field]:
+            var_files[field].append(rel)
+
     for ext in ("*.ts", "*.tsx"):
         for filepath in src_path.rglob(ext):
             if any(p in str(filepath) for p in ("__tests__", "__mocks__", ".test.", ".spec.", ".d.ts")):
@@ -182,14 +193,19 @@ def extract_usestore_vars(source_dir: Path) -> dict:
             try:
                 content = filepath.read_text(encoding="utf-8", errors="ignore")
                 rel = str(filepath.relative_to(source_dir))
-                for match in destructure_pattern.finditer(content):
-                    fields_str = match.group(1)
-                    for field_match in var_pattern.finditer(fields_str):
-                        field = field_match.group(1)
-                        if field not in var_files:
-                            var_files[field] = []
-                        if rel not in var_files[field]:
-                            var_files[field].append(rel)
+
+                # Pattern 1: destructuring
+                for match in destructure_re.finditer(content):
+                    for field_match in field_re.finditer(match.group(1)):
+                        add(field_match.group(1), rel)
+
+                # Pattern 2 & 3: alias.prop
+                for alias_match in alias_re.finditer(content):
+                    alias = alias_match.group(1)
+                    prop_re = re.compile(r'\b' + re.escape(alias) + r'[\?\!]?\.(\w+)')
+                    for prop_match in prop_re.finditer(content):
+                        add(prop_match.group(1), rel)
+
             except Exception:
                 continue
 

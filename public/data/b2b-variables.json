@@ -248,7 +248,7 @@
         "marleycoffee",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "enableHome": {
       "clients": [
@@ -332,7 +332,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "enableSellerDiscount": {
       "clients": [
@@ -359,7 +359,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "filterGroupedSuggestionsBy": {
       "clients": [
@@ -686,7 +686,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "productList.enableSuggestionByCategories": {
       "clients": [
