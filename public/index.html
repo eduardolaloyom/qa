@@ -625,7 +625,7 @@
     </div>
 
     <!-- Variables B2B -->
-    <div class="card">
+    <div class="card" id="b2bVarsCard" style="display:none;">
         <div class="card-title">🔬 Variables B2B — Revisión de implementación</div>
         <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables configuradas en MongoDB. Confirmar con el equipo de dev cuáles están implementadas en <code>YOMCL/b2b</code> y actualizar <code>data/b2b-feature-status.json</code>.</p>
 
@@ -1222,6 +1222,11 @@ async function loadB2bVariables() {
         const r = await fetch('data/b2b-variables.json?v=' + Date.now());
         if (!r.ok) return;
         b2bVarsData = await r.json();
+        // Only show section if at least one variable has been reviewed
+        const vars = Object.values(b2bVarsData.variables || {});
+        const hasReviewed = vars.some(v => v.implemented !== null && v.implemented !== undefined);
+        if (!hasReviewed) return;
+        document.getElementById('b2bVarsCard').style.display = 'block';
         renderB2bVars();
     } catch (e) {
         console.warn('b2b-variables.json not found', e);
