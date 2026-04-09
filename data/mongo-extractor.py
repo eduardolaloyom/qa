@@ -75,6 +75,7 @@ REAL_CLIENTS = {
     "expressdent.youorder.me": "ExpressDent",
     "americas.youorder.me": "Las Americas",
     "marleycoffee.youorder.me": "Marley Coffee",
+    "marleycoffee.solopide.me": "Marley Coffee (staging)",
     "prinorte.youorder.me": "Prinorte",
     "prisa.youorder.me": "Prisa",
     "prisa.solopide.me": "Surtiventas (staging)",
