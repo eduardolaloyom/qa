@@ -627,7 +627,7 @@
     <!-- Variables B2B -->
     <div class="card" id="b2bVarsCard" style="display:none;">
         <div class="card-title">🔬 Variables B2B — Revisión de implementación</div>
-        <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB staging clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = encontrada en código frontend. <strong>⚠️ Sin confirmar</strong> = en <code>@yomcl/types</code> pero no en código (puede ser backend-controlada o stub pendiente). <strong>❌ No es B2B</strong> = no existe en el tipo Store — tests salteados.</p>
+        <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB staging clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = encontrada en código frontend. <strong>⚠️ Sin confirmar</strong> = en <code>@yomcl/types</code> pero no en código — devs deben clasificar. <strong>❌ No es B2B</strong> = no existe en el tipo Store — tests salteados. Los clientes muestran el valor configurado (true/false/valor).</p>
 
         <div class="filters-bar" style="margin-bottom:12px;">
             <span class="filter-label">Estado:</span>
@@ -635,6 +635,8 @@
             <button class="filter-btn" onclick="filterB2bVars('unknown', this)" style="color:#92400e;border-color:#fcd34d">⚠️ Sin confirmar <span id="b2b-count-unknown" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
             <button class="filter-btn" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada <span id="b2b-count-true" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
             <button class="filter-btn" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-false" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterB2bVars('backend', this)" style="color:#1e40af;border-color:#93c5fd">🔧 Backend <span id="b2b-count-backend" style="background:#dbeafe;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterB2bVars('stub', this)" style="color:#6b21a8;border-color:#d8b4fe">🚧 Stub <span id="b2b-count-stub" style="background:#f3e8ff;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
             <input class="search-input" type="text" placeholder="Buscar variable..." oninput="searchB2bVars(this.value)" style="margin-left:auto;">
         </div>
 
@@ -642,14 +644,20 @@
             <thead>
                 <tr>
                     <th>Variable MongoDB</th>
-                    <th style="width:220px;">Clientes</th>
+                    <th style="width:260px;">Clientes (valor)</th>
                     <th style="width:140px;text-align:center;">Estado en B2B</th>
+                    <th style="width:280px;">Clasificación dev</th>
                 </tr>
             </thead>
             <tbody id="b2bVarsBody">
-                <tr><td colspan="3" style="color:#9ca3af;text-align:center;padding:20px;">Cargando...</td></tr>
+                <tr><td colspan="4" style="color:#9ca3af;text-align:center;padding:20px;">Cargando...</td></tr>
             </tbody>
         </table>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+            <button onclick="exportB2bClassifications()" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer;">📋 Exportar clasificaciones JSON</button>
+            <span style="color:#9ca3af;font-size:12px;">Las clasificaciones se guardan en el navegador. Exporta para commitear al repo.</span>
+        </div>
     </div>
 
     <!-- Test suites table -->
@@ -1217,6 +1225,37 @@ let b2bVarsData = null;
 let b2bVarsFilter = 'all';
 let b2bVarsSearch = '';
 
+// Classifications stored in localStorage: { varName: { type: 'backend'|'stub', ticket: 'YOM-123' } }
+function loadB2bClassifications() {
+    try { return JSON.parse(localStorage.getItem('b2b-classifications') || '{}'); }
+    catch { return {}; }
+}
+function saveB2bClassifications(c) {
+    localStorage.setItem('b2b-classifications', JSON.stringify(c));
+}
+
+function setB2bClassification(varName, type, ticket) {
+    const c = loadB2bClassifications();
+    if (type === '') { delete c[varName]; }
+    else { c[varName] = { type, ticket: ticket || '' }; }
+    saveB2bClassifications(c);
+    renderB2bVars();
+}
+
+function updateB2bTicket(varName, ticket) {
+    const c = loadB2bClassifications();
+    if (c[varName]) { c[varName].ticket = ticket; saveB2bClassifications(c); }
+}
+
+function exportB2bClassifications() {
+    const c = loadB2bClassifications();
+    const json = JSON.stringify(c, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'b2b-classifications.json';
+    a.click(); URL.revokeObjectURL(url);
+}
+
 async function loadB2bVariables() {
     try {
         const r = await fetch('data/b2b-variables.json?v=' + Date.now());
@@ -1231,59 +1270,113 @@ async function loadB2bVariables() {
     }
 }
 
+function clientValueTag(clientName, value) {
+    let display = value;
+    let bg = '#f3f4f6', color = '#374151';
+    if (value === true  || value === 'true')  { bg = '#d1fae5'; color = '#065f46'; display = '✓'; }
+    if (value === false || value === 'false') { bg = '#fee2e2'; color = '#991b1b'; display = '✗'; }
+    if (typeof value === 'string' && value.length > 12) display = value.slice(0, 10) + '…';
+    return `<span title="${escapeHtml(clientName)}: ${escapeHtml(String(value))}" style="background:${bg};color:${color};border-radius:4px;padding:1px 6px;font-size:11px;margin:1px;display:inline-block;cursor:default;">${escapeHtml(clientName)}&nbsp;<strong>${escapeHtml(String(display))}</strong></span>`;
+}
+
+function classificationCell(varName, impl, classification) {
+    if (impl === true || impl === false) return '<td></td>';
+    const type = classification?.type || '';
+    const ticket = classification?.ticket || '';
+    const opts = [
+        ['', '— Sin clasificar —'],
+        ['backend', '🔧 Backend-controlada'],
+        ['stub', '🚧 Stub pendiente'],
+    ];
+    const sel = opts.map(([v, l]) =>
+        `<option value="${v}" ${type === v ? 'selected' : ''}>${l}</option>`
+    ).join('');
+    const ticketHtml = type
+        ? `<input type="text" value="${escapeHtml(ticket)}" placeholder="Ticket YOM-XXX"
+            onchange="updateB2bTicket('${escapeHtml(varName)}', this.value)"
+            style="width:100px;border:1px solid #d1d5db;border-radius:4px;padding:2px 5px;font-size:11px;margin-left:4px;">`
+        : '';
+    const clearBtn = type
+        ? `<button onclick="setB2bClassification('${escapeHtml(varName)}','','')" title="Limpiar" style="background:none;border:none;cursor:pointer;color:#9ca3af;font-size:13px;margin-left:2px;">✕</button>`
+        : '';
+    return `<td style="white-space:nowrap;">
+        <select onchange="setB2bClassification('${escapeHtml(varName)}', this.value, '')"
+            style="border:1px solid #d1d5db;border-radius:4px;padding:2px 5px;font-size:11px;background:#fff;">${sel}</select>
+        ${ticketHtml}${clearBtn}
+    </td>`;
+}
+
 function renderB2bVars() {
     if (!b2bVarsData) return;
     const vars = b2bVarsData.variables || {};
     const entries = Object.entries(vars);
+    const classifications = loadB2bClassifications();
 
     // Count by status
-    const counts = { all: entries.length, unknown: 0, true: 0, false: 0 };
-    entries.forEach(([, v]) => {
-        if (v.implemented === null || v.implemented === undefined) counts.unknown++;
-        else if (v.implemented === true) counts.true++;
-        else counts.false++;
+    const counts = { all: entries.length, unknown: 0, true: 0, false: 0, backend: 0, stub: 0 };
+    entries.forEach(([name, v]) => {
+        const cl = classifications[name];
+        if (v.implemented === true)  { counts.true++; }
+        else if (v.implemented === false) { counts.false++; }
+        else {
+            counts.unknown++;
+            if (cl?.type === 'backend') counts.backend++;
+            if (cl?.type === 'stub')    counts.stub++;
+        }
     });
-    document.getElementById('b2b-count-all').textContent = counts.all;
+    document.getElementById('b2b-count-all').textContent     = counts.all;
     document.getElementById('b2b-count-unknown').textContent = counts.unknown;
-    document.getElementById('b2b-count-true').textContent = counts.true;
-    document.getElementById('b2b-count-false').textContent = counts.false;
+    document.getElementById('b2b-count-true').textContent    = counts.true;
+    document.getElementById('b2b-count-false').textContent   = counts.false;
+    document.getElementById('b2b-count-backend').textContent = counts.backend;
+    document.getElementById('b2b-count-stub').textContent    = counts.stub;
 
     // Filter + search
     const filtered = entries.filter(([name, v]) => {
-        const statusMatch = b2bVarsFilter === 'all'
-            || (b2bVarsFilter === 'unknown' && (v.implemented === null || v.implemented === undefined))
-            || (b2bVarsFilter === 'true'    && v.implemented === true)
-            || (b2bVarsFilter === 'false'   && v.implemented === false);
+        const cl = classifications[name];
+        const isUnknown = v.implemented === null || v.implemented === undefined;
+        const statusMatch =
+            b2bVarsFilter === 'all'     ||
+            (b2bVarsFilter === 'unknown'  && isUnknown) ||
+            (b2bVarsFilter === 'true'     && v.implemented === true) ||
+            (b2bVarsFilter === 'false'    && v.implemented === false) ||
+            (b2bVarsFilter === 'backend'  && isUnknown && cl?.type === 'backend') ||
+            (b2bVarsFilter === 'stub'     && isUnknown && cl?.type === 'stub');
         const searchMatch = !b2bVarsSearch || name.toLowerCase().includes(b2bVarsSearch);
         return statusMatch && searchMatch;
     });
 
-    const statusBadge = (impl) => {
+    const statusBadge = (impl, cl) => {
         if (impl === true)  return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Confirmada</span>';
         if (impl === false) return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No es B2B</span>';
+        if (cl?.type === 'backend') return '<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🔧 Backend</span>';
+        if (cl?.type === 'stub')    return '<span style="background:#f3e8ff;color:#6b21a8;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🚧 Stub</span>';
         return '<span style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">⚠️ Sin confirmar</span>';
     };
 
     const body = document.getElementById('b2bVarsBody');
     if (!filtered.length) {
-        body.innerHTML = '<tr><td colspan="3" style="color:#9ca3af;text-align:center;padding:20px;">Sin resultados</td></tr>';
+        body.innerHTML = '<tr><td colspan="4" style="color:#9ca3af;text-align:center;padding:20px;">Sin resultados</td></tr>';
         return;
     }
-    body.innerHTML = filtered.map(([name, v]) => `
-        <tr>
+    body.innerHTML = filtered.map(([name, v]) => {
+        const cl = classifications[name];
+        const clients = v.clients || {};
+        const clientTags = typeof clients === 'object' && !Array.isArray(clients)
+            ? Object.entries(clients).map(([c, val]) => clientValueTag(c, val)).join('')
+            : (Array.isArray(clients) ? clients.map(c => `<span class="test-client-tag">${escapeHtml(c)}</span>`).join(' ') : '');
+        return `<tr>
             <td><code style="font-size:12px;">${escapeHtml(name)}</code></td>
-            <td>${(v.clients || []).map(c => `<span class="test-client-tag">${escapeHtml(c)}</span>`).join(' ')}</td>
-            <td style="text-align:center;">${statusBadge(v.implemented)}</td>
-        </tr>`).join('');
+            <td style="line-height:1.8;">${clientTags}</td>
+            <td style="text-align:center;">${statusBadge(v.implemented, cl)}</td>
+            ${classificationCell(name, v.implemented, cl)}
+        </tr>`;
+    }).join('');
 }
 
 function filterB2bVars(filter, btn) {
     b2bVarsFilter = filter;
-    document.querySelectorAll('.filters-bar .filter-btn').forEach(b => {
-        if (b.closest('#b2bVarsTable')?.previousElementSibling?.querySelector(`[onclick*="filterB2bVars"]`) || b.getAttribute('onclick')?.includes('filterB2bVars')) {
-            b.classList.remove('active');
-        }
-    });
+    document.querySelectorAll('#b2bVarsCard .filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderB2bVars();
 }
