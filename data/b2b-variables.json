@@ -248,7 +248,7 @@
         "marleycoffee",
         "prisa"
       ],
-      "implemented": true
+      "implemented": null
     },
     "enableHome": {
       "clients": [
@@ -332,7 +332,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": true
+      "implemented": null
     },
     "enableSellerDiscount": {
       "clients": [
@@ -359,7 +359,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": true
+      "implemented": null
     },
     "filterGroupedSuggestionsBy": {
       "clients": [
@@ -398,7 +398,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "hasAllDistributionCenters": {
       "clients": [
@@ -616,7 +616,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "payment.enableNewPaymentModule": {
       "clients": [
@@ -625,7 +625,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "payment.externalPayment": {
       "clients": [
@@ -639,13 +639,13 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "payment.walletEnabled": {
       "clients": [
         "new-soprole"
       ],
-      "implemented": null
+      "implemented": true
     },
     "paymentsWithoutAccount": {
       "clients": [
@@ -661,7 +661,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": true
+      "implemented": null
     },
     "pointsEnabled": {
       "clients": [
@@ -686,7 +686,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": true
+      "implemented": null
     },
     "productList.enableSuggestionByCategories": {
       "clients": [
@@ -726,7 +726,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": true
+      "implemented": null
     },
     "showEmptyCategories": {
       "clients": [
@@ -750,7 +750,7 @@
       "clients": [
         "codelpa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "synchronization.backgroundSyncList": {
       "clients": [
@@ -787,7 +787,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "taxes.taxRate": {
       "clients": [
@@ -796,7 +796,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": null
+      "implemented": true
     },
     "taxes.useTaxRate": {
       "clients": [
@@ -861,13 +861,13 @@
       "clients": [
         "new-soprole"
       ],
-      "implemented": true
+      "implemented": null
     },
     "wrongPrices.threshold": {
       "clients": [
         "new-soprole"
       ],
-      "implemented": true
+      "implemented": null
     }
   }
 }
