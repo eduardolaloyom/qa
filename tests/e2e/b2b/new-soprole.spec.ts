@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { loginHelper } from '../fixtures/login';
+import { skipIfNotInB2B } from '../fixtures/b2b-feature';
 import clients from '../fixtures/clients';
 
 /**
@@ -332,6 +333,7 @@ test.describe('Soprole New — Pedidos', () => {
 test.describe('Soprole New — Home (enableHome=true)', () => {
 
   test('enableHome=true — home carga y no redirige a /products @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enableHome');
     await login(page);
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
@@ -360,6 +362,7 @@ test.describe('Soprole New — Descuento vendedor (enableSellerDiscount=true)', 
   });
 
   test('enableSellerDiscount=true — input de descuento visible en catálogo @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enableSellerDiscount');
     const discountInput = page.getByPlaceholder(/descuento|discount/i)
       .or(page.locator('[class*="discount" i], [class*="seller" i]'))
       .or(page.getByText(/descuento vendedor|seller discount/i))
@@ -381,6 +384,7 @@ test.describe('Soprole New — Descuento vendedor (enableSellerDiscount=true)', 
 test.describe('Soprole New — Unidad de venta (enableChooseSaleUnit=true)', () => {
 
   test('enableChooseSaleUnit=true — selector de unidad de venta visible en productos @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enableChooseSaleUnit');
     await login(page);
     await page.goto('/products');
     await page.waitForLoadState('domcontentloaded');
@@ -430,6 +434,7 @@ test.describe('Soprole New — Pagos (enablePayments=true, walletEnabled=true)',
   });
 
   test('enablePayments=true — sección de pagos visible en carrito @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enablePayments');
     const paymentsSection = page.getByText(/pago|payment|wallet|saldo/i)
       .or(page.locator('[class*="payment" i], [class*="wallet" i]'))
       .first();
@@ -443,6 +448,7 @@ test.describe('Soprole New — Pagos (enablePayments=true, walletEnabled=true)',
   });
 
   test('payment.walletEnabled=true — opción wallet disponible @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'payment.walletEnabled');
     const walletOption = page.getByText(/wallet|billetera|saldo disponible/i)
       .or(page.locator('[class*="wallet" i]'))
       .first();
@@ -456,6 +462,7 @@ test.describe('Soprole New — Pagos (enablePayments=true, walletEnabled=true)',
   });
 
   test('confirmCartText — botón muestra texto "Pasar a confirmación del pedido" @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'confirmCartText');
     const confirmBtn = page.getByText('Pasar a confirmación del pedido', { exact: true })
       .or(page.getByText(/pasar a confirmaci[oó]n/i));
     const hasCustomText = await confirmBtn.first().isVisible({ timeout: 10_000 }).catch(() => false);
@@ -468,6 +475,7 @@ test.describe('Soprole New — Pagos (enablePayments=true, walletEnabled=true)',
   });
 
   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'taxes.showSummary');
     const taxSummary = page.getByText(/impuesto|tax|iva/i)
       .or(page.locator('[class*="tax" i], [class*="impuesto" i]'))
       .first();
@@ -487,6 +495,7 @@ test.describe('Soprole New — Pagos (enablePayments=true, walletEnabled=true)',
 test.describe('Soprole New — Promociones (useNewPromotions=true)', () => {
 
   test('useNewPromotions=true — sección de promociones o banners visible @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'useNewPromotions');
     await login(page);
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
@@ -510,6 +519,7 @@ test.describe('Soprole New — Promociones (useNewPromotions=true)', () => {
 test.describe('Soprole New — Facturas y documentos de pago', () => {
 
   test('enableInvoicesList=true — sección de facturas accesible en /payment-documents @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enableInvoicesList');
     await login(page);
     // Ruta real del footer: link "Pagos" → /payment-documents
     await page.goto('/payment-documents');
@@ -530,6 +540,7 @@ test.describe('Soprole New — Facturas y documentos de pago', () => {
   });
 
   test('enablePaymentDocumentsB2B=true — módulo de pagos en /payment-documents @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enablePaymentDocumentsB2B');
     await login(page);
     await page.goto('/payment-documents');
     await page.waitForLoadState('domcontentloaded');
@@ -552,6 +563,7 @@ test.describe('Soprole New — Facturas y documentos de pago', () => {
 test.describe('Soprole New — Tareas (enableTask=true)', () => {
 
   test('enableTask=true — sección de tareas visible en navegación @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'enableTask');
     await login(page);
     await page.goto('/');
     await page.waitForLoadState('domcontentloaded');
@@ -575,6 +587,7 @@ test.describe('Soprole New — Tareas (enableTask=true)', () => {
 test.describe('Soprole New — Footer personalizado', () => {
 
   test('footerCustomContent — footer muestra links personalizados @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'footerCustomContent');
     await login(page);
     await page.goto('/products');
     await page.waitForLoadState('domcontentloaded');
@@ -596,6 +609,7 @@ test.describe('Soprole New — Footer personalizado', () => {
   });
 
   test('contact.phone — teléfono 600 600 6600 visible en footer @config @funcional', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'contact.phone');
     await login(page);
     await page.goto('/products');
     await page.waitForLoadState('domcontentloaded');
@@ -618,6 +632,7 @@ test.describe('Soprole New — Footer personalizado', () => {
 test.describe('Soprole New — Alerta cliente bloqueado (enableBlockedClientAlert=true)', () => {
 
   test('blockedClientAlert — configuración activa, comportamiento no testeable con cuenta válida @config @informativo', async ({ page }) => {
+    skipIfNotInB2B(CLIENT, 'blockedClientAlert');
     await login(page);
     // Esta feature solo se activa con cuentas bloqueadas — verificamos que no aparezca con cuenta normal
     await page.goto('/products');

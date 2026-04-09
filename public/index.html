@@ -617,6 +617,13 @@
         <div id="failureGroupsContainer"></div>
     </div>
 
+    <!-- Pendiente en B2B -->
+    <div class="card" id="pendingB2bCard" style="display:none;">
+        <div class="card-title">⏳ Pendiente en B2B Frontend</div>
+        <p style="color:#6b7280;font-size:13px;margin:0 0 12px;">Variables configuradas en MongoDB que aún no están implementadas en el repo B2B (<code>YOMCL/b2b</code>). Los tests correspondientes se saltan automáticamente hasta que se implementen.</p>
+        <div id="pendingB2bContainer"></div>
+    </div>
+
     <!-- Test suites table -->
     <div class="card">
         <div class="card-title">📋 Test Suites</div>
@@ -731,6 +738,7 @@ async function initDashboard() {
 
         updateSummary();
         updateFailureGroups();
+        updatePendingB2b();
         updateSuitesTable();
         updateClients();
         updateTrendChart();
@@ -771,6 +779,28 @@ function updateSummary() {
             <div class="pass-rate-fill" style="width:${passRate}%"></div>
         </div>
     `;
+}
+
+// ── Pending B2B ──────────────────────────────────────────
+
+function updatePendingB2b() {
+    const items = latestRun.pending_b2b;
+    if (!items || !items.length) return;
+
+    document.getElementById('pendingB2bCard').style.display = 'block';
+    const container = document.getElementById('pendingB2bContainer');
+
+    container.innerHTML = items.map(item => `
+        <div style="border:1px solid #e5e7eb;border-radius:8px;margin-bottom:8px;overflow:hidden;">
+            <div style="background:#faf5ff;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                <div>
+                    <span style="font-weight:600;color:#6d28d9;font-size:14px;">${escapeHtml(item.variable)}</span>
+                    ${(item.clients || []).map(c => `<span class="test-client-tag">${escapeHtml(c)}</span>`).join('')}
+                    <div style="font-size:12px;color:#6b7280;margin-top:3px;">${escapeHtml(item.action)}</div>
+                </div>
+                <span style="background:#ede9fe;color:#5b21b6;border-radius:9999px;padding:2px 10px;font-size:12px;white-space:nowrap;">${item.tests.length} test${item.tests.length !== 1 ? 's' : ''} skipped</span>
+            </div>
+        </div>`).join('');
 }
 
 // ── Failure Groups ────────────────────────────────────────

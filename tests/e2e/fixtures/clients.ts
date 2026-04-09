@@ -26,6 +26,7 @@ interface ClientConfig {
   loginPath: string;
   credentials: { email: string; password: string };
   config: Record<string, any>;
+  notImplementedInB2B: string[]; // Variables in MongoDB not yet implemented in B2B frontend
   coupons?: Array<{ code: string; discount: any }>; // From yom-promotions
   banners?: Array<{ title: string; position: string }>; // From b2b-marketing
   promotions?: Array<any>; // From yom-promotions
@@ -38,6 +39,7 @@ const clients: Record<string, ClientConfig> = {
     baseURL: "https://beta-codelpa.solopide.me",
     loginPath: "/auth/jwt/login",
     credentials: creds("CODELPA"),
+    notImplementedInB2B: [],
     coupons: [],
     banners: [],
     promotions: [],
@@ -113,6 +115,7 @@ const clients: Record<string, ClientConfig> = {
     baseURL: "https://surtiventas.solopide.me",
     loginPath: "/auth/jwt/login",
     credentials: creds("SURTIVENTAS"),
+    notImplementedInB2B: [],
     coupons: [],
     banners: [],
     promotions: [],
@@ -220,6 +223,7 @@ const clients: Record<string, ClientConfig> = {
     baseURL: "https://new-soprole.solopide.me",
     loginPath: "/auth/jwt/login",
     credentials: creds("NEW_SOPROLE"),
+    notImplementedInB2B: [],
     coupons: [],
     banners: [],
     promotions: [],

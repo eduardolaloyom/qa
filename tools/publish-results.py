@@ -306,6 +306,54 @@ def generate_failure_groups(results: dict) -> list:
     return result
 
 
+def generate_pending_b2b(results: dict) -> list:
+    """
+    Extract tests skipped because the variable is not implemented in B2B frontend.
+    Returns list of {variable, clients, tests} grouped by variable name.
+    """
+    all_tests = []
+    for suite in results.get("suites", []):
+        all_tests.extend(flatten_tests(suite))
+
+    B2B_SKIP_PATTERN = re.compile(r"^(.+?) no implementado en B2B frontend")
+
+    def extract_client(t: dict) -> str:
+        suite = t.get("suite_title", "")
+        if suite:
+            m = re.match(r'^([^—(\-:]+)', suite)
+            if m:
+                return m.group(1).strip().lower()
+        f = t.get("file", "")
+        if f:
+            return re.sub(r'\.spec\.ts$', '', f.split("/")[-1]).lower()
+        return "unknown"
+
+    # Group by variable name
+    groups: dict = defaultdict(lambda: {"tests": [], "clients": set()})
+    for t in all_tests:
+        if t.get("status") != "skipped":
+            continue
+        for ann in t.get("annotations", []):
+            if ann.get("type") != "skip":
+                continue
+            desc = ann.get("description", "")
+            m = B2B_SKIP_PATTERN.match(desc)
+            if m:
+                var_name = m.group(1)
+                groups[var_name]["tests"].append(f"[{t['file']}] {t['title']}")
+                groups[var_name]["clients"].add(extract_client(t))
+
+    return [
+        {
+            "variable": var,
+            "clients": sorted(data["clients"]),
+            "tests": data["tests"],
+            "action": f"Se debe implementar '{var}' en el B2B frontend (YOMCL/b2b) para activar este test.",
+        }
+        for var, data in sorted(groups.items())
+    ]
+
+
 def generate_run_json(results: dict, date: str) -> dict:
     """Generate the detailed run JSON."""
     # Only include suites that actually ran (tests > 0)
@@ -375,6 +423,7 @@ def generate_run_json(results: dict, date: str) -> dict:
         "suites": suites,
         "clients": clients,
         "failure_groups": generate_failure_groups(results),
+        "pending_b2b": generate_pending_b2b(results),
         "evidence": {
             "screenshots": [],
             "errors": [],

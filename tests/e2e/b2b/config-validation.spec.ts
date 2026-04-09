@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { loginHelper } from '../fixtures/login';
+import { skipIfNotInB2B } from '../fixtures/b2b-feature';
 import clients from '../fixtures/clients';
 
 /**
@@ -41,6 +42,7 @@ for (const [key, client] of Object.entries(clients)) {
 
     // ── hidePrices ──
     test(`${key}: hidePrices=${client.config.hidePrices}`, async ({ browser }) => {
+      skipIfNotInB2B(client, 'hidePrices');
       const context = await browser.newContext();
       const page = await context.newPage();
       await loginIfNeeded(page);
@@ -62,6 +64,7 @@ for (const [key, client] of Object.entries(clients)) {
 
     // ── disableCart ──
     test(`${key}: disableCart=${client.config.disableCart}`, async ({ browser }) => {
+      skipIfNotInB2B(client, 'disableCart');
       const context = await browser.newContext();
       const page = await context.newPage();
       await loginIfNeeded(page);
@@ -88,6 +91,7 @@ for (const [key, client] of Object.entries(clients)) {
     // ── enableCoupons ──
     if (client.config.enableCoupons !== undefined) {
       test(`${key}: enableCoupons=${client.config.enableCoupons}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enableCoupons');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -124,6 +128,7 @@ for (const [key, client] of Object.entries(clients)) {
     // ── hideReceiptType ──
     if (client.config.hideReceiptType !== undefined) {
       test(`${key}: hideReceiptType=${client.config.hideReceiptType}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'hideReceiptType');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -187,6 +192,7 @@ for (const [key, client] of Object.entries(clients)) {
     // inMaintenance
     if (client.config.inMaintenance !== undefined) {
       test(`${key}: inMaintenance=${client.config.inMaintenance}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'inMaintenance');
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(client.baseURL);
@@ -210,6 +216,7 @@ for (const [key, client] of Object.entries(clients)) {
     if (client.config.anonymousAccess === true) {
       if (client.config.anonymousHideCart !== undefined) {
         test(`${key}: anonymousHideCart=${client.config.anonymousHideCart}`, async ({ browser }) => {
+          skipIfNotInB2B(client, 'anonymousHideCart');
           const context = await browser.newContext();
           const page = await context.newPage();
           await page.goto(`${client.baseURL}`);
@@ -232,6 +239,7 @@ for (const [key, client] of Object.entries(clients)) {
 
       if (client.config.anonymousHidePrice !== undefined) {
         test(`${key}: anonymousHidePrice=${client.config.anonymousHidePrice}`, async ({ browser }) => {
+          skipIfNotInB2B(client, 'anonymousHidePrice');
           const context = await browser.newContext();
           const page = await context.newPage();
           await page.goto(`${client.baseURL}/products`);
@@ -256,6 +264,7 @@ for (const [key, client] of Object.entries(clients)) {
     // enablePayments / disablePayments
     if (client.config.enablePayments !== undefined) {
       test(`${key}: enablePayments=${client.config.enablePayments}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enablePayments');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -291,6 +300,7 @@ for (const [key, client] of Object.entries(clients)) {
     // ordersRequireAuthorization
     if (client.config.ordersRequireAuthorization !== undefined) {
       test(`${key}: ordersRequireAuthorization=${client.config.ordersRequireAuthorization}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'ordersRequireAuthorization');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -315,6 +325,7 @@ for (const [key, client] of Object.entries(clients)) {
     // includeTaxRateInPrices: si true los precios en catálogo ya incluyen IVA (no se suma en checkout)
     if (client.config.includeTaxRateInPrices !== undefined) {
       test(`${key}: includeTaxRateInPrices=${client.config.includeTaxRateInPrices}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'includeTaxRateInPrices');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -349,6 +360,7 @@ for (const [key, client] of Object.entries(clients)) {
     // lazyLoadingPrices: si true los precios cargan diferido (no están al primer render)
     if (client.config.lazyLoadingPrices !== undefined) {
       test(`${key}: lazyLoadingPrices=${client.config.lazyLoadingPrices}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'lazyLoadingPrices');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -385,6 +397,7 @@ for (const [key, client] of Object.entries(clients)) {
     // enableMassiveOrderSend: botón para enviar múltiples órdenes a la vez
     if (client.config.enableMassiveOrderSend === true) {
       test(`${key}: enableMassiveOrderSend=true visible`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enableMassiveOrderSend');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -404,6 +417,7 @@ for (const [key, client] of Object.entries(clients)) {
     // enableChooseSaleUnit: selector de unidad de venta en productos
     if (client.config.enableChooseSaleUnit !== undefined) {
       test(`${key}: enableChooseSaleUnit=${client.config.enableChooseSaleUnit}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enableChooseSaleUnit');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -428,6 +442,7 @@ for (const [key, client] of Object.entries(clients)) {
     // enableAskDeliveryDate: campo para elegir fecha de entrega en checkout
     if (client.config.enableAskDeliveryDate !== undefined) {
       test(`${key}: enableAskDeliveryDate=${client.config.enableAskDeliveryDate}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enableAskDeliveryDate');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -460,6 +475,7 @@ for (const [key, client] of Object.entries(clients)) {
     // orderObservations: campo para escribir observaciones al confirmar pedido
     if (client.config.orderObservations !== undefined) {
       test(`${key}: orderObservations=${client.config.orderObservations}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'orderObservations');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -493,6 +509,7 @@ for (const [key, client] of Object.entries(clients)) {
     // footerCustomContent.useFooterCustomContent: footer personalizado
     if (client.config['footerCustomContent.useFooterCustomContent'] === true) {
       test(`${key}: footerCustomContent.useFooterCustomContent=true visible`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'footerCustomContent');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
@@ -514,6 +531,7 @@ for (const [key, client] of Object.entries(clients)) {
     // disablePayments: explícitamente deshabilitado — distinto de enablePayments=false
     if (client.config.disablePayments === true) {
       test(`${key}: disablePayments=true — sección pagos ausente`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'disablePayments');
         const context = await browser.newContext();
         const page = await context.newPage();
         await loginIfNeeded(page);
