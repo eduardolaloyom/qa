@@ -627,14 +627,14 @@
     <!-- Variables B2B -->
     <div class="card" id="b2bVarsCard" style="display:none;">
         <div class="card-title">🔬 Variables B2B — Revisión de implementación</div>
-        <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables configuradas en MongoDB. Confirmar con el equipo de dev cuáles están implementadas en <code>YOMCL/b2b</code> y actualizar <code>data/b2b-feature-status.json</code>.</p>
+        <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB staging clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = encontrada en código frontend. <strong>⚠️ Sin confirmar</strong> = en <code>@yomcl/types</code> pero no en código (puede ser backend-controlada o stub pendiente). <strong>❌ No es B2B</strong> = no existe en el tipo Store — tests salteados.</p>
 
         <div class="filters-bar" style="margin-bottom:12px;">
             <span class="filter-label">Estado:</span>
             <button class="filter-btn active" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-            <button class="filter-btn" onclick="filterB2bVars('unknown', this)" style="color:#92400e;border-color:#fcd34d">❓ Sin revisar <span id="b2b-count-unknown" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-            <button class="filter-btn" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Implementada <span id="b2b-count-true" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-            <button class="filter-btn" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No implementada <span id="b2b-count-false" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterB2bVars('unknown', this)" style="color:#92400e;border-color:#fcd34d">⚠️ Sin confirmar <span id="b2b-count-unknown" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada <span id="b2b-count-true" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-false" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
             <input class="search-input" type="text" placeholder="Buscar variable..." oninput="searchB2bVars(this.value)" style="margin-left:auto;">
         </div>
 
@@ -1222,10 +1222,8 @@ async function loadB2bVariables() {
         const r = await fetch('data/b2b-variables.json?v=' + Date.now());
         if (!r.ok) return;
         b2bVarsData = await r.json();
-        // Only show section if at least one variable has been reviewed
         const vars = Object.values(b2bVarsData.variables || {});
-        const hasReviewed = vars.some(v => v.implemented !== null && v.implemented !== undefined);
-        if (!hasReviewed) return;
+        if (!vars.length) return;
         document.getElementById('b2bVarsCard').style.display = 'block';
         renderB2bVars();
     } catch (e) {
@@ -1261,9 +1259,9 @@ function renderB2bVars() {
     });
 
     const statusBadge = (impl) => {
-        if (impl === true)  return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Implementada</span>';
-        if (impl === false) return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No implementada</span>';
-        return '<span style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❓ Sin revisar</span>';
+        if (impl === true)  return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Confirmada</span>';
+        if (impl === false) return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No es B2B</span>';
+        return '<span style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">⚠️ Sin confirmar</span>';
     };
 
     const body = document.getElementById('b2bVarsBody');

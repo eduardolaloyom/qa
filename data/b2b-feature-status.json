@@ -98,383 +98,548 @@
     },
     "anonymousAccess": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(authenticated)/layout.tsx",
+        "src/auth/context/jwt/auth-provider.tsx",
+        "src/auth/guard/guest-guard.tsx",
+        "src/lib/contexts/anonymous-access/anonymous-access-provider.tsx",
+        "src/lib/contexts/store/store-provider.tsx"
+      ]
     },
     "anonymousHideCart": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/contexts/anonymous-access/anonymous-access-provider.tsx"
+      ]
     },
     "anonymousHidePrice": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/contexts/anonymous-access/anonymous-access-provider.tsx"
+      ]
     },
     "blockedClientAlert.blockedClientAlertHtmlContent": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "blockedClientAlert.enableBlockedClientAlert": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "businessUnits": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "confirmCartText": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "contact.about": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(dashboard)/contact/_components/view.tsx",
+        "src/components/footer/components/commerce-info.tsx"
+      ]
     },
     "contact.branchesContactInformation": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/hooks/use-no-delivery-date-message.ts"
+      ]
     },
     "contact.email": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/auth/types.ts",
+        "src/components/sections/auth/hooks/use-local-register-form.ts",
+        "src/components/sections/auth/hooks/use-auth-register.ts",
+        "src/components/sections/auth/hooks/use-local-login-form.ts",
+        "src/components/sections/auth/hooks/use-auth-login.ts"
+      ]
     },
     "contact.phone": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/components/sections/auth/hooks/use-user-info-validations.ts",
+        "src/components/sections/auth/hooks/use-user-info-custom-form.ts",
+        "src/components/sections/profile/hooks/use-profile-user.ts",
+        "src/components/sections/profile/hooks/use-user-info-form.ts",
+        "src/components/sections/profile/interfaces/user.ts"
+      ]
     },
     "disableCart": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "disableCommerceEdit": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "disableObservationInput": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(authenticated)/cart/_components/view.tsx"
+      ]
     },
     "disablePayments": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "disableShowEstimatedDeliveryHour": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "disableSyncDate": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "disableWrongPrices": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "discountTypes.discountTypesList": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "discountTypes.enableOrderDiscountType": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "discountTypes.enableProductDiscountType": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "editAddress": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableAskDeliveryDate": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableBetaButtons": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableChooseSaleUnit": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableCoupons": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableCreditNotes": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableDialogNoSellReason": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableDistributionCentersSelector": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/auth/guard/guest-guard.tsx",
+        "src/components/sections/auth/components/user-info-default-form.tsx"
+      ]
     },
     "enableInvoicesList": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(authenticated)/(documents)/layout.tsx",
+        "src/app/(authenticated)/(documents)/external-orders/guard/external-order-guard.tsx",
+        "src/lib/routes/guards/external-order-guard.tsx"
+      ]
     },
     "enableMassiveOrderSend": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableNewUI": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableOrderApproval": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableOrderValidation": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enablePaymentDocumentsB2B": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/hooks/use-upago-finance-portal-url.ts",
+        "src/app/(authenticated)/(documents)/payment-documents/_components/view.tsx",
+        "src/app/(authenticated)/(documents)/payment-documents/_components/sections/payment-table.tsx",
+        "src/components/minimals/layouts/common/account-popover.tsx"
+      ]
     },
     "enablePayments": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enablePaymentsCollection": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enablePriceOracle": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/hooks/use-show-delivery-date.ts"
+      ]
     },
     "enableSellerDiscount": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "enableTask": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "externalAccess": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/components/sections/auth/hooks/use-user-info-validations.ts",
+        "src/components/sections/auth/hooks/use-user-info-custom-form.ts",
+        "src/auth/guard/guest-guard.tsx",
+        "src/components/sections/auth/components/user-info-default-form.tsx",
+        "src/components/sections/auth/components/user-info-form/distribution-fields.tsx"
+      ]
     },
     "filterGroupedSuggestionsBy": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "footerCustomContent.footerCustomHtmlContent": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/components/footer/hooks/use-footer-columns.ts"
+      ]
     },
     "footerCustomContent.useFooterCustomContent": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasAllDistributionCenters": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasMultiUnitEnabled": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/components/cards/product/utils/use-purchase-limit.ts",
+        "src/components/cards/product/common/cart-interaction/cart-interaction.tsx",
+        "src/components/cards/product/cart/product-card-cart.tsx"
+      ]
     },
     "hasMultipleBusinessUnit": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasNoSaleFilter": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasSingleDistributionCenter": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasStockEnabled": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasTransferPaymentType": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasTransportCode": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hasVoucherPrinterEnabled": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hidePrices": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "hideReceiptType": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "includeTaxRateInPrices": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "lazyLoadingPrices": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "limitAddingByStock": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "ordersRequireAuthorization": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "ordersRequireVerification": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "packagingInformation.hidePackagingInformationB2B": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "packagingInformation.hideSingleItemPackagingInformationB2B": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "packagingInformation.ignoreUnitOnPackInformationB2B": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "payment.balances": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "payment.enableNewPaymentModule": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "payment.externalPayment": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(authenticated)/(documents)/layout.tsx",
+        "src/app/(authenticated)/(documents)/payment-documents/_components/sections/payment-table.tsx",
+        "src/app/(authenticated)/cart/_components/view.tsx",
+        "src/components/minimals/layouts/common/account-popover.tsx"
+      ]
     },
     "payment.requiresFullPayment": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "payment.walletEnabled": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "paymentsWithoutAccount": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "pendingDocuments": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/utils/axios/legacy/endpoints.ts"
+      ]
     },
     "pointsEnabled": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "priceRoundingDecimals": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "productDetailViewConfiguration.tabsOrder": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(authenticated)/products/[uuid]/_components/sections/description/description-tabs/description-tabs.tsx"
+      ]
     },
     "productVariability": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/hooks/use-product-variability.ts",
+        "src/lib/hooks/fetcher-hooks/catalog/use-catalog-count.ts",
+        "src/components/cards/product/common/recommended-product-quantity.tsx",
+        "src/lib/hooks/fetcher-hooks/use-recommendations.tsx",
+        "src/lib/hooks/fetcher-hooks/catalog/use-catalog.tsx"
+      ]
     },
     "purchaseOrderEnabled": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "shareOrderNewDesign": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "shoppingDetail.lastOrder": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/app/(authenticated)/offers/_components/view.tsx",
+        "src/app/(authenticated)/_home/home-product-list.tsx"
+      ]
     },
     "showEmptyCategories": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/components/minimals/layouts/dashboard/nav-horizontal/nav-horizontal.tsx",
+        "src/components/minimals/layouts/dashboard/header/components/categories-drawer-content.tsx",
+        "src/lib/hooks/fetcher-hooks/catalog/use-categories.tsx"
+      ]
     },
     "showMinOne": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "suggestions.enableSortingByCategories": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "synchronization.backgroundSyncList": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "synchronization.enableBackgroundSendOrders": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "synchronization.enableBackgroundSync": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "synchronization.enableSyncImages": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "taxes.showSummary": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "taxes.taxRate": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "taxes.useTaxRate": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/utils/product/get-full-pricing-column.ts",
+        "src/lib/hooks/use-product-pricing-calculator.ts",
+        "src/app/(authenticated)/products/[uuid]/_components/sections/description/common/steps/description-steps.tsx",
+        "src/app/(authenticated)/cart/_components/sections/cart-pricing-details.tsx",
+        "src/lib/contexts/cart/cart-provider.tsx"
+      ]
     },
     "uploadOrderFileWithMinUnits": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "useMobileGps": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "useNewPromotions": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "validatePaymentFromAdmin": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "weightInfo": {
-      "implemented": true,
-      "files": []
+      "implemented": null,
+      "files": [],
+      "reason": "in @yomcl/types but not found in b2b@staging code \u2014 may be backend-controlled or stub"
     },
     "wrongPrices.block": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/components/cards/product/common/cart-interaction/styles/styled-quantity-with-packaging.ts",
+        "src/components/cards/product/detail/image-gallery/styles/thumbnail-stack.ts",
+        "src/components/cards/product/catalog/info/info.tsx",
+        "src/components/cards/product/common/image.tsx",
+        "src/components/cards/product/cart/product-card-cart.tsx"
+      ]
     },
     "wrongPrices.threshold": {
       "implemented": true,
-      "files": []
+      "files": [
+        "src/lib/hooks/use-intersection-observer.ts",
+        "src/lib/hooks/use-scroll-tracking.ts",
+        "src/components/carousels/product-carousel/product-carousel.tsx",
+        "src/components/cards/product/catalog/product-card/product-card.tsx",
+        "src/lib/utils/scroll-tracker.tsx"
+      ]
     }
   },
   "typesRepo": "YOMCL/monorepo",
-  "note": "Single step: @yomcl/types Store type check only",
-  "generatedAt": "2026-04-09T19:46:40.656517+00:00",
+  "note": "3-state: false=skip(not in type) | null=unknown | true=confirmed in frontend",
+  "generatedAt": "2026-04-09T19:51:10.721579+00:00",
   "b2bBranch": "staging"
 }
