@@ -631,7 +631,7 @@
       "clients": [
         "marleycoffee"
       ],
-      "implemented": false
+      "implemented": true
     },
     "payment.requiresFullPayment": {
       "clients": [
@@ -686,7 +686,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": false
+      "implemented": true
     },
     "productList.enableSuggestionByCategories": {
       "clients": [
@@ -726,7 +726,7 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": false
+      "implemented": true
     },
     "showEmptyCategories": {
       "clients": [
@@ -855,19 +855,19 @@
         "new-soprole",
         "prisa"
       ],
-      "implemented": true
+      "implemented": false
     },
     "wrongPrices.block": {
       "clients": [
         "new-soprole"
       ],
-      "implemented": false
+      "implemented": true
     },
     "wrongPrices.threshold": {
       "clients": [
         "new-soprole"
       ],
-      "implemented": false
+      "implemented": true
     }
   }
 }
