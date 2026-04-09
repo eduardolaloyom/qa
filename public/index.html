@@ -256,12 +256,18 @@
         }
         .failure-group-header:hover { opacity: 0.93; }
 
-        .failure-group.real-bug   .failure-group-header { background: #fff1f2; }
-        .failure-group.selector   .failure-group-header { background: #fefce8; }
-        .failure-group.timeout    .failure-group-header { background: #fff7ed; }
-        .failure-group.credentials .failure-group-header { background: #f5f3ff; }
-        .failure-group.flaky      .failure-group-header { background: #fffbeb; }
-        .failure-group.unknown    .failure-group-header { background: #f9fafb; }
+        .failure-group.bug        .failure-group-header { background: #fff1f2; }
+        .failure-group.ux         .failure-group-header { background: #fffbeb; }
+        .failure-group.ambiente   .failure-group-header { background: #eff6ff; }
+        .failure-group.flaky      .failure-group-header { background: #f0fdf4; }
+
+        /* Action block color per category */
+        .failure-group.bug .fg-action        { background: #fff1f2; border-left-color: #ef4444; color: #7f1d1d; }
+        .failure-group.bug .fg-action-label  { color: #ef4444; }
+        .failure-group.ux .fg-action         { background: #fffbeb; border-left-color: #f59e0b; color: #78350f; }
+        .failure-group.ux .fg-action-label   { color: #d97706; }
+        .failure-group.ambiente .fg-action        { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a5f; }
+        .failure-group.ambiente .fg-action-label  { color: #3b82f6; }
 
         .fg-left { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
         .fg-top-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -592,10 +598,9 @@
         <div class="failure-filters">
             <span class="filter-label">Filtrar por:</span>
             <button class="filter-btn active" onclick="filterFailures('all', this)">Todos</button>
-            <button class="filter-btn" onclick="filterFailures('real-bug', this)" style="color:#991b1b;border-color:#fca5a5">🔴 Bug Real</button>
-            <button class="filter-btn" onclick="filterFailures('selector', this)" style="color:#92400e;border-color:#fcd34d">🔧 Selector</button>
-            <button class="filter-btn" onclick="filterFailures('timeout', this)" style="color:#92400e;border-color:#fdba74">⏱ Timeout</button>
-            <button class="filter-btn" onclick="filterFailures('credentials', this)" style="color:#5b21b6;border-color:#c4b5fd">🔑 Credenciales</button>
+            <button class="filter-btn" onclick="filterFailures('bug', this)" style="color:#991b1b;border-color:#fca5a5">🔴 Bug</button>
+            <button class="filter-btn" onclick="filterFailures('ux', this)" style="color:#92400e;border-color:#fcd34d">🟡 Mejora UX</button>
+            <button class="filter-btn" onclick="filterFailures('ambiente', this)" style="color:#1e40af;border-color:#93c5fd">🔵 Ambiente</button>
             <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
                 <span class="filter-label">Owner:</span>
                 <button class="filter-btn" onclick="filterOwner('all', this)">Todos</button>
@@ -916,7 +921,7 @@ function openLinear(i) {
     const date = latestRun.date || '';
 
     // Título con mismo formato que bugs existentes en Linear: fix(scope): descripción
-    const scope = g.category === 'real-bug' ? 'b2b' : g.category === 'selector' ? 'qa' : g.category === 'timeout' ? 'staging' : 'qa';
+    const scope = g.category === 'bug' ? 'b2b' : g.category === 'ux' ? 'ux' : g.category === 'ambiente' ? 'infra' : 'qa';
     const rawTitle = `fix(${scope}): ${g.reason.slice(0, 70)}`;
 
     // Descripción siguiendo el formato de bugs reales en Linear (YOM-218, YOM-209, etc.)

@@ -1,0 +1,83 @@
+{
+  "date": "2026-04-09",
+  "timestamp": "2026-04-09T14:35:02.096622+00:00",
+  "total": 32,
+  "passed": 29,
+  "failed": 3,
+  "duration": 175,
+  "suites": [
+    {
+      "name": "new-soprole.spec.ts",
+      "tests": 32,
+      "passed": 29,
+      "failed": 3,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "codelpa": {
+      "name": "Codelpa",
+      "url": "https://beta-codelpa.solopide.me",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "surtiventas": {
+      "name": "Surtiventas",
+      "url": "https://surtiventas.solopide.me",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  },
+  "failure_groups": [
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Expected: 0 \u2192 Received: 3",
+      "owner": "dev",
+      "action": "3 pedidos con estado \"No disponible\" 3 pedidos con estado \"No disponible\"",
+      "count": 1,
+      "tests": [
+        "[new-soprole.spec.ts] Estados de pedido son v\u00e1lidos (no \"No disponible\") @pedidos @funcional"
+      ],
+      "clients": [
+        "soprole new"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "confirmCartText no se aplica \u2014 texto del bot\u00f3n no coincide con la config",
+      "owner": "dev",
+      "action": "Se debe verificar que el componente del carrito lee confirmCartText desde la config del cliente. En MongoDB est\u00e1 configurado como 'Pasar a confirmaci\u00f3n del pedido' pero el bot\u00f3n muestra otro texto.",
+      "count": 1,
+      "tests": [
+        "[new-soprole.spec.ts] confirmCartText \u2014 bot\u00f3n muestra texto \"Pasar a confirmaci\u00f3n del pedido\" @config @funcional"
+      ],
+      "clients": [
+        "soprole new"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Error de servidor (5xx) en: `https://api.solopide.me/api/v2/commerces/delivery` (500)",
+      "owner": "dev",
+      "action": "Se debe revisar los logs del servidor para el endpoint https://api.solopide.me/api/v2/commerces/delivery (GET, staging). El servidor retorna 500 \u2014 se debe identificar y corregir el error interno.",
+      "count": 1,
+      "tests": [
+        "[new-soprole.spec.ts] Sin requests 4xx/5xx durante navegaci\u00f3n @consola @funcional"
+      ],
+      "clients": [
+        "soprole new"
+      ]
+    }
+  ],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}

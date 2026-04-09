@@ -17,18 +17,28 @@ export async function loginHelper(
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
 
-  // Wait for email input to appear (SPA needs time to render)
-  // Direct name selectors avoid .or() chain resolution issues with MUI controlled inputs
+  // Direct name selectors — confirmed working via diagnostic (2 inputs: email + password)
   const emailInput = page.locator('input[name="email"]').first();
   const passwordInput = page.locator('input[name="password"]').first();
 
   await emailInput.waitFor({ state: 'visible', timeout: 45000 });
 
-  // fill() properly triggers React's onChange via Playwright's internal event dispatch
+  // fill() triggers React onChange in MUI inputs on these staging sites
   await emailInput.click();
   await emailInput.fill(email);
+
+  // Fallback: if fill didn't update the field, use pressSequentially
+  if (await emailInput.inputValue() === '') {
+    await emailInput.pressSequentially(email, { delay: 30 });
+  }
+
   await passwordInput.click();
   await passwordInput.fill(password);
+
+  if (await passwordInput.inputValue() === '') {
+    await passwordInput.pressSequentially(password, { delay: 30 });
+  }
+
   await passwordInput.press('Enter');
 
   // Wait for redirect away from login page
