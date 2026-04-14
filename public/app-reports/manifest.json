@@ -5,11 +5,11 @@
       "client_slug": "prinorte",
       "date": "2026-04-14",
       "file": "prinorte-2026-04-14.html",
-      "passed": 0,
-      "failed": 8,
-      "total": 8,
-      "health": 0,
-      "verdict": "BLOQUEADO"
+      "passed": 8,
+      "failed": 2,
+      "total": 10,
+      "health": 80,
+      "verdict": "CON OBSERVACIONES"
     }
   ]
 }
