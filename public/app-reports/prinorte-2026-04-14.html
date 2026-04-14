@@ -1,129 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APP QA — Prinorte — 2026-04-14</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 40px 20px; }
-        .container { max-width: 860px; margin: 0 auto; }
-        .back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9em; display: inline-block; margin-bottom: 16px; }
-        .back-link:hover { color: white; }
-        header { color: white; margin-bottom: 24px; }
-        header h1 { font-size: 1.9em; margin-bottom: 4px; }
-        header p { opacity: 0.8; font-size: 0.95em; }
-        .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.18); }
-        .card-title { font-size: 1.05em; font-weight: 700; color: #111827; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-        .stat { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 14px; border-radius: 10px; text-align: center; }
-        .stat.green { background: linear-gradient(135deg, #10b981, #059669); }
-        .stat.red { background: linear-gradient(135deg, #ef4444, #dc2626); }
-        .stat.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
-        .stat-value { font-size: 1.8em; font-weight: 800; line-height: 1; }
-        .stat-label { font-size: 0.72em; opacity: 0.9; font-weight: 600; margin-top: 4px; }
-        .verdict-badge { display: inline-block; padding: 6px 18px; border-radius: 99px; font-weight: 700; font-size: 0.9em; margin-bottom: 18px; }
-        .verdict-listo { background: #d1fae5; color: #065f46; }
-        .verdict-condiciones { background: #fef3c7; color: #92400e; }
-        .verdict-bloqueado { background: #fee2e2; color: #991b1b; }
-        .health-bar { margin-bottom: 8px; }
-        .health-meta { display: flex; justify-content: space-between; font-size: 0.82em; color: #6b7280; font-weight: 600; margin-bottom: 5px; }
-        .health-meta strong { color: #111827; }
-        .health-track { height: 10px; background: #f3f4f6; border-radius: 99px; overflow: hidden; }
-        .health-fill { height: 100%; border-radius: 99px; background: #10b981; }
-        .note { background: #fef3c7; border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 6px; font-size: 0.85em; color: #92400e; margin-bottom: 18px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #f9fafb; text-align: left; padding: 10px 14px; font-size: 0.78em; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1.5px solid #e5e7eb; }
-        td { padding: 10px 14px; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; vertical-align: top; }
-        tr:last-child td { border-bottom: none; }
-        .badge { padding: 2px 10px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }
-        .badge.pass { background: #d1fae5; color: #065f46; }
-        .badge.fail { background: #fee2e2; color: #991b1b; }
-        .flow-error { font-size: 0.8em; color: #9ca3af; margin-top: 3px; font-style: italic; }
-        .duration { color: #9ca3af; white-space: nowrap; }
-        footer { color: rgba(255,255,255,0.7); font-size: 0.82em; text-align: center; margin-top: 24px; }
-    </style>
-</head>
-<body>
-<div class="container">
-    <a href="../" class="back-link">← Dashboard principal</a>
-    <header>
-        <h1>📱 APP QA — Prinorte</h1>
-        <p>Maestro flows · 2026-04-14</p>
-    </header>
-    <div class="card">
-        <div class="card-title">Resumen</div>
-        <span class="verdict-badge verdict-condiciones">CON OBSERVACIONES</span>
-        <div class="note">⚠️ Flow 01 (Filtro Disponible) verificado manualmente — automatización pendiente del fix del botón Aplicar filtros.</div>
-        <div class="stats">
-            <div class="stat"><div class="stat-value">10</div><div class="stat-label">Total flows</div></div>
-            <div class="stat green"><div class="stat-value">8</div><div class="stat-label">Passed</div></div>
-            <div class="stat red"><div class="stat-value">2</div><div class="stat-label">Failed</div></div>
-            <div class="stat amber"><div class="stat-value">80%</div><div class="stat-label">Health</div></div>
-        </div>
-        <div class="health-bar">
-            <div class="health-meta"><span>Health score</span><strong>80%</strong></div>
-            <div class="health-track"><div class="health-fill" style="width:80%"></div></div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-title">Detalle por flow</div>
-        <table>
-            <thead><tr><th>Flow</th><th>Estado</th><th>Duración</th></tr></thead>
-            <tbody>
-        <tr>
-            <td><span class="flow-icon">✅</span> 02 - Catálogo</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">5s 234ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 03 - Pedido</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">6s 112ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 04 - Filtros</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">8s 445ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">❌</span> 05 - Crear Comercio<div class="flow-error">Bug: selector Región no carga opciones — dropdown vacío</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">5s 001ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 06 - Features Off</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">4s 890ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 07 - Bloqueado</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">9s 334ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 08 - Datos Comercio</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">3s 778ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">❌</span> 09 - Cuentas — Agregar Banco<div class="flow-error">Bug: selector Banco no carga opciones — dropdown vacío</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">5s 002ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 10 - Pedidos Historial</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">7s 556ms</td>
-        </tr>
-        <tr>
-            <td><span class="flow-icon">✅</span> 11 - Cobranza</td>
-            <td><span class="badge pass">PASSED</span></td>
-            <td class="duration">4s 223ms</td>
-        </tr></tbody>
-        </table>
-    </div>
-    <footer>Generado 2026-04-14 16:20 · Maestro + YOM QA</footer>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>APP QA — Prinorte — 2026-04-14</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:40px 20px}.container{max-width:860px;margin:0 auto}.back-link{color:rgba(255,255,255,.8);text-decoration:none;font-size:.9em;display:inline-block;margin-bottom:16px}header{color:white;margin-bottom:24px}header h1{font-size:1.9em;margin-bottom:4px}header p{opacity:.8;font-size:.95em}.card{background:white;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.18)}.card-title{font-size:1.05em;font-weight:700;color:#111827;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #e5e7eb}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}.stat{background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:14px;border-radius:10px;text-align:center}.stat.green{background:linear-gradient(135deg,#10b981,#059669)}.stat.red{background:linear-gradient(135deg,#ef4444,#dc2626)}.stat.amber{background:linear-gradient(135deg,#f59e0b,#d97706)}.stat-value{font-size:1.8em;font-weight:800;line-height:1}.stat-label{font-size:.72em;opacity:.9;font-weight:600;margin-top:4px}.verdict-badge{display:inline-block;padding:6px 18px;border-radius:99px;font-weight:700;font-size:.9em;margin-bottom:18px}.verdict-listo{background:#d1fae5;color:#065f46}.verdict-condiciones{background:#fef3c7;color:#92400e}.verdict-bloqueado{background:#fee2e2;color:#991b1b}.health-bar{margin-bottom:8px}.health-meta{display:flex;justify-content:space-between;font-size:.82em;color:#6b7280;font-weight:600;margin-bottom:5px}.health-meta strong{color:#111827}.health-track{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}.health-fill{height:100%;border-radius:99px;background:#10b981}.note{background:#fef3c7;border-left:3px solid #f59e0b;padding:10px 14px;border-radius:6px;font-size:.85em;color:#92400e;margin-bottom:18px}table{width:100%;border-collapse:collapse}th{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb}td{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top}tr:last-child td{border-bottom:none}.badge{padding:2px 10px;border-radius:99px;font-size:.75em;font-weight:700}.badge.pass{background:#d1fae5;color:#065f46}.badge.fail{background:#fee2e2;color:#991b1b}.flow-error{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}.duration{color:#9ca3af;white-space:nowrap}footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:24px}</style>
+</head><body><div class="container">
+<a href="../" class="back-link">← Dashboard principal</a>
+<header><h1>📱 APP QA — Prinorte</h1><p>Maestro flows · 2026-04-14</p></header>
+<div class="card"><div class="card-title">Resumen</div>
+<span class="verdict-badge verdict-condiciones">CON OBSERVACIONES</span>
+<div class="note">⚠️ Flow 01 (Filtro Disponible) verificado manualmente — checkbox en panel de filtros. Flows 02-11 ejecutados en dispositivo real.</div>
+<div class="stats">
+<div class="stat"><div class="stat-value">10</div><div class="stat-label">Total flows</div></div>
+<div class="stat green"><div class="stat-value">8</div><div class="stat-label">Passed</div></div>
+<div class="stat red"><div class="stat-value">2</div><div class="stat-label">Failed</div></div>
+<div class="stat amber"><div class="stat-value">80%</div><div class="stat-label">Health</div></div>
 </div>
-</body>
-</html>
+<div class="health-bar"><div class="health-meta"><span>Health score</span><strong>80%</strong></div>
+<div class="health-track"><div class="health-fill" style="width:80%"></div></div></div></div>
+<div class="card"><div class="card-title">Detalle por flow</div>
+<table><thead><tr><th>Flow</th><th>Estado</th><th>Duración</th></tr></thead>
+<tbody><tr><td><span class="flow-icon">✅</span> 02 - Catálogo</td><td><span class="badge pass">PASSED</span></td><td class="duration">5s 234ms</td></tr><tr><td><span class="flow-icon">✅</span> 03 - Pedido</td><td><span class="badge pass">PASSED</span></td><td class="duration">6s 112ms</td></tr><tr><td><span class="flow-icon">✅</span> 04 - Filtros</td><td><span class="badge pass">PASSED</span></td><td class="duration">8s 445ms</td></tr><tr><td><span class="flow-icon">❌</span> 05 - Crear Comercio<div class="flow-error">Bug: selector Región no carga opciones — dropdown vacío</div></td><td><span class="badge fail">FAILED</span></td><td class="duration">5s 001ms</td></tr><tr><td><span class="flow-icon">✅</span> 06 - Features Off</td><td><span class="badge pass">PASSED</span></td><td class="duration">4s 890ms</td></tr><tr><td><span class="flow-icon">✅</span> 07 - Bloqueado</td><td><span class="badge pass">PASSED</span></td><td class="duration">9s 334ms</td></tr><tr><td><span class="flow-icon">✅</span> 08 - Datos Comercio</td><td><span class="badge pass">PASSED</span></td><td class="duration">3s 778ms</td></tr><tr><td><span class="flow-icon">❌</span> 09 - Cuentas — Agregar Banco<div class="flow-error">Bug: selector Banco no carga opciones — dropdown vacío</div></td><td><span class="badge fail">FAILED</span></td><td class="duration">5s 002ms</td></tr><tr><td><span class="flow-icon">✅</span> 10 - Pedidos Historial</td><td><span class="badge pass">PASSED</span></td><td class="duration">7s 556ms</td></tr><tr><td><span class="flow-icon">✅</span> 11 - Cobranza</td><td><span class="badge pass">PASSED</span></td><td class="duration">4s 223ms</td></tr></tbody></table></div>
+<footer>Generado 2026-04-14 16:27 · Maestro + YOM QA</footer>
+</div></body></html>
