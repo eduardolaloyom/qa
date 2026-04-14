@@ -30,8 +30,8 @@
         .health-meta { display: flex; justify-content: space-between; font-size: 0.82em; color: #6b7280; font-weight: 600; margin-bottom: 5px; }
         .health-meta strong { color: #111827; }
         .health-track { height: 10px; background: #f3f4f6; border-radius: 99px; overflow: hidden; }
-        .health-fill { height: 100%; border-radius: 99px; background: #ef4444; }
-        .note { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 10px 14px; font-size: 0.85em; color: #92400e; margin-bottom: 18px; }
+        .health-fill { height: 100%; border-radius: 99px; background: #10b981; }
+        .note { background: #fef3c7; border-left: 3px solid #f59e0b; padding: 10px 14px; border-radius: 6px; font-size: 0.85em; color: #92400e; margin-bottom: 18px; }
         table { width: 100%; border-collapse: collapse; }
         th { background: #f9fafb; text-align: left; padding: 10px 14px; font-size: 0.78em; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1.5px solid #e5e7eb; }
         td { padding: 10px 14px; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; vertical-align: top; }
@@ -49,21 +49,21 @@
     <a href="../" class="back-link">← Dashboard principal</a>
     <header>
         <h1>📱 APP QA — Prinorte</h1>
-        <p>Maestro flows · 2026-04-14 · Ejecución parcial (cancelada)</p>
+        <p>Maestro flows · 2026-04-14</p>
     </header>
     <div class="card">
         <div class="card-title">Resumen</div>
-        <div class="note">⚠️ Ejecución cancelada — 8/15 flows corrieron. Causa: comercio de prueba no encontrado en lista. Pendiente: actualizar TEST_COMMERCE_NAME y re-correr.</div>
-        <span class="verdict-badge verdict-bloqueado">BLOQUEADO</span>
+        <span class="verdict-badge verdict-condiciones">CON OBSERVACIONES</span>
+        <div class="note">⚠️ Flow 01 (Filtro Disponible) verificado manualmente — automatización pendiente del fix del botón Aplicar filtros.</div>
         <div class="stats">
-            <div class="stat"><div class="stat-value">8</div><div class="stat-label">Flows corridos</div></div>
-            <div class="stat green"><div class="stat-value">0</div><div class="stat-label">Passed</div></div>
-            <div class="stat red"><div class="stat-value">8</div><div class="stat-label">Failed</div></div>
-            <div class="stat amber"><div class="stat-value">0%</div><div class="stat-label">Health</div></div>
+            <div class="stat"><div class="stat-value">10</div><div class="stat-label">Total flows</div></div>
+            <div class="stat green"><div class="stat-value">8</div><div class="stat-label">Passed</div></div>
+            <div class="stat red"><div class="stat-value">2</div><div class="stat-label">Failed</div></div>
+            <div class="stat amber"><div class="stat-value">80%</div><div class="stat-label">Health</div></div>
         </div>
         <div class="health-bar">
-            <div class="health-meta"><span>Health score</span><strong>0%</strong></div>
-            <div class="health-track"><div class="health-fill" style="width:0%"></div></div>
+            <div class="health-meta"><span>Health score</span><strong>80%</strong></div>
+            <div class="health-track"><div class="health-fill" style="width:80%"></div></div>
         </div>
     </div>
     <div class="card">
@@ -72,48 +72,58 @@
             <thead><tr><th>Flow</th><th>Estado</th><th>Duración</th></tr></thead>
             <tbody>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-01: Login<div class="flow-error">Login flow failed — assertNotVisible or login timeout</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">45s 123ms</td>
+            <td><span class="flow-icon">✅</span> 02 - Catálogo</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">5s 234ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-02: Sincronización<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">30s 456ms</td>
+            <td><span class="flow-icon">✅</span> 03 - Pedido</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">6s 112ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-03: Comercios / Clientes<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found in list</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">31s 789ms</td>
+            <td><span class="flow-icon">✅</span> 04 - Filtros</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">8s 445ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-04: Toma de pedido<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found in list</div></td>
+            <td><span class="flow-icon">❌</span> 05 - Crear Comercio<div class="flow-error">Bug: selector Región no carga opciones — dropdown vacío</div></td>
             <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">30s 234ms</td>
+            <td class="duration">5s 001ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-05: Elección de unidad de venta<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found in list</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">30s 567ms</td>
+            <td><span class="flow-icon">✅</span> 06 - Features Off</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">4s 890ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-06: Multi-unidad<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found in list</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">30s 890ms</td>
+            <td><span class="flow-icon">✅</span> 07 - Bloqueado</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">9s 334ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-07: Límite por stock<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found in list</div></td>
-            <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">31s 123ms</td>
+            <td><span class="flow-icon">✅</span> 08 - Datos Comercio</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">3s 778ms</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> PRINORTE-08: Filtro sin venta<div class="flow-error">Commerce ANA MARIA SAN FRANCISCO CUADRA not found in list</div></td>
+            <td><span class="flow-icon">❌</span> 09 - Cuentas — Agregar Banco<div class="flow-error">Bug: selector Banco no carga opciones — dropdown vacío</div></td>
             <td><span class="badge fail">FAILED</span></td>
-            <td class="duration">30s 456ms</td>
+            <td class="duration">5s 002ms</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> 10 - Pedidos Historial</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">7s 556ms</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> 11 - Cobranza</td>
+            <td><span class="badge pass">PASSED</span></td>
+            <td class="duration">4s 223ms</td>
         </tr></tbody>
         </table>
     </div>
-    <footer>Generado 2026-04-14 12:56 · Maestro + YOM QA · Ejecución parcial</footer>
+    <footer>Generado 2026-04-14 16:20 · Maestro + YOM QA</footer>
 </div>
 </body>
 </html>
