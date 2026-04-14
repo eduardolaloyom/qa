@@ -618,6 +618,6 @@
   },
   "typesRepo": "YOMCL/monorepo",
   "note": "3-state: false=skip(not in type) | null=unknown | true=confirmed in frontend",
-  "generatedAt": "2026-04-14T21:14:16.318778+00:00",
+  "generatedAt": "2026-04-14T21:17:19.785073+00:00",
   "b2bBranch": "staging"
 }
