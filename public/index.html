@@ -93,6 +93,31 @@
         }
         .card-open-btn:hover { color: #667eea; border-color: #667eea; }
 
+        /* ── APP client accordion ── */
+        .app-client-section { border:1px solid #e5e7eb; border-radius:10px; margin-bottom:10px; overflow:hidden; }
+        .app-client-header {
+            display:flex; align-items:center; gap:10px; padding:14px 18px;
+            cursor:pointer; user-select:none; background:#f9fafb;
+            transition: background 0.15s;
+        }
+        .app-client-header:hover { background:#f3f4f6; }
+        .app-client-name { font-weight:700; font-size:14px; color:#111827; }
+        .app-client-meta { font-size:12px; color:#6b7280; }
+        .app-client-body { display:none; padding:16px 18px; border-top:1px solid #e5e7eb; }
+        .app-client-body.open { display:block; }
+        .app-client-arrow { margin-left:auto; color:#6b7280; font-size:18px; transition:transform 0.2s; }
+        .app-client-arrow.open { transform:rotate(180deg); }
+
+        /* ── Inline notes ── */
+        .mq-inline { margin-top:16px; border-top:1px dashed #e5e7eb; padding-top:14px; }
+        .mq-inline-title { font-size:12px; font-weight:700; color:#374151; margin-bottom:10px; }
+        .mq-inline-form { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+        .mq-inline-form select, .mq-inline-form input, .mq-inline-form textarea {
+            border:1px solid #d1d5db; border-radius:6px; padding:5px 9px; font-size:12px; font-family:inherit;
+        }
+        .mq-inline-form input.mq-title-input { flex:1; min-width:200px; }
+        .mq-inline-form textarea { width:100%; resize:vertical; margin-top:4px; }
+
         /* ── Manual QA entries ── */
         .mq-entry {
             border: 1px solid #e5e7eb;
@@ -775,68 +800,11 @@
 
     <!-- APP Tests (Maestro) -->
     <div class="card" id="appTestsCard">
-        <div class="card-title">📱 APP Tests (Maestro)</div>
-        <div class="reports-grid" id="appReportsGrid">
-            <div class="loading">Cargando reportes...</div>
+        <div class="card-title">📱 APP Tests (Maestro)
+            <button onclick="exportManualQa()" style="font-size:11px;color:#9ca3af;background:none;border:1px solid #e5e7eb;border-radius:5px;padding:2px 8px;cursor:pointer;margin-left:4px;">📋 Exportar notas</button>
         </div>
-
-        <!-- Manual QA (inside APP Tests) -->
-        <div style="margin-top:24px;border-top:2px solid #e5e7eb;padding-top:20px;">
-            <div style="font-size:1em;font-weight:700;color:#111827;margin-bottom:14px;">✍️ QA Manual APP</div>
-
-            <!-- Form -->
-            <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:18px;">
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;">
-                    <div>
-                        <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Cliente</label>
-                        <select id="mqClient" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;background:#fff;">
-                            <option value="">— Seleccionar —</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Severidad</label>
-                        <select id="mqSeverity" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;background:#fff;">
-                            <option value="bug">🔴 Bug</option>
-                            <option value="ux">🟡 Mejora UX</option>
-                            <option value="ambiente">🔵 Ambiente</option>
-                            <option value="ok">✅ Validado OK</option>
-                            <option value="nota">📝 Nota</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Ticket (opcional)</label>
-                        <input id="mqTicket" type="text" placeholder="YOM-XXX" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;">
-                    </div>
-                </div>
-                <div style="margin-bottom:10px;">
-                    <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Título</label>
-                    <input id="mqTitle" type="text" placeholder="Descripción breve del hallazgo..." style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;">
-                </div>
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Detalle (opcional)</label>
-                    <textarea id="mqDetail" placeholder="Pasos, contexto, capturas..." rows="3" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;resize:vertical;font-family:inherit;"></textarea>
-                </div>
-                <div style="display:flex;gap:8px;align-items:center;">
-                    <button onclick="addManualQaEntry()" style="background:#667eea;color:white;border:none;border-radius:7px;padding:7px 18px;font-size:13px;font-weight:600;cursor:pointer;">+ Agregar</button>
-                    <button onclick="clearManualQaForm()" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:7px;padding:7px 14px;font-size:13px;cursor:pointer;">Limpiar</button>
-                    <span style="margin-left:auto;font-size:11px;color:#9ca3af;">Guardado en el navegador</span>
-                    <button onclick="exportManualQa()" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:7px;padding:7px 14px;font-size:12px;cursor:pointer;">📋 Exportar JSON</button>
-                </div>
-            </div>
-
-            <!-- Filters -->
-            <div class="filters-bar" style="margin-bottom:12px;">
-                <span class="filter-label">Filtrar:</span>
-                <button class="filter-btn active" onclick="filterManualQa('all', this)">Todos <span id="mq-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterManualQa('bug', this)" style="color:#991b1b;border-color:#fca5a5">🔴 Bug <span id="mq-count-bug" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterManualQa('ux', this)" style="color:#92400e;border-color:#fcd34d">🟡 UX <span id="mq-count-ux" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterManualQa('ok', this)" style="color:#065f46;border-color:#6ee7b7">✅ OK <span id="mq-count-ok" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterManualQa('nota', this)" style="color:#374151;border-color:#d1d5db">📝 Nota <span id="mq-count-nota" style="background:#f3f4f6;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <input class="search-input" type="text" placeholder="Buscar..." oninput="searchManualQa(this.value)" style="margin-left:auto;">
-            </div>
-
-            <!-- List -->
-            <div id="manualQaList"></div>
+        <div id="appReportsGrid">
+            <div class="loading">Cargando reportes...</div>
         </div>
     </div>
 
@@ -911,7 +879,6 @@ async function initDashboard() {
         updateSuitesTable();
         updateClients();
         updateTrendChart();
-        populateMqClientSelect();
     } catch (e) {
         console.error(e);
     }
@@ -1399,34 +1366,9 @@ async function loadB2bVariables() {
         if (!vars.length) return;
         document.getElementById('b2bVarsCard').style.display = 'block';
         renderB2bVars();
-        populateMqClientSelect();
     } catch (e) {
         console.warn('b2b-variables.json not found', e);
     }
-}
-
-function populateMqClientSelect() {
-    const sel = document.getElementById('mqClient');
-    if (!sel) return;
-
-    // Collect client names from b2b-variables.json + latestRun.clients
-    const clientSet = new Set();
-
-    if (b2bVarsData?.variables) {
-        Object.values(b2bVarsData.variables).forEach(v => {
-            if (v.clients && typeof v.clients === 'object') {
-                Object.keys(v.clients).forEach(k => clientSet.add(k));
-            }
-        });
-    }
-    if (latestRun?.clients) {
-        Object.keys(latestRun.clients).forEach(k => clientSet.add(k.replace(/-staging$/, '')));
-    }
-
-    const clients = [...clientSet].sort();
-    const current = sel.value;
-    sel.innerHTML = '<option value="">— Seleccionar —</option>' +
-        clients.map(c => `<option value="${c}" ${current === c ? 'selected' : ''}>${c}</option>`).join('');
 }
 
 function clientValueTag(clientName, value) {
@@ -1601,6 +1543,13 @@ document.addEventListener('DOMContentLoaded', loadCoworkReports);
 
 // ── APP Reports (Maestro) ─────────────────────────────────────
 
+function toggleAppClient(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.app-client-arrow');
+    const isOpen = body.classList.toggle('open');
+    arrow.classList.toggle('open', isOpen);
+}
+
 async function loadAppReports() {
     const grid = document.getElementById('appReportsGrid');
     try {
@@ -1612,23 +1561,87 @@ async function loadAppReports() {
             grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>./tools/run-maestro.sh {cliente}</code> para generar el primero.</p>';
             return;
         }
-        grid.innerHTML = reports.map(rep => {
-            const verdictCls = rep.verdict === 'LISTO' ? 'verdict-listo'
-                : rep.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones'
+
+        // Group by client (latest report per client first, all history below)
+        const byClient = {};
+        reports.forEach(rep => {
+            const key = rep.client;
+            if (!byClient[key]) byClient[key] = [];
+            byClient[key].push(rep);
+        });
+
+        grid.innerHTML = Object.entries(byClient).map(([client, reps]) => {
+            const latest = reps[0];
+            const healthColor = latest.health >= 80 ? '#10b981' : latest.health >= 60 ? '#f59e0b' : '#ef4444';
+            const verdictCls = latest.verdict === 'LISTO' ? 'verdict-listo'
+                : latest.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones'
                 : 'verdict-bloqueado';
-            const healthColor = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';
-            return `<a class="report-card" href="app-reports/${rep.file}">
-                <div class="report-card-header">
+            const noteCount = loadManualQaEntries().filter(e => e.client === client).length;
+            const noteBadge = noteCount ? `<span style="background:#ede9fe;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;">✍️ ${noteCount}</span>` : '';
+
+            const historyHtml = reps.slice(1).map(rep => {
+                const hc = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';
+                const vc = rep.verdict === 'LISTO' ? 'verdict-listo' : rep.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones' : 'verdict-bloqueado';
+                return `<a href="app-reports/${rep.file}" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:#f9fafb;text-decoration:none;font-size:12px;color:#374151;margin-bottom:4px;">
+                    <span style="color:#9ca3af;">${rep.date}</span>
+                    <span style="font-weight:600;color:${hc}">${rep.health}/100</span>
+                    <span style="font-size:11px;">${rep.passed}/${rep.total} flows</span>
+                    <span class="report-verdict ${vc}" style="margin-left:auto;font-size:10px;padding:1px 8px;">${rep.verdict}</span>
+                </a>`;
+            }).join('');
+
+            const cid = CSS.escape(client);
+            return `<div class="app-client-section">
+                <div class="app-client-header" onclick="toggleAppClient(this)">
+                    <span style="font-size:18px;">📱</span>
                     <div>
-                        <div class="report-client">${escapeHtml(rep.client)}</div>
-                        <div class="report-date">${rep.date}</div>
+                        <div class="app-client-name">${escapeHtml(client)}</div>
+                        <div class="app-client-meta">${latest.date} · ${latest.passed}/${latest.total} flows</div>
                     </div>
-                    <div class="report-score" style="color:${healthColor}">${rep.health}<span>/100</span></div>
+                    <span style="font-weight:700;color:${healthColor};margin-left:8px;">${latest.health}/100</span>
+                    <span class="report-verdict ${verdictCls}" style="font-size:11px;">${latest.verdict}</span>
+                    ${noteBadge}
+                    <span class="app-client-arrow">▾</span>
                 </div>
-                <div style="font-size:0.82em;color:#6b7280;margin-top:2px;">${rep.passed}/${rep.total} flows pasaron</div>
-                <span class="report-verdict ${verdictCls}">${rep.verdict}</span>
-            </a>`;
+                <div class="app-client-body">
+                    <!-- Latest report link -->
+                    <a href="app-reports/${latest.file}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;background:#fff;margin-bottom:8px;">
+                        <span style="font-size:13px;font-weight:600;color:#111827;">Ver reporte completo</span>
+                        <span style="color:#9ca3af;font-size:12px;">${latest.date}</span>
+                        <span style="margin-left:auto;font-size:12px;color:#667eea;">↗</span>
+                    </a>
+                    ${historyHtml ? `<div style="margin-bottom:8px;">${historyHtml}</div>` : ''}
+
+                    <!-- Inline Manual QA Notes -->
+                    <div class="mq-inline">
+                        <div class="mq-inline-title">✍️ Notas QA Manual</div>
+                        <div class="mq-inline-form" id="mqForm-${cid}">
+                            <select id="mqSev-${cid}" style="border:1px solid #d1d5db;border-radius:6px;padding:5px 8px;font-size:12px;background:#fff;">
+                                <option value="bug">🔴 Bug</option>
+                                <option value="ux">🟡 UX</option>
+                                <option value="ambiente">🔵 Ambiente</option>
+                                <option value="ok">✅ OK</option>
+                                <option value="nota">📝 Nota</option>
+                            </select>
+                            <input id="mqTit-${cid}" class="mq-title-input" type="text" placeholder="Descripción breve..."
+                                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();addClientNote('${escapeHtml(client)}')}"
+                                style="flex:1;min-width:180px;">
+                            <input id="mqTck-${cid}" type="text" placeholder="YOM-XXX" style="width:90px;">
+                            <button onclick="addClientNote('${escapeHtml(client)}')" style="background:#667eea;color:white;border:none;border-radius:6px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;">+</button>
+                        </div>
+                        <div style="margin-bottom:8px;">
+                            <textarea id="mqDet-${cid}" placeholder="Detalle opcional (pasos, contexto)..." rows="2"
+                                style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:5px 9px;font-size:12px;font-family:inherit;resize:vertical;"></textarea>
+                        </div>
+                        <div id="mqList-${cid}"></div>
+                    </div>
+                </div>
+            </div>`;
         }).join('');
+
+        // Render existing notes for all clients
+        Object.keys(byClient).forEach(client => renderClientNotes(client));
+
     } catch {
         grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>./tools/run-maestro.sh {cliente}</code> para generar el primero.</p>';
     }
@@ -1707,8 +1720,7 @@ document.addEventListener('DOMContentLoaded', initCollapsibleCards);
 
 // ── Manual QA ──────────────────────────────────────────────
 const MQ_KEY = 'yom-manual-qa-entries';
-let mqFilter = 'all';
-let mqSearch = '';
+const MQ_LABELS = { bug:'🔴 Bug', ux:'🟡 UX', ambiente:'🔵 Ambiente', ok:'✅ OK', nota:'📝 Nota' };
 
 function loadManualQaEntries() {
     try { return JSON.parse(localStorage.getItem(MQ_KEY) || '[]'); } catch { return []; }
@@ -1717,83 +1729,82 @@ function saveManualQaEntries(entries) {
     localStorage.setItem(MQ_KEY, JSON.stringify(entries));
 }
 
-function addManualQaEntry() {
-    const title = document.getElementById('mqTitle').value.trim();
-    if (!title) { document.getElementById('mqTitle').focus(); return; }
+function addClientNote(client) {
+    const cid = CSS.escape(client);
+    const titleEl = document.getElementById(`mqTit-${cid}`);
+    const title = titleEl?.value.trim();
+    if (!title) { titleEl?.focus(); return; }
+
     const entries = loadManualQaEntries();
     entries.unshift({
         id: Date.now(),
         date: new Date().toISOString().slice(0, 10),
-        client: document.getElementById('mqClient').value.trim(),
-        severity: document.getElementById('mqSeverity').value,
-        ticket: document.getElementById('mqTicket').value.trim(),
+        client,
+        severity: document.getElementById(`mqSev-${cid}`)?.value || 'nota',
+        ticket: document.getElementById(`mqTck-${cid}`)?.value.trim() || '',
         title,
-        detail: document.getElementById('mqDetail').value.trim(),
+        detail: document.getElementById(`mqDet-${cid}`)?.value.trim() || '',
     });
     saveManualQaEntries(entries);
-    clearManualQaForm();
-    renderManualQa();
+
+    // Clear form
+    titleEl.value = '';
+    const det = document.getElementById(`mqDet-${cid}`);
+    if (det) det.value = '';
+    const tck = document.getElementById(`mqTck-${cid}`);
+    if (tck) tck.value = '';
+
+    renderClientNotes(client);
+    // Refresh note badge in header
+    const section = titleEl.closest('.app-client-section');
+    if (section) refreshClientBadge(section, client);
 }
 
-function clearManualQaForm() {
-    document.getElementById('mqClient').value = '';
-    ['mqTicket','mqTitle','mqDetail'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('mqSeverity').value = 'bug';
-}
-
-function deleteManualQaEntry(id) {
+function deleteManualQaEntry(id, client) {
     const entries = loadManualQaEntries().filter(e => e.id !== id);
     saveManualQaEntries(entries);
-    renderManualQa();
+    renderClientNotes(client);
+    // Refresh badge
+    const cid = CSS.escape(client);
+    const section = document.getElementById(`mqList-${cid}`)?.closest('.app-client-section');
+    if (section) refreshClientBadge(section, client);
 }
 
-function filterManualQa(f, btn) {
-    mqFilter = f;
-    document.querySelectorAll('#appTestsCard .filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderManualQa();
+function refreshClientBadge(section, client) {
+    const count = loadManualQaEntries().filter(e => e.client === client).length;
+    let badge = section.querySelector('.mq-note-badge');
+    if (count && !badge) {
+        badge = document.createElement('span');
+        badge.className = 'mq-note-badge';
+        badge.style.cssText = 'background:#ede9fe;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;';
+        const arrow = section.querySelector('.app-client-arrow');
+        section.querySelector('.app-client-header').insertBefore(badge, arrow);
+    }
+    if (badge) badge.textContent = count ? `✍️ ${count}` : '';
+    if (badge && !count) badge.remove();
 }
 
-function searchManualQa(q) {
-    mqSearch = q.toLowerCase();
-    renderManualQa();
-}
+function renderClientNotes(client) {
+    const cid = CSS.escape(client);
+    const list = document.getElementById(`mqList-${cid}`);
+    if (!list) return;
 
-const MQ_LABELS = { bug:'🔴 Bug', ux:'🟡 UX', ambiente:'🔵 Ambiente', ok:'✅ OK', nota:'📝 Nota' };
-
-function renderManualQa() {
-    const entries = loadManualQaEntries();
-    const counts = { all: entries.length, bug:0, ux:0, ambiente:0, ok:0, nota:0 };
-    entries.forEach(e => { if (counts[e.severity] !== undefined) counts[e.severity]++; });
-    ['all','bug','ux','ok','nota'].forEach(k => {
-        const el = document.getElementById('mq-count-' + k);
-        if (el) el.textContent = counts[k] || '';
-    });
-
-    const filtered = entries.filter(e => {
-        const matchFilter = mqFilter === 'all' || e.severity === mqFilter;
-        const matchSearch = !mqSearch || e.title.toLowerCase().includes(mqSearch) || e.client.toLowerCase().includes(mqSearch) || (e.detail||'').toLowerCase().includes(mqSearch);
-        return matchFilter && matchSearch;
-    });
-
-    const list = document.getElementById('manualQaList');
-    if (!filtered.length) {
-        list.innerHTML = '<p style="color:#9ca3af;text-align:center;padding:20px;font-size:13px;">Sin hallazgos registrados.</p>';
+    const entries = loadManualQaEntries().filter(e => e.client === client);
+    if (!entries.length) {
+        list.innerHTML = '<p style="color:#9ca3af;font-size:12px;padding:6px 0;">Sin notas aún.</p>';
         return;
     }
-
-    list.innerHTML = filtered.map(e => {
+    list.innerHTML = entries.map(e => {
         const label = MQ_LABELS[e.severity] || e.severity;
-        const clientBadge = e.client ? `<span style="background:#ede9fe;color:#5b21b6;border-radius:9999px;padding:2px 8px;font-size:11px;font-weight:600;">${escapeHtml(e.client)}</span>` : '';
-        const ticketBadge = e.ticket ? `<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:2px 8px;font-size:11px;font-weight:600;">${escapeHtml(e.ticket)}</span>` : '';
-        const detail = e.detail ? `<div class="mq-detail">${escapeHtml(e.detail)}</div>` : '';
+        const ticketBadge = e.ticket ? `<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:1px 6px;font-size:11px;font-weight:600;">${escapeHtml(e.ticket)}</span>` : '';
+        const detail = e.detail ? `<div class="mq-detail" style="font-size:12px;">${escapeHtml(e.detail)}</div>` : '';
         return `<div class="mq-entry">
             <div class="mq-entry-header">
-                <span class="mq-badge ${e.severity}">${label}</span>
-                ${clientBadge}${ticketBadge}
-                <span class="mq-title">${escapeHtml(e.title)}</span>
+                <span class="mq-badge ${e.severity}" style="font-size:11px;">${label}</span>
+                ${ticketBadge}
+                <span class="mq-title" style="font-size:13px;">${escapeHtml(e.title)}</span>
                 <span class="mq-meta">${e.date}</span>
-                <button class="mq-delete" onclick="deleteManualQaEntry(${e.id})" title="Eliminar">✕</button>
+                <button class="mq-delete" onclick="deleteManualQaEntry(${e.id}, '${escapeHtml(client)}')" title="Eliminar">✕</button>
             </div>
             ${detail}
         </div>`;
@@ -1808,14 +1819,6 @@ function exportManualQa() {
     a.download = `manual-qa-${new Date().toISOString().slice(0,10)}.json`;
     a.click(); URL.revokeObjectURL(url);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderManualQa();
-    // Allow Enter key in title to submit
-    document.getElementById('mqTitle')?.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); addManualQaEntry(); }
-    });
-});
 </script>
 </body>
 </html>
