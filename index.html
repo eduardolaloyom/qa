@@ -93,6 +93,41 @@
         }
         .card-open-btn:hover { color: #667eea; border-color: #667eea; }
 
+        /* ── Manual QA entries ── */
+        .mq-entry {
+            border: 1px solid #e5e7eb;
+            border-radius: 9px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: #fff;
+            transition: box-shadow 0.15s;
+        }
+        .mq-entry:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+        .mq-entry-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .mq-badge {
+            border-radius: 9999px;
+            padding: 2px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .mq-badge.bug     { background:#fee2e2;color:#991b1b; }
+        .mq-badge.ux      { background:#fef3c7;color:#92400e; }
+        .mq-badge.ambiente{ background:#dbeafe;color:#1e40af; }
+        .mq-badge.ok      { background:#d1fae5;color:#065f46; }
+        .mq-badge.nota    { background:#f3f4f6;color:#374151; }
+        .mq-title { font-weight: 600; font-size: 14px; color: #111827; }
+        .mq-meta  { font-size: 11px; color: #9ca3af; margin-left: auto; white-space: nowrap; }
+        .mq-detail { font-size: 13px; color: #4b5563; white-space: pre-wrap; margin-top: 6px; }
+        .mq-delete { background:none; border:none; cursor:pointer; color:#d1d5db; font-size:16px; padding:0 2px; line-height:1; }
+        .mq-delete:hover { color:#ef4444; }
+
         /* ── Summary row ── */
         .summary-row {
             display: grid;
@@ -719,6 +754,63 @@
                 <tr><td colspan="7" class="loading">Cargando suites...</td></tr>
             </tbody>
         </table>
+    </div>
+
+    <!-- Manual QA -->
+    <div class="card" id="manualQaCard">
+        <div class="card-title">✍️ QA Manual</div>
+
+        <!-- Form -->
+        <div id="manualQaForm" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:18px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;">
+                <div>
+                    <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Cliente</label>
+                    <input id="mqClient" type="text" placeholder="ej: codelpa" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;">
+                </div>
+                <div>
+                    <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Severidad</label>
+                    <select id="mqSeverity" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;background:#fff;">
+                        <option value="bug">🔴 Bug</option>
+                        <option value="ux">🟡 Mejora UX</option>
+                        <option value="ambiente">🔵 Ambiente</option>
+                        <option value="ok">✅ Validado OK</option>
+                        <option value="nota">📝 Nota</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Ticket (opcional)</label>
+                    <input id="mqTicket" type="text" placeholder="YOM-XXX" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;">
+                </div>
+            </div>
+            <div style="margin-bottom:10px;">
+                <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Título</label>
+                <input id="mqTitle" type="text" placeholder="Descripción breve del hallazgo..." style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;">
+            </div>
+            <div style="margin-bottom:12px;">
+                <label style="font-size:11px;font-weight:600;color:#6b7280;display:block;margin-bottom:4px;">Detalle (opcional)</label>
+                <textarea id="mqDetail" placeholder="Pasos, contexto, capturas..." rows="3" style="width:100%;border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:13px;resize:vertical;font-family:inherit;"></textarea>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+                <button onclick="addManualQaEntry()" style="background:#667eea;color:white;border:none;border-radius:7px;padding:7px 18px;font-size:13px;font-weight:600;cursor:pointer;">+ Agregar</button>
+                <button onclick="clearManualQaForm()" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:7px;padding:7px 14px;font-size:13px;cursor:pointer;">Limpiar</button>
+                <span style="margin-left:auto;font-size:11px;color:#9ca3af;">Guardado en el navegador</span>
+                <button onclick="exportManualQa()" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:7px;padding:7px 14px;font-size:12px;cursor:pointer;">📋 Exportar JSON</button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar" style="margin-bottom:12px;">
+            <span class="filter-label">Filtrar:</span>
+            <button class="filter-btn active" onclick="filterManualQa('all', this)">Todos <span id="mq-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterManualQa('bug', this)" style="color:#991b1b;border-color:#fca5a5">🔴 Bug <span id="mq-count-bug" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterManualQa('ux', this)" style="color:#92400e;border-color:#fcd34d">🟡 UX <span id="mq-count-ux" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterManualQa('ok', this)" style="color:#065f46;border-color:#6ee7b7">✅ OK <span id="mq-count-ok" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <button class="filter-btn" onclick="filterManualQa('nota', this)" style="color:#374151;border-color:#d1d5db">📝 Nota <span id="mq-count-nota" style="background:#f3f4f6;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+            <input class="search-input" type="text" placeholder="Buscar..." oninput="searchManualQa(this.value)" style="margin-left:auto;">
+        </div>
+
+        <!-- List -->
+        <div id="manualQaList"></div>
     </div>
 
     <!-- Clients -->
@@ -1583,6 +1675,117 @@ function initCollapsibleCards() {
     }
 }
 document.addEventListener('DOMContentLoaded', initCollapsibleCards);
+
+// ── Manual QA ──────────────────────────────────────────────
+const MQ_KEY = 'yom-manual-qa-entries';
+let mqFilter = 'all';
+let mqSearch = '';
+
+function loadManualQaEntries() {
+    try { return JSON.parse(localStorage.getItem(MQ_KEY) || '[]'); } catch { return []; }
+}
+function saveManualQaEntries(entries) {
+    localStorage.setItem(MQ_KEY, JSON.stringify(entries));
+}
+
+function addManualQaEntry() {
+    const title = document.getElementById('mqTitle').value.trim();
+    if (!title) { document.getElementById('mqTitle').focus(); return; }
+    const entries = loadManualQaEntries();
+    entries.unshift({
+        id: Date.now(),
+        date: new Date().toISOString().slice(0, 10),
+        client: document.getElementById('mqClient').value.trim(),
+        severity: document.getElementById('mqSeverity').value,
+        ticket: document.getElementById('mqTicket').value.trim(),
+        title,
+        detail: document.getElementById('mqDetail').value.trim(),
+    });
+    saveManualQaEntries(entries);
+    clearManualQaForm();
+    renderManualQa();
+}
+
+function clearManualQaForm() {
+    ['mqClient','mqTicket','mqTitle','mqDetail'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('mqSeverity').value = 'bug';
+}
+
+function deleteManualQaEntry(id) {
+    const entries = loadManualQaEntries().filter(e => e.id !== id);
+    saveManualQaEntries(entries);
+    renderManualQa();
+}
+
+function filterManualQa(f, btn) {
+    mqFilter = f;
+    document.querySelectorAll('#manualQaCard .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderManualQa();
+}
+
+function searchManualQa(q) {
+    mqSearch = q.toLowerCase();
+    renderManualQa();
+}
+
+const MQ_LABELS = { bug:'🔴 Bug', ux:'🟡 UX', ambiente:'🔵 Ambiente', ok:'✅ OK', nota:'📝 Nota' };
+
+function renderManualQa() {
+    const entries = loadManualQaEntries();
+    const counts = { all: entries.length, bug:0, ux:0, ambiente:0, ok:0, nota:0 };
+    entries.forEach(e => { if (counts[e.severity] !== undefined) counts[e.severity]++; });
+    ['all','bug','ux','ok','nota'].forEach(k => {
+        const el = document.getElementById('mq-count-' + k);
+        if (el) el.textContent = counts[k] || '';
+    });
+
+    const filtered = entries.filter(e => {
+        const matchFilter = mqFilter === 'all' || e.severity === mqFilter;
+        const matchSearch = !mqSearch || e.title.toLowerCase().includes(mqSearch) || e.client.toLowerCase().includes(mqSearch) || (e.detail||'').toLowerCase().includes(mqSearch);
+        return matchFilter && matchSearch;
+    });
+
+    const list = document.getElementById('manualQaList');
+    if (!filtered.length) {
+        list.innerHTML = '<p style="color:#9ca3af;text-align:center;padding:20px;font-size:13px;">Sin hallazgos registrados.</p>';
+        return;
+    }
+
+    list.innerHTML = filtered.map(e => {
+        const label = MQ_LABELS[e.severity] || e.severity;
+        const clientBadge = e.client ? `<span style="background:#ede9fe;color:#5b21b6;border-radius:9999px;padding:2px 8px;font-size:11px;font-weight:600;">${escapeHtml(e.client)}</span>` : '';
+        const ticketBadge = e.ticket ? `<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:2px 8px;font-size:11px;font-weight:600;">${escapeHtml(e.ticket)}</span>` : '';
+        const detail = e.detail ? `<div class="mq-detail">${escapeHtml(e.detail)}</div>` : '';
+        return `<div class="mq-entry">
+            <div class="mq-entry-header">
+                <span class="mq-badge ${e.severity}">${label}</span>
+                ${clientBadge}${ticketBadge}
+                <span class="mq-title">${escapeHtml(e.title)}</span>
+                <span class="mq-meta">${e.date}</span>
+                <button class="mq-delete" onclick="deleteManualQaEntry(${e.id})" title="Eliminar">✕</button>
+            </div>
+            ${detail}
+        </div>`;
+    }).join('');
+}
+
+function exportManualQa() {
+    const data = loadManualQaEntries();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url;
+    a.download = `manual-qa-${new Date().toISOString().slice(0,10)}.json`;
+    a.click(); URL.revokeObjectURL(url);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderManualQa();
+    // Allow Enter key in title to submit
+    document.getElementById('mqTitle')?.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); addManualQaEntry(); }
+    });
+});
 </script>
 </body>
 </html>
