@@ -1,1038 +1,462 @@
 {
-  "generatedAt": "2026-04-09T18:52:32.237930+00:00",
-  "total": 113,
+  "generated_at": "2026-04-14T17:14:30.001448",
+  "clients": [
+    "codelpa",
+    "marleycoffee",
+    "new-soprole",
+    "surtiventas"
+  ],
   "variables": {
-    "anonymousAccess": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": true,
-        "new-soprole": false,
-        "prisa": true
-      },
-      "implemented": true
-    },
-    "anonymousHideCart": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": true,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": true
-    },
-    "anonymousHidePrice": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": true
-    },
-    "blockedClientAlert.blockedClientAlertHtmlContent": {
-      "clients": {
-        "new-soprole": "<div class=\"text-center\">\n  <h4>Tu comercio se encuentra bloqueado para compras. Favor contactarse con nuestro Servicio al Cliente (600 600 6600) y revisaremos su caso.</h4>\n  <div class=\"modal-buttons\">\n    <button type=\"button\" class=\"btn-back\" ng-click=\"redirectTo('/contact')\"><b>Contacto</b></button>\n  </div>\n</div>"
-      },
-      "implemented": null
-    },
-    "blockedClientAlert.enableBlockedClientAlert": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "businessUnits": {
-      "clients": {
-        "marleycoffee": [],
-        "prisa": []
-      },
-      "implemented": null
-    },
     "commerce.enableCreateCommerce": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": true
-      },
+      "clients": {},
       "implemented": false
-    },
-    "confirmCartText": {
-      "clients": {
-        "new-soprole": "Pasar a confirmaci\u00f3n del pedido"
-      },
-      "implemented": null
-    },
-    "contact.about": {
-      "clients": {
-        "codelpa": "Grupo Codelpa Colores del Pac\u00edfico, es la empresa de pinturas y revestimientos m\u00e1s grande del pa\u00eds, agrupando marcas de pinturas como Ceresita, Sipa, Soquina, Chilcorrof\u00edn, Pinmor y Titanium 2K de Sipa.",
-        "marleycoffee": "La principal marca cafetera org\u00e1nica del mundo, siempre respetando el legado de Bob Marley, manifest\u00e1ndolo en cada taza.",
-        "new-soprole": "Comprometidos desde 1949 con la alimentaci\u00f3n saludable de las familias chilenas, entregando productos sanos y ricos.",
-        "prisa": "Surtiventas opera con el claro prop\u00f3sito de satisfacer las necesidades b\u00e1sicas del comerciante chileno, con un servicio personalizado de venta que se extiende a lo largo y ancho del pa\u00eds."
-      },
-      "implemented": true
-    },
-    "contact.branchesContactInformation": {
-      "clients": {
-        "codelpa": [
-          {
-            "address": "Camino Lo Echevers 801, Quilicura",
-            "phone": "+562227262800",
-            "email": "info@codelpa.cl"
-          }
-        ],
-        "marleycoffee": [
-          {
-            "phone": "+56998946436",
-            "email": "servicioalcliente@marleycoffee.cl"
-          }
-        ],
-        "new-soprole": [
-          {
-            "phone": "600 600 6600"
-          }
-        ],
-        "prisa": [
-          {
-            "phone": "+562 2820 6400",
-            "email": "srvcliente1@surtiventas.cl"
-          }
-        ]
-      },
-      "implemented": true
-    },
-    "contact.email": {
-      "clients": {
-        "codelpa": "info@codelpa.cl",
-        "marleycoffee": "servicioalcliente@marleycoffee.cl",
-        "prisa": "srvcliente1@surtiventas.cl"
-      },
-      "implemented": true
-    },
-    "contact.phone": {
-      "clients": {
-        "new-soprole": "600 600 6600"
-      },
-      "implemented": true
-    },
-    "disableCart": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "disableCommerceEdit": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "disableObservationInput": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": true
-    },
-    "disablePayments": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "disableShowEstimatedDeliveryHour": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "disableSyncDate": {
-      "clients": {
-        "codelpa": false
-      },
-      "implemented": null
-    },
-    "disableWrongPrices": {
-      "clients": {
-        "new-soprole": true
-      },
-      "implemented": null
-    },
-    "discountTypes.discountTypesList": {
-      "clients": {
-        "marleycoffee": [],
-        "prisa": []
-      },
-      "implemented": null
-    },
-    "discountTypes.enableOrderDiscountType": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "discountTypes.enableProductDiscountType": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "editAddress": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": true,
-        "new-soprole": false,
-        "prisa": true
-      },
-      "implemented": null
     },
     "enableActivation": {
-      "clients": {
-        "codelpa": true
-      },
+      "clients": {},
       "implemented": false
-    },
-    "enableAskDeliveryDate": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enableBetaButtons": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enableChooseSaleUnit": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "enableCoupons": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": true,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "enableCreditNotes": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
     },
     "enableCreditStateMessage": {
-      "clients": {
-        "codelpa": false
-      },
+      "clients": {},
       "implemented": false
-    },
-    "enableDialogNoSellReason": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enableDistributionCentersSelector": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": true
     },
     "enableHome": {
-      "clients": {
-        "new-soprole": true
-      },
+      "clients": {},
       "implemented": false
-    },
-    "enableInvoicesList": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": true
-    },
-    "enableMassiveOrderSend": {
-      "clients": {
-        "codelpa": true
-      },
-      "implemented": null
-    },
-    "enableNewUI": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enableOrderApproval": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": true
-      },
-      "implemented": null
     },
     "enableOrderAproval": {
-      "clients": {
-        "new-soprole": false
-      },
+      "clients": {},
       "implemented": false
     },
-    "enableOrderValidation": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enablePaymentDocumentsB2B": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": true
-    },
-    "enablePayments": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enablePaymentsCollection": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "enablePriceOracle": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": true
-    },
-    "enableSellerDiscount": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "enableTask": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "externalAccess": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": true
-    },
-    "filterGroupedSuggestionsBy": {
-      "clients": {
-        "marleycoffee": [],
-        "prisa": []
-      },
-      "implemented": null
-    },
     "flagFeatures.reactNativeOrderTaker": {
-      "clients": {
-        "prisa": false
-      },
+      "clients": {},
       "implemented": false
     },
     "flagFeatures.reactNativeOrderTakerForAll": {
-      "clients": {
-        "prisa": false
-      },
+      "clients": {},
       "implemented": false
     },
     "flagFeatures.reactNativeOrderTakerSellers": {
-      "clients": {
-        "prisa": []
-      },
+      "clients": {},
       "implemented": false
     },
-    "footerCustomContent.footerCustomHtmlContent": {
-      "clients": {
-        "new-soprole": "<p class=\"footer-links\">\n  <a href=\"/\">Inicio</a>\n  &middot;\n  <a href=\"/catalog\">Cat\u00e1logo</a>\n  &middot;\n  <a href=\"/contact\">Contacto</a>\n  &middot;\n  <a href=\"/faq\">Preguntas frecuentes</a>\n</p>"
-      },
-      "implemented": true
-    },
-    "footerCustomContent.useFooterCustomContent": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hasAllDistributionCenters": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hasMultiUnitEnabled": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": true
-    },
-    "hasMultipleBusinessUnit": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hasNoSaleFilter": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "hasSingleDistributionCenter": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": true,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "hasStockEnabled": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "hasTransferPaymentType": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hasTransportCode": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hasVoucherPrinterEnabled": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hidePrices": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "hideReceiptType": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "includeTaxRateInPrices": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": true,
-        "new-soprole": false,
-        "prisa": true
-      },
-      "implemented": null
-    },
-    "lazyLoadingPrices": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
-      "implemented": null
-    },
-    "limitAddingByStock": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": true
-      },
-      "implemented": null
-    },
     "mustHaveOverride": {
-      "clients": {
-        "new-soprole": true
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.creditExceededStatus": {
-      "clients": {
-        "new-soprole": "retain"
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.overdueDebtConfiguration.blockSettings.enabled": {
-      "clients": {
-        "new-soprole": true
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.overdueDebtConfiguration.blockSettings.thresholdDays": {
-      "clients": {
-        "new-soprole": 30
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.overdueDebtConfiguration.retentionSettings.enabled": {
-      "clients": {
-        "new-soprole": true
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.overdueDebtConfiguration.retentionSettings.thresholdDays": {
-      "clients": {
-        "new-soprole": 10
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.retainBelowMinimumOrder": {
-      "clients": {
-        "new-soprole": false
-      },
+      "clients": {},
       "implemented": false
     },
     "orderPolicy.retainCreditBlockedCommerces": {
-      "clients": {
-        "new-soprole": true
-      },
+      "clients": {},
       "implemented": false
     },
+    "packaging.amountUsesUnits": {
+      "clients": {},
+      "implemented": false
+    },
+    "productList.enableSuggestionByCategories": {
+      "clients": {},
+      "implemented": false
+    },
+    "useMongoPricing": {
+      "clients": {},
+      "implemented": false
+    },
+    "anonymousAccess": {
+      "clients": {},
+      "implemented": true
+    },
+    "anonymousHideCart": {
+      "clients": {},
+      "implemented": true
+    },
+    "anonymousHidePrice": {
+      "clients": {},
+      "implemented": true
+    },
+    "blockedClientAlert.blockedClientAlertHtmlContent": {
+      "clients": {},
+      "implemented": null
+    },
+    "blockedClientAlert.enableBlockedClientAlert": {
+      "clients": {},
+      "implemented": null
+    },
+    "businessUnits": {
+      "clients": {},
+      "implemented": null
+    },
+    "confirmCartText": {
+      "clients": {},
+      "implemented": null
+    },
+    "contact.about": {
+      "clients": {},
+      "implemented": true
+    },
+    "contact.branchesContactInformation": {
+      "clients": {},
+      "implemented": true
+    },
+    "contact.email": {
+      "clients": {},
+      "implemented": true
+    },
+    "contact.phone": {
+      "clients": {},
+      "implemented": true
+    },
+    "disableCart": {
+      "clients": {},
+      "implemented": null
+    },
+    "disableCommerceEdit": {
+      "clients": {},
+      "implemented": null
+    },
+    "disableObservationInput": {
+      "clients": {},
+      "implemented": true
+    },
+    "disablePayments": {
+      "clients": {},
+      "implemented": null
+    },
+    "disableShowEstimatedDeliveryHour": {
+      "clients": {},
+      "implemented": null
+    },
+    "disableSyncDate": {
+      "clients": {},
+      "implemented": null
+    },
+    "disableWrongPrices": {
+      "clients": {},
+      "implemented": null
+    },
+    "discountTypes.discountTypesList": {
+      "clients": {},
+      "implemented": null
+    },
+    "discountTypes.enableOrderDiscountType": {
+      "clients": {},
+      "implemented": null
+    },
+    "discountTypes.enableProductDiscountType": {
+      "clients": {},
+      "implemented": null
+    },
+    "editAddress": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableAskDeliveryDate": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableBetaButtons": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableChooseSaleUnit": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableCoupons": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableCreditNotes": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableDialogNoSellReason": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableDistributionCentersSelector": {
+      "clients": {},
+      "implemented": true
+    },
+    "enableInvoicesList": {
+      "clients": {},
+      "implemented": true
+    },
+    "enableMassiveOrderSend": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableNewUI": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableOrderApproval": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableOrderValidation": {
+      "clients": {},
+      "implemented": null
+    },
+    "enablePaymentDocumentsB2B": {
+      "clients": {},
+      "implemented": true
+    },
+    "enablePayments": {
+      "clients": {},
+      "implemented": null
+    },
+    "enablePaymentsCollection": {
+      "clients": {},
+      "implemented": null
+    },
+    "enablePriceOracle": {
+      "clients": {},
+      "implemented": true
+    },
+    "enableSellerDiscount": {
+      "clients": {},
+      "implemented": null
+    },
+    "enableTask": {
+      "clients": {},
+      "implemented": null
+    },
+    "externalAccess": {
+      "clients": {},
+      "implemented": true
+    },
+    "filterGroupedSuggestionsBy": {
+      "clients": {},
+      "implemented": null
+    },
+    "footerCustomContent.footerCustomHtmlContent": {
+      "clients": {},
+      "implemented": true
+    },
+    "footerCustomContent.useFooterCustomContent": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasAllDistributionCenters": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasMultiUnitEnabled": {
+      "clients": {},
+      "implemented": true
+    },
+    "hasMultipleBusinessUnit": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasNoSaleFilter": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasSingleDistributionCenter": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasStockEnabled": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasTransferPaymentType": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasTransportCode": {
+      "clients": {},
+      "implemented": null
+    },
+    "hasVoucherPrinterEnabled": {
+      "clients": {},
+      "implemented": null
+    },
+    "hidePrices": {
+      "clients": {},
+      "implemented": null
+    },
+    "hideReceiptType": {
+      "clients": {},
+      "implemented": null
+    },
+    "includeTaxRateInPrices": {
+      "clients": {},
+      "implemented": null
+    },
+    "lazyLoadingPrices": {
+      "clients": {},
+      "implemented": null
+    },
+    "limitAddingByStock": {
+      "clients": {},
+      "implemented": null
+    },
     "ordersRequireAuthorization": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "ordersRequireVerification": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
-    "packaging.amountUsesUnits": {
-      "clients": {
-        "new-soprole": true,
-        "prisa": true
-      },
-      "implemented": false
-    },
     "packagingInformation.hidePackagingInformationB2B": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": true,
-        "prisa": true
-      },
+      "clients": {},
       "implemented": null
     },
     "packagingInformation.hideSingleItemPackagingInformationB2B": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": true,
-        "prisa": true
-      },
+      "clients": {},
       "implemented": null
     },
     "packagingInformation.ignoreUnitOnPackInformationB2B": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "payment.balances": {
-      "clients": {
-        "marleycoffee": [],
-        "new-soprole": [
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Pago parcial",
-            "addsToTotal": false
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Descuento Pronto Pago",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo Descuento comercial",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Nota de cr\u00e9dito existente",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "supplier",
-                "displayName": "Proveedor",
-                "type": "dropdown",
-                "dropdownOptions": [
-                  "Proveedor de prueba 1",
-                  "Proveedor de prueba 2"
-                ]
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo proveedor",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo Log\u00edstica",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "almin",
-                "displayName": "Almin",
-                "type": "textField"
-              },
-              {
-                "key": "reteFuente",
-                "displayName": "Rete Fuente",
-                "type": "textField"
-              },
-              {
-                "key": "reteIca",
-                "displayName": "Rete Ica",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo por Retenci\u00f3n",
-            "addsToTotal": true
-          }
-        ],
-        "prisa": []
-      },
+      "clients": {},
       "implemented": null
     },
     "payment.enableNewPaymentModule": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "payment.externalPayment": {
-      "clients": {
-        "marleycoffee": "khipu"
-      },
+      "clients": {},
       "implemented": true
     },
     "payment.requiresFullPayment": {
-      "clients": {
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "payment.walletEnabled": {
-      "clients": {
-        "new-soprole": true
-      },
+      "clients": {},
       "implemented": null
     },
     "paymentsWithoutAccount": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "pendingDocuments": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "pointsEnabled": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "priceRoundingDecimals": {
-      "clients": {
-        "marleycoffee": 0,
-        "new-soprole": 0,
-        "prisa": 0
-      },
+      "clients": {},
       "implemented": null
     },
     "productDetailViewConfiguration.tabsOrder": {
-      "clients": {
-        "codelpa": [
-          "steps",
-          "description"
-        ],
-        "new-soprole": [
-          "steps",
-          "description"
-        ],
-        "prisa": [
-          "steps",
-          "description"
-        ]
-      },
+      "clients": {},
       "implemented": true
     },
-    "productList.enableSuggestionByCategories": {
-      "clients": {
-        "codelpa": true
-      },
-      "implemented": false
-    },
     "productVariability": {
-      "clients": {
-        "codelpa": "full",
-        "marleycoffee": "none",
-        "new-soprole": "low",
-        "prisa": "none"
-      },
+      "clients": {},
       "implemented": true
     },
     "purchaseOrderEnabled": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "shareOrderNewDesign": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "shoppingDetail.lastOrder": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "showEmptyCategories": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": true
     },
     "showMinOne": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "suggestions.enableSortingByCategories": {
-      "clients": {
-        "codelpa": true
-      },
+      "clients": {},
       "implemented": null
     },
     "synchronization.backgroundSyncList": {
-      "clients": {
-        "marleycoffee": [],
-        "prisa": []
-      },
+      "clients": {},
       "implemented": null
     },
     "synchronization.enableBackgroundSendOrders": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "synchronization.enableBackgroundSync": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "synchronization.enableSyncImages": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "taxes.showSummary": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "taxes.taxRate": {
-      "clients": {
-        "codelpa": 0,
-        "marleycoffee": 0,
-        "new-soprole": 0,
-        "prisa": 0
-      },
+      "clients": {},
       "implemented": null
     },
     "taxes.useTaxRate": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": true
     },
     "uploadOrderFileWithMinUnits": {
-      "clients": {
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "useMobileGps": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
-    "useMongoPricing": {
-      "clients": {
-        "codelpa": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prisa": false
-      },
-      "implemented": false
-    },
     "useNewPromotions": {
-      "clients": {
-        "codelpa": true,
-        "new-soprole": true,
-        "prisa": true
-      },
+      "clients": {},
       "implemented": null
     },
     "validatePaymentFromAdmin": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "weightInfo": {
-      "clients": {
-        "codelpa": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prisa": false
-      },
+      "clients": {},
       "implemented": null
     },
     "wrongPrices.block": {
-      "clients": {
-        "new-soprole": false
-      },
+      "clients": {},
       "implemented": null
     },
     "wrongPrices.threshold": {
-      "clients": {
-        "new-soprole": 50
-      },
+      "clients": {},
       "implemented": null
     }
   }
