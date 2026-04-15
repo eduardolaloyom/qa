@@ -1702,18 +1702,17 @@ document.addEventListener('DOMContentLoaded', loadAppReports);
 function initCollapsibleCards() {
     const focusMode = new URLSearchParams(location.search).get('only');
 
-    // FOCUS MODE: show ONLY the target card, hide everything else
+    // FOCUS MODE: inject CSS that permanently hides everything except b2bVarsCard
     if (focusMode === 'b2b') {
-        document.querySelector('header').style.display = 'none';
-        document.querySelector('.tab-bar').style.display = 'none';
-        document.getElementById('tab-app').style.display = 'none';
-        // Hide all cards in tab-b2b except b2bVarsCard
-        document.querySelectorAll('#tab-b2b .card').forEach(card => {
-            if (card.id !== 'b2bVarsCard') card.style.display = 'none';
-        });
-        // Ensure b2bVarsCard is visible (it may have display:none initially)
-        document.getElementById('b2bVarsCard').style.display = 'block';
-        // Add a subtle close button
+        const style = document.createElement('style');
+        style.textContent = `
+            header, .tab-bar, #tab-app { display: none !important; }
+            #tab-b2b .card:not(#b2bVarsCard) { display: none !important; }
+            #b2bVarsCard { display: block !important; }
+            body { padding: 24px 20px; }
+        `;
+        document.head.appendChild(style);
+        // Close button
         const closeBtn = document.createElement('button');
         closeBtn.textContent = '✕ Cerrar pestaña';
         closeBtn.style.cssText = 'position:fixed;top:12px;right:16px;background:#fff;border:1px solid #e5e7eb;border-radius:7px;padding:6px 14px;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.1);z-index:1000;';
