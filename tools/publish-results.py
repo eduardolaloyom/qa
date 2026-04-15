@@ -354,8 +354,75 @@ def generate_pending_b2b(results: dict) -> list:
     ]
 
 
-def generate_run_json(results: dict, date: str) -> dict:
+def load_staging_urls(project_root: Path) -> dict:
+    """Load client slug → URL mapping from qa-matrix-staging.json."""
+    matrix_file = project_root / "data" / "qa-matrix-staging.json"
+    if not matrix_file.exists():
+        return {}
+    with open(matrix_file) as f:
+        data = json.load(f)
+    clients = data.get("clients", {})
+    # Map: stripped slug → {name, url}
+    # Keys in matrix look like "bastien-staging", strip "-staging" suffix
+    result = {}
+    for key, val in clients.items():
+        slug = re.sub(r"-staging$", "", key)
+        domain = val.get("domain", "")
+        name = val.get("name", slug.capitalize())
+        url = f"https://{domain}" if domain and not domain.startswith("http") else domain
+        result[slug] = {"name": name, "url": url}
+    return result
+
+
+def extract_config_validation_clients(all_tests_flat: list, staging_urls: dict) -> dict:
+    """
+    Extract per-client stats from config-validation.spec.ts tests.
+    Test describe blocks use format: 'Config validation: {client.name}'
+    Test titles use format: '{clientKey}: {variable}={value}'
+    """
+    cv_tests = [t for t in all_tests_flat if "config-validation" in t.get("file", "")]
+    if not cv_tests:
+        return {}
+
+    # Group tests by client key extracted from test title prefix (e.g. "bastien: hidePrices=false")
+    client_tests: dict = defaultdict(list)
+    for t in cv_tests:
+        title = t.get("title", "")
+        m = re.match(r'^([a-z0-9_-]+):', title)
+        if m:
+            client_tests[m.group(1)].append(t)
+        else:
+            # Fallback: try suite_title "Config validation: Bastien (staging)"
+            suite = t.get("suite_title", "")
+            sm = re.match(r"Config validation:\s*(.+?)(?:\s*\(|$)", suite)
+            if sm:
+                client_name_raw = sm.group(1).strip().lower()
+                client_tests[client_name_raw].append(t)
+
+    clients = {}
+    for client_key, tests in client_tests.items():
+        passed = sum(1 for t in tests if t.get("status") in ("expected", "flaky"))
+        failed = sum(1 for t in tests if t.get("status") == "unexpected")
+        info = staging_urls.get(client_key, {})
+        display_name = info.get("name", client_key.capitalize())
+        url = info.get("url", f"https://{client_key}.solopide.me")
+        clients[client_key] = {
+            "name": display_name,
+            "url": url,
+            "tests": len(tests),
+            "passed": passed,
+            "failed": failed,
+            "reportUrl": "reports/index.html",
+        }
+
+    return clients
+
+
+def generate_run_json(results: dict, date: str, project_root: Path = None) -> dict:
     """Generate the detailed run JSON."""
+    if project_root is None:
+        project_root = Path(__file__).parent.parent
+
     # Only include suites that actually ran (tests > 0)
     all_tests_flat = []
     for suite in results.get("suites", []):
@@ -390,28 +457,29 @@ def generate_run_json(results: dict, date: str) -> dict:
     if results.get("stats"):
         duration = int(results["stats"].get("duration", 0) / 1000)
 
-    # Per-client stats derived from actual results
-    codelpa_stats = extract_suite_stats(results, "codelpa.spec.ts")
-    surtiventas_stats = extract_suite_stats(results, "surtiventas.spec.ts")
+    # Per-client stats: dynamically extracted from config-validation.spec.ts
+    staging_urls = load_staging_urls(project_root)
+    clients = extract_config_validation_clients(all_tests_flat, staging_urls)
 
-    clients = {
-        "codelpa": {
-            "name": "Codelpa",
-            "url": "https://beta-codelpa.solopide.me",
-            "tests": codelpa_stats["tests"],
-            "passed": codelpa_stats["passed"],
-            "failed": codelpa_stats["failed"],
+    # Also pick up any legacy per-client spec files (codelpa.spec.ts, surtiventas.spec.ts, etc.)
+    for file_path in ran_files:
+        if file_path == "config-validation.spec.ts":
+            continue
+        suite_name = re.sub(r"\.spec\.ts$", "", file_path.split("/")[-1])
+        if suite_name in clients:
+            continue  # Already covered by config-validation
+        stats = extract_suite_stats(results, file_path.split("/")[-1])
+        if stats["tests"] == 0:
+            continue
+        info = staging_urls.get(suite_name, {})
+        clients[suite_name] = {
+            "name": info.get("name", suite_name.capitalize()),
+            "url": info.get("url", f"https://{suite_name}.solopide.me"),
+            "tests": stats["tests"],
+            "passed": stats["passed"],
+            "failed": stats["failed"],
             "reportUrl": "reports/index.html",
-        },
-        "surtiventas": {
-            "name": "Surtiventas",
-            "url": "https://surtiventas.solopide.me",
-            "tests": surtiventas_stats["tests"],
-            "passed": surtiventas_stats["passed"],
-            "failed": surtiventas_stats["failed"],
-            "reportUrl": "reports/index.html",
-        },
-    }
+        }
 
     return {
         "date": date,
@@ -506,7 +574,7 @@ def main():
     copy_test_results_artifacts(src_test_results, dst_data)
 
     # Generate run JSON
-    run_json = generate_run_json(results, date)
+    run_json = generate_run_json(results, date, project_root=project_root)
 
     # Write run details
     run_file = history_dir / f"{date}.json"

@@ -1252,9 +1252,14 @@ function updateClients() {
     const clients = latestRun.clients || {};
     const container = document.getElementById('clientsContainer');
 
-    container.innerHTML = Object.entries(clients).map(([key, c]) => {
+    const activeClients = Object.entries(clients).filter(([, c]) => c.tests > 0);
+    if (activeClients.length === 0) {
+        container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
+        return;
+    }
+    container.innerHTML = activeClients.map(([key, c]) => {
         const failed = c.failed ?? (c.tests - c.passed);
-        const passRate = c.tests > 0 ? Math.round(c.passed / c.tests * 100) : 0;
+        const passRate = Math.round(c.passed / c.tests * 100);
         const rateColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
         return `
         <div class="client-card">

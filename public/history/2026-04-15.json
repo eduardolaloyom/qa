@@ -1,0 +1,77 @@
+{
+  "date": "2026-04-15",
+  "timestamp": "2026-04-15T21:58:34.484382+00:00",
+  "total": 51,
+  "passed": 46,
+  "failed": 4,
+  "duration": 186,
+  "suites": [
+    {
+      "name": "config-validation.spec.ts",
+      "tests": 51,
+      "passed": 46,
+      "failed": 4,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "bastien": {
+      "name": "Bastien",
+      "url": "https://bastien.solopide.me",
+      "tests": 51,
+      "passed": 46,
+      "failed": 4,
+      "reportUrl": "reports/index.html"
+    }
+  },
+  "failure_groups": [
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Expected: > 0 \u2192 Received: 0",
+      "owner": "dev",
+      "action": "Se debe revisar en staging el comportamiento de 'bastien: disableCart=false' \u2014 la app devolvi\u00f3 un valor inesperado.",
+      "count": 1,
+      "tests": [
+        "[config-validation.spec.ts] bastien: disableCart=false"
+      ],
+      "clients": [
+        "config validation"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "No se pudo interactuar con: `locator('a[href*=\"cart\"]').first()`",
+      "owner": "qa",
+      "action": "Se debe inspeccionar el sitio staging, verificar que el campo existe con el label/placeholder correcto y actualizar el selector en el spec",
+      "count": 2,
+      "tests": [
+        "[config-validation.spec.ts] bastien: enableCoupons=true",
+        "[config-validation.spec.ts] bastien: hideReceiptType=false"
+      ],
+      "clients": [
+        "config validation"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado en staging: `[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]`",
+      "owner": "qa",
+      "action": "Se debe inspeccionar el sitio staging, buscar el elemento real y actualizar el selector `[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]` en el spec",
+      "count": 1,
+      "tests": [
+        "[config-validation.spec.ts] bastien: anonymousHideCart=false"
+      ],
+      "clients": [
+        "config validation"
+      ]
+    }
+  ],
+  "pending_b2b": [],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}

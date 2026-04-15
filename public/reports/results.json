@@ -82,25 +82,22 @@
   },
   "suites": [
     {
-      "title": "b2b/new-soprole.spec.ts",
-      "file": "b2b/new-soprole.spec.ts",
+      "title": "b2b/config-validation.spec.ts",
+      "file": "b2b/config-validation.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Soprole New — Login",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 43,
-          "column": 6,
+          "title": "Config validation: Bastien (staging)",
+          "file": "b2b/config-validation.spec.ts",
+          "line": 14,
+          "column": 8,
           "specs": [
             {
-              "title": "Home sin login — redirige a login @login @funcional",
+              "title": "bastien: anonymousAccess=true",
               "ok": true,
-              "tags": [
-                "login",
-                "funcional"
-              ],
+              "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
@@ -113,12 +110,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6554,
+                      "duration": 3925,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-09T14:31:54.260Z",
+                      "startTime": "2026-04-15T21:55:19.589Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -126,18 +123,15 @@
                   "status": "expected"
                 }
               ],
-              "id": "bfdc275249af9acd6eac-662f883bf0713257f7bb",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 45,
-              "column": 7
+              "id": "3238104278c4d165058f-0013dd344114b5658092",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 26,
+              "column": 9
             },
             {
-              "title": "Login exitoso @login @funcional",
+              "title": "bastien: hidePrices=false",
               "ok": true,
-              "tags": [
-                "login",
-                "funcional"
-              ],
+              "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
@@ -150,12 +144,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7662,
+                      "duration": 9348,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-09T14:31:54.252Z",
+                      "startTime": "2026-04-15T21:55:19.598Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -163,722 +157,136 @@
                   "status": "expected"
                 }
               ],
-              "id": "bfdc275249af9acd6eac-18a5b8dd44ad8c7f7187",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 54,
-              "column": 7
+              "id": "3238104278c4d165058f-33c228cfba0a430b8812",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 44,
+              "column": 9
             },
             {
-              "title": "Login fallido con password incorrecto @login @crítico",
-              "ok": true,
-              "tags": [
-                "login",
-                "crítico"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 7974,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:31:54.251Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-3efd246ce53e4fe9cbd9",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 59,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Catálogo",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 77,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Catálogo muestra productos con precios CLP @catalog @funcional",
-              "ok": true,
-              "tags": [
-                "catalog",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 12804,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:31:54.267Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-f0d142637bc10bdf891a",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 91,
-              "column": 7
-            },
-            {
-              "title": "No hay productos con precio $0 @catalog @funcional",
-              "ok": true,
-              "tags": [
-                "catalog",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 17017,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:01.144Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-ae4b63c6e0c8357eddcd",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 97,
-              "column": 7
-            },
-            {
-              "title": "Buscar producto por nombre @catalog @funcional",
-              "ok": true,
-              "tags": [
-                "catalog",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 26880,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:02.252Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-faf6412020a3acd2ea99",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 117,
-              "column": 7
-            },
-            {
-              "title": "hasMultiUnitEnabled: Selector de unidad visible en catálogo @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Selector de unidad visible (hasMultiUnitEnabled=true)"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 22958,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:02.637Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Selector de unidad visible (hasMultiUnitEnabled=true)"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-1c92d759a061b8b92882",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 128,
-              "column": 7
-            },
-            {
-              "title": "hasStockEnabled: Stock visible en tarjetas @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Stock no visible — verificar con Cowork"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 15943,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:07.461Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Stock no visible — verificar con Cowork"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-96e1f8224fac900fbb98",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 142,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Carrito",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 158,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Carrito vacío — botón confirmar pedido habilitado sin productos @validaciones @ux",
-              "ok": true,
-              "tags": [
-                "validaciones",
-                "ux"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Botón confirmar pedido habilitado con carrito vacío — mejora UX pendiente"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 15524,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:18.168Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Botón confirmar pedido habilitado con carrito vacío — mejora UX pendiente"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-a9a9a6d22723265e2b72",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 180,
-              "column": 7
-            },
-            {
-              "title": "Agregar producto al carrito @cart @funcional",
-              "ok": true,
-              "tags": [
-                "cart",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 12986,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:23.411Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-1b750a1e160aed7679df",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 195,
-              "column": 7
-            },
-            {
-              "title": "Carrito muestra items agregados @cart @funcional",
-              "ok": true,
-              "tags": [
-                "cart",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 13754,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:25.603Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-b7234d69af95cd4baae4",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 204,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Cupones",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 219,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Campo de cupón visible en carrito @coupons @funcional",
-              "ok": true,
-              "tags": [
-                "coupons",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 13698,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:29.142Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-34efcfc4ce49c4a08f91",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 221,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Precios",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 251,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Precios en formato CLP ($ sin decimales) @pricing @funcional",
-              "ok": true,
-              "tags": [
-                "pricing",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 11796,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:33.698Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-391e5fbf2d27cbb3f45f",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 266,
-              "column": 7
-            },
-            {
-              "title": "hideReceiptType=true — no muestra selector boleta/factura @pricing @funcional",
-              "ok": true,
-              "tags": [
-                "pricing",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 13802,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:36.402Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-94339c287414c5ec52c6",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 271,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Pedidos",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 296,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Historial de pedidos carga @pedidos @funcional",
-              "ok": true,
-              "tags": [
-                "pedidos",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 8507,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:39.363Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-928ec108116a43db3576",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 298,
-              "column": 7
-            },
-            {
-              "title": "Estados de pedido son válidos (no \"No disponible\") @pedidos @funcional",
+              "title": "bastien: disableCart=false",
               "ok": false,
-              "tags": [
-                "pedidos",
-                "funcional"
-              ],
+              "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "3 pedidos con estado \"No disponible\""
-                    }
-                  ],
+                  "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 8700,
+                      "duration": 11430,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:325:19",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:85:40",
                         "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                          "column": 19,
-                          "line": 325
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 40,
+                          "line": 85
                         },
-                        "snippet": "  323 |       test.info().annotations.push({ type: 'warning', description: `${count} pedidos con estado \"No disponible\"` });\n  324 |     }\n> 325 |     expect(count).toBe(0);\n      |                   ^\n  326 |   });\n  327 |\n  328 | });"
+                        "snippet": "  83 |         // Debe haber botones de agregar Y link al carro\n  84 |         expect(await addButtons.count()).toBeGreaterThan(0);\n> 85 |         expect(await cartLink.count()).toBeGreaterThan(0);\n     |                                        ^\n  86 |       }\n  87 |\n  88 |       await context.close();"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "column": 19,
-                            "line": 325
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 40,
+                            "line": 85
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\n  323 |       test.info().annotations.push({ type: 'warning', description: `${count} pedidos con estado \"No disponible\"` });\n  324 |     }\n> 325 |     expect(count).toBe(0);\n      |                   ^\n  326 |   });\n  327 |\n  328 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:325:19"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  83 |         // Debe haber botones de agregar Y link al carro\n  84 |         expect(await addButtons.count()).toBeGreaterThan(0);\n> 85 |         expect(await cartLink.count()).toBeGreaterThan(0);\n     |                                        ^\n  86 |       }\n  87 |\n  88 |       await context.close();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:85:40"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-09T14:32:42.846Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "3 pedidos con estado \"No disponible\""
-                        }
-                      ],
+                      "startTime": "2026-04-15T21:55:19.584Z",
+                      "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--c6724-isponible-pedidos-funcional-b2b/test-failed-1.png"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fe9f5-g-bastien-disableCart-false-b2b/test-failed-1.png"
                         },
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--c6724-isponible-pedidos-funcional-b2b/error-context.md"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fe9f5-g-bastien-disableCart-false-b2b/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "column": 19,
-                        "line": 325
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 40,
+                        "line": 85
                       }
                     },
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 1,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 9218,
+                      "duration": 8533,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:325:19",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:85:40",
                         "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                          "column": 19,
-                          "line": 325
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 40,
+                          "line": 85
                         },
-                        "snippet": "  323 |       test.info().annotations.push({ type: 'warning', description: `${count} pedidos con estado \"No disponible\"` });\n  324 |     }\n> 325 |     expect(count).toBe(0);\n      |                   ^\n  326 |   });\n  327 |\n  328 | });"
+                        "snippet": "  83 |         // Debe haber botones de agregar Y link al carro\n  84 |         expect(await addButtons.count()).toBeGreaterThan(0);\n> 85 |         expect(await cartLink.count()).toBeGreaterThan(0);\n     |                                        ^\n  86 |       }\n  87 |\n  88 |       await context.close();"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "column": 19,
-                            "line": 325
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 40,
+                            "line": 85
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\n  323 |       test.info().annotations.push({ type: 'warning', description: `${count} pedidos con estado \"No disponible\"` });\n  324 |     }\n> 325 |     expect(count).toBe(0);\n      |                   ^\n  326 |   });\n  327 |\n  328 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:325:19"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  83 |         // Debe haber botones de agregar Y link al carro\n  84 |         expect(await addButtons.count()).toBeGreaterThan(0);\n> 85 |         expect(await cartLink.count()).toBeGreaterThan(0);\n     |                                        ^\n  86 |       }\n  87 |\n  88 |       await context.close();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:85:40"
+                        },
+                        {
+                          "message": "Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/Users/lalojimenez/qa/tests/e2e/test-results/.playwright-artifacts-4/traces/3238104278c4d165058f-e5506049525c0374a5de-retry1.network'"
+                        },
+                        {
+                          "message": "Error: ENOENT: no such file or directory, open '/Users/lalojimenez/qa/tests/e2e/test-results/.playwright-artifacts-4/49876379c98dd111cc10a9db1b458ee7.zip'"
+                        },
+                        {
+                          "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-09T14:32:52.015Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "3 pedidos con estado \"No disponible\""
-                        }
-                      ],
+                      "startTime": "2026-04-15T21:55:32.178Z",
+                      "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--c6724-isponible-pedidos-funcional-b2b-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--c6724-isponible-pedidos-funcional-b2b-retry1/video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--c6724-isponible-pedidos-funcional-b2b-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--c6724-isponible-pedidos-funcional-b2b-retry1/trace.zip"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fe9f5-g-bastien-disableCart-false-b2b-retry1/test-failed-1.png"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "column": 19,
-                        "line": 325
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 40,
+                        "line": 85
                       }
                     }
                   ],
                   "status": "unexpected"
                 }
               ],
-              "id": "bfdc275249af9acd6eac-4c61628be45a328f0b98",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 315,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Home (enableHome=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 332,
-          "column": 6,
-          "specs": [
+              "id": "3238104278c4d165058f-e5506049525c0374a5de",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 66,
+              "column": 9
+            },
             {
-              "title": "enableHome=true — home carga y no redirige a /products @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
+              "title": "bastien: enableCoupons=true",
+              "ok": false,
+              "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
@@ -888,815 +296,119 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7526,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:45.500Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-69f47a70011d7c42807b",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 334,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Descuento vendedor (enableSellerDiscount=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 352,
-          "column": 6,
-          "specs": [
-            {
-              "title": "enableSellerDiscount=true — input de descuento visible en catálogo @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Descuento vendedor no encontrado — verificar si aplica solo a rol vendedor"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 12852,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:47.875Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Descuento vendedor no encontrado — verificar si aplica solo a rol vendedor"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-b74bb1bb1c5747ceae75",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 362,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Unidad de venta (enableChooseSaleUnit=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 381,
-          "column": 6,
-          "specs": [
-            {
-              "title": "enableChooseSaleUnit=true — selector de unidad de venta visible en productos @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Selector de unidad de venta visible"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
                       "workerIndex": 3,
                       "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 8835,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:50.209Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Selector de unidad de venta visible"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-c23204f13332eb4f181d",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 383,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Pagos (enablePayments=true, walletEnabled=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 409,
-          "column": 6,
-          "specs": [
-            {
-              "title": "enablePayments=true — sección de pagos visible en carrito @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Sección de pagos visible (enablePayments=true)"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 13491,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:53.031Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Sección de pagos visible (enablePayments=true)"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-5a3e70cdeace405d9b7a",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 432,
-              "column": 7
-            },
-            {
-              "title": "payment.walletEnabled=true — opción wallet disponible @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Wallet no encontrado — puede requerir saldo disponible en cuenta"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 13679,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:32:59.048Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Wallet no encontrado — puede requerir saldo disponible en cuenta"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-c9969a7083722a87fbba",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 445,
-              "column": 7
-            },
-            {
-              "title": "confirmCartText — botón muestra texto \"Pasar a confirmación del pedido\" @config @funcional",
-              "ok": false,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 13456,
+                      "duration": 38603,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:467:27",
+                        "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:109:55",
                         "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                          "column": 27,
-                          "line": 467
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 55,
+                          "line": 109
                         },
-                        "snippet": "  465 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  466 |     }\n> 467 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  468 |   });\n  469 |\n  470 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {"
+                        "snippet": "  107 |\n  108 |         // Ir al carro\n> 109 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  110 |         await page.waitForLoadState('networkidle');\n  111 |\n  112 |         const couponField = page.getByPlaceholder(/cup[oó]n/i)"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "column": 27,
-                            "line": 467
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 55,
+                            "line": 109
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  465 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  466 |     }\n> 467 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  468 |   });\n  469 |\n  470 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:467:27"
+                          "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n\n  107 |\n  108 |         // Ir al carro\n> 109 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  110 |         await page.waitForLoadState('networkidle');\n  111 |\n  112 |         const couponField = page.getByPlaceholder(/cup[oó]n/i)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:109:55"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-09T14:33:00.734Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout"
-                        }
-                      ],
+                      "startTime": "2026-04-15T21:55:19.590Z",
+                      "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b/test-failed-1.png"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-d84ed--bastien-enableCoupons-true-b2b/test-failed-1.png"
                         },
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b/error-context.md"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-d84ed--bastien-enableCoupons-true-b2b/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "column": 27,
-                        "line": 467
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 55,
+                        "line": 109
                       }
                     },
                     {
                       "workerIndex": 6,
-                      "parallelIndex": 2,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 14852,
+                      "duration": 39262,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:467:27",
+                        "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:109:55",
                         "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                          "column": 27,
-                          "line": 467
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 55,
+                          "line": 109
                         },
-                        "snippet": "  465 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  466 |     }\n> 467 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  468 |   });\n  469 |\n  470 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {"
+                        "snippet": "  107 |\n  108 |         // Ir al carro\n> 109 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  110 |         await page.waitForLoadState('networkidle');\n  111 |\n  112 |         const couponField = page.getByPlaceholder(/cup[oó]n/i)"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "column": 27,
-                            "line": 467
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 55,
+                            "line": 109
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  465 |       test.info().annotations.push({ type: 'warning', description: 'Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout' });\n  466 |     }\n> 467 |     expect(hasCustomText).toBeTruthy();\n      |                           ^\n  468 |   });\n  469 |\n  470 |   test('taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional', async ({ page }) => {\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:467:27"
+                          "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n\n  107 |\n  108 |         // Ir al carro\n> 109 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  110 |         await page.waitForLoadState('networkidle');\n  111 |\n  112 |         const couponField = page.getByPlaceholder(/cup[oó]n/i)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:109:55"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-09T14:33:14.643Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Texto custom \"Pasar a confirmación\" no encontrado — verificar flujo de checkout"
-                        }
-                      ],
+                      "startTime": "2026-04-15T21:55:59.475Z",
+                      "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/video.webm"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-d84ed--bastien-enableCoupons-true-b2b-retry1/test-failed-1.png"
                         },
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/error-context.md"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-d84ed--bastien-enableCoupons-true-b2b-retry1/error-context.md"
                         },
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--65d32-del-pedido-config-funcional-b2b-retry1/trace.zip"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-d84ed--bastien-enableCoupons-true-b2b-retry1/trace.zip"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "column": 27,
-                        "line": 467
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 55,
+                        "line": 109
                       }
                     }
                   ],
                   "status": "unexpected"
                 }
               ],
-              "id": "bfdc275249af9acd6eac-6abc28d84b750b42b197",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 458,
-              "column": 7
+              "id": "3238104278c4d165058f-98026857524ad585f764",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 93,
+              "column": 11
             },
             {
-              "title": "taxes.showSummary=true — resumen de impuestos visible en carrito @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Resumen de impuestos visible (taxes.showSummary=true)"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 14065,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:02.156Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Resumen de impuestos visible (taxes.showSummary=true)"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-9760fdc100ff9a3f8a5b",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 470,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Promociones (useNewPromotions=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 487,
-          "column": 6,
-          "specs": [
-            {
-              "title": "useNewPromotions=true — sección de promociones o banners visible @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Sección de promociones visible"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8444,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:06.527Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Sección de promociones visible"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-3dd71329dead00e86224",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 489,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Facturas y documentos de pago",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 510,
-          "column": 6,
-          "specs": [
-            {
-              "title": "enableInvoicesList=true — sección de facturas accesible en /payment-documents @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Documentos de pago accesibles en /payment-documents"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 11050,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:12.732Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Documentos de pago accesibles en /payment-documents"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-5582d686185b483a104a",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 512,
-              "column": 7
-            },
-            {
-              "title": "enablePaymentDocumentsB2B=true — módulo de pagos en /payment-documents @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Módulo de documentos de pago accesible (enablePaymentDocumentsB2B=true)"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 8672,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:14.977Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Módulo de documentos de pago accesible (enablePaymentDocumentsB2B=true)"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-05866d7de1acc5aec909",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 532,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Tareas (enableTask=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 552,
-          "column": 6,
-          "specs": [
-            {
-              "title": "enableTask=true — sección de tareas visible en navegación @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Tareas no visibles en navegación — puede ser rol-específico"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 7539,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:16.463Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Tareas no visibles en navegación — puede ser rol-específico"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-713aceb3ea058468f1e0",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 554,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Footer personalizado",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 575,
-          "column": 6,
-          "specs": [
-            {
-              "title": "footerCustomContent — footer muestra links personalizados @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Link /faq visible en footer"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 7612,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:23.655Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Link /faq visible en footer"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-0f9390ecf4aa80f7f481",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 577,
-              "column": 7
-            },
-            {
-              "title": "contact.phone — teléfono 600 600 6600 visible en footer @config @funcional",
-              "ok": true,
-              "tags": [
-                "config",
-                "funcional"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Teléfono 600 600 6600 visible en footer"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 7584,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:23.788Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Teléfono 600 600 6600 visible en footer"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-b402566a7a7955226344",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 598,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Alerta cliente bloqueado (enableBlockedClientAlert=true)",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 618,
-          "column": 6,
-          "specs": [
-            {
-              "title": "blockedClientAlert — configuración activa, comportamiento no testeable con cuenta válida @config @informativo",
-              "ok": true,
-              "tags": [
-                "config",
-                "informativo"
-              ],
-              "tests": [
-                {
-                  "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "pass",
-                      "description": "Cuenta normal no muestra alerta de bloqueo (correcto)"
-                    }
-                  ],
-                  "expectedStatus": "passed",
-                  "projectId": "b2b",
-                  "projectName": "b2b",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 8645,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-09T14:33:24.007Z",
-                      "annotations": [
-                        {
-                          "type": "pass",
-                          "description": "Cuenta normal no muestra alerta de bloqueo (correcto)"
-                        }
-                      ],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "bfdc275249af9acd6eac-224c3b136617cf27e6de",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 620,
-              "column": 7
-            }
-          ]
-        },
-        {
-          "title": "Soprole New — Consola y errores",
-          "file": "b2b/new-soprole.spec.ts",
-          "line": 641,
-          "column": 6,
-          "specs": [
-            {
-              "title": "Navegación sin errores JS en consola @consola @crítico",
-              "ok": true,
-              "tags": [
-                "consola",
-                "crítico"
-              ],
+              "title": "bastien: hideReceiptType=false",
+              "ok": false,
+              "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
@@ -1706,15 +418,189 @@
                   "projectName": "b2b",
                   "results": [
                     {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 38872,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:145:55",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 55,
+                          "line": 145
+                        },
+                        "snippet": "  143 |         await page.waitForLoadState('networkidle');\n  144 |\n> 145 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  146 |         await page.waitForLoadState('networkidle');\n  147 |\n  148 |         const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 55,
+                            "line": 145
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n\n  143 |         await page.waitForLoadState('networkidle');\n  144 |\n> 145 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  146 |         await page.waitForLoadState('networkidle');\n  147 |\n  148 |         const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:145:55"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:55:24.311Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fa9dc-stien-hideReceiptType-false-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fa9dc-stien-hideReceiptType-false-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 55,
+                        "line": 145
+                      }
+                    },
+                    {
                       "workerIndex": 7,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 13061,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 38684,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:145:55",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 55,
+                          "line": 145
+                        },
+                        "snippet": "  143 |         await page.waitForLoadState('networkidle');\n  144 |\n> 145 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  146 |         await page.waitForLoadState('networkidle');\n  147 |\n  148 |         const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 55,
+                            "line": 145
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href*=\"cart\"]').first()\u001b[22m\n\n\n  143 |         await page.waitForLoadState('networkidle');\n  144 |\n> 145 |         await page.locator('a[href*=\"cart\"]').first().click();\n      |                                                       ^\n  146 |         await page.waitForLoadState('networkidle');\n  147 |\n  148 |         const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:145:55"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-15T21:56:03.757Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fa9dc-stien-hideReceiptType-false-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fa9dc-stien-hideReceiptType-false-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-fa9dc-stien-hideReceiptType-false-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 55,
+                        "line": 145
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3238104278c4d165058f-e7ad2def10cecfe3b5da",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 130,
+              "column": 11
+            },
+            {
+              "title": "bastien: currency=undefined",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "line": 164,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-09T14:33:30.607Z",
+                      "startTime": "2026-04-15T21:55:29.734Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "line": 164,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3238104278c4d165058f-19119c56516ea42cbede",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 164,
+              "column": 10
+            },
+            {
+              "title": "bastien: inMaintenance=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6846,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:55:29.734Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1722,167 +608,1610 @@
                   "status": "expected"
                 }
               ],
-              "id": "bfdc275249af9acd6eac-389e00578409a3300411",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 643,
-              "column": 7
+              "id": "3238104278c4d165058f-d17bbd8a5fb5073e249e",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 194,
+              "column": 11
             },
             {
-              "title": "Sin requests 4xx/5xx durante navegación @consola @funcional",
+              "title": "bastien: anonymousHideCart=false",
               "ok": false,
-              "tags": [
-                "consola",
-                "funcional"
-              ],
+              "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [
-                    {
-                      "type": "warning",
-                      "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/categories, 404 https://k8s.solopide.me/api/v3/b2b-auth/transactions/upago/redirect-url/0109446793"
-                    },
-                    {
-                      "type": "error",
-                      "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
-                    }
-                  ],
+                  "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 39788,
+                      "duration": 16685,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:682:33",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:233:36",
                         "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                          "column": 33,
-                          "line": 682
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 36,
+                          "line": 233
                         },
-                        "snippet": "  680 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  681 |     }\n> 682 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  683 |   });\n  684 |\n  685 | });"
+                        "snippet": "  231 |           } else {\n  232 |             // Debe mostrar ícono del carrito\n> 233 |             await expect(cartIcon).toBeVisible({ timeout: 10_000 });\n      |                                    ^\n  234 |           }\n  235 |\n  236 |           await context.close();"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "column": 33,
-                            "line": 682
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 36,
+                            "line": 233
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n\n  680 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  681 |     }\n> 682 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  683 |   });\n  684 |\n  685 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:682:33"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\u001b[22m\n\n\n  231 |           } else {\n  232 |             // Debe mostrar ícono del carrito\n> 233 |             await expect(cartIcon).toBeVisible({ timeout: 10_000 });\n      |                                    ^\n  234 |           }\n  235 |\n  236 |           await context.close();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:233:36"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-09T14:33:31.273Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/categories, 404 https://k8s.solopide.me/api/v3/b2b-auth/transactions/upago/redirect-url/0109446793"
-                        },
-                        {
-                          "type": "error",
-                          "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
-                        }
-                      ],
+                      "startTime": "2026-04-15T21:55:36.589Z",
+                      "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--ece1c-avegación-consola-funcional-b2b/test-failed-1.png"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-cb28f-ien-anonymousHideCart-false-b2b/test-failed-1.png"
                         },
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--ece1c-avegación-consola-funcional-b2b/error-context.md"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-cb28f-ien-anonymousHideCart-false-b2b/error-context.md"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "column": 33,
-                        "line": 682
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 36,
+                        "line": 233
                       }
                     },
                     {
-                      "workerIndex": 8,
-                      "parallelIndex": 0,
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 37279,
+                      "duration": 20768,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:682:33",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:233:36",
                         "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                          "column": 33,
-                          "line": 682
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                          "column": 36,
+                          "line": 233
                         },
-                        "snippet": "  680 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  681 |     }\n> 682 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  683 |   });\n  684 |\n  685 | });"
+                        "snippet": "  231 |           } else {\n  232 |             // Debe mostrar ícono del carrito\n> 233 |             await expect(cartIcon).toBeVisible({ timeout: 10_000 });\n      |                                    ^\n  234 |           }\n  235 |\n  236 |           await context.close();"
                       },
                       "errors": [
                         {
                           "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                            "column": 33,
-                            "line": 682
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "column": 36,
+                            "line": 233
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\n\n  680 |       test.info().annotations.push({ type: 'error', description: `Requests 5xx: ${serverErrors.slice(0, 5).join(', ')}` });\n  681 |     }\n> 682 |     expect(serverErrors.length).toBe(0); // Solo hard-fail en 5xx (errores de servidor)\n      |                                 ^\n  683 |   });\n  684 |\n  685 | });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts:682:33"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"cart\" i], [aria-label*=\"carro\" i], [aria-label*=\"carrito\" i]').first()\u001b[22m\n\n\n  231 |           } else {\n  232 |             // Debe mostrar ícono del carrito\n> 233 |             await expect(cartIcon).toBeVisible({ timeout: 10_000 });\n      |                                    ^\n  234 |           }\n  235 |\n  236 |           await context.close();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts:233:36"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-09T14:34:11.477Z",
-                      "annotations": [
-                        {
-                          "type": "warning",
-                          "description": "Requests 4xx: 401 https://api.solopide.me/api/v2/cart/products, 401 https://api.solopide.me/api/v2/cart, 401 https://api.solopide.me/api/v2/sales-terms/me, 401 https://api.solopide.me/api/v2/categories, 404 https://k8s.solopide.me/api/v3/b2b-auth/transactions/upago/redirect-url/0109446793"
-                        },
-                        {
-                          "type": "error",
-                          "description": "Requests 5xx: 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery, 500 https://api.solopide.me/api/v2/commerces/delivery"
-                        }
-                      ],
+                      "startTime": "2026-04-15T21:55:53.877Z",
+                      "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--ece1c-avegación-consola-funcional-b2b-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--ece1c-avegación-consola-funcional-b2b-retry1/video.webm"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-cb28f-ien-anonymousHideCart-false-b2b-retry1/test-failed-1.png"
                         },
                         {
                           "name": "error-context",
                           "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--ece1c-avegación-consola-funcional-b2b-retry1/error-context.md"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-cb28f-ien-anonymousHideCart-false-b2b-retry1/error-context.md"
                         },
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/new-soprole-Soprole-New-—--ece1c-avegación-consola-funcional-b2b-retry1/trace.zip"
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/config-validation-Config-v-cb28f-ien-anonymousHideCart-false-b2b-retry1/trace.zip"
                         }
                       ],
                       "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/new-soprole.spec.ts",
-                        "column": 33,
-                        "line": 682
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "column": 36,
+                        "line": 233
                       }
                     }
                   ],
                   "status": "unexpected"
                 }
               ],
-              "id": "bfdc275249af9acd6eac-0277b3c74ba74c8be450",
-              "file": "b2b/new-soprole.spec.ts",
-              "line": 658,
-              "column": 7
+              "id": "3238104278c4d165058f-2d67637a422d9979b86c",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 218,
+              "column": 13
+            },
+            {
+              "title": "bastien: anonymousHidePrice=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 8627,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:15.923Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-cd992f5304ad34ed630a",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 241,
+              "column": 13
+            },
+            {
+              "title": "bastien: enablePayments=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 11238,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:25.060Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-f430665e6132151871c9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 266,
+              "column": 11
+            },
+            {
+              "title": "bastien: ordersRequireAuthorization=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9603,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:36.304Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-c5a4906cc0dfda700656",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 302,
+              "column": 11
+            },
+            {
+              "title": "bastien: includeTaxRateInPrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10217,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:40.046Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-48b76b4f1646fc00159b",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 327,
+              "column": 11
+            },
+            {
+              "title": "bastien: lazyLoadingPrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8810,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:43.727Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-21c3573c96eef1848aca",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 362,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableChooseSaleUnit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 8790,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:45.913Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-4b8c8b2ae040af149bd4",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 419,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableAskDeliveryDate=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10019,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:50.824Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-a0de6ed82e3b5e2227d1",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 449,
+              "column": 11
+            },
+            {
+              "title": "bastien: orderObservations=",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10271,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:53.026Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-5025553d3c4d6089a46b",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 482,
+              "column": 11
+            },
+            {
+              "title": "bastien: purchaseOrderEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9773,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:56:54.708Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-b9aac020e6b5c6d445ad",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 580,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableSellerDiscount=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10113,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:00.848Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-e7ab65d4edf62e4c07c3",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 603,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasStockEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8143,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:03.303Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-1645692c2f84715ff6f9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 625,
+              "column": 11
+            },
+            {
+              "title": "bastien: taxes.showSummary=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9764,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:04.487Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-30df750c6ca0641e9f95",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 650,
+              "column": 11
+            },
+            {
+              "title": "bastien: pendingDocuments=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4356,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:10.966Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-e10a041d5a368a1432f9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 674,
+              "column": 11
+            },
+            {
+              "title": "bastien: pointsEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4434,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:11.453Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7d7543e1f51d5b9085ed",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 698,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableTask=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4193,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:14.260Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-c65b78371eab4ad120af",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 722,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableCreditNotes=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3992,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:15.329Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-72aba270c88682dc49e2",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 746,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableDistributionCentersSelector=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9430,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:15.891Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7ddebc29f857604b099b",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 770,
+              "column": 11
+            },
+            {
+              "title": "bastien: editAddress=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10156,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[bastien] editAddress=true but edit button not found — may require commerce with address\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:18.458Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-135896de92ed3d45d017",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 794,
+              "column": 11
+            },
+            {
+              "title": "bastien: showMinOne=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 8160,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:19.326Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-d992930d48e7207d035a",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 817,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasMultiUnitEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9142,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:25.327Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-92445b858a90976f0c49",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 843,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasNoSaleFilter=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 8258,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:27.508Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-11b15a3db1ca7f01ab3b",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 867,
+              "column": 11
+            },
+            {
+              "title": "bastien: limitAddingByStock=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 8298,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:28.619Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-644b4c0a45a1b31a83e9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 891,
+              "column": 11
+            },
+            {
+              "title": "bastien: packagingInformation.hidePackagingInformationB2B=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8279,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:34.475Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-5277b565c3d33fc7cc47",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 916,
+              "column": 11
+            },
+            {
+              "title": "bastien: ordersRequireVerification=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4538,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:35.771Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7b31fee33d7a355e4532",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 941,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableOrderValidation=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 12957,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:36.922Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-aa66bead5f8d6c1200c0",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 966,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableOrderApproval=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4547,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:40.314Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-8b2f167489a298de0240",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 989,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasTransportCode=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10570,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:41.896Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-83d95d956bbe006fa6ff",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1014,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasVoucherPrinterEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5293,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:42.766Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-458dc876c4589c520106",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1037,
+              "column": 11
+            },
+            {
+              "title": "bastien: disableShowEstimatedDeliveryHour=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10431,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:44.865Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-32f6dff126569c65bae9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1062,
+              "column": 11
+            },
+            {
+              "title": "bastien: enablePaymentsCollection=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4306,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:48.065Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7809969617c2aff3694c",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1085,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasTransferPaymentType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10863,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:49.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-f0fe28c82c849819ed6f",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1110,
+              "column": 11
+            },
+            {
+              "title": "bastien: uploadOrderFileWithMinUnits=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8634,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:52.376Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-027e01630dd068b3055e",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1133,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableBetaButtons=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 8491,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:53.240Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-421e058938a9ac217615",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1158,
+              "column": 11
+            },
+            {
+              "title": "bastien: discountTypes.enableOrderDiscountType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 12935,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:57:55.300Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-09b54d3198486e409be1",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1183,
+              "column": 11
+            },
+            {
+              "title": "bastien: discountTypes.enableProductDiscountType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9082,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:00.752Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-1bd7a141cfc1c5e866d8",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1206,
+              "column": 11
+            },
+            {
+              "title": "bastien: weightInfo=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9015,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:01.015Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-57409ed8edb579a9cc31",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1231,
+              "column": 11
+            },
+            {
+              "title": "bastien: showEmptyCategories=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 11648,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] showEmptyCategories=false — 2 categories visible\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:01.737Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-81cd42f9c4a3ab791edd",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1259,
+              "column": 11
+            },
+            {
+              "title": "bastien: externalAccess=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4481,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:08.240Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-6ba149f3ecb992023cfa",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1287,
+              "column": 11
+            },
+            {
+              "title": "bastien: blockedClientAlert.enableBlockedClientAlert=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5298,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:09.840Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-4dd4ab6661e46e5da04d",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1312,
+              "column": 11
+            },
+            {
+              "title": "bastien: useNewPromotions=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8604,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:10.041Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-51c90793632842c3feef",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1337,
+              "column": 11
+            },
+            {
+              "title": "bastien: payment.enableNewPaymentModule=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 12738,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] payment.enableNewPaymentModule=false — using legacy payment flow\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:12.725Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-1721ebdc7c8779978913",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1357,
+              "column": 11
+            },
+            {
+              "title": "bastien: shareOrderNewDesign=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4415,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] shareOrderNewDesign=false — share button visible: false\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:13.390Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-d40a5286ca2ad4035a68",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1381,
+              "column": 11
+            },
+            {
+              "title": "bastien: shoppingDetail.lastOrder=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10348,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-15T21:58:15.142Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-56bfe071c69fb98900ff",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1407,
+              "column": 11
             }
           ]
         }
@@ -1891,11 +2220,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-09T14:31:53.776Z",
-    "duration": 175463.913,
-    "expected": 29,
-    "skipped": 0,
-    "unexpected": 3,
+    "startTime": "2026-04-15T21:55:19.062Z",
+    "duration": 186464.616,
+    "expected": 46,
+    "skipped": 1,
+    "unexpected": 4,
     "flaky": 0
   }
 }
