@@ -1,0 +1,2257 @@
+{
+  "generated_at": "2026-04-15T14:40:20.909637+00:00",
+  "env": "production",
+  "clients": [
+    "americas",
+    "bastien",
+    "cedisur",
+    "codelpa",
+    "codelpa-peru",
+    "coexito",
+    "elmuneco",
+    "expressdent",
+    "marleycoffee",
+    "new-soprole",
+    "prinorte",
+    "prisa",
+    "prisur",
+    "softys-cencocal",
+    "softys-dimak",
+    "soprole",
+    "surtiventas"
+  ],
+  "variables": {
+    "adminConfiguration.showDiscountLimitAdmin": {
+      "clients": {
+        "coexito": false
+      },
+      "implemented": null
+    },
+    "anonymousAccess": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": true,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "anonymousHideCart": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": true,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "anonymousHidePrice": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "blockedClientAlert.blockedClientAlertHtmlContent": {
+      "clients": {
+        "soprole": "<div class=\"text-center\">\n  <h4>Tu comercio se encuentra bloqueado para compras. Favor contactarse con nuestro Servicio al Cliente (600 600 6600) y revisaremos su caso.</h4>\n  <div class=\"modal-buttons\">\n    <button type=\"button\" class=\"btn-back\" ng-click=\"redirectTo('/contact')\"><b>Contacto</b></button>\n  </div>\n</div>",
+        "new-soprole": "<div class=\"text-center\">\n  <h4>Tu comercio se encuentra bloqueado para compras. Favor contactarse con nuestro Servicio al Cliente (600 600 6600) y revisaremos su caso.</h4>\n  <div class=\"modal-buttons\">\n    <button type=\"button\" class=\"btn-back\" ng-click=\"redirectTo('/contact')\"><b>Contacto</b></button>\n  </div>\n</div>"
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "blockedClientAlert.enableBlockedClientAlert": {
+      "clients": {
+        "soprole": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "businessUnits": {
+      "clients": {
+        "expressdent": [],
+        "coexito": [],
+        "marleycoffee": [],
+        "surtiventas": [],
+        "elmuneco": [],
+        "prisa": [],
+        "cedisur": [],
+        "americas": [],
+        "bastien": [],
+        "prisur": [],
+        "codelpa-peru": [],
+        "prinorte": []
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "commerce.enableCreateCommerce": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": false
+    },
+    "confirmCartText": {
+      "clients": {
+        "soprole": "Pasar a confirmación del pedido",
+        "new-soprole": "Pasar a confirmación del pedido"
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "contact.about": {
+      "clients": {
+        "soprole": "Comprometidos desde 1949 con la alimentación saludable de las familias chilenas, entregando productos sanos y ricos.",
+        "codelpa": "Grupo Codelpa Colores del Pacífico, es la empresa de pinturas y revestimientos más grande del país, agrupando marcas de pinturas como Ceresita, Sipa, Soquina, Chilcorrofín, Pinmor y Titanium 2K de Sipa.",
+        "expressdent": "Una solución integral para el dentista",
+        "marleycoffee": "La principal marca cafetera orgánica del mundo, siempre respetando el legado de Bob Marley, manifestándolo en cada taza.",
+        "surtiventas": "Surtiventas opera con el claro propósito de satisfacer las necesidades básicas del comerciante chileno, con un servicio personalizado de venta que se extiende a lo largo y ancho del país.",
+        "elmuneco": "Distribuidora de helados, confites, congelados y bebidas. Tenemos todo para tu almacén a los precios más convenientes.",
+        "prinorte": "Surtiventas opera con el claro propósito de satisfacer las necesidades básicas del comerciante chileno, con un servicio personalizado de venta que se extiende a lo largo y ancho del país.",
+        "new-soprole": "Comprometidos desde 1949 con la alimentación saludable de las familias chilenas, entregando productos sanos y ricos."
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "contact.branchesContactInformation": {
+      "clients": {
+        "codelpa": [
+          {
+            "address": "Camino Lo Echevers 801, Quilicura",
+            "phone": "+562227262800",
+            "email": "info@codelpa.cl"
+          }
+        ],
+        "expressdent": [
+          {
+            "address": "Av. Presidente Errázuriz 4125, Las Condes, Santiago, Chile",
+            "phone": "Fijo: +562 4367 1570  -  Whatsapp: +569 5819 3883",
+            "email": "contacto@expressdent.cl"
+          }
+        ],
+        "marleycoffee": [
+          {
+            "phone": "+56998946436",
+            "email": "servicioalcliente@marleycoffee.cl"
+          }
+        ],
+        "surtiventas": [
+          {
+            "phone": "+562 2820 6400",
+            "email": "srvcliente1@surtiventas.cl"
+          }
+        ],
+        "elmuneco": [
+          {
+            "address": "Lucila Godoy #374, Quilicura, Santiago",
+            "phone": "+56965995359",
+            "email": "elmuneco@tie.cl"
+          }
+        ],
+        "prinorte": [
+          {
+            "phone": "+562 2820 6400",
+            "email": "srvcliente1@surtiventas.cl"
+          }
+        ],
+        "new-soprole": [
+          {
+            "phone": "600 600 6600"
+          }
+        ]
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "contact.email": {
+      "clients": {
+        "codelpa": "info@codelpa.cl",
+        "expressdent": "contacto@expressdent.cl",
+        "marleycoffee": "servicioalcliente@marleycoffee.cl",
+        "surtiventas": "srvcliente1@surtiventas.cl",
+        "elmuneco": "elmuneco@tie.cl",
+        "prinorte": "srvcliente1@surtiventas.cl"
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "contact.phone": {
+      "clients": {
+        "soprole": "600 600 6600",
+        "new-soprole": "600 600 6600"
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "disableCart": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "disableCommerceEdit": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "disableManualDiscount": {
+      "clients": {
+        "coexito": true
+      },
+      "implemented": null
+    },
+    "disableObservationInput": {
+      "clients": {
+        "soprole": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "disablePayments": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": true,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "disableShowEstimatedDeliveryHour": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "disableWrongPrices": {
+      "clients": {
+        "soprole": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "discountTypes.discountTypesList": {
+      "clients": {
+        "expressdent": [],
+        "coexito": [],
+        "marleycoffee": [],
+        "surtiventas": [],
+        "elmuneco": [],
+        "prisa": [],
+        "cedisur": [],
+        "americas": [],
+        "bastien": [],
+        "prisur": [],
+        "codelpa-peru": [],
+        "prinorte": []
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "discountTypes.enableOrderDiscountType": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "discountTypes.enableProductDiscountType": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "editAddress": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": true,
+        "softys-dimak": true,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": true,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": true,
+        "cedisur": true,
+        "americas": true,
+        "bastien": true,
+        "prisur": true,
+        "codelpa-peru": true,
+        "prinorte": true,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableAskDeliveryDate": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "enableBetaButtons": {
+      "clients": {
+        "soprole": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableChooseSaleUnit": {
+      "clients": {
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableCoupons": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": true,
+        "softys-dimak": true,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": true,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": true,
+        "cedisur": true,
+        "americas": true,
+        "bastien": true,
+        "prisur": true,
+        "codelpa-peru": true,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableCreditNotes": {
+      "clients": {
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "enableCreditStateMessage": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "new-soprole": false
+      },
+      "implemented": false
+    },
+    "enableDialogNoSellReason": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "enableDistributionCentersSelector": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "enableHome": {
+      "clients": {
+        "new-soprole": true
+      },
+      "implemented": false
+    },
+    "enableInvoicesList": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "enableMassiveOrderSend": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": true,
+        "surtiventas": true,
+        "cedisur": true,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableNewPaymentModule": {
+      "clients": {
+        "cedisur": true
+      },
+      "implemented": null
+    },
+    "enableNewUI": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "enableOrderApproval": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableOrderAproval": {
+      "clients": {
+        "new-soprole": false
+      },
+      "implemented": false
+    },
+    "enableOrderValidation": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enablePaymentDocumentsB2B": {
+      "clients": {
+        "soprole": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "enablePayments": {
+      "clients": {
+        "soprole": true,
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enablePaymentsCollection": {
+      "clients": {
+        "softys-cencocal": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enablePriceOracle": {
+      "clients": {
+        "soprole": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "enableSellerDiscount": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "enableTask": {
+      "clients": {
+        "codelpa": true,
+        "softys-cencocal": true,
+        "softys-dimak": true,
+        "expressdent": false,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "externalAccess": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "filterGroupedSuggestionsBy": {
+      "clients": {
+        "softys-dimak": [],
+        "expressdent": [],
+        "coexito": [],
+        "marleycoffee": [],
+        "surtiventas": [],
+        "elmuneco": [],
+        "prisa": [],
+        "cedisur": [],
+        "americas": [],
+        "bastien": [],
+        "prisur": [],
+        "codelpa-peru": [],
+        "prinorte": []
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "flagFeatures.reactNativeOrderTaker": {
+      "clients": {
+        "cedisur": false
+      },
+      "implemented": false
+    },
+    "flagFeatures.reactNativeOrderTakerForAll": {
+      "clients": {
+        "cedisur": false
+      },
+      "implemented": false
+    },
+    "flagFeatures.reactNativeOrderTakerSellers": {
+      "clients": {
+        "cedisur": []
+      },
+      "implemented": false
+    },
+    "footerCustomContent.footerCustomHtmlContent": {
+      "clients": {
+        "soprole": "<p class=\"footer-links\">\n  <a href=\"/\">Inicio</a>\n  &middot;\n  <a href=\"/catalog\">Catálogo</a>\n  &middot;\n  <a href=\"/contact\">Contacto</a>\n  &middot;\n  <a href=\"/faq\">Preguntas frecuentes</a>\n</p>",
+        "new-soprole": "<p class=\"footer-links\">\n  <a href=\"/\">Inicio</a>\n  &middot;\n  <a href=\"/catalog\">Catálogo</a>\n  &middot;\n  <a href=\"/contact\">Contacto</a>\n  &middot;\n  <a href=\"/faq\">Preguntas frecuentes</a>\n</p>"
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "footerCustomContent.useFooterCustomContent": {
+      "clients": {
+        "soprole": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "hasAllDistributionCenters": {
+      "clients": {
+        "codelpa": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "hasMultiUnitEnabled": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "hasMultipleBusinessUnit": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "hasNoSaleFilter": {
+      "clients": {
+        "softys-cencocal": true,
+        "expressdent": false,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "hasSingleDistributionCenter": {
+      "clients": {
+        "codelpa": false,
+        "softys-cencocal": true,
+        "softys-dimak": true,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": true,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": true,
+        "cedisur": true,
+        "americas": true,
+        "bastien": true,
+        "prisur": true,
+        "codelpa-peru": true,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "hasStockEnabled": {
+      "clients": {
+        "codelpa": true,
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "hasTransferPaymentType": {
+      "clients": {
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "hasTransportCode": {
+      "clients": {
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "hasVoucherPrinterEnabled": {
+      "clients": {
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "hidePrices": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "hideReceiptType": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "includeTaxRateInPrices": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "lazyLoadingPrices": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "limitAddingByStock": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "mobileAccess.passwordDisabled": {
+      "clients": {
+        "soprole": true,
+        "coexito": true,
+        "new-soprole": true
+      },
+      "implemented": null
+    },
+    "mustHaveOverride": {
+      "clients": {
+        "codelpa-peru": false,
+        "new-soprole": true
+      },
+      "implemented": false
+    },
+    "orderObservations": {
+      "clients": {
+        "coexito": [
+          {
+            "disabled": false,
+            "maxCharacters": 240,
+            "observationKey": "purchaseObservation",
+            "observationTitle": "Observaciones Factura"
+          },
+          {
+            "disabled": false,
+            "maxCharacters": 240,
+            "observationKey": "internalObservation",
+            "observationTitle": "Observaciones Internas"
+          }
+        ],
+        "prisa": [],
+        "cedisur": [],
+        "americas": [],
+        "bastien": [],
+        "prisur": [],
+        "codelpa-peru": []
+      },
+      "implemented": null
+    },
+    "orderPolicy.creditExceededStatus": {
+      "clients": {
+        "marleycoffee": "block"
+      },
+      "implemented": false
+    },
+    "orderPolicy.newPricePromotionsOverall": {
+      "clients": {
+        "new-soprole": true
+      },
+      "implemented": null
+    },
+    "orderPolicy.overdueDebtConfiguration.blockSettings.enabled": {
+      "clients": {
+        "cedisur": false
+      },
+      "implemented": false
+    },
+    "orderPolicy.overdueDebtConfiguration.retentionSettings.enabled": {
+      "clients": {
+        "cedisur": true
+      },
+      "implemented": false
+    },
+    "orderPolicy.overdueDebtConfiguration.retentionSettings.thresholdDays": {
+      "clients": {
+        "cedisur": 3
+      },
+      "implemented": false
+    },
+    "orderPolicy.retainBlockedCommerces": {
+      "clients": {
+        "cedisur": true
+      },
+      "implemented": null
+    },
+    "orderPolicy.retainCreditBlockedCommerces": {
+      "clients": {
+        "cedisur": true
+      },
+      "implemented": false
+    },
+    "orderPolicy.sendRetainedOrdersToClientErp": {
+      "clients": {
+        "cedisur": true
+      },
+      "implemented": null
+    },
+    "orderTypes": {
+      "clients": {
+        "coexito": [
+          {
+            "displayName": "VENTA NORMAL",
+            "key": "VEN_NOR_"
+          },
+          {
+            "displayName": "VENTA ENTREGA TERCEROS",
+            "key": "VEN_ENT_3ROS_"
+          },
+          {
+            "displayName": "VENTA CLIENTE RECOGE",
+            "key": "VEN_RETIRA_"
+          },
+          {
+            "displayName": "VENTA MARCA PROPIA",
+            "key": "VEN_MPRO_"
+          },
+          {
+            "displayName": "VENTA SAN ANDRES",
+            "key": "VEN_SAN_ANDRES"
+          },
+          {
+            "displayName": "VENTA OTRO CEDI",
+            "key": "VEN_OTROCEDI_"
+          }
+        ]
+      },
+      "implemented": null
+    },
+    "ordersRequireAuthorization": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "ordersRequireVerification": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "packaging.amountUsesUnits": {
+      "clients": {
+        "surtiventas": true,
+        "cedisur": true,
+        "prisur": true,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": false
+    },
+    "packagingInformation.hidePackagingInformationB2B": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": true,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": true,
+        "cedisur": true,
+        "americas": true,
+        "bastien": true,
+        "prisur": true,
+        "codelpa-peru": true,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "packagingInformation.hideSingleItemPackagingInformationB2B": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": true,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": true,
+        "cedisur": true,
+        "americas": true,
+        "bastien": true,
+        "prisur": true,
+        "codelpa-peru": true,
+        "prinorte": true,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "packagingInformation.ignoreUnitOnPackInformationB2B": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "payment.balances": {
+      "clients": {
+        "expressdent": [],
+        "coexito": [
+          {
+            "additionalBalanceFields": [
+              {
+                "displayName": "Saldo",
+                "key": "balance",
+                "type": "textField"
+              },
+              {
+                "displayName": "Observaciones",
+                "key": "observations",
+                "type": "textAndPhotoField"
+              }
+            ],
+            "addsToTotal": false,
+            "displayName": "Pago parcial"
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "displayName": "Saldo",
+                "key": "balance",
+                "type": "textField"
+              },
+              {
+                "displayName": "Observaciones",
+                "key": "observations",
+                "type": "textAndPhotoField"
+              }
+            ],
+            "addsToTotal": true,
+            "displayName": "Descuento Pronto Pago"
+          }
+        ],
+        "marleycoffee": [],
+        "surtiventas": [],
+        "elmuneco": [],
+        "prisa": [],
+        "cedisur": [],
+        "americas": [],
+        "bastien": [],
+        "prisur": [],
+        "codelpa-peru": [],
+        "prinorte": [],
+        "new-soprole": [
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Pago parcial",
+            "addsToTotal": false
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Descuento Pronto Pago",
+            "addsToTotal": true
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Saldo Descuento comercial",
+            "addsToTotal": true
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Nota de crédito existente",
+            "addsToTotal": true
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "supplier",
+                "displayName": "Proveedor",
+                "type": "dropdown",
+                "dropdownOptions": [
+                  "Proveedor de prueba 1",
+                  "Proveedor de prueba 2"
+                ]
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Saldo proveedor",
+            "addsToTotal": true
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Saldo Logística",
+            "addsToTotal": true
+          },
+          {
+            "additionalBalanceFields": [
+              {
+                "key": "balance",
+                "displayName": "Saldo",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "almin",
+                "displayName": "Almin",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "reteFuente",
+                "displayName": "Rete Fuente",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "reteIca",
+                "displayName": "Rete Ica",
+                "type": "textField",
+                "dropdownOptions": []
+              },
+              {
+                "key": "observations",
+                "displayName": "Observaciones",
+                "type": "textAndPhotoField",
+                "dropdownOptions": []
+              }
+            ],
+            "displayName": "Saldo por Retención",
+            "addsToTotal": true
+          }
+        ]
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "payment.consolidatePayments": {
+      "clients": {
+        "cedisur": false
+      },
+      "implemented": null
+    },
+    "payment.enableNewPaymentModule": {
+      "clients": {
+        "codelpa": false,
+        "softys-cencocal": true,
+        "expressdent": false,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": true,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "payment.externalPayment": {
+      "clients": {
+        "expressdent": "khipu",
+        "marleycoffee": "khipu"
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "payment.requiresFullPayment": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "payment.useLegacyTypes": {
+      "clients": {
+        "codelpa": true
+      },
+      "implemented": null
+    },
+    "paymentsWithoutAccount": {
+      "clients": {
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "pendingDocuments": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "pointsEnabled": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "priceRoundingDecimals": {
+      "clients": {
+        "expressdent": 0,
+        "coexito": 0,
+        "marleycoffee": 0,
+        "surtiventas": 0,
+        "elmuneco": 0,
+        "prisa": 0,
+        "cedisur": 2,
+        "americas": 0,
+        "bastien": 0,
+        "prisur": 0,
+        "codelpa-peru": 2,
+        "prinorte": 0,
+        "new-soprole": 0
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "productDetailViewConfiguration.tabsOrder": {
+      "clients": {
+        "surtiventas": [
+          "steps",
+          "description"
+        ],
+        "prinorte": [
+          "steps",
+          "description"
+        ],
+        "new-soprole": [
+          "steps",
+          "description"
+        ]
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "productList.enableSuggestionByCategories": {
+      "clients": {
+        "softys-cencocal": false
+      },
+      "implemented": false
+    },
+    "productVariability": {
+      "clients": {
+        "codelpa": "none",
+        "expressdent": "full",
+        "marleycoffee": "none",
+        "surtiventas": "none",
+        "elmuneco": "none",
+        "prisa": "none",
+        "cedisur": "none",
+        "americas": "none",
+        "bastien": "none",
+        "prisur": "none",
+        "codelpa-peru": "none",
+        "prinorte": "none",
+        "new-soprole": "low"
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "purchaseOrderEnabled": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "shareOrderNewDesign": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "shoppingDetail.lastOrder": {
+      "clients": {
+        "codelpa": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "showEmptyCategories": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "showMinOne": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "synchronization.backgroundSyncList": {
+      "clients": {
+        "expressdent": [],
+        "coexito": [],
+        "marleycoffee": [],
+        "surtiventas": [],
+        "elmuneco": [],
+        "prisa": [],
+        "cedisur": [],
+        "americas": [],
+        "bastien": [],
+        "prisur": [],
+        "codelpa-peru": [],
+        "prinorte": []
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "synchronization.enableBackgroundSendOrders": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "synchronization.enableBackgroundSync": {
+      "clients": {
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "synchronization.enableSyncImages": {
+      "clients": {
+        "codelpa": true,
+        "softys-cencocal": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "taxes.showSummary": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": true,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "taxes.taxRate": {
+      "clients": {
+        "soprole": 0,
+        "codelpa": 0,
+        "softys-cencocal": 0,
+        "softys-dimak": 0,
+        "expressdent": 0,
+        "coexito": 0,
+        "marleycoffee": 0,
+        "surtiventas": 0,
+        "elmuneco": 0,
+        "prisa": 0,
+        "cedisur": 0,
+        "americas": 0,
+        "bastien": 0,
+        "prisur": 0,
+        "codelpa-peru": 0,
+        "prinorte": 0,
+        "new-soprole": 0
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "taxes.useTaxRate": {
+      "clients": {
+        "soprole": true,
+        "codelpa": false,
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": true,
+        "coexito": true,
+        "marleycoffee": false,
+        "surtiventas": true,
+        "elmuneco": true,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": true,
+      "category": "frontend"
+    },
+    "uploadOrderFileWithMinUnits": {
+      "clients": {
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "useMobileGps": {
+      "clients": {
+        "soprole": false,
+        "codelpa": true,
+        "softys-cencocal": true,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "useMongoPricing": {
+      "clients": {
+        "soprole": true,
+        "codelpa": true,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": true
+      },
+      "implemented": false
+    },
+    "useNewPromotions": {
+      "clients": {
+        "expressdent": true,
+        "coexito": true,
+        "surtiventas": true,
+        "prisa": false,
+        "cedisur": true,
+        "americas": false,
+        "bastien": false,
+        "prisur": true,
+        "codelpa-peru": false,
+        "prinorte": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "backend-only"
+    },
+    "validatePaymentFromAdmin": {
+      "clients": {
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "weightInfo": {
+      "clients": {
+        "soprole": false,
+        "codelpa": false,
+        "softys-cencocal": false,
+        "softys-dimak": false,
+        "expressdent": false,
+        "coexito": false,
+        "marleycoffee": false,
+        "surtiventas": false,
+        "elmuneco": false,
+        "prisa": false,
+        "cedisur": false,
+        "americas": false,
+        "bastien": false,
+        "prisur": false,
+        "codelpa-peru": false,
+        "prinorte": false,
+        "new-soprole": false
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "wrongPrices.block": {
+      "clients": {
+        "soprole": true,
+        "new-soprole": true
+      },
+      "implemented": null,
+      "category": "dead"
+    },
+    "wrongPrices.threshold": {
+      "clients": {
+        "soprole": 50,
+        "new-soprole": 50
+      },
+      "implemented": null,
+      "category": "dead"
+    }
+  }
+}

@@ -244,6 +244,7 @@
         }
         .filter-btn:hover { border-color: #667eea; color: #667eea; }
         .filter-btn.active { background: #667eea; border-color: #667eea; color: white; }
+        .env-btn.active { background: #4338ca !important; border-color: #4338ca !important; color: white !important; }
         .filter-btn.active-red { background: #ef4444; border-color: #ef4444; color: white; }
         .filter-btn.active-green { background: #10b981; border-color: #10b981; color: white; }
         .filter-btn.active-amber { background: #f59e0b; border-color: #f59e0b; color: white; }
@@ -755,10 +756,23 @@
         <!-- Variables B2B -->
         <div class="card" id="b2bVarsCard" style="display:none;">
             <div class="card-title">🔬 Variables B2B — Revisión de implementación</div>
-            <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB staging clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = en código frontend. <strong>🔗 Backend-only</strong> = controla comportamiento vía API, no en código frontend (35 vars). <strong>🗑️ Sin uso</strong> = no activa en ningún cliente, posiblemente legacy (39 vars). <strong>❌ No es B2B</strong> = no en Store type — tests salteados. Los clientes muestran el valor configurado (true/false/valor).</p>
+            <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = en código frontend. <strong>🔗 Backend-only</strong> = controla comportamiento vía API (no en código). <strong>🗑️ Sin uso</strong> = no activa en ningún cliente, posiblemente legacy. <strong>❌ No es B2B</strong> = no en Store type — tests salteados.</p>
+            <!-- Entorno -->
+            <div id="b2bEnvBar" style="display:flex;gap:8px;align-items:center;margin-bottom:14px;">
+                <span class="filter-label">Entorno:</span>
+                <button class="env-btn active" onclick="switchB2bEnv('staging', this)"
+                    style="padding:4px 14px;border-radius:6px;border:1.5px solid #6366f1;background:#ede9fe;color:#4338ca;font-size:13px;font-weight:600;cursor:pointer;">
+                    🔵 Staging <span style="font-weight:400;font-size:11px;opacity:0.8;">(4 clientes)</span>
+                </button>
+                <button class="env-btn" onclick="switchB2bEnv('production', this)"
+                    style="padding:4px 14px;border-radius:6px;border:1.5px solid #d1d5db;background:#f9fafb;color:#374151;font-size:13px;font-weight:600;cursor:pointer;">
+                    🟢 Producción <span style="font-weight:400;font-size:11px;opacity:0.8;">(17 clientes)</span>
+                </button>
+                <span id="b2bEnvLabel" style="color:#9ca3af;font-size:12px;margin-left:4px;"></span>
+            </div>
             <div class="filters-bar" style="margin-bottom:12px;">
                 <span class="filter-label">Estado:</span>
-                <button class="filter-btn active" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn active" data-filter="all" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn" onclick="filterB2bVars('unknown', this)" style="color:#92400e;border-color:#fcd34d">⚠️ Sin confirmar <span id="b2b-count-unknown" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada <span id="b2b-count-true" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-false" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
@@ -1377,6 +1391,7 @@ document.addEventListener('DOMContentLoaded', () => {
 let b2bVarsData = null;
 let b2bVarsFilter = 'all';
 let b2bVarsSearch = '';
+let b2bVarsEnv = 'staging';
 
 // Classifications stored in localStorage: { varName: { type: 'confirmed_manual'|'not_exist'|'not_b2b', ticket: 'YOM-123' } }
 function loadB2bClassifications() {
@@ -1409,18 +1424,31 @@ function exportB2bClassifications() {
     a.click(); URL.revokeObjectURL(url);
 }
 
-async function loadB2bVariables() {
+async function loadB2bVariables(env) {
+    if (env) b2bVarsEnv = env;
+    const file = b2bVarsEnv === 'production' ? 'data/b2b-variables-production.json' : 'data/b2b-variables.json';
     try {
-        const r = await fetch('data/b2b-variables.json?v=' + Date.now());
+        const r = await fetch(file + '?v=' + Date.now());
         if (!r.ok) return;
         b2bVarsData = await r.json();
         const vars = Object.values(b2bVarsData.variables || {});
         if (!vars.length) return;
         document.getElementById('b2bVarsCard').style.display = 'block';
+        // Reset filter when switching env
+        b2bVarsFilter = 'all';
+        document.querySelectorAll('#b2bVarsCard .filter-btn').forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('#b2bVarsCard .filter-btn[data-filter="all"]');
+        if (allBtn) allBtn.classList.add('active');
         renderB2bVars();
     } catch (e) {
-        console.warn('b2b-variables.json not found', e);
+        console.warn(file + ' not found', e);
     }
+}
+
+function switchB2bEnv(env, btn) {
+    document.querySelectorAll('#b2bEnvBar .env-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadB2bVariables(env);
 }
 
 function clientValueTag(clientName, value) {
@@ -1468,6 +1496,13 @@ function classificationCell(varName, impl, classification) {
 
 function renderB2bVars() {
     if (!b2bVarsData) return;
+    // Update env label
+    const envLabel = document.getElementById('b2bEnvLabel');
+    if (envLabel) {
+        const gen = b2bVarsData.generated_at ? new Date(b2bVarsData.generated_at).toLocaleString('es-CL', {dateStyle:'short', timeStyle:'short'}) : '';
+        const clientCount = (b2bVarsData.clients || []).length;
+        envLabel.textContent = `${clientCount} clientes · generado ${gen}`;
+    }
     const vars = b2bVarsData.variables || {};
     const entries = Object.entries(vars);
     const classifications = loadB2bClassifications();
