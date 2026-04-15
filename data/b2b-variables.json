@@ -135,7 +135,8 @@
         "new-soprole": false,
         "surtiventas": true
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "anonymousHideCart": {
       "clients": {
@@ -144,7 +145,8 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "anonymousHidePrice": {
       "clients": {
@@ -153,13 +155,15 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "blockedClientAlert.blockedClientAlertHtmlContent": {
       "clients": {
         "new-soprole": "<div class=\"text-center\">\n  <h4>Tu comercio se encuentra bloqueado para compras. Favor contactarse con nuestro Servicio al Cliente (600 600 6600) y revisaremos su caso.</h4>\n  <div class=\"modal-buttons\">\n    <button type=\"button\" class=\"btn-back\" ng-click=\"redirectTo('/contact')\"><b>Contacto</b></button>\n  </div>\n</div>"
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "blockedClientAlert.enableBlockedClientAlert": {
       "clients": {
@@ -167,20 +171,23 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "businessUnits": {
       "clients": {
         "marleycoffee": [],
         "surtiventas": []
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "confirmCartText": {
       "clients": {
         "new-soprole": "Pasar a confirmación del pedido"
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "contact.about": {
       "clients": {
@@ -189,7 +196,8 @@
         "new-soprole": "Comprometidos desde 1949 con la alimentación saludable de las familias chilenas, entregando productos sanos y ricos.",
         "surtiventas": "Surtiventas opera con el claro propósito de satisfacer las necesidades básicas del comerciante chileno, con un servicio personalizado de venta que se extiende a lo largo y ancho del país."
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "contact.branchesContactInformation": {
       "clients": {
@@ -218,7 +226,8 @@
           }
         ]
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "contact.email": {
       "clients": {
@@ -226,13 +235,15 @@
         "marleycoffee": "servicioalcliente@marleycoffee.cl",
         "surtiventas": "srvcliente1@surtiventas.cl"
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "contact.phone": {
       "clients": {
         "new-soprole": "600 600 6600"
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "disableCart": {
       "clients": {
@@ -241,7 +252,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "disableCommerceEdit": {
       "clients": {
@@ -250,7 +262,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "disableObservationInput": {
       "clients": {
@@ -258,14 +271,16 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "disablePayments": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "disableShowEstimatedDeliveryHour": {
       "clients": {
@@ -274,40 +289,46 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "disableSyncDate": {
       "clients": {
         "codelpa": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "disableWrongPrices": {
       "clients": {
         "new-soprole": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "discountTypes.discountTypesList": {
       "clients": {
         "marleycoffee": [],
         "surtiventas": []
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "discountTypes.enableOrderDiscountType": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "discountTypes.enableProductDiscountType": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "editAddress": {
       "clients": {
@@ -316,7 +337,8 @@
         "new-soprole": false,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableAskDeliveryDate": {
       "clients": {
@@ -325,7 +347,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "enableBetaButtons": {
       "clients": {
@@ -333,7 +356,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableChooseSaleUnit": {
       "clients": {
@@ -341,7 +365,8 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableCoupons": {
       "clients": {
@@ -350,14 +375,16 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableCreditNotes": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "enableDialogNoSellReason": {
       "clients": {
@@ -366,14 +393,16 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "enableDistributionCentersSelector": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "enableInvoicesList": {
       "clients": {
@@ -382,20 +411,23 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "enableMassiveOrderSend": {
       "clients": {
         "codelpa": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableNewUI": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "enableOrderApproval": {
       "clients": {
@@ -404,7 +436,8 @@
         "new-soprole": false,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableOrderValidation": {
       "clients": {
@@ -413,7 +446,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enablePaymentDocumentsB2B": {
       "clients": {
@@ -421,7 +455,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "enablePayments": {
       "clients": {
@@ -429,7 +464,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enablePaymentsCollection": {
       "clients": {
@@ -437,7 +473,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enablePriceOracle": {
       "clients": {
@@ -445,7 +482,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "enableSellerDiscount": {
       "clients": {
@@ -454,7 +492,8 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "enableTask": {
       "clients": {
@@ -463,7 +502,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "externalAccess": {
       "clients": {
@@ -472,20 +512,23 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "filterGroupedSuggestionsBy": {
       "clients": {
         "marleycoffee": [],
         "surtiventas": []
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "footerCustomContent.footerCustomHtmlContent": {
       "clients": {
         "new-soprole": "<p class=\"footer-links\">\n  <a href=\"/\">Inicio</a>\n  &middot;\n  <a href=\"/catalog\">Catálogo</a>\n  &middot;\n  <a href=\"/contact\">Contacto</a>\n  &middot;\n  <a href=\"/faq\">Preguntas frecuentes</a>\n</p>"
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "footerCustomContent.useFooterCustomContent": {
       "clients": {
@@ -493,7 +536,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "hasAllDistributionCenters": {
       "clients": {
@@ -501,7 +545,8 @@
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "hasMultiUnitEnabled": {
       "clients": {
@@ -509,14 +554,16 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "hasMultipleBusinessUnit": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "hasNoSaleFilter": {
       "clients": {
@@ -524,7 +571,8 @@
         "marleycoffee": false,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "hasSingleDistributionCenter": {
       "clients": {
@@ -533,7 +581,8 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "hasStockEnabled": {
       "clients": {
@@ -542,28 +591,32 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "hasTransferPaymentType": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "hasTransportCode": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "hasVoucherPrinterEnabled": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "hidePrices": {
       "clients": {
@@ -572,7 +625,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "hideReceiptType": {
       "clients": {
@@ -581,7 +635,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "includeTaxRateInPrices": {
       "clients": {
@@ -590,7 +645,8 @@
         "new-soprole": false,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "lazyLoadingPrices": {
       "clients": {
@@ -599,14 +655,16 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "limitAddingByStock": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "ordersRequireAuthorization": {
       "clients": {
@@ -615,7 +673,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "ordersRequireVerification": {
       "clients": {
@@ -624,7 +683,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "packagingInformation.hidePackagingInformationB2B": {
       "clients": {
@@ -632,7 +692,8 @@
         "marleycoffee": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "packagingInformation.hideSingleItemPackagingInformationB2B": {
       "clients": {
@@ -640,7 +701,8 @@
         "marleycoffee": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "packagingInformation.ignoreUnitOnPackInformationB2B": {
       "clients": {
@@ -648,7 +710,8 @@
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "payment.balances": {
       "clients": {
@@ -793,7 +856,8 @@
         ],
         "surtiventas": []
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "payment.enableNewPaymentModule": {
       "clients": {
@@ -802,13 +866,15 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "payment.externalPayment": {
       "clients": {
         "marleycoffee": "khipu"
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "payment.requiresFullPayment": {
       "clients": {
@@ -816,20 +882,23 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "payment.walletEnabled": {
       "clients": {
         "new-soprole": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "paymentsWithoutAccount": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "pendingDocuments": {
       "clients": {
@@ -838,7 +907,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "pointsEnabled": {
       "clients": {
@@ -847,7 +917,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "priceRoundingDecimals": {
       "clients": {
@@ -855,7 +926,8 @@
         "new-soprole": 0,
         "surtiventas": 0
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "productDetailViewConfiguration.tabsOrder": {
       "clients": {
@@ -872,7 +944,8 @@
           "description"
         ]
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "productVariability": {
       "clients": {
@@ -881,7 +954,8 @@
         "new-soprole": "low",
         "surtiventas": "none"
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "purchaseOrderEnabled": {
       "clients": {
@@ -890,14 +964,16 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "shareOrderNewDesign": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "shoppingDetail.lastOrder": {
       "clients": {
@@ -906,7 +982,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "showEmptyCategories": {
       "clients": {
@@ -915,7 +992,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "showMinOne": {
       "clients": {
@@ -924,41 +1002,47 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "suggestions.enableSortingByCategories": {
       "clients": {
         "codelpa": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "synchronization.backgroundSyncList": {
       "clients": {
         "marleycoffee": [],
         "surtiventas": []
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "synchronization.enableBackgroundSendOrders": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "synchronization.enableBackgroundSync": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "synchronization.enableSyncImages": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "taxes.showSummary": {
       "clients": {
@@ -967,7 +1051,8 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "taxes.taxRate": {
       "clients": {
@@ -976,7 +1061,8 @@
         "new-soprole": 0,
         "surtiventas": 0
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "taxes.useTaxRate": {
       "clients": {
@@ -985,14 +1071,16 @@
         "new-soprole": true,
         "surtiventas": false
       },
-      "implemented": true
+      "implemented": true,
+      "category": "frontend"
     },
     "uploadOrderFileWithMinUnits": {
       "clients": {
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "useMobileGps": {
       "clients": {
@@ -1001,7 +1089,8 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "useNewPromotions": {
       "clients": {
@@ -1009,7 +1098,8 @@
         "new-soprole": true,
         "surtiventas": true
       },
-      "implemented": null
+      "implemented": null,
+      "category": "backend-only"
     },
     "validatePaymentFromAdmin": {
       "clients": {
@@ -1017,7 +1107,8 @@
         "marleycoffee": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "weightInfo": {
       "clients": {
@@ -1026,19 +1117,22 @@
         "new-soprole": false,
         "surtiventas": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "wrongPrices.block": {
       "clients": {
         "new-soprole": false
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     },
     "wrongPrices.threshold": {
       "clients": {
         "new-soprole": 50
       },
-      "implemented": null
+      "implemented": null,
+      "category": "dead"
     }
   }
 }

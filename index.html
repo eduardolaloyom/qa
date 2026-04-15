@@ -755,7 +755,7 @@
         <!-- Variables B2B -->
         <div class="card" id="b2bVarsCard" style="display:none;">
             <div class="card-title">🔬 Variables B2B — Revisión de implementación</div>
-            <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB staging clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = encontrada en código frontend. <strong>⚠️ Sin confirmar</strong> = en <code>@yomcl/types</code> pero no en código — devs deben clasificar. <strong>❌ No es B2B</strong> = no existe en el tipo Store — tests salteados. Los clientes muestran el valor configurado (true/false/valor).</p>
+            <p style="color:#6b7280;font-size:13px;margin:0 0 14px;">Variables de MongoDB staging clasificadas contra <code>YOMCL/b2b@staging</code>. <strong>✅ Confirmada</strong> = en código frontend. <strong>🔗 Backend-only</strong> = controla comportamiento vía API, no en código frontend (35 vars). <strong>🗑️ Sin uso</strong> = no activa en ningún cliente, posiblemente legacy (39 vars). <strong>❌ No es B2B</strong> = no en Store type — tests salteados. Los clientes muestran el valor configurado (true/false/valor).</p>
             <div class="filters-bar" style="margin-bottom:12px;">
                 <span class="filter-label">Estado:</span>
                 <button class="filter-btn active" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
@@ -765,6 +765,8 @@
                 <button class="filter-btn" onclick="filterB2bVars('confirmed_manual', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada (dev) <span id="b2b-count-confirmed_manual" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn" onclick="filterB2bVars('not_exist', this)" style="color:#6b21a8;border-color:#d8b4fe">🚫 No existe <span id="b2b-count-not_exist" style="background:#f3e8ff;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn" onclick="filterB2bVars('not_b2b', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-not_b2b" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn" onclick="filterB2bVars('backend-only', this)" style="color:#1e40af;border-color:#93c5fd">🔗 Backend-only <span id="b2b-count-backend-only" style="background:#dbeafe;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn" onclick="filterB2bVars('dead', this)" style="color:#6b7280;border-color:#d1d5db">🗑️ Sin uso <span id="b2b-count-dead" style="background:#f3f4f6;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <input class="search-input" type="text" placeholder="Buscar variable..." oninput="searchB2bVars(this.value)" style="margin-left:auto;">
             </div>
             <table id="b2bVarsTable">
@@ -1470,7 +1472,7 @@ function renderB2bVars() {
     const classifications = loadB2bClassifications();
 
     // Count by status
-    const counts = { all: entries.length, unknown: 0, true: 0, false: 0, confirmed_manual: 0, not_exist: 0, not_b2b: 0 };
+    const counts = { all: entries.length, unknown: 0, true: 0, false: 0, confirmed_manual: 0, not_exist: 0, not_b2b: 0, 'backend-only': 0, dead: 0 };
     entries.forEach(([name, v]) => {
         const cl = classifications[name];
         if (v.implemented === true)  { counts.true++; }
@@ -1480,6 +1482,8 @@ function renderB2bVars() {
             if (cl?.type === 'confirmed_manual') counts.confirmed_manual++;
             if (cl?.type === 'not_exist')        counts.not_exist++;
             if (cl?.type === 'not_b2b')          counts.not_b2b++;
+            if (v.category === 'backend-only')   counts['backend-only']++;
+            if (v.category === 'dead')           counts.dead++;
         }
     });
     document.getElementById('b2b-count-all').textContent              = counts.all;
@@ -1489,6 +1493,8 @@ function renderB2bVars() {
     document.getElementById('b2b-count-confirmed_manual').textContent = counts.confirmed_manual;
     document.getElementById('b2b-count-not_exist').textContent        = counts.not_exist;
     document.getElementById('b2b-count-not_b2b').textContent          = counts.not_b2b;
+    document.getElementById('b2b-count-backend-only').textContent     = counts['backend-only'];
+    document.getElementById('b2b-count-dead').textContent             = counts.dead;
 
     // Filter + search
     const filtered = entries.filter(([name, v]) => {
@@ -1496,22 +1502,26 @@ function renderB2bVars() {
         const isUnknown = v.implemented === null || v.implemented === undefined;
         const statusMatch =
             b2bVarsFilter === 'all'     ||
-            (b2bVarsFilter === 'unknown'  && isUnknown) ||
-            (b2bVarsFilter === 'true'     && v.implemented === true) ||
-            (b2bVarsFilter === 'false'    && v.implemented === false) ||
+            (b2bVarsFilter === 'unknown'       && isUnknown) ||
+            (b2bVarsFilter === 'true'          && v.implemented === true) ||
+            (b2bVarsFilter === 'false'         && v.implemented === false) ||
             (b2bVarsFilter === 'confirmed_manual' && isUnknown && cl?.type === 'confirmed_manual') ||
             (b2bVarsFilter === 'not_exist'        && isUnknown && cl?.type === 'not_exist') ||
-            (b2bVarsFilter === 'not_b2b'          && isUnknown && cl?.type === 'not_b2b');
+            (b2bVarsFilter === 'not_b2b'          && isUnknown && cl?.type === 'not_b2b') ||
+            (b2bVarsFilter === 'backend-only'  && isUnknown && v.category === 'backend-only') ||
+            (b2bVarsFilter === 'dead'          && isUnknown && v.category === 'dead');
         const searchMatch = !b2bVarsSearch || name.toLowerCase().includes(b2bVarsSearch);
         return statusMatch && searchMatch;
     });
 
-    const statusBadge = (impl, cl) => {
+    const statusBadge = (impl, cl, category) => {
         if (impl === true)  return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Confirmada</span>';
         if (impl === false) return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No es B2B</span>';
         if (cl?.type === 'confirmed_manual') return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Confirmada</span>';
         if (cl?.type === 'not_exist')        return '<span style="background:#f3e8ff;color:#6b21a8;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🚫 No existe</span>';
         if (cl?.type === 'not_b2b')          return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No es B2B</span>';
+        if (category === 'backend-only')     return '<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🔗 Backend-only</span>';
+        if (category === 'dead')             return '<span style="background:#f3f4f6;color:#6b7280;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🗑️ Sin uso</span>';
         return '<span style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">⚠️ Sin confirmar</span>';
     };
 
@@ -1529,7 +1539,7 @@ function renderB2bVars() {
         return `<tr>
             <td><code style="font-size:12px;">${escapeHtml(name)}</code></td>
             <td style="line-height:1.8;">${clientTags}</td>
-            <td style="text-align:center;">${statusBadge(v.implemented, cl)}</td>
+            <td style="text-align:center;">${statusBadge(v.implemented, cl, v.category)}</td>
             ${classificationCell(name, v.implemented, cl)}
         </tr>`;
     }).join('');
