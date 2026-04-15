@@ -1,18 +1,6 @@
 {
   "reports": [
     {
-      "client": "Bastien",
-      "client_slug": "bastien",
-      "date": "2026-04-15",
-      "file": "bastien-2026-04-15.html",
-      "passed": 10,
-      "failed": 5,
-      "skipped": 1,
-      "total": 16,
-      "health": 78,
-      "verdict": "CON CONDICIONES"
-    },
-    {
       "client": "Prinorte",
       "client_slug": "prinorte",
       "date": "2026-04-15",

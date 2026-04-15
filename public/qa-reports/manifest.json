@@ -1,6 +1,14 @@
 {
   "reports": [
     {
+      "client": "Bastien",
+      "date": "2026-04-15",
+      "file": "bastien-2026-04-15.html",
+      "verdict": "CON CONDICIONES",
+      "score": 78,
+      "modes_done": ["A", "B"]
+    },
+    {
       "client": "Soprole (new staging)",
       "date": "2026-04-08",
       "file": "new-soprole-2026-04-08.html",
