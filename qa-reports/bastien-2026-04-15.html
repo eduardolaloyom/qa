@@ -181,9 +181,9 @@
         </table>
     </div>
 
-    <!-- Cowork Modo A+B -->
+    <!-- Cowork Modo A+B+C+D -->
     <div class="card">
-        <div class="card-title">Cowork — Modo A+B (Login + Flujo de Compra + Precios & Flags)</div>
+        <div class="card-title">Cowork — Modos A+B+C+D (completo)</div>
         <div class="two-col" style="margin-bottom:18px;">
             <div>
                 <div class="section-label">C1 — Login</div>
@@ -238,6 +238,20 @@
                     <td><span class="badge fail">FAIL 🐛</span></td>
                 </tr>
                 <tr><td>anonymousAccess</td><td>true</td><td>N/A en sesión activa</td><td><span class="badge na">N/A</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-label" style="margin-top:18px;">C5 — Recomendaciones &amp; Navegación</div>
+        <table>
+            <thead><tr><th>Caso</th><th>Estado</th><th>Detalle</th></tr></thead>
+            <tbody>
+                <tr><td>C5-01 Sección Recomendados</td><td><span class="badge pass">PASS</span></td><td>/products?suggestions=true navegable</td></tr>
+                <tr><td>C5-02 Productos sugeridos</td><td><span class="badge na">N/A</span></td><td>Sin datos de recomendaciones en staging</td></tr>
+                <tr><td>C5-03 Sección Ofertas</td><td><span class="badge pass">PASS</span></td><td>?promotions=true → 40 productos, sección "Promociones" visible</td></tr>
+                <tr><td>C5-04 Sección Destacados</td><td><span class="badge pass">PASS</span></td><td>/products?featured=true — estructura UI correcta</td></tr>
+                <tr><td>C7 Documentos tributarios</td><td><span class="badge na">N/A</span></td><td>enablePaymentDocumentsB2B=false — scope excluido (bug registrado en QA-002)</td></tr>
+                <tr><td>C9 Seguimiento de pedido</td><td><span class="badge na">N/A</span></td><td>0 pedidos en staging</td></tr>
+                <tr><td>C10 Comercio bloqueado</td><td><span class="badge na">N/A</span></td><td>Sin comercios bloqueados en staging</td></tr>
             </tbody>
         </table>
     </div>
