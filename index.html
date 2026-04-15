@@ -1438,7 +1438,6 @@ function clientValueTag(clientName, value) {
 }
 
 function classificationCell(varName, impl, classification) {
-    if (impl === true || impl === false) return '<td></td>';
     const type = classification?.type || '';
     const ticket = classification?.ticket || '';
     const opts = [
@@ -1446,6 +1445,8 @@ function classificationCell(varName, impl, classification) {
         ['confirmed_manual', '✅ Confirmada'],
         ['not_exist', '🚫 No existe'],
         ['not_b2b', '❌ No es B2B'],
+        ['backend_only', '🔗 Backend-only'],
+        ['dead', '🗑️ Sin uso'],
     ];
     const sel = opts.map(([v, l]) =>
         `<option value="${v}" ${type === v ? 'selected' : ''}>${l}</option>`
