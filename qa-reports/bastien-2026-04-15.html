@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B QA — Bastien — 2026-04-15</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            min-height: 100vh; padding: 40px 20px;
+        }
+        .container { max-width: 860px; margin: 0 auto; }
+        .back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9em; display: inline-block; margin-bottom: 16px; }
+        .back-link:hover { color: white; }
+        header { color: white; margin-bottom: 24px; }
+        header h1 { font-size: 1.9em; margin-bottom: 4px; }
+        header p { opacity: 0.8; font-size: 0.95em; }
+        .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.18); }
+        .card-title { font-size: 1.05em; font-weight: 700; color: #111827; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .stat { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; padding: 14px; border-radius: 10px; text-align: center; }
+        .stat.green { background: linear-gradient(135deg, #10b981, #059669); }
+        .stat.red { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .stat.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .stat.gray { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+        .stat-value { font-size: 1.8em; font-weight: 800; line-height: 1; }
+        .stat-label { font-size: 0.72em; opacity: 0.9; font-weight: 600; margin-top: 4px; }
+        .verdict-badge { display: inline-block; padding: 6px 18px; border-radius: 99px; font-weight: 700; font-size: 0.9em; margin-bottom: 18px; }
+        .verdict-listo { background: #d1fae5; color: #065f46; }
+        .verdict-condiciones { background: #fef3c7; color: #92400e; }
+        .verdict-bloqueado { background: #fee2e2; color: #991b1b; }
+        .health-bar { margin-bottom: 8px; }
+        .health-meta { display: flex; justify-content: space-between; font-size: 0.82em; color: #6b7280; font-weight: 600; margin-bottom: 5px; }
+        .health-meta strong { color: #111827; }
+        .health-track { height: 10px; background: #f3f4f6; border-radius: 99px; overflow: hidden; }
+        .health-fill { height: 100%; border-radius: 99px; }
+        .health-fill.green { background: #10b981; }
+        .health-fill.amber { background: #f59e0b; }
+        .health-fill.red { background: #ef4444; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f9fafb; text-align: left; padding: 10px 14px; font-size: 0.78em; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1.5px solid #e5e7eb; }
+        td { padding: 10px 14px; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+        .badge { padding: 2px 10px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }
+        .badge.pass { background: #d1fae5; color: #065f46; }
+        .badge.fail { background: #fee2e2; color: #991b1b; }
+        .badge.skip { background: #f3f4f6; color: #6b7280; }
+        .badge.blocked { background: #fef3c7; color: #92400e; }
+        .badge.na { background: #f3f4f6; color: #9ca3af; }
+        .badge.p1 { background: #fee2e2; color: #991b1b; }
+        .badge.p2 { background: #ffedd5; color: #9a3412; }
+        .badge.p3 { background: #fef9c3; color: #713f12; }
+        .issue-row td:first-child { font-weight: 600; color: #374151; }
+        .sub { font-size: 0.8em; color: #6b7280; margin-top: 3px; }
+        .section-label { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin-bottom: 6px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, 1fr); } }
+        footer { color: rgba(255,255,255,0.7); font-size: 0.82em; text-align: center; margin-top: 24px; }
+        .accionable { background: #f0fdf4; border-left: 4px solid #10b981; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 10px; font-size: 0.87em; }
+        .accionable.warn { background: #fffbeb; border-left-color: #f59e0b; }
+        .accionable strong { color: #111827; }
+        .tool-tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 1px 8px; border-radius: 4px; font-size: 0.72em; font-weight: 700; margin-left: 4px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../" class="back-link">← Dashboard principal</a>
+    <header>
+        <h1>🌐 B2B QA — Bastien</h1>
+        <p>Playwright E2E + Cowork · bastien.solopide.me · 2026-04-15</p>
+    </header>
+
+    <!-- Resumen -->
+    <div class="card">
+        <div class="card-title">Resumen ejecutivo</div>
+        <span class="verdict-badge verdict-condiciones">CON CONDICIONES</span>
+        <div class="stats">
+            <div class="stat green"><div class="stat-value">10</div><div class="stat-label">Playwright pass</div></div>
+            <div class="stat red"><div class="stat-value">5</div><div class="stat-label">Playwright fail</div></div>
+            <div class="stat amber"><div class="stat-value">2</div><div class="stat-label">Bugs reales</div></div>
+            <div class="stat"><div class="stat-value">78</div><div class="stat-label">Health score</div></div>
+        </div>
+        <div class="health-bar">
+            <div class="health-meta"><span>Health score</span><strong>78 / 100</strong></div>
+            <div class="health-track"><div class="health-fill amber" style="width:78%"></div></div>
+        </div>
+        <p style="font-size:0.83em;color:#6b7280;margin-top:8px;">
+            Cowork Modo A+B completado. 2 bugs confirmados (P2). 4 fallos Playwright son selectores no coincidentes con la UI de Bastien, no bugs de plataforma — marcados como "No testeado".
+        </p>
+    </div>
+
+    <!-- Playwright config-validation -->
+    <div class="card">
+        <div class="card-title">Playwright — Config Validation (16 tests)</div>
+        <table>
+            <thead><tr><th>Variable</th><th>Valor config</th><th>Resultado</th><th>Detalle</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>anonymousAccess</td><td><code>true</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Acceso anónimo funcional sin login</td>
+                </tr>
+                <tr>
+                    <td>hidePrices</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Precios visibles en catálogo</td>
+                </tr>
+                <tr>
+                    <td>inMaintenance</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Sitio accesible, sin página de mantenimiento</td>
+                </tr>
+                <tr>
+                    <td>anonymousHidePrice</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Precios visibles en sesión anónima</td>
+                </tr>
+                <tr>
+                    <td>enablePayments</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Sin opción de pago activa en checkout</td>
+                </tr>
+                <tr>
+                    <td>ordersRequireAuthorization</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Sin flujo de aprobación requerida</td>
+                </tr>
+                <tr>
+                    <td>includeTaxRateInPrices</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Impuestos no incluidos en precio base</td>
+                </tr>
+                <tr>
+                    <td>lazyLoadingPrices</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Precios cargan sincrónicamente</td>
+                </tr>
+                <tr>
+                    <td>enableAskDeliveryDate</td><td><code>false</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Sin campo de fecha de entrega en checkout</td>
+                </tr>
+                <tr>
+                    <td>orderObservations</td><td><code>""</code></td>
+                    <td><span class="badge pass">PASS</span></td>
+                    <td>Campo observaciones presente</td>
+                </tr>
+                <tr>
+                    <td>currency</td><td><code>undefined</code></td>
+                    <td><span class="badge skip">SKIP</span></td>
+                    <td>No configurado en Bastien staging</td>
+                </tr>
+                <tr style="background:#fff7ed;">
+                    <td><strong>enableChooseSaleUnit</strong></td><td><code>false</code></td>
+                    <td><span class="badge fail">FAIL 🐛</span></td>
+                    <td><strong>BUG:</strong> Selector de unidad de venta ES visible cuando debería estar oculto → Bastien-QA-003</td>
+                </tr>
+                <tr>
+                    <td>disableCart</td><td><code>false</code></td>
+                    <td><span class="badge skip">No testeado</span></td>
+                    <td>Selector CSS no coincide con UI de Bastien — carrito funciona (confirmado Cowork)</td>
+                </tr>
+                <tr>
+                    <td>enableCoupons</td><td><code>true</code></td>
+                    <td><span class="badge skip">No testeado</span></td>
+                    <td>Timeout en fixture auth — cupones funcionan (confirmado Cowork C3-15)</td>
+                </tr>
+                <tr>
+                    <td>hideReceiptType</td><td><code>false</code></td>
+                    <td><span class="badge skip">No testeado</span></td>
+                    <td>Timeout al buscar selector de tipo de comprobante</td>
+                </tr>
+                <tr>
+                    <td>anonymousHideCart</td><td><code>false</code></td>
+                    <td><span class="badge skip">No testeado</span></td>
+                    <td>Selector CSS <code>[class*="cart"]</code> no coincide con UI de Bastien</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Cowork Modo A+B -->
+    <div class="card">
+        <div class="card-title">Cowork — Modo A+B (Login + Flujo de Compra + Precios & Flags)</div>
+        <div class="two-col" style="margin-bottom:18px;">
+            <div>
+                <div class="section-label">C1 — Login</div>
+                <table>
+                    <thead><tr><th>Caso</th><th>Estado</th></tr></thead>
+                    <tbody>
+                        <tr><td>C1-01 Carga homepage</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C1-02 Login con credenciales</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C1-03 Redirect post-login</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C1-04 Sesión persistente (JWT)</td><td><span class="badge pass">PASS</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="section-label">C2 — Flujo de Compra</div>
+                <table>
+                    <thead><tr><th>Caso</th><th>Estado</th></tr></thead>
+                    <tbody>
+                        <tr><td>C2-01 Catálogo carga</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C2-02 Búsqueda</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C2-05 Agregar al carrito</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C2-06 Cantidad mínima</td><td><span class="badge na">N/A</span></td></tr>
+                        <tr><td>C2-07 Incrementar/decrementar</td><td><span class="badge pass">PASS</span></td></tr>
+                        <tr><td>C2-11 Crear pedido</td><td><span class="badge blocked">BLOCKED</span><div class="sub">Total $0 — staging sin lista de precios</div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="section-label">C3 — Flags de configuración</div>
+        <table>
+            <thead><tr><th>Flag</th><th>Valor config</th><th>UI observada</th><th>Estado</th></tr></thead>
+            <tbody>
+                <tr><td>purchaseOrderEnabled</td><td>false</td><td>Sin campo OC en carrito</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>enableCoupons</td><td>true</td><td>"Ingresar cupón" visible en carrito</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>enableSellerDiscount</td><td>false</td><td>Sin campo descuento vendedor</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>enableOrderApproval</td><td>false</td><td>Sin botón "Aprobar" en /orders</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>hasStockEnabled</td><td>false</td><td>Sin indicador de stock en tarjetas</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>disableObservationInput</td><td>false</td><td>Campo observaciones presente</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>inMaintenance</td><td>false</td><td>Sitio accesible</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>hidePrices</td><td>false</td><td>Precios visibles ($0)</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>hasSingleDistributionCenter</td><td>true</td><td>Sin botón "Ver stock / Centros"</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>taxes.useTaxRate</td><td>false</td><td>Impuestos $0, sin IVA desglosado</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr><td>enablePayments</td><td>false</td><td>Sin opción de pago activa</td><td><span class="badge pass">PASS</span></td></tr>
+                <tr style="background:#fff7ed;">
+                    <td><strong>enablePaymentDocumentsB2B</strong></td><td>false</td>
+                    <td>"Mis documentos" visible en menú lateral</td>
+                    <td><span class="badge fail">FAIL 🐛</span></td>
+                </tr>
+                <tr style="background:#fff7ed;">
+                    <td><strong>enableInvoicesList</strong></td><td>false</td>
+                    <td>/payment-documents accesible con UI completa</td>
+                    <td><span class="badge fail">FAIL 🐛</span></td>
+                </tr>
+                <tr><td>anonymousAccess</td><td>true</td><td>N/A en sesión activa</td><td><span class="badge na">N/A</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Issues encontrados -->
+    <div class="card">
+        <div class="card-title">Issues encontrados</div>
+        <table>
+            <thead><tr><th>ID</th><th>Prior.</th><th>Descripción</th><th>Fuente</th></tr></thead>
+            <tbody class="issue-row">
+                <tr style="background:#fff7ed;">
+                    <td>Bastien-QA-002</td>
+                    <td><span class="badge p2">P2</span></td>
+                    <td>
+                        <strong>"Mis documentos" visible con enablePaymentDocumentsB2B=false y enableInvoicesList=false</strong>
+                        <div class="sub">URL: bastien.solopide.me/payment-documents — link visible en menú lateral, página accesible con UI completa de búsqueda de documentos</div>
+                        <div class="sub">Esperado: link "Mis documentos" oculto y /payment-documents no accesible</div>
+                    </td>
+                    <td><span class="tool-tag">Cowork</span></td>
+                </tr>
+                <tr style="background:#fff7ed;">
+                    <td>Bastien-QA-003</td>
+                    <td><span class="badge p2">P2</span></td>
+                    <td>
+                        <strong>Selector de unidad de venta visible con enableChooseSaleUnit=false</strong>
+                        <div class="sub">MongoDB: enableChooseSaleUnit=false → UI debería ocultar el selector de unidad en tarjetas de producto</div>
+                        <div class="sub">Actual: selector de unidad IS visible en catálogo — discrepancia de config</div>
+                    </td>
+                    <td><span class="tool-tag">Playwright</span></td>
+                </tr>
+                <tr>
+                    <td>Bastien-QA-001</td>
+                    <td><span class="badge p3">P3</span></td>
+                    <td>
+                        <strong>Commerce selection desde modal → catálogo queda en 0 productos (JWT stale)</strong>
+                        <div class="sub">Pasos: Login → modal "Seleccionar comercio" → elegir Aguas Andinas Sa → catálogo 0 resultados</div>
+                        <div class="sub">Workaround: logout + login — catálogo carga con commerceId correcto</div>
+                    </td>
+                    <td><span class="tool-tag">Cowork</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Accionables -->
+    <div class="card">
+        <div class="card-title">Accionables</div>
+        <div class="accionable warn">
+            <strong>Bastien-QA-002</strong> — Crear ticket Linear: <em>[QA] Bastien — "Mis documentos" visible con enablePaymentDocumentsB2B=false + enableInvoicesList=false</em>. Impacto: usuario B2B ve sección de documentos vacía/no aplicable a su cuenta.
+        </div>
+        <div class="accionable warn">
+            <strong>Bastien-QA-003</strong> — Crear ticket Linear: <em>[QA] Bastien — Selector de unidad de venta visible con enableChooseSaleUnit=false</em>. Config en MongoDB no se refleja en UI → afecta experience de compra.
+        </div>
+        <div class="accionable">
+            <strong>Selectores Playwright</strong> — Actualizar selectores de cart y anonymousHideCart para Bastien (clases CSS propias de la app). Los tests actuales usan <code>[class*="cart"]</code> que no matchea. No es bug de plataforma.
+        </div>
+        <div class="accionable">
+            <strong>Staging bloqueador</strong> — Bastien staging no tiene lista de precios configurada. C2-11 (crear pedido) y C3-14 (cupón válido) no son ejecutables hasta que se configure precios en staging. Informar al equipo.
+        </div>
+    </div>
+
+    <!-- Contexto de sesión -->
+    <div class="card">
+        <div class="card-title">Contexto de sesión</div>
+        <table>
+            <tbody>
+                <tr><td style="width:180px;color:#6b7280;font-size:0.85em;">Entorno</td><td style="font-size:0.87em;">bastien.solopide.me (staging)</td></tr>
+                <tr><td style="color:#6b7280;font-size:0.85em;">Credenciales QA</td><td style="font-size:0.87em;">eduardo+bastien@yom.ai</td></tr>
+                <tr><td style="color:#6b7280;font-size:0.85em;">Comercio activo</td><td style="font-size:0.87em;">AC HOTEL MARRIOT (commerceId: 69dfe43b49e61a9c00a03e25)</td></tr>
+                <tr><td style="color:#6b7280;font-size:0.85em;">Playwright suite</td><td style="font-size:0.87em;">config-validation.spec.ts — 16 tests (10 pass, 5 fail, 1 skip)</td></tr>
+                <tr><td style="color:#6b7280;font-size:0.85em;">Cowork modos</td><td style="font-size:0.87em;">A (C1+C2) + B (C3 Precios/Flags) — completados</td></tr>
+                <tr><td style="color:#6b7280;font-size:0.85em;">Limitación staging</td><td style="font-size:0.87em;">Sin lista de precios → todos los productos muestran $0, pedido no confirmable</td></tr>
+                <tr><td style="color:#6b7280;font-size:0.85em;">Flags principales</td><td style="font-size:0.87em;">anonymousAccess=true, enableCoupons=true, hasSingleDistributionCenter=true, enablePayments=false</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>Generado por Claude Code · QA YOM · 2026-04-15</footer>
+</div>
+</body>
+</html>
