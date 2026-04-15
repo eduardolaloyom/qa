@@ -1409,17 +1409,12 @@ function saveB2bClassifications(c) {
     localStorage.setItem('b2b-classifications', JSON.stringify(c));
 }
 
-function setB2bClassification(varName, type, ticket) {
+function setB2bClassification(varName, type) {
     const c = loadB2bClassifications();
     if (type === '') { delete c[varName]; }
-    else { c[varName] = { type, ticket: ticket || '' }; }
+    else { c[varName] = { type }; }
     saveB2bClassifications(c);
     renderB2bVars();
-}
-
-function updateB2bTicket(varName, ticket) {
-    const c = loadB2bClassifications();
-    if (c[varName]) { c[varName].ticket = ticket; saveB2bClassifications(c); }
 }
 
 function exportB2bClassifications() {
@@ -1474,7 +1469,6 @@ function clientValueTag(clientName, value) {
 
 function classificationCell(varName, impl, classification) {
     const type = classification?.type || '';
-    const ticket = classification?.ticket || '';
     const opts = [
         ['', '— Sin clasificar —'],
         ['confirmed_manual', '✅ Confirmada'],
@@ -1487,18 +1481,9 @@ function classificationCell(varName, impl, classification) {
     const sel = opts.map(([v, l]) =>
         `<option value="${v}" ${type === v ? 'selected' : ''}>${l}</option>`
     ).join('');
-    const ticketHtml = type
-        ? `<input type="text" value="${escapeHtml(ticket)}" placeholder="Ticket YOM-XXX"
-            onchange="updateB2bTicket('${escapeHtml(varName)}', this.value)"
-            style="width:100px;border:1px solid #d1d5db;border-radius:4px;padding:2px 5px;font-size:11px;margin-left:4px;">`
-        : '';
-    const clearBtn = type
-        ? `<button onclick="setB2bClassification('${escapeHtml(varName)}','','')" title="Limpiar" style="background:none;border:none;cursor:pointer;color:#9ca3af;font-size:13px;margin-left:2px;">✕</button>`
-        : '';
-    return `<td style="white-space:nowrap;">
-        <select onchange="setB2bClassification('${escapeHtml(varName)}', this.value, '')"
-            style="border:1px solid #d1d5db;border-radius:4px;padding:2px 5px;font-size:11px;background:#fff;">${sel}</select>
-        ${ticketHtml}${clearBtn}
+    return `<td>
+        <select onchange="setB2bClassification('${escapeHtml(varName)}', this.value)"
+            style="border:1px solid #d1d5db;border-radius:4px;padding:3px 6px;font-size:12px;background:#fff;width:100%;">${sel}</select>
     </td>`;
 }
 
@@ -1561,16 +1546,23 @@ function renderB2bVars() {
         return statusMatch && searchMatch;
     });
 
+    const badge = (bg, color, text) =>
+        `<span style="background:${bg};color:${color};border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">${text}</span>`;
     const statusBadge = (impl, cl, category) => {
-        if (impl === true)  return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Confirmada</span>';
-        if (impl === false) return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No es B2B</span>';
-        if (cl?.type === 'confirmed_manual') return '<span style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">✅ Confirmada</span>';
-        if (cl?.type === 'not_exist')        return '<span style="background:#f3e8ff;color:#6b21a8;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🚫 No existe</span>';
-        if (cl?.type === 'not_b2b')          return '<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">❌ No es B2B</span>';
-        if (category === 'backend-only')     return '<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🔗 Backend-only</span>';
-        if (category === 'dead')             return '<span style="background:#f3f4f6;color:#6b7280;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">🗑️ Sin uso</span>';
-        if (category === 'app')              return '<span style="background:#fef3c7;color:#b45309;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">📱 App</span>';
-        return '<span style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:2px 10px;font-size:12px;font-weight:500;">⚠️ Sin confirmar</span>';
+        if (impl === true)  return badge('#d1fae5','#065f46','✅ Confirmada');
+        if (impl === false) return badge('#fee2e2','#991b1b','❌ No es B2B');
+        // Dev classification overrides category
+        if (cl?.type === 'confirmed_manual') return badge('#d1fae5','#065f46','✅ Confirmada');
+        if (cl?.type === 'not_exist')        return badge('#f3e8ff','#6b21a8','🚫 No existe');
+        if (cl?.type === 'not_b2b')          return badge('#fee2e2','#991b1b','❌ No es B2B');
+        if (cl?.type === 'backend_only')     return badge('#dbeafe','#1e40af','🔗 Backend-only');
+        if (cl?.type === 'dead')             return badge('#f3f4f6','#6b7280','🗑️ Sin uso');
+        if (cl?.type === 'app')              return badge('#fef3c7','#b45309','📱 App');
+        // Auto-category from audit
+        if (category === 'backend-only')     return badge('#dbeafe','#1e40af','🔗 Backend-only');
+        if (category === 'dead')             return badge('#f3f4f6','#6b7280','🗑️ Sin uso');
+        if (category === 'app')              return badge('#fef3c7','#b45309','📱 App');
+        return badge('#fef3c7','#92400e','⚠️ Sin confirmar');
     };
 
     const body = document.getElementById('b2bVarsBody');
