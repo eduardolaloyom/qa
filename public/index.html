@@ -244,6 +244,7 @@
         }
         .filter-btn:hover { border-color: #667eea; color: #667eea; }
         .filter-btn.active { background: #667eea; border-color: #667eea; color: white; }
+        .filter-btn.active span[id^="b2b-count"] { background: rgba(255,255,255,0.25) !important; color: white !important; }
         .env-btn.active { background: #4338ca !important; border-color: #4338ca !important; color: white !important; }
         .filter-btn.active-red { background: #ef4444; border-color: #ef4444; color: white; }
         .filter-btn.active-green { background: #10b981; border-color: #10b981; color: white; }
@@ -773,7 +774,7 @@
             <!-- Fila 1: Todas + categorías principales -->
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
                 <span class="filter-label">Estado:</span>
-                <button class="filter-btn b2b-filter active" data-filter="all" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" class="b2b-badge" style="background:#e2e8f0;color:#1e293b;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter active" data-filter="all" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" style="background:#64748b;color:white;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;font-weight:700;"></span></button>
                 <button class="filter-btn b2b-filter" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada <span id="b2b-count-true" style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn b2b-filter" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-false" style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <button class="filter-btn b2b-filter" onclick="filterB2bVars('backend-only', this)" style="color:#1e40af;border-color:#93c5fd">🔗 Backend-only <span id="b2b-count-backend-only" style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
