@@ -770,19 +770,24 @@
                 </button>
                 <span id="b2bEnvLabel" style="color:#9ca3af;font-size:12px;margin-left:4px;"></span>
             </div>
-            <div class="filters-bar" style="margin-bottom:12px;">
+            <!-- Fila 1: Todas + categorías principales -->
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
                 <span class="filter-label">Estado:</span>
-                <button class="filter-btn active" data-filter="all" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" style="background:#e5e7eb;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('unknown', this)" style="color:#92400e;border-color:#fcd34d">⚠️ Sin confirmar <span id="b2b-count-unknown" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada <span id="b2b-count-true" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-false" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('confirmed_manual', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada (dev) <span id="b2b-count-confirmed_manual" style="background:#d1fae5;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('not_exist', this)" style="color:#6b21a8;border-color:#d8b4fe">🚫 No existe <span id="b2b-count-not_exist" style="background:#f3e8ff;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('not_b2b', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-not_b2b" style="background:#fee2e2;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('backend-only', this)" style="color:#1e40af;border-color:#93c5fd">🔗 Backend-only <span id="b2b-count-backend-only" style="background:#dbeafe;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('dead', this)" style="color:#6b7280;border-color:#d1d5db">🗑️ Sin uso <span id="b2b-count-dead" style="background:#f3f4f6;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
-                <button class="filter-btn" onclick="filterB2bVars('app', this)" style="color:#b45309;border-color:#fcd34d">📱 App <span id="b2b-count-app" style="background:#fef3c7;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter active" data-filter="all" onclick="filterB2bVars('all', this)">Todas <span id="b2b-count-all" class="b2b-badge" style="background:#e2e8f0;color:#1e293b;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('true', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada <span id="b2b-count-true" style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('false', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B <span id="b2b-count-false" style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('backend-only', this)" style="color:#1e40af;border-color:#93c5fd">🔗 Backend-only <span id="b2b-count-backend-only" style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('dead', this)" style="color:#6b7280;border-color:#d1d5db">🗑️ Sin uso <span id="b2b-count-dead" style="background:#f3f4f6;color:#6b7280;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('app', this)" style="color:#b45309;border-color:#fcd34d">📱 App <span id="b2b-count-app" style="background:#fef3c7;color:#b45309;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
                 <input class="search-input" type="text" placeholder="Buscar variable..." oninput="searchB2bVars(this.value)" style="margin-left:auto;">
+            </div>
+            <!-- Fila 2: filtros dev (clasificación manual) -->
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;">
+                <span class="filter-label" style="opacity:0.6;">Dev:</span>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('unknown', this)" style="color:#92400e;border-color:#fcd34d">⚠️ Sin confirmar <span id="b2b-count-unknown" style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('confirmed_manual', this)" style="color:#065f46;border-color:#6ee7b7">✅ Confirmada (dev) <span id="b2b-count-confirmed_manual" style="background:#d1fae5;color:#065f46;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('not_exist', this)" style="color:#6b21a8;border-color:#d8b4fe">🚫 No existe <span id="b2b-count-not_exist" style="background:#f3e8ff;color:#6b21a8;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
+                <button class="filter-btn b2b-filter" onclick="filterB2bVars('not_b2b', this)" style="color:#991b1b;border-color:#fca5a5">❌ No es B2B (dev) <span id="b2b-count-not_b2b" style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:1px 7px;font-size:11px;margin-left:3px;"></span></button>
             </div>
             <table id="b2bVarsTable">
                 <thead>
@@ -1437,8 +1442,8 @@ async function loadB2bVariables(env) {
         document.getElementById('b2bVarsCard').style.display = 'block';
         // Reset filter when switching env
         b2bVarsFilter = 'all';
-        document.querySelectorAll('#b2bVarsCard .filter-btn').forEach(b => b.classList.remove('active'));
-        const allBtn = document.querySelector('#b2bVarsCard .filter-btn[data-filter="all"]');
+        document.querySelectorAll('#b2bVarsCard .b2b-filter').forEach(b => b.classList.remove('active'));
+        const allBtn = document.querySelector('#b2bVarsCard .b2b-filter[data-filter="all"]');
         if (allBtn) allBtn.classList.add('active');
         renderB2bVars();
     } catch (e) {
@@ -1589,7 +1594,7 @@ function renderB2bVars() {
 
 function filterB2bVars(filter, btn) {
     b2bVarsFilter = filter;
-    document.querySelectorAll('#b2bVarsCard .filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#b2bVarsCard .b2b-filter').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderB2bVars();
 }
