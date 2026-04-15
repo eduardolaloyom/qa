@@ -1,4 +1,0 @@
-[submodule "android"]
-	path = android
-	url = git@github.com:YOMCL/yom-sales.git
-	branch = develop

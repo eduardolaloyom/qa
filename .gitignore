@@ -27,3 +27,4 @@ public/reports/data/*.webm
 public/reports/data/*.zip
 public/reports/trace/
 data/.b2b-source-cache/
+data/.app-mobile-cache/
