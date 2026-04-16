@@ -408,154 +408,103 @@
             margin-bottom: 16px;
         }
 
+        /* ── Failure groups ── */
         .failure-group {
             border-radius: 10px;
             margin-bottom: 10px;
             overflow: hidden;
             border: 1.5px solid #e5e7eb;
-            transition: box-shadow 0.2s;
         }
-        .failure-group:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .failure-group.bug      { border-color: #fca5a5; }
+        .failure-group.ambiente { border-color: #93c5fd; }
+        .failure-group.flaky    { border-color: #86efac; }
+        .failure-group.ux       { border-color: #fcd34d; }
 
         .failure-group-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 16px 18px;
-            cursor: pointer;
-            user-select: none;
+            padding: 12px 16px;
             gap: 16px;
         }
-        .failure-group-header:hover { opacity: 0.93; }
+        .failure-group.bug      .failure-group-header { background: #fff1f2; }
+        .failure-group.ux       .failure-group-header { background: #fffbeb; }
+        .failure-group.ambiente .failure-group-header { background: #eff6ff; }
+        .failure-group.flaky    .failure-group-header { background: #f0fdf4; }
 
-        .failure-group.bug        .failure-group-header { background: #fff1f2; }
-        .failure-group.ux         .failure-group-header { background: #fffbeb; }
-        .failure-group.ambiente   .failure-group-header { background: #eff6ff; }
-        .failure-group.flaky      .failure-group-header { background: #f0fdf4; }
-
-        /* Action block color per category */
-        .failure-group.bug .fg-action        { background: #fff1f2; border-left-color: #ef4444; color: #7f1d1d; }
-        .failure-group.bug .fg-action-label  { color: #ef4444; }
-        .failure-group.ux .fg-action         { background: #fffbeb; border-left-color: #f59e0b; color: #78350f; }
-        .failure-group.ux .fg-action-label   { color: #d97706; }
-        .failure-group.ambiente .fg-action        { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a5f; }
-        .failure-group.ambiente .fg-action-label  { color: #3b82f6; }
-
-        .fg-left { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
-        .fg-top-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .fg-label { font-weight: 800; font-size: 1em; color: #111827; }
+        .fg-left { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 0; }
+        .fg-top-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .fg-label { font-weight: 800; font-size: 0.92em; }
         .fg-owner {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.74em;
-            font-weight: 700;
-            padding: 2px 9px;
-            border-radius: 10px;
-            letter-spacing: 0.04em;
+            font-size: 0.72em; font-weight: 700;
+            padding: 2px 8px; border-radius: 10px;
         }
         .owner-dev { background: #fee2e2; color: #991b1b; }
         .owner-qa  { background: #dbeafe; color: #1e40af; }
+
+        /* Main failure description — prominent */
         .fg-reason {
-            font-size: 0.84em;
-            color: #374151;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            background: rgba(0,0,0,0.04);
-            padding: 3px 8px;
-            border-radius: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .fg-action {
-            font-size: 0.85em;
-            color: #1e3a5f;
-            padding: 10px 14px;
-            background: #eff6ff;
-            border-radius: 6px;
-            border-left: 4px solid #3b82f6;
-            line-height: 1.6;
-        }
-        .fg-action-label {
-            display: block;
-            font-size: 0.78em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #3b82f6;
-            margin-bottom: 4px;
-        }
-
-        .fg-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-        .fg-count {
-            background: rgba(0,0,0,0.09);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            font-weight: 600;
             color: #111827;
-            white-space: nowrap;
+            line-height: 1.4;
         }
-        .expand-icon {
-            font-size: 1.2em;
-            transition: transform 0.25s;
-            color: #9ca3af;
-        }
-        .expand-icon.expanded { transform: rotate(180deg); }
 
-        /* Action buttons */
-        .fg-actions {
+        /* Action — always visible, compact */
+        .fg-action {
+            font-size: 0.82em;
+            color: #374151;
+            line-height: 1.5;
             display: flex;
             gap: 6px;
-            flex-wrap: wrap;
-            margin-top: 4px;
+            align-items: baseline;
         }
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.78em;
-            font-weight: 700;
-            cursor: pointer;
-            border: 1.5px solid;
-            text-decoration: none;
-            transition: all 0.15s;
-            background: white;
-        }
-        .action-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-        .btn-copy    { border-color: #6b7280; color: #374151; }
-        .btn-linear  { border-color: #5b44c4; color: #5b44c4; }
-        .btn-slack   { border-color: #611f69; color: #611f69; }
-        .btn-copy:hover   { background: #f9fafb; }
-        .btn-linear:hover { background: #f5f3ff; }
-        .btn-slack:hover  { background: #fdf4ff; }
+        .fg-action-arrow { color: #6b7280; font-weight: 700; flex-shrink: 0; }
+        .failure-group.bug      .fg-action-arrow { color: #ef4444; }
+        .failure-group.ambiente .fg-action-arrow { color: #3b82f6; }
+        .failure-group.flaky    .fg-action-arrow { color: #22c55e; }
 
-        /* Tests list */
+        .fg-right {
+            display: flex; align-items: flex-start;
+            gap: 8px; flex-shrink: 0;
+        }
+        .fg-count {
+            background: rgba(0,0,0,0.08);
+            padding: 3px 10px; border-radius: 10px;
+            font-weight: 800; font-size: 0.82em;
+            color: #111827; white-space: nowrap;
+        }
+
+        /* Action buttons */
+        .fg-actions { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+        .action-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 4px 10px; border-radius: 5px; font-size: 0.74em;
+            font-weight: 700; cursor: pointer; border: 1.5px solid;
+            background: white; transition: all 0.15s;
+        }
+        .action-btn:hover { opacity: 0.85; }
+        .btn-copy   { border-color: #6b7280; color: #374151; }
+        .btn-linear { border-color: #5b44c4; color: #5b44c4; }
+        .btn-slack  { border-color: #611f69; color: #611f69; }
+
+        /* Tests list — always visible */
         .failure-group-tests {
-            display: none;
-            padding: 12px 18px 16px;
-            background: #f9fafb;
-            border-top: 1px solid #e5e7eb;
+            padding: 0 16px 12px;
+            background: inherit;
         }
-        .failure-group-tests.show { display: block; }
-        .failure-group-tests ul { list-style: none; }
+        .failure-group.bug      .failure-group-tests { background: #fff8f8; }
+        .failure-group.ambiente .failure-group-tests { background: #f0f6ff; }
+        .failure-group.flaky    .failure-group-tests { background: #f0fdf4; }
+        .failure-group-tests ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
         .failure-group-tests li {
-            font-size: 0.84em;
-            color: #374151;
-            padding: 6px 0;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 0.82em; color: #374151;
+            padding: 5px 8px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,0.06);
+            display: flex; align-items: center; gap: 7px;
         }
-        .failure-group-tests li:last-child { border-bottom: none; }
         .test-file-tag {
             background: #e0e7ff;
             color: #3730a3;
@@ -1129,24 +1078,27 @@ function renderFailureGroups() {
     }
 
     container.innerHTML = groups.map((g, i) => {
+        // Render each test as a readable pill: file + clean test name
         const tests = g.tests.map(t => {
             const match = t.match(/^\[([^\]]+)\]\s*(.+)$/);
-            const file = match ? match[1] : '';
+            const file = match ? match[1].replace('.spec.ts', '') : '';
             const fullName = match ? match[2] : t;
-            // Extract client prefix: "codelpa: C2-05 test name" → client="codelpa", desc="C2-05 test name"
-            const clientMatch = fullName.match(/^([^:]+):\s*(.+)$/);
-            const clientTag = clientMatch ? `<span class="test-client-tag">${escapeHtml(clientMatch[1].trim())}</span>` : '';
-            const desc = clientMatch ? clientMatch[2] : fullName;
+            // Strip "clientKey: " prefix
+            const clientMatch = fullName.match(/^([a-z0-9_-]+):\s*(.+)$/);
+            const clientTag = clientMatch ? `<span class="test-client-tag">${escapeHtml(clientMatch[1])}</span>` : '';
+            // Clean test name: remove leading test IDs like "C2-11 ", "PM1-03 ", "PAG-04 "
+            let desc = clientMatch ? clientMatch[2] : fullName;
+            desc = desc.replace(/^[A-Z][A-Z0-9]+-\d+\s+/, '');
             return `<li>
-                <span class="test-file-tag">${file}</span>
+                <span class="test-file-tag">${escapeHtml(file)}</span>
                 ${clientTag}
-                ${escapeHtml(desc)}
+                <span style="flex:1">${escapeHtml(desc)}</span>
             </li>`;
         }).join('');
 
         return `
         <div class="failure-group ${g.category}" data-category="${g.category}" data-owner="${g.owner}" id="fg-${i}">
-            <div class="failure-group-header" onclick="toggleGroup(this)">
+            <div class="failure-group-header">
                 <div class="fg-left">
                     <div class="fg-top-row">
                         <span class="fg-label">${g.label}</span>
@@ -1155,18 +1107,17 @@ function renderFailureGroups() {
                     </div>
                     <div class="fg-reason">${escapeHtml(g.reason)}</div>
                     <div class="fg-action">
-                        <span class="fg-action-label">Acción requerida</span>
-                        ${escapeHtml(g.action)}
+                        <span class="fg-action-arrow">→</span>
+                        <span>${escapeHtml(g.action)}</span>
                     </div>
-                    <div class="fg-actions" onclick="event.stopPropagation()">
+                    <div class="fg-actions">
                         <button class="action-btn btn-copy" onclick="copyFailureGroup(${i})">📋 Copiar</button>
-                        <button class="action-btn btn-linear" onclick="openLinear(${i})">🔗 Crear ticket Linear</button>
-                        <button class="action-btn btn-slack" onclick="copySlack(${i})">💬 Copiar para Slack</button>
+                        <button class="action-btn btn-linear" onclick="openLinear(${i})">🔗 Crear ticket</button>
+                        <button class="action-btn btn-slack" onclick="copySlack(${i})">💬 Slack</button>
                     </div>
                 </div>
                 <div class="fg-right">
                     <span class="fg-count">${g.count} test${g.count !== 1 ? 's' : ''}</span>
-                    <span class="expand-icon">▼</span>
                 </div>
             </div>
             <div class="failure-group-tests">
