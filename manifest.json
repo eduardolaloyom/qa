@@ -8,7 +8,8 @@
       "verdict": "CON_CONDICIONES",
       "score": 87,
       "modes_done": ["FULL"],
-      "platform": "b2b"
+      "platform": "b2b",
+      "environment": "staging"
     },
     {
       "client": "Bastien",
@@ -18,7 +19,8 @@
       "verdict": "CON_CONDICIONES",
       "score": 82,
       "modes_done": ["A", "B", "D"],
-      "platform": "b2b"
+      "platform": "b2b",
+      "environment": "staging"
     },
     {
       "client": "Soprole (new staging)",
@@ -28,7 +30,8 @@
       "verdict": "CON_CONDICIONES",
       "score": 72,
       "modes_done": ["A", "B"],
-      "platform": "b2b"
+      "platform": "b2b",
+      "environment": "staging"
     },
     {
       "client": "Prinorte",
@@ -38,7 +41,8 @@
       "verdict": "BLOQUEADO",
       "score": 0,
       "modes_done": [],
-      "platform": "app"
+      "platform": "app",
+      "environment": "production"
     },
     {
       "client": "Prinorte",
@@ -48,7 +52,8 @@
       "verdict": "BLOQUEADO",
       "score": 0,
       "modes_done": [],
-      "platform": "app"
+      "platform": "app",
+      "environment": "production"
     }
   ]
 }

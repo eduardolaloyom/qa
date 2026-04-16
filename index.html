@@ -706,9 +706,400 @@
             .summary-row { grid-template-columns: 1fr 1fr; }
             .clients-grid { grid-template-columns: 1fr; }
         }
+
+        /* ══ Environment Landing ══════════════════════════════════ */
+        .env-landing {
+            display: flex;
+            width: calc(100% + 40px);
+            margin: -40px -20px 40px;
+            min-height: 100vh;
+            min-height: 100svh;
+            position: relative;
+            overflow: hidden;
+        }
+        .env-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+            padding: 48px 32px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .env-staging:hover  { transform: scale(1.015); box-shadow: inset 0 0 0 2px rgba(245,158,11,0.5); }
+        .env-production:hover { transform: scale(1.015); box-shadow: inset 0 0 0 2px rgba(16,185,129,0.5); }
+
+        /* Env badge en header */
+        #envBadge {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 10px;
+            padding: 7px 14px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85em;
+            letter-spacing: 0.06em;
+        }
+        #envBadge button {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+        #envBadge button:hover { background: rgba(255,255,255,0.28); }
+        .env-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: 44px 44px;
+            pointer-events: none;
+        }
+        .env-staging {
+            background: radial-gradient(ellipse at 50% 35%, #1c2033 0%, #0d1117 100%);
+            border-right: 1px solid rgba(245,158,11,0.12);
+        }
+        .env-staging::before {
+            background-image:
+                linear-gradient(rgba(245,158,11,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245,158,11,0.05) 1px, transparent 1px);
+        }
+        .env-production {
+            background: radial-gradient(ellipse at 50% 35%, #0d2118 0%, #060e09 100%);
+        }
+        .env-production::before {
+            background-image:
+                linear-gradient(rgba(16,185,129,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16,185,129,0.05) 1px, transparent 1px);
+        }
+
+        /* Scene */
+        .env-scene {
+            position: relative;
+            width: 220px;
+            height: 168px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .env-monitor {
+            width: 190px;
+            height: auto;
+            position: relative;
+            z-index: 2;
+        }
+        .env-staging .env-monitor {
+            filter: drop-shadow(0 0 20px rgba(245,158,11,0.2));
+        }
+        .env-production .env-monitor {
+            filter: drop-shadow(0 0 20px rgba(16,185,129,0.2));
+        }
+
+        /* Gear */
+        .env-gear {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            top: 4px;
+            right: -2px;
+            z-index: 3;
+            animation: env-spin 7s linear infinite;
+        }
+        @keyframes env-spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Wrench */
+        .env-wrench {
+            position: absolute;
+            font-size: 2rem;
+            bottom: 14px;
+            left: 0;
+            z-index: 3;
+            display: inline-block;
+            transform-origin: bottom center;
+            animation: wrench-bob 2.4s ease-in-out infinite;
+            filter: sepia(1) saturate(4) hue-rotate(10deg) brightness(1.1);
+        }
+        @keyframes wrench-bob {
+            0%,100% { transform: rotate(-22deg); }
+            50%      { transform: rotate(22deg); }
+        }
+
+        /* Code line fade */
+        @keyframes code-fade {
+            0%,100% { opacity: 0.18; }
+            50%      { opacity: 1; }
+        }
+        /* Cursor blink */
+        @keyframes cursor-blink {
+            0%,49% { opacity: 1; }
+            50%,100% { opacity: 0; }
+        }
+
+        /* Pulse rings */
+        .pulse-rings {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .pulse-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1.5px solid #10b981;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            animation: ring-expand 3.6s ease-out infinite;
+            opacity: 0;
+        }
+        .pulse-ring.r2 { animation-delay: 1.2s; }
+        .pulse-ring.r3 { animation-delay: 2.4s; }
+        @keyframes ring-expand {
+            0%   { width: 50px;  height: 50px;  opacity: 0.55; }
+            100% { width: 220px; height: 220px; opacity: 0; }
+        }
+
+        /* Label */
+        .env-label {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: white;
+            font-size: 2.5em;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            line-height: 1;
+        }
+        .env-indicator {
+            width: 11px; height: 11px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .staging-indicator {
+            background: #f59e0b;
+            animation: staging-dot 1.8s ease-in-out infinite;
+        }
+        @keyframes staging-dot {
+            0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.6); }
+            50%      { box-shadow: 0 0 0 9px rgba(245,158,11,0); }
+        }
+        .prod-indicator {
+            background: #10b981;
+            animation: prod-dot 1.8s ease-in-out infinite;
+        }
+        @keyframes prod-dot {
+            0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+            50%      { box-shadow: 0 0 0 9px rgba(16,185,129,0); }
+        }
+
+        /* Subtitle + rule */
+        .env-subtitle {
+            color: rgba(255,255,255,0.42);
+            font-size: 0.92em;
+            text-align: center;
+        }
+        .env-rule {
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 7px 18px;
+            border-radius: 24px;
+            letter-spacing: 0.02em;
+        }
+        .staging-rule {
+            background: rgba(245,158,11,0.1);
+            border: 1px solid rgba(245,158,11,0.35);
+            color: #fcd34d;
+        }
+        .prod-rule {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #fca5a5;
+        }
+
+        /* Scroll CTA */
+        .env-scroll {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: rgba(255,255,255,0.32);
+            font-size: 0.68em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: scroll-float 2s ease-in-out infinite;
+            z-index: 10;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .env-scroll svg { width: 18px; height: 18px; }
+        @keyframes scroll-float {
+            0%,100% { transform: translateX(-50%) translateY(0);  opacity: 0.32; }
+            50%      { transform: translateX(-50%) translateY(8px); opacity: 0.7; }
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .env-landing {
+                flex-direction: column;
+                margin: -40px -20px 24px;
+            }
+            .env-staging { border-right: none; border-bottom: 1px solid rgba(245,158,11,0.12); }
+            .env-panel { min-height: 50vh; min-height: 50svh; padding: 32px 20px; gap: 14px; }
+            .env-label { font-size: 1.9em; }
+            .env-gear { right: 2px; }
+            .env-wrench { left: 2px; }
+        }
+        @media (max-width: 420px) {
+            .env-label { font-size: 1.5em; }
+            .env-monitor { width: 155px; }
+            .env-scene { width: 185px; height: 148px; }
+            .env-gear { width: 44px; height: 44px; }
+        }
     </style>
 </head>
 <body>
+
+<!-- ══ Environment Landing ══════════════════════════════════════════ -->
+<div class="env-landing">
+
+    <!-- ── STAGING ─────────────────────────────── -->
+    <div class="env-panel env-staging" onclick="enterEnv('staging')" role="button" tabindex="0" aria-label="Ver tests de Staging">
+        <div class="env-scene">
+            <!-- Monitor con código animado -->
+            <svg class="env-monitor" viewBox="0 0 120 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Frame -->
+                <rect x="4" y="4" width="112" height="66" rx="5" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+                <!-- Screen -->
+                <rect x="10" y="10" width="100" height="54" rx="3" fill="#0d1117"/>
+                <!-- Code lines -->
+                <rect x="17" y="19" width="50" height="3.5" rx="1.5" fill="#f59e0b" style="animation:code-fade 3s 0s ease-in-out infinite"/>
+                <rect x="17" y="27" width="32" height="3.5" rx="1.5" fill="#60a5fa" style="animation:code-fade 3s 0.6s ease-in-out infinite"/>
+                <rect x="17" y="35" width="58" height="3.5" rx="1.5" fill="#f59e0b" style="animation:code-fade 3s 1.2s ease-in-out infinite"/>
+                <rect x="17" y="43" width="22" height="3.5" rx="1.5" fill="#60a5fa" style="animation:code-fade 3s 1.8s ease-in-out infinite"/>
+                <rect x="17" y="51" width="40" height="3.5" rx="1.5" fill="#f59e0b" style="animation:code-fade 3s 2.4s ease-in-out infinite"/>
+                <!-- Cursor -->
+                <rect x="60" y="51" width="2" height="9" rx="1" fill="#f59e0b" style="animation:cursor-blink 1s step-end infinite"/>
+                <!-- Stand -->
+                <rect x="48" y="70" width="24" height="7" rx="3" fill="#334155"/>
+                <rect x="36" y="77" width="48" height="4" rx="2" fill="#334155"/>
+            </svg>
+            <!-- Engranaje girando -->
+            <svg class="env-gear" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(0   25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(45  25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(90  25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(135 25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(180 25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(225 25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(270 25 25)"/>
+                <rect x="22" y="2"  width="6" height="10" rx="2" fill="#f59e0b" transform="rotate(315 25 25)"/>
+                <circle cx="25" cy="25" r="13" fill="#f59e0b"/>
+                <circle cx="25" cy="25" r="7"  fill="#0d1117"/>
+                <circle cx="25" cy="25" r="2"  fill="#f59e0b"/>
+            </svg>
+            <!-- Llave inglesa -->
+            <span class="env-wrench">🔧</span>
+        </div>
+        <div class="env-label">
+            <span class="env-indicator staging-indicator"></span>
+            STAGING
+        </div>
+        <p class="env-subtitle">Ambiente de pruebas seguro</p>
+        <span class="env-rule staging-rule">⚠️ Pedidos máx. $100.000 CLP</span>
+    </div>
+
+    <!-- ── PRODUCCIÓN ──────────────────────────── -->
+    <div class="env-panel env-production" onclick="enterEnv('production')" role="button" tabindex="0" aria-label="Ver tests de Producción">
+        <div class="env-scene">
+            <div class="pulse-rings">
+                <div class="pulse-ring r1"></div>
+                <div class="pulse-ring r2"></div>
+                <div class="pulse-ring r3"></div>
+            </div>
+            <!-- Monitor con compra animada -->
+            <svg class="env-monitor" viewBox="0 0 120 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Frame -->
+                <rect x="4" y="4" width="112" height="66" rx="5" fill="#1e3a2e" stroke="#10b981" stroke-width="1.5"/>
+                <!-- Screen -->
+                <rect x="10" y="10" width="100" height="54" rx="3" fill="#0d1f1a"/>
+                <!-- ClipPath para contenido de pantalla -->
+                <clipPath id="sc">
+                    <rect x="10" y="10" width="100" height="54" rx="3"/>
+                </clipPath>
+                <!-- Carrito deslizante -->
+                <g clip-path="url(#sc)">
+                    <g>
+                        <!-- Cuerpo carrito -->
+                        <path d="M24,28 L54,28 L50,44 L28,44 Z" fill="none" stroke="#10b981" stroke-width="2" stroke-linejoin="round"/>
+                        <!-- Ruedas -->
+                        <circle cx="32" cy="49" r="3.5" fill="#10b981"/>
+                        <circle cx="46" cy="49" r="3.5" fill="#10b981"/>
+                        <!-- Manubrio -->
+                        <path d="M18,28 L24,28" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Items en carrito -->
+                        <rect x="30" y="31" width="7" height="8" rx="1" fill="#10b981" opacity="0.4"/>
+                        <rect x="39" y="31" width="7" height="8" rx="1" fill="#10b981" opacity="0.4"/>
+                        <animateTransform attributeName="transform" type="translate"
+                            values="-35,0; -35,0; 0,0; 65,0; 65,0; -35,0"
+                            keyTimes="0;0.05;0.15;0.8;0.92;1"
+                            dur="4s" repeatCount="indefinite"/>
+                    </g>
+                </g>
+                <!-- Barra de progreso -->
+                <rect x="18" y="55" width="84" height="4" rx="2" fill="#1e3a2e"/>
+                <rect x="18" y="55" width="0" height="4" rx="2" fill="#10b981">
+                    <animate attributeName="width"   values="0;0;84;84;0"   keyTimes="0;0.1;0.75;0.9;1" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0;1;1;0;0"     keyTimes="0;0.1;0.75;0.85;1" dur="4s" repeatCount="indefinite"/>
+                </rect>
+                <!-- Checkmark -->
+                <path d="M82,22 L88,29 L100,16" stroke="#10b981" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round" fill="none"
+                      stroke-dasharray="30" stroke-dashoffset="30">
+                    <animate attributeName="stroke-dashoffset" values="30;30;0;0;30"   keyTimes="0;0.45;0.65;0.9;1" dur="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity"           values="0;0;1;1;0"       keyTimes="0;0.45;0.5;0.9;1"  dur="4s" repeatCount="indefinite"/>
+                </path>
+                <!-- Stand -->
+                <rect x="48" y="70" width="24" height="7" rx="3" fill="#1e3a2e"/>
+                <rect x="36" y="77" width="48" height="4" rx="2" fill="#1e3a2e"/>
+            </svg>
+        </div>
+        <div class="env-label">
+            <span class="env-indicator prod-indicator"></span>
+            PRODUCCIÓN
+        </div>
+        <p class="env-subtitle">Ambiente real de clientes</p>
+        <span class="env-rule prod-rule">🚫 No emitir pedidos</span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <button class="env-scroll" onclick="document.querySelector('.container').scrollIntoView({behavior:'smooth'})">
+        ver dashboard
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </button>
+</div>
+<!-- /env-landing -->
+
 <div class="container">
 
     <header>
@@ -716,6 +1107,7 @@
             <h1>🧪 QA Dashboard — YOM</h1>
             <p>Playwright E2E · B2B Platform</p>
         </div>
+        <div id="envBadge"></div>
         <div class="header-actions">
 <a href="qa-reports/" class="btn-ghost">📋 Reportes Cowork</a>
 <a href="reports/index.html" class="btn-ghost" target="_blank">🔬 Playwright Report</a>
@@ -933,6 +1325,46 @@ let suiteSort = { key: 'failed', dir: -1 };
 let activeFailureFilter = 'all';
 let activeOwnerFilter = 'all';
 let activeClientFilter = 'all';
+let selectedEnv = null; // 'staging' | 'production' | null
+
+// ── Ambiente helpers ───────────────────────────────────────
+function getClientEnv(url, name) {
+    if (url && url.includes('solopide.me')) return 'staging';
+    if (name && name.toLowerCase().includes('staging')) return 'staging';
+    return 'production';
+}
+function getReportEnv(rep) {
+    if (rep.environment) return rep.environment;
+    if ((rep.client || '').toLowerCase().includes('staging')) return 'staging';
+    if ((rep.client_slug || '').toLowerCase().includes('staging')) return 'staging';
+    return 'production';
+}
+function enterEnv(env) {
+    selectedEnv = env;
+    updateEnvBadge();
+    document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+    if (latestRun) updateClients();
+    loadCoworkReports();
+    loadAppReports();
+}
+function updateEnvBadge() {
+    const badge = document.getElementById('envBadge');
+    if (!badge) return;
+    if (!selectedEnv) { badge.style.display = 'none'; return; }
+    const isStaging = selectedEnv === 'staging';
+    badge.style.display = 'flex';
+    badge.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${isStaging ? '#f59e0b' : '#10b981'};flex-shrink:0;"></span>`
+        + `<span>${isStaging ? 'STAGING' : 'PRODUCCIÓN'}</span>`
+        + `<button onclick="event.stopPropagation();backToLanding()">cambiar</button>`;
+}
+function backToLanding() {
+    selectedEnv = null;
+    updateEnvBadge();
+    document.querySelector('.env-landing').scrollIntoView({ behavior: 'smooth' });
+    if (latestRun) updateClients();
+    loadCoworkReports();
+    loadAppReports();
+}
 
 // ── Data loading ──────────────────────────────────────────
 
@@ -1335,7 +1767,9 @@ function updateClients() {
     const clients = latestRun.clients || {};
     const container = document.getElementById('clientsContainer');
 
-    const activeClients = Object.entries(clients).filter(([, c]) => c.tests > 0);
+    const activeClients = Object.entries(clients)
+        .filter(([, c]) => c.tests > 0)
+        .filter(([, c]) => !selectedEnv || getClientEnv(c.url, c.name) === selectedEnv);
     if (activeClients.length === 0) {
         container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
         return;
@@ -1770,6 +2204,7 @@ async function loadCoworkReports() {
         const data = await r.json();
         const reports = (data.reports || [])
             .filter(rep => rep.platform !== 'app')
+            .filter(rep => !selectedEnv || getReportEnv(rep) === selectedEnv)
             .sort((a, b) => b.date.localeCompare(a.date));
         if (reports.length === 0) {
             grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>/report-qa {CLIENTE} {FECHA}</code> para generar el primero.</p>';
@@ -1826,6 +2261,7 @@ async function loadAppReports() {
         const data = await r.json();
         const reports = (data.reports || [])
             .filter(rep => rep.platform === 'app')
+            .filter(rep => !selectedEnv || getReportEnv(rep) === selectedEnv)
             .sort((a, b) => b.date.localeCompare(a.date));
         if (reports.length === 0) {
             grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>./tools/run-maestro.sh {cliente}</code> para generar el primero.</p>';
