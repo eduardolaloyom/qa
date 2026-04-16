@@ -48,7 +48,7 @@ for (const [key, client] of Object.entries(clients)) {
       await loginIfNeeded(page);
 
       await page.goto(`${client.baseURL}/products`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
       const priceCount = await prices.count();
@@ -70,7 +70,7 @@ for (const [key, client] of Object.entries(clients)) {
       await loginIfNeeded(page);
 
       await page.goto(`${client.baseURL}/products`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const addButtons = page.getByRole('button', { name: 'Agregar' });
 
@@ -79,7 +79,7 @@ for (const [key, client] of Object.entries(clients)) {
         expect(await addButtons.count()).toBe(0);
         // Navegar a /cart debe redirigir o mostrar vacío
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         const currentUrl = page.url();
         expect(currentUrl).not.toMatch(/\/cart$/);
       } else {
@@ -87,7 +87,7 @@ for (const [key, client] of Object.entries(clients)) {
         expect(await addButtons.count()).toBeGreaterThan(0);
         // /cart debe ser accesible
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         await expect(page).toHaveURL(/cart/);
       }
 
@@ -104,16 +104,16 @@ for (const [key, client] of Object.entries(clients)) {
 
         // Agregar producto al carro para ver checkout
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
 
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Ir al carro directamente
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const couponField = page.getByPlaceholder(/cup[oó]n/i)
           .or(page.getByText(/ingresar cup[oó]n/i))
@@ -141,16 +141,16 @@ for (const [key, client] of Object.entries(clients)) {
 
         // Ir al carro y buscar tipo de recibo
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
 
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Ir al carro directamente
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const receiptType = page.getByText(/tipo de recibo|boleta|factura/i);
 
@@ -174,7 +174,7 @@ for (const [key, client] of Object.entries(clients)) {
       await loginIfNeeded(page);
 
       await page.goto(`${client.baseURL}/products`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       // Verificar que los precios usan el símbolo correcto
       const currencySymbols: Record<string, string> = {
@@ -203,7 +203,7 @@ for (const [key, client] of Object.entries(clients)) {
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(client.baseURL);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         if (client.config.inMaintenance) {
           // Debe mostrar pantalla de mantenimiento
@@ -227,7 +227,7 @@ for (const [key, client] of Object.entries(clients)) {
           const context = await browser.newContext();
           const page = await context.newPage();
           await page.goto(`${client.baseURL}`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
 
           const cartIcon = page.locator(
             '[class*="cart" i], [aria-label*="carro" i], [aria-label*="carrito" i], a[href*="/cart"], [data-testid*="cart" i]'
@@ -252,7 +252,7 @@ for (const [key, client] of Object.entries(clients)) {
           const context = await browser.newContext();
           const page = await context.newPage();
           await page.goto(`${client.baseURL}/products`);
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
 
           const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
           const priceCount = await prices.count();
@@ -280,15 +280,15 @@ for (const [key, client] of Object.entries(clients)) {
 
         // Agregar producto al carrito para llegar a checkout
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Buscar sección de pagos en checkout
         const paymentsSection = page.locator('[class*="payment" i], [class*="pago" i]').first();
@@ -316,7 +316,7 @@ for (const [key, client] of Object.entries(clients)) {
 
         // Ir a historial de órdenes
         await page.goto(`${client.baseURL}/orders`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         if (client.config.ordersRequireAuthorization) {
           // Debe mostrar badge/estado de aprobación pendiente
@@ -340,15 +340,15 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const bodyText = await page.locator('body').textContent();
 
@@ -388,11 +388,11 @@ for (const [key, client] of Object.entries(clients)) {
         if (client.config.lazyLoadingPrices) {
           // Con lazy loading, los precios se cargan DESPUÉS del primer render
           // Debe haber requests de precios durante o después del domcontentloaded
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           expect(priceRequests.length).toBeGreaterThan(0);
         } else {
           // Sin lazy loading, los precios deben estar disponibles al cargar
-          await page.waitForLoadState('networkidle');
+          await page.waitForLoadState('domcontentloaded');
           const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
           expect(await prices.count()).toBeGreaterThan(0);
         }
@@ -412,7 +412,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const massiveBtn = page.getByText(/envío masivo|enviar masivo|massive|masivo/i)
           .or(page.getByRole('button', { name: /masivo/i }));
@@ -432,7 +432,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const unitSelector = page.locator('select[name*="unit" i], [class*="unit-selector" i], [class*="saleUnit" i]');
 
@@ -462,15 +462,15 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const deliveryDateField = page.getByText(/fecha de entrega|fecha pedido|delivery date/i)
           .or(page.locator('input[type="date"]'));
@@ -495,15 +495,15 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const observationsField = page.getByPlaceholder(/observaci[oó]n|comentario|nota/i)
           .or(page.getByLabel(/observaci[oó]n|comentario|nota/i))
@@ -529,7 +529,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const footer = page.locator('footer, [class*="footer" i]').first();
         await expect(footer).toBeVisible({ timeout: 10_000 });
@@ -551,15 +551,15 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const addButton = page.getByRole('button', { name: 'Agregar' }).first();
         await expect(addButton).toBeVisible({ timeout: 15_000 });
         await addButton.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         await page.goto(`${client.baseURL}/cart`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const paymentsSection = page.locator('[class*="payment" i], [class*="pago" i]').first();
         const isVisible = await paymentsSection.isVisible({ timeout: 5_000 }).catch(() => false);
@@ -574,7 +574,7 @@ for (const [key, client] of Object.entries(clients)) {
     // Helper interno: agrega un producto al carrito
     async function addOneProductToCart(page: any) {
       await page.goto(`${client.baseURL}/products`);
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
       const addBtn = page.getByRole('button', { name: 'Agregar' }).first();
       await expect(addBtn).toBeVisible({ timeout: 20_000 });
       await addBtn.click();
@@ -638,10 +638,12 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
-        const stockBadge = page.locator('[class*="stock" i], [class*="Stock" i]')
-          .or(page.getByText(/en stock|sin stock|disponible|agotado/i));
+        // Specific text patterns only — avoid broad class selector that matches empty containers
+        const stockBadge = page.getByText(/\b(en stock|sin stock|agotado)\b/i)
+          .or(page.getByText(/\b\d+\s+(unidades?\s*disponibles?|en\s*stock)\b/i))
+          .or(page.locator('[data-testid*="stock-count" i], [data-testid*="stockCount" i]'));
 
         if (client.config.hasStockEnabled) {
           const isVisible = await stockBadge.first().isVisible({ timeout: 8_000 }).catch(() => false);
@@ -783,7 +785,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const dcSelector = page.getByText(/centro.*distribución|distribution.*center|bodega/i)
           .or(page.locator('[class*="distribution" i], [class*="centro-dist" i]'));
@@ -830,7 +832,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // showMinOne shows "Mínimo: 1" label on product cards — use specific class or exact label pattern
         const minOneLabel = page.locator('[class*="min-one" i], [class*="minOne" i], [class*="show-min" i]')
@@ -856,7 +858,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const multiUnit = page.locator('select[name*="unit" i], [class*="multi-unit" i], [class*="multiUnit" i]');
 
@@ -880,7 +882,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const noSaleFilter = page.getByText(/sin venta|no.*sale|no venta/i)
           .or(page.locator('[class*="no-sale" i], [class*="noSale" i]'));
@@ -904,7 +906,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const stockLimitIndicator = page.locator('[class*="stock-limit" i], [class*="stockLimit" i]')
           .or(page.getByText(/límite.*stock|stock.*limit|sin stock disponible/i));
@@ -929,7 +931,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const packagingInfo = page.locator('[class*="packaging" i], [class*="empaque" i]')
           .or(page.getByText(/empaque|packaging|embalaje|contenido neto/i));
@@ -1146,7 +1148,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const uploadBtn = page.getByRole('button', { name: /subir.*archivo|upload.*file|carga masiva|importar/i })
           .or(page.locator('input[type="file"]'));
@@ -1171,7 +1173,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const betaBtn = page.locator('[class*="beta" i]')
           .or(page.getByText(/beta/i));
@@ -1219,7 +1221,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const productDiscountUI = page.locator('[class*="product-discount" i], [class*="productDiscount" i]')
           .or(page.getByText(/descuento.*producto|product.*discount/i));
@@ -1244,7 +1246,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const weightLabel = page.getByText(/peso|weight|\d+\s*kg|\d+\s*g\b/i)
           .or(page.locator('[class*="weight" i]'));
@@ -1272,7 +1274,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Click en una categoría para verificar si las subcategorías vacías aparecen
         const categories = page.locator('[class*="categor" i] a, nav a[href*="categor"]');
@@ -1350,7 +1352,7 @@ for (const [key, client] of Object.entries(clients)) {
         await loginIfNeeded(page);
 
         await page.goto(`${client.baseURL}/products?promotions=true`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // La sección de promociones debe existir (independiente del motor)
         const promoSection = page.getByText(/promoci[oó]n|oferta|descuento/i).first();

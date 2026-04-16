@@ -13,9 +13,8 @@ export async function loginHelper(
 ) {
   const url = baseURL ? `${baseURL}${loginPath}` : loginPath;
 
-  // Navigate to login page and wait for network to settle
+  // Navigate to login page — use domcontentloaded to avoid hanging on staging sites with long-polling
   await page.goto(url, { waitUntil: 'domcontentloaded' });
-  await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
 
   // Resolve email input: use bounding box size to detect MUI hidden inputs (opacity:0, 0x0)
   const emailByName = page.locator('input[name="email"]').first();
