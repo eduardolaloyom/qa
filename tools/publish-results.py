@@ -428,40 +428,33 @@ def load_staging_urls(project_root: Path) -> dict:
 
 def extract_config_validation_clients(all_tests_flat: list, staging_urls: dict) -> dict:
     """
-    Extract per-client stats from config-validation.spec.ts tests.
-    Test describe blocks use format: 'Config validation: {client.name}'
-    Test titles use format: '{clientKey}: {variable}={value}'
+    Extract per-client stats aggregating ALL multi-client tests.
+    All multi-client tests use '{clientKey}: test name' format in their title.
+    This gives accurate totals across config-validation, checkout, payments, etc.
     """
-    cv_tests = [t for t in all_tests_flat if "config-validation" in t.get("file", "")]
-    if not cv_tests:
-        return {}
-
-    # Group tests by client key extracted from test title prefix (e.g. "bastien: hidePrices=false")
+    # Group ALL tests by client key prefix ("bastien: ", "sonrie: ", etc.)
     client_tests: dict = defaultdict(list)
-    for t in cv_tests:
+    for t in all_tests_flat:
         title = t.get("title", "")
         m = re.match(r'^([a-z0-9_-]+):', title)
         if m:
             client_tests[m.group(1)].append(t)
-        else:
-            # Fallback: try suite_title "Config validation: Bastien (staging)"
-            suite = t.get("suite_title", "")
-            sm = re.match(r"Config validation:\s*(.+?)(?:\s*\(|$)", suite)
-            if sm:
-                client_name_raw = sm.group(1).strip().lower()
-                client_tests[client_name_raw].append(t)
 
     clients = {}
     for client_key, tests in client_tests.items():
+        # Only include clients that exist in staging_urls (skip generic test IDs)
+        if client_key not in staging_urls:
+            continue
         passed = sum(1 for t in tests if t.get("status") in ("expected", "flaky"))
         failed = sum(1 for t in tests if t.get("status") == "unexpected")
+        skipped = sum(1 for t in tests if t.get("status") == "skipped")
         info = staging_urls.get(client_key, {})
         display_name = info.get("name", client_key.capitalize())
         url = info.get("url", f"https://{client_key}.solopide.me")
         clients[client_key] = {
             "name": display_name,
             "url": url,
-            "tests": len(tests),
+            "tests": len(tests) - skipped,  # show only executed tests
             "passed": passed,
             "failed": failed,
             "reportUrl": "reports/index.html",
