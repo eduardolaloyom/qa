@@ -208,6 +208,19 @@
                     </td>
                     <td><span class="tool-tag">Cowork</span></td>
                 </tr>
+                <tr style="background:#f0fdf4;">
+                    <td>sonrie-QA-002</td>
+                    <td><span class="badge p3">P3</span></td>
+                    <td>
+                        <strong>3 productos sin imagen de catálogo (placeholder gris)</strong>
+                        <div class="sub">SKU 006010-008 — NEXT Agua Frambuesa 6x1,5Lt ($2.985)</div>
+                        <div class="sub">SKU 000947-057 — SOPROLE LECHE PROTEINA CAPUCCINO 1 LT ($15.197)</div>
+                        <div class="sub">SKU 000948-057 — SOPROLE LECHE PROTEINA CAPUCCINO 200 ML ($9.786)</div>
+                        <div class="sub">Detectados via C2-04: 27/30 imágenes OK (S3 400×400px), 3/30 renderizan <code>&lt;div&gt;</code> gris sin elemento <code>&lt;img&gt;</code>.</div>
+                        <div class="sub">Próximo paso: subir imágenes faltantes en Admin para esos SKUs</div>
+                    </td>
+                    <td><span class="tool-tag">Cowork C2-04</span></td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -217,6 +230,9 @@
         <div class="card-title">Accionables</div>
         <div class="accionable warn">
             <strong>sonrie-QA-001</strong> — Resetear crédito de <code>eduardo+sonrie@yom.ai</code> en Admin antes del próximo ciclo QA. Pedido #22 dejó $1.576 disponibles; insuficiente para cualquier producto del catálogo.
+        </div>
+        <div class="accionable">
+            <strong>sonrie-QA-002</strong> — Subir imágenes faltantes en Admin para SKUs 006010-008, 000947-057, 000948-057. Los 3 productos muestran placeholder gris en catálogo.
         </div>
         <div class="accionable">
             <strong>Staging blockers</strong> — Para próximo ciclo: crear comercio con estado BLOQUEADO en staging (C1-05) y activar un cupón válido para la cuenta de prueba (C3-14).
@@ -233,11 +249,11 @@
                 <tr><td>Zero High sin plan</td><td><span class="badge pass">✓</span></td></tr>
                 <tr><td>Compra B2B funcional</td><td><span class="badge pass">✓</span></td></tr>
                 <tr><td>Compra APP funcional</td><td><span class="badge na">N/A</span></td></tr>
-                <tr><td>Catálogo completo</td><td><span class="badge pass">✓</span></td></tr>
-                <tr><td>Health Score ≥ 80%</td><td><span class="badge pass">✓ 89/100</span></td></tr>
+                <tr><td>Catálogo completo</td><td><span class="badge warn">⚠ 27/30 imágenes OK</span></td></tr>
+                <tr><td>Health Score ≥ 80%</td><td><span class="badge pass">✓ 87/100</span></td></tr>
             </tbody>
         </table>
-        <p style="margin-top:16px;font-weight:700;color:#92400e;">Veredicto: LISTO CON CONDICIONES — Resetear crédito cuenta de prueba</p>
+        <p style="margin-top:16px;font-weight:700;color:#92400e;">Veredicto: LISTO CON CONDICIONES — Resetear crédito + subir 3 imágenes faltantes</p>
     </div>
 
     <footer>
