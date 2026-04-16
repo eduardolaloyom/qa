@@ -1,16 +1,16 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T17:06:17.061913+00:00",
-  "total": 123,
-  "passed": 100,
+  "timestamp": "2026-04-16T17:30:48.661597+00:00",
+  "total": 124,
+  "passed": 101,
   "failed": 17,
-  "duration": 5996,
+  "duration": 6389,
   "suites": [
     {
       "name": "cart.spec.ts",
       "tests": 4,
       "passed": 3,
-      "failed": 0,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
@@ -29,9 +29,9 @@
     },
     {
       "name": "coupons.spec.ts",
-      "tests": 4,
+      "tests": 5,
       "passed": 1,
-      "failed": 3,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     },
     {
@@ -65,8 +65,8 @@
     {
       "name": "promotions.spec.ts",
       "tests": 3,
-      "passed": 1,
-      "failed": 2,
+      "passed": 2,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
@@ -101,7 +101,7 @@
       "name": "orders.spec.ts",
       "tests": 2,
       "passed": 1,
-      "failed": 1,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -109,8 +109,8 @@
     "bastien": {
       "name": "Bastien (staging)",
       "url": "https://bastien.solopide.me",
-      "tests": 101,
-      "passed": 87,
+      "tests": 102,
+      "passed": 88,
       "failed": 14,
       "reportUrl": "reports/index.html"
     },
@@ -367,26 +367,12 @@
     {
       "category": "bug",
       "label": "\ud83d\udd34 Bug",
-      "reason": "P\u00e1gina post-checkout no carga \u2014 timeout en: Flujo completo catalogo \u2192 carro \u2192 checkout",
+      "reason": "La p\u00e1gina `/products` es abortada \u2014 ruta bloqueada o inaccesible",
       "owner": "dev",
-      "action": "La p\u00e1gina no termina de cargar despu\u00e9s del flujo de checkout. Probablemente relacionado con que el POST a /order no completa. Verificar en bastien.solopide.me que crear un pedido funciona end-to-end.",
+      "action": "La navegaci\u00f3n a `/products` da ERR_ABORTED en Bastien staging. Verificar que la ruta existe, que el usuario tiene permisos y que no hay un redirect bloqueante. Reproducir en staging manualmente.",
       "count": 1,
       "tests": [
-        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "P\u00e1gina post-checkout no carga \u2014 timeout en: Doble click en crear pedido no genera duplicado",
-      "owner": "dev",
-      "action": "La p\u00e1gina no termina de cargar despu\u00e9s del flujo de checkout. Probablemente relacionado con que el POST a /order no completa. Verificar en bastien.solopide.me que crear un pedido funciona end-to-end.",
-      "count": 1,
-      "tests": [
-        "[checkout.spec.ts] bastien: C2-12 Doble click en crear pedido no genera duplicado"
+        "[cart.spec.ts] bastien: C2-06 Cantidad m\u00ednima \u2014 sistema corrige o bloquea"
       ],
       "clients": [
         "bastien"
@@ -437,23 +423,9 @@
     {
       "category": "bug",
       "label": "\ud83d\udd34 Bug",
-      "reason": "3 pedidos con estado 'No disponible' \u2014 estado sin mapear en el frontend",
+      "reason": "C7-INV Link \"Mis documentos\" oculto cuando flag=false: esperado false, recibido true",
       "owner": "dev",
-      "action": "En YOMCL/b2b buscar el componente de historial de pedidos (OrderStatus o similar) y agregar el estado 'No disponible' al mapa de estados.",
-      "count": 1,
-      "tests": [
-        "[orders.spec.ts] bastien: Estados de pedido son v\u00e1lidos (no \"No disponible\") @orders @funcional"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "P\u00e1gina post-checkout no carga \u2014 timeout en: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "owner": "dev",
-      "action": "La p\u00e1gina no termina de cargar despu\u00e9s del flujo de checkout. Probablemente relacionado con que el POST a /order no completa. Verificar en bastien.solopide.me que crear un pedido funciona end-to-end.",
+      "action": "En staging comprobar manualmente el flujo 'C7-INV Link \"Mis documentos\" oculto cuando flag=false' e identificar por qu\u00e9 devuelve true en lugar de false.",
       "count": 1,
       "tests": [
         "[payment-documents.spec.ts] bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false"
@@ -465,9 +437,9 @@
     {
       "category": "bug",
       "label": "\ud83d\udd34 Bug",
-      "reason": "La p\u00e1gina `/payments` es abortada \u2014 ruta bloqueada o inaccesible",
+      "reason": "P\u00e1gina post-checkout no carga \u2014 timeout en: Historial de pagos carga correctamente",
       "owner": "dev",
-      "action": "La navegaci\u00f3n a `/payments` da ERR_ABORTED en Bastien staging. Verificar que la ruta existe, que el usuario tiene permisos y que no hay un redirect bloqueante. Reproducir en staging manualmente.",
+      "action": "La p\u00e1gina no termina de cargar despu\u00e9s del flujo de checkout. Probablemente relacionado con que el POST a /order no completa. Verificar en bastien.solopide.me que crear un pedido funciona end-to-end.",
       "count": 1,
       "tests": [
         "[payments.spec.ts] bastien: PAG-04 Historial de pagos carga correctamente"
@@ -493,9 +465,9 @@
     {
       "category": "bug",
       "label": "\ud83d\udd34 Bug",
-      "reason": "La p\u00e1gina `/products` es abortada \u2014 ruta bloqueada o inaccesible",
-      "owner": "dev",
-      "action": "La navegaci\u00f3n a `/products` da ERR_ABORTED en Bastien staging. Verificar que la ruta existe, que el usuario tiene permisos y que no hay un redirect bloqueante. Reproducir en staging manualmente.",
+      "reason": "Cat\u00e1logo no queda en loading infinito si promotions es lento",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Cat\u00e1logo no queda en loading infinito si promotions es lento'.",
       "count": 1,
       "tests": [
         "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
@@ -507,11 +479,27 @@
     {
       "category": "ambiente",
       "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `selector desconocido`",
+      "reason": "Request HTTP al carrito nunca ocurri\u00f3 \u2014 bot\u00f3n Agregar no respondi\u00f3",
       "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `selector desconocido` en el spec.",
+      "action": "Verificar que el bot\u00f3n 'Agregar' dispara el POST a /cart. Puede estar relacionado con otro fallo de selector.",
       "count": 2,
       "tests": [
+        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout",
+        "[checkout.spec.ts] bastien: C2-12 Doble click en crear pedido no genera duplicado"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado: `input[name*=\"coupon\" i], input[id*=\"coupon\" i], input[name*=\"discount\" i]`",
+      "owner": "qa",
+      "action": "Inspeccionar staging y actualizar el selector `input[name*=\"coupon\" i], input[id*=\"coupon\" i], input[name*=\"discount\" i]` en el spec.",
+      "count": 3,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM1-02 Cup\u00f3n v\u00e1lido aplica descuento",
         "[coupons.spec.ts] bastien: PM1-04 Cup\u00f3n inv\u00e1lido muestra error (no crash)",
         "[coupons.spec.ts] bastien: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito"
       ],
@@ -534,28 +522,15 @@
       ]
     },
     {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `[class*=\"total\" i], [class*=\"summary\" i]`",
-      "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `[class*=\"total\" i], [class*=\"summary\" i]` en el spec.",
-      "count": 1,
-      "tests": [
-        "[promotions.spec.ts] bastien: PM5-02 Carrito muestra totales con descuentos aplicados"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
       "category": "flaky",
       "label": "\u26a0\ufe0f Flaky",
       "reason": "Pasaron en retry \u2014 no son bugs confirmados",
       "owner": "qa",
       "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
-      "count": 1,
+      "count": 2,
       "tests": [
-        "[prices.spec.ts] bastien: Cat\u00e1logo carga con productos visibles @catalog @calidad"
+        "[cart.spec.ts] bastien: C2-08 Modificar cantidad en carro",
+        "[step-pricing.spec.ts] bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto"
       ],
       "clients": [
         "bastien"
