@@ -151,6 +151,49 @@ for (const [key, client] of Object.entries(clients)) {
       }
     });
 
+    // ── Calidad de datos del catálogo ──────────────────────────────────────
+
+    test(`${key}: Catálogo carga con productos visibles @catalog @calidad`, async ({ authedPage: page }) => {
+      await page.goto(`${client.baseURL}/products`);
+
+      // Esperar que cargue el catálogo: botón Agregar o product card
+      const firstIndicator = page.getByRole('button', { name: 'Agregar' }).first()
+        .or(page.locator('[class*="ProductCard"], [class*="product-card"], [class*="product-item"]').first());
+      await expect(firstIndicator).toBeVisible({ timeout: 45_000 });
+
+      const productCards = page.locator(
+        '[class*="ProductCard"], [class*="product-card"], [class*="product-item"], article[class*="product"], li[class*="product"]'
+      ).or(page.getByRole('button', { name: 'Agregar' }));
+
+      const count = await productCards.count();
+      expect(count, `${client.name}: catálogo vacío — no se encontraron productos en /products`).toBeGreaterThan(0);
+    });
+
+    test(`${key}: Sin imágenes rotas en catálogo @catalog @calidad`, async ({ authedPage: page }) => {
+      await page.goto(`${client.baseURL}/products`);
+      await page.waitForLoadState('load');
+
+      const allImages = page.locator('img');
+      const total = await allImages.count();
+      const limit = Math.min(total, 50);
+
+      const brokenImages: string[] = [];
+      for (let i = 0; i < limit; i++) {
+        const img = allImages.nth(i);
+        const [naturalWidth, src] = await img.evaluate((el: HTMLImageElement) => [
+          el.naturalWidth,
+          el.src || el.getAttribute('src') || '',
+        ]);
+        const isBroken = naturalWidth === 0
+          && !src.includes('.svg')
+          && !src.startsWith('data:')
+          && src.length > 0;
+        if (isBroken) brokenImages.push(src);
+      }
+
+      expect(brokenImages, `${client.name}: imágenes rotas encontradas:\n${brokenImages.join('\n')}`).toHaveLength(0);
+    });
+
     test(`${key}: C5-05 Sugerencias se pueden agregar al carro`, async ({ authedPage: page }) => {
       await page.goto(`${client.baseURL}/products`);
       await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });

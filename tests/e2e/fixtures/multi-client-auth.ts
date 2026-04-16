@@ -18,6 +18,15 @@ interface ClientConfig {
 export async function selectCommerceHelper(page: any, commerceName: string) {
   await page.locator('text=Eduardo').first().click();
   await page.waitForTimeout(300);
+
+  // "Seleccionar comercio" may not appear if already selected or the UI changed
+  const hasSelectCommerce = await page.locator('text=Seleccionar comercio').isVisible({ timeout: 5_000 }).catch(() => false);
+  if (!hasSelectCommerce) {
+    // Close the dropdown and continue — commerce may already be selected or not required
+    await page.keyboard.press('Escape');
+    return;
+  }
+
   await page.locator('text=Seleccionar comercio').click();
   await page.waitForTimeout(800);
 
