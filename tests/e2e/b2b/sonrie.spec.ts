@@ -159,8 +159,9 @@ test.describe('Sonrie — Catálogo', () => {
     const products = catalogResponse;
     test.info().annotations.push({ type: 'info', description: `API /v2/catalog: ${products.length} productos` });
 
-    // Pipeline OK: hay productos
-    expect(products.length).toBeGreaterThan(0);
+    // Pipeline OK: debe devolver al menos los 30 productos confirmados el 2026-04-16
+    // Si baja de 30 → regresión en el pipeline Mongo→API
+    expect(products.length).toBeGreaterThanOrEqual(30);
 
     // Campos obligatorios — estructura real de /api/v2/catalog:
     // name, image (S3 URL), enabled, b2bHidden, pricing (objeto con datos de precio)
