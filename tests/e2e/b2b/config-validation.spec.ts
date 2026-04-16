@@ -1434,5 +1434,307 @@ for (const [key, client] of Object.entries(clients)) {
       });
     }
 
+    // "loginButtons.facebook": botón Facebook en login
+    if (client.config['loginButtons.facebook'] !== undefined) {
+      test(`${key}: loginButtons.facebook=${client.config['loginButtons.facebook']}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'loginButtons.facebook');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(`${client.baseURL}${client.loginPath}`);
+        await page.waitForLoadState('domcontentloaded');
+
+        const fbBtn = page.getByRole('button', { name: /facebook/i })
+          .or(page.locator('[class*="facebook" i], [data-provider="facebook"]'));
+
+        if (client.config['loginButtons.facebook']) {
+          const isVisible = await fbBtn.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] loginButtons.facebook=true but button not found`);
+        } else {
+          const isVisible = await fbBtn.first().isVisible({ timeout: 4_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        }
+        await context.close();
+      });
+    }
+
+    // "loginButtons.google": botón Google en login
+    if (client.config['loginButtons.google'] !== undefined) {
+      test(`${key}: loginButtons.google=${client.config['loginButtons.google']}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'loginButtons.google');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(`${client.baseURL}${client.loginPath}`);
+        await page.waitForLoadState('domcontentloaded');
+
+        const googleBtn = page.getByRole('button', { name: /google/i })
+          .or(page.locator('[class*="google" i], [data-provider="google"]'));
+
+        if (client.config['loginButtons.google']) {
+          const isVisible = await googleBtn.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] loginButtons.google=true but button not found`);
+        } else {
+          const isVisible = await googleBtn.first().isVisible({ timeout: 4_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        }
+        await context.close();
+      });
+    }
+
+    // "suggestions.hide": ocultar sección de sugerencias en catálogo
+    if (client.config['suggestions.hide'] !== undefined) {
+      test(`${key}: suggestions.hide=${client.config['suggestions.hide']}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'suggestions.hide');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/products`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(3_000);
+
+        const suggestionsSection = page.getByText(/sugerencia|suggested/i).first()
+          .or(page.locator('[class*="suggestion" i], [class*="suggested" i]').first());
+
+        if (client.config['suggestions.hide']) {
+          const isVisible = await suggestionsSection.isVisible({ timeout: 4_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        } else {
+          const isVisible = await suggestionsSection.isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] suggestions.hide=false but suggestions section not found`);
+        }
+        await context.close();
+      });
+    }
+
+    // "hasMultipleBusinessUnit": selector de unidad de negocio
+    if (client.config.hasMultipleBusinessUnit !== undefined) {
+      test(`${key}: hasMultipleBusinessUnit=${client.config.hasMultipleBusinessUnit}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'hasMultipleBusinessUnit');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/products`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(3_000);
+
+        const buSelector = page.locator('[class*="business-unit" i], [class*="businessUnit" i]')
+          .or(page.getByText(/unidad de negocio|business unit/i));
+
+        if (client.config.hasMultipleBusinessUnit) {
+          const isVisible = await buSelector.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] hasMultipleBusinessUnit=true but selector not found`);
+        } else {
+          const isVisible = await buSelector.first().isVisible({ timeout: 4_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        }
+        await context.close();
+      });
+    }
+
+    // "enablePriceOracle": precio con fecha estimada de actualización
+    if (client.config.enablePriceOracle !== undefined) {
+      test(`${key}: enablePriceOracle=${client.config.enablePriceOracle}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enablePriceOracle');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/products`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(3_000);
+
+        const oracleEl = page.locator('[class*="price-oracle" i], [class*="priceOracle" i]')
+          .or(page.getByText(/precio estimado|precio actualiz/i));
+
+        if (client.config.enablePriceOracle) {
+          const isVisible = await oracleEl.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] enablePriceOracle=true but oracle UI not found`);
+        } else {
+          const isVisible = await oracleEl.first().isVisible({ timeout: 4_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        }
+        await context.close();
+      });
+    }
+
+    // "paymentsWithoutAccount": flujo pago sin cuenta registrada
+    if (client.config.paymentsWithoutAccount !== undefined) {
+      test(`${key}: paymentsWithoutAccount=${client.config.paymentsWithoutAccount}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'paymentsWithoutAccount');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/cart`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(2_000);
+
+        const noAccountEl = page.getByText(/sin cuenta|without account|pago invitado/i)
+          .or(page.locator('[class*="without-account" i], [class*="withoutAccount" i]'));
+
+        if (client.config.paymentsWithoutAccount) {
+          const isVisible = await noAccountEl.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] paymentsWithoutAccount=true but no-account flow not found`);
+        } else {
+          const isVisible = await noAccountEl.first().isVisible({ timeout: 4_000 }).catch(() => false);
+          expect(isVisible).toBeFalsy();
+        }
+        await context.close();
+      });
+    }
+
+    // "enableNewUI": layout con nuevo diseño UI
+    if (client.config.enableNewUI !== undefined) {
+      test(`${key}: enableNewUI=${client.config.enableNewUI}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enableNewUI');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/products`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(3_000);
+
+        const newUIEl = page.locator('[class*="new-ui" i], [class*="newUi" i], [data-ui-version="new"]');
+
+        if (client.config.enableNewUI) {
+          const isVisible = await newUIEl.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] enableNewUI=true but new UI indicator not found — may use different selector`);
+        } else {
+          // Standard layout — soft check only
+          const isVisible = await newUIEl.first().isVisible({ timeout: 3_000 }).catch(() => false);
+          if (isVisible) console.warn(`[${key}] enableNewUI=false but new UI indicator found`);
+        }
+        await context.close();
+      });
+    }
+
+    // "enablePaymentDocumentsB2B": módulo de documentos de pago (cobranza)
+    if (client.config.enablePaymentDocumentsB2B !== undefined) {
+      test(`${key}: enablePaymentDocumentsB2B=${client.config.enablePaymentDocumentsB2B}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enablePaymentDocumentsB2B');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/payment-documents`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(2_000);
+
+        const notFound = await page.getByText(/404|no encontrad|not found/i).isVisible({ timeout: 4_000 }).catch(() => false);
+        const redirected = page.url().includes('/products') || page.url().includes('/auth');
+        const paymentDocsContent = page.locator('[class*="payment-document" i], [class*="paymentDocument" i]');
+        const hasContent = await paymentDocsContent.first().isVisible({ timeout: 4_000 }).catch(() => false);
+
+        if (client.config.enablePaymentDocumentsB2B) {
+          if (!hasContent) console.warn(`[${key}] enablePaymentDocumentsB2B=true but module not found`);
+        } else {
+          if (hasContent) {
+            test.info().annotations.push({ type: 'warning', description: `enablePaymentDocumentsB2B=false but module visible` });
+          }
+          expect(notFound || redirected || !hasContent).toBeTruthy();
+        }
+        await context.close();
+      });
+    }
+
+    // "enableInvoicesList": lista de facturas/documentos
+    if (client.config.enableInvoicesList !== undefined) {
+      test(`${key}: enableInvoicesList=${client.config.enableInvoicesList}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'enableInvoicesList');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/invoices`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(2_000);
+
+        const notFound = await page.getByText(/404|no encontrad|not found/i).isVisible({ timeout: 4_000 }).catch(() => false);
+        const redirected = page.url().includes('/products') || page.url().includes('/auth');
+        const invoicesContent = page.locator('[class*="invoice" i], table').first();
+        const hasContent = await invoicesContent.isVisible({ timeout: 4_000 }).catch(() => false);
+
+        if (client.config.enableInvoicesList) {
+          if (!hasContent) console.warn(`[${key}] enableInvoicesList=true but invoices list not found`);
+        } else {
+          expect(notFound || redirected || !hasContent).toBeTruthy();
+        }
+        await context.close();
+      });
+    }
+
+    // "disableCommerceEdit": deshabilitar edición de comercio
+    if (client.config.disableCommerceEdit !== undefined) {
+      test(`${key}: disableCommerceEdit=${client.config.disableCommerceEdit}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'disableCommerceEdit');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await page.goto(`${client.baseURL}/profile`);
+        await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(2_000);
+
+        const editBtn = page.getByRole('button', { name: /editar|edit/i })
+          .or(page.locator('[class*="edit-commerce" i], [class*="editCommerce" i]'));
+
+        if (client.config.disableCommerceEdit) {
+          const isVisible = await editBtn.first().isVisible({ timeout: 5_000 }).catch(() => false);
+          if (isVisible) {
+            test.info().annotations.push({ type: 'warning', description: `disableCommerceEdit=true but edit button visible` });
+          }
+          expect(isVisible).toBeFalsy();
+        } else {
+          // Soft: edit may be on different path
+          console.log(`[${key}] disableCommerceEdit=false — edit expected to be available`);
+        }
+        await context.close();
+      });
+    }
+
+    // "disableObservationInput": ocultar campo de observaciones en carrito
+    if (client.config.disableObservationInput !== undefined) {
+      test(`${key}: disableObservationInput=${client.config.disableObservationInput}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'disableObservationInput');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await addOneProductToCart(page);
+
+        const observationInput = page.getByLabel(/observaci[oó]n|observation|nota|note/i)
+          .or(page.getByPlaceholder(/observaci[oó]n|observation/i));
+
+        if (client.config.disableObservationInput) {
+          const isVisible = await observationInput.first().isVisible({ timeout: 5_000 }).catch(() => false);
+          if (isVisible) {
+            test.info().annotations.push({ type: 'warning', description: `disableObservationInput=true but observation input visible` });
+          }
+          expect(isVisible).toBeFalsy();
+        } else {
+          const isVisible = await observationInput.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] disableObservationInput=false but observation input not found`);
+        }
+        await context.close();
+      });
+    }
+
+    // "hasSingleDistributionCenter": un solo centro de distribución
+    if (client.config.hasSingleDistributionCenter !== undefined) {
+      test(`${key}: hasSingleDistributionCenter=${client.config.hasSingleDistributionCenter}`, async ({ browser }) => {
+        skipIfNotInB2B(client, 'hasSingleDistributionCenter');
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await loginIfNeeded(page);
+        await addOneProductToCart(page);
+
+        const dcSelector = page.getByText(/centro de distribución|distribution center/i)
+          .or(page.locator('[class*="distribution-center" i], [class*="distributionCenter" i]'));
+
+        if (client.config.hasSingleDistributionCenter) {
+          // With single DC, selector should not appear (no choice to make)
+          const count = await dcSelector.count();
+          if (count > 1) console.warn(`[${key}] hasSingleDistributionCenter=true but multiple DC options visible`);
+        } else {
+          const isVisible = await dcSelector.first().isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] hasSingleDistributionCenter=false but DC selector not found`);
+        }
+        await context.close();
+      });
+    }
+
   });
 }

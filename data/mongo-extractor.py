@@ -66,30 +66,54 @@ MICRO_URI = ""
 INTEGRATIONS_URI = ""
 
 # Real production clients (domain → display name)
-# Includes both production and staging variants
+# Only production (.youorder.me) domains need to be listed explicitly —
+# staging (.solopide.me) domains are auto-discovered from the sites collection.
 REAL_CLIENTS = {
     "bastien.youorder.me": "Bastien",
-    "bastien.solopide.me": "Bastien (staging)",
     "cedisur.youorder.me": "Cedisur",
     "coexito.youorder.me": "CoExito",
     "codelpa.youorder.me": "Codelpa",
-    "codelpa.solopide.me": "Codelpa (staging)",
     "codelpa-peru.youorder.me": "Codelpa Peru",
     "elmuneco.youorder.me": "El Muneco",
     "expressdent.youorder.me": "ExpressDent",
     "americas.youorder.me": "Las Americas",
     "marleycoffee.youorder.me": "Marley Coffee",
-    "marleycoffee.solopide.me": "Marley Coffee (staging)",
     "prinorte.youorder.me": "Prinorte",
     "prisa.youorder.me": "Prisa",
-    "prisa.solopide.me": "Surtiventas (staging)",
     "prisur.youorder.me": "Prisur",
     "soprole.youorder.me": "Soprole",
     "new-soprole.youorder.me": "Soprole (new)",
-    "new-soprole.solopide.me": "Soprole (new staging)",
     "surtiventas.youorder.me": "Surtiventas",
     "softys-cencocal.youorder.me": "Softys-Cencocal",
     "softys-dimak.youorder.me": "Softys-Dimak",
+}
+
+# Staging domains to exclude from auto-discovery (dev/test/personal environments)
+STAGING_EXCLUDE_DOMAINS = {
+    "almacen2.solopide.me",
+    "carlos.solopide.me",
+    "customerprueba.solopide.me",
+    "danieltest.solopide.me",
+    "dbsync.solopide.me",
+    "despacho.solopide.me",
+    "dominiofalso.solopide.me",
+    "duracell-salma.solopide.me",
+    "equipotest.solopide.me",
+    "erik-agro.solopide.me",
+    "erik-codelpa.solopide.me",
+    "fakedomain.solopide.me",
+    "grupo1.solopide.me",
+    "grupo2.solopide.me",
+    "i2btest.solopide.me",
+    "nicolas.solopide.me",
+    "panchita.solopide.me",
+    "puntodeventa.solopide.me",
+    "santiago.solopide.me",
+    "testdomain5.solopide.me",
+    "tienda.solopide.me",
+    "tropi2.solopide.me",
+    "vicente.solopide.me",
+    "weavee.solopide.me",
 }
 
 # Fields to exclude from extraction (metadata, branding, visual)
@@ -100,7 +124,7 @@ EXCLUDE_FIELDS = {
     "hasLoginImage", "navBarColor", "primaryColor", "secondaryColor",
     "maintenanceImage", "maintenanceText",
     "aliases", "subDomains", "mainDomain", "emailName",
-    "customButtons", "signupForm", "loginButtons",
+    "customButtons", "signupForm",
     "additionalHomeConfigs",
 }
 
@@ -633,15 +657,28 @@ def extract(client_filter: Optional[str] = None, full_extract: bool = False, sta
 
     for site in sites:
         domain = site.get("domain", "")
-        if domain not in REAL_CLIENTS:
-            continue
 
-        display_name = REAL_CLIENTS[domain]
+        # Staging domains (.solopide.me) are auto-discovered — no whitelist needed.
+        # Production domains (.youorder.me) must be in REAL_CLIENTS to avoid noise.
+        is_staging = domain.endswith(".solopide.me")
+        if is_staging:
+            if domain in STAGING_EXCLUDE_DOMAINS:
+                continue
+        else:
+            if domain not in REAL_CLIENTS:
+                continue
+
+        # Derive display name: use REAL_CLIENTS if present, otherwise derive from slug
+        if domain in REAL_CLIENTS:
+            display_name = REAL_CLIENTS[domain]
+        else:
+            slug = domain.split(".")[0]
+            display_name = slug.replace("-", " ").title() + " (staging)"
 
         # Filter by staging/production if requested
-        if staging_only and not domain.endswith(".solopide.me"):
+        if staging_only and not is_staging:
             continue
-        if not staging_only and domain.endswith(".solopide.me"):
+        if not staging_only and is_staging:
             continue
 
         # Apply client filter if specified
