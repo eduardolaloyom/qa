@@ -248,14 +248,11 @@ def generate_failure_groups(results: dict) -> list:
     flaky  = [t for t in all_tests if t.get("status") == "flaky"]
 
     def extract_client(t: dict) -> str:
-        """Extract client name from suite_title or file name."""
-        suite = t.get("suite_title", "")
-        if suite:
-            # suite_title is often "Codelpa — Login" or "codelpa (https://...)"
-            # Take the part before ' —', ' (', or ':'
-            m = re.match(r'^([^—(\-:]+)', suite)
-            if m:
-                return m.group(1).strip().lower()
+        """Extract client name from test title prefix (e.g. 'bastien: C2-08...' → 'bastien')."""
+        title = t.get("title", "")
+        m = re.match(r'^([a-z0-9][a-z0-9_-]*):', title)
+        if m:
+            return m.group(1)
         # Fallback: derive from file name (codelpa.spec.ts → codelpa)
         f = t.get("file", "")
         if f:
@@ -318,11 +315,10 @@ def generate_pending_b2b(results: dict) -> list:
     B2B_SKIP_PATTERN = re.compile(r"^(.+?) no implementado en B2B frontend")
 
     def extract_client(t: dict) -> str:
-        suite = t.get("suite_title", "")
-        if suite:
-            m = re.match(r'^([^—(\-:]+)', suite)
-            if m:
-                return m.group(1).strip().lower()
+        title = t.get("title", "")
+        m = re.match(r'^([a-z0-9][a-z0-9_-]*):', title)
+        if m:
+            return m.group(1)
         f = t.get("file", "")
         if f:
             return re.sub(r'\.spec\.ts$', '', f.split("/")[-1]).lower()
@@ -461,13 +457,17 @@ def generate_run_json(results: dict, date: str, project_root: Path = None) -> di
     staging_urls = load_staging_urls(project_root)
     clients = extract_config_validation_clients(all_tests_flat, staging_urls)
 
-    # Also pick up any legacy per-client spec files (codelpa.spec.ts, surtiventas.spec.ts, etc.)
+    # Also pick up legacy per-client spec files (codelpa.spec.ts, sonrie.spec.ts, etc.)
+    # Only add if the spec name matches a known client in staging_urls — avoids adding
+    # generic specs (cart.spec.ts, checkout.spec.ts, etc.) as fake clients.
     for file_path in ran_files:
         if file_path == "config-validation.spec.ts":
             continue
         suite_name = re.sub(r"\.spec\.ts$", "", file_path.split("/")[-1])
         if suite_name in clients:
             continue  # Already covered by config-validation
+        if suite_name not in staging_urls:
+            continue  # Not a real client — skip generic spec files
         stats = extract_suite_stats(results, file_path.split("/")[-1])
         if stats["tests"] == 0:
             continue

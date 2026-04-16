@@ -1,6 +1,6 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T15:37:35.174702+00:00",
+  "timestamp": "2026-04-16T15:43:47.862421+00:00",
   "total": 100,
   "passed": 80,
   "failed": 14,
@@ -85,78 +85,6 @@
       "passed": 60,
       "failed": 1,
       "reportUrl": "reports/index.html"
-    },
-    "cart": {
-      "name": "Cart",
-      "url": "https://cart.solopide.me",
-      "tests": 4,
-      "passed": 3,
-      "failed": 0,
-      "reportUrl": "reports/index.html"
-    },
-    "checkout": {
-      "name": "Checkout",
-      "url": "https://checkout.solopide.me",
-      "tests": 3,
-      "passed": 0,
-      "failed": 3,
-      "reportUrl": "reports/index.html"
-    },
-    "coupons": {
-      "name": "Coupons",
-      "url": "https://coupons.solopide.me",
-      "tests": 4,
-      "passed": 1,
-      "failed": 3,
-      "reportUrl": "reports/index.html"
-    },
-    "multi-client": {
-      "name": "Multi-client",
-      "url": "https://multi-client.solopide.me",
-      "tests": 5,
-      "passed": 5,
-      "failed": 0,
-      "reportUrl": "reports/index.html"
-    },
-    "payment-documents": {
-      "name": "Payment-documents",
-      "url": "https://payment-documents.solopide.me",
-      "tests": 5,
-      "passed": 1,
-      "failed": 1,
-      "reportUrl": "reports/index.html"
-    },
-    "payments": {
-      "name": "Payments",
-      "url": "https://payments.solopide.me",
-      "tests": 2,
-      "passed": 0,
-      "failed": 2,
-      "reportUrl": "reports/index.html"
-    },
-    "prices": {
-      "name": "Prices",
-      "url": "https://prices.solopide.me",
-      "tests": 10,
-      "passed": 7,
-      "failed": 2,
-      "reportUrl": "reports/index.html"
-    },
-    "promotions": {
-      "name": "Promotions",
-      "url": "https://promotions.solopide.me",
-      "tests": 3,
-      "passed": 1,
-      "failed": 2,
-      "reportUrl": "reports/index.html"
-    },
-    "step-pricing": {
-      "name": "Step-pricing",
-      "url": "https://step-pricing.solopide.me",
-      "tests": 2,
-      "passed": 2,
-      "failed": 0,
-      "reportUrl": "reports/index.html"
     }
   },
   "failure_groups": [
@@ -171,7 +99,7 @@
         "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout"
       ],
       "clients": [
-        "c2"
+        "bastien"
       ]
     },
     {
@@ -185,7 +113,7 @@
         "[checkout.spec.ts] bastien: C2-12 Doble click en crear pedido no genera duplicado"
       ],
       "clients": [
-        "c2"
+        "bastien"
       ]
     },
     {
@@ -199,7 +127,7 @@
         "[checkout.spec.ts] bastien: C2-13 Pedido aparece en historial"
       ],
       "clients": [
-        "c2"
+        "bastien"
       ]
     },
     {
@@ -213,7 +141,7 @@
         "[config-validation.spec.ts] bastien: anonymousHidePrice=false"
       ],
       "clients": [
-        "config validation"
+        "bastien"
       ]
     },
     {
@@ -227,7 +155,7 @@
         "[coupons.spec.ts] bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones"
       ],
       "clients": [
-        "pm1/pm2"
+        "bastien"
       ]
     },
     {
@@ -241,7 +169,7 @@
         "[payment-documents.spec.ts] bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false"
       ],
       "clients": [
-        "c7"
+        "bastien"
       ]
     },
     {
@@ -255,7 +183,7 @@
         "[payments.spec.ts] bastien: PAG-04 Historial de pagos carga correctamente"
       ],
       "clients": [
-        "pag"
+        "bastien"
       ]
     },
     {
@@ -269,7 +197,7 @@
         "[payments.spec.ts] bastien: PAG-16 Montos en historial no muestran valores negativos confusos"
       ],
       "clients": [
-        "pag"
+        "bastien"
       ]
     },
     {
@@ -283,7 +211,7 @@
         "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
       ],
       "clients": [
-        "pm5"
+        "bastien"
       ]
     },
     {
@@ -299,9 +227,7 @@
         "[promotions.spec.ts] bastien: PM5-02 Carrito muestra totales con descuentos aplicados"
       ],
       "clients": [
-        "c3",
-        "pm1/pm2",
-        "pm5"
+        "bastien"
       ]
     },
     {
@@ -315,7 +241,7 @@
         "[coupons.spec.ts] bastien: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito"
       ],
       "clients": [
-        "pm1/pm2"
+        "bastien"
       ]
     },
     {
@@ -329,7 +255,7 @@
         "[prices.spec.ts] bastien: C5-05 Sugerencias se pueden agregar al carro"
       ],
       "clients": [
-        "c3"
+        "bastien"
       ]
     },
     {
@@ -344,8 +270,7 @@
         "[coupons.spec.ts] bastien: PM1-01 Campo de cup\u00f3n existe y es interactuable"
       ],
       "clients": [
-        "c2",
-        "pm1/pm2"
+        "bastien"
       ]
     }
   ],
