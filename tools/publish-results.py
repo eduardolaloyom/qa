@@ -49,13 +49,20 @@ def copy_test_results_artifacts(src: Path, dst: Path) -> None:
 
     dst.mkdir(parents=True, exist_ok=True)
 
-    # Copy all .png screenshots
+    # Copy all .png screenshots (skip broken symlinks)
     png_count = 0
-    for png_file in src.rglob("*.png"):
-        rel_path = png_file.relative_to(src)
-        dst_file = dst / rel_path.name  # Flatten to data/ root
-        shutil.copy2(png_file, dst_file)
-        png_count += 1
+    try:
+        png_files = list(src.rglob("*.png"))
+    except OSError:
+        png_files = []
+    for png_file in png_files:
+        try:
+            rel_path = png_file.relative_to(src)
+            dst_file = dst / rel_path.name
+            shutil.copy2(png_file, dst_file)
+            png_count += 1
+        except OSError:
+            pass
 
     if png_count > 0:
         print(f"✅ Copied {png_count} screenshot(s) to {dst}")
@@ -608,12 +615,12 @@ def merge_run_json(existing: dict, new: dict) -> dict:
     merged["failed"]   = sum(s["failed"] for s in merged["suites"])
     merged["duration"] = existing.get("duration", 0) + new.get("duration", 0)
 
-    # failure_groups: merge by reason (dedup same error across runs)
-    existing_fg = {g.get("reason", str(i)): g
-                   for i, g in enumerate(existing.get("failure_groups", []))}
-    for g in new.get("failure_groups", []):
-        existing_fg[g.get("reason", "")] = g
-    merged["failure_groups"] = list(existing_fg.values())
+    # failure_groups: replace groups for clients that appear in the new run
+    new_clients = set(c for g in new.get("failure_groups", []) for c in g.get("clients", []))
+    # Keep existing groups only if they belong to clients NOT in this run
+    kept = [g for g in existing.get("failure_groups", [])
+            if not any(c in new_clients for c in g.get("clients", []))]
+    merged["failure_groups"] = kept + new.get("failure_groups", [])
 
     # pending_b2b: union deduplicating by slug
     existing_pb = {p.get("slug", str(p)): p for p in existing.get("pending_b2b", [])}

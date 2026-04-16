@@ -1,16 +1,16 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T16:38:28.228094+00:00",
-  "total": 121,
-  "passed": 68,
-  "failed": 49,
-  "duration": 3612,
+  "timestamp": "2026-04-16T16:54:50.810256+00:00",
+  "total": 123,
+  "passed": 100,
+  "failed": 17,
+  "duration": 4804,
   "suites": [
     {
       "name": "cart.spec.ts",
       "tests": 4,
-      "passed": 1,
-      "failed": 3,
+      "passed": 3,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -22,23 +22,23 @@
     },
     {
       "name": "config-validation.spec.ts",
-      "tests": 60,
-      "passed": 40,
-      "failed": 19,
+      "tests": 62,
+      "passed": 60,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "coupons.spec.ts",
       "tests": 4,
-      "passed": 0,
-      "failed": 4,
+      "passed": 1,
+      "failed": 3,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "multi-client.spec.ts",
       "tests": 5,
-      "passed": 4,
-      "failed": 1,
+      "passed": 5,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -51,15 +51,15 @@
     {
       "name": "payments.spec.ts",
       "tests": 2,
-      "passed": 1,
-      "failed": 1,
+      "passed": 0,
+      "failed": 2,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "prices.spec.ts",
       "tests": 10,
-      "passed": 1,
-      "failed": 9,
+      "passed": 8,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
@@ -72,8 +72,8 @@
     {
       "name": "step-pricing.spec.ts",
       "tests": 2,
-      "passed": 1,
-      "failed": 1,
+      "passed": 2,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -93,8 +93,8 @@
     {
       "name": "mongo-data.spec.ts",
       "tests": 1,
-      "passed": 0,
-      "failed": 1,
+      "passed": 1,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -109,8 +109,8 @@
     "bastien": {
       "name": "Bastien (staging)",
       "url": "https://bastien.solopide.me",
-      "tests": 100,
-      "passed": 86,
+      "tests": 101,
+      "passed": 87,
       "failed": 14,
       "reportUrl": "reports/index.html"
     },
@@ -124,48 +124,6 @@
     }
   },
   "failure_groups": [
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "anonymousHidePrice=false: se esperaba valor > 0 pero la app devolvi\u00f3 0",
-      "owner": "dev",
-      "action": "Verificar en staging que 'anonymousHidePrice=false' devuelve datos reales. Puede requerir seleccionar un comercio primero.",
-      "count": 1,
-      "tests": [
-        "[config-validation.spec.ts] bastien: anonymousHidePrice=false"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Crear orden SIN cup\u00f3n no se rompe por cambios en cupones: la app devolvi\u00f3 null",
-      "owner": "dev",
-      "action": "Revisar en staging que 'Crear orden SIN cup\u00f3n no se rompe por cambios en cupones' retorna el dato correcto.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Cat\u00e1logo no queda en loading infinito si promotions es lento",
-      "owner": "qa",
-      "action": "Revisar en staging el flujo 'Cat\u00e1logo no queda en loading infinito si promotions es lento'.",
-      "count": 1,
-      "tests": [
-        "[promotions.spec.ts] sonrie: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
-      ],
-      "clients": [
-        "sonrie"
-      ]
-    },
     {
       "category": "bug",
       "label": "\ud83d\udd34 Bug",
@@ -183,20 +141,6 @@
     {
       "category": "ambiente",
       "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Error de infraestructura del test runner \u2014 archivo temporal no encontrado",
-      "owner": "qa",
-      "action": "Re-ejecutar los tests en ambiente limpio. Si persiste, revisar espacio en disco o permisos en test-results/.",
-      "count": 1,
-      "tests": [
-        "[checkout.spec.ts] bastien: C2-12 Doble click en crear pedido no genera duplicado"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
       "reason": "Request HTTP al carrito nunca ocurri\u00f3 \u2014 bot\u00f3n Agregar no respondi\u00f3",
       "owner": "qa",
       "action": "Verificar que el bot\u00f3n 'Agregar' dispara el POST a /cart. Puede estar relacionado con otro fallo de selector.",
@@ -206,20 +150,6 @@
       ],
       "clients": [
         "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Secci\u00f3n de sugerencias/destacados no encontrada en cat\u00e1logo",
-      "owner": "qa",
-      "action": "Verificar si la secci\u00f3n de sugerencias est\u00e1 habilitada para Bastien. Si no, agregar skip condicional al test C5-05.",
-      "count": 1,
-      "tests": [
-        "[prices.spec.ts] bastien: C5-05 Sugerencias se pueden agregar al carro"
-      ],
-      "clients": [
-        "bastien"
       ]
     },
     {
@@ -248,39 +178,6 @@
       ],
       "clients": [
         "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "P\u00e1ginas no terminan de cargar en staging \u2014 5 flows con timeout",
-      "owner": "qa",
-      "action": "Verificar que staging est\u00e9 activo y estable. Flows afectados: Flujo completo catalogo \u2192 carro \u2192 checkout, Pedido aparece en historial, C7-INV Link \"Mis documentos\" oculto cuando flag=false....",
-      "count": 5,
-      "tests": [
-        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout",
-        "[checkout.spec.ts] bastien: C2-13 Pedido aparece en historial",
-        "[payment-documents.spec.ts] bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-        "[payments.spec.ts] bastien: PAG-04 Historial de pagos carga correctamente",
-        "[payments.spec.ts] bastien: PAG-16 Montos en historial no muestran valores negativos confusos"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "flaky",
-      "label": "\u26a0\ufe0f Flaky",
-      "reason": "Pasaron en retry \u2014 Bastien (no son bugs confirmados)",
-      "owner": "qa",
-      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si persisten, investigar causa de inestabilidad.",
-      "count": 2,
-      "tests": [
-        "[cart.spec.ts] bastien: C2-08 Modificar cantidad en carro",
-        "[coupons.spec.ts] bastien: PM1-01 Campo de cup\u00f3n existe y es interactuable"
-      ],
-      "clients": [
-        "bastien"
       ]
     },
     {
@@ -328,44 +225,6 @@
     {
       "category": "ambiente",
       "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `selector desconocido`",
-      "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `selector desconocido` en el spec.",
-      "count": 25,
-      "tests": [
-        "[cart.spec.ts] sonrie: C2-05 Agregar producto al carro",
-        "[cart.spec.ts] sonrie: C2-06 Cantidad m\u00ednima \u2014 sistema corrige o bloquea",
-        "[cart.spec.ts] sonrie: C2-09 Eliminar producto del carro",
-        "[config-validation.spec.ts] sonrie: disableCart=false",
-        "[config-validation.spec.ts] sonrie: enableCoupons=true",
-        "[config-validation.spec.ts] sonrie: hideReceiptType=false",
-        "[config-validation.spec.ts] sonrie: enablePayments=false",
-        "[config-validation.spec.ts] sonrie: includeTaxRateInPrices=false",
-        "[config-validation.spec.ts] sonrie: enableAskDeliveryDate=false",
-        "[config-validation.spec.ts] sonrie: purchaseOrderEnabled=false",
-        "[config-validation.spec.ts] sonrie: enableSellerDiscount=false",
-        "[config-validation.spec.ts] sonrie: taxes.showSummary=true",
-        "[config-validation.spec.ts] sonrie: editAddress=true",
-        "[config-validation.spec.ts] sonrie: enableOrderValidation=false",
-        "[config-validation.spec.ts] sonrie: hasTransportCode=false",
-        "[config-validation.spec.ts] sonrie: disableShowEstimatedDeliveryHour=false",
-        "[config-validation.spec.ts] sonrie: hasTransferPaymentType=false",
-        "[config-validation.spec.ts] sonrie: payment.enableNewPaymentModule=false",
-        "[config-validation.spec.ts] sonrie: shoppingDetail.lastOrder=false",
-        "[config-validation.spec.ts] sonrie: disableObservationInput=false",
-        "[config-validation.spec.ts] sonrie: hasSingleDistributionCenter=true",
-        "[prices.spec.ts] sonrie: C3-03 Precios consistentes catalogo vs carro",
-        "[prices.spec.ts] sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
-        "[prices.spec.ts] sonrie: C3-15 Cupon invalido muestra error claro",
-        "[prices.spec.ts] sonrie: C3-11 Precio bruto vs neto \u2014 impuestos segun config"
-      ],
-      "clients": [
-        "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
       "reason": "Timeout en: Flujo completo catalogo \u2192 carro \u2192 checkout",
       "owner": "qa",
       "action": "Verificar en staging que 'Flujo completo catalogo \u2192 carro \u2192 checkout' funciona. Puede ser lentitud del ambiente.",
@@ -386,20 +245,6 @@
       "count": 1,
       "tests": [
         "[checkout.spec.ts] sonrie: C2-12 Doble click en crear pedido no genera duplicado"
-      ],
-      "clients": [
-        "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: Pedido aparece en historial",
-      "owner": "qa",
-      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[checkout.spec.ts] sonrie: C2-13 Pedido aparece en historial"
       ],
       "clients": [
         "sonrie"
@@ -478,34 +323,6 @@
     {
       "category": "ambiente",
       "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "owner": "qa",
-      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[payment-documents.spec.ts] sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false"
-      ],
-      "clients": [
-        "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: Montos en historial no muestran valores negativos confusos",
-      "owner": "qa",
-      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[payments.spec.ts] sonrie: PAG-16 Montos en historial no muestran valores negativos confusos"
-      ],
-      "clients": [
-        "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
       "reason": "Elemento no encontrado: `text=/\\\\$\\\\s*[\\\\d.,]+/`",
       "owner": "qa",
       "action": "Inspeccionar staging y actualizar el selector `text=/\\\\$\\\\s*[\\\\d.,]+/` en el spec.",
@@ -536,20 +353,6 @@
     {
       "category": "ambiente",
       "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `text=/[Ss]ugerencia|[Rr]ecomendado|[Dd]estacado|[Mm]\u00e1s vendido/`",
-      "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `text=/[Ss]ugerencia|[Rr]ecomendado|[Dd]estacado|[Mm]\u00e1s vendido/` en el spec.",
-      "count": 1,
-      "tests": [
-        "[prices.spec.ts] sonrie: C5-05 Sugerencias se pueden agregar al carro"
-      ],
-      "clients": [
-        "sonrie"
-      ]
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
       "reason": "Timeout en: Agregar producto con cantidad > 1 muestra precio correcto",
       "owner": "qa",
       "action": "Verificar en staging que 'Agregar producto con cantidad > 1 muestra precio correcto' funciona. Puede ser lentitud del ambiente.",
@@ -559,6 +362,203 @@
       ],
       "clients": [
         "sonrie"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "anonymousHidePrice=false: se esperaba valor > 0 pero la app devolvi\u00f3 0",
+      "owner": "dev",
+      "action": "Verificar en staging que 'anonymousHidePrice=false' devuelve datos reales. Puede requerir seleccionar un comercio primero.",
+      "count": 1,
+      "tests": [
+        "[config-validation.spec.ts] bastien: anonymousHidePrice=false"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Crear orden SIN cup\u00f3n no se rompe por cambios en cupones: la app devolvi\u00f3 null",
+      "owner": "dev",
+      "action": "Revisar en staging que 'Crear orden SIN cup\u00f3n no se rompe por cambios en cupones' retorna el dato correcto.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Estados de pedido son v\u00e1lidos (no \"No disponible\") @orders @funcional: valor incorrecto \u2014 3 pedidos con estado \"No disponible\" 3 pedidos con estado \"No disponible\" 3 pedi",
+      "owner": "dev",
+      "action": "3 pedidos con estado \"No disponible\" 3 pedidos con estado \"No disponible\" 3 pedidos con estado \"No disponible\"",
+      "count": 1,
+      "tests": [
+        "[orders.spec.ts] bastien: Estados de pedido son v\u00e1lidos (no \"No disponible\") @orders @funcional"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Historial de pagos carga correctamente",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Historial de pagos carga correctamente'.",
+      "count": 1,
+      "tests": [
+        "[payments.spec.ts] bastien: PAG-04 Historial de pagos carga correctamente"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Cat\u00e1logo no queda en loading infinito si promotions es lento",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Cat\u00e1logo no queda en loading infinito si promotions es lento'.",
+      "count": 1,
+      "tests": [
+        "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: Flujo completo catalogo \u2192 carro \u2192 checkout",
+      "owner": "qa",
+      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: Doble click en crear pedido no genera duplicado",
+      "owner": "qa",
+      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[checkout.spec.ts] bastien: C2-12 Doble click en crear pedido no genera duplicado"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: Pedido aparece en historial",
+      "owner": "qa",
+      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[checkout.spec.ts] bastien: C2-13 Pedido aparece en historial"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado: `selector desconocido`",
+      "owner": "qa",
+      "action": "Inspeccionar staging y actualizar el selector `selector desconocido` en el spec.",
+      "count": 2,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM1-04 Cup\u00f3n inv\u00e1lido muestra error (no crash)",
+        "[coupons.spec.ts] bastien: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "owner": "qa",
+      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[payment-documents.spec.ts] bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "P\u00e1gina no termin\u00f3 de cargar \u2014 timeout en: Montos en historial no muestran valores negativos confusos",
+      "owner": "qa",
+      "action": "Verificar que staging responde en tiempos normales. Si el problema es solo en staging, puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[payments.spec.ts] bastien: PAG-16 Montos en historial no muestran valores negativos confusos"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado: `text=/[Ss]ugerencia|[Rr]ecomendado|[Dd]estacado|[Mm]\u00e1s vendido/`",
+      "owner": "qa",
+      "action": "Inspeccionar staging y actualizar el selector `text=/[Ss]ugerencia|[Rr]ecomendado|[Dd]estacado|[Mm]\u00e1s vendido/` en el spec.",
+      "count": 1,
+      "tests": [
+        "[prices.spec.ts] bastien: C5-05 Sugerencias se pueden agregar al carro"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado: `[class*=\"total\" i], [class*=\"summary\" i]`",
+      "owner": "qa",
+      "action": "Inspeccionar staging y actualizar el selector `[class*=\"total\" i], [class*=\"summary\" i]` en el spec.",
+      "count": 1,
+      "tests": [
+        "[promotions.spec.ts] bastien: PM5-02 Carrito muestra totales con descuentos aplicados"
+      ],
+      "clients": [
+        "bastien"
+      ]
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 1,
+      "tests": [
+        "[prices.spec.ts] bastien: Cat\u00e1logo carga con productos visibles @catalog @calidad"
+      ],
+      "clients": [
+        "bastien"
       ]
     }
   ],
