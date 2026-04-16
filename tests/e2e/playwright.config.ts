@@ -13,6 +13,7 @@ export default defineConfig({
     ['html', { open: 'never' }],
     ['json', { outputFile: 'playwright-report/results.json' }],
     ['list'],
+    ...(process.env.LIVE ? [['../../tools/live-reporter.js'] as ['../../tools/live-reporter.js']] : []),
   ],
   use: {
     baseURL: process.env.BASE_URL || 'https://tienda.youorder.me',

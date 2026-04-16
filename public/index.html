@@ -47,6 +47,84 @@
         }
         .btn-ghost:hover { background: rgba(255,255,255,0.3); border-color: white; }
 
+        /* ── Live mode ── */
+        #livePanel {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f2027 100%);
+            border: 1.5px solid rgba(99,179,237,0.4);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        #livePanel.active { display: block; }
+        .live-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .live-dot {
+            width: 10px; height: 10px;
+            background: #48bb78;
+            border-radius: 50%;
+            animation: pulse 1.2s infinite;
+            flex-shrink: 0;
+        }
+        @keyframes pulse {
+            0%,100% { opacity:1; transform:scale(1); }
+            50% { opacity:0.4; transform:scale(1.3); }
+        }
+        .live-title { color: #90cdf4; font-weight: 700; font-size: 1em; letter-spacing:0.05em; }
+        .live-stats { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+        .live-stat { text-align: center; min-width: 60px; }
+        .live-stat-val { font-size: 1.6em; font-weight: 700; color: white; line-height:1; }
+        .live-stat-val.green { color: #68d391; }
+        .live-stat-val.red { color: #fc8181; }
+        .live-stat-val.gray { color: #a0aec0; }
+        .live-stat-lbl { font-size: 0.72em; color: #718096; margin-top: 2px; text-transform: uppercase; }
+        .live-progress-track {
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            height: 8px;
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+        .live-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            border-radius: 6px;
+            transition: width 0.4s ease;
+        }
+        .live-current {
+            font-size: 0.82em;
+            color: #90cdf4;
+            margin-bottom: 12px;
+            min-height: 1.2em;
+            font-family: monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .live-recent { max-height: 160px; overflow-y: auto; }
+        .live-test-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.78em;
+        }
+        .live-test-icon { font-size: 0.9em; flex-shrink:0; }
+        .live-test-title { color: #cbd5e0; flex: 1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .live-test-dur { color: #718096; flex-shrink:0; }
+        .live-done-banner {
+            text-align: center;
+            color: #68d391;
+            font-weight: 600;
+            font-size: 0.95em;
+            padding: 8px 0 2px;
+        }
+
         /* ── Card ── */
         .card {
             background: white;
@@ -695,6 +773,39 @@
         </div>
     </header>
 
+    <!-- Live mode panel (shown when LIVE=1 run is active) -->
+    <div id="livePanel">
+        <div class="live-header">
+            <div class="live-dot"></div>
+            <span class="live-title">LIVE · Ejecutando tests...</span>
+            <span id="liveTotalBadge" style="margin-left:auto;color:#718096;font-size:0.82em;"></span>
+        </div>
+        <div class="live-stats">
+            <div class="live-stat">
+                <div class="live-stat-val green" id="livePassedVal">0</div>
+                <div class="live-stat-lbl">Passed</div>
+            </div>
+            <div class="live-stat">
+                <div class="live-stat-val red" id="liveFailedVal">0</div>
+                <div class="live-stat-lbl">Failed</div>
+            </div>
+            <div class="live-stat">
+                <div class="live-stat-val gray" id="liveSkippedVal">0</div>
+                <div class="live-stat-lbl">Skipped</div>
+            </div>
+            <div class="live-stat">
+                <div class="live-stat-val gray" id="liveDoneVal">0</div>
+                <div class="live-stat-lbl">/ Total</div>
+            </div>
+        </div>
+        <div class="live-progress-track">
+            <div class="live-progress-fill" id="liveProgressFill" style="width:0%"></div>
+        </div>
+        <div class="live-current" id="liveCurrentTest"></div>
+        <div class="live-recent" id="liveRecentTests"></div>
+        <div class="live-done-banner" id="liveDoneBanner" style="display:none;">&#x2705; Run completado — recargando dashboard...</div>
+    </div>
+
     <!-- Tab bar -->
     <div class="tab-bar">
         <button id="tab-btn-b2b" class="tab-btn active" onclick="showTab('b2b')">🛒 B2B Tests</button>
@@ -909,6 +1020,8 @@ async function initDashboard() {
     } catch (e) {
         console.error(e);
     }
+    // Start live polling (no-op if live.json doesn't exist)
+    pollLive();
 }
 
 // ── Summary ───────────────────────────────────────────────
@@ -1348,6 +1461,79 @@ async function updateTrendChart() {
 function escapeHtml(str) {
     if (!str) return '';
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Live mode polling ─────────────────────────────────────
+let _liveTimer = null;
+let _liveWasRunning = false;
+
+async function pollLive() {
+    try {
+        const r = await fetch('live.json?t=' + Date.now());
+        if (!r.ok) { hideLivePanel(); return; }
+        const d = await r.json();
+        if (d.running) {
+            _liveWasRunning = true;
+            showLivePanel(d);
+            _liveTimer = setTimeout(pollLive, 3000);
+        } else if (_liveWasRunning) {
+            // just finished
+            _liveWasRunning = false;
+            showLiveDone(d);
+            setTimeout(async () => {
+                hideLivePanel();
+                // reload dashboard data
+                allRuns = await loadHistoryIndex();
+                latestRun = await loadRunDetails(allRuns[0].date);
+                updateSummary(); updateFailureGroups(); updatePendingB2b();
+                updateSuitesTable(); updateClients(); updateTrendChart();
+            }, 3000);
+        } else {
+            hideLivePanel();
+        }
+    } catch(e) {
+        hideLivePanel();
+    }
+}
+
+function showLivePanel(d) {
+    const panel = document.getElementById('livePanel');
+    panel.classList.add('active');
+    document.getElementById('liveDoneBanner').style.display = 'none';
+    const done = d.passed + d.failed + d.skipped;
+    const pct = d.total > 0 ? Math.round(done / d.total * 100) : 0;
+    document.getElementById('livePassedVal').textContent = d.passed;
+    document.getElementById('liveFailedVal').textContent = d.failed;
+    document.getElementById('liveSkippedVal').textContent = d.skipped;
+    document.getElementById('liveDoneVal').textContent = d.total;
+    document.getElementById('liveTotalBadge').textContent = `${done}/${d.total} · ${pct}%`;
+    document.getElementById('liveProgressFill').style.width = pct + '%';
+    document.getElementById('liveCurrentTest').textContent = d.currentTest ? `▶ ${d.currentTest}` : '';
+    const recent = (d.recentTests || []).slice(0, 8);
+    document.getElementById('liveRecentTests').innerHTML = recent.map(t => {
+        const icon = t.status === 'passed' ? '✓' : t.status === 'skipped' ? '⊘' : '✘';
+        const color = t.status === 'passed' ? '#68d391' : t.status === 'skipped' ? '#718096' : '#fc8181';
+        const dur = t.duration ? `${(t.duration/1000).toFixed(1)}s` : '';
+        return `<div class="live-test-row">
+            <span class="live-test-icon" style="color:${color}">${icon}</span>
+            <span class="live-test-title">${escapeHtml(t.title)}</span>
+            <span class="live-test-dur">${dur}</span>
+        </div>`;
+    }).join('');
+}
+
+function showLiveDone(d) {
+    showLivePanel(d);
+    document.getElementById('liveCurrentTest').textContent = '';
+    document.getElementById('liveDoneBanner').style.display = 'block';
+    const title = document.querySelector('#livePanel .live-title');
+    if (title) title.textContent = 'Run completado';
+    const dot = document.querySelector('#livePanel .live-dot');
+    if (dot) { dot.style.animation = 'none'; dot.style.background = '#68d391'; }
+}
+
+function hideLivePanel() {
+    document.getElementById('livePanel').classList.remove('active');
 }
 
 document.addEventListener('DOMContentLoaded', initDashboard);
