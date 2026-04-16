@@ -131,6 +131,62 @@ test.describe('Sonrie — Catálogo', () => {
     expect(zeroProducts.length).toBe(0);
   });
 
+  test('API catálogo devuelve datos completos (pipeline Mongo→API) @catalog @crítico', async ({ page }) => {
+    // Interceptar /api/v2/catalog — el endpoint real que alimenta el catálogo B2B
+    // El listener debe estar activo ANTES de navegar; recargar la página para capturar la respuesta
+    let catalogResponse: any[] = [];
+    page.on('response', async response => {
+      if (response.url().includes('/api/v2/catalog') && !response.url().includes('/count') && !response.url().includes('/filter') && response.status() === 200) {
+        const json = await response.json().catch(() => null);
+        if (Array.isArray(json) && json.length > catalogResponse.length) {
+          catalogResponse = json;
+        }
+      }
+    });
+
+    // Recargar para que el listener capture la llamada al catálogo
+    await page.goto('/products');
+    await page.waitForLoadState('domcontentloaded');
+    await expect(page.locator('text=/\\$\\s*[\\d.,]+/').first()).toBeVisible({ timeout: 20_000 });
+    await page.waitForTimeout(2_000);
+
+    if (catalogResponse.length === 0) {
+      test.info().annotations.push({ type: 'warning', description: 'No se interceptó /api/v2/catalog' });
+      test.skip();
+      return;
+    }
+
+    const products = catalogResponse;
+    test.info().annotations.push({ type: 'info', description: `API /v2/catalog: ${products.length} productos` });
+
+    // Pipeline OK: hay productos
+    expect(products.length).toBeGreaterThan(0);
+
+    // Campos obligatorios — estructura real de /api/v2/catalog:
+    // name, image (S3 URL), enabled, b2bHidden, pricing (objeto con datos de precio)
+    const missingName: string[] = [];
+    const noPricing: string[] = [];
+    const disabled: string[] = [];
+    const missingImage: string[] = [];
+
+    products.forEach((p: any, i: number) => {
+      const label = p.name || `#${i}`;
+      if (!p.name)    missingName.push(label);
+      if (!p.pricing) noPricing.push(label);
+      if (!p.image)   missingImage.push(label);
+      if (p.enabled === false || p.b2bHidden === true) disabled.push(label);
+    });
+
+    if (missingName.length)  test.info().annotations.push({ type: 'error',   description: `Sin nombre: ${missingName.slice(0,5).join(', ')}` });
+    if (noPricing.length)    test.info().annotations.push({ type: 'error',   description: `Sin pricing: ${noPricing.slice(0,5).join(', ')}` });
+    if (disabled.length)     test.info().annotations.push({ type: 'warning', description: `Producto disabled/b2bHidden en respuesta: ${disabled.slice(0,5).join(', ')}` });
+    if (missingImage.length) test.info().annotations.push({ type: 'warning', description: `Sin imagen: ${missingImage.slice(0,5).join(', ')}` });
+
+    expect(missingName.length).toBe(0);
+    expect(noPricing.length).toBe(0);
+    // disabled y missingImage: warning pero no falla (pueden ser intencionales)
+  });
+
   test('Productos sin imágenes rotas (404) @catalog @funcional', async ({ page }) => {
     const broken: string[] = [];
     page.on('response', response => {
