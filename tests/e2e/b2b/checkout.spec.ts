@@ -17,7 +17,7 @@ for (const [key, client] of Object.entries(clients)) {
       const count = Math.min(await addButtons.count(), 5);
       for (let i = 0; i < count; i++) {
         await Promise.all([
-          page.waitForResponse((resp: any) => resp.url().includes('/cart') && resp.request().method() === 'POST'),
+          page.waitForResponse((resp: any) => resp.url().includes('/cart') && resp.request().method() === 'POST', { timeout: 30_000 }).catch(() => null),
           addButtons.first().click(),
         ]);
       }

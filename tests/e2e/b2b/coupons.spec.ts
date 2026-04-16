@@ -45,12 +45,14 @@ for (const [key, client] of Object.entries(clients)) {
       await expect(page.getByText(/\d+ Producto/)).toBeVisible({ timeout: 15_000 });
     }
 
-    // Selector robusto para campo de cupón — usa CSS attribute (más fiable que regex para Unicode)
-    // "Ingresar cupón" → placeholder*="cup" captura cualquier variante (cupón, cupon, coupon)
+    // Selector robusto para campo de cupón
+    // Bastien usa floating label MUI — el texto "Ingresar cupón" es un label, NO un placeholder attr
+    // El input real es un textbox accesible por nombre del label o por proximidad al botón "Aplicar"
     function getCouponInput(page: any) {
-      return page.locator('input[placeholder*="cup" i], input[placeholder*="coupon" i], input[placeholder*="código" i], input[placeholder*="codigo" i]')
-        .or(page.locator('input[name*="coupon" i], input[id*="coupon" i], input[name*="discount" i]'))
-        .or(page.getByLabel(/cup[oó]n|descuento/i));
+      return page.getByRole('textbox', { name: /cup|ingresa/i })
+        .or(page.getByRole('button', { name: /^aplicar$/i }).locator('xpath=preceding-sibling::*/descendant::input | preceding-sibling::*//input').first())
+        .or(page.locator('input[placeholder*="cup" i], input[placeholder*="coupon" i]'))
+        .or(page.locator('input[name*="coupon" i], input[id*="coupon" i]'));
     }
 
     test(`${key}: PM1-01 Campo de cupón existe y es interactuable`, async ({ authedPage: page }) => {

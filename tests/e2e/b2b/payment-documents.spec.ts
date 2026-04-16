@@ -27,11 +27,13 @@ for (const [key, client] of Object.entries(clients)) {
       await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(2_000); // esperar render del menú lateral
 
-      // El link/opción de documentos NO debe aparecer en el menú lateral ni en nav
-      const docLink = page.getByText(/mis documentos|documentos|facturas|payment.documents/i)
-        .or(page.locator('a[href*="payment-documents"]'));
+      // El link/opción de documentos NO debe aparecer en el menú lateral ni en nav (NO el footer)
+      // Scope a nav/aside/header para excluir el footer que puede tener links a /payment-documents
+      const menuDocLink = page.locator('nav, aside, header, [role="navigation"], [role="banner"]')
+        .getByText(/mis documentos|documentos tributarios/i)
+        .or(page.locator('nav a[href*="payment-documents"], aside a[href*="payment-documents"], header a[href*="payment-documents"]'));
 
-      const isVisible = await docLink.first().isVisible({ timeout: 5_000 }).catch(() => false);
+      const isVisible = await menuDocLink.first().isVisible({ timeout: 5_000 }).catch(() => false);
       expect(isVisible, `${client.name}: "Mis documentos" visible en menú cuando enablePaymentDocumentsB2B=false`).toBe(false);
     });
 
