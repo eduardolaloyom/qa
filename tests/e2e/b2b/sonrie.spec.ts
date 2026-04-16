@@ -131,6 +131,38 @@ test.describe('Sonrie — Catálogo', () => {
     expect(zeroProducts.length).toBe(0);
   });
 
+  test('Catálogo carga mínimo 20 productos (sincronización Mongo) @catalog @funcional', async ({ page }) => {
+    await expect(page.locator('text=/\\$\\s*[\\d.,]+/').first()).toBeVisible({ timeout: 20_000 });
+    const productCards = page.locator('[class*="ProductCard"], [class*="product-card"]')
+      .or(page.locator('[class*="card"]').filter({ has: page.locator('text=/\\$\\s*[\\d.,]+/') }));
+    await page.waitForTimeout(2_000);
+    const count = await productCards.count();
+    if (count < 20) {
+      test.info().annotations.push({ type: 'warning', description: `Solo ${count} productos visibles — posible problema de sincronización Mongo` });
+    }
+    expect(count).toBeGreaterThanOrEqual(20);
+  });
+
+  test('Productos sin imágenes rotas (404) @catalog @funcional', async ({ page }) => {
+    const broken: string[] = [];
+    page.on('response', response => {
+      const url = response.url();
+      if (
+        response.status() === 404 &&
+        /\.(jpg|jpeg|png|webp|gif|svg)/i.test(url) &&
+        !url.includes('favicon')
+      ) {
+        broken.push(url.split('/').pop() || url);
+      }
+    });
+    await expect(page.locator('text=/\\$\\s*[\\d.,]+/').first()).toBeVisible({ timeout: 20_000 });
+    await page.waitForTimeout(3_000);
+    if (broken.length > 0) {
+      test.info().annotations.push({ type: 'error', description: `${broken.length} imagen(es) 404: ${broken.slice(0, 5).join(', ')}` });
+    }
+    expect(broken.length).toBe(0);
+  });
+
   test('Buscar producto por nombre @catalog @funcional', async ({ page }) => {
     const searchInput = page.getByPlaceholder(/buscar/i);
     await expect(searchInput).toBeVisible({ timeout: 15_000 });

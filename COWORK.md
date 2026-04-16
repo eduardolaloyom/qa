@@ -141,6 +141,7 @@ C1-08 Logout: PASS/FAIL — [observación]
 | ID | Qué validar | Cómo hacerlo | Resultado esperado |
 |----|------------|--------------|-------------------|
 | C2-01 | Catálogo carga con productos | Ir a `/products` | Productos visibles con nombre, precio, imagen |
+| C2-04 | Fotos de productos | Scroll por las primeras 2 páginas del catálogo | Todos los productos tienen foto real (no placeholder gris/icono roto). Anotar cantidad sin foto si las hay |
 | C2-02 | Búsqueda por nombre | Escribir término en buscador → Enter | Resultados relevantes, URL con `?name=...` |
 | C2-05 | Agregar al carrito | Click en "Agregar" en un producto | Total del carrito actualiza, ícono muestra cantidad |
 | C2-06 | Cantidad mínima | Intentar agregar menos de la cantidad mínima del producto (si tiene `MinUnit`) | Sistema corrige o bloquea, no permite |
@@ -152,6 +153,7 @@ C1-08 Logout: PASS/FAIL — [observación]
 ```
 [C2] FLUJO DE COMPRA — {CLIENTE}
 C2-01 Catálogo carga: PASS/FAIL — [cantidad productos aproximada]
+C2-04 Fotos: PASS/FAIL/PARCIAL — [N productos sin foto si los hay]
 C2-02 Búsqueda: PASS/FAIL — [término buscado, resultados]
 C2-05 Agregar carrito: PASS/FAIL — [producto agregado]
 C2-06 Cantidad mínima: PASS/FAIL/N/A — [MinUnit del producto, comportamiento]
