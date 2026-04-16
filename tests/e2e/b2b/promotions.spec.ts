@@ -72,7 +72,7 @@ for (const [key, client] of Object.entries(clients)) {
       try {
         await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });
       } catch {
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(4000);
         await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });
       }
 

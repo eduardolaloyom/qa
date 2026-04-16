@@ -6,7 +6,12 @@ for (const [key, client] of Object.entries(clients)) {
   test.describe(`C2 — Carrito de compras: ${client.name}`, () => {
 
     test.beforeEach(async ({ authedPage: page }) => {
-      await page.goto(`${client.baseURL}/products`);
+      try {
+        await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });
+      } catch {
+        await page.waitForTimeout(2000);
+        await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });
+      }
       await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });
     });
 

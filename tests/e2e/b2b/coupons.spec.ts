@@ -45,11 +45,12 @@ for (const [key, client] of Object.entries(clients)) {
       await expect(page.getByText(/\d+ Producto/)).toBeVisible({ timeout: 15_000 });
     }
 
-    // Selector robusto para campo de cupón: soporta diferentes labels y placeholders
+    // Selector robusto para campo de cupón — usa CSS attribute (más fiable que regex para Unicode)
+    // "Ingresar cupón" → placeholder*="cup" captura cualquier variante (cupón, cupon, coupon)
     function getCouponInput(page: any) {
-      return page.getByPlaceholder(/cup[oó]n|ingresar cup|c[oó]digo promo/i)
-        .or(page.getByLabel(/cup[oó]n|c[oó]digo promo|descuento/i))
-        .or(page.locator('input[name*="coupon" i], input[id*="coupon" i], input[name*="discount" i]'));
+      return page.locator('input[placeholder*="cup" i], input[placeholder*="coupon" i], input[placeholder*="código" i], input[placeholder*="codigo" i]')
+        .or(page.locator('input[name*="coupon" i], input[id*="coupon" i], input[name*="discount" i]'))
+        .or(page.getByLabel(/cup[oó]n|descuento/i));
     }
 
     test(`${key}: PM1-01 Campo de cupón existe y es interactuable`, async ({ authedPage: page }) => {
@@ -174,6 +175,7 @@ for (const [key, client] of Object.entries(clients)) {
 
       const confirmButton = page.getByRole('button', { name: /confirmar|crear pedido|finalizar/i });
       await expect(confirmButton.first()).toBeVisible({ timeout: 10_000 });
+      await confirmButton.first().scrollIntoViewIfNeeded();
 
       const [response] = await Promise.all([
         page.waitForResponse(
