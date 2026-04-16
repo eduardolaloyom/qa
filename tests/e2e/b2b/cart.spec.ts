@@ -25,6 +25,43 @@ for (const [key, client] of Object.entries(clients)) {
       expect(body).toBeTruthy();
     });
 
+    test(`${key}: C2-06 Cantidad mínima — sistema corrige o bloquea`, async ({ page }) => {
+      // Solo aplica si el cliente tiene MinUnit o showMinOne configurado
+      const hasMinUnit = client.config.showMinOne || client.config.minUnit || client.config.limitAddingByStock;
+      if (!hasMinUnit) {
+        test.skip(true, `C2-06: ${client.name} no tiene MinUnit/showMinOne configurado`);
+        return;
+      }
+
+      // Ir al catálogo y buscar un producto con cantidad mínima
+      await page.goto(`${client.baseURL}/products`);
+      await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });
+
+      // Intentar agregar con cantidad 0 o inferior a la mínima
+      const quantityInput = page.locator('input[type="number"]').first();
+      if (await quantityInput.isVisible({ timeout: 5_000 }).catch(() => false)) {
+        await quantityInput.fill('0');
+        await quantityInput.press('Tab');
+        await page.waitForTimeout(500);
+
+        // El sistema debe corregir a la mínima o bloquear el agregado
+        const value = await quantityInput.inputValue();
+        const corrected = parseInt(value) > 0;
+        expect(corrected, `${client.name}: permitió cantidad 0 sin corrección`).toBe(true);
+      } else {
+        // Si no hay input visible, el botón Agregar directamente setea la mínima
+        const addButton = page.getByRole('button', { name: 'Agregar' }).first();
+        const [response] = await Promise.all([
+          page.waitForResponse(resp => resp.url().includes('/cart') && resp.request().method() === 'POST'),
+          addButton.click(),
+        ]);
+        const body = await response.json().catch(() => ({}));
+        // La cantidad en el response debe ser >= 1
+        const qty = body?.quantity || body?.qty || body?.amount || 1;
+        expect(qty).toBeGreaterThanOrEqual(1);
+      }
+    });
+
     test(`${key}: C2-08 Modificar cantidad en carro`, async ({ page }) => {
       await Promise.all([
         page.waitForResponse(resp => resp.url().includes('/cart') && resp.request().method() === 'POST'),

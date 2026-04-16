@@ -56,6 +56,36 @@
 
 ---
 
+## Cobertura Ejecutada
+
+| Caso | Tier | Modo | Estado | Observación |
+|------|------|------|--------|-------------|
+| C1 Login | 1 | A | ✓ Completo / ✗ Falla / ⚠️ Parcial | |
+| C2 Compra | 1 | A | ✓ Completo / ✗ Falla / ⚠️ Parcial | |
+| C3 Precios | 1 | B | ✓ Completo / ✗ Falla / ⚠️ Parcial | |
+| C7 Documentos | 1 | C | ✓ Completo / N/A (flag=false) | enablePaymentDocumentsB2B={valor} |
+| C5 Recomendados | 2 | D | ✓ Completo / N/A | |
+| C9 Seguimiento | 2 | D | ✓ Completo / N/A | |
+| C10 Bloqueado | 2 | D | ✓ Completo / N/A | |
+| A2 Gestión comercios | 2 | D | ✓ Completo / N/A | |
+| A3 Config tienda | 2 | D | ✓ Completo / N/A | |
+
+**Tier 1 ejecutados:** {X}/5 · **Tier 2 ejecutados:** {X}/4
+
+---
+
+## Staging Blockers
+
+Casos que no pudieron ejecutarse por falta de datos en el ambiente staging. Requieren configuración antes del próximo ciclo QA.
+
+| Caso | Bloqueador | Qué se necesita para desbloquearlo |
+|------|-----------|-------------------------------------|
+| | | |
+
+> Si no hubo blockers → escribir "Ninguno".
+
+---
+
 ## Gate de Rollout
 
 | Criterio | Cumple |

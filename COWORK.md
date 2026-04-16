@@ -14,19 +14,25 @@
 | Modo | Qué cubre | Tiempo |
 |------|-----------|--------|
 | **A — Login + Compra** | C1 + C2 | ~20 min |
-| **B — Precios + Config** | C3 + validación de flags | ~15 min |
-| **C — Documentos** | C7 | ~10 min |
-| **D — Tier 2** | C9, C10, C5 | ~20 min |
-| **FULL** | Todo lo anterior en orden | ~60 min |
+| **B — Precios + Config** | C3 + validación de flags + PM regressions | ~20 min |
+| **C — Documentos** | C7 (solo si `enablePaymentDocumentsB2B=true`) | ~10 min |
+| **D — Tier 2** | C5, C9, C10, A2, A3 | ~25 min |
+| **FULL** | Todo lo anterior en orden | ~70 min |
 
 Una vez confirmado el modo, ejecuta **solo ese scope**.
+
+**Lógica de modos condicionales:**
+- Después de B: si `enablePaymentDocumentsB2B=false` → saltar C, ir directo a D
+- Modo D incluye Admin (A2/A3) solo si tienes acceso a `admin.youorder.me`
 
 **Al terminar el modo, produce siempre este bloque de Handoff:**
 ```
 HANDOFF — {CLIENTE} — Modo {A/B/C/D} — {FECHA}
-Completado: [C1 ✓/✗] [C2 ✓/✗] [C3 ✓/✗] [C7 N/A] [A1 ✓/✗]
+Completado: [C1 ✓/✗] [C2 ✓/✗] [C3 ✓/✗] [C7 ✓/✗/N/A — enablePaymentDocumentsB2B={valor}] [D ✓/✗/N/A]
 Issues encontrados: {lista de IDs o "ninguno"}
-SIGUIENTE MODO A EJECUTAR: {B / C / D / "completo — emitir veredicto final"}
+SIGUIENTE MODO: {B / C / D / "FULL completo — emitir veredicto final"}
+Staging blockers: {casos no ejecutables y por qué, o "ninguno"}
+Coverage: Tier 1 ejecutados: {X/Y} · Tier 2: {X/Y}
 Contexto: {credenciales usadas, flags confirmados, estado del carrito}
 ```
 
@@ -38,7 +44,7 @@ Si es el primer modo del día, el archivo se crea. Los modos siguientes se agreg
 
 **Si recibes un bloque HANDOFF junto con este documento:**
 1. Léelo primero
-2. El modo a ejecutar es el que dice `SIGUIENTE MODO A EJECUTAR`
+2. El modo a ejecutar es el que dice `SIGUIENTE MODO`
 3. No preguntes el modo — ya está definido en el HANDOFF
 4. Confirma solamente: _"Voy a ejecutar Modo X para {CLIENTE}. ¿Correcto?"_
 
@@ -149,9 +155,9 @@ C2-01 Catálogo carga: PASS/FAIL — [cantidad productos aproximada]
 C2-02 Búsqueda: PASS/FAIL — [término buscado, resultados]
 C2-05 Agregar carrito: PASS/FAIL — [producto agregado]
 C2-06 Cantidad mínima: PASS/FAIL/N/A — [MinUnit del producto, comportamiento]
-C2-11 Crear pedido: PASS/FAIL — [número de orden]
-C2-12 Doble submit: PASS/FAIL — [botón se deshabilitó: sí/no]
-C2-13 En historial: PASS/FAIL — [orden visible]
+C2-11 Crear pedido: PASS/FAIL/BLOCKED — [número de orden o razón del bloqueo]
+C2-12 Doble submit: PASS/FAIL/N/A — [botón se deshabilitó: sí/no]
+C2-13 En historial: PASS/FAIL/N/A — [orden visible]
 ```
 
 ---
@@ -180,7 +186,7 @@ C2-13 En historial: PASS/FAIL — [orden visible]
 [C3] PRECIOS Y DESCUENTOS — {CLIENTE}
 C3-01 Precio base visible: PASS/FAIL — [ejemplo: "$1.200 CLP"]
 C3-02 Precio con descuento: PASS/FAIL/N/A — [había promociones: sí/no]
-C3-14 Cupón válido: PASS/FAIL/N/A — [cupón usado, descuento aplicado]
+C3-14 Cupón válido: PASS/FAIL/N/A/BLOCKED — [cupón usado, descuento aplicado, o razón bloqueo]
 C3-15 Cupón inválido: PASS/FAIL — [mensaje de error]
 C3-17/18 Precios por segmento: PASS/FAIL/N/A — [observación]
 ```
@@ -190,21 +196,32 @@ C3-17/18 Precios por segmento: PASS/FAIL/N/A — [observación]
 ### [C7] Documentos Tributarios · `Modo C`
 
 **URL:** `/orders`, `/payment-documents`  
-**Tiempo:** ~5 min — solo si el cliente tiene `enablePaymentDocumentsB2B: true`
+**Tiempo:** ~5 min
+
+**Condición:** Ejecutar solo si `enablePaymentDocumentsB2B: true`. Si el flag es `false`, igual verifica que `/payment-documents` NO sea accesible y el link no aparezca en el menú — si aparece, es un bug.
 
 | ID | Qué validar | Cómo hacerlo | Resultado esperado |
 |----|------------|--------------|-------------------|
 | C7-10 | Facturas visibles en B2B | En `/orders` buscar botón/link de facturas | Botón "Ver facturas" visible (si flag=true) |
 | C7-11 | Lista de facturas en menú | Buscar en menú lateral opción de facturas/documentos | Opción "Facturas" o "Documentos" en menú |
 | C7-12 | Badge documentos pendientes | Ver si aparece badge/indicador en menú | Número o indicador de documentos pendientes |
+| C7-INV | Link oculto cuando flag=false | Sin cerrar sesión, verificar menú lateral | "Mis documentos" NO aparece en menú si flag=false |
 
-**Si el cliente no tiene `enablePaymentDocumentsB2B: true` → marcar todos como N/A.**
+**Formato de reporte C7:**
+```
+[C7] DOCUMENTOS — {CLIENTE}
+enablePaymentDocumentsB2B: {true/false}
+C7-10 Facturas en /orders: PASS/FAIL/N/A — [observación]
+C7-11 Opción en menú: PASS/FAIL/N/A — [observación]
+C7-12 Badge pendientes: PASS/FAIL/N/A — [número visible]
+C7-INV Link oculto (flag=false): PASS/FAIL/N/A — [visible cuando no debería: sí/no]
+```
 
 ---
 
 ### Validación de Configuración B2B · `Modo B`
 
-Después del flujo de compra, valida que los flags del cliente se reflejan correctamente:
+Después del flujo de compra, valida que los flags del cliente se reflejan correctamente en la UI. Usar la config del cliente de `data/qa-matrix.json` como fuente de verdad.
 
 | Flag | ¿Cómo se ve si está activo? | Verificar en |
 |------|-----------------------------|-------------|
@@ -218,24 +235,159 @@ Después del flujo de compra, valida que los flags del cliente se reflejan corre
 | `hasAllDistributionCenters` | Botón "Ver stock / Centros" en tarjeta | `/products` |
 | `anonymousAccess` | Catálogo visible sin login | `/products` sin sesión |
 | `anonymousHidePrice` | Precios ocultos sin login | `/products` sin sesión |
+| `anonymousHideCart` | Carrito oculto sin login | `/products` sin sesión |
 | `pendingDocuments` | Badge/notificación en menú | Cualquier página |
 | `enablePaymentDocumentsB2B` | Botón facturas en lista de órdenes | `/orders` |
 | `enableInvoicesList` | Opción facturas en menú | Menú lateral |
 | `enableKhipu` | Opción "Pagar con Khipu" en checkout | `/cart` |
 | `disableObservationInput` | Campo notas ausente en carrito | `/cart` |
 | `inMaintenance` | Mensaje/página de mantenimiento | Cualquier URL |
+| `enableChooseSaleUnit` | Selector de unidad de venta en tarjeta | `/products` |
+| `hasMultiUnitEnabled` | Selector multi-unidad en tarjeta de producto | `/products` |
+| `ordersRequireAuthorization` | Órdenes en estado "Pendiente aprobación" | `/orders` |
+| `limitAddingByStock` | Botón "Agregar" bloqueado si stock=0 | `/products` |
+| `disableShowDiscount` | Descuentos/badges de promoción ocultos | `/products` |
+| `hideReceiptType` | Sin selector tipo documento en checkout | `/cart` |
+| `hasTransferPaymentType` | Opción "Transferencia" en checkout | `/cart` |
+| `enableMassiveOrderSend` | Botón envío masivo en historial | `/orders` |
+| `enableCreditNotes` | Opción notas de crédito en documentos | `/payment-documents` |
+
+**Regla:** Para cada flag, anota valor de config (true/false) y lo que observas en la UI. Si difieren → issue P2.
 
 ---
 
 ## 5. Flujos Tier 2 · Modo D
 
-| ID | Flujo | Plataforma | Cómo validar |
-|----|-------|-----------|--------------|
-| C9 | Seguimiento de pedido | B2B | Ir a `/orders` → click en orden → estados se actualizan |
-| C10 | Comercio con crédito bloqueado | B2B | Login con comercio BLOQUEADO → intenta comprar → acceso restringido |
-| C5 | Canasta base / recomendaciones | B2B | En catálogo, buscar sección "Recomendados" o "Para ti" → productos sugeridos |
-| A2 | Gestión de comercios | Admin | En Admin → Comercios → activar/desactivar un comercio |
-| A3 | Configuración de tienda | Admin | En Admin → Configuración → cambiar algún setting visible |
+Ejecuta en este orden. Admin (A2/A3) solo si tienes acceso a `admin.youorder.me` del cliente.
+
+---
+
+### [C5] Canasta Base / Recomendaciones · `Modo D`
+
+**URL:** `/products`  
+**Tiempo:** ~5 min
+
+| ID | Qué validar | Cómo hacerlo | Resultado esperado |
+|----|------------|--------------|-------------------|
+| C5-01 | Sección recomendados visible | En `/products` buscar sección "Recomendados", "Para ti" u "Ofertas" | Sección con productos sugeridos visible |
+| C5-02 | Productos sugeridos tienen precio | Ver tarjetas en sección recomendados | Precio visible (o N/A si hidePrices=true) |
+| C5-03 | Agregar recomendado al carrito | Click "Agregar" en producto recomendado | Se agrega correctamente al carrito |
+
+**Si el cliente no tiene recomendaciones configuradas → marcar C5 como N/A.**
+
+**Formato de reporte C5:**
+```
+[C5] RECOMENDACIONES — {CLIENTE}
+C5-01 Sección recomendados: PASS/FAIL/N/A — [sección encontrada: sí/no, nombre]
+C5-02 Precios en recomendados: PASS/FAIL/N/A — [ejemplo de precio]
+C5-03 Agregar recomendado: PASS/FAIL/N/A — [producto agregado]
+```
+
+---
+
+### [C9] Seguimiento de Pedido · `Modo D`
+
+**URL:** `/orders`  
+**Tiempo:** ~5 min — requiere que C2-11 haya creado una orden
+
+| ID | Qué validar | Cómo hacerlo | Resultado esperado |
+|----|------------|--------------|-------------------|
+| C9-01 | Orden tiene estado visible | `/orders` → click en orden creada en C2-11 | Muestra estado actual (ej: "Recibido", "En proceso", "Despachado") |
+| C9-02 | Detalle de orden accesible | Click en número de orden en la lista | Abre detalle con productos, totales y estado |
+| C9-03 | Historial de estados (si aplica) | En detalle de orden, buscar timeline de estados | Progresión de estados visible |
+
+**Formato de reporte C9:**
+```
+[C9] SEGUIMIENTO DE PEDIDO — {CLIENTE}
+C9-01 Estado visible: PASS/FAIL/N/A — [estado mostrado]
+C9-02 Detalle accesible: PASS/FAIL — [URL abierta]
+C9-03 Timeline de estados: PASS/FAIL/N/A — [estados que aparecen]
+```
+
+---
+
+### [C10] Comercio con Crédito Bloqueado · `Modo D`
+
+**URL:** `{base_url}/auth/jwt/login`  
+**Tiempo:** ~5 min — requiere credenciales de un comercio con estado BLOQUEADO
+
+| ID | Qué validar | Cómo hacerlo | Resultado esperado |
+|----|------------|--------------|-------------------|
+| C10-01 | Login con comercio bloqueado | Ingresar credenciales de comercio BLOQUEADO | Mensaje de acceso restringido, no entra al catálogo |
+| C10-02 | Intento de compra bloqueado | Si logra entrar → intentar crear pedido | Botón "Confirmar pedido" deshabilitado o error claro |
+
+**Si no tienes credenciales de comercio BLOQUEADO → marcar C10 como N/A y anotar en staging blockers.**
+
+**Formato de reporte C10:**
+```
+[C10] COMERCIO BLOQUEADO — {CLIENTE}
+C10-01 Login bloqueado: PASS/FAIL/N/A — [mensaje mostrado]
+C10-02 Compra bloqueada: PASS/FAIL/N/A — [comportamiento]
+```
+
+---
+
+### [A2] Gestión de Comercios · `Modo D` (Admin)
+
+**URL:** `admin.youorder.me` → Comercios  
+**Tiempo:** ~5 min
+
+| ID | Qué validar | Cómo hacerlo | Resultado esperado |
+|----|------------|--------------|-------------------|
+| A2-01 | Listado de comercios accesible | Admin → sección Comercios | Lista de comercios del cliente visible |
+| A2-02 | Activar/desactivar comercio | Seleccionar un comercio → toggle activo/inactivo | Estado cambia, confirmación visible |
+| A2-03 | Cambio refleja en B2B | Desactivar comercio → intentar login en B2B con ese comercio | Login bloqueado o catálogo vacío |
+
+**Formato de reporte A2:**
+```
+[A2] GESTIÓN COMERCIOS (Admin) — {CLIENTE}
+A2-01 Listado accesible: PASS/FAIL/N/A — [cantidad comercios visibles]
+A2-02 Toggle activo: PASS/FAIL/N/A — [observación]
+A2-03 Reflejo en B2B: PASS/FAIL/N/A — [comportamiento en B2B]
+```
+
+---
+
+### [A3] Configuración de Tienda · `Modo D` (Admin)
+
+**URL:** `admin.youorder.me` → Configuración  
+**Tiempo:** ~5 min
+
+| ID | Qué validar | Cómo hacerlo | Resultado esperado |
+|----|------------|--------------|-------------------|
+| A3-01 | Acceso a configuración | Admin → Configuración o Settings | Pantalla de settings visible |
+| A3-02 | Banners configurables | Buscar sección de banners | Lista de banners, posibilidad de editar |
+| A3-03 | Cambio visible en B2B | Modificar un setting menor (ej: banner) → abrir B2B | Cambio reflejado en la tienda |
+
+**Formato de reporte A3:**
+```
+[A3] CONFIGURACIÓN TIENDA (Admin) — {CLIENTE}
+A3-01 Acceso configuración: PASS/FAIL/N/A — [observación]
+A3-02 Banners configurables: PASS/FAIL/N/A — [observación]
+A3-03 Reflejo en B2B: PASS/FAIL/N/A — [observación]
+```
+
+---
+
+## 6. Regresión Post-Mortems · Al final del Modo B
+
+Bloque rápido (~5 min) para verificar que incidentes pasados no regresaron. Solo casos que apliquen al cliente.
+
+| PM | Qué revisar | Cómo | Esperado |
+|----|-------------|------|----------|
+| PM2 | Cupón aplicado 2 veces | `/cart` → aplicar cupón → refresh → verificar total | Descuento aplicado una sola vez |
+| PM5 | Promoción activa muestra badge | `/products` → buscar producto en promoción | Badge "Promoción" o precio tachado visible |
+| PM7 | Carga lenta con `lazyLoadingPrices` | Si flag=true → scroll por catálogo | Precios cargan progresivamente, sin blank permanente |
+
+**Si el cliente no tiene el feature relevante → marcar como N/A.**
+
+**Formato de reporte PM:**
+```
+[PM] REGRESIÓN POST-MORTEMS — {CLIENTE}
+PM2 Cupón doble: PASS/FAIL/N/A — [observación]
+PM5 Badge promoción: PASS/FAIL/N/A — [productos con badge vistos]
+PM7 Lazy loading precios: PASS/FAIL/N/A — [lazyLoadingPrices={valor}]
+```
 
 ---
 
@@ -281,13 +433,17 @@ Al terminar todos los flujos:
 | C1 Login | ✓ PASS / ✗ FAIL | — |
 | C2 Compra | ✓ PASS / ✗ FAIL | {ID si hay} |
 | C3 Precios | ✓ PASS / ✗ FAIL | — |
-| C7 Documentos | ✓ PASS / N/A | — |
-| A1 Admin | ✓ PASS / ✗ FAIL | — |
+| C7 Documentos | ✓ PASS / ✗ FAIL / N/A | — |
+| C5 Recomendados | ✓ PASS / ✗ FAIL / N/A | — |
+| C9 Seguimiento | ✓ PASS / ✗ FAIL / N/A | — |
+| C10 Bloqueado | ✓ PASS / ✗ FAIL / N/A | — |
+| A2/A3 Admin | ✓ PASS / ✗ FAIL / N/A | — |
 
 VEREDICTO FINAL: LISTO / CON CONDICIONES / NO APTO
 
 Justificación: {una línea}
 Issues encontrados: {lista de IDs}
+Staging blockers: {qué no se pudo testear y por qué}
 Próximos pasos: {qué debe hacerse antes de producción}
 ```
 
@@ -340,19 +496,23 @@ Al terminar el scope del modo, produce **siempre** este bloque antes de cerrar:
 
 ```
 HANDOFF — {CLIENTE} — Modo {A/B/C/D/FULL} — {FECHA}
-Completado: [C1 ✓/✗] [C2 ✓/✗] [C3 ✓/✗] [C7 N/A] [A1 ✓/✗]
+Completado: [C1 ✓/✗] [C2 ✓/✗] [C3 ✓/✗] [C7 ✓/✗/N/A — enablePaymentDocumentsB2B={valor}] [D ✓/✗/N/A]
 Issues encontrados: {lista de IDs o "ninguno"}
-SIGUIENTE MODO A EJECUTAR: {B / C / D / "completo — emitir veredicto final"}
+SIGUIENTE MODO: {B / C / D / "FULL completo — emitir veredicto final"}
+Staging blockers: {casos no ejecutables: motivo — o "ninguno"}
+Coverage: Tier 1 ejecutados: {X/Y} · Tier 2: {X/Y}
 Contexto: {credenciales usadas, flags confirmados, estado del carrito, algo relevante para continuar}
 ```
 
 **Ejemplo:**
 ```
-HANDOFF — new-soprole — Modo A — 2026-04-08
-Completado: [C1 ✓] [C2 ✓]
-Issues encontrados: new-soprole-QA-001 (P2 — botón Confirmar pedido tarda 8s)
-SIGUIENTE MODO A EJECUTAR: B
-Contexto: Login con eduardo+newsoproleadmin@yom.ai. Carrito limpio al terminar. enableCoupons=true confirmado.
+HANDOFF — Bastien — Modo A+B — 2026-04-15
+Completado: [C1 ✓] [C2 ✓*] [C3 ✓*] [C7 N/A — enablePaymentDocumentsB2B=false] [D pendiente]
+Issues encontrados: Bastien-QA-002 (P2 — Mis documentos visible con flag=false)
+SIGUIENTE MODO: D
+Staging blockers: C3-14 (sin cupones activos en staging), C10 (sin comercio BLOQUEADO en fixture)
+Coverage: Tier 1 ejecutados: 4/5 · Tier 2: 0/3
+Contexto: Login con eduardo+bastien@yom.ai / laloyom123. JWT commerceId 69dfe43b49e61a9c00a03e25. Carrito limpio.
 ```
 
 Para continuar: pegar COWORK.md + el bloque HANDOFF al inicio de la siguiente sesión.

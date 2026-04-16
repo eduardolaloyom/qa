@@ -82,8 +82,8 @@ for (const [key, client] of Object.entries(clients)) {
       }
     });
 
-    test(`${key}: C3-05 Campo de cupon visible en carro`, async ({ authedPage: page }) => {
-      // enableCoupons=true
+    test(`${key}: C3-14 Campo de cupon visible en carro (enableCoupons)`, async ({ authedPage: page }) => {
+      // enableCoupons=true — C3-14 canónico: campo cupón visible cuando flag activo
       await page.goto(`${client.baseURL}/products`);
       await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });
 
@@ -102,6 +102,46 @@ for (const [key, client] of Object.entries(clients)) {
         .or(page.getByText(/cup[oó]n/i))
         .or(page.getByRole('button', { name: /aplicar/i }));
       await expect(couponField.first()).toBeVisible({ timeout: 10_000 });
+    });
+
+    test(`${key}: C3-15 Cupon invalido muestra error claro`, async ({ authedPage: page }) => {
+      if (!client.config.enableCoupons) {
+        test.skip(true, `C3-15: ${client.name} no tiene enableCoupons=true`);
+        return;
+      }
+
+      await page.goto(`${client.baseURL}/products`);
+      await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });
+
+      await Promise.all([
+        page.waitForResponse(resp => resp.url().includes('/cart') && resp.request().method() === 'POST'),
+        page.getByRole('button', { name: 'Agregar' }).first().click(),
+      ]);
+
+      await page.goto(`${client.baseURL}/cart`);
+      await expect(page.getByText(/\d+ Producto/)).toBeVisible({ timeout: 15_000 });
+
+      // Ingresar código inventado
+      const couponInput = page.getByPlaceholder(/cup[oó]n/i)
+        .or(page.locator('input[name*="coupon" i], input[id*="coupon" i]'))
+        .first();
+
+      if (await couponInput.isVisible({ timeout: 5_000 }).catch(() => false)) {
+        await couponInput.fill('CODIGO_INVALIDO_QA_TEST_XYZ');
+
+        const applyBtn = page.getByRole('button', { name: /aplicar/i })
+          .or(page.getByText(/aplicar/i))
+          .first();
+        await applyBtn.click();
+        await page.waitForLoadState('networkidle');
+
+        // Debe mostrar un mensaje de error claro — no aplicar descuento silenciosamente
+        const errorMsg = page.getByText(/inv[aá]lido|no existe|vencido|error|incorrecto/i)
+          .or(page.locator('[class*="error" i], [class*="alert" i], [role="alert"]'));
+        await expect(errorMsg.first()).toBeVisible({ timeout: 10_000 });
+      } else {
+        test.skip(true, `C3-15: ${client.name} no tiene campo de cupón accesible en /cart`);
+      }
     });
 
     test(`${key}: C3-11 Precio bruto vs neto — impuestos segun config`, async ({ authedPage: page }) => {

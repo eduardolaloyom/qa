@@ -74,6 +74,27 @@ test.describe('C1 — Login de Comercio', () => {
     await expect(page).toHaveURL(/auth|login/, { timeout: 15_000 });
   });
 
+  test('C1-05: Comercio bloqueado no puede acceder', async ({ page }) => {
+    const blockedEmail = process.env.BLOCKED_COMMERCE_EMAIL || '';
+    const blockedPassword = process.env.BLOCKED_COMMERCE_PASSWORD || '';
+
+    if (!blockedEmail || !blockedPassword) {
+      test.skip(true, 'C1-05: Sin credenciales de comercio BLOQUEADO (BLOCKED_COMMERCE_EMAIL/PASSWORD no definidas)');
+      return;
+    }
+
+    await loginHelper(page, blockedEmail, blockedPassword, '/auth/jwt/login');
+    await page.waitForLoadState('networkidle');
+
+    // Un comercio bloqueado debe ver un mensaje de acceso restringido o permanecer en login
+    const isBlocked =
+      await page.locator('text=/bloqueado|restringido|sin acceso|suspendido|blocked/i').isVisible({ timeout: 5_000 }).catch(() => false) ||
+      page.url().includes('auth') ||
+      page.url().includes('blocked');
+
+    expect(isBlocked, 'Comercio bloqueado pudo acceder al catálogo sin restricción').toBe(true);
+  });
+
   test('C1-07: Sesion persistente — cerrar y reabrir mantiene login', async ({ browser }) => {
     // Login en un context con storage
     const context = await browser.newContext();

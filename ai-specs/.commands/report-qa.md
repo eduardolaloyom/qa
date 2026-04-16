@@ -28,6 +28,8 @@ Generate comprehensive QA report for a client: test results summary, issue group
    - Categorizar: auth, payment, config, UI, data
    - Identificar P0/P1 bloqueantes vs. P2/P3 mejoras
    - Detectar duplicados (mismo bug reportado por Cowork y Playwright)
+   - **Extraer Staging Blockers**: del campo `Staging blockers:` de cada HANDOFF, listar qué casos no pudieron ejecutarse y por qué
+   - **Calcular cobertura**: del campo `Coverage:` de cada HANDOFF, sumar Tier 1 y Tier 2 ejecutados sobre total esperado
 
 5. **Cross-reference with sources**
    - Link failures to Linear tickets (deuda técnica, known bugs)
@@ -41,6 +43,8 @@ Generate comprehensive QA report for a client: test results summary, issue group
      - Resumen ejecutivo: modos completados, issues por severidad, veredicto
      - Cowork results: tabla por modo (A/B/C/D) con ✓/✗ por flujo
      - Playwright results: pass rate por spec
+     - **Cobertura Ejecutada**: tabla con C1/C2/C3/C7/C5/C9/C10/A2/A3 — estado y Tier 1/2 ejecutados de N
+     - **Staging Blockers**: tabla con casos no ejecutables, motivo, qué se necesita para desbloquearlos
      - Issues detallados: ID, severidad, descripción, pasos, evidencia
      - Gate de Rollout con veredicto final
      - Ship Readiness block para Slack
@@ -50,9 +54,13 @@ Generate comprehensive QA report for a client: test results summary, issue group
    - Estructura: header con cliente/fecha/veredicto, secciones colapsables por modo, tabla de issues con colores por severidad
    - Incluir enlace "← Dashboard" a `../`
 
-   **c) Actualizar `public/qa-reports/manifest.json`**
-   - Agregar entrada `{ "client": "{CLIENT}", "date": "{DATE}", "file": "{CLIENT}-{DATE}.html", "verdict": "{LISTO/CON CONDICIONES/BLOQUEADO}", "score": {N}, "modes_done": ["A","B","C","D"] }`
+   **c) Actualizar `public/manifest.json`** (manifest unificado B2B + APP)
+   - Agregar entrada con estructura estándar:
+     ```json
+     { "client": "{CLIENT}", "date": "{DATE}", "file": "qa-reports/{CLIENT}-{DATE}.html", "verdict": "{LISTO/CON_CONDICIONES/NO_APTO/BLOQUEADO}", "score": {N}, "modes_done": ["A","B","C","D"], "platform": "b2b" }
+     ```
    - No eliminar entradas anteriores, solo agregar la nueva al array `reports`
+   - Si el archivo no existe, crearlo con estructura `{ "reports": [] }`
 
 7. **Escalation (if needed)**
    - Use `templates/escalation-templates.md` for format
