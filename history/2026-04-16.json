@@ -1,10 +1,10 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T18:46:10.594329+00:00",
+  "timestamp": "2026-04-16T19:10:41.132246+00:00",
   "total": 124,
   "passed": 110,
   "failed": 6,
-  "duration": 6685,
+  "duration": 6981,
   "suites": [
     {
       "name": "cart.spec.ts",
