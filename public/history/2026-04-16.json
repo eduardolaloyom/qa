@@ -1,0 +1,48 @@
+{
+  "date": "2026-04-16",
+  "timestamp": "2026-04-16T14:58:26.643157+00:00",
+  "total": 60,
+  "passed": 59,
+  "failed": 0,
+  "duration": 103,
+  "suites": [
+    {
+      "name": "config-validation.spec.ts",
+      "tests": 60,
+      "passed": 59,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "sonrie": {
+      "name": "Sonrie (staging)",
+      "url": "https://sonrie.solopide.me",
+      "tests": 60,
+      "passed": 59,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  },
+  "failure_groups": [
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 1,
+      "tests": [
+        "[config-validation.spec.ts] sonrie: pendingDocuments=false"
+      ],
+      "clients": [
+        "config validation"
+      ]
+    }
+  ],
+  "pending_b2b": [],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}
