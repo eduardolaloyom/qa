@@ -49,6 +49,23 @@ export async function selectCommerceHelper(page: any, commerceName: string) {
 }
 
 /**
+ * Clears the cart before each test to avoid stale state from previous sessions or Cowork runs.
+ * Navigates to /cart and clicks "Eliminar todos" if the button is present.
+ */
+export async function clearCartHelper(page: any, baseURL: string) {
+  try {
+    await page.goto(`${baseURL}/cart`, { waitUntil: 'domcontentloaded' });
+    const deleteAll = page.getByRole('button', { name: /eliminar todos/i });
+    if (await deleteAll.isVisible({ timeout: 5_000 }).catch(() => false)) {
+      await deleteAll.click();
+      await page.waitForTimeout(1_000);
+    }
+  } catch {
+    // Cart clear is best-effort — don't fail the test if it errors
+  }
+}
+
+/**
  * Factory: creates a test instance with authedPage for a specific client.
  * Usage in specs:
  *
@@ -68,6 +85,9 @@ export function createClientTest(client: ClientConfig) {
       if (client.defaultCommerce) {
         await selectCommerceHelper(page, client.defaultCommerce);
       }
+
+      // Clear cart to avoid stale state from previous sessions/Cowork runs
+      await clearCartHelper(page, client.baseURL);
 
       await use(page);
       await context.close();
