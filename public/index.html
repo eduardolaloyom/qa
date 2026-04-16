@@ -988,7 +988,7 @@ let activeClientFilter = 'all';
 // ── Data loading ──────────────────────────────────────────
 
 async function loadHistoryIndex() {
-    const r = await fetch('history/index.json');
+    const r = await fetch(`history/index.json?t=${Date.now()}`);
     if (!r.ok) throw new Error('No history index');
     const data = await r.json();
     allRuns = data.runs || [];
@@ -996,7 +996,7 @@ async function loadHistoryIndex() {
 }
 
 async function loadRunDetails(date) {
-    const r = await fetch(`history/${date}.json`);
+    const r = await fetch(`history/${date}.json?t=${Date.now()}`);
     if (!r.ok) return null;
     return r.json();
 }
