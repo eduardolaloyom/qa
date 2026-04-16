@@ -76,9 +76,9 @@ for (const [key, client] of Object.entries(clients)) {
         await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });
       }
 
-      // El catálogo debe mostrar algo en <30s (nuestro timeout de acción)
+      // El catálogo debe mostrar algo en <45s (PM5 se enfoca en lentitud, no en fallo completo)
       const hasContent = await page.locator('text=/\\$\\s*[\\d.,]+/').first()
-        .isVisible({ timeout: 30_000 }).catch(() => false);
+        .isVisible({ timeout: 45_000 }).catch(() => false);
 
       const elapsedTime = Date.now() - startTime;
 

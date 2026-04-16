@@ -63,7 +63,7 @@ for (const [key, client] of Object.entries(clients)) {
       await addProductsAndGoToCart(page);
 
       const couponInput = getCouponInput(page);
-      const couponButton = page.getByRole('button', { name: /cup[oó]n|aplicar|agregar c[oó]digo/i });
+      const couponButton = page.getByRole('button', { name: /^aplicar$/i });
 
       try {
         await expect(couponInput.first().or(couponButton.first())).toBeVisible({ timeout: 10_000 });

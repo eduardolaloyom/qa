@@ -12,9 +12,9 @@ for (const [key, client] of Object.entries(clients)) {
       const addButtons = page.getByRole('button', { name: 'Agregar' });
       await addButtons.first().waitFor({ timeout: 30_000 });
 
-      // Agregar 5 productos para superar monto mínimo ($40.000)
-      // Siempre click en first() para evitar problemas de reindexado tras agregar
-      const count = Math.min(await addButtons.count(), 5);
+      // Agregar 3 productos — suficiente para superar monto mínimo
+      // Limitar a 3 para no agotar los botones Agregar visibles en la primera vista
+      const count = Math.min(await addButtons.count(), 3);
       for (let i = 0; i < count; i++) {
         await Promise.all([
           page.waitForResponse((resp: any) => resp.url().includes('/cart') && resp.request().method() === 'POST', { timeout: 30_000 }).catch(() => null),
