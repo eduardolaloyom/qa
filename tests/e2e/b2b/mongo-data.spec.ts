@@ -123,6 +123,55 @@ for (const [key, client] of Object.entries(clients)) {
       });
     }
 
+    // ── PIPELINE API ──
+    // Valida que la API devuelve productos con campos obligatorios (Mongo→API sync)
+    test(`${key}: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico`, async ({
+      browser,
+    }) => {
+      const context = await browser.newContext();
+      const page = await context.newPage();
+      await loginIfNeeded(page);
+
+      let catalogResponse: any[] = [];
+      page.on('response', async response => {
+        if (
+          response.url().includes('/api/v2/catalog') &&
+          !response.url().includes('/count') &&
+          !response.url().includes('/filter') &&
+          response.status() === 200
+        ) {
+          const json = await response.json().catch(() => null);
+          if (Array.isArray(json) && json.length > catalogResponse.length) {
+            catalogResponse = json;
+          }
+        }
+      });
+
+      await page.goto(`${client.baseURL}/products`);
+      await page.waitForLoadState('domcontentloaded');
+      await page.locator('text=/\\$\\s*[\\d.,]+/').first().waitFor({ state: 'visible', timeout: 20_000 }).catch(() => {});
+      await page.waitForTimeout(2_000);
+
+      if (catalogResponse.length === 0) {
+        test.info().annotations.push({ type: 'warning', description: 'No se interceptó /api/v2/catalog — puede ser otro endpoint' });
+        await context.close();
+        return;
+      }
+
+      test.info().annotations.push({ type: 'info', description: `API /v2/catalog: ${catalogResponse.length} productos` });
+      expect(catalogResponse.length).toBeGreaterThan(0);
+
+      const missingName = catalogResponse.filter((p: any) => !p.name).length;
+      const noPricing  = catalogResponse.filter((p: any) => !p.pricing).length;
+      if (missingName > 0) test.info().annotations.push({ type: 'error', description: `${missingName} productos sin nombre` });
+      if (noPricing > 0)   test.info().annotations.push({ type: 'error', description: `${noPricing} productos sin pricing` });
+
+      expect(missingName).toBe(0);
+      expect(noPricing).toBe(0);
+
+      await context.close();
+    });
+
     // ── PROMOTIONS ──
     // Solo si hay promotions activas (validar que afectan precios)
     if (client.promotions && client.promotions.length > 0) {

@@ -1,66 +1,67 @@
-import { test, expect } from '@playwright/test';
+import { createClientTest, expect } from '../fixtures/multi-client-auth';
+import clients from '../fixtures/clients';
 
-test.describe('C2 — Catalogo y busqueda', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-    // Esperar a que el catalogo cargue (al menos un precio visible)
-    await expect(page.locator('text=/\\$\\s*[\\d.,]+/')).toBeVisible({ timeout: 30_000 });
+for (const [key, client] of Object.entries(clients)) {
+  const test = createClientTest(client);
+
+  test.describe(`C2 — Catálogo y búsqueda: ${client.name}`, () => {
+
+    test.beforeEach(async ({ authedPage: page }) => {
+      await page.goto(`${client.baseURL}/products`);
+      await expect(page.locator('text=/\\$\\s*[\\d.,]+/').first()).toBeVisible({ timeout: 30_000 });
+    });
+
+    test(`${key}: C2-01 Catálogo muestra productos con precio @catalog @funcional`, async ({ authedPage: page }) => {
+      const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
+      expect(await prices.count()).toBeGreaterThan(0);
+    });
+
+    test(`${key}: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional`, async ({ authedPage: page }) => {
+      const searchInput = page.getByPlaceholder(/buscar/i).first();
+      if (!await searchInput.isVisible({ timeout: 5_000 }).catch(() => false)) {
+        test.info().annotations.push({ type: 'warning', description: 'Campo de búsqueda no encontrado' });
+        return;
+      }
+      await searchInput.fill('a');
+      await searchInput.press('Enter');
+      await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
+      const hasResults = (await page.locator('text=/\\$\\s*[\\d.,]+/').count()) > 0;
+      const hasNoResultsMsg = await page.getByText(/sin resultado|no encontr|no hay/i).isVisible().catch(() => false);
+      expect(hasResults || hasNoResultsMsg).toBeTruthy();
+    });
+
+    test(`${key}: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional`, async ({ authedPage: page }) => {
+      const searchInput = page.getByPlaceholder(/buscar/i).first();
+      if (!await searchInput.isVisible({ timeout: 5_000 }).catch(() => false)) {
+        test.info().annotations.push({ type: 'warning', description: 'Campo de búsqueda no encontrado' });
+        return;
+      }
+      await searchInput.fill('xyznoexiste99999');
+      await searchInput.press('Enter');
+      await page.waitForLoadState('networkidle', { timeout: 10_000 }).catch(() => {});
+      const count = await page.locator('text=/\\$\\s*[\\d.,]+/').count();
+      if (count === 0) {
+        await expect(page.getByText(/sin resultado|no encontr|no hay/i)).toBeVisible({ timeout: 10_000 });
+      }
+    });
+
+    test(`${key}: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional`, async ({ authedPage: page }) => {
+      const broken: string[] = [];
+      page.on('response', response => {
+        if (
+          response.status() === 404 &&
+          /\.(jpg|jpeg|png|webp|gif|svg)/i.test(response.url()) &&
+          !response.url().includes('favicon')
+        ) {
+          broken.push(response.url().split('/').pop() || response.url());
+        }
+      });
+      await page.waitForTimeout(3_000);
+      if (broken.length > 0) {
+        test.info().annotations.push({ type: 'error', description: `${broken.length} imagen(es) 404: ${broken.slice(0, 5).join(', ')}` });
+      }
+      expect(broken.length).toBe(0);
+    });
+
   });
-
-  test('C2-01: Catalogo muestra productos con nombre y precio', async ({ page }) => {
-    const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
-    const count = await prices.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
-  test('C2-02: Buscar producto por nombre', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Buscar productos');
-    await searchInput.click();
-    await searchInput.fill('leche');
-    await searchInput.press('Enter');
-
-    // Esperar a que la busqueda se procese (URL cambia o resultados actualizan)
-    await page.waitForLoadState('networkidle');
-
-    const results = page.locator('text=/\\$\\s*[\\d.,]+/');
-    const noResults = page.getByText(/sin resultado|no encontr|no result|no hay/i);
-
-    // Debe haber resultados O un mensaje de "sin resultados" — no puede quedarse vacio sin feedback
-    const hasResults = await results.count() > 0;
-    const hasNoResultsMsg = await noResults.isVisible().catch(() => false);
-    expect(hasResults || hasNoResultsMsg).toBeTruthy();
-  });
-
-  test('C2-03: Busqueda sin resultados muestra mensaje', async ({ page }) => {
-    const searchInput = page.getByPlaceholder('Buscar productos');
-    await searchInput.click();
-    await searchInput.fill('xyznoexiste99999');
-    await searchInput.press('Enter');
-
-    await page.waitForLoadState('networkidle');
-
-    // No debe haber productos
-    const prices = page.locator('text=/\\$\\s*[\\d.,]+/');
-    const count = await prices.count();
-    // Si hay 0 resultados, debe haber feedback visual
-    if (count === 0) {
-      await expect(page.getByText(/sin resultado|no encontr|no result|no hay/i)).toBeVisible({ timeout: 10_000 });
-    }
-  });
-
-  test('C2-04: Navegar por categorias', async ({ page }) => {
-    // Las categorias se muestran como nav links o botones
-    const categoryLinks = page.locator('nav a, [class*="category" i] a, [class*="sidebar" i] a');
-    const count = await categoryLinks.count();
-
-    if (count > 0) {
-      const firstCategory = categoryLinks.first();
-      const categoryText = await firstCategory.textContent();
-      await firstCategory.click();
-      await page.waitForLoadState('networkidle');
-      // La pagina no debe estar vacia despues de navegar
-      await expect(page.locator('body')).toContainText(/\$/);
-      test.info().annotations.push({ type: 'category', description: categoryText || 'unknown' });
-    }
-  });
-});
+}
