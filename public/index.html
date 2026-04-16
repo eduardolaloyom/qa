@@ -1609,25 +1609,32 @@ document.addEventListener('DOMContentLoaded', loadB2bVariables);
 async function loadCoworkReports() {
     const grid = document.getElementById('coworkReportsGrid');
     try {
-        const r = await fetch('qa-reports/manifest.json?v=' + Date.now());
+        const r = await fetch('manifest.json?v=' + Date.now());
         if (!r.ok) throw new Error('no manifest');
         const data = await r.json();
-        const reports = (data.reports || []).sort((a, b) => b.date.localeCompare(a.date));
+        const reports = (data.reports || [])
+            .filter(rep => rep.platform !== 'app')
+            .sort((a, b) => b.date.localeCompare(a.date));
         if (reports.length === 0) {
             grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>/report-qa {CLIENTE} {FECHA}</code> para generar el primero.</p>';
             return;
         }
         grid.innerHTML = reports.map(rep => {
-            const verdictClass = rep.verdict === 'LISTO' ? 'verdict-listo'
-                : rep.verdict === 'CON CONDICIONES' ? 'verdict-condiciones'
-                : rep.verdict === 'BLOQUEADO' ? 'verdict-bloqueado'
+            const v = rep.verdict || '';
+            const verdictClass = v === 'LISTO' ? 'verdict-listo'
+                : (v === 'CON CONDICIONES' || v === 'CON_CONDICIONES') ? 'verdict-condiciones'
+                : (v === 'BLOQUEADO' || v === 'NO_APTO') ? 'verdict-bloqueado'
                 : 'verdict-pending';
-            const modesHtml = ['A','B','C','D'].map(m => {
+            const verdictLabel = v.replace(/_/g, ' ');
+            const modesHtml = ['A','B','C','D','FULL'].map(m => {
+                const done = (rep.modes_done || []).some(d => d === m || (m === 'FULL' && (rep.modes_done || []).includes('FULL')));
+                return done ? `<span class="mode-badge done">${m}</span>` : '';
+            }).filter(Boolean).join('') || ['A','B','C','D'].map(m => {
                 const done = (rep.modes_done || []).includes(m);
                 return `<span class="mode-badge ${done ? 'done' : ''}">${m}</span>`;
             }).join('');
             const scoreHtml = rep.score ? `<div class="report-score">${rep.score}<span>/100</span></div>` : '';
-            return `<a class="report-card" href="qa-reports/${rep.file}">
+            return `<a class="report-card" href="${rep.file}">
                 <div class="report-card-header">
                     <div>
                         <div class="report-client">${escapeHtml(rep.client)}</div>
@@ -1636,7 +1643,7 @@ async function loadCoworkReports() {
                     ${scoreHtml}
                 </div>
                 <div class="report-modes">${modesHtml}</div>
-                <span class="report-verdict ${verdictClass}">${rep.verdict || 'En progreso'}</span>
+                <span class="report-verdict ${verdictClass}">${verdictLabel || 'En progreso'}</span>
             </a>`;
         }).join('');
     } catch {
@@ -1658,10 +1665,12 @@ function toggleAppClient(header) {
 async function loadAppReports() {
     const grid = document.getElementById('appReportsGrid');
     try {
-        const r = await fetch('app-reports/manifest.json?v=' + Date.now());
+        const r = await fetch('manifest.json?v=' + Date.now());
         if (!r.ok) throw new Error('no manifest');
         const data = await r.json();
-        const reports = (data.reports || []).sort((a, b) => b.date.localeCompare(a.date));
+        const reports = (data.reports || [])
+            .filter(rep => rep.platform === 'app')
+            .sort((a, b) => b.date.localeCompare(a.date));
         if (reports.length === 0) {
             grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>./tools/run-maestro.sh {cliente}</code> para generar el primero.</p>';
             return;
@@ -1687,7 +1696,7 @@ async function loadAppReports() {
             const historyHtml = reps.slice(1).map(rep => {
                 const hc = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';
                 const vc = rep.verdict === 'LISTO' ? 'verdict-listo' : rep.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones' : 'verdict-bloqueado';
-                return `<a href="app-reports/${rep.file}" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:#f9fafb;text-decoration:none;font-size:12px;color:#374151;margin-bottom:4px;">
+                return `<a href="${rep.file}" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:#f9fafb;text-decoration:none;font-size:12px;color:#374151;margin-bottom:4px;">
                     <span style="color:#9ca3af;">${rep.date}</span>
                     <span style="font-weight:600;color:${hc}">${rep.health}/100</span>
                     <span style="font-size:11px;">${rep.passed}/${rep.total} flows</span>
@@ -1710,7 +1719,7 @@ async function loadAppReports() {
                 </div>
                 <div class="app-client-body">
                     <!-- Latest report link -->
-                    <a href="app-reports/${latest.file}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;background:#fff;margin-bottom:8px;">
+                    <a href="${latest.file}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;background:#fff;margin-bottom:8px;">
                         <span style="font-size:13px;font-weight:600;color:#111827;">Ver reporte completo</span>
                         <span style="color:#9ca3af;font-size:12px;">${latest.date}</span>
                         <span style="margin-left:auto;font-size:12px;color:#667eea;">↗</span>
