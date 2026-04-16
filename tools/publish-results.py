@@ -164,8 +164,17 @@ def classify_error(error: str, annotations: list = None, title: str = "") -> tup
         action = f"Revisar logs del servidor para {', '.join(unique_urls[:2])} — retorna 500 en staging."
         return ("ambiente", reason, "dev", action)
 
-    # ── Ambiente: test infrastructure error (ENOENT / file not found) ────────
+    # ── Bug: ERR_ABORTED — page load rejected ────────────────────────────────
     e = error.lower()
+    if "err_aborted" in e or "net::err_aborted" in e:
+        url_match = re.search(r'at (https?://\S+)', error)
+        path = re.sub(r'https?://[^/]+', '', url_match.group(1)).split('?')[0] if url_match else "la URL"
+        return ("bug",
+                f"La página `{path}` es abortada — ruta bloqueada o inaccesible",
+                "dev",
+                f"La navegación a `{path}` da ERR_ABORTED en Bastien staging. Verificar que la ruta existe, que el usuario tiene permisos y que no hay un redirect bloqueante. Reproducir en staging manualmente.")
+
+    # ── Ambiente: test infrastructure error (ENOENT / file not found) ────────
     if "enoent" in e or ("no such file or directory" in e):
         return ("ambiente",
                 "Error de infraestructura del test runner — archivo temporal no encontrado",
@@ -198,8 +207,14 @@ def classify_error(error: str, annotations: list = None, title: str = "") -> tup
                 "dev",
                 "Verificar que el componente del carrito lee confirmCartText desde la config del cliente.")
 
-    # ── Ambiente: page load timeout (waitForLoadState) ───────────────────────
+    # ── Bug/Ambiente: page load timeout (waitForLoadState) ───────────────────
     if "waitforloadstate" in e and "timeout" in e:
+        # Checkout/historial timeouts are likely caused by the order not being created
+        if any(k in t for k in ("checkout", "historial", "pedido", "order", "pago", "payment", "document")):
+            return ("bug",
+                    f"Página post-checkout no carga — timeout en: {clean}" if clean else "Página post-checkout no carga",
+                    "dev",
+                    "La página no termina de cargar después del flujo de checkout. Probablemente relacionado con que el POST a /order no completa. Verificar en bastien.solopide.me que crear un pedido funciona end-to-end.")
         return ("ambiente",
                 f"Página no terminó de cargar — timeout en: {clean}" if clean else "Página no terminó de cargar (timeout)",
                 "qa",
@@ -251,19 +266,28 @@ def classify_error(error: str, annotations: list = None, title: str = "") -> tup
         m_rec = re.search(r"received:\s*(.+)", error, re.IGNORECASE)
         exp = m_exp.group(1).strip()[:40] if m_exp else "?"
         rec = m_rec.group(1).strip()[:40] if m_rec else "?"
-        if "no disponible" in e or "disponible" in rec.lower():
-            reason = f"Estado de pedido 'No disponible' sin mapear en el frontend"
-            action = "Agregar el estado 'No disponible' al mapeo de estados en el componente de historial de pedidos."
-        elif "> 0" in exp and rec in ("0", "0.0"):
-            # Count/price expected > 0 but got 0
-            reason = f"{clean}: se esperaba valor > 0 pero la app devolvió 0"
-            action = f"Verificar en staging que '{clean}' devuelve datos reales. Puede requerir seleccionar un comercio primero."
-        elif ann_texts:
-            reason = f"{clean}: valor incorrecto — {ann_texts[:80]}"
-            action = ann_texts[:200]
+        # Dedup annotation text (may repeat across retries)
+        ann_dedup = " ".join(dict.fromkeys(ann_texts.split(". "))).strip() if ann_texts else ""
+
+        if "no disponible" in (e + ann_texts.lower()):
+            # Count how many "No disponible" orders
+            count_match = re.search(r'(\d+)\s+pedidos?\s+con\s+estado', ann_dedup or ann_texts, re.IGNORECASE)
+            count_str = f"{count_match.group(1)} pedidos con" if count_match else "pedidos con"
+            reason = f"{count_str} estado 'No disponible' — estado sin mapear en el frontend"
+            action = "En YOMCL/b2b buscar el componente de historial de pedidos (OrderStatus o similar) y agregar el estado 'No disponible' al mapa de estados."
+        elif "> 0" in exp and rec.strip() in ("0", "0.0", "0\x1b[2m"):
+            if "anonym" in t or "hideprice" in t or "price" in t:
+                reason = f"Precios no visibles en catálogo anónimo (devolvió 0)"
+                action = "Falso positivo probable: sin comercio seleccionado, Bastien no muestra precios en catálogo anónimo. Agregar skip condicional para clientes que requieren comercio."
+            else:
+                reason = f"{clean}: se esperaba al menos 1 resultado pero la app devolvió 0"
+                action = f"En staging verificar que '{clean}' devuelve datos. Si el cliente requiere comercio seleccionado, el test debe seleccionarlo primero."
+        elif ann_dedup:
+            reason = f"{clean}: {ann_dedup[:100]}" if clean else ann_dedup[:120]
+            action = ann_dedup[:200]
         else:
             reason = f"{clean}: esperado {exp}, recibido {rec}" if clean else f"Valor incorrecto — esperado: {exp}, recibido: {rec}"
-            action = f"Verificar en staging el comportamiento de '{clean}'."
+            action = f"En staging comprobar manualmente el flujo '{clean}' e identificar por qué devuelve {rec} en lugar de {exp}."
         return ("bug", reason, "dev", action)
 
     if "tohaveurl" in e:
@@ -280,11 +304,14 @@ def classify_error(error: str, annotations: list = None, title: str = "") -> tup
                 f"Verificar en staging que '{clean}' funciona. Puede ser lentitud del ambiente.")
 
     # Catch null / not.toBeNull() assertion
-    if "not.tonull" in e or ("not.tobenull" in e) or ("received: null" in e):
-        return ("bug",
-                f"{clean}: la app devolvió null" if clean else "La app devolvió null",
-                "dev",
-                f"Revisar en staging que '{clean}' retorna el dato correcto.")
+    if "not.tonull" in e or "not.tobenull" in e or "received: null" in e:
+        if "cupon" in t or "cupón" in t or "orden" in t or "order" in t:
+            reason = f"{clean}: el POST al backend devolvió null"
+            action = "El servidor no respondió al crear la orden. Verificar en bastien.solopide.me que el flujo de checkout completa el POST a /order. Puede ser que el botón de confirmar pedido esté deshabilitado o el endpoint no esté activo."
+        else:
+            reason = f"{clean}: la app devolvió null"
+            action = f"El componente '{clean}' retornó null. Abrir staging y reproducir manualmente para identificar si es un error de datos o de lógica."
+        return ("bug", reason, "dev", action)
 
     # Absolute fallback — use clean title only, no raw error
     reason = clean if clean else "Fallo desconocido"
