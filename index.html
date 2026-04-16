@@ -1182,11 +1182,56 @@ function openLinear(i) {
     const scope = g.category === 'bug' ? 'b2b' : g.category === 'ux' ? 'ux' : g.category === 'ambiente' ? 'infra' : 'qa';
     const rawTitle = `fix(${scope}): ${g.reason.slice(0, 70)}`;
 
-    // Descripción siguiendo el formato de bugs reales en Linear (YOM-218, YOM-209, etc.)
-    const affectedTests = g.tests.map(t => `- ${t}`).join('\n');
-    const rawDesc = `## Bug\n\nDetectado por QA automatizado — ${date}\n\n**Categoría:** ${g.label}\n**Owner:** ${g.owner === 'dev' ? 'Dev' : 'QA'}\n\n## Root Cause\n\n${g.reason}\n\n## Acción requerida\n\n${g.action}\n\n## Tests afectados (${g.count})\n\n${affectedTests}\n\n---\n_Generado automáticamente por QA Dashboard — YOM B2B_`;
+    // Spec file: use stored field or extract from first test entry "[file.spec.ts] title"
+    const specFile = g.spec_file || (g.tests[0] ? (g.tests[0].match(/^\[([^\]]+)\]/) || [])[1] || '' : '');
 
-    // URL al workspace correcto yom-tech, label Bug pre-seleccionado
+    // First failing test name without the [file] prefix
+    const firstTestName = g.tests[0] ? g.tests[0].replace(/^\[[^\]]+\]\s*/, '') : '';
+
+    const lines = [];
+
+    // Header
+    lines.push(`## Bug\n`);
+    lines.push(`Detectado por QA automatizado — ${date}\n`);
+    lines.push(`**Categoría:** ${g.label}  **Owner:** ${g.owner === 'dev' ? 'Dev' : 'QA'}\n`);
+    if (g.clients && g.clients.length > 0) {
+        lines.push(`**Clientes impactados:** ${g.clients.join(', ')}\n`);
+    }
+    if (specFile) {
+        lines.push(`**Suite:** \`${specFile}\`\n`);
+    }
+
+    // Root Cause
+    lines.push(`\n## Root Cause\n`);
+    lines.push(`${g.reason}\n`);
+    if (firstTestName) {
+        const extra = g.tests.length > 1 ? ` _(+${g.tests.length - 1} similar${g.tests.length > 2 ? 'es' : ''})_` : '';
+        lines.push(`\n**Paso donde falló:** ${firstTestName}${extra}\n`);
+    }
+
+    // Network context (5xx annotations)
+    if (g.annotations_sample && g.annotations_sample.length > 0) {
+        lines.push(`\n## Contexto de red\n`);
+        g.annotations_sample.forEach(ann => lines.push(`> ${ann}\n`));
+    }
+
+    // Raw Playwright error
+    if (g.error_sample) {
+        lines.push(`\n## Error Playwright\n`);
+        lines.push(`\`\`\`\n${g.error_sample}\n\`\`\`\n`);
+    }
+
+    // Action
+    lines.push(`\n## Acción requerida\n`);
+    lines.push(`${g.action}\n`);
+
+    // Affected tests
+    lines.push(`\n## Tests afectados (${g.count})\n`);
+    g.tests.forEach(t => lines.push(`- ${t}\n`));
+
+    lines.push(`\n---\n_Generado automáticamente por QA Dashboard — YOM B2B_`);
+
+    const rawDesc = lines.join('');
     const title = encodeURIComponent(rawTitle);
     const desc  = encodeURIComponent(rawDesc);
     window.open(`https://linear.app/yom-tech/new?title=${title}&description=${desc}`, '_blank');
