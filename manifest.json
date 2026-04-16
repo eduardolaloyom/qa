@@ -1,0 +1,44 @@
+{
+  "reports": [
+    {
+      "client": "Bastien",
+      "client_slug": "bastien",
+      "date": "2026-04-15",
+      "file": "qa-reports/bastien-2026-04-15.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 82,
+      "modes_done": ["A", "B", "D"],
+      "platform": "b2b"
+    },
+    {
+      "client": "Soprole (new staging)",
+      "client_slug": "new-soprole",
+      "date": "2026-04-08",
+      "file": "qa-reports/new-soprole-2026-04-08.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 72,
+      "modes_done": ["A", "B"],
+      "platform": "b2b"
+    },
+    {
+      "client": "Prinorte",
+      "client_slug": "prinorte",
+      "date": "2026-04-15",
+      "file": "app-reports/prinorte-2026-04-15.html",
+      "verdict": "BLOQUEADO",
+      "score": 0,
+      "modes_done": [],
+      "platform": "app"
+    },
+    {
+      "client": "Prinorte",
+      "client_slug": "prinorte",
+      "date": "2026-04-14",
+      "file": "app-reports/prinorte-2026-04-14.html",
+      "verdict": "BLOQUEADO",
+      "score": 0,
+      "modes_done": [],
+      "platform": "app"
+    }
+  ]
+}
