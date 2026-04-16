@@ -77,8 +77,8 @@
         <div class="card-title">Resumen ejecutivo</div>
         <span class="verdict-badge verdict-condiciones">CON CONDICIONES</span>
         <div class="stats">
-            <div class="stat green"><div class="stat-value">58</div><div class="stat-label">Playwright pass</div></div>
-            <div class="stat amber"><div class="stat-value">1</div><div class="stat-label">Flaky (red)</div></div>
+            <div class="stat green"><div class="stat-value">71</div><div class="stat-label">Playwright pass</div></div>
+            <div class="stat red"><div class="stat-value">3</div><div class="stat-label">Bugs conocidos</div></div>
             <div class="stat amber"><div class="stat-value">1</div><div class="stat-label">Issue P2</div></div>
             <div class="stat"><div class="stat-value">89</div><div class="stat-label">Health score</div></div>
         </div>
@@ -87,7 +87,7 @@
             <div class="health-track"><div class="health-fill green" style="width:89%"></div></div>
         </div>
         <p style="font-size:0.83em;color:#6b7280;margin-top:8px;">
-            Cowork Modo FULL completado: C1 login, C2 compra (pedido #22, $2.873), C3 precios, C7 documentos, C9 seguimiento, C10 crédito bloqueado, C5 recomendados. 60 tests Playwright: 58 pass, 1 flaky (login transiente red), 1 skip. 1 bug P2 no bloqueante: crédito cuenta prueba agotado.
+            Cowork Modo FULL completado: C1 login, C2 compra (pedido #22, $2.873), C3 precios, C7 documentos, C9 seguimiento, C10 crédito bloqueado, C5 recomendados. Config-validation: 58 pass / 1 flaky / 1 skip. Funcionales: 13 pass / 3 fail (bugs conocidos: No disponible en pedidos, 500 commerces/delivery, doble submit bloqueado por crédito agotado).
         </p>
     </div>
 
@@ -237,6 +237,32 @@
         <div class="accionable">
             <strong>Staging blockers</strong> — Para próximo ciclo: crear comercio con estado BLOQUEADO en staging (C1-05) y activar un cupón válido para la cuenta de prueba (C3-14).
         </div>
+    </div>
+
+    <!-- Tests funcionales sonrie.spec.ts -->
+    <div class="card">
+        <div class="card-title">Playwright — Tests Funcionales sonrie.spec.ts (16 tests)</div>
+        <table>
+            <thead><tr><th>Test</th><th>Resultado</th><th>Detalle</th></tr></thead>
+            <tbody>
+                <tr><td>Login exitoso</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>Login fallido con password incorrecto</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>Sesión persistente</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>Logout redirige a login</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>Catálogo muestra productos con precios CLP</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>No hay productos con precio $0</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>API catálogo — pipeline Mongo→API (≥30 productos)</td><td><span class="badge pass">PASS</span></td><td>30 productos · name + pricing OK · imágenes S3 OK</td></tr>
+                <tr><td>Productos sin imágenes rotas (404)</td><td><span class="badge pass">PASS</span></td><td>0 imágenes 404</td></tr>
+                <tr><td>Buscar producto por nombre</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>Agregar producto al carrito</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr><td>Carrito muestra items agregados</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr style="background:#fff7ed;"><td><strong>Doble submit</strong></td><td><span class="badge fail">FAIL 🐛</span></td><td>Botón disabled por crédito insuficiente (sonrie-QA-001) — no se puede testear hasta resetear crédito</td></tr>
+                <tr><td>Historial de pedidos carga</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr style="background:#fff7ed;"><td><strong>Estados "No disponible" en pedidos</strong></td><td><span class="badge fail">FAIL 🐛</span></td><td>Bug conocido — pedidos con estado inválido</td></tr>
+                <tr><td>Sin errores JS en consola</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+                <tr style="background:#fff7ed;"><td><strong>Sin requests 5xx</strong></td><td><span class="badge fail">FAIL 🐛</span></td><td>500 en /api/v2/commerces/delivery — bug conocido</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- Gate de rollout -->
