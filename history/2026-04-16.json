@@ -1,10 +1,10 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T19:10:41.132246+00:00",
+  "timestamp": "2026-04-16T20:45:02.160065+00:00",
   "total": 124,
-  "passed": 110,
-  "failed": 6,
-  "duration": 6981,
+  "passed": 113,
+  "failed": 3,
+  "duration": 7421,
   "suites": [
     {
       "name": "cart.spec.ts",
@@ -30,8 +30,8 @@
     {
       "name": "coupons.spec.ts",
       "tests": 5,
-      "passed": 3,
-      "failed": 2,
+      "passed": 5,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -65,8 +65,8 @@
     {
       "name": "promotions.spec.ts",
       "tests": 3,
-      "passed": 2,
-      "failed": 1,
+      "passed": 3,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -110,8 +110,8 @@
       "name": "Bastien (staging)",
       "url": "https://bastien.solopide.me",
       "tests": 100,
-      "passed": 97,
-      "failed": 3,
+      "passed": 100,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     "sonrie": {
@@ -365,60 +365,17 @@
       ]
     },
     {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Campo de cup\u00f3n existe y es interactuable",
-      "owner": "qa",
-      "action": "Revisar en staging el flujo 'Campo de cup\u00f3n existe y es interactuable'.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] bastien: PM1-01 Campo de cup\u00f3n existe y es interactuable"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Crear orden SIN cup\u00f3n no se rompe por cambios en cupones: el POST al backend devolvi\u00f3 null",
-      "owner": "dev",
-      "action": "El servidor no respondi\u00f3 al crear la orden. Verificar en bastien.solopide.me que el flujo de checkout completa el POST a /order. Puede ser que el bot\u00f3n de confirmar pedido est\u00e9 deshabilitado o el endpoint no est\u00e9 activo.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Cat\u00e1logo no queda en loading infinito si promotions es lento",
-      "owner": "qa",
-      "action": "Revisar en staging el flujo 'Cat\u00e1logo no queda en loading infinito si promotions es lento'.",
-      "count": 1,
-      "tests": [
-        "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
-      ],
-      "clients": [
-        "bastien"
-      ]
-    },
-    {
       "category": "flaky",
       "label": "\u26a0\ufe0f Flaky",
       "reason": "Pasaron en retry \u2014 no son bugs confirmados",
       "owner": "qa",
       "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
-      "count": 5,
+      "count": 4,
       "tests": [
-        "[cart.spec.ts] bastien: C2-08 Modificar cantidad en carro",
-        "[coupons.spec.ts] bastien: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito",
-        "[prices.spec.ts] bastien: C3-14 Campo de cupon visible en carro (enableCoupons)",
-        "[prices.spec.ts] bastien: Cat\u00e1logo carga con productos visibles @catalog @calidad",
-        "[prices.spec.ts] bastien: Sin im\u00e1genes rotas en cat\u00e1logo @catalog @calidad"
+        "[catalog.spec.ts] bastien: C2-02 B\u00fasqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout",
+        "[checkout.spec.ts] bastien: C2-13 Pedido aparece en historial",
+        "[payments.spec.ts] bastien: PAG-16 Montos en historial no muestran valores negativos confusos"
       ],
       "clients": [
         "bastien"

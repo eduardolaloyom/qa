@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 4
+      "actualWorkers": 2
     },
     "preserveOutput": "always",
     "projects": [
@@ -20,7 +20,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 2
         },
         "id": "b2b",
         "name": "b2b",
@@ -36,7 +36,7 @@
         "repeatEach": 1,
         "retries": 1,
         "metadata": {
-          "actualWorkers": 4
+          "actualWorkers": 2
         },
         "id": "admin",
         "name": "admin",
@@ -51,20 +51,7 @@
     "quiet": false,
     "reporter": [
       [
-        "html",
-        {
-          "open": "never"
-        }
-      ],
-      [
-        "json",
-        {
-          "outputFile": "playwright-report/results.json"
-        }
-      ],
-      [
-        "list",
-        null
+        "json"
       ]
     ],
     "reportSlowTests": {
@@ -77,7 +64,7 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.58.2",
-    "workers": 4,
+    "workers": 2,
     "webServer": null
   },
   "suites": [
@@ -110,12 +97,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 12369,
+                      "duration": 14053,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:13.429Z",
+                      "startTime": "2026-04-16T20:37:24.480Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -154,12 +141,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "skipped",
-                      "duration": 13491,
+                      "duration": 13697,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:13.427Z",
+                      "startTime": "2026-04-16T20:37:24.480Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -195,74 +182,20 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 23326,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('input[type=\"number\"]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[type=\"number\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('input[type=\"number\"]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[type=\"number\"]').first()\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts:77:35",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
-                          "column": 35,
-                          "line": 77
-                        },
-                        "snippet": "  75 |\n  76 |       const quantityInput = page.locator('input[type=\"number\"]').first();\n> 77 |       await expect(quantityInput).toBeVisible({ timeout: 10_000 });\n     |                                   ^\n  78 |       await quantityInput.fill('3');\n  79 |       await quantityInput.press('Tab');\n  80 |"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
-                            "column": 35,
-                            "line": 77
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('input[type=\"number\"]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('input[type=\"number\"]').first()\u001b[22m\n\n\n  75 |\n  76 |       const quantityInput = page.locator('input[type=\"number\"]').first();\n> 77 |       await expect(quantityInput).toBeVisible({ timeout: 10_000 });\n     |                                   ^\n  78 |       await quantityInput.fill('3');\n  79 |       await quantityInput.press('Tab');\n  80 |\n    at /Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts:77:35"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-16T17:57:13.427Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/cart-C2-—-Carrito-de-compr-03bf8-Modificar-cantidad-en-carro-b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/cart-C2-—-Carrito-de-compr-03bf8-Modificar-cantidad-en-carro-b2b/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
-                        "column": 35,
-                        "line": 77
-                      }
-                    },
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 13793,
+                      "duration": 15030,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T17:57:37.896Z",
+                      "retry": 0,
+                      "startTime": "2026-04-16T20:37:39.783Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/cart-C2-—-Carrito-de-compr-03bf8-Modificar-cantidad-en-carro-b2b-retry1/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "flaky"
+                  "status": "expected"
                 }
               ],
               "id": "1981448f0b79506fb670-30af4a49e899394dcdfc",
@@ -283,15 +216,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13599,
+                      "duration": 14982,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:13.428Z",
+                      "startTime": "2026-04-16T20:37:40.044Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -337,15 +270,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 10759,
+                      "duration": 12756,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:26.485Z",
+                      "startTime": "2026-04-16T20:37:54.825Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -374,20 +307,74 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 20730,
-                      "errors": [],
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 12179,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/catalog.spec.ts:10:18",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/catalog.spec.ts",
+                          "column": 18,
+                          "line": 10
+                        },
+                        "snippet": "   8 |\n   9 |     test.beforeEach(async ({ authedPage: page }) => {\n> 10 |       await page.goto(`${client.baseURL}/products`);\n     |                  ^\n  11 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/').first()).toBeVisible({ timeout: 30_000 });\n  12 |     });\n  13 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/catalog.spec.ts",
+                            "column": 18,
+                            "line": 10
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n\n   8 |\n   9 |     test.beforeEach(async ({ authedPage: page }) => {\n> 10 |       await page.goto(`${client.baseURL}/products`);\n     |                  ^\n  11 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/').first()).toBeVisible({ timeout: 30_000 });\n  12 |     });\n  13 |\n    at /Users/lalojimenez/qa/tests/e2e/b2b/catalog.spec.ts:10:18"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:27.587Z",
+                      "startTime": "2026-04-16T20:37:55.039Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/catalog-C2-—-Catálogo-y-bú-4ea0d-o-mensaje-catalog-funcional-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/catalog-C2-—-Catálogo-y-bú-4ea0d-o-mensaje-catalog-funcional-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/catalog.spec.ts",
+                        "column": 18,
+                        "line": 10
+                      }
+                    },
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 22953,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-16T20:38:07.763Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/catalog-C2-—-Catálogo-y-bú-4ea0d-o-mensaje-catalog-funcional-b2b-retry1/trace.zip"
+                        }
+                      ]
                     }
                   ],
-                  "status": "expected"
+                  "status": "flaky"
                 }
               ],
               "id": "30aa42b97d8966d0c2dc-8d2bca2fb6d99cde572a",
@@ -414,12 +401,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 20640,
+                      "duration": 22366,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:27.608Z",
+                      "startTime": "2026-04-16T20:38:07.592Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -448,15 +435,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 14399,
+                      "duration": 15610,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:37.252Z",
+                      "startTime": "2026-04-16T20:38:29.966Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -499,26 +486,80 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 8808,
-                      "errors": [],
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11579,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at addProducts (/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:9:18)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:24:13",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                          "column": 18,
+                          "line": 9
+                        },
+                        "snippet": "   7 |\n   8 |     async function addProducts(page: any) {\n>  9 |       await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });\n     |                  ^\n  10 |       const addButtons = page.getByRole('button', { name: 'Agregar' });\n  11 |       await addButtons.first().waitFor({ timeout: 30_000 });\n  12 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                            "column": 18,
+                            "line": 9
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n   7 |\n   8 |     async function addProducts(page: any) {\n>  9 |       await page.goto(`${client.baseURL}/products`, { waitUntil: 'domcontentloaded' });\n     |                  ^\n  10 |       const addButtons = page.getByRole('button', { name: 'Agregar' });\n  11 |       await addButtons.first().waitFor({ timeout: 30_000 });\n  12 |\n    at addProducts (/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:9:18)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:24:13"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:48.259Z",
+                      "startTime": "2026-04-16T20:38:31.385Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-f79df-catalogo-→-carro-→-checkout-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-f79df-catalogo-→-carro-→-checkout-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                        "column": 18,
+                        "line": 9
+                      }
+                    },
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16259,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-16T20:38:43.592Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-f79df-catalogo-→-carro-→-checkout-b2b-retry1/trace.zip"
+                        }
+                      ]
                     }
                   ],
-                  "status": "expected"
+                  "status": "flaky"
                 }
               ],
               "id": "25ab1bfc84c57e3e3a45-9279aaadbf4bcc4fb87b",
               "file": "b2b/checkout.spec.ts",
-              "line": 26,
-              "column": 9
+              "line": 23,
+              "column": 5
             },
             {
               "title": "bastien: C2-12 Doble click en crear pedido no genera duplicado",
@@ -533,15 +574,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 8692,
+                      "duration": 15919,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:48.328Z",
+                      "startTime": "2026-04-16T20:38:45.591Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -551,8 +592,8 @@
               ],
               "id": "25ab1bfc84c57e3e3a45-8ceed4750c5764e4b453",
               "file": "b2b/checkout.spec.ts",
-              "line": 45,
-              "column": 9
+              "line": 42,
+              "column": 5
             },
             {
               "title": "bastien: C2-13 Pedido aparece en historial",
@@ -567,26 +608,80 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 4617,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 12081,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/order\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/order\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/order\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/order\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:68:18",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                          "column": 18,
+                          "line": 68
+                        },
+                        "snippet": "  66 |\n  67 |     test(`${key}: C2-13 Pedido aparece en historial`, async ({ authedPage: page }) => {\n> 68 |       await page.goto(`${client.baseURL}/order`);\n     |                  ^\n  69 |       await page.waitForLoadState('domcontentloaded');\n  70 |\n  71 |       await expect(page.locator('body')).not.toBeEmpty();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                            "column": 18,
+                            "line": 68
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/order\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/order\", waiting until \"load\"\u001b[22m\n\n\n  66 |\n  67 |     test(`${key}: C2-13 Pedido aparece en historial`, async ({ authedPage: page }) => {\n> 68 |       await page.goto(`${client.baseURL}/order`);\n     |                  ^\n  69 |       await page.waitForLoadState('domcontentloaded');\n  70 |\n  71 |       await expect(page.locator('body')).not.toBeEmpty();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:68:18"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:51.661Z",
+                      "startTime": "2026-04-16T20:39:00.741Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-d2b68-Pedido-aparece-en-historial-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-d2b68-Pedido-aparece-en-historial-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                        "column": 18,
+                        "line": 68
+                      }
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12083,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-16T20:39:13.354Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-d2b68-Pedido-aparece-en-historial-b2b-retry1/trace.zip"
+                        }
+                      ]
                     }
                   ],
-                  "status": "expected"
+                  "status": "flaky"
                 }
               ],
               "id": "25ab1bfc84c57e3e3a45-5a3bb25af32b1ec9aa90",
               "file": "b2b/checkout.spec.ts",
-              "line": 70,
-              "column": 9
+              "line": 67,
+              "column": 5
             }
           ]
         }
@@ -618,15 +713,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1336,
+                      "duration": 3650,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:52.684Z",
+                      "startTime": "2026-04-16T20:39:01.565Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -652,15 +747,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2680,
+                      "duration": 4788,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:54.035Z",
+                      "startTime": "2026-04-16T20:39:05.221Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -686,15 +781,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4036,
+                      "duration": 6910,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:56.325Z",
+                      "startTime": "2026-04-16T20:39:10.017Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -720,15 +815,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3882,
+                      "duration": 7674,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:56.723Z",
+                      "startTime": "2026-04-16T20:39:16.934Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -754,15 +849,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4346,
+                      "duration": 10765,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:57.074Z",
+                      "startTime": "2026-04-16T20:39:24.616Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -805,7 +900,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:57.072Z",
+                      "startTime": "2026-04-16T20:39:26.131Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -840,15 +935,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1523,
+                      "duration": 3806,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:57.116Z",
+                      "startTime": "2026-04-16T20:39:26.193Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -874,15 +969,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2394,
+                      "duration": 4540,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:57:58.649Z",
+                      "startTime": "2026-04-16T20:39:30.009Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -918,7 +1013,7 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "skipped",
                       "duration": 0,
@@ -926,7 +1021,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:00.369Z",
+                      "startTime": "2026-04-16T20:39:34.558Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -962,15 +1057,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3819,
+                      "duration": 8602,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:00.375Z",
+                      "startTime": "2026-04-16T20:39:34.565Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -996,15 +1091,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2532,
+                      "duration": 4077,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:00.614Z",
+                      "startTime": "2026-04-16T20:39:35.388Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1038,12 +1133,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3278,
+                      "duration": 8354,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:01.058Z",
+                      "startTime": "2026-04-16T20:39:39.471Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -1074,15 +1169,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 11825,
+                      "duration": 8560,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:01.431Z",
+                      "startTime": "2026-04-16T20:39:43.179Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1108,15 +1203,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1750,
+                      "duration": 3866,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:03.159Z",
+                      "startTime": "2026-04-16T20:39:47.834Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1142,15 +1237,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4258,
+                      "duration": 7835,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:04.209Z",
+                      "startTime": "2026-04-16T20:39:51.707Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1176,15 +1271,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3652,
+                      "duration": 5932,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:04.352Z",
+                      "startTime": "2026-04-16T20:39:51.746Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1211,14 +1306,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5265,
+                      "duration": 4886,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:04.920Z",
+                      "startTime": "2026-04-16T20:39:57.697Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1247,12 +1342,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4724,
+                      "duration": 4885,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:08.012Z",
+                      "startTime": "2026-04-16T20:39:59.551Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1278,15 +1373,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1755,
+                      "duration": 2069,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:08.475Z",
+                      "startTime": "2026-04-16T20:40:02.612Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1312,15 +1407,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5070,
+                      "duration": 4792,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:10.194Z",
+                      "startTime": "2026-04-16T20:40:04.449Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1346,15 +1441,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1673,
+                      "duration": 1787,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:10.238Z",
+                      "startTime": "2026-04-16T20:40:04.696Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1380,15 +1475,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1687,
+                      "duration": 1874,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:11.922Z",
+                      "startTime": "2026-04-16T20:40:06.492Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1414,15 +1509,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1742,
+                      "duration": 1919,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:12.750Z",
+                      "startTime": "2026-04-16T20:40:08.379Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1448,15 +1543,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1744,
+                      "duration": 1898,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:13.263Z",
+                      "startTime": "2026-04-16T20:40:09.250Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1482,15 +1577,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1743,
+                      "duration": 2097,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:13.616Z",
+                      "startTime": "2026-04-16T20:40:10.305Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1519,7 +1614,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5454,
+                      "duration": 5689,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -1528,7 +1623,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:14.502Z",
+                      "startTime": "2026-04-16T20:40:11.155Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1554,15 +1649,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1829,
+                      "duration": 2026,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:15.032Z",
+                      "startTime": "2026-04-16T20:40:12.409Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1589,14 +1684,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1719,
+                      "duration": 2069,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:15.274Z",
+                      "startTime": "2026-04-16T20:40:14.448Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1622,15 +1717,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1677,
+                      "duration": 2058,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:15.366Z",
+                      "startTime": "2026-04-16T20:40:16.525Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1656,15 +1751,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2111,
+                      "duration": 2048,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:16.868Z",
+                      "startTime": "2026-04-16T20:40:16.851Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1691,14 +1786,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1978,
+                      "duration": 2058,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:17.001Z",
+                      "startTime": "2026-04-16T20:40:18.592Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1724,15 +1819,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1910,
+                      "duration": 1944,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:17.049Z",
+                      "startTime": "2026-04-16T20:40:18.904Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1758,15 +1853,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5215,
+                      "duration": 4913,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:18.967Z",
+                      "startTime": "2026-04-16T20:40:20.661Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1792,15 +1887,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1809,
+                      "duration": 2015,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:18.987Z",
+                      "startTime": "2026-04-16T20:40:20.855Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1826,15 +1921,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4394,
+                      "duration": 5586,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:18.988Z",
+                      "startTime": "2026-04-16T20:40:22.885Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1860,15 +1955,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1895,
+                      "duration": 2439,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:19.963Z",
+                      "startTime": "2026-04-16T20:40:25.590Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1895,14 +1990,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4493,
+                      "duration": 5604,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:20.807Z",
+                      "startTime": "2026-04-16T20:40:28.041Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1931,12 +2026,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1645,
+                      "duration": 1887,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:21.865Z",
+                      "startTime": "2026-04-16T20:40:28.478Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1962,15 +2057,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4513,
+                      "duration": 5150,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:23.390Z",
+                      "startTime": "2026-04-16T20:40:30.372Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1996,15 +2091,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1857,
+                      "duration": 3531,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:23.519Z",
+                      "startTime": "2026-04-16T20:40:33.652Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2030,15 +2125,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1843,
+                      "duration": 1917,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:24.190Z",
+                      "startTime": "2026-04-16T20:40:35.531Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2065,14 +2160,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4526,
+                      "duration": 4766,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:25.311Z",
+                      "startTime": "2026-04-16T20:40:37.190Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2101,12 +2196,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1876,
+                      "duration": 2258,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:25.384Z",
+                      "startTime": "2026-04-16T20:40:37.456Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2132,15 +2227,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2339,
+                      "duration": 2096,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:26.042Z",
+                      "startTime": "2026-04-16T20:40:39.720Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2169,7 +2264,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2078,
+                      "duration": 2173,
                       "errors": [],
                       "stdout": [
                         {
@@ -2178,7 +2273,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:27.266Z",
+                      "startTime": "2026-04-16T20:40:41.822Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2204,15 +2299,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1747,
+                      "duration": 1905,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:27.922Z",
+                      "startTime": "2026-04-16T20:40:41.963Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2238,15 +2333,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1721,
+                      "duration": 1841,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:28.389Z",
+                      "startTime": "2026-04-16T20:40:43.876Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2275,7 +2370,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1811,
+                      "duration": 2093,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -2284,7 +2379,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:29.351Z",
+                      "startTime": "2026-04-16T20:40:44.007Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2310,10 +2405,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5409,
+                      "duration": 4941,
                       "errors": [],
                       "stdout": [
                         {
@@ -2322,7 +2417,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:29.684Z",
+                      "startTime": "2026-04-16T20:40:45.726Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2348,10 +2443,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1914,
+                      "duration": 2256,
                       "errors": [],
                       "stdout": [
                         {
@@ -2360,7 +2455,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:29.846Z",
+                      "startTime": "2026-04-16T20:40:46.106Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2386,15 +2481,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5319,
+                      "duration": 4934,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:30.117Z",
+                      "startTime": "2026-04-16T20:40:48.369Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2420,15 +2515,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1540,
+                      "duration": 1800,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:31.170Z",
+                      "startTime": "2026-04-16T20:40:50.681Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2455,14 +2550,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1561,
+                      "duration": 1793,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:31.766Z",
+                      "startTime": "2026-04-16T20:40:52.489Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2491,12 +2586,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4917,
+                      "duration": 5112,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:32.716Z",
+                      "startTime": "2026-04-16T20:40:53.314Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2523,14 +2618,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4824,
+                      "duration": 5051,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:33.334Z",
+                      "startTime": "2026-04-16T20:40:54.288Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2556,15 +2651,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3900,
+                      "duration": 4087,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:35.104Z",
+                      "startTime": "2026-04-16T20:40:58.434Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2590,15 +2685,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4927,
+                      "duration": 5112,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:35.444Z",
+                      "startTime": "2026-04-16T20:40:59.346Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2627,12 +2722,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3876,
+                      "duration": 4016,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:37.642Z",
+                      "startTime": "2026-04-16T20:41:02.531Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2659,14 +2754,14 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3675,
+                      "duration": 3756,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:38.168Z",
+                      "startTime": "2026-04-16T20:41:04.468Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2692,10 +2787,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3974,
+                      "duration": 4102,
                       "errors": [],
                       "stdout": [
                         {
@@ -2704,7 +2799,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:39.011Z",
+                      "startTime": "2026-04-16T20:41:06.555Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2730,15 +2825,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5457,
+                      "duration": 4927,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:40.379Z",
+                      "startTime": "2026-04-16T20:41:08.232Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2767,12 +2862,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4373,
+                      "duration": 8825,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:41.528Z",
+                      "startTime": "2026-04-16T20:41:10.666Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2804,7 +2899,7 @@
           "specs": [
             {
               "title": "bastien: PM1-01 Campo de cupón existe y es interactuable",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -2816,112 +2911,24 @@
                   "results": [
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 13222,
-                      "error": {
-                        "message": "Error: Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón",
-                        "stack": "Error: Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:71:15",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                          "column": 15,
-                          "line": 71
-                        },
-                        "snippet": "  69 |         await expect(couponInput.first().or(couponButton.first())).toBeVisible({ timeout: 10_000 });\n  70 |       } catch (e) {\n> 71 |         throw new Error('Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón');\n     |               ^\n  72 |       }\n  73 |\n  74 |       await page.screenshot({ path: `test-results/coupons-field-visible-${key}.png`, fullPage: true });"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                            "column": 15,
-                            "line": 71
-                          },
-                          "message": "Error: Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón\n\n  69 |         await expect(couponInput.first().or(couponButton.first())).toBeVisible({ timeout: 10_000 });\n  70 |       } catch (e) {\n> 71 |         throw new Error('Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón');\n     |               ^\n  72 |       }\n  73 |\n  74 |       await page.screenshot({ path: `test-results/coupons-field-visible-${key}.png`, fullPage: true });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:71:15"
-                        }
-                      ],
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15007,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:41.854Z",
+                      "startTime": "2026-04-16T20:41:13.166Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--dd4cf-n-existe-y-es-interactuable-b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--dd4cf-n-existe-y-es-interactuable-b2b/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                        "column": 15,
-                        "line": 71
-                      }
-                    },
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 13892,
-                      "error": {
-                        "message": "Error: Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón",
-                        "stack": "Error: Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:71:15",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                          "column": 15,
-                          "line": 71
-                        },
-                        "snippet": "  69 |         await expect(couponInput.first().or(couponButton.first())).toBeVisible({ timeout: 10_000 });\n  70 |       } catch (e) {\n> 71 |         throw new Error('Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón');\n     |               ^\n  72 |       }\n  73 |\n  74 |       await page.screenshot({ path: `test-results/coupons-field-visible-${key}.png`, fullPage: true });"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                            "column": 15,
-                            "line": 71
-                          },
-                          "message": "Error: Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón\n\n  69 |         await expect(couponInput.first().or(couponButton.first())).toBeVisible({ timeout: 10_000 });\n  70 |       } catch (e) {\n> 71 |         throw new Error('Campo de cupón no encontrado en checkout — esperado input o botón para aplicar cupón');\n     |               ^\n  72 |       }\n  73 |\n  74 |       await page.screenshot({ path: `test-results/coupons-field-visible-${key}.png`, fullPage: true });\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:71:15"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T17:58:55.645Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--dd4cf-n-existe-y-es-interactuable-b2b-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--dd4cf-n-existe-y-es-interactuable-b2b-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--dd4cf-n-existe-y-es-interactuable-b2b-retry1/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                        "column": 15,
-                        "line": 71
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "754bc36b729af055b674-e7771cd9ff1c3738f111",
               "file": "b2b/coupons.spec.ts",
-              "line": 58,
+              "line": 69,
               "column": 5
             },
             {
@@ -2942,15 +2949,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 73341,
+                      "duration": 17586,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:42.995Z",
+                      "startTime": "2026-04-16T20:41:19.509Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -2965,7 +2972,7 @@
               ],
               "id": "754bc36b729af055b674-3d9a68e75fc59f29e220",
               "file": "b2b/coupons.spec.ts",
-              "line": 77,
+              "line": 85,
               "column": 5
             },
             {
@@ -2981,15 +2988,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 73559,
+                      "duration": 19313,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:58:45.848Z",
+                      "startTime": "2026-04-16T20:41:28.180Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2999,7 +3006,7 @@
               ],
               "id": "754bc36b729af055b674-8c5dfca874b001477890",
               "file": "b2b/coupons.spec.ts",
-              "line": 119,
+              "line": 127,
               "column": 5
             },
             {
@@ -3017,199 +3024,67 @@
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 73486,
-                      "error": {
-                        "message": "TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.",
-                        "stack": "TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:164:18",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                          "column": 18,
-                          "line": 164
-                        },
-                        "snippet": "  162 |       await applyBtn.first().click();\n  163 |\n> 164 |       await page.waitForLoadState('networkidle');\n      |                  ^\n  165 |\n  166 |       const stillLoading = await page.locator('[class*=\"loading\" i], [class*=\"spinner\" i], [aria-busy=\"true\"]')\n  167 |         .isVisible({ timeout: 3_000 }).catch(() => false);"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                            "column": 18,
-                            "line": 164
-                          },
-                          "message": "TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.\n\n  162 |       await applyBtn.first().click();\n  163 |\n> 164 |       await page.waitForLoadState('networkidle');\n      |                  ^\n  165 |\n  166 |       const stillLoading = await page.locator('[class*=\"loading\" i], [class*=\"spinner\" i], [aria-busy=\"true\"]')\n  167 |         .isVisible({ timeout: 3_000 }).catch(() => false);\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:164:18"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-16T17:58:45.915Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--78ce2-o-queda-en-loading-infinito-b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--78ce2-o-queda-en-loading-infinito-b2b/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                        "column": 18,
-                        "line": 164
-                      }
-                    },
-                    {
-                      "workerIndex": 7,
-                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 74056,
+                      "duration": 15599,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T17:59:59.902Z",
+                      "retry": 0,
+                      "startTime": "2026-04-16T20:41:37.101Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--78ce2-o-queda-en-loading-infinito-b2b-retry1/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "flaky"
+                  "status": "expected"
                 }
               ],
               "id": "754bc36b729af055b674-2d3711b263d32a069620",
               "file": "b2b/coupons.spec.ts",
-              "line": 148,
+              "line": 155,
               "column": 5
             },
             {
               "title": "bastien: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
-                  "annotations": [],
+                  "annotations": [
+                    {
+                      "type": "warn",
+                      "description": "POST /order no respondió en 30s — API de órdenes lenta en staging"
+                    }
+                  ],
                   "expectedStatus": "passed",
                   "projectId": "b2b",
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 73673,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:193:28",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                          "column": 28,
-                          "line": 193
-                        },
-                        "snippet": "  191 |       await page.screenshot({ path: `test-results/order-without-coupon-${key}.png`, fullPage: true });\n  192 |\n> 193 |       expect(response).not.toBeNull();\n      |                            ^\n  194 |       expect(response.status()).not.toBe(500);\n  195 |\n  196 |       const hasCrash = await page.getByText(/error interno|500|server error/i)"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                            "column": 28,
-                            "line": 193
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n\n  191 |       await page.screenshot({ path: `test-results/order-without-coupon-${key}.png`, fullPage: true });\n  192 |\n> 193 |       expect(response).not.toBeNull();\n      |                            ^\n  194 |       expect(response.status()).not.toBe(500);\n  195 |\n  196 |       const hasCrash = await page.getByText(/error interno|500|server error/i)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:193:28"
-                        }
-                      ],
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 46412,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:59:10.873Z",
-                      "annotations": [],
-                      "attachments": [
+                      "startTime": "2026-04-16T20:41:47.498Z",
+                      "annotations": [
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--963b7-ompe-por-cambios-en-cupones-b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--963b7-ompe-por-cambios-en-cupones-b2b/error-context.md"
+                          "type": "warn",
+                          "description": "POST /order no respondió en 30s — API de órdenes lenta en staging"
                         }
                       ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                        "column": 28,
-                        "line": 193
-                      }
-                    },
-                    {
-                      "workerIndex": 8,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 74128,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:193:28",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                          "column": 28,
-                          "line": 193
-                        },
-                        "snippet": "  191 |       await page.screenshot({ path: `test-results/order-without-coupon-${key}.png`, fullPage: true });\n  192 |\n> 193 |       expect(response).not.toBeNull();\n      |                            ^\n  194 |       expect(response.status()).not.toBe(500);\n  195 |\n  196 |       const hasCrash = await page.getByText(/error interno|500|server error/i)"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                            "column": 28,
-                            "line": 193
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoBeNull\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mnull\u001b[39m\n\n  191 |       await page.screenshot({ path: `test-results/order-without-coupon-${key}.png`, fullPage: true });\n  192 |\n> 193 |       expect(response).not.toBeNull();\n      |                            ^\n  194 |       expect(response.status()).not.toBe(500);\n  195 |\n  196 |       const hasCrash = await page.getByText(/error interno|500|server error/i)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts:193:28"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T18:00:25.618Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--963b7-ompe-por-cambios-en-cupones-b2b-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--963b7-ompe-por-cambios-en-cupones-b2b-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/coupons-PM1-PM2-—-Cupones--963b7-ompe-por-cambios-en-cupones-b2b-retry1/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
-                        "column": 28,
-                        "line": 193
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "754bc36b729af055b674-b09230330dfd83d26fc9",
               "file": "b2b/coupons.spec.ts",
-              "line": 174,
+              "line": 181,
               "column": 5
             }
           ]
@@ -3250,15 +3125,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4534,
+                      "duration": 4894,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:59:56.344Z",
+                      "startTime": "2026-04-16T20:41:52.719Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -3306,15 +3181,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5060,
+                      "duration": 5118,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T17:59:59.419Z",
+                      "startTime": "2026-04-16T20:41:57.633Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3340,15 +3215,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2909,
+                      "duration": 2612,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:00.887Z",
+                      "startTime": "2026-04-16T20:42:02.755Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3374,15 +3249,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2376,
+                      "duration": 2629,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:03.801Z",
+                      "startTime": "2026-04-16T20:42:05.374Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3408,15 +3283,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3715,
+                      "duration": 3901,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:04.485Z",
+                      "startTime": "2026-04-16T20:42:08.008Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3442,15 +3317,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 6903,
+                      "duration": 7125,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:06.182Z",
+                      "startTime": "2026-04-16T20:42:11.915Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3496,15 +3371,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 12547,
+                      "duration": 12924,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:08.207Z",
+                      "startTime": "2026-04-16T20:42:19.048Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3533,7 +3408,7 @@
                       "description": "Comportamiento conocido: pedidos sin fecha de despacho muestran \"No disponible\" — no es un bug",
                       "location": {
                         "file": "/Users/lalojimenez/qa/tests/e2e/b2b/orders.spec.ts",
-                        "line": 21,
+                        "line": 22,
                         "column": 12
                       }
                     }
@@ -3543,22 +3418,22 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "skipped",
-                      "duration": 9411,
+                      "duration": 0,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:13.094Z",
+                      "startTime": "2026-04-16T20:42:31.980Z",
                       "annotations": [
                         {
                           "type": "skip",
                           "description": "Comportamiento conocido: pedidos sin fecha de despacho muestran \"No disponible\" — no es un bug",
                           "location": {
                             "file": "/Users/lalojimenez/qa/tests/e2e/b2b/orders.spec.ts",
-                            "line": 21,
+                            "line": 22,
                             "column": 12
                           }
                         }
@@ -3604,15 +3479,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 11641,
+                      "duration": 11569,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:20.762Z",
+                      "startTime": "2026-04-16T20:42:31.988Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3638,15 +3513,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14095,
+                      "duration": 9995,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:22.515Z",
+                      "startTime": "2026-04-16T20:42:33.921Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3682,15 +3557,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "skipped",
-                      "duration": 9285,
+                      "duration": 10061,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:32.407Z",
+                      "startTime": "2026-04-16T20:42:43.563Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3736,15 +3611,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 9315,
+                      "duration": 9335,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:36.614Z",
+                      "startTime": "2026-04-16T20:42:43.922Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3790,15 +3665,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "skipped",
-                      "duration": 9581,
+                      "duration": 9888,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:41.697Z",
+                      "startTime": "2026-04-16T20:42:53.263Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3851,15 +3726,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9840,
+                      "duration": 9719,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:45.936Z",
+                      "startTime": "2026-04-16T20:42:53.630Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3885,20 +3760,74 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 9504,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 9601,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/payments\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/payments\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/payments\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/payments\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/payments.spec.ts:50:18",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payments.spec.ts",
+                          "column": 18,
+                          "line": 50
+                        },
+                        "snippet": "  48 |     test(`${key}: PAG-16 Montos en historial no muestran valores negativos confusos`, async ({ authedPage: page }) => {\n  49 |       // Navegar a pagos\n> 50 |       await page.goto(`${client.baseURL}/payments`);\n     |                  ^\n  51 |       await page.waitForLoadState('domcontentloaded');\n  52 |\n  53 |       // Si hay tabla/listado de pagos, verificar que no hay montos negativos visibles al usuario"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payments.spec.ts",
+                            "column": 18,
+                            "line": 50
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/payments\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/payments\", waiting until \"load\"\u001b[22m\n\n\n  48 |     test(`${key}: PAG-16 Montos en historial no muestran valores negativos confusos`, async ({ authedPage: page }) => {\n  49 |       // Navegar a pagos\n> 50 |       await page.goto(`${client.baseURL}/payments`);\n     |                  ^\n  51 |       await page.waitForLoadState('domcontentloaded');\n  52 |\n  53 |       // Si hay tabla/listado de pagos, verificar que no hay montos negativos visibles al usuario\n    at /Users/lalojimenez/qa/tests/e2e/b2b/payments.spec.ts:50:18"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:51.289Z",
+                      "startTime": "2026-04-16T20:43:03.163Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/payments-PAG-—-Pagos-y-doc-ed66b--valores-negativos-confusos-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/payments-PAG-—-Pagos-y-doc-ed66b--valores-negativos-confusos-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payments.spec.ts",
+                        "column": 18,
+                        "line": 50
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10534,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-16T20:43:13.454Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/payments-PAG-—-Pagos-y-doc-ed66b--valores-negativos-confusos-b2b-retry1/trace.zip"
+                        }
+                      ]
                     }
                   ],
-                  "status": "expected"
+                  "status": "flaky"
                 }
               ],
               "id": "bd51122182d9e4115608-5f4fe5ad3abb31407f92",
@@ -3936,15 +3865,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2539,
+                      "duration": 2606,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:55.788Z",
+                      "startTime": "2026-04-16T20:43:03.362Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3970,15 +3899,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3358,
+                      "duration": 2658,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:00:58.332Z",
+                      "startTime": "2026-04-16T20:43:05.975Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4001,7 +3930,7 @@
                   "annotations": [
                     {
                       "type": "warning",
-                      "description": "Precio catalogo $179.282 no encontrado exacto en carro — posible descuento aplicado"
+                      "description": "Precio catalogo $0 no encontrado exacto en carro — posible descuento aplicado"
                     }
                   ],
                   "expectedStatus": "passed",
@@ -4009,19 +3938,19 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 18880,
+                      "duration": 14415,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:00.804Z",
+                      "startTime": "2026-04-16T20:43:08.638Z",
                       "annotations": [
                         {
                           "type": "warning",
-                          "description": "Precio catalogo $179.282 no encontrado exacto en carro — posible descuento aplicado"
+                          "description": "Precio catalogo $0 no encontrado exacto en carro — posible descuento aplicado"
                         }
                       ],
                       "attachments": []
@@ -4048,15 +3977,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2361,
+                      "duration": 5310,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:01.697Z",
+                      "startTime": "2026-04-16T20:43:23.061Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4082,74 +4011,20 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 9564,
-                      "error": {
-                        "message": "Error: page.goto: Navigation to \"https://bastien.solopide.me/products\" is interrupted by another navigation to \"https://bastien.solopide.me/\"\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n",
-                        "stack": "Error: page.goto: Navigation to \"https://bastien.solopide.me/products\" is interrupted by another navigation to \"https://bastien.solopide.me/\"\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:87:18",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                          "column": 18,
-                          "line": 87
-                        },
-                        "snippet": "  85 |     test(`${key}: C3-14 Campo de cupon visible en carro (enableCoupons)`, async ({ authedPage: page }) => {\n  86 |       // enableCoupons=true — C3-14 canónico: campo cupón visible cuando flag activo\n> 87 |       await page.goto(`${client.baseURL}/products`);\n     |                  ^\n  88 |       await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });\n  89 |\n  90 |       // Agregar producto"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                            "column": 18,
-                            "line": 87
-                          },
-                          "message": "Error: page.goto: Navigation to \"https://bastien.solopide.me/products\" is interrupted by another navigation to \"https://bastien.solopide.me/\"\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n\n  85 |     test(`${key}: C3-14 Campo de cupon visible en carro (enableCoupons)`, async ({ authedPage: page }) => {\n  86 |       // enableCoupons=true — C3-14 canónico: campo cupón visible cuando flag activo\n> 87 |       await page.goto(`${client.baseURL}/products`);\n     |                  ^\n  88 |       await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });\n  89 |\n  90 |       // Agregar producto\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:87:18"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-16T18:01:04.064Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-87842-ble-en-carro-enableCoupons--b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-87842-ble-en-carro-enableCoupons--b2b/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                        "column": 18,
-                        "line": 87
-                      }
-                    },
-                    {
-                      "workerIndex": 9,
-                      "parallelIndex": 3,
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13519,
+                      "duration": 16017,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T18:01:14.130Z",
+                      "retry": 0,
+                      "startTime": "2026-04-16T20:43:24.922Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-87842-ble-en-carro-enableCoupons--b2b-retry1/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "flaky"
+                  "status": "expected"
                 }
               ],
               "id": "7753f7023fc2cdfb93f7-a030b7dfce62819ea79d",
@@ -4170,7 +4045,7 @@
                       "description": "C3-15: Bastien (staging) no tiene campo de cupón accesible en /cart",
                       "location": {
                         "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                        "line": 143,
+                        "line": 144,
                         "column": 14
                       }
                     }
@@ -4180,22 +4055,22 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 7,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "skipped",
-                      "duration": 13700,
+                      "duration": 14746,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:14.783Z",
+                      "startTime": "2026-04-16T20:43:28.377Z",
                       "annotations": [
                         {
                           "type": "skip",
                           "description": "C3-15: Bastien (staging) no tiene campo de cupón accesible en /cart",
                           "location": {
                             "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                            "line": 143,
+                            "line": 144,
                             "column": 14
                           }
                         }
@@ -4233,15 +4108,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13916,
+                      "duration": 16160,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:19.688Z",
+                      "startTime": "2026-04-16T20:43:40.950Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4260,7 +4135,7 @@
               ],
               "id": "7753f7023fc2cdfb93f7-26f9a7b85bf1c6b37ac7",
               "file": "b2b/prices.spec.ts",
-              "line": 147,
+              "line": 148,
               "column": 5
             },
             {
@@ -4279,79 +4154,25 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 9,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 9555,
-                      "error": {
-                        "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n",
-                        "stack": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:197:18",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                          "column": 18,
-                          "line": 197
-                        },
-                        "snippet": "  195 |\n  196 |     test(`${key}: Catálogo carga con productos visibles @catalog @calidad`, async ({ authedPage: page }) => {\n> 197 |       await page.goto(`${client.baseURL}/products`);\n      |                  ^\n  198 |\n  199 |       // Esperar que cargue el catálogo: botón Agregar o product card\n  200 |       const firstIndicator = page.getByRole('button', { name: 'Agregar' }).first()"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                            "column": 18,
-                            "line": 197
-                          },
-                          "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n\n  195 |\n  196 |     test(`${key}: Catálogo carga con productos visibles @catalog @calidad`, async ({ authedPage: page }) => {\n> 197 |       await page.goto(`${client.baseURL}/products`);\n      |                  ^\n  198 |\n  199 |       // Esperar que cargue el catálogo: botón Agregar o product card\n  200 |       const firstIndicator = page.getByRole('button', { name: 'Agregar' }).first()\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:197:18"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-16T18:01:28.263Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-4bd43-os-visibles-catalog-calidad-b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-4bd43-os-visibles-catalog-calidad-b2b/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                        "column": 18,
-                        "line": 197
-                      }
-                    },
-                    {
-                      "workerIndex": 10,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 12938,
+                      "duration": 13530,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T18:01:38.379Z",
+                      "retry": 0,
+                      "startTime": "2026-04-16T20:43:43.128Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-4bd43-os-visibles-catalog-calidad-b2b-retry1/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "flaky"
+                  "status": "expected"
                 }
               ],
               "id": "7753f7023fc2cdfb93f7-40a4fda10f0e432ee4d2",
               "file": "b2b/prices.spec.ts",
-              "line": 196,
+              "line": 197,
               "column": 5
             },
             {
@@ -4370,79 +4191,25 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 7,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 9498,
-                      "error": {
-                        "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n",
-                        "stack": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:213:18",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                          "column": 18,
-                          "line": 213
-                        },
-                        "snippet": "  211 |\n  212 |     test(`${key}: Sin imágenes rotas en catálogo @catalog @calidad`, async ({ authedPage: page }) => {\n> 213 |       await page.goto(`${client.baseURL}/products`);\n      |                  ^\n  214 |       await page.waitForLoadState('load');\n  215 |\n  216 |       const allImages = page.locator('img');"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                            "column": 18,
-                            "line": 213
-                          },
-                          "message": "Error: page.goto: net::ERR_ABORTED at https://bastien.solopide.me/products\nCall log:\n\u001b[2m  - navigating to \"https://bastien.solopide.me/products\", waiting until \"load\"\u001b[22m\n\n\n  211 |\n  212 |     test(`${key}: Sin imágenes rotas en catálogo @catalog @calidad`, async ({ authedPage: page }) => {\n> 213 |       await page.goto(`${client.baseURL}/products`);\n      |                  ^\n  214 |       await page.waitForLoadState('load');\n  215 |\n  216 |       const allImages = page.locator('img');\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:213:18"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-16T18:01:28.489Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-c2c52-en-catálogo-catalog-calidad-b2b/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-c2c52-en-catálogo-catalog-calidad-b2b/error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
-                        "column": 18,
-                        "line": 213
-                      }
-                    },
-                    {
-                      "workerIndex": 11,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9862,
+                      "duration": 11538,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T18:01:38.533Z",
+                      "retry": 0,
+                      "startTime": "2026-04-16T20:43:56.663Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-c2c52-en-catálogo-catalog-calidad-b2b-retry1/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "flaky"
+                  "status": "expected"
                 }
               ],
               "id": "7753f7023fc2cdfb93f7-81810b02a8fb8d0e41da",
               "file": "b2b/prices.spec.ts",
-              "line": 212,
+              "line": 213,
               "column": 5
             },
             {
@@ -4458,15 +4225,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7592,
+                      "duration": 13789,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:33.608Z",
+                      "startTime": "2026-04-16T20:43:57.118Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4476,7 +4243,7 @@
               ],
               "id": "7753f7023fc2cdfb93f7-fdb2f8355fc0b404bb86",
               "file": "b2b/prices.spec.ts",
-              "line": 237,
+              "line": 238,
               "column": 5
             }
           ]
@@ -4514,15 +4281,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 12,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 10599,
+                      "duration": 12442,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:41.145Z",
+                      "startTime": "2026-04-16T20:44:08.210Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4553,15 +4320,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14408,
+                      "duration": 15707,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:41.207Z",
+                      "startTime": "2026-04-16T20:44:10.917Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4576,15 +4343,19 @@
             },
             {
               "title": "bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
                   "timeout": 120000,
                   "annotations": [
                     {
-                      "type": "info",
-                      "description": "Tiempo de carga: 253ms, contenido visible: false"
+                      "type": "warn",
+                      "description": "Tiempo de carga: 176ms, contenido visible: false"
+                    },
+                    {
+                      "type": "warn",
+                      "description": "PM5-03: sin precios en 176ms — posible lentitud de staging, ver PM5-01/02 para uptime"
                     }
                   ],
                   "expectedStatus": "passed",
@@ -4592,118 +4363,29 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 11,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 9595,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts:92:26",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts",
-                          "column": 26,
-                          "line": 92
-                        },
-                        "snippet": "  90 |       });\n  91 |\n> 92 |       expect(hasContent).toBeTruthy();\n     |                          ^\n  93 |     });\n  94 |   });\n  95 | }"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts",
-                            "column": 26,
-                            "line": 92
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  90 |       });\n  91 |\n> 92 |       expect(hasContent).toBeTruthy();\n     |                          ^\n  93 |     });\n  94 |   });\n  95 | }\n    at /Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts:92:26"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 9974,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:49.118Z",
+                      "startTime": "2026-04-16T20:44:20.658Z",
                       "annotations": [
                         {
-                          "type": "info",
-                          "description": "Tiempo de carga: 211ms, contenido visible: false"
-                        }
-                      ],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/promotions-PM5-—-Promotion-412a9-nito-si-promotions-es-lento-b2b/test-failed-1.png"
+                          "type": "warn",
+                          "description": "Tiempo de carga: 176ms, contenido visible: false"
                         },
                         {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/promotions-PM5-—-Promotion-412a9-nito-si-promotions-es-lento-b2b/error-context.md"
+                          "type": "warn",
+                          "description": "PM5-03: sin precios en 176ms — posible lentitud de staging, ver PM5-01/02 para uptime"
                         }
                       ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts",
-                        "column": 26,
-                        "line": 92
-                      }
-                    },
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 9857,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts:92:26",
-                        "location": {
-                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts",
-                          "column": 26,
-                          "line": 92
-                        },
-                        "snippet": "  90 |       });\n  91 |\n> 92 |       expect(hasContent).toBeTruthy();\n     |                          ^\n  93 |     });\n  94 |   });\n  95 | }"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts",
-                            "column": 26,
-                            "line": 92
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  90 |       });\n  91 |\n> 92 |       expect(hasContent).toBeTruthy();\n     |                          ^\n  93 |     });\n  94 |   });\n  95 | }\n    at /Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts:92:26"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-04-16T18:01:58.740Z",
-                      "annotations": [
-                        {
-                          "type": "info",
-                          "description": "Tiempo de carga: 253ms, contenido visible: false"
-                        }
-                      ],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/promotions-PM5-—-Promotion-412a9-nito-si-promotions-es-lento-b2b-retry1/test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/promotions-PM5-—-Promotion-412a9-nito-si-promotions-es-lento-b2b-retry1/error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/promotions-PM5-—-Promotion-412a9-nito-si-promotions-es-lento-b2b-retry1/trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/promotions.spec.ts",
-                        "column": 26,
-                        "line": 92
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "50791752974ef4adecee-eeee4fd8a2790fd2dc69",
@@ -4746,15 +4428,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 10,
-                      "parallelIndex": 3,
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 11852,
+                      "duration": 12167,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:52.117Z",
+                      "startTime": "2026-04-16T20:44:26.632Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4785,15 +4467,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 12,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 12421,
+                      "duration": 12980,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-16T18:01:52.311Z",
+                      "startTime": "2026-04-16T20:44:30.639Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4813,11 +4495,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-16T17:57:12.699Z",
-    "duration": 296077.578,
-    "expected": 92,
+    "startTime": "2026-04-16T20:37:23.647Z",
+    "duration": 440028.827,
+    "expected": 96,
     "skipped": 8,
-    "unexpected": 3,
-    "flaky": 5
+    "unexpected": 0,
+    "flaky": 4
   }
 }
