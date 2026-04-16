@@ -1294,10 +1294,12 @@ function renderSuitesTable() {
             : (av - bv) * suiteSort.dir;
     });
 
-    document.getElementById('suiteFilterCount').textContent =
+    const filterCount = document.getElementById('suiteFilterCount');
+    if (filterCount) filterCount.textContent =
         rows.length < allSuites.length ? `${rows.length} de ${allSuites.length}` : `${allSuites.length} suites`;
 
     const tbody = document.getElementById('suitesTableBody');
+    if (!tbody) return;
     if (!rows.length) {
         tbody.innerHTML = '<tr><td colspan="7" class="loading">No hay suites que coincidan.</td></tr>';
         return;
