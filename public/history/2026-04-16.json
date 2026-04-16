@@ -1,42 +1,351 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T14:58:26.643157+00:00",
-  "total": 60,
-  "passed": 59,
-  "failed": 0,
-  "duration": 103,
+  "timestamp": "2026-04-16T15:37:35.174702+00:00",
+  "total": 100,
+  "passed": 80,
+  "failed": 14,
+  "duration": 580,
   "suites": [
     {
+      "name": "cart.spec.ts",
+      "tests": 4,
+      "passed": 3,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "checkout.spec.ts",
+      "tests": 3,
+      "passed": 0,
+      "failed": 3,
+      "reportUrl": "reports/index.html"
+    },
+    {
       "name": "config-validation.spec.ts",
-      "tests": 60,
-      "passed": 59,
+      "tests": 62,
+      "passed": 60,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "coupons.spec.ts",
+      "tests": 4,
+      "passed": 1,
+      "failed": 3,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "multi-client.spec.ts",
+      "tests": 5,
+      "passed": 5,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payment-documents.spec.ts",
+      "tests": 5,
+      "passed": 1,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payments.spec.ts",
+      "tests": 2,
+      "passed": 0,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "prices.spec.ts",
+      "tests": 10,
+      "passed": 7,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "promotions.spec.ts",
+      "tests": 3,
+      "passed": 1,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "step-pricing.spec.ts",
+      "tests": 2,
+      "passed": 2,
       "failed": 0,
       "reportUrl": "reports/index.html"
     }
   ],
   "clients": {
-    "sonrie": {
-      "name": "Sonrie (staging)",
-      "url": "https://sonrie.solopide.me",
-      "tests": 60,
-      "passed": 59,
+    "bastien": {
+      "name": "Bastien (staging)",
+      "url": "https://bastien.solopide.me",
+      "tests": 62,
+      "passed": 60,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    "cart": {
+      "name": "Cart",
+      "url": "https://cart.solopide.me",
+      "tests": 4,
+      "passed": 3,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "checkout": {
+      "name": "Checkout",
+      "url": "https://checkout.solopide.me",
+      "tests": 3,
+      "passed": 0,
+      "failed": 3,
+      "reportUrl": "reports/index.html"
+    },
+    "coupons": {
+      "name": "Coupons",
+      "url": "https://coupons.solopide.me",
+      "tests": 4,
+      "passed": 1,
+      "failed": 3,
+      "reportUrl": "reports/index.html"
+    },
+    "multi-client": {
+      "name": "Multi-client",
+      "url": "https://multi-client.solopide.me",
+      "tests": 5,
+      "passed": 5,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "payment-documents": {
+      "name": "Payment-documents",
+      "url": "https://payment-documents.solopide.me",
+      "tests": 5,
+      "passed": 1,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    "payments": {
+      "name": "Payments",
+      "url": "https://payments.solopide.me",
+      "tests": 2,
+      "passed": 0,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    "prices": {
+      "name": "Prices",
+      "url": "https://prices.solopide.me",
+      "tests": 10,
+      "passed": 7,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    "promotions": {
+      "name": "Promotions",
+      "url": "https://promotions.solopide.me",
+      "tests": 3,
+      "passed": 1,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    "step-pricing": {
+      "name": "Step-pricing",
+      "url": "https://step-pricing.solopide.me",
+      "tests": 2,
+      "passed": 2,
       "failed": 0,
       "reportUrl": "reports/index.html"
     }
   },
   "failure_groups": [
     {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout: TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout'.",
+      "count": 1,
+      "tests": [
+        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout"
+      ],
+      "clients": [
+        "c2"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: C2-12 Doble click en crear pedido no genera duplicado: Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, open '",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: C2-12 Doble click en crear pedido no genera duplicado'.",
+      "count": 1,
+      "tests": [
+        "[checkout.spec.ts] bastien: C2-12 Doble click en crear pedido no genera duplicado"
+      ],
+      "clients": [
+        "c2"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: C2-13 Pedido aparece en historial: TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: C2-13 Pedido aparece en historial'.",
+      "count": 1,
+      "tests": [
+        "[checkout.spec.ts] bastien: C2-13 Pedido aparece en historial"
+      ],
+      "clients": [
+        "c2"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Expected: > 0 \u2192 Received: 0",
+      "owner": "dev",
+      "action": "Se debe revisar en staging el comportamiento de 'bastien: anonymousHidePrice=false' \u2014 la app devolvi\u00f3 un valor inesperado.",
+      "count": 1,
+      "tests": [
+        "[config-validation.spec.ts] bastien: anonymousHidePrice=false"
+      ],
+      "clients": [
+        "config validation"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones: Error: expect(received).not.toBeNull()\n\nReceived: null",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones'.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones"
+      ],
+      "clients": [
+        "pm1/pm2"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false: TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false'.",
+      "count": 1,
+      "tests": [
+        "[payment-documents.spec.ts] bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false"
+      ],
+      "clients": [
+        "c7"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: PAG-04 Historial de pagos carga correctamente: TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: PAG-04 Historial de pagos carga correctamente'.",
+      "count": 1,
+      "tests": [
+        "[payments.spec.ts] bastien: PAG-04 Historial de pagos carga correctamente"
+      ],
+      "clients": [
+        "pag"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: PAG-16 Montos en historial no muestran valores negativos confusos: TimeoutError: page.waitForLoadState: Timeout 60000ms exceeded.",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: PAG-16 Montos en historial no muestran valores negativos confusos'.",
+      "count": 1,
+      "tests": [
+        "[payments.spec.ts] bastien: PAG-16 Montos en historial no muestran valores negativos confusos"
+      ],
+      "clients": [
+        "pag"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento: Error: expect(received).toBeTruthy()\n\nReceived: false",
+      "owner": "qa",
+      "action": "Se debe revisar manualmente en staging el test 'bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento'.",
+      "count": 1,
+      "tests": [
+        "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
+      ],
+      "clients": [
+        "pm5"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Request HTTP esperada nunca ocurri\u00f3 (bot\u00f3n no se pudo clickear antes)",
+      "owner": "qa",
+      "action": "Se resuelve al arreglar el selector del bot\u00f3n de carrito en el grupo anterior",
+      "count": 3,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM1-04 Cup\u00f3n inv\u00e1lido muestra error (no crash)",
+        "[prices.spec.ts] bastien: C3-11 Precio bruto vs neto \u2014 impuestos segun config",
+        "[promotions.spec.ts] bastien: PM5-02 Carrito muestra totales con descuentos aplicados"
+      ],
+      "clients": [
+        "c3",
+        "pm1/pm2",
+        "pm5"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado en staging: `locator desconocido`",
+      "owner": "qa",
+      "action": "Se debe inspeccionar el sitio staging, buscar el elemento real y actualizar el selector `locator desconocido` en el spec",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito"
+      ],
+      "clients": [
+        "pm1/pm2"
+      ]
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado en staging: `text=/[Ss]ugerencia|[Rr]ecomendado|[Dd]estacado|[Mm]\u00e1s vendido/`",
+      "owner": "qa",
+      "action": "Se debe inspeccionar el sitio staging, buscar el elemento real y actualizar el selector `text=/[Ss]ugerencia|[Rr]ecomendado|[Dd]estacado|[Mm]\u00e1s vendido/` en el spec",
+      "count": 1,
+      "tests": [
+        "[prices.spec.ts] bastien: C5-05 Sugerencias se pueden agregar al carro"
+      ],
+      "clients": [
+        "c3"
+      ]
+    },
+    {
       "category": "flaky",
       "label": "\u26a0\ufe0f Flaky",
       "reason": "Pasaron en retry \u2014 no son bugs confirmados",
       "owner": "qa",
       "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
-      "count": 1,
+      "count": 2,
       "tests": [
-        "[config-validation.spec.ts] sonrie: pendingDocuments=false"
+        "[cart.spec.ts] bastien: C2-08 Modificar cantidad en carro",
+        "[coupons.spec.ts] bastien: PM1-01 Campo de cup\u00f3n existe y es interactuable"
       ],
       "clients": [
-        "config validation"
+        "c2",
+        "pm1/pm2"
       ]
     }
   ],
