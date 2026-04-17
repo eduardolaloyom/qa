@@ -1,7 +1,7 @@
 # Índice QA — Cobertura de tests
 
 > Mapeo entre checklists, tests automatizados y fuentes.
-> Última actualización: 2026-03-27
+> Última actualización: 2026-04-17
 
 ---
 
@@ -92,32 +92,62 @@ qa/
 | **step-pricing.spec.ts** | Escalones, cambio cantidad, precios rotos | **Post-mortem PM4** |
 | **promotions.spec.ts** | Catálogo con promos, totales, timeout | **Post-mortem PM5** |
 | **payments.spec.ts** | Historial pagos, montos negativos, tributarios | **Deuda técnica** |
-| config-validation.spec.ts | Config multi-tenant | Validación |
+| **config-validation/** | Config multi-tenant (65 tests en 6 archivos) | Validación |
+| ↳ cv-access.spec.ts | Acceso: anónimo, login, maintenance | Validación |
+| ↳ cv-catalog.spec.ts | Catálogo: filtros, categorías, búsqueda | Validación |
+| ↳ cv-cart.spec.ts | Carrito: monto mínimo, unidades, cupones | Validación |
+| ↳ cv-payments.spec.ts | Pagos: métodos, OC, historial | Validación |
+| ↳ cv-orders.spec.ts | Órdenes: confirmación, despacho, tracking | Validación |
+| ↳ cv-ui-features.spec.ts | UI: banners, descuentos, precios, idioma | Validación |
 | multi-client.spec.ts | Múltiples clientes | Multi-tenant |
 
 ### Playwright E2E — Admin (`npx playwright test --project=admin`)
 
-| Spec | Casos | Origen |
-|------|-------|--------|
-| **login.spec.ts** | Login, error, ruta protegida | **Deuda técnica (Test en admin)** |
-| **orders.spec.ts** | Listado, detalle, pagos | **Deuda técnica (Test en admin)** |
+| Spec | Casos | Checklist | Origen |
+|------|-------|-----------|--------|
+| **login.spec.ts** | Login, error, ruta protegida | [checklist-admin-acceso.md](../checklists/funcional/checklist-admin-acceso.md) | **Deuda técnica** |
+| **orders.spec.ts** | Listado, detalle, pagos | [checklist-admin-ordenes.md](../checklists/funcional/checklist-admin-ordenes.md) | **Deuda técnica** |
+| *(pendiente)* | Reportes y exportación | [checklist-admin-reportes.md](../checklists/funcional/checklist-admin-reportes.md) | Manual |
 
-### Maestro — App móvil (`maestro test tests/app/flows/`)
+### Maestro — App móvil (`./tools/run-maestro.sh <cliente>`)
+
+Patrón de flows desde 2026-04-17: cada cliente usa un `{cliente}-session.yaml` que orquesta subflows en `{cliente}/NN-*.yaml` + helpers compartidos.
+
+**Helpers compartidos** (`tests/app/flows/helpers/`)
+
+| Helper | Propósito |
+|--------|-----------|
+| login.yaml | Login vendedor (Samsung Pass, popup nueva versión) |
+| sync.yaml | Sincronización + dismiss popups |
+
+**Prinorte** (`tests/app/flows/prinorte-session.yaml` → `prinorte/`)
 
 | Flow | Casos | Origen |
 |------|-------|--------|
-| 01-login.yaml | Login vendedor | Flujo base |
-| 02-sync.yaml | Sincronización | Flujo base |
-| 03-comercios.yaml | Selección comercio | Flujo base |
-| 04-catalogo.yaml | Catálogo productos | Flujo base |
-| 05-pedido.yaml | Toma de pedido completa | Flujo crítico |
-| 06-precios.yaml | Precios correctos | Flujo C3 |
-| 07-offline.yaml | Modo offline | Flujo C4 |
+| helpers/login.yaml | Login vendedor | Flujo base |
+| helpers/sync.yaml | Sincronización | Flujo base |
+| prinorte/01-comercios.yaml | Selección comercio | Flujo base |
+| prinorte/02-catalogo.yaml | Catálogo productos | Flujo base |
+| prinorte/03-pedido.yaml | Toma de pedido completa | Flujo crítico |
+| prinorte/04-filtros.yaml | Filtros y búsqueda | Flujo base |
+| prinorte/05-multi-unidad.yaml | Múltiples unidades de venta | Config |
+| prinorte/06-stock-limite.yaml | Límite de stock | Config |
+| prinorte/07-sin-filtro-venta.yaml | Sin filtro de venta | Config |
+| prinorte/08-crear-comercio.yaml | Crear nuevo comercio | Flujo avanzado |
+| prinorte/09-promociones.yaml | Promociones en pedido | **Post-mortem PM3** |
+| prinorte/10-descuentos-vendedor.yaml | Descuentos de vendedor | Config |
+| prinorte/11-crear-comercio-region.yaml | Comercio con región | Flujo avanzado |
+| prinorte/12-precios-fotos.yaml | Precios + fotos productos | Config |
+
+**Flows legacy** (pre-2026-04-17, sin cliente prefix):
+
+| Flow | Casos | Origen |
+|------|-------|--------|
 | **08-pagos.yaml** | Cobranza y pagos | **Deuda técnica** |
 | **09-concurrencia.yaml** | Race conditions | **Deuda técnica** |
 | **10-descuentos.yaml** | Descuentos en pedido | **Post-mortem PM3** |
-| **11-contacto-cliente.yaml** | Contacto con cliente vía chat/teléfono | **Growth/escalamiento** |
-| **12-tareas-growth.yaml** | Gestión de tareas y seguimiento | **Growth/escalamiento** |
+| **11-contacto-cliente.yaml** | Contacto vía chat/teléfono | **Growth** |
+| **12-tareas-growth.yaml** | Gestión de tareas | **Growth** |
 
 ---
 

@@ -77,6 +77,19 @@ if [ "$FLOW_COUNT" -eq 0 ]; then
     exit 1
 fi
 
+# ── Maestro version check ─────────────────────────────────────
+MAESTRO_MIN_VERSION="1.40.0"
+if command -v maestro &>/dev/null; then
+    MAESTRO_VERSION=$(maestro --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1 || echo "0.0.0")
+    if [ "$(printf '%s\n' "$MAESTRO_MIN_VERSION" "$MAESTRO_VERSION" | sort -V | head -1)" != "$MAESTRO_MIN_VERSION" ]; then
+        echo "⚠️  Maestro $MAESTRO_VERSION < mínimo requerido $MAESTRO_MIN_VERSION — actualizar con: brew upgrade maestro"
+        exit 1
+    fi
+else
+    echo "❌ Maestro no encontrado — instalar con: brew install maestro"
+    exit 1
+fi
+
 # ── Setup Java/ADB ────────────────────────────────────────────
 JAVA_PREFIX=$(brew --prefix openjdk@17 2>/dev/null || true)
 [ -n "$JAVA_PREFIX" ] && export JAVA_HOME="$JAVA_PREFIX" && export PATH="$JAVA_HOME/bin:$PATH"
