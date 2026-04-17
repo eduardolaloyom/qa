@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 85,
+  "passed": 89,
   "failed": 1,
-  "skipped": 10,
+  "skipped": 11,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 11460
+    },
+    {
+      "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 9514
+    },
+    {
+      "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "passed",
+      "duration": 13949
+    },
+    {
+      "title": "sonrie: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 12798
+    },
+    {
+      "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 13060
+    },
     {
       "title": "sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
       "status": "skipped",
       "duration": 0
-    },
-    {
-      "title": "sonrie: Catálogo muestra productos con precios",
-      "status": "passed",
-      "duration": 4296
-    },
-    {
-      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "passed",
-      "duration": 15295
-    },
-    {
-      "title": "sonrie: Login exitoso",
-      "status": "passed",
-      "duration": 4408
-    },
-    {
-      "title": "sonrie: Sin acceso anónimo redirige a login",
-      "status": "passed",
-      "duration": 3309
-    },
-    {
-      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
-      "status": "passed",
-      "duration": 8014
     }
   ]
 }
