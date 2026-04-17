@@ -11,7 +11,6 @@ reduce test fragility, and improve execution speed. Three focused phases that ea
 - [ ] **Phase 2: Config Validation Refactor** - Split 1,762-line spec into modular per-feature files
 - [x] **Phase 3: B2B Parallel Execution** - Enable parallel client test runs (completed 2026-04-17)
 - [x] **Phase 4: Live Reporter Race Condition Fix** - Atomic writes to live.json (completed 2026-04-17)
-- [ ] **Phase 5: Maestro CI Nightly** - GitHub Actions workflow for nightly Prinorte APP flow runs
 
 ## Phase Details
 
@@ -72,21 +71,6 @@ Plans:
 Plans:
 - [ ] 04-01-PLAN.md — Atomic write-then-rename in _save(), .gitignore + run-live.sh cleanup
 
-### Phase 5: Maestro CI Nightly
-**Goal**: GitHub Actions workflow runs Prinorte Maestro APP flows nightly on an Android emulator, uploads artifacts, and notifies on failure
-**Depends on**: Nothing
-**Requirements**: REQ-07
-**Plans:** 2 plans
-**Success Criteria** (what must be TRUE):
-  1. `.github/workflows/app-maestro.yml` exists and triggers on `schedule: cron`
-  2. Workflow spins up Android emulator, installs Maestro CLI, and runs `prinorte-session.yaml`
-  3. Logs and HTML report uploaded as GitHub Actions artifacts
-  4. Workflow sends failure notification (Slack or GitHub issue) on non-zero exit
-
-Plans:
-- [ ] 05-01-PLAN.md — Create workflow YAML + standalone HTML report generator
-- [ ] 05-02-PLAN.md — Configure secrets and verify workflow runs (checkpoint)
-
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
@@ -95,4 +79,3 @@ Plans:
 | 2. Config Validation Refactor | 0/4 | Planned | - |
 | 3. B2B Parallel Execution | 0/1 | Complete    | 2026-04-17 |
 | 4. Live Reporter Race Condition Fix | 1/1 | Complete   | 2026-04-17 |
-| 5. Maestro CI Nightly | 0/2 | Planned | - |

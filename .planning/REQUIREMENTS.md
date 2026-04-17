@@ -24,6 +24,3 @@ B2B config validation must be runnable in parallel across clients (not sequentia
 
 ### REQ-06: Live reporter race condition fix
 `tools/live-reporter.js` writes to a single `public/live.json`. Concurrent Playwright workers or overlapping test runs must not corrupt the live state file. The fix must be atomic: partial writes must never leave `live.json` in an invalid JSON state.
-
-### REQ-07: CI nightly for Maestro APP flows
-A GitHub Actions workflow must run the Prinorte Maestro APP flows automatically on a nightly schedule. The workflow must produce artifacts (logs + HTML report) accessible from GitHub and notify on failure. No physical Android device required — must work with an emulator in CI.
