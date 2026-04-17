@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 11,
+  "passed": 16,
   "failed": 0,
   "skipped": 1,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableCoupons=true",
+      "status": "passed",
+      "duration": 11971
+    },
+    {
+      "title": "sonrie: disableCart=false",
+      "status": "passed",
+      "duration": 5533
+    },
+    {
+      "title": "sonrie: C2-13 Pedido aparece en historial",
+      "status": "passed",
+      "duration": 8995
+    },
+    {
+      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
+      "status": "passed",
+      "duration": 12850
+    },
+    {
+      "title": "sonrie: loginButtons.google=false",
+      "status": "passed",
+      "duration": 1288
+    },
     {
       "title": "sonrie: loginButtons.facebook=false",
       "status": "passed",
