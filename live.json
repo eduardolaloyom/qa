@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 86,
+  "passed": 90,
   "failed": 8,
   "skipped": 8,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 10601
+    },
+    {
+      "title": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 11902
+    },
+    {
+      "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 9393
+    },
+    {
+      "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 11310
+    },
     {
       "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
       "status": "skipped",
       "duration": 9376
-    },
-    {
-      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
-      "status": "skipped",
-      "duration": 9258
-    },
-    {
-      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
-      "status": "passed",
-      "duration": 9554
-    },
-    {
-      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "status": "passed",
-      "duration": 11853
-    },
-    {
-      "title": "sonrie: Historial de pedidos carga @orders @funcional",
-      "status": "passed",
-      "duration": 12626
     }
   ]
 }
