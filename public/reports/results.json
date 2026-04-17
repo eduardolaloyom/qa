@@ -114,12 +114,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 12181,
+                      "duration": 12141,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:18.692Z",
+                      "startTime": "2026-04-17T14:02:50.969Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -158,12 +158,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "skipped",
-                      "duration": 11916,
+                      "duration": 11704,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:18.728Z",
+                      "startTime": "2026-04-17T14:02:50.968Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -202,12 +202,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 13877,
+                      "duration": 13814,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:18.703Z",
+                      "startTime": "2026-04-17T14:02:50.966Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -236,12 +236,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 13625,
+                      "duration": 13076,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:18.708Z",
+                      "startTime": "2026-04-17T14:02:50.965Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -290,12 +290,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 10326,
+                      "duration": 10128,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:31.409Z",
+                      "startTime": "2026-04-17T14:03:03.440Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -327,12 +327,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 20842,
+                      "duration": 20342,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:31.672Z",
+                      "startTime": "2026-04-17T14:03:03.876Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -364,12 +364,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 20538,
+                      "duration": 20290,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:33.116Z",
+                      "startTime": "2026-04-17T14:03:04.809Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -401,12 +401,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 13362,
+                      "duration": 13296,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:33.369Z",
+                      "startTime": "2026-04-17T14:03:05.546Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -452,12 +452,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 13676,
+                      "duration": 13353,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:41.745Z",
+                      "startTime": "2026-04-17T14:03:13.580Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -486,12 +486,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 13295,
+                      "duration": 13916,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:46.741Z",
+                      "startTime": "2026-04-17T14:03:18.850Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -520,12 +520,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 9553,
+                      "duration": 9547,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:52.526Z",
+                      "startTime": "2026-04-17T14:03:24.230Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -571,12 +571,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3430,
+                      "duration": 4371,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:53.703Z",
+                      "startTime": "2026-04-17T14:03:25.142Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -605,12 +605,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5771,
+                      "duration": 5083,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:55.465Z",
+                      "startTime": "2026-04-17T14:03:26.979Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -639,12 +639,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 5973,
+                      "duration": 5989,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:57:57.141Z",
+                      "startTime": "2026-04-17T14:03:29.521Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -670,15 +670,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 6551,
+                      "duration": 6279,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:00.081Z",
+                      "startTime": "2026-04-17T14:03:32.072Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -704,15 +704,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 6794,
+                      "duration": 6959,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:01.244Z",
+                      "startTime": "2026-04-17T14:03:32.835Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -755,7 +755,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:02.085Z",
+                      "startTime": "2026-04-17T14:03:33.784Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -793,12 +793,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1492,
+                      "duration": 1404,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:02.121Z",
+                      "startTime": "2026-04-17T14:03:33.821Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -824,15 +824,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6094,
+                      "duration": 6106,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:03.124Z",
+                      "startTime": "2026-04-17T14:03:35.235Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -858,15 +858,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4790,
+                      "duration": 4781,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:03.622Z",
+                      "startTime": "2026-04-17T14:03:35.519Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -897,15 +897,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7067,
+                      "duration": 6099,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:06.644Z",
+                      "startTime": "2026-04-17T14:03:38.360Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -936,15 +936,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 5673,
+                      "duration": 5136,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:08.046Z",
+                      "startTime": "2026-04-17T14:03:39.812Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -970,15 +970,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4759,
+                      "duration": 4673,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:08.420Z",
+                      "startTime": "2026-04-17T14:03:40.308Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1004,15 +1004,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6177,
+                      "duration": 6206,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:09.226Z",
+                      "startTime": "2026-04-17T14:03:41.354Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1038,15 +1038,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7246,
+                      "duration": 7463,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:13.189Z",
+                      "startTime": "2026-04-17T14:03:44.466Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1075,12 +1075,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 8278,
+                      "duration": 7380,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:13.723Z",
+                      "startTime": "2026-04-17T14:03:44.956Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1106,15 +1106,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4683,
+                      "duration": 4882,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:13.729Z",
+                      "startTime": "2026-04-17T14:03:44.995Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1140,10 +1140,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 8288,
+                      "duration": 7357,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -1152,7 +1152,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:15.411Z",
+                      "startTime": "2026-04-17T14:03:47.570Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1178,15 +1178,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4488,
+                      "duration": 4551,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:18.424Z",
+                      "startTime": "2026-04-17T14:03:49.885Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1212,15 +1212,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5141,
+                      "duration": 4674,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:20.442Z",
+                      "startTime": "2026-04-17T14:03:51.936Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1249,12 +1249,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 4670,
+                      "duration": 4992,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:22.009Z",
+                      "startTime": "2026-04-17T14:03:52.350Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1280,15 +1280,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 5274,
+                      "duration": 4573,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:22.921Z",
+                      "startTime": "2026-04-17T14:03:54.450Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1314,15 +1314,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4604,
+                      "duration": 5380,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:23.707Z",
+                      "startTime": "2026-04-17T14:03:54.934Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1348,10 +1348,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7308,
+                      "duration": 7518,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -1360,7 +1360,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:25.595Z",
+                      "startTime": "2026-04-17T14:03:56.618Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1389,12 +1389,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 5559,
+                      "duration": 4709,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:26.687Z",
+                      "startTime": "2026-04-17T14:03:57.350Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1420,15 +1420,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 5295,
+                      "duration": 4709,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:28.203Z",
+                      "startTime": "2026-04-17T14:03:59.034Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1454,15 +1454,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5300,
+                      "duration": 4901,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:28.320Z",
+                      "startTime": "2026-04-17T14:04:00.324Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1491,12 +1491,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 5172,
+                      "duration": 4817,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:32.254Z",
+                      "startTime": "2026-04-17T14:04:02.067Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1522,15 +1522,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4952,
+                      "duration": 4654,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:32.912Z",
+                      "startTime": "2026-04-17T14:04:03.754Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1559,12 +1559,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4821,
+                      "duration": 4800,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:33.508Z",
+                      "startTime": "2026-04-17T14:04:04.143Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1590,15 +1590,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7460,
+                      "duration": 7369,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:33.627Z",
+                      "startTime": "2026-04-17T14:04:05.233Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1627,12 +1627,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 4750,
+                      "duration": 4771,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:37.435Z",
+                      "startTime": "2026-04-17T14:04:06.890Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1658,15 +1658,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 7356,
+                      "duration": 7219,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:37.878Z",
+                      "startTime": "2026-04-17T14:04:08.415Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1695,12 +1695,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4701,
+                      "duration": 4641,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:38.336Z",
+                      "startTime": "2026-04-17T14:04:08.950Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1726,10 +1726,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 7743,
+                      "duration": 7181,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -1738,7 +1738,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:41.094Z",
+                      "startTime": "2026-04-17T14:04:11.671Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1764,15 +1764,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4567,
+                      "duration": 4454,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:42.194Z",
+                      "startTime": "2026-04-17T14:04:12.611Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1801,12 +1801,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7512,
+                      "duration": 7419,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:43.044Z",
+                      "startTime": "2026-04-17T14:04:13.599Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1832,15 +1832,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4773,
+                      "duration": 4801,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:45.245Z",
+                      "startTime": "2026-04-17T14:04:15.641Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1866,15 +1866,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4793,
+                      "duration": 4714,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:46.771Z",
+                      "startTime": "2026-04-17T14:04:17.091Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1900,15 +1900,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 7351,
+                      "duration": 7225,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:48.849Z",
+                      "startTime": "2026-04-17T14:04:18.860Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1934,15 +1934,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4569,
+                      "duration": 4716,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:50.026Z",
+                      "startTime": "2026-04-17T14:04:20.449Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1971,12 +1971,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4750,
+                      "duration": 4671,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:50.565Z",
+                      "startTime": "2026-04-17T14:04:21.024Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2002,10 +2002,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6342,
+                      "duration": 4725,
                       "errors": [],
                       "stdout": [
                         {
@@ -2014,7 +2014,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:51.571Z",
+                      "startTime": "2026-04-17T14:04:21.820Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2040,10 +2040,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4478,
+                      "duration": 4516,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -2052,7 +2052,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:54.603Z",
+                      "startTime": "2026-04-17T14:04:25.174Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2081,12 +2081,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5123,
+                      "duration": 6142,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:55.324Z",
+                      "startTime": "2026-04-17T14:04:25.701Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2112,10 +2112,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 4736,
+                      "duration": 4785,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -2124,7 +2124,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:56.212Z",
+                      "startTime": "2026-04-17T14:04:26.092Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2150,10 +2150,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7302,
+                      "duration": 7260,
                       "errors": [],
                       "stdout": [
                         {
@@ -2162,7 +2162,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:57.921Z",
+                      "startTime": "2026-04-17T14:04:26.553Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2188,10 +2188,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4788,
+                      "duration": 4834,
                       "errors": [],
                       "stdout": [
                         {
@@ -2200,7 +2200,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:58:59.090Z",
+                      "startTime": "2026-04-17T14:04:29.699Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2226,15 +2226,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 7163,
+                      "duration": 7314,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:00.455Z",
+                      "startTime": "2026-04-17T14:04:30.885Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2260,15 +2260,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1470,
+                      "duration": 1471,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:00.958Z",
+                      "startTime": "2026-04-17T14:04:31.853Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2294,15 +2294,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 1671,
+                      "duration": 1461,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:02.439Z",
+                      "startTime": "2026-04-17T14:04:33.330Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2331,12 +2331,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7747,
+                      "duration": 7856,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:03.889Z",
+                      "startTime": "2026-04-17T14:04:33.820Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2365,12 +2365,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 7854,
+                      "duration": 7669,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:04.119Z",
+                      "startTime": "2026-04-17T14:04:34.542Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2396,15 +2396,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 8257,
+                      "duration": 7614,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:05.235Z",
+                      "startTime": "2026-04-17T14:04:34.796Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2430,15 +2430,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 6930,
+                      "duration": 6739,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:07.625Z",
+                      "startTime": "2026-04-17T14:04:38.213Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2467,12 +2467,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7898,
+                      "duration": 7782,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:11.687Z",
+                      "startTime": "2026-04-17T14:04:41.685Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2501,12 +2501,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 6897,
+                      "duration": 6748,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:11.986Z",
+                      "startTime": "2026-04-17T14:04:42.220Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2532,15 +2532,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 6678,
+                      "duration": 6602,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:13.504Z",
+                      "startTime": "2026-04-17T14:04:42.417Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2566,10 +2566,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 6710,
+                      "duration": 6850,
                       "errors": [],
                       "stdout": [
                         {
@@ -2578,7 +2578,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:14.564Z",
+                      "startTime": "2026-04-17T14:04:44.958Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2607,12 +2607,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 7347,
+                      "duration": 7273,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:18.894Z",
+                      "startTime": "2026-04-17T14:04:48.978Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2638,15 +2638,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7465,
+                      "duration": 7226,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:19.619Z",
+                      "startTime": "2026-04-17T14:04:49.028Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2689,15 +2689,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13486,
+                      "duration": 13275,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:20.198Z",
+                      "startTime": "2026-04-17T14:04:49.477Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2733,15 +2733,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "skipped",
-                      "duration": 9289,
+                      "duration": 9228,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:21.289Z",
+                      "startTime": "2026-04-17T14:04:51.817Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -2780,12 +2780,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 15590,
+                      "duration": 15466,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:26.253Z",
+                      "startTime": "2026-04-17T14:04:56.267Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2811,15 +2811,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 15561,
+                      "duration": 15436,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:27.096Z",
+                      "startTime": "2026-04-17T14:04:56.264Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2845,15 +2845,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 14586,
+                      "duration": 14701,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:30.590Z",
+                      "startTime": "2026-04-17T14:05:01.052Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -2899,10 +2899,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 49027,
+                      "duration": 49041,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at loginIfNeeded (/Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:27:9)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:133:7",
@@ -2926,7 +2926,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:33.694Z",
+                      "startTime": "2026-04-17T14:05:02.759Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2948,9 +2948,9 @@
                     },
                     {
                       "workerIndex": 4,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 49146,
+                      "duration": 49615,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at loginIfNeeded (/Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:27:9)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:133:7",
@@ -2974,7 +2974,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-17T14:00:23.348Z",
+                      "startTime": "2026-04-17T14:05:52.379Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3038,15 +3038,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4578,
+                      "duration": 4545,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:41.862Z",
+                      "startTime": "2026-04-17T14:05:11.711Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3072,15 +3072,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3446,
+                      "duration": 3662,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:42.672Z",
+                      "startTime": "2026-04-17T14:05:11.743Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3106,15 +3106,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4716,
+                      "duration": 4482,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:45.185Z",
+                      "startTime": "2026-04-17T14:05:15.410Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3140,15 +3140,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 6161,
+                      "duration": 6242,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:46.125Z",
+                      "startTime": "2026-04-17T14:05:15.761Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3174,15 +3174,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9798,
+                      "duration": 10018,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:46.451Z",
+                      "startTime": "2026-04-17T14:05:16.260Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3228,15 +3228,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 12812,
+                      "duration": 12626,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:49.910Z",
+                      "startTime": "2026-04-17T14:05:19.902Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3275,15 +3275,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "skipped",
                       "duration": 0,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:52.295Z",
+                      "startTime": "2026-04-17T14:05:22.012Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3336,15 +3336,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 11800,
+                      "duration": 11853,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:52.305Z",
+                      "startTime": "2026-04-17T14:05:22.023Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3370,15 +3370,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 10022,
+                      "duration": 9554,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T13:59:56.257Z",
+                      "startTime": "2026-04-17T14:05:26.288Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3414,15 +3414,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "skipped",
-                      "duration": 9302,
+                      "duration": 9258,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:02.732Z",
+                      "startTime": "2026-04-17T14:05:32.544Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3468,15 +3468,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "skipped",
-                      "duration": 9346,
+                      "duration": 11326,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:04.111Z",
+                      "startTime": "2026-04-17T14:05:33.884Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3522,15 +3522,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "skipped",
-                      "duration": 9317,
+                      "duration": 9376,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:06.286Z",
+                      "startTime": "2026-04-17T14:05:35.847Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -3583,15 +3583,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 9374,
+                      "duration": 9404,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:12.042Z",
+                      "startTime": "2026-04-17T14:05:41.811Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3617,15 +3617,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9526,
+                      "duration": 9558,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:13.466Z",
+                      "startTime": "2026-04-17T14:05:45.233Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -3668,10 +3668,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 16400,
+                      "duration": 16479,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:10:60",
@@ -3695,7 +3695,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:15.616Z",
+                      "startTime": "2026-04-17T14:05:45.239Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3717,9 +3717,9 @@
                     },
                     {
                       "workerIndex": 5,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 16782,
+                      "duration": 16942,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:10:60",
@@ -3743,7 +3743,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-17T14:00:32.534Z",
+                      "startTime": "2026-04-17T14:06:02.235Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3795,10 +3795,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 16503,
+                      "duration": 16582,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:19:60",
@@ -3822,7 +3822,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:21.426Z",
+                      "startTime": "2026-04-17T14:05:51.225Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3844,9 +3844,9 @@
                     },
                     {
                       "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 16762,
+                      "duration": 16869,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:19:60",
@@ -3870,7 +3870,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-17T14:00:38.467Z",
+                      "startTime": "2026-04-17T14:06:08.345Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3927,15 +3927,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 13035,
+                      "duration": 12940,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:23.004Z",
+                      "startTime": "2026-04-17T14:05:54.801Z",
                       "annotations": [
                         {
                           "type": "warning",
@@ -3966,10 +3966,10 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 16501,
+                      "duration": 16388,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:72:60",
@@ -3993,7 +3993,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:36.048Z",
+                      "startTime": "2026-04-17T14:06:07.761Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -4015,9 +4015,9 @@
                     },
                     {
                       "workerIndex": 8,
-                      "parallelIndex": 0,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 16904,
+                      "duration": 16884,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:72:60",
@@ -4041,7 +4041,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-04-17T14:00:53.057Z",
+                      "startTime": "2026-04-17T14:06:24.628Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -4094,14 +4094,14 @@
                   "results": [
                     {
                       "workerIndex": 7,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 12820,
+                      "duration": 12947,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:50.421Z",
+                      "startTime": "2026-04-17T14:06:20.221Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4138,14 +4138,14 @@
                   "results": [
                     {
                       "workerIndex": 9,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "skipped",
-                      "duration": 13218,
+                      "duration": 12873,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:00:56.408Z",
+                      "startTime": "2026-04-17T14:06:26.266Z",
                       "annotations": [
                         {
                           "type": "skip",
@@ -4191,14 +4191,14 @@
                   "results": [
                     {
                       "workerIndex": 7,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 13838,
+                      "duration": 13887,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:03.742Z",
+                      "startTime": "2026-04-17T14:06:33.644Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4237,14 +4237,14 @@
                   "results": [
                     {
                       "workerIndex": 9,
-                      "parallelIndex": 1,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 12103,
+                      "duration": 11310,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:10.155Z",
+                      "startTime": "2026-04-17T14:06:39.724Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4274,14 +4274,14 @@
                   "results": [
                     {
                       "workerIndex": 10,
-                      "parallelIndex": 0,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9711,
+                      "duration": 9393,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:11.111Z",
+                      "startTime": "2026-04-17T14:06:42.632Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4308,14 +4308,14 @@
                   "results": [
                     {
                       "workerIndex": 11,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 11908,
+                      "duration": 11902,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:13.931Z",
+                      "startTime": "2026-04-17T14:06:43.433Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4364,14 +4364,14 @@
                   "results": [
                     {
                       "workerIndex": 7,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 11253,
+                      "duration": 10601,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:17.592Z",
+                      "startTime": "2026-04-17T14:06:47.541Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4402,15 +4402,15 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 10,
-                      "parallelIndex": 0,
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 13300,
+                      "duration": 13511,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:21.337Z",
+                      "startTime": "2026-04-17T14:06:51.044Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -4433,11 +4433,11 @@
                   "annotations": [
                     {
                       "type": "warn",
-                      "description": "Tiempo de carga: 195ms, contenido visible: false"
+                      "description": "Tiempo de carga: 193ms, contenido visible: false"
                     },
                     {
                       "type": "warn",
-                      "description": "PM5-03: sin precios en 195ms — posible lentitud de staging, ver PM5-01/02 para uptime"
+                      "description": "PM5-03: sin precios en 193ms — posible lentitud de staging, ver PM5-01/02 para uptime"
                     }
                   ],
                   "expectedStatus": "passed",
@@ -4445,23 +4445,23 @@
                   "projectName": "b2b",
                   "results": [
                     {
-                      "workerIndex": 9,
+                      "workerIndex": 10,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 9244,
+                      "duration": 9487,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:22.266Z",
+                      "startTime": "2026-04-17T14:06:52.555Z",
                       "annotations": [
                         {
                           "type": "warn",
-                          "description": "Tiempo de carga: 195ms, contenido visible: false"
+                          "description": "Tiempo de carga: 193ms, contenido visible: false"
                         },
                         {
                           "type": "warn",
-                          "description": "PM5-03: sin precios en 195ms — posible lentitud de staging, ver PM5-01/02 para uptime"
+                          "description": "PM5-03: sin precios en 193ms — posible lentitud de staging, ver PM5-01/02 para uptime"
                         }
                       ],
                       "attachments": []
@@ -4511,14 +4511,14 @@
                   "results": [
                     {
                       "workerIndex": 11,
-                      "parallelIndex": 2,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 16729,
+                      "duration": 11504,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:26.424Z",
+                      "startTime": "2026-04-17T14:06:55.861Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4555,14 +4555,14 @@
                   "results": [
                     {
                       "workerIndex": 7,
-                      "parallelIndex": 3,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 72385,
+                      "duration": 72317,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T14:01:28.852Z",
+                      "startTime": "2026-04-17T14:06:58.151Z",
                       "annotations": [
                         {
                           "type": "info",
@@ -4587,8 +4587,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-17T13:57:17.186Z",
-    "duration": 325161.717,
+    "startTime": "2026-04-17T14:02:50.237Z",
+    "duration": 321292.78599999996,
     "expected": 94,
     "skipped": 8,
     "unexpected": 4,
