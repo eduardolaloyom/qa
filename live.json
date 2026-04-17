@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 23,
+  "passed": 29,
   "failed": 0,
-  "skipped": 1,
+  "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableChooseSaleUnit=false",
+      "status": "passed",
+      "duration": 4749
+    },
+    {
+      "title": "sonrie: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 12754
+    },
+    {
+      "title": "sonrie: disableObservationInput=false",
+      "status": "passed",
+      "duration": 12777
+    },
+    {
+      "title": "sonrie: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 5171
+    },
+    {
+      "title": "sonrie: hidePrices=false",
+      "status": "passed",
+      "duration": 5574
+    },
+    {
+      "title": "sonrie: currency=undefined",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: hasSingleDistributionCenter=true",
+      "status": "passed",
+      "duration": 12758
+    },
     {
       "title": "sonrie: disableShowEstimatedDeliveryHour=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: loginButtons.facebook=false",
       "status": "passed",
       "duration": 1450
-    },
-    {
-      "title": "sonrie: anonymousAccess=false",
-      "status": "passed",
-      "duration": 3395
-    },
-    {
-      "title": "sonrie: inMaintenance=false",
-      "status": "passed",
-      "duration": 1542
-    },
-    {
-      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "passed",
-      "duration": 13459
-    },
-    {
-      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20520
-    },
-    {
-      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20437
-    },
-    {
-      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 13420
-    },
-    {
-      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 10404
     }
   ]
 }
