@@ -1341,6 +1341,7 @@ function getReportEnv(rep) {
 }
 function enterEnv(env) {
     selectedEnv = env;
+    localStorage.setItem('qa-selected-env', env);
     updateEnvBadge();
     document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
     if (latestRun) updateClients();
@@ -1359,6 +1360,7 @@ function updateEnvBadge() {
 }
 function backToLanding() {
     selectedEnv = null;
+    localStorage.removeItem('qa-selected-env');
     updateEnvBadge();
     document.querySelector('.env-landing').scrollIntoView({ behavior: 'smooth' });
     if (latestRun) updateClients();
@@ -1985,6 +1987,14 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         // focus mode: make sure tab-b2b is visible so b2bVarsCard is reachable
         document.getElementById('tab-b2b').style.display = 'block';
+    }
+
+    // Restaurar env seleccionado — saltarse el landing si ya eligió antes
+    const savedEnv = localStorage.getItem('qa-selected-env');
+    if (savedEnv) {
+        selectedEnv = savedEnv;
+        updateEnvBadge();
+        document.querySelector('.container').scrollIntoView({ behavior: 'instant' });
     }
 });
 
