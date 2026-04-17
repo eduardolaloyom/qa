@@ -2,21 +2,7 @@ import { execSync } from 'child_process';
 import { readFileSync, unlinkSync, existsSync } from 'fs';
 import { join } from 'path';
 
-const PID_FILE = join(__dirname, '../../.http-server.pid');
-
 export default async function globalTeardown() {
-  // Matar servidor local
-  if (existsSync(PID_FILE)) {
-    try {
-      const pid = parseInt(readFileSync(PID_FILE, 'utf8').trim());
-      process.kill(pid);
-    } catch {}
-    try { unlinkSync(PID_FILE); } catch {}
-  }
-
-  // Limpiar live.json
-  try { unlinkSync(join(__dirname, '../../public/live.json')); } catch {}
-
   // Publicar resultados al dashboard
   const root = join(__dirname, '../..');
   try {
@@ -38,4 +24,20 @@ export default async function globalTeardown() {
   } catch (e) {
     console.error('⚠️  git push falló:', e);
   }
+
+  // Hint de triage si hay fallos
+  try {
+    const historyFile = join(root, 'public', 'history', `${new Date().toISOString().split('T')[0]}.json`);
+    if (existsSync(historyFile)) {
+      const run = JSON.parse(readFileSync(historyFile, 'utf8'));
+      const failed = run.failed || 0;
+      const flaky = (run.failure_groups || []).filter((g: any) => g.category === 'flaky').reduce((acc: number, g: any) => acc + g.count, 0);
+      if (failed > 0) {
+        console.log(`\n${'─'.repeat(60)}`);
+        console.log(`⚠️  ${failed} test(s) fallaron — corre /triage-playwright para analizar`);
+        if (flaky > 0) console.log(`   + ${flaky} flaky (pasaron en retry)`);
+        console.log(`${'─'.repeat(60)}\n`);
+      }
+    }
+  } catch {}
 }
