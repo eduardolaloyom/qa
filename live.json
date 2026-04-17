@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 29,
+  "passed": 37,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: hasMultipleBusinessUnit=false",
+      "status": "passed",
+      "duration": 7825
+    },
+    {
+      "title": "sonrie: uploadOrderFileWithMinUnits=false",
+      "status": "passed",
+      "duration": 4737
+    },
+    {
+      "title": "sonrie: showEmptyCategories=false",
+      "status": "passed",
+      "duration": 4697
+    },
+    {
+      "title": "sonrie: weightInfo=false",
+      "status": "passed",
+      "duration": 4628
+    },
+    {
+      "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
+      "status": "passed",
+      "duration": 4814
+    },
+    {
+      "title": "sonrie: hasNoSaleFilter=false",
+      "status": "passed",
+      "duration": 4799
+    },
+    {
+      "title": "sonrie: hasMultiUnitEnabled=false",
+      "status": "passed",
+      "duration": 4686
+    },
+    {
+      "title": "sonrie: hasStockEnabled=false",
+      "status": "passed",
+      "duration": 4783
+    },
     {
       "title": "sonrie: enableChooseSaleUnit=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: purchaseOrderEnabled=false",
       "status": "passed",
       "duration": 12775
-    },
-    {
-      "title": "sonrie: enableAskDeliveryDate=false",
-      "status": "passed",
-      "duration": 11606
-    },
-    {
-      "title": "sonrie: enableCoupons=true",
-      "status": "passed",
-      "duration": 13358
-    },
-    {
-      "title": "sonrie: hideReceiptType=false",
-      "status": "passed",
-      "duration": 12353
-    },
-    {
-      "title": "sonrie: disableCart=false",
-      "status": "passed",
-      "duration": 5881
-    },
-    {
-      "title": "sonrie: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 9528
-    },
-    {
-      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 13142
-    },
-    {
-      "title": "sonrie: loginButtons.google=false",
-      "status": "passed",
-      "duration": 2371
-    },
-    {
-      "title": "sonrie: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 1450
     }
   ]
 }
