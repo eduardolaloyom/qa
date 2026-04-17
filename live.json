@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 21,
+  "passed": 25,
   "failed": 0,
-  "skipped": 1,
+  "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 4287
+    },
+    {
+      "title": "sonrie: currency=undefined",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
+      "status": "passed",
+      "duration": 12903
+    },
+    {
+      "title": "sonrie: hasSingleDistributionCenter=true",
+      "status": "passed",
+      "duration": 11978
+    },
+    {
+      "title": "sonrie: hasTransportCode=false",
+      "status": "passed",
+      "duration": 11469
+    },
     {
       "title": "sonrie: editAddress=true",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
       "status": "passed",
       "duration": 19202
-    },
-    {
-      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 19083
-    },
-    {
-      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 12049
-    },
-    {
-      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 9869
-    },
-    {
-      "title": "sonrie: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 13309
-    },
-    {
-      "title": "sonrie: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 12072
     }
   ]
 }
