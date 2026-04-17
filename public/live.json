@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 76,
+  "passed": 80,
   "failed": 0,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 11141
+    },
+    {
+      "title": "sonrie: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 9516
+    },
+    {
+      "title": "sonrie: Agregar producto al carro",
+      "status": "passed",
+      "duration": 4736
+    },
+    {
+      "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 4162
+    },
     {
       "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie: showMinOne=false",
       "status": "passed",
       "duration": 4466
-    },
-    {
-      "title": "sonrie: enableCreditNotes=false",
-      "status": "passed",
-      "duration": 4508
-    },
-    {
-      "title": "sonrie: enableTask=false",
-      "status": "passed",
-      "duration": 4464
-    },
-    {
-      "title": "sonrie: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 6350
-    },
-    {
-      "title": "sonrie: pointsEnabled=false",
-      "status": "passed",
-      "duration": 3397
-    },
-    {
-      "title": "sonrie: pendingDocuments=false",
-      "status": "passed",
-      "duration": 3243
     }
   ]
 }
