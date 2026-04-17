@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 90,
+  "passed": 94,
   "failed": 9,
   "skipped": 8,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "passed",
+      "duration": 72431
+    },
+    {
+      "title": "sonrie: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 11651
+    },
+    {
+      "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 13446
+    },
+    {
+      "title": "sonrie: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "passed",
+      "duration": 9591
+    },
     {
       "title": "sonrie: PM5-01 Catálogo carga productos con precios (promotions funcional)",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "failed",
       "duration": 50267
-    },
-    {
-      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
-      "status": "passed",
-      "duration": 9485
-    },
-    {
-      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
-      "status": "passed",
-      "duration": 9308
-    },
-    {
-      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
-      "status": "skipped",
-      "duration": 9303
-    },
-    {
-      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
-      "status": "skipped",
-      "duration": 9215
     }
   ]
 }
