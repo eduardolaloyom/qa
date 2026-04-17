@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 22,
+  "passed": 30,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableCreditNotes=false",
+      "status": "passed",
+      "duration": 4573
+    },
+    {
+      "title": "sonrie: enableTask=false",
+      "status": "passed",
+      "duration": 4992
+    },
+    {
+      "title": "sonrie: pointsEnabled=false",
+      "status": "passed",
+      "duration": 4674
+    },
+    {
+      "title": "sonrie: taxes.showSummary=true",
+      "status": "passed",
+      "duration": 7357
+    },
+    {
+      "title": "sonrie: pendingDocuments=false",
+      "status": "passed",
+      "duration": 4551
+    },
+    {
+      "title": "sonrie: enableSellerDiscount=false",
+      "status": "passed",
+      "duration": 7380
+    },
+    {
+      "title": "sonrie: purchaseOrderEnabled=false",
+      "status": "passed",
+      "duration": 7463
+    },
+    {
+      "title": "sonrie: hasStockEnabled=false",
+      "status": "passed",
+      "duration": 4882
+    },
     {
       "title": "sonrie: enableAskDeliveryDate=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: C2-13 Pedido aparece en historial",
       "status": "passed",
       "duration": 9547
-    },
-    {
-      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 13916
-    },
-    {
-      "title": "sonrie: hidePrices=false",
-      "status": "passed",
-      "duration": 5083
-    },
-    {
-      "title": "sonrie: anonymousAccess=false",
-      "status": "passed",
-      "duration": 4371
-    },
-    {
-      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "passed",
-      "duration": 13353
-    },
-    {
-      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20290
-    },
-    {
-      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20342
-    },
-    {
-      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 13296
-    },
-    {
-      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 10128
     }
   ]
 }
