@@ -2,11 +2,16 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 83,
+  "passed": 84,
   "failed": 2,
   "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 12833
+    },
     {
       "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "failed",
@@ -101,11 +106,6 @@
       "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
       "status": "passed",
       "duration": 13876
-    },
-    {
-      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
-      "status": "passed",
-      "duration": 15290
     }
   ]
 }
