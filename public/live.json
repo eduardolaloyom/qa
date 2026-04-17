@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 54,
+  "passed": 62,
   "failed": 1,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableCreditNotes=false",
+      "status": "passed",
+      "duration": 4538
+    },
+    {
+      "title": "sonrie: enableTask=false",
+      "status": "passed",
+      "duration": 4512
+    },
+    {
+      "title": "sonrie: pointsEnabled=false",
+      "status": "passed",
+      "duration": 4528
+    },
+    {
+      "title": "sonrie: paymentsWithoutAccount=false",
+      "status": "passed",
+      "duration": 6719
+    },
+    {
+      "title": "sonrie: pendingDocuments=false",
+      "status": "passed",
+      "duration": 4549
+    },
+    {
+      "title": "sonrie: payment.enableNewPaymentModule=false",
+      "status": "passed",
+      "duration": 7249
+    },
+    {
+      "title": "sonrie: discountTypes.enableOrderDiscountType=false",
+      "status": "passed",
+      "duration": 8330
+    },
+    {
+      "title": "sonrie: hasTransferPaymentType=false",
+      "status": "passed",
+      "duration": 7282
+    },
     {
       "title": "sonrie: discountTypes.enableProductDiscountType=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: enableOrderValidation=false",
       "status": "passed",
       "duration": 7305
-    },
-    {
-      "title": "sonrie: enableOrderApproval=false",
-      "status": "passed",
-      "duration": 4763
-    },
-    {
-      "title": "sonrie: ordersRequireVerification=false",
-      "status": "passed",
-      "duration": 4889
-    },
-    {
-      "title": "sonrie: ordersRequireAuthorization=false",
-      "status": "passed",
-      "duration": 4651
-    },
-    {
-      "title": "sonrie: enablePriceOracle=false",
-      "status": "passed",
-      "duration": 7830
-    },
-    {
-      "title": "sonrie: hasMultipleBusinessUnit=false",
-      "status": "passed",
-      "duration": 8163
-    },
-    {
-      "title": "sonrie: enableDistributionCentersSelector=false",
-      "status": "passed",
-      "duration": 4828
-    },
-    {
-      "title": "sonrie: uploadOrderFileWithMinUnits=false",
-      "status": "passed",
-      "duration": 4697
-    },
-    {
-      "title": "sonrie: showEmptyCategories=false",
-      "status": "passed",
-      "duration": 4841
     }
   ]
 }
