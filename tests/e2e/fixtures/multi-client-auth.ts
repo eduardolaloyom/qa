@@ -101,7 +101,8 @@ export async function clearCartHelper(page: any, baseURL: string) {
  */
 export function createClientTest(client: ClientConfig) {
   return base.extend<{ authedPage: typeof base['prototype']['page'] }>({
-    authedPage: async ({ browser }: { browser: import('@playwright/test').Browser }, use: (page: import('@playwright/test').Page) => Promise<void>) => {
+    authedPage: async ({ browser }: { browser: import('@playwright/test').Browser }, use: (page: import('@playwright/test').Page) => Promise<void>, testInfo: import('@playwright/test').TestInfo) => {
+      testInfo.skip(!client.credentials.email, `No credentials for ${client.name} — client inactive or not configured`);
       const context = await browser.newContext({ baseURL: client.baseURL });
       const page = await context.newPage();
       await loginHelper(page, client.credentials.email, client.credentials.password, client.loginPath, client.baseURL);

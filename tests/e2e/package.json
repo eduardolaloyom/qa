@@ -7,7 +7,6 @@
     "test:headed": "npx playwright test --headed",
     "test:ui": "npx playwright test --ui",
     "test:debug": "npx playwright test --debug",
-    "test:login": "npx playwright test b2b/login.spec.ts",
     "test:catalog": "npx playwright test b2b/catalog.spec.ts",
     "test:cart": "npx playwright test b2b/cart.spec.ts",
     "test:checkout": "npx playwright test b2b/checkout.spec.ts",

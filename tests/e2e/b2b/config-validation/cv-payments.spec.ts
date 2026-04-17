@@ -5,6 +5,7 @@ import { loginIfNeeded, addOneProductToCart } from './helpers';
 import { SELECTORS } from './selectors';
 
 for (const [key, client] of Object.entries(clients)) {
+  if (!client.config.anonymousAccess && !client.credentials.email) continue; // skip inactive clients
   test.describe(`Config validation — Payments: ${client.name}`, () => {
 
     // enablePayments / disablePayments

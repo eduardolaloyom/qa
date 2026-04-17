@@ -5,6 +5,7 @@ import { loginIfNeeded } from './helpers';
 import { SELECTORS } from './selectors';
 
 for (const [key, client] of Object.entries(clients)) {
+  if (!client.config.anonymousAccess && !client.credentials.email) continue; // skip inactive clients
   test.describe(`Config validation — Catalog: ${client.name}`, () => {
 
     test(`${key}: hidePrices=${client.config.hidePrices}`, async ({ browser }) => {

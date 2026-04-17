@@ -5,6 +5,7 @@ import { loginIfNeeded, addOneProductToCart, clearCartForTest } from './helpers'
 import { SELECTORS } from './selectors';
 
 for (const [key, client] of Object.entries(clients)) {
+  if (!client.config.anonymousAccess && !client.credentials.email) continue; // skip inactive clients
   test.describe(`Config validation — Cart: ${client.name}`, () => {
 
     test(`${key}: disableCart=${client.config.disableCart}`, async ({ browser }) => {
