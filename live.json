@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 6,
+  "passed": 13,
   "failed": 0,
-  "skipped": 1,
+  "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: inMaintenance=false",
+      "status": "passed",
+      "duration": 1404
+    },
+    {
+      "title": "sonrie: currency=undefined",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: C2-13 Pedido aparece en historial",
+      "status": "passed",
+      "duration": 9547
+    },
+    {
+      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
+      "status": "passed",
+      "duration": 13916
+    },
+    {
+      "title": "sonrie: hidePrices=false",
+      "status": "passed",
+      "duration": 5083
+    },
+    {
+      "title": "sonrie: anonymousAccess=false",
+      "status": "passed",
+      "duration": 4371
+    },
+    {
+      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "passed",
+      "duration": 13353
+    },
+    {
+      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 20290
+    },
     {
       "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
       "status": "passed",
