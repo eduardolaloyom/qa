@@ -1,31 +1,10 @@
 {
   "running": true,
-  "startTime": "2026-04-17T18:47:39.034Z",
-  "total": 4,
-  "passed": 1,
+  "startTime": "2026-04-17T18:55:41.163Z",
+  "total": 106,
+  "passed": 0,
   "failed": 0,
-  "skipped": 3,
+  "skipped": 0,
   "currentTest": null,
-  "recentTests": [
-    {
-      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
-      "status": "passed",
-      "duration": 7668
-    },
-    {
-      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
-      "status": "skipped",
-      "duration": 202
-    },
-    {
-      "title": "sonrie: C3-04 Descuento visible en catalogo",
-      "status": "skipped",
-      "duration": 179
-    },
-    {
-      "title": "sonrie: C3-02 Detectar productos con precio $0",
-      "status": "skipped",
-      "duration": 194
-    }
-  ]
+  "recentTests": []
 }
