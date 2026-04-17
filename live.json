@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 70,
+  "passed": 76,
   "failed": 0,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "passed",
+      "duration": 12529
+    },
+    {
+      "title": "sonrie: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 3190
+    },
+    {
+      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "passed",
+      "duration": 14955
+    },
+    {
+      "title": "sonrie: Login exitoso",
+      "status": "passed",
+      "duration": 3273
+    },
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "passed",
+      "duration": 6742
+    },
+    {
+      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "passed",
+      "duration": 14274
+    },
     {
       "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie: pendingDocuments=false",
       "status": "passed",
       "duration": 3243
-    },
-    {
-      "title": "sonrie: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 7056
-    },
-    {
-      "title": "sonrie: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 7018
-    },
-    {
-      "title": "sonrie: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 5943
-    },
-    {
-      "title": "sonrie: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 3324
-    },
-    {
-      "title": "sonrie: includeTaxRateInPrices=false",
-      "status": "passed",
-      "duration": 5785
-    },
-    {
-      "title": "sonrie: taxes.showSummary=true",
-      "status": "passed",
-      "duration": 7016
     }
   ]
 }
