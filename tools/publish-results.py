@@ -78,6 +78,7 @@ def flatten_tests(suite: dict, file_hint: str = "", suite_title: str = "") -> li
             results = test.get("results", [])
             last = results[-1] if results else {}
             error_msg = last.get("error", {}).get("message", "") if last else ""
+            error_msg = mask_secrets(strip_ansi(error_msg))
             # Collect all annotations from all retries
             annotations = []
             for r in results:
@@ -117,6 +118,35 @@ def extract_suite_stats(results: dict, suite_name: str) -> dict:
 
 def strip_ansi(text: str) -> str:
     return re.sub(r'\x1b\[[0-9;]*m', '', text)
+
+
+# Compiled once — redacts tokens and credentials before publishing to GitHub Pages
+_SECRET_PATTERNS = [
+    # Authorization headers (Bearer, Basic, Token)
+    (re.compile(r'(Authorization:\s*(?:Bearer|Basic|Token)\s+)\S+', re.IGNORECASE), r'\1[REDACTED]'),
+    # OpenAI / Anthropic / generic sk- keys
+    (re.compile(r'\bsk-[A-Za-z0-9_-]{16,}'), '[REDACTED_KEY]'),
+    # GitHub tokens
+    (re.compile(r'\bghp_[A-Za-z0-9]{36}\b'), '[REDACTED_TOKEN]'),
+    (re.compile(r'\bgho_[A-Za-z0-9]{36}\b'), '[REDACTED_TOKEN]'),
+    # AWS access keys
+    (re.compile(r'\bAKIA[A-Z0-9]{16}\b'), '[REDACTED_KEY]'),
+    # JWT tokens (eyJ... pattern — 3 base64 segments)
+    (re.compile(r'eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+'), '[REDACTED_JWT]'),
+    # Generic password= / secret= / token= in query strings or JSON
+    (re.compile(r'((?:password|secret|token|api[_-]?key)\s*[:=]\s*)[^\s&"\'}{,]+', re.IGNORECASE), r'\1[REDACTED]'),
+    # MongoDB connection strings
+    (re.compile(r'mongodb(?:\+srv)?://[^@\s]+@'), 'mongodb://[REDACTED]@'),
+]
+
+
+def mask_secrets(text: str) -> str:
+    """Redact credential patterns before publishing error text to GitHub Pages."""
+    if not text:
+        return text
+    for pattern, replacement in _SECRET_PATTERNS:
+        text = pattern.sub(replacement, text)
+    return text
 
 
 def _clean_title(title: str) -> str:
@@ -364,7 +394,7 @@ def generate_failure_groups(results: dict) -> list:
         cause_map[key] = (category, reason, owner, action)
         group_clients[key].add(extract_client(t))
         if key not in group_error_sample:
-            group_error_sample[key] = strip_ansi(t.get("error", ""))[:600]
+            group_error_sample[key] = mask_secrets(strip_ansi(t.get("error", "")))[:600]
             group_spec_file[key] = t.get("file", "")
             group_annotations_sample[key] = [
                 a.get("description", "")
