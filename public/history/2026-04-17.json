@@ -1,0 +1,460 @@
+{
+  "date": "2026-04-17",
+  "timestamp": "2026-04-17T13:33:01.682371+00:00",
+  "total": 3728,
+  "passed": 0,
+  "failed": 0,
+  "duration": 0,
+  "suites": [
+    {
+      "name": "cart.spec.ts",
+      "tests": 160,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "catalog.spec.ts",
+      "tests": 160,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "checkout.spec.ts",
+      "tests": 120,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "config-validation.spec.ts",
+      "tests": 1888,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "coupons.spec.ts",
+      "tests": 200,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "mongo-data.spec.ts",
+      "tests": 40,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "multi-client.spec.ts",
+      "tests": 200,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "orders.spec.ts",
+      "tests": 80,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payment-documents.spec.ts",
+      "tests": 200,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payments.spec.ts",
+      "tests": 80,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "prices.spec.ts",
+      "tests": 400,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "promotions.spec.ts",
+      "tests": 120,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "step-pricing.spec.ts",
+      "tests": 80,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "andina": {
+      "name": "Andina (staging)",
+      "url": "https://andina.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "artel": {
+      "name": "Artel (staging)",
+      "url": "https://artel.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "solucionestat": {
+      "name": "Solucionestat (staging)",
+      "url": "https://solucionestat.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "agrosuper": {
+      "name": "Agrosuper (staging)",
+      "url": "https://agrosuper.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "dulceria": {
+      "name": "Dulceria (staging)",
+      "url": "https://dulceria.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "espol": {
+      "name": "Espol (staging)",
+      "url": "https://espol.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "cial": {
+      "name": "Cial (staging)",
+      "url": "https://cial.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "paresa": {
+      "name": "Paresa (staging)",
+      "url": "https://paresa.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "surtitiendas": {
+      "name": "Surtitiendas (staging)",
+      "url": "https://surtitiendas.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "dama": {
+      "name": "Dama (staging)",
+      "url": "https://dama.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "bidfood": {
+      "name": "Bidfood (staging)",
+      "url": "https://bidfood.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "soprole": {
+      "name": "Soprole (staging)",
+      "url": "https://soprole.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "soavega": {
+      "name": "Soavega (staging)",
+      "url": "https://soavega.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "confiteca": {
+      "name": "Confiteca (staging)",
+      "url": "https://confiteca.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "pandeazucar": {
+      "name": "Pandeazucar (staging)",
+      "url": "https://pandeazucar.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "cocacola": {
+      "name": "Cocacola (staging)",
+      "url": "https://cocacola.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "watts-scjohnson-cencocal": {
+      "name": "Watts Scjohnson Cencocal (staging)",
+      "url": "https://watts-scjohnson-cencocal.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "codelpa": {
+      "name": "Codelpa (staging)",
+      "url": "https://codelpa.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "softys-cencocal": {
+      "name": "Softys Cencocal (staging)",
+      "url": "https://softys-cencocal.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "nutrisco": {
+      "name": "Nutrisco (staging)",
+      "url": "https://nutrisco.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "tropi": {
+      "name": "Tropi (staging)",
+      "url": "https://tropi.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "softys-dimak": {
+      "name": "Softys Dimak (staging)",
+      "url": "https://softys-dimak.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "lanco": {
+      "name": "Lanco (staging)",
+      "url": "https://lanco.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "lancopuertorico": {
+      "name": "Lancopuertorico (staging)",
+      "url": "https://lancopuertorico.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "expressdent": {
+      "name": "Expressdent (staging)",
+      "url": "https://expressdent.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "coexito": {
+      "name": "Coexito (staging)",
+      "url": "https://coexito.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "marleycoffee": {
+      "name": "Marleycoffee (staging)",
+      "url": "https://marleycoffee.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "elmuneco": {
+      "name": "Elmuneco (staging)",
+      "url": "https://elmuneco.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "panoramica": {
+      "name": "Panoramica (staging)",
+      "url": "https://panoramica.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "sonrie": {
+      "name": "Sonrie (staging)",
+      "url": "https://sonrie.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "globalwines": {
+      "name": "Globalwines (staging)",
+      "url": "https://globalwines.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "codelpa-peru": {
+      "name": "Codelpa Peru (staging)",
+      "url": "https://codelpa-peru.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "new-soprole": {
+      "name": "New Soprole (staging)",
+      "url": "https://new-soprole.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "prisur": {
+      "name": "Prisur (staging)",
+      "url": "https://prisur.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "bastien": {
+      "name": "Bastien (staging)",
+      "url": "https://bastien.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "americas": {
+      "name": "Americas (staging)",
+      "url": "https://americas.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "cedisur": {
+      "name": "Cedisur (staging)",
+      "url": "https://cedisur.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "prinorte": {
+      "name": "Prinorte (staging)",
+      "url": "https://prinorte.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    "caren": {
+      "name": "Caren (staging)",
+      "url": "https://caren.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  },
+  "failure_groups": [],
+  "pending_b2b": [],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}
