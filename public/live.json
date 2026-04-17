@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 61,
+  "passed": 68,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: disableObservationInput=false",
+      "status": "passed",
+      "duration": 7273
+    },
+    {
+      "title": "sonrie: disableCommerceEdit=false",
+      "status": "passed",
+      "duration": 6850
+    },
+    {
+      "title": "sonrie: enableNewUI=false",
+      "status": "passed",
+      "duration": 7782
+    },
+    {
+      "title": "sonrie: enableInvoicesList=false",
+      "status": "passed",
+      "duration": 6602
+    },
+    {
+      "title": "sonrie: enablePaymentDocumentsB2B=false",
+      "status": "passed",
+      "duration": 6748
+    },
+    {
+      "title": "sonrie: paymentsWithoutAccount=false",
+      "status": "passed",
+      "duration": 6739
+    },
+    {
+      "title": "sonrie: enablePriceOracle=false",
+      "status": "passed",
+      "duration": 7614
+    },
     {
       "title": "sonrie: hasMultipleBusinessUnit=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: weightInfo=false",
       "status": "passed",
       "duration": 4671
-    },
-    {
-      "title": "sonrie: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 4716
-    },
-    {
-      "title": "sonrie: enableBetaButtons=false",
-      "status": "passed",
-      "duration": 4714
-    },
-    {
-      "title": "sonrie: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 7419
-    },
-    {
-      "title": "sonrie: uploadOrderFileWithMinUnits=false",
-      "status": "passed",
-      "duration": 4801
-    },
-    {
-      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
-      "status": "passed",
-      "duration": 7181
-    },
-    {
-      "title": "sonrie: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 4454
-    },
-    {
-      "title": "sonrie: hasTransportCode=false",
-      "status": "passed",
-      "duration": 7219
     }
   ]
 }
