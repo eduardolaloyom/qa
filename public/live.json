@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 93,
-  "failed": 1,
+  "passed": 94,
+  "failed": 2,
   "skipped": 11,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "failed",
+      "duration": 47812
+    },
+    {
+      "title": "sonrie: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 11727
+    },
     {
       "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
       "status": "skipped",
       "duration": 9292
-    },
-    {
-      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
-      "status": "passed",
-      "duration": 9770
-    },
-    {
-      "title": "sonrie: Historial de pedidos carga @orders @funcional",
-      "status": "passed",
-      "duration": 12436
     }
   ]
 }
