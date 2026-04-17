@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 33,
+  "passed": 40,
   "failed": 1,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: ordersRequireAuthorization=false",
+      "status": "passed",
+      "duration": 4651
+    },
+    {
+      "title": "sonrie: enablePriceOracle=false",
+      "status": "passed",
+      "duration": 7830
+    },
+    {
+      "title": "sonrie: hasMultipleBusinessUnit=false",
+      "status": "passed",
+      "duration": 8163
+    },
+    {
+      "title": "sonrie: enableDistributionCentersSelector=false",
+      "status": "passed",
+      "duration": 4828
+    },
+    {
+      "title": "sonrie: uploadOrderFileWithMinUnits=false",
+      "status": "passed",
+      "duration": 4697
+    },
+    {
+      "title": "sonrie: showEmptyCategories=false",
+      "status": "passed",
+      "duration": 4841
+    },
+    {
+      "title": "sonrie: weightInfo=false",
+      "status": "passed",
+      "duration": 4617
+    },
     {
       "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: hasTransportCode=false",
       "status": "passed",
       "duration": 13022
-    },
-    {
-      "title": "sonrie: editAddress=true",
-      "status": "passed",
-      "duration": 12845
-    },
-    {
-      "title": "sonrie: purchaseOrderEnabled=false",
-      "status": "passed",
-      "duration": 12780
-    },
-    {
-      "title": "sonrie: limitAddingByStock=false",
-      "status": "passed",
-      "duration": 5121
-    },
-    {
-      "title": "sonrie: enableAskDeliveryDate=false",
-      "status": "passed",
-      "duration": 11586
-    },
-    {
-      "title": "sonrie: hideReceiptType=false",
-      "status": "passed",
-      "duration": 12099
-    },
-    {
-      "title": "sonrie: enableCoupons=true",
-      "status": "passed",
-      "duration": 12212
-    },
-    {
-      "title": "sonrie: disableCart=false",
-      "status": "passed",
-      "duration": 6088
     }
   ]
 }
