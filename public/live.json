@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 92,
+  "passed": 95,
   "failed": 0,
   "skipped": 11,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "passed",
+      "duration": 71758
+    },
+    {
+      "title": "sonrie: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 10133
+    },
+    {
+      "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 12101
+    },
     {
       "title": "sonrie: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
       "status": "skipped",
       "duration": 8036
-    },
-    {
-      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "status": "passed",
-      "duration": 10160
-    },
-    {
-      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
-      "status": "passed",
-      "duration": 8038
-    },
-    {
-      "title": "sonrie: Historial de pedidos carga @orders @funcional",
-      "status": "passed",
-      "duration": 11141
     }
   ]
 }
