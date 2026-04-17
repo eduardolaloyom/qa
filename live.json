@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 65,
+  "passed": 70,
   "failed": 0,
-  "skipped": 2,
+  "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
+      "status": "passed",
+      "duration": 11928
+    },
+    {
+      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
+      "status": "skipped",
+      "duration": 9244
+    },
+    {
+      "title": "sonrie: enableNewUI=false",
+      "status": "passed",
+      "duration": 6517
+    },
+    {
+      "title": "sonrie: suggestions.hide=true",
+      "status": "passed",
+      "duration": 6475
+    },
+    {
+      "title": "sonrie: useNewPromotions=false",
+      "status": "passed",
+      "duration": 4380
+    },
+    {
+      "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
+      "status": "passed",
+      "duration": 4379
+    },
     {
       "title": "sonrie: enableBetaButtons=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie: taxes.showSummary=true",
       "status": "passed",
       "duration": 7016
-    },
-    {
-      "title": "sonrie: enableSellerDiscount=false",
-      "status": "passed",
-      "duration": 6012
-    },
-    {
-      "title": "sonrie: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 3356
-    },
-    {
-      "title": "sonrie: enablePayments=false",
-      "status": "passed",
-      "duration": 5706
-    },
-    {
-      "title": "sonrie: disableCommerceEdit=false",
-      "status": "passed",
-      "duration": 6354
-    },
-    {
-      "title": "sonrie: enablePaymentDocumentsB2B=false",
-      "status": "passed",
-      "duration": 5547
-    },
-    {
-      "title": "sonrie: enableInvoicesList=false",
-      "status": "passed",
-      "duration": 5567
     }
   ]
 }
