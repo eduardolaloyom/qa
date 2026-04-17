@@ -15,7 +15,7 @@
             padding: 40px 20px;
         }
 
-        .container { max-width: 1280px; margin: 0 auto; overflow-x: hidden; }
+        .container { max-width: 1280px; margin: 0 auto; min-width: 0; }
         #tab-b2b, #tab-app { min-width: 0; }
         #b2bVarsTable { table-layout: fixed; }
         #b2bVarsTable td, #b2bVarsTable th { overflow: hidden; text-overflow: ellipsis; }
@@ -27,22 +27,24 @@
             align-items: center;
             color: white;
             margin-bottom: 28px;
-            gap: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
-        .header-content h1 { font-size: 2.2em; margin-bottom: 4px; }
-        .header-content p { opacity: 0.85; font-size: 1em; }
-        .header-actions { display: flex; gap: 10px; flex-shrink: 0; }
+        .header-content { flex: 1; min-width: 0; }
+        .header-content h1 { font-size: clamp(1.3em, 3vw, 2.2em); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .header-content p { opacity: 0.85; font-size: clamp(0.8em, 1.5vw, 1em); }
+        .header-actions { display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
 
         .btn-ghost {
             background: rgba(255,255,255,0.18);
             color: white;
-            padding: 10px 18px;
+            padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 18px);
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             border: 1.5px solid rgba(255,255,255,0.3);
             transition: background 0.2s, border-color 0.2s;
-            font-size: 0.9em;
+            font-size: clamp(0.78em, 1.2vw, 0.9em);
             white-space: nowrap;
         }
         .btn-ghost:hover { background: rgba(255,255,255,0.3); border-color: white; }
@@ -697,12 +699,22 @@
         .report-score span { font-size: 0.55em; color: #9ca3af; font-weight: 600; }
         .reports-empty { color: #9ca3af; font-size: 0.88em; padding: 8px 0; }
 
+        @media (max-width: 1100px) {
+            .summary-row { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 900px) {
-            .summary-row { grid-template-columns: 1fr 1fr; }
+            .summary-row { grid-template-columns: repeat(2, 1fr); }
             .chart-grid { grid-template-columns: 1fr; }
+            .header-actions .btn-ghost span { display: none; }
+        }
+        @media (max-width: 700px) {
+            body { padding: 20px 12px; }
+            .summary-row { grid-template-columns: repeat(2, 1fr); }
+            .clients-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
-            header { flex-direction: column; text-align: center; }
+            header { flex-direction: column; align-items: flex-start; }
+            .header-actions { width: 100%; justify-content: flex-start; }
             .summary-row { grid-template-columns: 1fr 1fr; }
             .clients-grid { grid-template-columns: 1fr; }
         }
