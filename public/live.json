@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 78,
+  "passed": 81,
   "failed": 1,
-  "skipped": 4,
+  "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
+      "status": "skipped",
+      "duration": 9180
+    },
+    {
+      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
+      "status": "passed",
+      "duration": 9538
+    },
+    {
+      "title": "sonrie: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 12553
+    },
+    {
+      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "status": "passed",
+      "duration": 11369
+    },
     {
       "title": "sonrie: No hay productos con precio $0",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: enableBetaButtons=false",
       "status": "passed",
       "duration": 4848
-    },
-    {
-      "title": "sonrie: useNewPromotions=false",
-      "status": "passed",
-      "duration": 4866
-    },
-    {
-      "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
-      "status": "passed",
-      "duration": 4425
-    },
-    {
-      "title": "sonrie: externalAccess=true",
-      "status": "passed",
-      "duration": 4587
-    },
-    {
-      "title": "sonrie: showMinOne=false",
-      "status": "passed",
-      "duration": 4708
     }
   ]
 }
