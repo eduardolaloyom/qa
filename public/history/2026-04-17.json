@@ -1,9 +1,9 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T15:03:30.560627+00:00",
-  "total": 106,
-  "passed": 94,
-  "failed": 4,
+  "timestamp": "2026-04-17T16:01:00.853154+00:00",
+  "total": 3788,
+  "passed": 59,
+  "failed": 0,
   "duration": 2374,
   "suites": [
     {
@@ -15,23 +15,128 @@
     },
     {
       "name": "cart.spec.ts",
-      "tests": 4,
-      "passed": 3,
+      "tests": 160,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "prices.spec.ts",
-      "tests": 9,
-      "passed": 6,
-      "failed": 3,
+      "tests": 400,
+      "passed": 0,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "mongo-data.spec.ts",
-      "tests": 1,
+      "tests": 40,
       "passed": 0,
-      "failed": 1,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "catalog.spec.ts",
+      "tests": 160,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "checkout.spec.ts",
+      "tests": 120,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "coupons.spec.ts",
+      "tests": 200,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-access.spec.ts",
+      "tests": 161,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-cart.spec.ts",
+      "tests": 410,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-catalog.spec.ts",
+      "tests": 413,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-orders.spec.ts",
+      "tests": 309,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-payments.spec.ts",
+      "tests": 301,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-ui-features.spec.ts",
+      "tests": 294,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "multi-client.spec.ts",
+      "tests": 200,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "orders.spec.ts",
+      "tests": 80,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payment-documents.spec.ts",
+      "tests": 200,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payments.spec.ts",
+      "tests": 80,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "promotions.spec.ts",
+      "tests": 120,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "step-pricing.spec.ts",
+      "tests": 80,
+      "passed": 0,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -40,20 +145,391 @@
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
       "environment": "staging",
-      "tests": 98,
-      "passed": 94,
-      "failed": 4,
-      "reportUrl": "reports/index.html",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/sonrie/index.html",
       "last_tested": "2026-04-17"
     },
     "bastien": {
       "name": "Bastien (staging)",
       "url": "https://bastien.solopide.me",
-      "tests": 100,
-      "passed": 100,
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html",
-      "last_tested": "2026-04-16"
+      "last_tested": "2026-04-17"
+    },
+    "andina": {
+      "name": "Andina (staging)",
+      "url": "https://andina.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "artel": {
+      "name": "Artel (staging)",
+      "url": "https://artel.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "solucionestat": {
+      "name": "Solucionestat (staging)",
+      "url": "https://solucionestat.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "agrosuper": {
+      "name": "Agrosuper (staging)",
+      "url": "https://agrosuper.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "dulceria": {
+      "name": "Dulceria (staging)",
+      "url": "https://dulceria.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "espol": {
+      "name": "Espol (staging)",
+      "url": "https://espol.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "cial": {
+      "name": "Cial (staging)",
+      "url": "https://cial.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "paresa": {
+      "name": "Paresa (staging)",
+      "url": "https://paresa.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "surtitiendas": {
+      "name": "Surtitiendas (staging)",
+      "url": "https://surtitiendas.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "dama": {
+      "name": "Dama (staging)",
+      "url": "https://dama.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "bidfood": {
+      "name": "Bidfood (staging)",
+      "url": "https://bidfood.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "soprole": {
+      "name": "Soprole (staging)",
+      "url": "https://soprole.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "soavega": {
+      "name": "Soavega (staging)",
+      "url": "https://soavega.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "confiteca": {
+      "name": "Confiteca (staging)",
+      "url": "https://confiteca.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "pandeazucar": {
+      "name": "Pandeazucar (staging)",
+      "url": "https://pandeazucar.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "cocacola": {
+      "name": "Cocacola (staging)",
+      "url": "https://cocacola.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "watts-scjohnson-cencocal": {
+      "name": "Watts Scjohnson Cencocal (staging)",
+      "url": "https://watts-scjohnson-cencocal.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "codelpa": {
+      "name": "Codelpa (staging)",
+      "url": "https://codelpa.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "softys-cencocal": {
+      "name": "Softys Cencocal (staging)",
+      "url": "https://softys-cencocal.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "nutrisco": {
+      "name": "Nutrisco (staging)",
+      "url": "https://nutrisco.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "tropi": {
+      "name": "Tropi (staging)",
+      "url": "https://tropi.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "softys-dimak": {
+      "name": "Softys Dimak (staging)",
+      "url": "https://softys-dimak.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "lanco": {
+      "name": "Lanco (staging)",
+      "url": "https://lanco.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "lancopuertorico": {
+      "name": "Lancopuertorico (staging)",
+      "url": "https://lancopuertorico.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "expressdent": {
+      "name": "Expressdent (staging)",
+      "url": "https://expressdent.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "coexito": {
+      "name": "Coexito (staging)",
+      "url": "https://coexito.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "marleycoffee": {
+      "name": "Marleycoffee (staging)",
+      "url": "https://marleycoffee.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "elmuneco": {
+      "name": "Elmuneco (staging)",
+      "url": "https://elmuneco.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "panoramica": {
+      "name": "Panoramica (staging)",
+      "url": "https://panoramica.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "globalwines": {
+      "name": "Globalwines (staging)",
+      "url": "https://globalwines.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "codelpa-peru": {
+      "name": "Codelpa Peru (staging)",
+      "url": "https://codelpa-peru.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "new-soprole": {
+      "name": "New Soprole (staging)",
+      "url": "https://new-soprole.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "prisur": {
+      "name": "Prisur (staging)",
+      "url": "https://prisur.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "americas": {
+      "name": "Americas (staging)",
+      "url": "https://americas.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "cedisur": {
+      "name": "Cedisur (staging)",
+      "url": "https://cedisur.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "prinorte": {
+      "name": "Prinorte (staging)",
+      "url": "https://prinorte.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
+    },
+    "caren": {
+      "name": "Caren (staging)",
+      "url": "https://caren.solopide.me",
+      "environment": "staging",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-17"
     }
   },
   "failure_groups": [],

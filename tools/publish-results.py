@@ -717,20 +717,23 @@ def main():
     """Main entry point.
 
     Usage:
-        python3 tools/publish-results.py [--date YYYY-MM-DD] [--results-file PATH]
+        python3 tools/publish-results.py [--date YYYY-MM-DD] [--results-file PATH] [--client SLUG]
 
-    --results-file lets two clients run simultaneously without conflict:
-        # Session A (Sonrie):
-        npx playwright test b2b/sonrie.spec.ts --reporter=json,outputFile=playwright-report/results-sonrie.json
-        python3 tools/publish-results.py --results-file tests/e2e/playwright-report/results-sonrie.json
+    --client stores the Playwright report in public/reports/{slug}/ so each client
+    has its own report URL. Without --client, auto-detects from results if only one
+    client ran, otherwise falls back to shared public/reports/.
 
-        # Session B (Bastien) — in parallel, no conflict:
-        npx playwright test b2b/config-validation.spec.ts --reporter=json,outputFile=playwright-report/results-bastien.json
-        python3 tools/publish-results.py --results-file tests/e2e/playwright-report/results-bastien.json
+    Example for two parallel sessions:
+        npx playwright test --project=b2b --grep "Sonrie" --reporter=json,outputFile=playwright-report/results-sonrie.json
+        python3 tools/publish-results.py --results-file tests/e2e/playwright-report/results-sonrie.json --client sonrie
+
+        npx playwright test --project=b2b --grep "Bastien" --reporter=json,outputFile=playwright-report/results-bastien.json
+        python3 tools/publish-results.py --results-file tests/e2e/playwright-report/results-bastien.json --client bastien
     """
     # Parse arguments
     date = None
     custom_results_file: Optional[str] = None
+    client_slug: Optional[str] = None
 
     args = sys.argv[1:]
     i = 0
@@ -741,8 +744,11 @@ def main():
         elif args[i] == "--results-file" and i + 1 < len(args):
             custom_results_file = args[i + 1]
             i += 2
+        elif args[i] == "--client" and i + 1 < len(args):
+            client_slug = args[i + 1]
+            i += 2
         else:
-            print(f"Usage: python3 {sys.argv[0]} [--date YYYY-MM-DD] [--results-file PATH]", file=sys.stderr)
+            print(f"Usage: python3 {sys.argv[0]} [--date YYYY-MM-DD] [--results-file PATH] [--client SLUG]", file=sys.stderr)
             sys.exit(1)
 
     if not date:
@@ -764,7 +770,6 @@ def main():
         src_report = project_root / "tests" / "e2e" / "playwright-report"
     src_test_results = project_root / "tests" / "e2e" / "test-results"
 
-    dst_reports = project_root / "public" / "reports"
     dst_data = project_root / "public" / "data"
     history_dir = project_root / "public" / "history"
 
@@ -774,6 +779,34 @@ def main():
     # Load results
     results = load_results(results_file)
 
+    # Auto-detect client slug from results if not provided
+    if not client_slug:
+        detected = list(results.get("suites", []))
+        # Try to find a single client key from config-validation suites
+        from collections import Counter
+        all_titles = []
+        def _collect_titles(suite):
+            all_titles.append(suite.get("title", ""))
+            for s in suite.get("suites", []):
+                _collect_titles(s)
+        for s in results.get("suites", []):
+            _collect_titles(s)
+        # Look for patterns like "Config validation: Sonrie (staging)"
+        import re as _re
+        slugs = _re.findall(r'^(\w[\w-]+):\s', " ".join(all_titles))
+        unique_slugs = list(dict.fromkeys(slugs))
+        if len(unique_slugs) == 1:
+            client_slug = unique_slugs[0]
+            print(f"ℹ️  Auto-detected client: {client_slug}")
+
+    # Report directory: per-client if slug known, shared fallback otherwise
+    if client_slug:
+        dst_reports = project_root / "public" / "reports" / client_slug
+        report_url = f"reports/{client_slug}/index.html"
+    else:
+        dst_reports = project_root / "public" / "reports"
+        report_url = "reports/index.html"
+
     # Copy reports
     copy_playwright_report(src_report, dst_reports)
 
@@ -782,6 +815,16 @@ def main():
 
     # Generate run JSON
     run_json = generate_run_json(results, date, project_root=project_root)
+
+    # Update reportUrl only for the client(s) that actually ran in this batch
+    # When --client is explicit, only update that one client
+    # Otherwise update all clients that had non-skipped tests
+    if client_slug and client_slug in run_json["clients"]:
+        run_json["clients"][client_slug]["reportUrl"] = report_url
+    else:
+        for slug, client_data in run_json["clients"].items():
+            if client_data.get("passed", 0) + client_data.get("failed", 0) > 0:
+                client_data["reportUrl"] = f"reports/{slug}/index.html" if not client_slug else report_url
 
     # Write run details — merge with existing if present (accumulate clients across runs)
     run_file = history_dir / f"{date}.json"
