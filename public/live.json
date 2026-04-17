@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-17T20:20:38.946Z",
   "total": 106,
-  "passed": 5,
+  "passed": 11,
   "failed": 0,
   "skipped": 1,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 1374
+    },
+    {
+      "title": "sonrie: anonymousAccess=false",
+      "status": "passed",
+      "duration": 3067
+    },
+    {
+      "title": "sonrie: inMaintenance=false",
+      "status": "passed",
+      "duration": 1333
+    },
+    {
+      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "passed",
+      "duration": 12807
+    },
+    {
+      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 19202
+    },
+    {
+      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 19083
+    },
     {
       "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
       "status": "passed",
