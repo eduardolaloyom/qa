@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T13:51:35.460Z",
   "total": 106,
-  "passed": 21,
+  "passed": 28,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableTask=false",
+      "status": "passed",
+      "duration": 4601
+    },
+    {
+      "title": "sonrie: pendingDocuments=false",
+      "status": "passed",
+      "duration": 4489
+    },
+    {
+      "title": "sonrie: taxes.showSummary=true",
+      "status": "passed",
+      "duration": 7435
+    },
+    {
+      "title": "sonrie: purchaseOrderEnabled=false",
+      "status": "passed",
+      "duration": 8363
+    },
+    {
+      "title": "sonrie: enableSellerDiscount=false",
+      "status": "passed",
+      "duration": 7233
+    },
+    {
+      "title": "sonrie: hasStockEnabled=false",
+      "status": "passed",
+      "duration": 4875
+    },
+    {
+      "title": "sonrie: enableAskDeliveryDate=false",
+      "status": "passed",
+      "duration": 6088
+    },
     {
       "title": "sonrie: lazyLoadingPrices=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
       "status": "passed",
       "duration": 12616
-    },
-    {
-      "title": "sonrie: anonymousAccess=false",
-      "status": "passed",
-      "duration": 3373
-    },
-    {
-      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "passed",
-      "duration": 13607
-    },
-    {
-      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20585
-    },
-    {
-      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20410
-    },
-    {
-      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 13376
-    },
-    {
-      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 10467
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 13911
     }
   ]
 }
