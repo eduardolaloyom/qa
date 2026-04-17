@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-17T13:51:35.460Z",
   "total": 106,
-  "passed": 54,
+  "passed": 60,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: suggestions.hide=true",
+      "status": "passed",
+      "duration": 7660
+    },
+    {
+      "title": "sonrie: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 7229
+    },
+    {
+      "title": "sonrie: shareOrderNewDesign=false",
+      "status": "passed",
+      "duration": 4833
+    },
+    {
+      "title": "sonrie: payment.enableNewPaymentModule=false",
+      "status": "passed",
+      "duration": 7371
+    },
+    {
+      "title": "sonrie: loginButtons.google=false",
+      "status": "passed",
+      "duration": 1404
+    },
+    {
+      "title": "sonrie: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 1497
+    },
     {
       "title": "sonrie: useNewPromotions=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie: hasVoucherPrinterEnabled=false",
       "status": "passed",
       "duration": 4673
-    },
-    {
-      "title": "sonrie: enableOrderValidation=false",
-      "status": "passed",
-      "duration": 7401
-    },
-    {
-      "title": "sonrie: enableOrderApproval=false",
-      "status": "passed",
-      "duration": 4798
-    },
-    {
-      "title": "sonrie: ordersRequireVerification=false",
-      "status": "passed",
-      "duration": 4819
-    },
-    {
-      "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
-      "status": "passed",
-      "duration": 4749
-    },
-    {
-      "title": "sonrie: limitAddingByStock=false",
-      "status": "passed",
-      "duration": 4670
-    },
-    {
-      "title": "sonrie: hasNoSaleFilter=false",
-      "status": "passed",
-      "duration": 4658
     }
   ]
 }
