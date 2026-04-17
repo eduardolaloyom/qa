@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
-  "passed": 4,
+  "passed": 6,
   "failed": 0,
   "skipped": 1,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 20842
+    },
+    {
+      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+      "status": "passed",
+      "duration": 13362
+    },
     {
       "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
       "status": "passed",
