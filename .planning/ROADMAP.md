@@ -10,6 +10,7 @@ reduce test fragility, and improve execution speed. Three focused phases that ea
 - [ ] **Phase 1: Playwright Teardown Fix** - Reliable HTTP server cleanup after every test run
 - [ ] **Phase 2: Config Validation Refactor** - Split 1,762-line spec into modular per-feature files
 - [x] **Phase 3: B2B Parallel Execution** - Enable parallel client test runs (completed 2026-04-17)
+- [ ] **Phase 4: Live Reporter Race Condition Fix** - Atomic writes to live.json
 
 ## Phase Details
 
@@ -57,6 +58,19 @@ Plans:
 Plans:
 - [ ] 03-01-PLAN.md — Measure baseline, add cart isolation fix, verify parallel >=50% reduction
 
+### Phase 4: Live Reporter Race Condition Fix
+**Goal**: `tools/live-reporter.js` writes to `public/live.json` atomically — concurrent Playwright workers or overlapping runs never produce invalid JSON or lost updates
+**Depends on**: Nothing
+**Requirements**: REQ-06
+**Plans:** 1 plan
+**Success Criteria** (what must be TRUE):
+  1. Writing `live.json` is atomic: a concurrent reader always sees valid JSON (never a partial write)
+  2. Overlapping `live-reporter.js` processes do not lose each other's updates
+  3. Existing `publish-results.py` and dashboard consumers continue to work unchanged
+
+Plans:
+- [ ] 04-01-PLAN.md — Atomic write-then-rename in _save(), .gitignore + run-live.sh cleanup
+
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
@@ -64,3 +78,4 @@ Plans:
 | 1. Playwright Teardown Fix | 0/1 | Planned | - |
 | 2. Config Validation Refactor | 0/4 | Planned | - |
 | 3. B2B Parallel Execution | 0/1 | Complete    | 2026-04-17 |
+| 4. Live Reporter Race Condition Fix | 0/1 | Planned | - |
