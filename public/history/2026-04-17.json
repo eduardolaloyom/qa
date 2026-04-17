@@ -1,6 +1,6 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T20:56:16.169490+00:00",
+  "timestamp": "2026-04-17T21:05:34.483752+00:00",
   "total": 252,
   "passed": 241,
   "failed": 9,
@@ -8,127 +8,127 @@
   "suites": [
     {
       "name": "cart.spec.ts",
-      "tests": 4,
-      "passed": 3,
+      "tests": 160,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "catalog.spec.ts",
-      "tests": 4,
-      "passed": 4,
+      "tests": 160,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "checkout.spec.ts",
-      "tests": 3,
-      "passed": 3,
+      "tests": 120,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "coupons.spec.ts",
-      "tests": 5,
-      "passed": 4,
+      "tests": 200,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-access.spec.ts",
-      "tests": 4,
-      "passed": 4,
+      "tests": 161,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-cart.spec.ts",
-      "tests": 12,
-      "passed": 12,
+      "tests": 410,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-catalog.spec.ts",
-      "tests": 14,
-      "passed": 13,
+      "tests": 413,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-orders.spec.ts",
-      "tests": 9,
-      "passed": 9,
+      "tests": 309,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-payments.spec.ts",
-      "tests": 10,
-      "passed": 10,
+      "tests": 301,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-ui-features.spec.ts",
-      "tests": 11,
-      "passed": 11,
+      "tests": 294,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "mongo-data.spec.ts",
-      "tests": 1,
-      "passed": 1,
+      "tests": 40,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "multi-client.spec.ts",
-      "tests": 5,
-      "passed": 5,
+      "tests": 200,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "orders.spec.ts",
-      "tests": 2,
-      "passed": 1,
+      "tests": 80,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "payment-documents.spec.ts",
-      "tests": 5,
-      "passed": 2,
+      "tests": 200,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "payments.spec.ts",
-      "tests": 2,
-      "passed": 2,
+      "tests": 80,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "prices.spec.ts",
-      "tests": 10,
-      "passed": 6,
+      "tests": 400,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "promotions.spec.ts",
-      "tests": 3,
-      "passed": 3,
+      "tests": 120,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "step-pricing.spec.ts",
-      "tests": 2,
-      "passed": 2,
+      "tests": 80,
+      "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     }
