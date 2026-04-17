@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
-  "passed": 85,
+  "passed": 89,
   "failed": 8,
   "skipped": 8,
-  "currentTest": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
+  "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 11908
+    },
+    {
+      "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 12103
+    },
+    {
+      "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 9711
+    },
+    {
+      "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "passed",
+      "duration": 13838
+    },
     {
       "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "failed",
@@ -86,26 +106,6 @@
       "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
       "status": "skipped",
       "duration": 9302
-    },
-    {
-      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
-      "status": "passed",
-      "duration": 10022
-    },
-    {
-      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "status": "passed",
-      "duration": 11800
-    },
-    {
-      "title": "sonrie: Historial de pedidos carga @orders @funcional",
-      "status": "passed",
-      "duration": 12812
-    },
-    {
-      "title": "sonrie: No hay productos con precio $0",
-      "status": "passed",
-      "duration": 9798
     }
   ]
 }
