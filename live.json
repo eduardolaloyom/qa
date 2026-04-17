@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 73,
+  "passed": 78,
   "failed": 1,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 10590
+    },
+    {
+      "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: Agregar producto al carro",
+      "status": "passed",
+      "duration": 6482
+    },
+    {
+      "title": "sonrie: pendingDocuments=false",
+      "status": "passed",
+      "duration": 5040
+    },
+    {
+      "title": "sonrie: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 4496
+    },
+    {
+      "title": "sonrie: Login exitoso",
+      "status": "passed",
+      "duration": 4379
+    },
     {
       "title": "sonrie: Sin acceso anónimo redirige a login",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie: showMinOne=false",
       "status": "passed",
       "duration": 4708
-    },
-    {
-      "title": "sonrie: enableCreditNotes=false",
-      "status": "passed",
-      "duration": 4415
-    },
-    {
-      "title": "sonrie: enableTask=false",
-      "status": "passed",
-      "duration": 4617
-    },
-    {
-      "title": "sonrie: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 6792
-    },
-    {
-      "title": "sonrie: pointsEnabled=false",
-      "status": "passed",
-      "duration": 4586
-    },
-    {
-      "title": "sonrie: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 7416
-    },
-    {
-      "title": "sonrie: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 7929
     }
   ]
 }
