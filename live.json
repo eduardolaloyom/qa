@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-17T13:51:35.460Z",
   "total": 106,
-  "passed": 83,
-  "failed": 0,
+  "passed": 84,
+  "failed": 2,
   "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 12797
+    },
+    {
+      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "failed",
+      "duration": 16443
+    },
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "failed",
+      "duration": 49049
+    },
     {
       "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
       "status": "passed",
       "duration": 15393
-    },
-    {
-      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 13273
-    },
-    {
-      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 9144
-    },
-    {
-      "title": "sonrie: hasSingleDistributionCenter=true",
-      "status": "passed",
-      "duration": 7208
     }
   ]
 }
