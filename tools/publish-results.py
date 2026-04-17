@@ -507,6 +507,7 @@ def extract_config_validation_clients(all_tests_flat: list, staging_urls: dict) 
             "passed": passed,
             "failed": failed,
             "reportUrl": "reports/index.html",
+            # last_tested will be set by generate_run_json
         }
 
     return clients
@@ -581,6 +582,10 @@ def generate_run_json(results: dict, date: str, project_root: Path = None) -> di
             "reportUrl": "reports/index.html",
         }
 
+    # Stamp all clients with last_tested = today
+    for k in clients:
+        clients[k]["last_tested"] = date
+
     return {
         "date": date,
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -633,6 +638,31 @@ def update_history_index(history_dir: Path, date: str, run_json: dict) -> None:
 
     with open(index_file, "w") as f:
         json.dump(index, f, indent=2)
+
+
+def load_previous_clients(history_dir: Path, current_date: str) -> dict:
+    """Return the most recent result per client from previous days.
+
+    Used to seed a new day's run so clients tested on prior days remain visible
+    in the dashboard even when not re-tested today.
+    """
+    files = sorted(history_dir.glob("20*.json"), reverse=True)
+    accumulated: dict = {}
+    for f in files:
+        if f.stem >= current_date:
+            continue  # skip today or future
+        try:
+            with open(f) as fp:
+                data = json.load(fp)
+        except Exception:
+            continue
+        for k, v in data.get("clients", {}).items():
+            if k not in accumulated and isinstance(v, dict) and v.get("tests", 0) > 0:
+                entry = dict(v)
+                if "last_tested" not in entry:
+                    entry["last_tested"] = f.stem
+                accumulated[k] = entry
+    return accumulated
 
 
 def merge_run_json(existing: dict, new: dict) -> dict:
@@ -760,6 +790,18 @@ def main():
             existing_run = json.load(f)
         run_json = merge_run_json(existing_run, run_json)
         print(f"ℹ️  Merged with existing {run_file.name}")
+    else:
+        # New day: seed with clients from previous days so they stay visible in
+        # the dashboard even when not re-tested today.
+        prev_clients = load_previous_clients(history_dir, date)
+        if prev_clients:
+            # Only let today's clients override seeded data if they actually ran (tests > 0).
+            # A run with 0 tests (all skipped / grep miss) must not wipe previous results.
+            today_active = {k: v for k, v in run_json["clients"].items()
+                            if v.get("tests", 0) > 0}
+            run_json["clients"] = {**prev_clients, **today_active}
+            print(f"ℹ️  Seeded {len(prev_clients)} clients from previous runs "
+                  f"({len(today_active)} updated by today's run)")
     with open(run_file, "w") as f:
         json.dump(run_json, f, indent=2)
     print(f"✅ Generated {run_file}")

@@ -1783,11 +1783,18 @@ function updateClients() {
         const failed = c.failed ?? (c.tests - c.passed);
         const passRate = Math.round(c.passed / c.tests * 100);
         const rateColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
+        const todayStr = new Date().toISOString().slice(0, 10);
+        let lastTestedBadge = '';
+        if (c.last_tested && c.last_tested !== todayStr) {
+            const diffDays = Math.round((new Date(todayStr) - new Date(c.last_tested)) / 86400000);
+            const label = diffDays === 1 ? 'ayer' : `hace ${diffDays} días`;
+            lastTestedBadge = `<span style="font-size:0.72em;color:#9ca3af;margin-left:6px;font-weight:400">(${label})</span>`;
+        }
         return `
         <div class="client-card">
             <div class="client-card-header" onclick="toggleCard(this)">
                 <div>
-                    <div class="client-name">🏪 ${c.name}</div>
+                    <div class="client-name">🏪 ${c.name}${lastTestedBadge}</div>
                     <div class="client-url">${c.url}</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;">
