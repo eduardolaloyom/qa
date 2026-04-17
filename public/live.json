@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-17T13:51:35.460Z",
   "total": 106,
-  "passed": 90,
-  "failed": 8,
+  "passed": 92,
+  "failed": 9,
   "skipped": 8,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "failed",
+      "duration": 47618
+    },
+    {
+      "title": "sonrie: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 11559
+    },
+    {
+      "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 13420
+    },
     {
       "title": "sonrie: PM5-01 Catálogo carga productos con precios (promotions funcional)",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
       "status": "passed",
       "duration": 9591
-    },
-    {
-      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
-      "status": "passed",
-      "duration": 9347
-    },
-    {
-      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
-      "status": "skipped",
-      "duration": 9398
-    },
-    {
-      "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
-      "status": "skipped",
-      "duration": 9258
     }
   ]
 }
