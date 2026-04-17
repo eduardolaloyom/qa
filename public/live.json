@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 40,
+  "passed": 47,
   "failed": 1,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enablePaymentDocumentsB2B=false",
+      "status": "passed",
+      "duration": 6772
+    },
+    {
+      "title": "sonrie: enableInvoicesList=false",
+      "status": "passed",
+      "duration": 6655
+    },
+    {
+      "title": "sonrie: shareOrderNewDesign=false",
+      "status": "passed",
+      "duration": 4851
+    },
+    {
+      "title": "sonrie: hasVoucherPrinterEnabled=false",
+      "status": "passed",
+      "duration": 4584
+    },
+    {
+      "title": "sonrie: enableOrderValidation=false",
+      "status": "passed",
+      "duration": 7305
+    },
+    {
+      "title": "sonrie: enableOrderApproval=false",
+      "status": "passed",
+      "duration": 4763
+    },
+    {
+      "title": "sonrie: ordersRequireVerification=false",
+      "status": "passed",
+      "duration": 4889
+    },
     {
       "title": "sonrie: ordersRequireAuthorization=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: shoppingDetail.lastOrder=false",
       "status": "passed",
       "duration": 12939
-    },
-    {
-      "title": "sonrie: lazyLoadingPrices=false",
-      "status": "passed",
-      "duration": 6237
-    },
-    {
-      "title": "sonrie: disableObservationInput=false",
-      "status": "passed",
-      "duration": 12771
-    },
-    {
-      "title": "sonrie: hidePrices=false",
-      "status": "passed",
-      "duration": 5033
-    },
-    {
-      "title": "sonrie: currency=undefined",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie: hasSingleDistributionCenter=true",
-      "status": "passed",
-      "duration": 12965
-    },
-    {
-      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
-      "status": "passed",
-      "duration": 12916
-    },
-    {
-      "title": "sonrie: hasTransportCode=false",
-      "status": "passed",
-      "duration": 13022
     }
   ]
 }
