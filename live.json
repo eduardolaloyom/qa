@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 82,
+  "passed": 85,
   "failed": 1,
-  "skipped": 6,
+  "skipped": 10,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
+      "status": "passed",
+      "duration": 12707
+    },
+    {
+      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 9944
+    },
+    {
+      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 9287
+    },
+    {
+      "title": "sonrie: C3-04 Descuento visible en catalogo",
+      "status": "skipped",
+      "duration": 60
+    },
+    {
+      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "skipped",
+      "duration": 58
+    },
+    {
+      "title": "sonrie: C3-02 Detectar productos con precio $0",
+      "status": "skipped",
+      "duration": 47
+    },
+    {
+      "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
+      "status": "skipped",
+      "duration": 9237
+    },
     {
       "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
       "status": "skipped",
@@ -71,41 +106,6 @@
       "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "passed",
       "duration": 8014
-    },
-    {
-      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
-      "status": "passed",
-      "duration": 15460
-    },
-    {
-      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
-      "status": "passed",
-      "duration": 15453
-    },
-    {
-      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 13598
-    },
-    {
-      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 9273
-    },
-    {
-      "title": "sonrie: enableNewUI=false",
-      "status": "passed",
-      "duration": 7722
-    },
-    {
-      "title": "sonrie: suggestions.hide=true",
-      "status": "passed",
-      "duration": 7621
-    },
-    {
-      "title": "sonrie: enableBetaButtons=false",
-      "status": "passed",
-      "duration": 4654
     }
   ]
 }
