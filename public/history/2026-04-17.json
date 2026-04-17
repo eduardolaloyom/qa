@@ -1,16 +1,16 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T13:44:41.774804+00:00",
-  "total": 106,
+  "timestamp": "2026-04-17T13:51:27.381230+00:00",
+  "total": 103,
   "passed": 57,
-  "failed": 43,
-  "duration": 819,
+  "failed": 40,
+  "duration": 1210,
   "suites": [
     {
       "name": "cart.spec.ts",
-      "tests": 4,
+      "tests": 1,
       "passed": 0,
-      "failed": 4,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
@@ -364,9 +364,9 @@
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
       "environment": "staging",
-      "tests": 100,
-      "passed": 57,
-      "failed": 43,
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     "globalwines": {
@@ -453,59 +453,14 @@
   },
   "failure_groups": [
     {
-      "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Redirecci\u00f3n incorrecta en: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico",
-      "owner": "dev",
-      "action": "Revisar el routing \u2014 la app qued\u00f3 en la misma URL en lugar de avanzar al paso siguiente.",
-      "count": 1,
-      "tests": [
-        "[mongo-data.spec.ts] sonrie: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "Error: expect(page).not.toHaveURL(expected) failed\n\nExpected pattern: not /auth\\/jwt\\/login|\\/login$/\nReceived string: \"https://tienda.youorder.me/auth/jwt/login\"\nTimeout: 45000ms\n\nCall log:\n  - Expect \"not toHaveURL\" with timeout 45000ms\n    49 \u00d7 unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\n",
-      "annotations_sample": [],
-      "spec_file": "mongo-data.spec.ts"
-    },
-    {
       "category": "ambiente",
       "label": "\ud83d\udd35 Ambiente / Servidor",
       "reason": "Elemento no encontrado: `selector desconocido`",
       "owner": "qa",
       "action": "Inspeccionar staging y actualizar el selector `selector desconocido` en el spec.",
-      "count": 29,
+      "count": 1,
       "tests": [
-        "[cart.spec.ts] sonrie: C2-05 Agregar producto al carro",
-        "[cart.spec.ts] sonrie: C2-06 Cantidad m\u00ednima \u2014 sistema corrige o bloquea",
-        "[cart.spec.ts] sonrie: C2-08 Modificar cantidad en carro",
-        "[cart.spec.ts] sonrie: C2-09 Eliminar producto del carro",
-        "[config-validation.spec.ts] sonrie: disableCart=false",
-        "[config-validation.spec.ts] sonrie: enableCoupons=true",
-        "[config-validation.spec.ts] sonrie: hideReceiptType=false",
-        "[config-validation.spec.ts] sonrie: enablePayments=false",
-        "[config-validation.spec.ts] sonrie: includeTaxRateInPrices=false",
-        "[config-validation.spec.ts] sonrie: enableAskDeliveryDate=false",
-        "[config-validation.spec.ts] sonrie: purchaseOrderEnabled=false",
-        "[config-validation.spec.ts] sonrie: enableSellerDiscount=false",
-        "[config-validation.spec.ts] sonrie: taxes.showSummary=true",
-        "[config-validation.spec.ts] sonrie: editAddress=true",
-        "[config-validation.spec.ts] sonrie: enableOrderValidation=false",
-        "[config-validation.spec.ts] sonrie: hasTransportCode=false",
-        "[config-validation.spec.ts] sonrie: disableShowEstimatedDeliveryHour=false",
-        "[config-validation.spec.ts] sonrie: hasTransferPaymentType=false",
-        "[config-validation.spec.ts] sonrie: discountTypes.enableOrderDiscountType=false",
-        "[config-validation.spec.ts] sonrie: payment.enableNewPaymentModule=false",
-        "[config-validation.spec.ts] sonrie: shoppingDetail.lastOrder=false",
-        "[config-validation.spec.ts] sonrie: disableObservationInput=false",
-        "[config-validation.spec.ts] sonrie: hasSingleDistributionCenter=true",
-        "[prices.spec.ts] sonrie: C3-03 Precios consistentes catalogo vs carro",
-        "[prices.spec.ts] sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
-        "[prices.spec.ts] sonrie: C3-15 Cupon invalido muestra error claro",
-        "[prices.spec.ts] sonrie: C3-11 Precio bruto vs neto \u2014 impuestos segun config",
-        "[prices.spec.ts] sonrie: C5-05 Sugerencias se pueden agregar al carro",
-        "[step-pricing.spec.ts] sonrie: PM4-01 Productos con step pricing muestran escalones"
+        "[cart.spec.ts] sonrie: C2-09 Eliminar producto del carro"
       ],
       "clients": [
         "sonrie"
@@ -513,195 +468,6 @@
       "error_sample": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Agregar' }).first()\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 30000ms\n  - waiting for getByRole('button', { name: 'Agregar' }).first()\n",
       "annotations_sample": [],
       "spec_file": "cart.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Flujo completo catalogo \u2192 carro \u2192 checkout",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Flujo completo catalogo \u2192 carro \u2192 checkout' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[checkout.spec.ts] sonrie: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "checkout.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Doble click en crear pedido no genera duplicado",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Doble click en crear pedido no genera duplicado' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[checkout.spec.ts] sonrie: C2-12 Doble click en crear pedido no genera duplicado"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "checkout.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Campo de cup\u00f3n existe y es interactuable",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Campo de cup\u00f3n existe y es interactuable' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] sonrie: PM1-01 Campo de cup\u00f3n existe y es interactuable"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "coupons.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Cup\u00f3n inv\u00e1lido muestra error (no crash)",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Cup\u00f3n inv\u00e1lido muestra error (no crash)' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] sonrie: PM1-04 Cup\u00f3n inv\u00e1lido muestra error (no crash)"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "coupons.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Modal/UI de cup\u00f3n no queda en loading infinito",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Modal/UI de cup\u00f3n no queda en loading infinito' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] sonrie: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "coupons.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Crear orden SIN cup\u00f3n no se rompe por cambios en cupones",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Crear orden SIN cup\u00f3n no se rompe por cambios en cupones' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[coupons.spec.ts] sonrie: PM1-03 Crear orden SIN cup\u00f3n no se rompe por cambios en cupones"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "coupons.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Agregar producto al carro",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Agregar producto al carro' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[multi-client.spec.ts] sonrie: Agregar producto al carro"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "multi-client.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `text=/\\\\$\\\\s*[\\\\d.,]+/`",
-      "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `text=/\\\\$\\\\s*[\\\\d.,]+/` en el spec.",
-      "count": 3,
-      "tests": [
-        "[prices.spec.ts] sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
-        "[prices.spec.ts] sonrie: C3-02 Detectar productos con precio $0",
-        "[prices.spec.ts] sonrie: C3-04 Descuento visible en catalogo"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 15000ms\n  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\n",
-      "annotations_sample": [],
-      "spec_file": "prices.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"product-item\"]`",
-      "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"product-item\"]` en el spec.",
-      "count": 1,
-      "tests": [
-        "[prices.spec.ts] sonrie: Cat\u00e1logo carga con productos visibles @catalog @calidad"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Agregar' }).first().or(locator('[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"product-item\"]').first())\nExpected: visible\nTimeout: 45000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 45000ms\n  - waiting for getByRole('button', { name: 'Agregar' }).first().or(locator('[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"product-item\"]').first())\n",
-      "annotations_sample": [],
-      "spec_file": "prices.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Carrito muestra totales con descuentos aplicados",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Carrito muestra totales con descuentos aplicados' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[promotions.spec.ts] sonrie: PM5-02 Carrito muestra totales con descuentos aplicados"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "promotions.spec.ts"
-    },
-    {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Timeout en: Agregar producto con cantidad > 1 muestra precio correcto",
-      "owner": "qa",
-      "action": "Verificar en staging que 'Agregar producto con cantidad > 1 muestra precio correcto' funciona. Puede ser lentitud del ambiente.",
-      "count": 1,
-      "tests": [
-        "[step-pricing.spec.ts] sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto"
-      ],
-      "clients": [
-        "sonrie"
-      ],
-      "error_sample": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Agregar' }).first() to be visible\n",
-      "annotations_sample": [],
-      "spec_file": "step-pricing.spec.ts"
     }
   ],
   "pending_b2b": [],
