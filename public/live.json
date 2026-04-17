@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 71,
+  "passed": 77,
   "failed": 0,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Agregar producto al carro",
+      "status": "passed",
+      "duration": 6242
+    },
+    {
+      "title": "sonrie: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 4482
+    },
+    {
+      "title": "sonrie: Login exitoso",
+      "status": "passed",
+      "duration": 4545
+    },
+    {
+      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "passed",
+      "duration": 14701
+    },
+    {
+      "title": "sonrie: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 3662
+    },
+    {
+      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "passed",
+      "duration": 15466
+    },
     {
       "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie: shoppingDetail.lastOrder=false",
       "status": "passed",
       "duration": 7314
-    },
-    {
-      "title": "sonrie: loginButtons.google=false",
-      "status": "passed",
-      "duration": 1461
-    },
-    {
-      "title": "sonrie: shareOrderNewDesign=false",
-      "status": "passed",
-      "duration": 4834
-    },
-    {
-      "title": "sonrie: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 7260
-    },
-    {
-      "title": "sonrie: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 1471
-    },
-    {
-      "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
-      "status": "passed",
-      "duration": 6142
-    },
-    {
-      "title": "sonrie: useNewPromotions=false",
-      "status": "passed",
-      "duration": 4785
     }
   ]
 }
