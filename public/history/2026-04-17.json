@@ -1,16 +1,16 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T13:56:58.008580+00:00",
-  "total": 103,
-  "passed": 57,
-  "failed": 40,
-  "duration": 1404,
+  "timestamp": "2026-04-17T14:02:41.386923+00:00",
+  "total": 106,
+  "passed": 94,
+  "failed": 4,
+  "duration": 1727,
   "suites": [
     {
       "name": "cart.spec.ts",
-      "tests": 1,
-      "passed": 0,
-      "failed": 1,
+      "tests": 4,
+      "passed": 3,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -23,22 +23,22 @@
     {
       "name": "checkout.spec.ts",
       "tests": 3,
-      "passed": 1,
-      "failed": 2,
+      "passed": 3,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "config-validation.spec.ts",
       "tests": 60,
-      "passed": 40,
-      "failed": 19,
+      "passed": 59,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "coupons.spec.ts",
       "tests": 5,
-      "passed": 0,
-      "failed": 4,
+      "passed": 4,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -51,8 +51,8 @@
     {
       "name": "multi-client.spec.ts",
       "tests": 5,
-      "passed": 4,
-      "failed": 1,
+      "passed": 5,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -79,22 +79,22 @@
     {
       "name": "prices.spec.ts",
       "tests": 10,
-      "passed": 1,
-      "failed": 9,
+      "passed": 6,
+      "failed": 3,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "promotions.spec.ts",
       "tests": 3,
-      "passed": 2,
-      "failed": 1,
+      "passed": 3,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "step-pricing.spec.ts",
       "tests": 2,
-      "passed": 0,
-      "failed": 2,
+      "passed": 2,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     }
   ],
@@ -364,9 +364,9 @@
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
       "environment": "staging",
-      "tests": 1,
-      "passed": 0,
-      "failed": 1,
+      "tests": 98,
+      "passed": 94,
+      "failed": 4,
       "reportUrl": "reports/index.html"
     },
     "globalwines": {
@@ -453,21 +453,54 @@
   },
   "failure_groups": [
     {
-      "category": "ambiente",
-      "label": "\ud83d\udd35 Ambiente / Servidor",
-      "reason": "Elemento no encontrado: `selector desconocido`",
-      "owner": "qa",
-      "action": "Inspeccionar staging y actualizar el selector `selector desconocido` en el spec.",
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Redirecci\u00f3n incorrecta en: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico",
+      "owner": "dev",
+      "action": "Revisar el routing \u2014 la app qued\u00f3 en la misma URL en lugar de avanzar al paso siguiente.",
       "count": 1,
       "tests": [
-        "[cart.spec.ts] sonrie: C2-09 Eliminar producto del carro"
+        "[mongo-data.spec.ts] sonrie: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico"
       ],
       "clients": [
         "sonrie"
       ],
-      "error_sample": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Agregar' }).first()\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 30000ms\n  - waiting for getByRole('button', { name: 'Agregar' }).first()\n",
+      "error_sample": "Error: expect(page).not.toHaveURL(expected) failed\n\nExpected pattern: not /auth\\/jwt\\/login|\\/login$/\nReceived string: \"https://tienda.youorder.me/auth/jwt/login\"\nTimeout: 45000ms\n\nCall log:\n  - Expect \"not toHaveURL\" with timeout 45000ms\n    49 \u00d7 unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\n",
       "annotations_sample": [],
-      "spec_file": "cart.spec.ts"
+      "spec_file": "mongo-data.spec.ts"
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado: `text=/\\\\$\\\\s*[\\\\d.,]+/`",
+      "owner": "qa",
+      "action": "Inspeccionar staging y actualizar el selector `text=/\\\\$\\\\s*[\\\\d.,]+/` en el spec.",
+      "count": 3,
+      "tests": [
+        "[prices.spec.ts] sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+        "[prices.spec.ts] sonrie: C3-02 Detectar productos con precio $0",
+        "[prices.spec.ts] sonrie: C3-04 Descuento visible en catalogo"
+      ],
+      "clients": [
+        "sonrie"
+      ],
+      "error_sample": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 15000ms\n  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\n",
+      "annotations_sample": [],
+      "spec_file": "prices.spec.ts"
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 1,
+      "tests": [
+        "[promotions.spec.ts] sonrie: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
+      ],
+      "clients": [
+        "sonrie"
+      ]
     }
   ],
   "pending_b2b": [],
