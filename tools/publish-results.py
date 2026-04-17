@@ -672,9 +672,13 @@ def merge_run_json(existing: dict, new: dict) -> dict:
     # Timestamp: use most recent
     merged["timestamp"] = new["timestamp"]
 
-    # Clients: merge by slug (new data wins if same slug)
+    # Clients: merge by slug — new data wins only if it has real results (passed+failed > 0)
     merged_clients = dict(existing.get("clients", {}))
-    merged_clients.update(new.get("clients", {}))
+    for slug, new_client in new.get("clients", {}).items():
+        if new_client.get("passed", 0) + new_client.get("failed", 0) > 0:
+            merged_clients[slug] = new_client
+        elif slug not in merged_clients:
+            merged_clients[slug] = new_client  # new client with no results yet — add anyway
     merged["clients"] = merged_clients
 
     # Suites: merge by name — update if exists, add if new
@@ -841,7 +845,7 @@ def main():
             # Only let today's clients override seeded data if they actually ran (tests > 0).
             # A run with 0 tests (all skipped / grep miss) must not wipe previous results.
             today_active = {k: v for k, v in run_json["clients"].items()
-                            if v.get("tests", 0) > 0}
+                            if v.get("passed", 0) + v.get("failed", 0) > 0}
             run_json["clients"] = {**prev_clients, **today_active}
             print(f"ℹ️  Seeded {len(prev_clients)} clients from previous runs "
                   f"({len(today_active)} updated by today's run)")
