@@ -1,10 +1,10 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T18:47:49.111925+00:00",
-  "total": 106,
-  "passed": 94,
-  "failed": 4,
-  "duration": 698,
+  "timestamp": "2026-04-17T19:02:02.184516+00:00",
+  "total": 99,
+  "passed": 89,
+  "failed": 0,
+  "duration": 710,
   "suites": [
     {
       "name": "cart.spec.ts",
@@ -79,8 +79,8 @@
     {
       "name": "mongo-data.spec.ts",
       "tests": 1,
-      "passed": 0,
-      "failed": 1,
+      "passed": 1,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -113,9 +113,9 @@
     },
     {
       "name": "prices.spec.ts",
-      "tests": 10,
-      "passed": 6,
-      "failed": 3,
+      "tests": 3,
+      "passed": 0,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -147,9 +147,9 @@
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
       "environment": "staging",
-      "tests": 98,
-      "passed": 94,
-      "failed": 4,
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
       "reportUrl": "reports/sonrie/index.html",
       "last_tested": "2026-04-17"
     },
