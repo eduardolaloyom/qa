@@ -2,11 +2,56 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 71,
+  "passed": 79,
   "failed": 1,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 9763
+    },
+    {
+      "title": "sonrie: Agregar producto al carro",
+      "status": "passed",
+      "duration": 6064
+    },
+    {
+      "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 4296
+    },
+    {
+      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "passed",
+      "duration": 15295
+    },
+    {
+      "title": "sonrie: Login exitoso",
+      "status": "passed",
+      "duration": 4408
+    },
+    {
+      "title": "sonrie: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 3309
+    },
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "passed",
+      "duration": 8014
+    },
+    {
+      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "passed",
+      "duration": 15460
+    },
     {
       "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
       "status": "passed",
@@ -61,51 +106,6 @@
       "title": "sonrie: enableCreditNotes=false",
       "status": "passed",
       "duration": 4538
-    },
-    {
-      "title": "sonrie: enableTask=false",
-      "status": "passed",
-      "duration": 4512
-    },
-    {
-      "title": "sonrie: pointsEnabled=false",
-      "status": "passed",
-      "duration": 4528
-    },
-    {
-      "title": "sonrie: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 6719
-    },
-    {
-      "title": "sonrie: pendingDocuments=false",
-      "status": "passed",
-      "duration": 4549
-    },
-    {
-      "title": "sonrie: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 7249
-    },
-    {
-      "title": "sonrie: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 8330
-    },
-    {
-      "title": "sonrie: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 7282
-    },
-    {
-      "title": "sonrie: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 4579
-    },
-    {
-      "title": "sonrie: taxes.showSummary=true",
-      "status": "passed",
-      "duration": 7381
     }
   ]
 }
