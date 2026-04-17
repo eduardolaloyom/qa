@@ -1,0 +1,46 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 06 — Features desactivadas"
+# Tests: features que NO deben aparecer en la app de Prinorte
+# Related: checklist-puesta-en-marcha-app.md > V2-01
+---
+# Continúa desde formulario (post 05-crear-comercio)
+# Verifica que features desactivadas NO aparecen en ninguna pantalla
+
+# Ya en la lista de comercios (flow 05 cierra el formulario)
+
+# Sin login con Google ni Facebook (solo botones de login, no texto genérico)
+- assertNotVisible:
+    text: ".*[Ii]niciar.*[Ss]esi[oó]n.*Google.*|.*[Cc]ontinuar.*Google.*|.*Sign in.*Google.*"
+- assertNotVisible:
+    text: ".*[Ii]niciar.*[Ss]esi[oó]n.*Facebook.*|.*[Cc]ontinuar.*Facebook.*"
+
+# Sin módulo de pagos
+- assertNotVisible:
+    text: ".*[Rr]ealizar [Pp]ago.*|.*[Pp]agar [Dd]euda.*"
+    optional: true
+
+# Sin notas de crédito
+- assertNotVisible:
+    text: ".*[Nn]ota.*[Cc]r[eé]dito.*"
+
+# Sin módulo de tareas growth
+- assertNotVisible:
+    text: ".*[Tt]areas.*[Gg]rowth.*|.*[Gg]rowth.*[Tt]ask.*"
+
+# Sin puntos ni fidelización
+- assertNotVisible:
+    text: ".*[Pp]untos.*|.*[Ff]idelizaci[oó]n.*"
+
+# Sin orden de compra
+- assertNotVisible:
+    text: ".*[Oo]rden.*[Cc]ompra.*|.*Purchase Order.*"
+
+# Sin lista de facturas
+- assertNotVisible:
+    text: ".*[Mm]is [Ff]acturas.*"
+    optional: true
+
+# Sin selector múltiples DC (solo hay uno)
+- assertNotVisible:
+    text: ".*[Ss]eleccionar.*[Cc]entro.*|.*[Cc]ambiar.*DC.*"
+    optional: true

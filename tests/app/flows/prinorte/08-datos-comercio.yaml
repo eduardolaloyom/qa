@@ -1,0 +1,49 @@
+appId: ${APP_PACKAGE}
+---
+# Continúa desde lista de comercios (post 07-bloqueado)
+# Entra a un comercio Disponible y verifica sus datos
+
+# Volver a lista de comercios si es necesario
+- tapOn:
+    text: "COMERCIOS"
+    optional: true
+
+# Entrar al primer comercio disponible (por RUT)
+- tapOn:
+    text: ".*\\d{7,9}-\\d.*"
+    index: 0
+
+# Ir a la pestaña "Datos del comercio"
+- tapOn:
+    text: "Datos del comercio"
+    optional: true
+
+# Verificar banner de estado del comercio
+- assertVisible:
+    text: ".*[Dd]isponible.*|.*[Aa]dvertencia.*|.*[Bb]loqueado.*"
+
+# Verificar ID del comercio (formato RUT XXXXXXXX-X)
+- assertVisible:
+    text: ".*\\d{7,9}-\\d.*|.*ID.*"
+
+# Verificar que aparece el nombre del comercio
+- assertVisible:
+    text: ".*[Dd]atos.*[Cc]omercio.*|.*[Cc]omercio.*"
+
+# Verificar forma de pago configurada
+- assertVisible:
+    text: ".*[Ff]ormas.*[Pp]ago.*|.*[Ff]orma.*[Pp]ago.*"
+
+# Verificar línea de crédito y saldo disponible
+- assertVisible:
+    text: ".*[Ll]ínea.*[Cc]rédito.*|.*[Ll]inea.*[Cc]redito.*|.*[Cc]rédito.*"
+- assertVisible:
+    text: ".*[Ss]aldo.*[Dd]isponible.*|.*[Ss]aldo.*"
+
+# Verificar sección de cuentas visible
+- assertVisible:
+    text: ".*[Cc]uentas.*"
+
+# Verificar dirección
+- assertVisible:
+    text: ".*[Dd]irecci[oó]n.*"

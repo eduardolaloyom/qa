@@ -1,0 +1,52 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 10 — Historial de pedidos"
+# Tests: tab PEDIDOS carga, lista órdenes con número y monto
+# Related: checklist-puesta-en-marcha-app.md > V1-11
+---
+# Continúa desde cuentas bancarias (post 09-cuentas)
+# Navega al tab PEDIDOS del bottom nav y verifica historial
+
+# Tap en tab PEDIDOS (bottom nav)
+- tapOn:
+    text: "PEDIDOS"
+
+# Esperar que cargue la lista de pedidos
+- extendedWaitUntil:
+    visible:
+      text: ".*[Pp]edido.*|.*[Oo]rden.*|.*#\\d+.*"
+    timeout: 15000
+
+# Verificar que hay pedidos listados con número de orden
+- assertVisible:
+    text: ".*#\\d+.*"
+
+# Verificar que aparece monto en algún pedido
+- assertVisible:
+    text: ".*\\$.*[0-9].*"
+
+# Verificar estados de pedido visibles
+- assertVisible:
+    text: ".*[Pp]endiente.*|.*[Pp]rocesad.*|.*[Ee]nviad.*|.*[Cc]onfirmad.*|.*[Aa]bierto.*"
+    optional: true
+
+# Tomar screenshot del historial
+- takeScreenshot: /tmp/prinorte-pedidos
+
+# Abrir detalle del primer pedido si hay botón Ver Detalle
+- tapOn:
+    text: ".*[Vv]er [Dd]etalle.*|.*#\\d+.*"
+    index: 0
+    optional: true
+
+# Verificar que el detalle carga (solo si se pudo abrir)
+- runFlow:
+    when:
+      notVisible:
+        text: "PEDIDOS"
+    commands:
+      - extendedWaitUntil:
+          visible:
+            text: ".*[Pp]roducto.*|.*[Ss]ubtotal.*|.*[Tt]otal.*|.*[Dd]etalle.*"
+          timeout: 15000
+      - pressKey: Back
+      - waitForAnimationToEnd

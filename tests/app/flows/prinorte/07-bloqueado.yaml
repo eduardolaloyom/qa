@@ -1,0 +1,46 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 07 — Comercio bloqueado (test negativo)"
+# Tests: comercio bloqueado NO puede agregar al carro ni confirmar pedido
+# Related: checklist-puesta-en-marcha-app.md > V1-09
+---
+# TEST NEGATIVO — comercio bloqueado no puede pedir
+# Continúa desde lista de comercios (post 06-features-off)
+
+# Abrir filtro y seleccionar "Bloqueado"
+- tapOn:
+    id: "me.youorder.yomventas:id/filters_button"
+- extendedWaitUntil:
+    visible:
+      text: ".*[Bb]loqueado.*"
+    timeout: 10000
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+
+# Verificar que la lista muestra comercios bloqueados
+- extendedWaitUntil:
+    visible:
+      text: ".*[Bb]loqueado.*"
+    timeout: 30000
+
+# Entrar al primer comercio bloqueado
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 0
+
+# Esperar que cargue la pantalla del comercio
+- extendedWaitUntil:
+    visible:
+      text: ".*[Bb]loqueado.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    timeout: 30000
+
+# Verificar que NO aparece el botón de agregar al carro
+- assertNotVisible:
+    text: ".*[Aa]gregar al [Cc]arro.*|.*[Cc]onfirmar [Pp]edido.*"
+
+# Verificar que aparece algún indicador de bloqueo o catálogo vacío
+- assertVisible:
+    text: ".*[Bb]loqueado.*|.*[Ss]in [Aa]cceso.*|.*[Nn]o [Dd]isponible.*|.*[Rr]estricci[oó]n.*|.*[Cc]at[aá]logo [Vv]ac[ií]o.*"
+    optional: true
+
+# Volver a la lista
+- pressKey: Back

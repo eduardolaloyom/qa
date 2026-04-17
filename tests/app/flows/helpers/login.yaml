@@ -1,6 +1,7 @@
 appId: ${APP_PACKAGE}
 ---
 # Solo pasos de login — clearState y launchApp los hace el master flow
+
 - tapOn:
     text: ".*[Ee]mail.*|.*[Cc]orreo.*"
 - inputText: ${TEST_SELLER_EMAIL}
@@ -8,17 +9,38 @@ appId: ${APP_PACKAGE}
     text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
 - inputText: ${TEST_SELLER_PASSWORD}
 - pressKey: Enter
+
+# Esperar que la animación de login procese antes de buscar popups
+- waitForAnimationToEnd
+
+# Samsung Pass puede aparecer tarde
 - runFlow:
     when:
       visible:
-        text: ".*Samsung Pass.*"
+        text: ".*Samsung Pass.*|.*Recordar contraseña.*"
     commands:
       - tapOn:
-          text: "Cancelar"
+          text: ".*[Cc]ancelar.*|.*[Nn]ot now.*|.*[Nn]o gracias.*"
+          optional: true
+
 - tapOn:
     text: ".*[Ee]ntrar.*"
     optional: true
+
+# Esperar pantalla principal O popup de "nueva versión" (cubre el título tras el login)
+# "ACTUALIZAR" y "CANCELAR" son los botones del popup — señal válida de que el login completó
 - extendedWaitUntil:
     visible:
-      text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*[Rr]uta.*|.*[Ss]ync.*|.*[Cc]at[aá]logo.*|.*SINCRONIZAR.*"
-    timeout: 60000
+      text: ".*[Cc]omercio.*|.*[Cc]liente.*|.*SINCRONIZAR.*|.*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
+    timeout: 25000
+
+# Descartar popup "nueva versión" si apareció — toca CANCELAR para no actualizar
+- runFlow:
+    when:
+      visible:
+        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*|.*[Hh]ay una nueva.*"
+    commands:
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd

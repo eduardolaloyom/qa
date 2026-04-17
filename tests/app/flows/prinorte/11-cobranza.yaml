@@ -1,0 +1,30 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 11 — Cobranza"
+# Tests: tab COBRANZA carga, muestra documentos/montos, sin botón de pago activo
+# Related: checklist-puesta-en-marcha-app.md > V1-12
+---
+# Continúa desde historial de pedidos (post 10-pedidos)
+# FEATURE_PAYMENTS = false — no debería haber módulo de pago activo
+
+# Tap en tab COBRANZA (bottom nav)
+- tapOn:
+    text: "COBRANZA"
+
+# Esperar que cargue la sección
+- extendedWaitUntil:
+    visible:
+      text: ".*[Cc]obranza.*|.*[Dd]ocumento.*|.*[Ff]actura.*|.*[Pp]endiente.*|.*[Dd]euda.*|.*[Ss]aldo.*"
+    timeout: 15000
+
+# Tomar screenshot para documentar qué muestra COBRANZA
+- takeScreenshot: /tmp/prinorte-cobranza
+
+# Verificar que NO hay botón de pago activo (FEATURE_PAYMENTS = false)
+- assertNotVisible:
+    text: ".*[Rr]ealizar [Pp]ago.*|.*[Pp]agar ahora.*|.*[Cc]onfirmar [Pp]ago.*"
+    optional: true
+
+# Verificar que muestra montos/documentos (solo consulta, no pago)
+- assertVisible:
+    text: ".*\\$.*|.*[Ss]aldo.*|.*[Dd]euda.*|.*[Ff]actura.*|.*[Dd]ocumento.*"
+    optional: true

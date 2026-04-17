@@ -1,0 +1,75 @@
+appId: ${APP_PACKAGE}
+---
+# Disparar sincronización
+- tapOn:
+    text: ".*SINCRONIZAR.*|.*[Ss]incronizar.*"
+    optional: true
+
+# Descartar popup "nueva versión" si apareció antes del sync
+- runFlow:
+    when:
+      visible:
+        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
+    commands:
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd
+
+# Si aparece popup de error de sync, reintentar
+- runFlow:
+    when:
+      visible:
+        text: ".*[Vv]olver a sincronizar.*"
+    commands:
+      - tapOn:
+          text: "Volver a sincronizar"
+      - extendedWaitUntil:
+          notVisible:
+            text: ".*[Vv]olver a sincronizar.*"
+          timeout: 30000
+
+# Si sigue el popup, seguir sin sincronizar
+- runFlow:
+    when:
+      visible:
+        text: ".*[Ss]eguir sin sincronizar.*"
+    commands:
+      - tapOn:
+          text: "Seguir sin sincronizar"
+
+# Esperar que termine de sincronizar — solo "Sincronizando", NO "CANCELAR"
+# (el popup puede tener "CANCELAR" visible independientemente del estado del sync)
+# 180s: device físico ~40s; margen para casos de red lenta
+- extendedWaitUntil:
+    notVisible:
+      text: ".*[Ss]incronizando.*"
+    timeout: 180000
+
+# Descartar popup "nueva versión" que puede aparecer post-sync
+- runFlow:
+    when:
+      visible:
+        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
+    commands:
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd
+
+# Confirmar que estamos en la lista de comercios
+- extendedWaitUntil:
+    visible:
+      text: "Listado de comercios|.*ACTUALIZAR.*"
+    timeout: 15000
+
+# Segundo descarte si el popup reapareció
+- runFlow:
+    when:
+      visible:
+        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
+    commands:
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd

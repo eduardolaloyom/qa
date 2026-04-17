@@ -1,0 +1,50 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 01 — Selección de comercio"
+# Tests: filtro Disponible funciona, se entra al primer comercio y carga catálogo
+# Related: checklist-puesta-en-marcha-app.md > V1-02
+---
+# Abrir panel de filtros
+- tapOn:
+    id: "me.youorder.yomventas:id/filters_button"
+
+# Esperar que abra el panel
+- extendedWaitUntil:
+    visible:
+      text: "Disponible"
+    timeout: 10000
+
+# Marcar checkbox "Disponible" — id=filter_button, index 2 (0=sin ventas, 1=nuevos, 2=disponible)
+- tapOn:
+    id: "me.youorder.yomventas:id/filter_button"
+    index: 2
+
+# Scroll para asegurar que el botón esté completamente visible
+- swipe:
+    direction: UP
+    duration: 300
+
+# Aplicar — tap por coordenada cerca del fondo de pantalla
+- tapOn:
+    point: "50%,93%"
+
+# Esperar que el panel se cierre
+- extendedWaitUntil:
+    notVisible:
+      text: "Aplicar filtros"
+    timeout: 30000
+
+# Tocar primer comercio (identificado por RUT formato XXXXXXXX-X/0)
+- tapOn:
+    text: ".*\\d{7,8}-\\d.*"
+    index: 0
+
+# Navegar al catálogo si hay botón
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+
+# Esperar catálogo o pantalla del comercio
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Dd]atos.*[Cc]omercio.*|.*[Tt]omador.*"
+    timeout: 30000

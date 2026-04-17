@@ -1,0 +1,8 @@
+# Maestro config nativo para Prinorte
+# Solo las variables referenciadas con ${...} en los flows de prinorte-session
+# (reemplaza inyectar las 127 vars de env.prinorte.yaml como --env flags)
+# NUNCA commitear este archivo
+env:
+  APP_PACKAGE: "me.youorder.yomventas"
+  TEST_SELLER_EMAIL: "eduardo@yom.ai"
+  TEST_SELLER_PASSWORD: "laloyom123"

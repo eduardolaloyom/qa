@@ -1,0 +1,45 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 03 — Armado de pedido"
+# Tests: producto en carro, resumen visible, descuento vendedor opcional
+# Related: checklist-puesta-en-marcha-app.md > V1-04
+# ⚠️ STOP antes de confirmar — no enviar pedidos reales
+---
+# Continúa desde el catálogo con un producto en el carro (post 02-catalogo)
+# Verifica flujo de pedido — funciona con cualquier producto
+# ⚠️ PRODUCCIÓN — Se detiene ANTES del botón final de envío
+
+# Verificar que el producto se agregó (contador > 0)
+- assertVisible:
+    text: ".*[Mm]i [Pp]edido.*|.*[Cc]arro.*|.*Ver pedido.*"
+    optional: true
+
+# Agregar una unidad más para intentar activar promoción
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    index: 0
+    optional: true
+
+# Ir al carrito / mi pedido
+- tapOn:
+    text: "Mi pedido"
+    optional: true
+
+# Esperar que cargue el resumen del pedido
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ss]ubtotal.*|.*[Tt]otal.*|.*[Rr]esumen.*|.*[Pp]roducto.*"
+    timeout: 30000
+
+# Verificar que hay al menos un producto en el carro
+- assertVisible:
+    text: ".*[Pp]recio.*|.*\\$.*|.*[Cc]antidad.*|.*[Uu]nidades.*"
+    optional: true
+
+# Verificar descuento de vendedor si está habilitado
+- assertVisible:
+    text: ".*[Dd]escuento.*[Vv]endedor.*|.*[Dd]escuento.*[Mm]anual.*|.*[Dd]scto.*"
+    optional: true
+
+# Verificar resumen visible — STOP: no tocar Confirmar/Enviar/Finalizar
+- assertVisible:
+    text: ".*[Ss]ubtotal.*|.*[Tt]otal.*"

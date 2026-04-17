@@ -1,0 +1,58 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 04 — Filtros de comercios"
+# Tests: los 3 estados del filtro existen (Disponible/Advertencia/Bloqueado) + feature Sin Venta si aplica
+# Related: checklist-puesta-en-marcha-app.md > V1-07
+---
+# Continúa desde resumen del pedido (post 03-pedido)
+# Stack de navegación: Cart → Product Detail → Catalog → Commerce Detail → List
+# → necesita 4 backs para llegar al Listado de comercios
+
+# Volver al listado — backs progresivos usando "Listado de comercios" como target exacto
+# (evita confusión con "Comercio" = título de pantalla de detalle)
+- pressKey: Back
+- runFlow:
+    when:
+      notVisible:
+        text: "Listado de comercios"
+    commands:
+      - pressKey: Back
+- runFlow:
+    when:
+      notVisible:
+        text: "Listado de comercios"
+    commands:
+      - pressKey: Back
+- runFlow:
+    when:
+      notVisible:
+        text: "Listado de comercios"
+    commands:
+      - pressKey: Back
+- extendedWaitUntil:
+    visible:
+      text: "Listado de comercios"
+    timeout: 10000
+
+# Abrir el panel de filtros y esperar animación
+- tapOn:
+    id: "me.youorder.yomventas:id/filters_button"
+    optional: true
+- waitForAnimationToEnd
+
+# Verificar los 3 estados del filtro
+# NOTA: si el tap no funcionó, el tester confirma visualmente con [m] manual-pass
+- assertVisible:
+    text: ".*[Dd]isponible.*"
+- assertVisible:
+    text: ".*[Aa]dvertencia.*"
+- assertVisible:
+    text: ".*[Bb]loqueado.*"
+
+# Cerrar el filtro
+- pressKey: Back
+- waitForAnimationToEnd
+
+# Verificar feature "sin venta" si está habilitada
+- assertVisible:
+    text: ".*[Ss]in [Vv]enta.*|.*[Ss]in [Cc]ompra.*|.*[Ss]in [Pp]edido.*"
+    optional: true

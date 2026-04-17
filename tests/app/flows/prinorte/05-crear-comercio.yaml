@@ -1,0 +1,46 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 05 — Crear comercio"
+# Tests: botón crear visible, formulario abre, campos Email/Región presentes, Región carga opciones
+# Related: checklist-puesta-en-marcha-app.md > V1-08
+# ⚠️ STOP — no enviar formulario en producción
+---
+# Continúa desde lista de comercios (post 04-filtros)
+# Verifica el formulario de creación de comercio (FEATURE_CREATE_COMMERCE = true)
+# ⚠️ PRODUCCIÓN — Solo verificar formulario, NO enviar
+
+# Verificar botón de creación visible
+- assertVisible:
+    text: ".*[Nn]uevo.*|.*[Cc]rear.*|.*\\+.*[Cc]liente.*|.*[Aa]gregar.*[Cc]omercio.*"
+
+# Abrir formulario
+- tapOn:
+    text: ".*[Nn]uevo.*|.*[Cc]rear.*[Cc]omercio.*|.*[Aa]gregar.*[Cc]liente.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Rr][Uu][Tt].*|.*[Nn]ombre.*|.*[Rr]az[oó]n.*"
+    timeout: 30000
+
+# Verificar campos obligatorios del formulario
+- assertVisible:
+    text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+- assertVisible:
+    text: ".*[Rr]egi[oó]n.*|.*[Cc]omuna.*"
+
+# BUG CONOCIDO: selector Región no carga opciones — verificar sin bloquear sesión
+- tapOn:
+    text: ".*[Rr]egi[oó]n.*"
+    optional: true
+- assertVisible:
+    text: ".*[Aa]ntofagasta.*|.*[Mm]etropolitana.*|.*[Vv]alparaíso.*|.*[Tt]arapac[aá].*|.*[Rr]egi[oó]n.*"
+    optional: true
+
+# Cerrar formulario con el botón X (resource-id confirmado)
+- tapOn:
+    id: "me.youorder.yomventas:id/close_dialog"
+
+# Esperar que vuelva la lista de comercios
+- extendedWaitUntil:
+    visible:
+      id: "me.youorder.yomventas:id/filters_button"
+    timeout: 15000

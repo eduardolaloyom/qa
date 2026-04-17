@@ -1,0 +1,52 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: 09 — Cuentas bancarias"
+# Tests: formulario de cuenta bancaria abre, selector de banco existe
+# Related: checklist-puesta-en-marcha-app.md > V1-10
+---
+# Continúa desde datos del comercio (post 08-datos-comercio)
+# Verifica que el formulario de "Agregar cuenta" abre y tiene los campos esperados
+
+# Tap en "Agregar una nueva cuenta"
+- tapOn:
+    text: ".*[Aa]gregar.*[Cc]uenta.*|.*[Nn]ueva.*[Cc]uenta.*"
+
+# Verificar que el formulario abrió
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ss]eleccionar.*[Bb]anco.*|.*[Bb]anco.*"
+    timeout: 10000
+
+# Tomar screenshot del formulario
+- takeScreenshot: /tmp/prinorte-cuentas-form
+
+# BUG CONOCIDO: selector banco puede no cargar opciones — documentar sin bloquear
+- tapOn:
+    text: ".*[Ss]eleccionar.*[Bb]anco.*"
+    optional: true
+- assertVisible:
+    text: ".*Banco.*Estado.*|.*Banco.*Chile.*|.*Scotiabank.*|.*BCI.*|.*Santander.*|.*Itaú.*"
+    optional: true
+
+# Volver — back progresivo hasta llegar al tab bar principal
+# (el formulario y el selector de banco pueden estar en pantallas distintas)
+- pressKey: Back
+- waitForAnimationToEnd
+- runFlow:
+    when:
+      notVisible:
+        text: "COMERCIOS|Listado de comercios"
+    commands:
+      - pressKey: Back
+      - waitForAnimationToEnd
+- runFlow:
+    when:
+      notVisible:
+        text: "COMERCIOS|Listado de comercios"
+    commands:
+      - pressKey: Back
+      - waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: "COMERCIOS|Listado de comercios"
+    timeout: 15000

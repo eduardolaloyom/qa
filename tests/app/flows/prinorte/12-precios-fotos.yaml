@@ -1,0 +1,56 @@
+appId: ${APP_PACKAGE}
+---
+# Verifica que en el catálogo los productos tienen precios reales (no $0)
+# y que las imágenes cargan correctamente
+# Requiere estar en el catálogo de un comercio Disponible
+
+# Volver al catálogo (tab COMERCIOS → entrar al comercio)
+- tapOn:
+    text: "COMERCIOS"
+
+# Entrar al primer comercio Disponible
+- tapOn:
+    id: "me.youorder.yomventas:id/filters_button"
+- extendedWaitUntil:
+    visible:
+      text: "Disponible"
+    timeout: 10000
+- tapOn:
+    id: "me.youorder.yomventas:id/apply_btn"
+- extendedWaitUntil:
+    notVisible:
+      text: "Aplicar filtros"
+    timeout: 15000
+- tapOn:
+    text: ".*\\d{7,9}-\\d.*"
+    index: 0
+
+# Navegar al catálogo
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*"
+    timeout: 15000
+
+# Screenshot para verificar visualmente que las imágenes cargan (no íconos rotos)
+- takeScreenshot: /tmp/prinorte-fotos-catalogo
+
+# Scrollear para ver más productos
+- scroll
+
+# Screenshot después de scroll
+- takeScreenshot: /tmp/prinorte-fotos-scroll
+
+# Verificar que hay al menos un producto con precio real (distinto de $0)
+- assertVisible:
+    text: ".*\\$[1-9][0-9].*"
+
+# Entrar al detalle de un producto para ver foto ampliada
+- tapOn:
+    text: ".*\\$[1-9][0-9].*"
+    index: 0
+    optional: true
+- takeScreenshot: /tmp/prinorte-foto-detalle
+- pressKey: Back
