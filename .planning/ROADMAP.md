@@ -31,6 +31,7 @@ Plans:
 **Goal**: `config-validation.spec.ts` split into ≤300-line per-feature files with maintainable selectors
 **Depends on**: Nothing (parallel to Phase 1)
 **Requirements**: REQ-03, REQ-04
+**Plans:** 4 plans
 **Success Criteria** (what must be TRUE):
   1. No single spec file exceeds 300 lines
   2. All selectors referencing B2B UI text are extracted to a shared `selectors.ts` constants file
@@ -38,7 +39,10 @@ Plans:
   4. Each feature spec is independently runnable with `npx playwright test {spec-name}`
 
 Plans:
-- [ ] 02-01: Extract selectors to constants and split spec into feature files
+- [ ] 02-01-PLAN.md — Create shared helpers.ts and selectors.ts foundation modules
+- [ ] 02-02-PLAN.md — Split cv-access (6), cv-catalog (13), cv-cart (14) spec files
+- [ ] 02-03-PLAN.md — Split cv-payments (11), cv-orders (9), cv-ui-features (12) spec files
+- [ ] 02-04-PLAN.md — Verify test count parity and delete original file
 
 ### Phase 3: B2B Parallel Execution
 **Goal**: B2B config validation runs across clients in parallel, not sequentially
@@ -57,5 +61,5 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Playwright Teardown Fix | 0/1 | Planned | - |
-| 2. Config Validation Refactor | 0/1 | Not started | - |
+| 2. Config Validation Refactor | 0/4 | Planned | - |
 | 3. B2B Parallel Execution | 0/1 | Not started | - |
