@@ -32,3 +32,4 @@ public/reports/trace/
 data/.b2b-source-cache/
 data/.app-mobile-cache/
 public/live.json
+public/live.json.tmp

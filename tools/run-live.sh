@@ -17,7 +17,7 @@ echo ""
 # Start local HTTP server for dashboard
 python3 -m http.server $PORT --directory public &
 SERVER_PID=$!
-trap "kill $SERVER_PID 2>/dev/null; rm -f public/live.json" EXIT
+trap "kill $SERVER_PID 2>/dev/null; rm -f public/live.json public/live.json.tmp" EXIT
 
 # Open browser (macOS)
 sleep 0.5 && open "http://localhost:${PORT}" &
