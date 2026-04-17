@@ -73,12 +73,22 @@ Si hay screenshot → mostrarlo con Read tool.
 **Si `ambiente` (owner: qa):**
 - Leer el spec afectado
 - Identificar selector o timeout problemático
-- Proponer patch concreto:
+- Evaluar si el método es el problema o si hay una forma más robusta de validar lo mismo
+- Proponer las opciones disponibles:
   ```
-  Patch sugerido en {archivo}:{línea}:
-  - {línea actual}
-  + {línea corregida}
-  ¿Aplicar? (sí/no/skip)
+  Opciones para {test}:
+
+  A) Parchear selector actual:
+     - {línea actual}
+     + {línea corregida}
+
+  B) Método alternativo (más robusto):
+     {descripción del método alternativo}
+     Ej: interceptar /api/coupon en vez de buscar botón en UI
+
+  C) Derivar a Cowork — feature visual que Playwright no captura bien
+
+  ¿Qué hacemos? (a/b/c/skip)
   ```
 
 **Si `flaky`:**
