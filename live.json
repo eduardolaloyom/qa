@@ -2,11 +2,56 @@
   "running": true,
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
-  "passed": 27,
+  "passed": 36,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: limitAddingByStock=false",
+      "status": "passed",
+      "duration": 5172
+    },
+    {
+      "title": "sonrie: hasNoSaleFilter=false",
+      "status": "passed",
+      "duration": 5300
+    },
+    {
+      "title": "sonrie: hasMultiUnitEnabled=false",
+      "status": "passed",
+      "duration": 5295
+    },
+    {
+      "title": "sonrie: editAddress=true",
+      "status": "passed",
+      "duration": 7308
+    },
+    {
+      "title": "sonrie: showMinOne=false",
+      "status": "passed",
+      "duration": 5559
+    },
+    {
+      "title": "sonrie: enableDistributionCentersSelector=false",
+      "status": "passed",
+      "duration": 4604
+    },
+    {
+      "title": "sonrie: enableCreditNotes=false",
+      "status": "passed",
+      "duration": 5274
+    },
+    {
+      "title": "sonrie: enableTask=false",
+      "status": "passed",
+      "duration": 4670
+    },
+    {
+      "title": "sonrie: pointsEnabled=false",
+      "status": "passed",
+      "duration": 5141
+    },
     {
       "title": "sonrie: taxes.showSummary=true",
       "status": "passed",
@@ -61,51 +106,6 @@
       "title": "sonrie: ordersRequireAuthorization=false",
       "status": "passed",
       "duration": 4790
-    },
-    {
-      "title": "sonrie: hideReceiptType=false",
-      "status": "passed",
-      "duration": 6794
-    },
-    {
-      "title": "sonrie: enableCoupons=true",
-      "status": "passed",
-      "duration": 6551
-    },
-    {
-      "title": "sonrie: inMaintenance=false",
-      "status": "passed",
-      "duration": 1492
-    },
-    {
-      "title": "sonrie: disableCart=false",
-      "status": "passed",
-      "duration": 5973
-    },
-    {
-      "title": "sonrie: currency=undefined",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 9553
-    },
-    {
-      "title": "sonrie: hidePrices=false",
-      "status": "passed",
-      "duration": 5771
-    },
-    {
-      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 13295
-    },
-    {
-      "title": "sonrie: anonymousAccess=false",
-      "status": "passed",
-      "duration": 3430
     }
   ]
 }
