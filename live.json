@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 81,
-  "failed": 1,
-  "skipped": 5,
+  "passed": 83,
+  "failed": 2,
+  "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "failed",
+      "duration": 50267
+    },
+    {
+      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 9485
+    },
+    {
+      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 9308
+    },
+    {
+      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 9303
+    },
+    {
+      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
+      "status": "skipped",
+      "duration": 9215
+    },
     {
       "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
       "status": "skipped",
@@ -81,31 +106,6 @@
       "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
       "status": "passed",
       "duration": 15290
-    },
-    {
-      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 9279
-    },
-    {
-      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 13474
-    },
-    {
-      "title": "sonrie: enableNewUI=false",
-      "status": "passed",
-      "duration": 7618
-    },
-    {
-      "title": "sonrie: suggestions.hide=true",
-      "status": "passed",
-      "duration": 7728
-    },
-    {
-      "title": "sonrie: enableBetaButtons=false",
-      "status": "passed",
-      "duration": 4848
     }
   ]
 }
