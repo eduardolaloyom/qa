@@ -3,10 +3,25 @@
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
   "passed": 84,
-  "failed": 2,
+  "failed": 5,
   "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C3-04 Descuento visible en catalogo",
+      "status": "failed",
+      "duration": 16486
+    },
+    {
+      "title": "sonrie: C3-02 Detectar productos con precio $0",
+      "status": "failed",
+      "duration": 16452
+    },
+    {
+      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "failed",
+      "duration": 16413
+    },
     {
       "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: Sin acceso anónimo redirige a login",
       "status": "passed",
       "duration": 3168
-    },
-    {
-      "title": "sonrie: pendingDocuments=false",
-      "status": "failed",
-      "duration": 47603
-    },
-    {
-      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
-      "status": "passed",
-      "duration": 15498
-    },
-    {
-      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "passed",
-      "duration": 13876
     }
   ]
 }
