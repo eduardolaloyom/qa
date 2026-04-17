@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 25,
+  "passed": 33,
   "failed": 1,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
+      "status": "passed",
+      "duration": 4829
+    },
+    {
+      "title": "sonrie: hasNoSaleFilter=false",
+      "status": "passed",
+      "duration": 4816
+    },
+    {
+      "title": "sonrie: hasMultiUnitEnabled=false",
+      "status": "passed",
+      "duration": 4823
+    },
+    {
+      "title": "sonrie: hasStockEnabled=false",
+      "status": "passed",
+      "duration": 4606
+    },
+    {
+      "title": "sonrie: enableChooseSaleUnit=false",
+      "status": "passed",
+      "duration": 5325
+    },
+    {
+      "title": "sonrie: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 12939
+    },
+    {
+      "title": "sonrie: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 6237
+    },
+    {
+      "title": "sonrie: disableObservationInput=false",
+      "status": "passed",
+      "duration": 12771
+    },
     {
       "title": "sonrie: hidePrices=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: disableCart=false",
       "status": "passed",
       "duration": 6088
-    },
-    {
-      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 13514
-    },
-    {
-      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "passed",
-      "duration": 13417
-    },
-    {
-      "title": "sonrie: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 9591
-    },
-    {
-      "title": "sonrie: loginButtons.google=false",
-      "status": "passed",
-      "duration": 1482
-    },
-    {
-      "title": "sonrie: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 1606
-    },
-    {
-      "title": "sonrie: inMaintenance=false",
-      "status": "passed",
-      "duration": 1540
-    },
-    {
-      "title": "sonrie: anonymousAccess=false",
-      "status": "passed",
-      "duration": 3425
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 14201
     }
   ]
 }
