@@ -2,11 +2,56 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 13,
+  "passed": 22,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableAskDeliveryDate=false",
+      "status": "passed",
+      "duration": 6206
+    },
+    {
+      "title": "sonrie: enableChooseSaleUnit=false",
+      "status": "passed",
+      "duration": 4673
+    },
+    {
+      "title": "sonrie: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 5136
+    },
+    {
+      "title": "sonrie: includeTaxRateInPrices=false",
+      "status": "passed",
+      "duration": 6099
+    },
+    {
+      "title": "sonrie: enablePayments=false",
+      "status": "passed",
+      "duration": 6106
+    },
+    {
+      "title": "sonrie: ordersRequireAuthorization=false",
+      "status": "passed",
+      "duration": 4781
+    },
+    {
+      "title": "sonrie: hideReceiptType=false",
+      "status": "passed",
+      "duration": 6959
+    },
+    {
+      "title": "sonrie: enableCoupons=true",
+      "status": "passed",
+      "duration": 6279
+    },
+    {
+      "title": "sonrie: disableCart=false",
+      "status": "passed",
+      "duration": 5989
+    },
     {
       "title": "sonrie: inMaintenance=false",
       "status": "passed",
@@ -61,26 +106,6 @@
       "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
       "status": "passed",
       "duration": 10128
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 13814
-    },
-    {
-      "title": "sonrie: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 13076
-    },
-    {
-      "title": "sonrie: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 12141
-    },
-    {
-      "title": "sonrie: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 11704
     }
   ]
 }
