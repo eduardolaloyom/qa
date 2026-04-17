@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-17T14:02:50.237Z",
   "total": 106,
-  "passed": 79,
+  "passed": 81,
   "failed": 0,
-  "skipped": 4,
+  "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 9376
+    },
+    {
+      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
+      "status": "skipped",
+      "duration": 9258
+    },
+    {
+      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
+      "status": "passed",
+      "duration": 9554
+    },
+    {
+      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "status": "passed",
+      "duration": 11853
+    },
     {
       "title": "sonrie: Historial de pedidos carga @orders @funcional",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: enableNewUI=false",
       "status": "passed",
       "duration": 7782
-    },
-    {
-      "title": "sonrie: enableInvoicesList=false",
-      "status": "passed",
-      "duration": 6602
-    },
-    {
-      "title": "sonrie: enablePaymentDocumentsB2B=false",
-      "status": "passed",
-      "duration": 6748
-    },
-    {
-      "title": "sonrie: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 6739
-    },
-    {
-      "title": "sonrie: enablePriceOracle=false",
-      "status": "passed",
-      "duration": 7614
     }
   ]
 }
