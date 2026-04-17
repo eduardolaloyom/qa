@@ -1,6 +1,6 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T21:06:35.231292+00:00",
+  "timestamp": "2026-04-17T21:40:33.540813+00:00",
   "total": 252,
   "passed": 241,
   "failed": 9,
@@ -36,42 +36,42 @@
     },
     {
       "name": "cv-access.spec.ts",
-      "tests": 161,
+      "tests": 110,
       "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-cart.spec.ts",
-      "tests": 410,
+      "tests": 230,
       "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-catalog.spec.ts",
-      "tests": 413,
+      "tests": 240,
       "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-orders.spec.ts",
-      "tests": 309,
+      "tests": 173,
       "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-payments.spec.ts",
-      "tests": 301,
+      "tests": 170,
       "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-ui-features.spec.ts",
-      "tests": 294,
+      "tests": 169,
       "passed": 0,
       "failed": 0,
       "reportUrl": "reports/index.html"
