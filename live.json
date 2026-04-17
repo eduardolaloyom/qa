@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-17T16:17:07.404Z",
   "total": 106,
-  "passed": 19,
+  "passed": 23,
   "failed": 0,
   "skipped": 1,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
+      "status": "passed",
+      "duration": 12792
+    },
+    {
+      "title": "sonrie: hasTransportCode=false",
+      "status": "passed",
+      "duration": 12753
+    },
+    {
+      "title": "sonrie: editAddress=true",
+      "status": "passed",
+      "duration": 13076
+    },
+    {
+      "title": "sonrie: limitAddingByStock=false",
+      "status": "passed",
+      "duration": 5019
+    },
     {
       "title": "sonrie: purchaseOrderEnabled=false",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
       "status": "passed",
       "duration": 10404
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 13465
-    },
-    {
-      "title": "sonrie: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 13426
-    },
-    {
-      "title": "sonrie: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 11716
-    },
-    {
-      "title": "sonrie: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 11565
     }
   ]
 }
