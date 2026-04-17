@@ -1,134 +1,134 @@
 {
   "date": "2026-04-17",
-  "timestamp": "2026-04-17T16:22:55.527955+00:00",
-  "total": 3728,
-  "passed": 0,
-  "failed": 0,
-  "duration": 0,
+  "timestamp": "2026-04-17T18:19:24.327167+00:00",
+  "total": 106,
+  "passed": 94,
+  "failed": 4,
+  "duration": 349,
   "suites": [
     {
       "name": "cart.spec.ts",
-      "tests": 160,
-      "passed": 0,
+      "tests": 4,
+      "passed": 3,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "catalog.spec.ts",
-      "tests": 160,
-      "passed": 0,
+      "tests": 4,
+      "passed": 4,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "checkout.spec.ts",
-      "tests": 120,
-      "passed": 0,
+      "tests": 3,
+      "passed": 3,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "coupons.spec.ts",
-      "tests": 200,
-      "passed": 0,
+      "tests": 5,
+      "passed": 4,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-access.spec.ts",
-      "tests": 161,
-      "passed": 0,
+      "tests": 4,
+      "passed": 4,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-cart.spec.ts",
-      "tests": 410,
-      "passed": 0,
+      "tests": 12,
+      "passed": 12,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-catalog.spec.ts",
-      "tests": 413,
-      "passed": 0,
+      "tests": 14,
+      "passed": 13,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-orders.spec.ts",
-      "tests": 309,
-      "passed": 0,
+      "tests": 9,
+      "passed": 9,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-payments.spec.ts",
-      "tests": 301,
-      "passed": 0,
+      "tests": 10,
+      "passed": 10,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "cv-ui-features.spec.ts",
-      "tests": 294,
-      "passed": 0,
+      "tests": 11,
+      "passed": 11,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "mongo-data.spec.ts",
-      "tests": 40,
+      "tests": 1,
       "passed": 0,
-      "failed": 0,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "multi-client.spec.ts",
-      "tests": 200,
-      "passed": 0,
+      "tests": 5,
+      "passed": 5,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "orders.spec.ts",
-      "tests": 80,
-      "passed": 0,
+      "tests": 2,
+      "passed": 1,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "payment-documents.spec.ts",
-      "tests": 200,
-      "passed": 0,
+      "tests": 5,
+      "passed": 2,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "payments.spec.ts",
-      "tests": 80,
-      "passed": 0,
+      "tests": 2,
+      "passed": 2,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "prices.spec.ts",
-      "tests": 400,
-      "passed": 0,
-      "failed": 0,
+      "tests": 10,
+      "passed": 6,
+      "failed": 3,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "promotions.spec.ts",
-      "tests": 120,
-      "passed": 0,
+      "tests": 3,
+      "passed": 3,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "step-pricing.spec.ts",
-      "tests": 80,
-      "passed": 0,
+      "tests": 2,
+      "passed": 2,
       "failed": 0,
       "reportUrl": "reports/index.html"
     }
@@ -146,11 +146,12 @@
     "sonrie": {
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
-      "tests": 101,
-      "passed": 55,
-      "failed": 46,
-      "reportUrl": "reports/index.html",
-      "last_tested": "2026-04-16"
+      "environment": "staging",
+      "tests": 98,
+      "passed": 94,
+      "failed": 4,
+      "reportUrl": "reports/sonrie/index.html",
+      "last_tested": "2026-04-17"
     },
     "codelpa": {
       "name": "Codelpa",
@@ -531,7 +532,58 @@
       "last_tested": "2026-04-17"
     }
   },
-  "failure_groups": [],
+  "failure_groups": [
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Redirecci\u00f3n incorrecta en: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico",
+      "owner": "dev",
+      "action": "Revisar el routing \u2014 la app qued\u00f3 en la misma URL en lugar de avanzar al paso siguiente.",
+      "count": 1,
+      "tests": [
+        "[mongo-data.spec.ts] sonrie: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico"
+      ],
+      "clients": [
+        "sonrie"
+      ],
+      "error_sample": "Error: expect(page).not.toHaveURL(expected) failed\n\nExpected pattern: not /auth\\/jwt\\/login|\\/login$/\nReceived string: \"https://tienda.youorder.me/auth/jwt/login\"\nTimeout: 45000ms\n\nCall log:\n  - Expect \"not toHaveURL\" with timeout 45000ms\n    49 \u00d7 unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\n",
+      "annotations_sample": [],
+      "spec_file": "mongo-data.spec.ts"
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Elemento no encontrado: `text=/\\\\$\\\\s*[\\\\d.,]+/`",
+      "owner": "qa",
+      "action": "Inspeccionar staging y actualizar el selector `text=/\\\\$\\\\s*[\\\\d.,]+/` en el spec.",
+      "count": 3,
+      "tests": [
+        "[prices.spec.ts] sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+        "[prices.spec.ts] sonrie: C3-02 Detectar productos con precio $0",
+        "[prices.spec.ts] sonrie: C3-04 Descuento visible en catalogo"
+      ],
+      "clients": [
+        "sonrie"
+      ],
+      "error_sample": "Error: expect(locator).toBeVisible() failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 15000ms\n  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\n",
+      "annotations_sample": [],
+      "spec_file": "prices.spec.ts"
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 1,
+      "tests": [
+        "[cv-ui-features.spec.ts] sonrie: pendingDocuments=false"
+      ],
+      "clients": [
+        "sonrie"
+      ]
+    }
+  ],
   "pending_b2b": [],
   "evidence": {
     "screenshots": [],

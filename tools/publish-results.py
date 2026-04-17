@@ -727,11 +727,15 @@ def main():
     has its own report URL. Without --client, auto-detects from results if only one
     client ran, otherwise falls back to shared public/reports/.
 
-    Example for two parallel sessions:
-        npx playwright test --project=b2b --grep "Sonrie" --reporter=json,outputFile=playwright-report/results-sonrie.json
+    Example for two parallel sessions (run tests, copy results.json, then publish):
+        # Session A (Sonrie):
+        npx playwright test --project=b2b --grep "Sonrie"
+        cp tests/e2e/playwright-report/results.json tests/e2e/playwright-report/results-sonrie.json
         python3 tools/publish-results.py --results-file tests/e2e/playwright-report/results-sonrie.json --client sonrie
 
-        npx playwright test --project=b2b --grep "Bastien" --reporter=json,outputFile=playwright-report/results-bastien.json
+        # Session B (Bastien) — can run in parallel since each uses its own copy:
+        npx playwright test --project=b2b --grep "Bastien"
+        cp tests/e2e/playwright-report/results.json tests/e2e/playwright-report/results-bastien.json
         python3 tools/publish-results.py --results-file tests/e2e/playwright-report/results-bastien.json --client bastien
     """
     # Parse arguments
