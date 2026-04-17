@@ -719,10 +719,10 @@ def merge_run_json(existing: dict, new: dict) -> dict:
         existing_suites[suite["name"]] = suite
     merged["suites"] = list(existing_suites.values())
 
-    # Recalculate totals from merged suites
-    merged["total"]    = sum(s["tests"]  for s in merged["suites"])
-    merged["passed"]   = sum(s["passed"] for s in merged["suites"])
-    merged["failed"]   = sum(s["failed"] for s in merged["suites"])
+    # Recalculate totals from merged clients (not raw suites — suites include skipped cross-client tests)
+    merged["total"]    = sum(c.get("tests",  0) for c in merged_clients.values())
+    merged["passed"]   = sum(c.get("passed", 0) for c in merged_clients.values())
+    merged["failed"]   = sum(c.get("failed", 0) for c in merged_clients.values())
     merged["duration"] = existing.get("duration", 0) + new.get("duration", 0)
 
     # failure_groups: replace groups for clients that appear in the new run
