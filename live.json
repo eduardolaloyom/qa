@@ -3,10 +3,25 @@
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
   "passed": 85,
-  "failed": 6,
-  "skipped": 7,
-  "currentTest": null,
+  "failed": 8,
+  "skipped": 8,
+  "currentTest": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
   "recentTests": [
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "failed",
+      "duration": 49146
+    },
+    {
+      "title": "sonrie: C3-04 Descuento visible en catalogo",
+      "status": "failed",
+      "duration": 16904
+    },
+    {
+      "title": "sonrie: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 13218
+    },
     {
       "title": "sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: No hay productos con precio $0",
       "status": "passed",
       "duration": 9798
-    },
-    {
-      "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie: Agregar producto al carro",
-      "status": "passed",
-      "duration": 6161
-    },
-    {
-      "title": "sonrie: Catálogo muestra productos con precios",
-      "status": "passed",
-      "duration": 4716
     }
   ]
 }
