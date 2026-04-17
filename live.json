@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
-  "passed": 77,
+  "passed": 79,
   "failed": 0,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 12812
+    },
+    {
+      "title": "sonrie: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 9798
+    },
+    {
+      "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
     {
       "title": "sonrie: Agregar producto al carro",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: enablePriceOracle=false",
       "status": "passed",
       "duration": 8257
-    },
-    {
-      "title": "sonrie: hasMultipleBusinessUnit=false",
-      "status": "passed",
-      "duration": 7854
-    },
-    {
-      "title": "sonrie: suggestions.hide=true",
-      "status": "passed",
-      "duration": 7747
-    },
-    {
-      "title": "sonrie: shoppingDetail.lastOrder=false",
-      "status": "passed",
-      "duration": 7163
     }
   ]
 }
