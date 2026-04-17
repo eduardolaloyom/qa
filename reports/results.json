@@ -10,14 +10,18 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 4
+    },
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "/Users/lalojimenez/qa/tests/e2e/test-results",
         "repeatEach": 1,
         "retries": 1,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "b2b",
         "name": "b2b",
         "testDir": "/Users/lalojimenez/qa/tests/e2e/b2b",
@@ -31,7 +35,9 @@
         "outputDir": "/Users/lalojimenez/qa/tests/e2e/test-results",
         "repeatEach": 1,
         "retries": 1,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "admin",
         "name": "admin",
         "testDir": "/Users/lalojimenez/qa/tests/e2e/admin",
@@ -76,27 +82,4516 @@
     "updateSourceMethod": "patch",
     "version": "1.58.2",
     "workers": 4,
-    "webServer": {
-      "command": "python3 -m http.server 8080 --directory ../../public",
-      "url": "http://localhost:8080",
-      "reuseExistingServer": true,
-      "stdout": "ignore",
-      "stderr": "pipe"
-    }
+    "webServer": null
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
-      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+      "title": "b2b/cart.spec.ts",
+      "file": "b2b/cart.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C2 — Carrito de compras: Sonrie (staging)",
+          "file": "b2b/cart.spec.ts",
+          "line": 6,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: C2-05 Agregar producto al carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12141,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:02:50.969Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1981448f0b79506fb670-e2ca5839fe3bc82126f7",
+              "file": "b2b/cart.spec.ts",
+              "line": 18,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-06 Cantidad mínima — sistema corrige o bloquea",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "C2-06: Sonrie (staging) no tiene MinUnit/showMinOne configurado",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
+                        "line": 35,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "skipped",
+                      "duration": 11704,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:02:50.968Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "C2-06: Sonrie (staging) no tiene MinUnit/showMinOne configurado",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
+                            "line": 35,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1981448f0b79506fb670-a2dc64ccf0431077f7f5",
+              "file": "b2b/cart.spec.ts",
+              "line": 31,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-08 Modificar cantidad en carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 13814,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:02:50.966Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1981448f0b79506fb670-4b0cade32adf371833e7",
+              "file": "b2b/cart.spec.ts",
+              "line": 67,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-09 Eliminar producto del carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 13076,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:02:50.965Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1981448f0b79506fb670-d5c191d876d10ed42129",
+              "file": "b2b/cart.spec.ts",
+              "line": 85,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/catalog.spec.ts",
+      "file": "b2b/catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C2 — Catálogo y búsqueda: Sonrie (staging)",
+          "file": "b2b/catalog.spec.ts",
+          "line": 7,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10128,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:03.440Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-6cb83b9b6709d52a09b1",
+              "file": "b2b/catalog.spec.ts",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20342,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:03.876Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-168cf4b1992844629683",
+              "file": "b2b/catalog.spec.ts",
+              "line": 19,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 20290,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:04.809Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-8587420f2f3478cbca77",
+              "file": "b2b/catalog.spec.ts",
+              "line": 33,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 13296,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:05.546Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-35fe772c75f5a5e27b92",
+              "file": "b2b/catalog.spec.ts",
+              "line": 48,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/checkout.spec.ts",
+      "file": "b2b/checkout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C2 — Checkout / crear pedido: Sonrie (staging)",
+          "file": "b2b/checkout.spec.ts",
+          "line": 6,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 13353,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:13.580Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "25ab1bfc84c57e3e3a45-437b251ef3b246d4adad",
+              "file": "b2b/checkout.spec.ts",
+              "line": 23,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 13916,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:18.850Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "25ab1bfc84c57e3e3a45-65f11017fb499f4c5b75",
+              "file": "b2b/checkout.spec.ts",
+              "line": 42,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C2-13 Pedido aparece en historial",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9547,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:24.230Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "25ab1bfc84c57e3e3a45-01c03fff02b7d8081284",
+              "file": "b2b/checkout.spec.ts",
+              "line": 67,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation.spec.ts",
+      "file": "b2b/config-validation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation: Sonrie (staging)",
+          "file": "b2b/config-validation.spec.ts",
+          "line": 14,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: anonymousAccess=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4371,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:25.142Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-18e8e5cec11113fa952a",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 26,
+              "column": 9
+            },
+            {
+              "title": "sonrie: hidePrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5083,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:26.979Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-438ee772f17787432bc1",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 44,
+              "column": 9
+            },
+            {
+              "title": "sonrie: disableCart=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5989,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:29.521Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-4e3eb53c1e8d2c9c1a6f",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 69,
+              "column": 9
+            },
+            {
+              "title": "sonrie: enableCoupons=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6279,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:32.072Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-93c49bfe76e0ecce43e4",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 104,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hideReceiptType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6959,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:32.835Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-1c0a2e2f6dc405327977",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 141,
+              "column": 11
+            },
+            {
+              "title": "sonrie: currency=undefined",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                        "line": 176,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:33.784Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation.spec.ts",
+                            "line": 176,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "3238104278c4d165058f-2e651daa5e976bb7e88a",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 176,
+              "column": 10
+            },
+            {
+              "title": "sonrie: inMaintenance=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1404,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:33.821Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-2f87c8d08af98eba7216",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 206,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enablePayments=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6106,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:35.235Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-f091030b8d6633d55483",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 288,
+              "column": 11
+            },
+            {
+              "title": "sonrie: ordersRequireAuthorization=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4781,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:35.519Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-3de27963d8d7ce8105a8",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 324,
+              "column": 11
+            },
+            {
+              "title": "sonrie: includeTaxRateInPrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "No tax rate configured (taxes.useTaxRate=false) — IVA line not expected"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6099,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:38.360Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "No tax rate configured (taxes.useTaxRate=false) — IVA line not expected"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-0a18f1d622922f6c1869",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 349,
+              "column": 11
+            },
+            {
+              "title": "sonrie: lazyLoadingPrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5136,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:39.812Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-b2d0cff64d58278a25e9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 389,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableChooseSaleUnit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4673,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:40.308Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7d4b20f352b9e5dec0f3",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 447,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableAskDeliveryDate=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6206,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:41.354Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-abeffd4b7fc2376db17e",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 477,
+              "column": 11
+            },
+            {
+              "title": "sonrie: purchaseOrderEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7463,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:44.466Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-91359f7494a355ac24e1",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 608,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableSellerDiscount=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7380,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:44.956Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-9e4666d12c70c0df51c6",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 631,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasStockEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4882,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:44.995Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-1ce189d34fd60079ea4c",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 653,
+              "column": 11
+            },
+            {
+              "title": "sonrie: taxes.showSummary=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7357,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[sonrie] taxes.showSummary=true but detailed tax section not found\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:47.570Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-2a7fdda35b697656c67c",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 680,
+              "column": 11
+            },
+            {
+              "title": "sonrie: pendingDocuments=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4551,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:49.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-f68a129a638d747676f6",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 704,
+              "column": 11
+            },
+            {
+              "title": "sonrie: pointsEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4674,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:51.936Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-4ab96e65db46c1f12fcd",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 728,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableTask=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4992,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:52.350Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-5a99fe9a286d67b64a67",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 752,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableCreditNotes=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4573,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:54.450Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-b8dddb008d16232e4e78",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 776,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableDistributionCentersSelector=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5380,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:54.934Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-82a5d69e8d3dcbcbcdc8",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 800,
+              "column": 11
+            },
+            {
+              "title": "sonrie: editAddress=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7518,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[sonrie] editAddress=true but edit button not found — may require commerce with address\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:56.618Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-9b65c0a9f0b1e413eef0",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 824,
+              "column": 11
+            },
+            {
+              "title": "sonrie: showMinOne=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4709,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:57.350Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-d4cd715f38ad433489e5",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 847,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasMultiUnitEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4709,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:03:59.034Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-8955d099c5c8ca6d4323",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 873,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasNoSaleFilter=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4901,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:00.324Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-eb17abc5043cbce49a05",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 897,
+              "column": 11
+            },
+            {
+              "title": "sonrie: limitAddingByStock=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4817,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:02.067Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-cbe687a7a200ef579a08",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 921,
+              "column": 11
+            },
+            {
+              "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4654,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:03.754Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-e403b2d03cbbb74eac0c",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 946,
+              "column": 11
+            },
+            {
+              "title": "sonrie: ordersRequireVerification=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4800,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:04.143Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7187e0a9ff0ec1c8f7a3",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 971,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableOrderValidation=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7369,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:05.233Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-f117119d490452a942ee",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 996,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableOrderApproval=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4771,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:06.890Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-e176067b2e38ae87d2a2",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1019,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasTransportCode=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7219,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:08.415Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-f8ce1db669898ec7a25b",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1044,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasVoucherPrinterEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4641,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:08.950Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-83a8c1905dc6f02aca01",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1067,
+              "column": 11
+            },
+            {
+              "title": "sonrie: disableShowEstimatedDeliveryHour=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7181,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[sonrie] disableShowEstimatedDeliveryHour=false but hour not found — may not be configured in staging\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:11.671Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-a68fd5ff88ec43d2b54a",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1092,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enablePaymentsCollection=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4454,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:12.611Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-62d58d7242482a57a428",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1115,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasTransferPaymentType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7419,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:13.599Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-a57e839831cd3e17c0a9",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1140,
+              "column": 11
+            },
+            {
+              "title": "sonrie: uploadOrderFileWithMinUnits=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4801,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:15.641Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-21a7a63e26853a01aa9c",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1163,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableBetaButtons=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4714,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:17.091Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-b03204093a80bf4d178d",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1188,
+              "column": 11
+            },
+            {
+              "title": "sonrie: discountTypes.enableOrderDiscountType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7225,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:18.860Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-6caebb019d8122d71a98",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1213,
+              "column": 11
+            },
+            {
+              "title": "sonrie: discountTypes.enableProductDiscountType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4716,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:20.449Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-2dc6e970fb85965ddd48",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1236,
+              "column": 11
+            },
+            {
+              "title": "sonrie: weightInfo=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4671,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:21.024Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-20c71367d9f4743985a2",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1261,
+              "column": 11
+            },
+            {
+              "title": "sonrie: showEmptyCategories=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4725,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[sonrie] showEmptyCategories=false — 0 categories visible\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:21.820Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-b06e6f718dca768384da",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1289,
+              "column": 11
+            },
+            {
+              "title": "sonrie: externalAccess=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4516,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[sonrie] externalAccess=true but link not found\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:25.174Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-7958c847531f6d626e10",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1317,
+              "column": 11
+            },
+            {
+              "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6142,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:25.701Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-71a5510b9017aa40b384",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1342,
+              "column": 11
+            },
+            {
+              "title": "sonrie: useNewPromotions=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4785,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[sonrie] useNewPromotions=false — no promo content found in staging\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:26.092Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-c0e4a7197d189c3066b3",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1367,
+              "column": 11
+            },
+            {
+              "title": "sonrie: payment.enableNewPaymentModule=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7260,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[sonrie] payment.enableNewPaymentModule=false — using legacy payment flow\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:26.553Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-77098ef4c1a27605392f",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1387,
+              "column": 11
+            },
+            {
+              "title": "sonrie: shareOrderNewDesign=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4834,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[sonrie] shareOrderNewDesign=false — share button visible: false\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:29.699Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-c7e20f6e3fee4af1dea0",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1411,
+              "column": 11
+            },
+            {
+              "title": "sonrie: shoppingDetail.lastOrder=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7314,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:30.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-170f53b4a58d155db463",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1437,
+              "column": 11
+            },
+            {
+              "title": "sonrie: loginButtons.facebook=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1471,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:31.853Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-dc1d4d759c8121c5dfaa",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1460,
+              "column": 11
+            },
+            {
+              "title": "sonrie: loginButtons.google=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1461,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:33.330Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-8972da9f3bc1065b1b9f",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1483,
+              "column": 11
+            },
+            {
+              "title": "sonrie: suggestions.hide=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7856,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:33.820Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-958569ee7a72ef7e4f78",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1506,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasMultipleBusinessUnit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7669,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:34.542Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-3544d8fb86520c729906",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1531,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enablePriceOracle=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7614,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:34.796Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-4e024d0f5182e2af6fb5",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1556,
+              "column": 11
+            },
+            {
+              "title": "sonrie: paymentsWithoutAccount=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6739,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:38.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-752ff7dacd04c41f96fa",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1581,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableNewUI=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7782,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:41.685Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-9aacfea6cd3b920d19dd",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1606,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enablePaymentDocumentsB2B=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 6748,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:42.220Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-3797593acdbd4f40a7eb",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1631,
+              "column": 11
+            },
+            {
+              "title": "sonrie: enableInvoicesList=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6602,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:42.417Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-1cbda15f06524f3c3788",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1659,
+              "column": 11
+            },
+            {
+              "title": "sonrie: disableCommerceEdit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6850,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[sonrie] disableCommerceEdit=false — edit expected to be available\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:44.958Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-930e4696f58ba8913099",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1684,
+              "column": 11
+            },
+            {
+              "title": "sonrie: disableObservationInput=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7273,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:48.978Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-2bfd331d99da0dfa3d33",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1712,
+              "column": 11
+            },
+            {
+              "title": "sonrie: hasSingleDistributionCenter=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 7226,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:49.028Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3238104278c4d165058f-150c6e77487533a0df41",
+              "file": "b2b/config-validation.spec.ts",
+              "line": 1738,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/coupons.spec.ts",
+      "file": "b2b/coupons.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PM1/PM2 — Cupones: regresión post-mortem: Sonrie (staging)",
+          "file": "b2b/coupons.spec.ts",
+          "line": 17,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13275,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:49.477Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-52f819dd3737a9ee31a1",
+              "file": "b2b/coupons.spec.ts",
+              "line": 69,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM1-02 Cupón válido aplica descuento",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "PM1-02: No hay cupón de prueba configurado para Sonrie (staging) — agrega SONRIE_TEST_COUPON al .env",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
+                        "line": 91,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 9228,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:51.817Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "PM1-02: No hay cupón de prueba configurado para Sonrie (staging) — agrega SONRIE_TEST_COUPON al .env",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
+                            "line": 91,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "754bc36b729af055b674-69db5b5ca306c6db4ec8",
+              "file": "b2b/coupons.spec.ts",
+              "line": 85,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 15466,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:56.267Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-5541a39b9a9c51fe67f5",
+              "file": "b2b/coupons.spec.ts",
+              "line": 127,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 15436,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:04:56.264Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-315a5a54997ace13cfca",
+              "file": "b2b/coupons.spec.ts",
+              "line": 155,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 14701,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:01.052Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-0624499e65dfe82d4336",
+              "file": "b2b/coupons.spec.ts",
+              "line": 181,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/mongo-data.spec.ts",
+      "file": "b2b/mongo-data.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Mongo Data Validation: Sonrie (staging)",
+          "file": "b2b/mongo-data.spec.ts",
+          "line": 21,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+              "ok": false,
+              "tags": [
+                "catalog",
+                "critico"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 49041,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at loginIfNeeded (/Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:27:9)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:133:7",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 26,
+                          "line": 56
+                        },
+                        "snippet": "   at fixtures/login.ts:56\n\n  54 |\n  55 |   // Wait for redirect away from login page\n> 56 |   await expect(page).not.toHaveURL(/auth\\/jwt\\/login|\\/login$/, { timeout: 45_000 });\n     |                          ^\n  57 | }\n  58 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 26,
+                            "line": 56
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n\n\n   at fixtures/login.ts:56\n\n  54 |\n  55 |   // Wait for redirect away from login page\n> 56 |   await expect(page).not.toHaveURL(/auth\\/jwt\\/login|\\/login$/, { timeout: 45_000 });\n     |                          ^\n  57 | }\n  58 |\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at loginIfNeeded (/Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:27:9)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:133:7"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:02.759Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/mongo-data-Mongo-Data-Vali-ae55a-e-y-pricing-catalog-critico-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/mongo-data-Mongo-Data-Vali-ae55a-e-y-pricing-catalog-critico-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 26,
+                        "line": 56
+                      }
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 49615,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at loginIfNeeded (/Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:27:9)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:133:7",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 26,
+                          "line": 56
+                        },
+                        "snippet": "   at fixtures/login.ts:56\n\n  54 |\n  55 |   // Wait for redirect away from login page\n> 56 |   await expect(page).not.toHaveURL(/auth\\/jwt\\/login|\\/login$/, { timeout: 45_000 });\n     |                          ^\n  57 | }\n  58 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 26,
+                            "line": 56
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://tienda.youorder.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://tienda.youorder.me/auth/jwt/login\"\u001b[22m\n\n\n   at fixtures/login.ts:56\n\n  54 |\n  55 |   // Wait for redirect away from login page\n> 56 |   await expect(page).not.toHaveURL(/auth\\/jwt\\/login|\\/login$/, { timeout: 45_000 });\n     |                          ^\n  57 | }\n  58 |\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at loginIfNeeded (/Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:27:9)\n    at /Users/lalojimenez/qa/tests/e2e/b2b/mongo-data.spec.ts:133:7"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-17T14:05:52.379Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/mongo-data-Mongo-Data-Vali-ae55a-e-y-pricing-catalog-critico-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/mongo-data-Mongo-Data-Vali-ae55a-e-y-pricing-catalog-critico-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/mongo-data-Mongo-Data-Vali-ae55a-e-y-pricing-catalog-critico-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 26,
+                        "line": 56
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e06546f5b585fa5fe864-a2f02257b39cbd55a854",
+              "file": "b2b/mongo-data.spec.ts",
+              "line": 128,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/multi-client.spec.ts",
+      "file": "b2b/multi-client.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Sonrie (staging) (https://sonrie.solopide.me)",
+          "file": "b2b/multi-client.spec.ts",
+          "line": 7,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: Login exitoso",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4545,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:11.711Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-6fcc41bfb1324a0316ac",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "sonrie: Sin acceso anónimo redirige a login",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3662,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:11.743Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-07991fff211a38cf8647",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 43,
+              "column": 11
+            },
+            {
+              "title": "sonrie: Catálogo muestra productos con precios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4482,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:15.410Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-56362f5e4d6caaea3340",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 54,
+              "column": 9
+            },
+            {
+              "title": "sonrie: Agregar producto al carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 6242,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:15.761Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-2fb03605bea2d5fb4471",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 75,
+              "column": 11
+            },
+            {
+              "title": "sonrie: No hay productos con precio $0",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10018,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:16.260Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-f3773b05bc3349b04738",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 106,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/orders.spec.ts",
+      "file": "b2b/orders.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Pedidos: Sonrie (staging)",
+          "file": "b2b/orders.spec.ts",
+          "line": 7,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: Historial de pedidos carga @orders @funcional",
+              "ok": true,
+              "tags": [
+                "orders",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 12626,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:19.902Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "de3f15501f825e0a6f88-ef2c2a87fbc7039e49bb",
+              "file": "b2b/orders.spec.ts",
+              "line": 9,
+              "column": 5
+            },
+            {
+              "title": "sonrie: Estados de pedido son válidos (no \"No disponible\") @orders @funcional",
+              "ok": true,
+              "tags": [
+                "orders",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "Comportamiento conocido: pedidos sin fecha de despacho muestran \"No disponible\" — no es un bug",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/orders.spec.ts",
+                        "line": 22,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:22.012Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "Comportamiento conocido: pedidos sin fecha de despacho muestran \"No disponible\" — no es un bug",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/orders.spec.ts",
+                            "line": 22,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "de3f15501f825e0a6f88-5a8aeea40f64db61457f",
+              "file": "b2b/orders.spec.ts",
+              "line": 18,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/payment-documents.spec.ts",
+      "file": "b2b/payment-documents.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C7 — Documentos Tributarios: Sonrie (staging)",
+          "file": "b2b/payment-documents.spec.ts",
+          "line": 18,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 11853,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:22.023Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-217713c38406b93c9533",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 20,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9554,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:26.288Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-4308f48d807744412643",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 40,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "enablePaymentDocumentsB2B=false en Sonrie (staging)",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                        "line": 62,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "skipped",
+                      "duration": 9258,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:32.544Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "enablePaymentDocumentsB2B=false en Sonrie (staging)",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                            "line": 62,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-0174cc97aa47a9fd55d7",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 60,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "enablePaymentDocumentsB2B=false en Sonrie (staging)",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                        "line": 77,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 11326,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:33.884Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "enablePaymentDocumentsB2B=false en Sonrie (staging)",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                            "line": 77,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-6a5c2b4df0aa7e676613",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 75,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "enablePaymentDocumentsB2B=false en Sonrie (staging)",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                        "line": 92,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "skipped",
+                      "duration": 9376,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:35.847Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "enablePaymentDocumentsB2B=false en Sonrie (staging)",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                            "line": 92,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-a2e3111c2fc7568623a0",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 90,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/payments.spec.ts",
+      "file": "b2b/payments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PAG — Pagos y documentos tributarios (B2B): Sonrie (staging)",
+          "file": "b2b/payments.spec.ts",
+          "line": 12,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 9404,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:41.811Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bd51122182d9e4115608-551f653f03a77df91b60",
+              "file": "b2b/payments.spec.ts",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9558,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:45.233Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bd51122182d9e4115608-0cd122b72e14106db82c",
+              "file": "b2b/payments.spec.ts",
+              "line": 48,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/prices.spec.ts",
+      "file": "b2b/prices.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C3 — Precios y descuentos: Sonrie (staging)",
+          "file": "b2b/prices.spec.ts",
+          "line": 6,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 16479,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:10:60",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                          "column": 60,
+                          "line": 10
+                        },
+                        "snippet": "   8 |     test(`${key}: C3-01 Precios visibles en catalogo anonimo (formato CLP)`, async ({ page }) => {\n   9 |       await page.goto(client.baseURL);\n> 10 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  11 |\n  12 |       const prices = page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/');\n  13 |       const count = await prices.count();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "column": 60,
+                            "line": 10
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n\n   8 |     test(`${key}: C3-01 Precios visibles en catalogo anonimo (formato CLP)`, async ({ page }) => {\n   9 |       await page.goto(client.baseURL);\n> 10 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  11 |\n  12 |       const prices = page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/');\n  13 |       const count = await prices.count();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:10:60"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:45.239Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-9b1b5-talogo-anonimo-formato-CLP--b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-9b1b5-talogo-anonimo-formato-CLP--b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "column": 60,
+                        "line": 10
+                      }
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 16942,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:10:60",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                          "column": 60,
+                          "line": 10
+                        },
+                        "snippet": "   8 |     test(`${key}: C3-01 Precios visibles en catalogo anonimo (formato CLP)`, async ({ page }) => {\n   9 |       await page.goto(client.baseURL);\n> 10 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  11 |\n  12 |       const prices = page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/');\n  13 |       const count = await prices.count();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "column": 60,
+                            "line": 10
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n\n   8 |     test(`${key}: C3-01 Precios visibles en catalogo anonimo (formato CLP)`, async ({ page }) => {\n   9 |       await page.goto(client.baseURL);\n> 10 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  11 |\n  12 |       const prices = page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/');\n  13 |       const count = await prices.count();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:10:60"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-17T14:06:02.235Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-9b1b5-talogo-anonimo-formato-CLP--b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-9b1b5-talogo-anonimo-formato-CLP--b2b-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-9b1b5-talogo-anonimo-formato-CLP--b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-9b1b5-talogo-anonimo-formato-CLP--b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "column": 60,
+                        "line": 10
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-494fe595be24791b62a3",
+              "file": "b2b/prices.spec.ts",
+              "line": 8,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C3-02 Detectar productos con precio $0",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 16582,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:19:60",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                          "column": 60,
+                          "line": 19
+                        },
+                        "snippet": "  17 |     test(`${key}: C3-02 Detectar productos con precio $0`, async ({ page }) => {\n  18 |       await page.goto(client.baseURL);\n> 19 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  20 |\n  21 |       const productCards = page.locator('[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"card\"]').filter({ has: page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/') });\n  22 |       const cardCount = await productCards.count();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "column": 60,
+                            "line": 19
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n\n  17 |     test(`${key}: C3-02 Detectar productos con precio $0`, async ({ page }) => {\n  18 |       await page.goto(client.baseURL);\n> 19 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  20 |\n  21 |       const productCards = page.locator('[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"card\"]').filter({ has: page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/') });\n  22 |       const cardCount = await productCards.count();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:19:60"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:51.225Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-06b41-ctar-productos-con-precio-0-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-06b41-ctar-productos-con-precio-0-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "column": 60,
+                        "line": 19
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 16869,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:19:60",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                          "column": 60,
+                          "line": 19
+                        },
+                        "snippet": "  17 |     test(`${key}: C3-02 Detectar productos con precio $0`, async ({ page }) => {\n  18 |       await page.goto(client.baseURL);\n> 19 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  20 |\n  21 |       const productCards = page.locator('[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"card\"]').filter({ has: page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/') });\n  22 |       const cardCount = await productCards.count();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "column": 60,
+                            "line": 19
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n\n  17 |     test(`${key}: C3-02 Detectar productos con precio $0`, async ({ page }) => {\n  18 |       await page.goto(client.baseURL);\n> 19 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  20 |\n  21 |       const productCards = page.locator('[class*=\"ProductCard\"], [class*=\"product-card\"], [class*=\"card\"]').filter({ has: page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/') });\n  22 |       const cardCount = await productCards.count();\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:19:60"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-17T14:06:08.345Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-06b41-ctar-productos-con-precio-0-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-06b41-ctar-productos-con-precio-0-b2b-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-06b41-ctar-productos-con-precio-0-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-06b41-ctar-productos-con-precio-0-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "column": 60,
+                        "line": 19
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-54d8e8e7e0cb48647d77",
+              "file": "b2b/prices.spec.ts",
+              "line": 17,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "warning",
+                      "description": "Precio catalogo $0 no encontrado exacto en carro — posible descuento aplicado"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 12940,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:05:54.801Z",
+                      "annotations": [
+                        {
+                          "type": "warning",
+                          "description": "Precio catalogo $0 no encontrado exacto en carro — posible descuento aplicado"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-e94b978d0cd2c92a9e8a",
+              "file": "b2b/prices.spec.ts",
+              "line": 38,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C3-04 Descuento visible en catalogo",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 16388,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:72:60",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                          "column": 60,
+                          "line": 72
+                        },
+                        "snippet": "  70 |       // enableSellerDiscount=true + disableShowDiscount=false\n  71 |       await page.goto(client.baseURL);\n> 72 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  73 |\n  74 |       // Buscar cualquier indicador de descuento: %, \"Dcto\", \"Descuento\", tachado, etc.\n  75 |       const discountIndicators = page.locator('text=/\\\\d+%|[Dd]cto|[Dd]escuento|[Aa]ntes/')"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "column": 60,
+                            "line": 72
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n\n  70 |       // enableSellerDiscount=true + disableShowDiscount=false\n  71 |       await page.goto(client.baseURL);\n> 72 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  73 |\n  74 |       // Buscar cualquier indicador de descuento: %, \"Dcto\", \"Descuento\", tachado, etc.\n  75 |       const discountIndicators = page.locator('text=/\\\\d+%|[Dd]cto|[Dd]escuento|[Aa]ntes/')\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:72:60"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:07.761Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-8b9c5-scuento-visible-en-catalogo-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-8b9c5-scuento-visible-en-catalogo-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "column": 60,
+                        "line": 72
+                      }
+                    },
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 16884,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:72:60",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                          "column": 60,
+                          "line": 72
+                        },
+                        "snippet": "  70 |       // enableSellerDiscount=true + disableShowDiscount=false\n  71 |       await page.goto(client.baseURL);\n> 72 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  73 |\n  74 |       // Buscar cualquier indicador de descuento: %, \"Dcto\", \"Descuento\", tachado, etc.\n  75 |       const discountIndicators = page.locator('text=/\\\\d+%|[Dd]cto|[Dd]escuento|[Aa]ntes/')"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "column": 60,
+                            "line": 72
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=/\\\\$\\\\s*[\\\\d.,]+/')\u001b[22m\n\n\n  70 |       // enableSellerDiscount=true + disableShowDiscount=false\n  71 |       await page.goto(client.baseURL);\n> 72 |       await expect(page.locator('text=/\\\\$\\\\s*[\\\\d.,]+/')).toBeVisible({ timeout: 15_000 });\n     |                                                            ^\n  73 |\n  74 |       // Buscar cualquier indicador de descuento: %, \"Dcto\", \"Descuento\", tachado, etc.\n  75 |       const discountIndicators = page.locator('text=/\\\\d+%|[Dd]cto|[Dd]escuento|[Aa]ntes/')\n    at /Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts:72:60"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-17T14:06:24.628Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-8b9c5-scuento-visible-en-catalogo-b2b-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-8b9c5-scuento-visible-en-catalogo-b2b-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-8b9c5-scuento-visible-en-catalogo-b2b-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-8b9c5-scuento-visible-en-catalogo-b2b-retry1/trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "column": 60,
+                        "line": 72
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-c48cb75fda75c9659631",
+              "file": "b2b/prices.spec.ts",
+              "line": 69,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 12947,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:20.221Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-6e92728e65114e321433",
+              "file": "b2b/prices.spec.ts",
+              "line": 85,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C3-15 Cupon invalido muestra error claro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "C3-15: Sonrie (staging) no tiene campo de cupón accesible en /cart",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "line": 144,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "skipped",
+                      "duration": 12873,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:26.266Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "C3-15: Sonrie (staging) no tiene campo de cupón accesible en /cart",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "line": 144,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-6ca617ebb2d42a3b96cf",
+              "file": "b2b/prices.spec.ts",
+              "line": 107,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "Desglose: neto=true, impuesto=true, total=true"
+                    },
+                    {
+                      "type": "info",
+                      "description": "Montos encontrados: $1, $1, $26, $28, $1, $1, $2, $1, $2, $1"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 13887,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:33.644Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "Desglose: neto=true, impuesto=true, total=true"
+                        },
+                        {
+                          "type": "info",
+                          "description": "Montos encontrados: $1, $1, $26, $28, $1, $1, $2, $1, $2, $1"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-edb8168fd685f19020fd",
+              "file": "b2b/prices.spec.ts",
+              "line": 148,
+              "column": 5
+            },
+            {
+              "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "calidad"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 11310,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:39.724Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-82c529f48063b492611c",
+              "file": "b2b/prices.spec.ts",
+              "line": 197,
+              "column": 5
+            },
+            {
+              "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "calidad"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9393,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:42.632Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-b790eb3505471e97a752",
+              "file": "b2b/prices.spec.ts",
+              "line": 213,
+              "column": 5
+            },
+            {
+              "title": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11902,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:43.433Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-e35f36e1e137d7b2fdbc",
+              "file": "b2b/prices.spec.ts",
+              "line": 238,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/promotions.spec.ts",
+      "file": "b2b/promotions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PM5 — Promotions: regresión post-mortem: Sonrie (staging)",
+          "file": "b2b/promotions.spec.ts",
+          "line": 14,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "1 precios visibles en catálogo — promotions respondiendo"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10601,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:47.541Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "1 precios visibles en catálogo — promotions respondiendo"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "50791752974ef4adecee-3542eaa6ec626867c3cb",
+              "file": "b2b/promotions.spec.ts",
+              "line": 16,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 13511,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:51.044Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "50791752974ef4adecee-6f5d734803cc502f77a3",
+              "file": "b2b/promotions.spec.ts",
+              "line": 35,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "warn",
+                      "description": "Tiempo de carga: 193ms, contenido visible: false"
+                    },
+                    {
+                      "type": "warn",
+                      "description": "PM5-03: sin precios en 193ms — posible lentitud de staging, ver PM5-01/02 para uptime"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9487,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:52.555Z",
+                      "annotations": [
+                        {
+                          "type": "warn",
+                          "description": "Tiempo de carga: 193ms, contenido visible: false"
+                        },
+                        {
+                          "type": "warn",
+                          "description": "PM5-03: sin precios en 193ms — posible lentitud de staging, ver PM5-01/02 para uptime"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "50791752974ef4adecee-65abfb196108a4decd27",
+              "file": "b2b/promotions.spec.ts",
+              "line": 67,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/step-pricing.spec.ts",
+      "file": "b2b/step-pricing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PM4 — Step pricing: regresión post-mortem: Sonrie (staging)",
+          "file": "b2b/step-pricing.spec.ts",
+          "line": 14,
+          "column": 8,
+          "specs": [
+            {
+              "title": "sonrie: PM4-01 Productos con step pricing muestran escalones",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "Indicadores de step pricing encontrados: 30"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11504,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:55.861Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "Indicadores de step pricing encontrados: 30"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5f6ae2a57fa8442bbb5-8b73df68faaf44356c75",
+              "file": "b2b/step-pricing.spec.ts",
+              "line": 16,
+              "column": 5
+            },
+            {
+              "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "Precio antes: $9.232, después: $110.784"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 72317,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T14:06:58.151Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "Precio antes: $9.232, después: $110.784"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5f6ae2a57fa8442bbb5-63ebeb3922b501d38ef5",
+              "file": "b2b/step-pricing.spec.ts",
+              "line": 39,
+              "column": 5
+            }
+          ]
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2026-04-17T14:08:38.624Z",
-    "duration": 1772.837,
-    "expected": 0,
-    "skipped": 0,
-    "unexpected": 0,
+    "startTime": "2026-04-17T14:02:50.237Z",
+    "duration": 321292.78599999996,
+    "expected": 94,
+    "skipped": 8,
+    "unexpected": 4,
     "flaky": 0
   }
 }
