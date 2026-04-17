@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
-  "passed": 52,
+  "passed": 60,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: suggestions.hide=true",
+      "status": "passed",
+      "duration": 7747
+    },
+    {
+      "title": "sonrie: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 7163
+    },
+    {
+      "title": "sonrie: payment.enableNewPaymentModule=false",
+      "status": "passed",
+      "duration": 7302
+    },
+    {
+      "title": "sonrie: loginButtons.google=false",
+      "status": "passed",
+      "duration": 1671
+    },
+    {
+      "title": "sonrie: shareOrderNewDesign=false",
+      "status": "passed",
+      "duration": 4788
+    },
+    {
+      "title": "sonrie: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 1470
+    },
+    {
+      "title": "sonrie: useNewPromotions=false",
+      "status": "passed",
+      "duration": 4736
+    },
+    {
+      "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
+      "status": "passed",
+      "duration": 5123
+    },
     {
       "title": "sonrie: externalAccess=true",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: hasVoucherPrinterEnabled=false",
       "status": "passed",
       "duration": 4701
-    },
-    {
-      "title": "sonrie: enableOrderApproval=false",
-      "status": "passed",
-      "duration": 4750
-    },
-    {
-      "title": "sonrie: enableOrderValidation=false",
-      "status": "passed",
-      "duration": 7460
-    },
-    {
-      "title": "sonrie: ordersRequireVerification=false",
-      "status": "passed",
-      "duration": 4821
-    },
-    {
-      "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
-      "status": "passed",
-      "duration": 4952
-    },
-    {
-      "title": "sonrie: limitAddingByStock=false",
-      "status": "passed",
-      "duration": 5172
-    },
-    {
-      "title": "sonrie: hasNoSaleFilter=false",
-      "status": "passed",
-      "duration": 5300
-    },
-    {
-      "title": "sonrie: hasMultiUnitEnabled=false",
-      "status": "passed",
-      "duration": 5295
-    },
-    {
-      "title": "sonrie: editAddress=true",
-      "status": "passed",
-      "duration": 7308
     }
   ]
 }
