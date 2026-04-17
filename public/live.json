@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-17T18:55:41.163Z",
   "total": 106,
-  "passed": 47,
+  "passed": 54,
   "failed": 1,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: discountTypes.enableProductDiscountType=false",
+      "status": "passed",
+      "duration": 4579
+    },
+    {
+      "title": "sonrie: taxes.showSummary=true",
+      "status": "passed",
+      "duration": 7381
+    },
+    {
+      "title": "sonrie: includeTaxRateInPrices=false",
+      "status": "passed",
+      "duration": 5972
+    },
+    {
+      "title": "sonrie: enableSellerDiscount=false",
+      "status": "passed",
+      "duration": 8190
+    },
+    {
+      "title": "sonrie: enablePaymentsCollection=false",
+      "status": "passed",
+      "duration": 4630
+    },
+    {
+      "title": "sonrie: enablePayments=false",
+      "status": "passed",
+      "duration": 5849
+    },
+    {
+      "title": "sonrie: disableCommerceEdit=false",
+      "status": "passed",
+      "duration": 6761
+    },
     {
       "title": "sonrie: enablePaymentDocumentsB2B=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: showEmptyCategories=false",
       "status": "passed",
       "duration": 4841
-    },
-    {
-      "title": "sonrie: weightInfo=false",
-      "status": "passed",
-      "duration": 4617
-    },
-    {
-      "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
-      "status": "passed",
-      "duration": 4829
-    },
-    {
-      "title": "sonrie: hasNoSaleFilter=false",
-      "status": "passed",
-      "duration": 4816
-    },
-    {
-      "title": "sonrie: hasMultiUnitEnabled=false",
-      "status": "passed",
-      "duration": 4823
-    },
-    {
-      "title": "sonrie: hasStockEnabled=false",
-      "status": "passed",
-      "duration": 4606
-    },
-    {
-      "title": "sonrie: enableChooseSaleUnit=false",
-      "status": "passed",
-      "duration": 5325
-    },
-    {
-      "title": "sonrie: shoppingDetail.lastOrder=false",
-      "status": "passed",
-      "duration": 12939
     }
   ]
 }
