@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-17T13:57:17.185Z",
   "total": 106,
-  "passed": 81,
-  "failed": 0,
-  "skipped": 6,
+  "passed": 83,
+  "failed": 2,
+  "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "failed",
+      "duration": 16400
+    },
+    {
+      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 9526
+    },
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "failed",
+      "duration": 49027
+    },
+    {
+      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 9374
+    },
+    {
+      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 9317
+    },
     {
       "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
       "status": "skipped",
@@ -81,31 +106,6 @@
       "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
       "status": "passed",
       "duration": 13486
-    },
-    {
-      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 9289
-    },
-    {
-      "title": "sonrie: hasSingleDistributionCenter=true",
-      "status": "passed",
-      "duration": 7465
-    },
-    {
-      "title": "sonrie: disableObservationInput=false",
-      "status": "passed",
-      "duration": 7347
-    },
-    {
-      "title": "sonrie: disableCommerceEdit=false",
-      "status": "passed",
-      "duration": 6710
-    },
-    {
-      "title": "sonrie: enableInvoicesList=false",
-      "status": "passed",
-      "duration": 6678
     }
   ]
 }
