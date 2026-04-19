@@ -127,15 +127,17 @@ Skipped por flags ausentes o false:
 ## Plan de Ejecución
 Orden recomendado:
 
-**1. Cowork** (validación visual + flujos)
+**1. Playwright** (regresión E2E — corre solo mientras haces otras cosas)
+- [ ] `npx playwright test --project=b2b` (corre todos los specs del cliente)
+- [ ] Obligatorios: config-validation/, cart.spec.ts, checkout.spec.ts
+- [ ] [specs condicionales según flags]
+- [ ] Si hay fallos → `/triage-playwright` antes de continuar
+- [ ] Si hay P0 → bloquear, resolver antes de hacer Cowork
+
+**2. Cowork** (validación visual + flujos — solo si Playwright sin P0)
 - [ ] C1: Login (C1-01 a C1-06)
 - [ ] C2: Flujo de compra (C2-01 a C2-11)
 - [ ] [condicionales según flags]
-
-**2. Playwright** (regresión E2E)
-- [ ] `npx playwright test --project=b2b` (corre todos los specs del cliente)
-- [ ] Specs obligatorios: config-validation/, cart.spec.ts, checkout.spec.ts
-- [ ] [specs condicionales según flags]
 
 **3. Maestro** (APP mobile) — solo si APP desplegada para el cliente
 - [ ] `./tools/run-maestro.sh {cliente}` (usa {cliente}-session.yaml)
