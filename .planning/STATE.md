@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: QA Pipeline & Dashboard v2
 status: active
-stopped_at: Phase 2 complete — awaiting Phase 3 planning
+stopped_at: Phase 3 UI-SPEC approved — resume with /gsd-discuss-phase 3
 last_updated: "2026-04-19"
-last_activity: 2026-04-19 — Phase 2 (Data Freshness Signals) executed — 2/2 plans complete
+last_activity: 2026-04-19 — Phase 3 UI-SPEC approved (6/6 dimensions PASS, first round). Next session starts discuss-phase.
 progress:
   total_phases: 6
   completed_phases: 2
@@ -26,14 +26,14 @@ progress:
 
 ## Current Position
 
-**Phase:** Phase 2 — Data Freshness Signals (not started)
+**Phase:** Phase 3 — Unified QA Status View (UI-SPEC approved, awaiting discuss-phase)
 **Plan:** None yet
-**Status:** Phase 1 complete — PIPE-01 and PIPE-02 fixed
-**Progress:** 1/6 phases complete
+**Status:** Phase 2 complete. Phase 3 UI-SPEC approved 6/6 dimensions. Next: /gsd-discuss-phase 3
+**Progress:** 2/6 phases complete
 
 ```
-[███░░░░░░░░░░░░░░░░░] 17%
-Phase 1 ✓ ──▶ Phase 2 ──▶ Phase 3 ──▶ Phase 4 ──▶ Phase 5 ──▶ Phase 6
+[███████░░░░░░░░░░░░░] 33%
+Phase 1 ✓ ──▶ Phase 2 ✓ ──▶ Phase 3 (UI-SPEC ✓) ──▶ Phase 4 ──▶ Phase 5 ──▶ Phase 6
 ```
 
 ## Active Requirements (v1)
@@ -85,9 +85,9 @@ Phase 1 ✓ ──▶ Phase 2 ──▶ Phase 3 ──▶ Phase 4 ──▶ Phas
 
 ## Session Continuity
 
-**Last session:** 2026-04-19 — Phase 1 executed (PIPE-01, PIPE-02), both plans merged to main
-**Next session:** Run `/gsd-plan-phase 2` to decompose Phase 2 (Data Freshness Signals) into executable plans
-**Resume file:** None
+**Last session:** 2026-04-19 — Phase 2 executed (DASH-01, DASH-02) + Phase 3 UI-SPEC approved. End-of-day pause.
+**Next session:** Run `/gsd-discuss-phase 3` to capture implementation decisions for Phase 3 (Unified QA Status View) before planning. UI-SPEC already done.
+**Resume file:** `.planning/phases/03-unified-qa-status-view/03-UI-SPEC.md`
 
 **Files for orientation:**
 - `.planning/PROJECT.md` — core value, constraints, key decisions
