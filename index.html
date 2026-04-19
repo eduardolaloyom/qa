@@ -570,6 +570,49 @@
         .client-card-header:hover { background: #f3f4f6; }
         .client-name { font-weight: 700; color: #111827; }
         .client-url  { font-size: 0.78em; color: #9ca3af; margin-top: 2px; }
+        .client-last-tested {
+            font-size: 11px;
+            color: #9ca3af;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+        .freshness-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .freshness-badge.freshness-stale {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .run-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .run-nav-label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        .run-select {
+            padding: 4px 8px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: inherit;
+            color: #374151;
+            background: white;
+            cursor: pointer;
+        }
+        .run-select:focus { outline: none; border-color: #667eea; }
         .pass-rate-badge {
             font-weight: 800;
             font-size: 1.1em;
@@ -1217,6 +1260,10 @@
         <!-- Clients B2B -->
         <div class="card">
             <div class="card-title">🏪 Clientes B2B</div>
+            <div class="run-nav">
+                <span class="run-nav-label">Run:</span>
+                <select id="runSelector" class="run-select"></select>
+            </div>
             <div class="clients-grid" id="clientsContainer">
                 <div class="loading">Cargando clientes...</div>
             </div>
@@ -1446,6 +1493,7 @@ async function initDashboard() {
         updatePendingB2b();
         updateSuitesTable();
         updateClients();
+        populateRunSelector();
         updateTrendChart();
     } catch (e) {
         console.error(e);
@@ -1812,8 +1860,14 @@ function renderSuitesTable() {
 
 // ── Clients ───────────────────────────────────────────────
 
-function updateClients() {
-    const clients = latestRun.clients || {};
+function updateClients(run = latestRun) {
+    if (!run) {
+        const container = document.getElementById('clientsContainer');
+        if (container) container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
+        return;
+    }
+    const clients = run.clients || {};
+    const referenceDate = run.date;
     const container = document.getElementById('clientsContainer');
 
     const activeClients = Object.entries(clients)
@@ -1827,21 +1881,34 @@ function updateClients() {
         const failed = c.failed ?? (c.tests - c.passed);
         const passRate = Math.round(c.passed / c.tests * 100);
         const rateColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
-        const todayStr = new Date().toISOString().slice(0, 10);
-        let lastTestedBadge = '';
-        if (c.last_tested && c.last_tested !== todayStr) {
-            const diffDays = Math.round((new Date(todayStr) - new Date(c.last_tested)) / 86400000);
-            const label = diffDays === 1 ? 'ayer' : `hace ${diffDays} días`;
-            lastTestedBadge = `<span style="font-size:0.72em;color:#9ca3af;margin-left:6px;font-weight:400">(${label})</span>`;
+
+        // DASH-02 (D-07, D-11): fecha siempre visible
+        const lastTestedText = c.last_tested
+            ? `Testeado: ${c.last_tested}`
+            : 'Sin datos de test';
+
+        // DASH-01 (D-07, D-08, D-09): badge ámbar solo si diffDays > 2 vs run.date
+        let freshnessBadge = '';
+        if (c.last_tested && referenceDate) {
+            const diffDays = Math.round(
+                (new Date(referenceDate) - new Date(c.last_tested)) / 86400000
+            );
+            if (diffDays > 2) {
+                const label = diffDays === 1 ? 'Hace 1 día' : `Hace ${diffDays} días`;
+                freshnessBadge = `<span class="freshness-badge freshness-stale">${label}</span>`;
+            }
         }
+
         return `
         <div class="client-card">
             <div class="client-card-header" onclick="toggleCard(this)">
                 <div>
-                    <div class="client-name">🏪 ${c.name}${lastTestedBadge}</div>
+                    <div class="client-name">🏪 ${c.name}</div>
+                    <div class="client-last-tested">${lastTestedText}</div>
                     <div class="client-url">${c.url}</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;">
+                    ${freshnessBadge}
                     <span class="pass-rate-badge" style="color:${rateColor}">${passRate}%</span>
                     <span class="expand-icon">▼</span>
                 </div>
@@ -1873,6 +1940,30 @@ function updateClients() {
             </div>
         </div>`;
     }).join('');
+}
+
+function populateRunSelector() {
+    const sel = document.getElementById('runSelector');
+    const nav = document.querySelector('.run-nav');
+    if (!sel || allRuns.length === 0) {
+        if (nav) nav.style.display = 'none';
+        return;
+    }
+    const runs = allRuns.length > 10 ? allRuns.slice(0, 14) : allRuns;
+    sel.innerHTML = runs.map((r, i) => {
+        const suffix = i === 0 ? ' (más reciente)' : '';
+        const selectedAttr = i === 0 ? ' selected' : '';
+        return `<option value="${r.date}"${selectedAttr}>${r.date}${suffix}</option>`;
+    }).join('');
+    sel.addEventListener('change', (e) => {
+        loadRunDetails(e.target.value).then(run => {
+            if (run) {
+                updateClients(run);
+            } else {
+                console.warn('Run not found for date:', e.target.value);
+            }
+        });
+    });
 }
 
 function toggleCard(header) {
