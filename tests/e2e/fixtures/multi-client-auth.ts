@@ -15,8 +15,11 @@ interface ClientConfig {
  * Selects a commerce after login via the user menu modal.
  * Required for clients where prices are $0 without a commerce selected (e.g. Bastien).
  */
-export async function selectCommerceHelper(page: any, commerceName: string) {
-  await page.locator('text=Eduardo').first().click();
+export async function selectCommerceHelper(page: any, commerceName: string, userEmail?: string) {
+  const nameText = userEmail
+    ? userEmail.split('@')[0].replace(/\+.*/, '').replace(/^./, c => c.toUpperCase())
+    : 'Eduardo';
+  await page.locator(`text=${nameText}`).first().click();
   await page.waitForTimeout(300);
 
   // "Seleccionar comercio" may not appear if already selected or the UI changed
@@ -109,7 +112,7 @@ export function createClientTest(client: ClientConfig) {
 
       // Select default commerce if configured (required for price-gated clients like Bastien)
       if (client.defaultCommerce) {
-        await selectCommerceHelper(page, client.defaultCommerce);
+        await selectCommerceHelper(page, client.defaultCommerce, client.credentials.email);
       }
 
       // Clear cart to avoid stale state from previous sessions/Cowork runs

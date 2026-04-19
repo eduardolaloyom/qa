@@ -3,6 +3,7 @@
 tests/e2e/.env
 tests/app/config/env.yaml
 tests/app/config/env.*.yaml
+tests/app/config/config.*.yaml
 
 # Old fixture with hardcoded credentials (replaced by clients.ts)
 tests/e2e/fixtures/clients.json

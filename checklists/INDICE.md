@@ -142,15 +142,19 @@ Patrón de flows desde 2026-04-17: cada cliente usa un `{cliente}-session.yaml` 
 | prinorte/11-crear-comercio-region.yaml | Comercio con región | Flujo avanzado |
 | prinorte/12-precios-fotos.yaml | Precios + fotos productos | Config |
 
-**Flows legacy** (pre-2026-04-17, sin cliente prefix):
+**Flows legacy** (`tests/app/flows/_legacy/` — no ejecutables con setup actual):
+
+Movidos a `_legacy/` el 2026-04-19. Requieren `env.yaml` genérico que no existe.
+Útiles como referencia de casos de prueba al crear flows de nuevos clientes.
 
 | Flow | Casos | Origen |
 |------|-------|--------|
-| **08-pagos.yaml** | Cobranza y pagos | **Deuda técnica** |
-| **09-concurrencia.yaml** | Race conditions | **Deuda técnica** |
-| **10-descuentos.yaml** | Descuentos en pedido | **Post-mortem PM3** |
-| **11-contacto-cliente.yaml** | Contacto vía chat/teléfono | **Growth** |
-| **12-tareas-growth.yaml** | Gestión de tareas | **Growth** |
+| 08-pagos.yaml | Cobranza y pagos | **Deuda técnica** |
+| 09-concurrencia.yaml | Race conditions | **Deuda técnica** |
+| 10-descuentos.yaml | Descuentos en pedido | **Post-mortem PM3** |
+| 11-guion-comercial.yaml | Guión comercial | Growth |
+| 12-contacto-cliente.yaml | Contacto vía chat/teléfono | Growth |
+| 13-tareas-growth.yaml | Gestión de tareas | Growth |
 
 ---
 
