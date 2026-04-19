@@ -19,7 +19,7 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
 ## Phases
 
 - [x] **Phase 1: Pipeline Bug Fixes** — Fix manifest path and stale live.json so downstream dashboard data is trustworthy
-- [ ] **Phase 2: Data Freshness Signals** — Make stale client cards visually obvious so users trust (or distrust) what they see
+- [x] **Phase 2: Data Freshness Signals** — Make stale client cards visually obvious so users trust (or distrust) what they see
 - [ ] **Phase 3: Unified QA Status View** — Deliver the core value — one row per client showing all three pipelines + per-client trend
 - [ ] **Phase 4: Triage Persistence** — Capture triage decisions as committed files so history is auditable
 - [ ] **Phase 5: QA LISTO Weekly Status** — Give Tech a deploy-readiness signal driven by objective criteria
@@ -49,7 +49,9 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
   2. When `last_tested` is more than 2 days older than the selected run date, the card shows an amber badge with text "Hace N días"
   3. Client cards tested today (or within the 2-day window) render with the normal color scheme — no false positives
   4. Changing the selected run date via the dashboard history navigation re-evaluates freshness against the new reference date
-**Plans**: TBD
+**Plans:** 2 plans
+- [x] 02-01-PLAN.md — CSS foundations (`.client-last-tested`, `.freshness-badge`, `.run-nav`) + run-nav skeleton HTML before `#clientsContainer`
+- [x] 02-02-PLAN.md — Refactor `updateClients(run = latestRun)` with class-based freshness rendering + `populateRunSelector()` + change-listener wiring
 **UI hint**: yes
 
 ### Phase 3: Unified QA Status View
@@ -105,7 +107,7 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Pipeline Bug Fixes | 2/2 | Complete ✓ | 2026-04-19 |
-| 2. Data Freshness Signals | 0/? | Not started | - |
+| 2. Data Freshness Signals | 2/2 | Complete ✓ | 2026-04-19 |
 | 3. Unified QA Status View | 0/? | Not started | - |
 | 4. Triage Persistence | 0/? | Not started | - |
 | 5. QA LISTO Weekly Status | 0/? | Not started | - |
