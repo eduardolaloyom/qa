@@ -1859,8 +1859,14 @@ function renderSuitesTable() {
 
 // ── Clients ───────────────────────────────────────────────
 
-function updateClients() {
-    const clients = latestRun.clients || {};
+function updateClients(run = latestRun) {
+    if (!run) {
+        const container = document.getElementById('clientsContainer');
+        if (container) container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
+        return;
+    }
+    const clients = run.clients || {};
+    const referenceDate = run.date;
     const container = document.getElementById('clientsContainer');
 
     const activeClients = Object.entries(clients)
@@ -1874,21 +1880,34 @@ function updateClients() {
         const failed = c.failed ?? (c.tests - c.passed);
         const passRate = Math.round(c.passed / c.tests * 100);
         const rateColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
-        const todayStr = new Date().toISOString().slice(0, 10);
-        let lastTestedBadge = '';
-        if (c.last_tested && c.last_tested !== todayStr) {
-            const diffDays = Math.round((new Date(todayStr) - new Date(c.last_tested)) / 86400000);
-            const label = diffDays === 1 ? 'ayer' : `hace ${diffDays} días`;
-            lastTestedBadge = `<span style="font-size:0.72em;color:#9ca3af;margin-left:6px;font-weight:400">(${label})</span>`;
+
+        // DASH-02 (D-07, D-11): fecha siempre visible
+        const lastTestedText = c.last_tested
+            ? `Testeado: ${c.last_tested}`
+            : 'Sin datos de test';
+
+        // DASH-01 (D-07, D-08, D-09): badge ámbar solo si diffDays > 2 vs run.date
+        let freshnessBadge = '';
+        if (c.last_tested && referenceDate) {
+            const diffDays = Math.round(
+                (new Date(referenceDate) - new Date(c.last_tested)) / 86400000
+            );
+            if (diffDays > 2) {
+                const label = diffDays === 1 ? 'Hace 1 día' : `Hace ${diffDays} días`;
+                freshnessBadge = `<span class="freshness-badge freshness-stale">${label}</span>`;
+            }
         }
+
         return `
         <div class="client-card">
             <div class="client-card-header" onclick="toggleCard(this)">
                 <div>
-                    <div class="client-name">🏪 ${c.name}${lastTestedBadge}</div>
+                    <div class="client-name">🏪 ${c.name}</div>
+                    <div class="client-last-tested">${lastTestedText}</div>
                     <div class="client-url">${c.url}</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:10px;">
+                    ${freshnessBadge}
                     <span class="pass-rate-badge" style="color:${rateColor}">${passRate}%</span>
                     <span class="expand-icon">▼</span>
                 </div>
