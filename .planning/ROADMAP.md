@@ -33,7 +33,7 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
 **Requirements**: PIPE-01, PIPE-02
 **Success Criteria** (what must be TRUE):
   1. After `tools/run-maestro.sh {client}` finishes, the new Maestro report is listed in `public/manifest.json` (single source of truth) and the APP tab on the dashboard shows it immediately
-  2. Between Playwright runs, `public/live.json` shows a clean "no active run" sentinel (`running: false, total: 0`) — never carries over stale counts like `total: 2932, passed: 0`
+  2. Between Playwright runs, `public/live.json` is either absent or shows a clean "no active run" sentinel (`running: false, total: 0`) — never carries over stale counts like `total: 2932, passed: 0`
   3. Dashboard live panel does not render a misleading "finished run" state when no run is in progress
   4. No existing Playwright, Cowork, or Maestro flow is broken by the fix (backward-compatible manifest read paths)
 **Plans:** 2 plans

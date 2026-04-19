@@ -474,27 +474,19 @@ This ensures that if someone opens the dashboard BEFORE the reporter's `onBegin(
 
 **If further assumptions arise during planning:** surface them in the plan-check step and request confirmation before execution.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Should the orphan `public/app-reports/manifest.json` be deleted or archived?**
-   - What we know: no code reads it; it will never be written again.
-   - What's unclear: user preference on git cleanliness.
-   - Recommendation: delete it in the same commit as the PIPE-01 fix. One-line `rm`. If deletion is preferred deferred, leave it — no functional impact.
+   RESOLVED: DELETE in the same commit as the PIPE-01 fix — implemented in 01-01-PLAN.md Task 2 Part B.
 
 2. **Should the reset push to GitHub via the Contents API, or is local-only reset enough?**
-   - What we know: `live.json` is gitignored — local reset is invisible to GitHub Pages. The GitHub copy reflects the last remote PUT from `_pushToGitHub`.
-   - What's unclear: whether Eduardo views the dashboard on GitHub Pages during idle periods.
-   - Recommendation: since `_save()` already triggers `_pushToGitHub()` at the throttled interval, and `onEnd()` already forces a push, adding the reset to `onBegin()` is remote-safe. If belt-and-suspenders is desired, make the sentinel write in `run-live.sh` also POST via `curl` using `GITHUB_TOKEN` — but this doubles the attack surface. Skip for now; revisit if GitHub Pages shows stale state.
+   RESOLVED: Skip GitHub push for the sentinel — local reset is sufficient. `onBegin()` replacement triggers `_save()` which calls `_pushToGitHub()` at the throttled interval. Implemented in 01-02-PLAN.md Task 1.
 
-3. **Is there a planned migration for entries in `public/app-reports/manifest.json` or can we safely stop writing there?**
-   - What we know: the 2 existing entries are duplicates of entries already in `public/manifest.json`.
-   - What's unclear: whether any audit script expects the file to exist.
-   - Recommendation: no migration needed. Safe to stop writing.
+3. **Is there a planned migration for entries in `public/app-reports/manifest.json`?**
+   RESOLVED: No migration needed — the 2 entries are exact duplicates of entries already in `public/manifest.json`. Safe to stop writing to `app-reports/manifest.json`.
 
 4. **Do we need a regression test for the bash script?**
-   - What we know: project has no bats/shellcheck; Playwright covers the Playwright side but not Maestro.
-   - What's unclear: appetite for adding a shell test framework.
-   - Recommendation: add a lightweight one-off smoke script `tools/verify-maestro-manifest.sh` that (a) runs `run-maestro.sh` in dry-run mode against a fake client, (b) asserts `public/manifest.json` contains a new entry with `platform: "app"` and `file` starting with `app-reports/`. Alternatively rely on manual verification after next real Maestro run (Prinorte). Planner decides.
+   RESOLVED: Yes — `tools/verify-maestro-manifest.sh` smoke script created in 01-01-PLAN.md Task 2 Part A. No shell test framework required; standalone bash script is sufficient.
 
 ## Environment Availability
 
