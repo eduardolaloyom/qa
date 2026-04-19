@@ -1,7 +1,7 @@
 # Índice QA — Cobertura de tests
 
 > Mapeo entre checklists, tests automatizados y fuentes.
-> Última actualización: 2026-04-17
+> Última actualización: 2026-04-19
 
 ---
 
@@ -83,15 +83,17 @@ qa/
 
 | Spec | Casos | Origen |
 |------|-------|--------|
-| login.spec.ts | Login, acceso anónimo, sesión | Flujo C1 |
 | catalog.spec.ts | Catálogo, búsqueda, categorías | Flujo C2 |
 | cart.spec.ts | Carrito, cantidades, monto mínimo | Flujo C2 |
 | checkout.spec.ts | Checkout, doble click, historial | Flujo C2 |
 | prices.spec.ts | Precios, descuentos, impuestos, cupón field | Flujo C3 |
+| orders.spec.ts | Historial de pedidos, carga de órdenes | Flujo C2 |
 | **coupons.spec.ts** | Cupón inválido, orden sin cupón, loading | **Post-mortem PM1/PM2** |
 | **step-pricing.spec.ts** | Escalones, cambio cantidad, precios rotos | **Post-mortem PM4** |
 | **promotions.spec.ts** | Catálogo con promos, totales, timeout | **Post-mortem PM5** |
 | **payments.spec.ts** | Historial pagos, montos negativos, tributarios | **Deuda técnica** |
+| **payment-documents.spec.ts** | Documentos tributarios (C7): acceso y bloqueo | Config condicional |
+| **mongo-data.spec.ts** | Cupones, banners y promotions desde MongoDB | Datos operacionales |
 | **config-validation/** | Config multi-tenant (65 tests en 6 archivos) | Validación |
 | ↳ cv-access.spec.ts | Acceso: anónimo, login, maintenance | Validación |
 | ↳ cv-catalog.spec.ts | Catálogo: filtros, categorías, búsqueda | Validación |
@@ -99,7 +101,7 @@ qa/
 | ↳ cv-payments.spec.ts | Pagos: métodos, OC, historial | Validación |
 | ↳ cv-orders.spec.ts | Órdenes: confirmación, despacho, tracking | Validación |
 | ↳ cv-ui-features.spec.ts | UI: banners, descuentos, precios, idioma | Validación |
-| multi-client.spec.ts | Múltiples clientes | Multi-tenant |
+| multi-client.spec.ts | Múltiples clientes paralelos | Multi-tenant |
 
 ### Playwright E2E — Admin (`npx playwright test --project=admin`)
 
@@ -107,6 +109,7 @@ qa/
 |------|-------|-----------|--------|
 | **login.spec.ts** | Login, error, ruta protegida | [checklist-admin-acceso.md](../checklists/funcional/checklist-admin-acceso.md) | **Deuda técnica** |
 | **orders.spec.ts** | Listado, detalle, pagos | [checklist-admin-ordenes.md](../checklists/funcional/checklist-admin-ordenes.md) | **Deuda técnica** |
+| **stores.spec.ts** | Config admin → reflejo en B2B | [checklist-admin-reportes.md](../checklists/funcional/checklist-admin-reportes.md) | **Deuda técnica** |
 | *(pendiente)* | Reportes y exportación | [checklist-admin-reportes.md](../checklists/funcional/checklist-admin-reportes.md) | Manual |
 
 ### Maestro — App móvil (`./tools/run-maestro.sh <cliente>`)
