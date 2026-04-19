@@ -1493,6 +1493,7 @@ async function initDashboard() {
         updatePendingB2b();
         updateSuitesTable();
         updateClients();
+        populateRunSelector();
         updateTrendChart();
     } catch (e) {
         console.error(e);
@@ -1939,6 +1940,30 @@ function updateClients(run = latestRun) {
             </div>
         </div>`;
     }).join('');
+}
+
+function populateRunSelector() {
+    const sel = document.getElementById('runSelector');
+    const nav = document.querySelector('.run-nav');
+    if (!sel || allRuns.length === 0) {
+        if (nav) nav.style.display = 'none';
+        return;
+    }
+    const runs = allRuns.length > 10 ? allRuns.slice(0, 14) : allRuns;
+    sel.innerHTML = runs.map((r, i) => {
+        const suffix = i === 0 ? ' (más reciente)' : '';
+        const selectedAttr = i === 0 ? ' selected' : '';
+        return `<option value="${r.date}"${selectedAttr}>${r.date}${suffix}</option>`;
+    }).join('');
+    sel.addEventListener('change', (e) => {
+        loadRunDetails(e.target.value).then(run => {
+            if (run) {
+                updateClients(run);
+            } else {
+                console.warn('Run not found for date:', e.target.value);
+            }
+        });
+    });
 }
 
 function toggleCard(header) {
