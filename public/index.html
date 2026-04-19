@@ -570,6 +570,49 @@
         .client-card-header:hover { background: #f3f4f6; }
         .client-name { font-weight: 700; color: #111827; }
         .client-url  { font-size: 0.78em; color: #9ca3af; margin-top: 2px; }
+        .client-last-tested {
+            font-size: 11px;
+            color: #9ca3af;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+        .freshness-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .freshness-badge.freshness-stale {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .run-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .run-nav-label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        .run-select {
+            padding: 4px 8px;
+            border: 1.5px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: inherit;
+            color: #374151;
+            background: white;
+            cursor: pointer;
+        }
+        .run-select:focus { outline: none; border-color: #667eea; }
         .pass-rate-badge {
             font-weight: 800;
             font-size: 1.1em;
