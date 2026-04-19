@@ -27,7 +27,19 @@ class LiveReporter {
   }
 
   onBegin(config, suite) {
-    this.state.total = suite.allTests().length;
+    // Replace state entirely — clears counters, recentTests, and endTime from any
+    // prior run that might otherwise bleed into this run's live.json snapshot.
+    // Fixes PIPE-02: stale total/passed/failed/skipped between runs.
+    this.state = {
+      running: true,
+      startTime: new Date().toISOString(),
+      total: suite.allTests().length,
+      passed: 0,
+      failed: 0,
+      skipped: 0,
+      currentTest: null,
+      recentTests: [],
+    };
     this._save();
   }
 
