@@ -1,217 +1,210 @@
 # External Integrations
 
-**Analysis Date:** 2026-04-17
+**Analysis Date:** 2026-04-19
 
-## APIs & External Services
+## GitHub API
 
-**YOM Platform APIs:**
-- B2B Web (`tienda.youorder.me`) - Primary e-commerce interface tested via Playwright
-  - Endpoints tested: `/auth`, `/products`, `/cart`, `/checkout`, `/payments`, `/orders`
-  - SDK: Direct HTTP via Playwright page navigation
-  - Auth: Email/password credentials per client (stored in `.env`)
+**Live dashboard push (`tools/live-reporter.js`):**
+- Endpoint: `PUT /repos/eduardolaloyom/qa/contents/public/live.json`
+- Auth: `Authorization: token ${GITHUB_TOKEN}` (env var, optional — silently skips if absent)
+- User-Agent: `yom-qa-live-reporter`
+- Accept: `application/vnd.github.v3+json`
+- Mechanism: GET file SHA first (cached in `_ghSha`), then PUT with base64-encoded content
+- Rate limiting: self-imposed 10-second minimum interval between pushes (`PUSH_INTERVAL_MS = 10_000`)
+- Final push on `onEnd` bypasses the interval (always fires)
+- Effect: `public/live.json` in the GitHub repo is updated in real time during a Playwright run
 
-- Admin Dashboard (`admin.youorder.me`) - Merchant admin interface
-  - Endpoints: Order management, configuration, reports
-  - Tested via Playwright in `tests/e2e/admin/` specs
-  - Auth: Admin-level credentials
+**Static deploy via git push (`tests/e2e/global-teardown.ts`):**
+- Not an API call — uses `git add public/ && git commit && git push` via `execSync`
+- On push rejection: retries with `git pull --rebase`
+- Skipped in CI environments (`process.env.CI` set)
+- Commit message format: `chore: publish playwright results YYYY-MM-DD`
 
-- APP Mobile (Android) - Mobile commerce interface
-  - Testing: Maestro flows (`tests/app/flows/*.yaml`)
-  - No direct API testing - validates UI/UX on physical Android device
-  - Configuration: Per-client via `tests/app/config/config.{CLIENT}.yaml`
+**GitHub Actions deploy (`/.github/workflows/deploy-qa-dashboard.yml`):**
+- Trigger: push to `main` branch with changes in `public/**`
+- Action: `peaceiris/actions-gh-pages@v3`
+- Publishes `public/` directory to GitHub Pages
+- Auth: `secrets.GITHUB_TOKEN` (built-in, no configuration needed)
+- Result: dashboard live at `https://{user}.github.io/qa`
 
-**GitHub API (Indirect):**
-- Service: GitHub source code access
-  - Used in: `tools/b2b-feature-validator.py`
-  - Purpose: Download B2B source tarball to validate feature implementation
-  - Repos accessed: `YOMCL/b2b` (branch: `staging`), `YOMCL/monorepo` (for types)
-  - Auth: Via `GITHUB_TOKEN` (if set, otherwise unauthenticated)
-  - Cache: Source stored in `data/.b2b-source-cache/` to avoid repeated downloads
+## MongoDB
 
-## Data Storage
+**Three clusters, two environments (6 URI variables total):**
 
-**Databases:**
+| Cluster | Production URI var | Staging URI var |
+|---|---|---|
+| Legacy (products, orders, customers, salesterms) | `MONGO_LEGACY_URI` | `MONGO_LEGACY_STAGING_URI` |
+| Microservices (feature flags, promotions, banners) | `MONGO_MICRO_URI` | `MONGO_MICRO_STAGING_URI` |
+| Integrations (segments, overrides, user segments) | `MONGO_INTEGRATIONS_URI` | `MONGO_INTEGRATIONS_STAGING_URI` |
 
-**MongoDB Clusters:**
-- **Legacy Cluster** - Core transaction data
-  - Databases: `yom-production`
-  - Collections: products, orders, customers, salesterms, sites
-  - Connection: Via `MONGO_LEGACY_URI` env var
-  - Client: pymongo (in `data/mongo-extractor.py`)
-  - Purpose: Primary source of truth for customer store configuration
+**Connection details:**
+- All URIs are `mongodb+srv://` (Atlas SRV DNS format)
+- Client library: `pymongo[srv]` (Python) — not in `package.json`, installed separately via pip
+- Used exclusively by `data/mongo-extractor.py`
+- URIs loaded from `.env` at repo root via `_load_env()` (custom parser, no dotenv dependency)
 
-- **Microservices Cluster** - Feature flags and promotions
-  - Databases: `yom-stores`, `yom-promotions`, `b2b-marketing`
-  - Collections: Feature flags (enableCoupons, hidePrices, etc.), promotional campaigns, banners
-  - Connection: Via `MONGO_MICRO_URI` env var
-  - Client: pymongo
-  - Purpose: Dynamic configuration driving B2B behavior
+**`--env` flag controls which set of URIs is used:**
+- `--env staging` → uses `MONGO_*_STAGING_URI` vars; output default: `data/qa-matrix-staging.json`
+- `--env production` → uses `MONGO_*_URI` vars; output default: `data/qa-matrix.json` (gitignored)
 
-- **Integrations Cluster** - Customer segmentation and overrides
-  - Databases: `segments`, `overrides`, `user-segments`
-  - Collections: Customer segments, segment-based pricing, feature overrides
-  - Connection: Via `MONGO_INTEGRATIONS_URI` env var
-  - Client: pymongo
-  - Purpose: Customer-specific customization and targeting
+**Data flow from MongoDB:**
+```
+mongo-extractor.py --env staging --output data/qa-matrix-staging.json
+    ↓
+tools/sync-clients.py --input data/qa-matrix-staging.json
+    ↓
+tests/e2e/fixtures/clients.ts  (AUTO-GENERATED — never edit manually)
+    ↓
+Playwright fixtures use clients.ts for per-client test parametrization
+```
 
-**Staging Variants:**
-- All three clusters have staging URIs (suffixed with `_STAGING`):
-  - `MONGO_LEGACY_STAGING_URI`
-  - `MONGO_MICRO_STAGING_URI`
-  - `MONGO_INTEGRATIONS_STAGING_URI`
-- Controlled via `--env staging` flag in `mongo-extractor.py`
+**`publish-results.py` also reads MongoDB-derived data:**
+- Loads `data/qa-matrix-staging.json` via `load_staging_urls()` to map client slugs to display names and URLs
+- Used to populate per-client stats in `public/history/{date}.json`
 
-**Output Storage:**
-- Local JSON: `data/qa-matrix.json`
-  - Single source of truth for all client configuration
-  - Generated by: `data/mongo-extractor.py`
-  - Consumed by: `tools/sync-clients.py` → generates `tests/e2e/fixtures/clients.ts`
+## Live Dashboard Polling
 
-**File Storage:**
-- Local filesystem only (no cloud storage)
-  - Test results: `tests/e2e/playwright-report/`, `tests/e2e/test-results/`
-  - Screenshots/videos: In test-results directory
-  - Maestro logs: `QA/{CLIENT}/{DATE}/maestro.log`
-  - HTML reports: `public/qa-reports/{CLIENT}-{DATE}.html`, `public/app-reports/`
+**Mechanism:**
+- Dashboard (`public/index.html`) calls `pollLive()` on `DOMContentLoaded`
+- Fetches `live.json?t={timestamp}` (cache-busting) every 3 seconds while `d.running === true`
+- When `running` transitions to `false` and was previously `true`: shows "Run completado" banner for 3 seconds, then reloads `history/index.json` and the latest `{date}.json` to refresh all dashboard panels
+- `live.json` is served from the same GitHub Pages origin — no CORS issues
+- If fetch fails or returns non-2xx: `hideLivePanel()` is called silently
 
-**Caching:**
-- B2B source cache: `data/.b2b-source-cache/` (GitHub tarball)
-  - Updated via `--refresh-source` flag in `b2b-feature-validator.py`
-- APP mobile cache: `data/.app-mobile-cache/` (app source metadata)
+**`live.json` schema:**
+```json
+{
+  "running": true,
+  "startTime": "ISO8601",
+  "total": 57,
+  "passed": 23,
+  "failed": 2,
+  "skipped": 1,
+  "currentTest": "bastien: C2-08 ...",
+  "recentTests": [
+    { "title": "...", "status": "passed|failed|skipped", "duration": 1234 }
+  ]
+}
+```
+- Written atomically: `live.json.tmp` → renamed to `live.json` on each test event
+- Written locally by `tools/live-reporter.js` to `public/live.json`
+- Pushed to GitHub (same path) every 10s or on run end
 
-## Authentication & Identity
+## History Data API (Static JSON)
 
-**Auth Provider:**
-- Custom (YOM in-house authentication)
-  - Implementation: Email + password credentials
-  - Scope: Per-client configuration
-  - Stored: In `.env` file (not committed)
-    - Pattern: `{CLIENT}_EMAIL`, `{CLIENT}_PASSWORD`
-    - Examples: `BASTIEN_EMAIL`, `BASTIEN_PASSWORD`, `PRINORTE_EMAIL`, `PRINORTE_PASSWORD`
+**All reads are static fetches from GitHub Pages — no backend:**
 
-**Multi-Client Auth:**
-- Location: `tests/e2e/fixtures/multi-client-auth.ts`
-- Approach: Parameterized auth across 17+ production + staging clients
-- Flow: `loginHelper()` in `tests/e2e/fixtures/login.ts` handles E2E login via UI
-  - Navigates to login page
-  - Enters email/password
-  - Submits with Enter key
-  - Validates successful redirect
+| File | Fetch | Purpose |
+|---|---|---|
+| `public/history/index.json` | `history/index.json?t={ts}` | Rolling 30-day run index (date, total, passed, failed, duration) |
+| `public/history/{date}.json` | `history/{date}.json?t={ts}` | Full run detail: suites, clients, failure_groups, pending_b2b, evidence |
+| `public/live.json` | `live.json?t={ts}` | Real-time run state |
+| `public/manifest.json` | `manifest.json?v={ts}` | Cowork report index |
+| `public/app-reports/manifest.json` | fetched from APP tab | Maestro report index |
 
-**Admin Auth:**
-- Separate credentials for admin panel
-  - Env var: `ADMIN_BASE_URL`
-  - Flow: Same `loginHelper()` reused for admin login
+**Cache-busting:** timestamp query param appended to every fetch call.
 
-**GitHub Token (Optional):**
-- Token: `GITHUB_TOKEN` env var
-  - Used by: `tools/b2b-feature-validator.py`
-  - Purpose: Increase rate limits for GitHub API (optional, works unauthenticated)
-  - Checked in: `b2b-feature-validator.py` line ~32 (`if line.startswith("GITHUB_TOKEN=")`)
+## Cowork Session Reports
 
-## Monitoring & Observability
+**Connection to dashboard (indirect — no API):**
+1. Cowork (claude.ai) generates a Cowork session HTML report and saves it to `public/qa-reports/{client}-{date}.html`
+2. `public/qa-reports/manifest.json` is updated manually (or by `/report-qa` command) with metadata: `client`, `date`, `file`, `verdict`, `score`, `modes_done`
+3. Dashboard fetches `manifest.json` and renders a card grid under the "Reportes Cowork" tab
+4. Each card links to the individual `public/qa-reports/*.html` file
 
-**Error Tracking:**
-- Not detected (QA platform does not send errors to external service)
-- Local logging: Test failures captured in Playwright reports and logs
-- Linear integration (reference only): `tools/b2b-feature-validator.py` and other tools reference Linear for issue tracking but do not send data
+**`public/qa-reports/manifest.json` schema:**
+```json
+{
+  "reports": [
+    {
+      "client": "Sonrie",
+      "date": "2026-04-16",
+      "file": "sonrie-2026-04-16.html",
+      "verdict": "CON CONDICIONES",
+      "score": 89,
+      "modes_done": ["FULL"]
+    }
+  ]
+}
+```
 
-**Logs:**
-- Playwright: HTML reports in `tests/e2e/playwright-report/`
-  - Includes: test names, status, duration, screenshots, videos, traces
-  - Location: `tests/e2e/test-results/` (raw test artifacts)
-  
-- Maestro: Raw logs and HTML report
-  - Location: `QA/{CLIENT}/{DATE}/maestro.log` (raw output from Maestro CLI)
-  - Format: Parsed into HTML report by `tools/run-maestro.sh`
+**Cowork → dashboard flow summary:**
+```
+Cowork session (claude.ai)
+    ↓ /report-qa {CLIENTE} {FECHA}
+QA/{CLIENTE}/{FECHA}/cowork-session.md  (source of truth)
+    ↓ generates
+public/qa-reports/{client}-{date}.html
+public/qa-reports/manifest.json (updated)
+    ↓ git commit + push
+GitHub Pages → dashboard "Reportes Cowork" tab
+```
 
-- QA Platform: Custom Cowork session logs
-  - Location: `QA/{CLIENT}/{DATE}/cowork-session.md` (manual session notes)
-  - Format: Markdown with HANDOFF blocks
+## Maestro App Reports
 
-- Build logs: GitHub Actions workflow logs (captured by GitHub)
+**Connection to dashboard:**
+1. `tools/run-maestro.sh` generates `public/app-reports/{cliente}-{date}.html` inline Python
+2. Updates `public/app-reports/manifest.json` with: `client`, `client_slug`, `date`, `file`, `platform`, `environment`, `passed`, `manual`, `failed`, `skipped`, `total`, `health`, `verdict`
+3. Dashboard fetches `app-reports/manifest.json` and renders under the "APP" tab
+4. Reports sorted by date descending; grouped by client with history accordion
 
-## CI/CD & Deployment
-
-**Hosting:**
-- GitHub Pages (QA Dashboard)
-  - Domain: Part of repo GitHub Pages
-  - Location: Served from `public/` directory
-  - Content: HTML reports, manifest, frontend dashboard
-
-**CI Pipeline:**
-- GitHub Actions
-  - Workflow file: `.github/workflows/deploy-qa-dashboard.yml`
-  - Trigger: Push to `main` with changes in `public/**`
-  - Steps:
-    1. Checkout repo
-    2. Deploy `public/` to GitHub Pages via `peaceiris/actions-gh-pages@v3`
-  - Permissions: `contents: write` (for gh-pages branch)
-  - Token: `secrets.GITHUB_TOKEN` (auto-provided by GitHub)
-
-**Test Execution:**
-- Not automated via CI (manual execution)
-- Playwright: Runs locally or in developer environment
-- Maestro: Requires physical Android device (not CI-compatible)
-- Results: Published to GitHub Pages manually via `tools/publish-results.py`
+**`public/app-reports/manifest.json` schema (per entry):**
+```json
+{
+  "client": "Prinorte",
+  "client_slug": "prinorte",
+  "date": "2026-04-15",
+  "file": "prinorte-2026-04-15.html",
+  "platform": "app",
+  "environment": "production",
+  "passed": 0,
+  "manual": 0,
+  "failed": 1,
+  "skipped": 0,
+  "total": 1,
+  "health": 0,
+  "verdict": "BLOQUEADO"
+}
+```
 
 ## Environment Configuration
 
-**Required env vars (MongoDB):**
-- `MONGO_LEGACY_URI` - Production legacy cluster connection string
-- `MONGO_MICRO_URI` - Production microservices cluster connection string
-- `MONGO_INTEGRATIONS_URI` - Production integrations cluster connection string
-- `MONGO_LEGACY_STAGING_URI` - Staging legacy cluster (optional)
-- `MONGO_MICRO_STAGING_URI` - Staging microservices cluster (optional)
-- `MONGO_INTEGRATIONS_STAGING_URI` - Staging integrations cluster (optional)
+**Required env vars (in `.env` at repo root):**
+```
+# MongoDB — Production
+MONGO_LEGACY_URI=mongodb+srv://...
+MONGO_MICRO_URI=mongodb+srv://...
+MONGO_INTEGRATIONS_URI=mongodb+srv://...
 
-**Required env vars (Playwright):**
-- `BASE_URL` - B2B base URL (default: `https://tienda.youorder.me`)
-- `ADMIN_URL` - Admin base URL (default: `https://admin.youorder.me`)
-- Per-client credentials: `{CLIENT}_EMAIL`, `{CLIENT}_PASSWORD`
-  - Examples: `BASTIEN_EMAIL`, `BASTIEN_PASSWORD`, `CODELPA_EMAIL`, `CODELPA_PASSWORD`, etc.
+# MongoDB — Staging
+MONGO_LEGACY_STAGING_URI=mongodb+srv://...
+MONGO_MICRO_STAGING_URI=mongodb+srv://...
+MONGO_INTEGRATIONS_STAGING_URI=mongodb+srv://...
+```
 
-**Optional env vars:**
-- `GITHUB_TOKEN` - GitHub API token for `b2b-feature-validator.py` (increases rate limits)
-- `CI` - Set by GitHub Actions to enable special behavior (retries: 2, forbidOnly: true)
+**Required env vars (for live dashboard push):**
+```
+GITHUB_TOKEN=ghp_...   # Personal access token with repo write scope
+```
+
+**Per-client Playwright credentials (in `.env`):**
+```
+{CLIENT_SLUG}_EMAIL=...
+{CLIENT_SLUG}_PASSWORD=...
+BASE_URL=https://{slug}.solopide.me
+```
+Note: client key hyphens must be converted to underscores in var names (e.g., `seis-sur` → `SEIS_SUR_EMAIL`).
 
 **Secrets location:**
-- `.env` file in root (`.planning/codebase/qa/`)
-  - NOT committed (in `.gitignore`)
-  - Template: `.env.example` provides structure
-- Locally encrypted or managed via credential manager
-- Never passed through version control
+- `.env` (gitignored, repo root)
+- `GITHUB_TOKEN` used at runtime only — never written to disk in pipeline scripts
 
-## Webhooks & Callbacks
+## Webhooks & Notifications
 
-**Incoming:**
-- None detected in QA codebase
-- Note: YOM platform supports webhooks for ERP integrations, but QA does not consume them
-  - Reference: `checklists/servicios/checklist-webhooks.md` documents 13+ hooks in platform
-  - Not tested via automated QA (manual checklist only)
+**Incoming:** None.
 
-**Outgoing:**
-- None detected
-- Note: GitHub Actions sends deployment status via GitHub API (implicit)
-
-## Network & Environment
-
-**Base URLs:**
-- **B2B:** `https://tienda.youorder.me` (production) or `{client}.solopide.me` (staging)
-- **Admin:** `https://admin.youorder.me` (production) or `admin-{client}.solopide.me` (staging)
-- **APP:** Physical device (no URL)
-
-**Staging Variants:**
-- Each production client has a staging equivalent
-  - Production: `bastien.youorder.me` → Staging: `bastien.solopide.me`
-  - Staging provides isolated environment for pre-release testing
-  - Staging MongoDB clusters separate from production
-
-**Client-Specific Domains:**
-- 17 production clients with unique domains (`.youorder.me`)
-- Staging auto-discovery: Extracted from MongoDB via `mongo-extractor.py`
-- Excluded staging domains: Dev/test environments in `STAGING_EXCLUDE_DOMAINS` (25+ entries)
+**Outgoing:** None (no Slack/email notifications from pipeline scripts; triage hint is printed to stdout only).
 
 ---
 
-*Integration audit: 2026-04-17*
+*Integration audit: 2026-04-19*

@@ -1,186 +1,259 @@
-# Codebase Concerns
+# Codebase Concerns — QA Reporting Pipeline
 
-**Analysis Date:** 2026-04-17
-
-## Tech Debt
-
-**QA Matrix stale / not maintained:**
-- Issue: `data/qa-matrix.json` has empty `clients: {}` — was last extracted 2026-04-15. All fixture data comes from `qa-matrix-staging.json` (728KB), not production matrix.
-- Files: `data/qa-matrix.json`, `data/qa-matrix-staging.json`
-- Impact: Production client data is not synced. Staging-only matrix means missing production clients from test runs. Lost visibility into production config validation.
-- Fix approach: Either resume regular MongoDB extraction to `qa-matrix.json` (via `mongo-extractor.py --full`) or drop the empty production matrix and document that QA uses staging-only baseline.
-
-**Currency field missing in config-validation tests:**
-- Issue: `tests/e2e/b2b/config-validation.spec.ts:176` skips currency validation with comment `// TODO: currency no está en clients.ts, usar campo correcto cuando se disponibilice`
-- Files: `tests/e2e/b2b/config-validation.spec.ts` (line 175-200)
-- Impact: No validation that B2B clients display correct currency symbol ($, S/, etc.). Tests pass even if currency is wrong.
-- Fix approach: Add `currency` field to MongoDB extraction → `clients.ts` fixture, then enable the skipped test.
-
-## Broken / Orphaned Files
-
-**Deleted Maestro flows without replacement:**
-- Issue: Git status shows 18 deleted prinorte flows (prinorte-01-login.yaml through prinorte-99-verify-off-features.yaml) as staged deletions. These were added in commit 6b86b77 (2026-04-14) but are now flagged as deleted.
-- Files: 
-  - `D tests/app/flows/prinorte-01-login.yaml`
-  - `D tests/app/flows/prinorte-02-sync.yaml`
-  - `D tests/app/flows/prinorte-03-comercios.yaml`
-  - ... through prinorte-99
-- Impact: Prinorte app QA is blocked — individual flows deleted but `tests/app/flows/prinorte-session.yaml` (untracked) not yet ready as replacement. APP testing pipeline broken.
-- Fix approach: Either commit the deletion (finalize migration to prinorte-session.yaml) or restore the individual files. Resolve staging status immediately — active APP QA client affected.
-
-**Empty .commands/update-docs.md:**
-- Issue: `ai-specs/.commands/update-docs.md` is 1 line of boilerplate with no actual instructions.
-- Files: `ai-specs/.commands/update-docs.md`
-- Impact: Command is non-functional — references a nonexistent standards file. If a Claude instance calls this command, it gets no actionable guidance.
-- Fix approach: Either populate with real documentation workflow or remove the command file entirely. Update `.manifest.json` if removed.
-
-**Stale HTTP server PID file:**
-- Issue: `.http-server.pid` contains PID 2591 from a previous test run (created 2026-04-17 09:19). Process likely no longer running. Cleanup trap in `run-live.sh` should handle this, but file persists.
-- Files: `.http-server.pid`
-- Impact: Low — run-live.sh cleans it up on exit. But if process crashed, file is orphaned and misleading.
-- Fix approach: Add `.http-server.pid` to `.gitignore` (not committed anyway). Verify global-teardown.ts is actually cleaning this up.
-
-**Untracked QA result directories accumulating:**
-- Issue: `QA/Prinorte/2026-04-15/` exists with only `maestro.log` (153 bytes) — incomplete QA session. This accumulates stale test directories that pollute the repo.
-- Files: `QA/Prinorte/2026-04-15/maestro.log`
-- Impact: QA directory becomes cluttered with incomplete sessions. Makes it hard to find active/recent results. Not committed, but blocks clean git status.
-- Fix approach: Add `QA/*/` to `.gitignore` or enforce cleaning by `/report-qa` workflow. Only committed results should be in version control.
-
-## Missing Critical Features
-
-**Playwright global setup/teardown not running cleanly:**
-- Issue: `tests/e2e/global-setup.ts` spawns an HTTP server in detached mode and saves PID, but `global-teardown.ts` may not always run (e.g., if tests are killed or CI crashes). Server cleanup is unreliable.
-- Files: `tests/e2e/global-setup.ts`, `tests/e2e/global-teardown.ts`
-- Impact: Orphaned http.server processes left running after test failures. Port 8080 may be held, blocking next test run.
-- Fix approach: Replace detached spawn with proper process management — either use a proper server package (http-server npm) or ensure teardown always runs via `finally` block.
-
-**No production environment credentialing in Playwright:**
-- Issue: All E2E tests are hardcoded to staging (`BASE_URL=https://*.solopide.me`). No production test pipeline. Credentials in `.env` only for staging clients.
-- Files: `tests/e2e/.env`, `tests/e2e/playwright.config.ts`
-- Impact: Zero visibility into production B2B or admin UI correctness. Config bugs in production go undetected until customer reports them.
-- Fix approach: Add production environment support to `playwright.config.ts` with separate CI job. Require production credentials in `.env.production`.
-
-## Security Considerations
-
-**Credentials embedded in test helper:**
-- Issue: `tests/e2e/fixtures/login.ts` likely contains hardcoded email/password for test users. Not visible in scope (not read), but common vulnerability.
-- Files: `tests/e2e/fixtures/login.ts` (not analyzed due to secret content)
-- Impact: If fixtures checked into version control, test credentials are exposed in git history.
-- Fix approach: Verify all test credentials come from `.env` variables, never hardcoded. Add pre-commit hook to scan for common patterns (password=, email=) in test files.
-
-**No secret masking in test reports:**
-- Issue: `tools/publish-results.py` writes JSON reports to `public/` (committed to GitHub Pages). If a test error message contains an API token or auth header, it's published publicly.
-- Files: `tools/publish-results.py`, `public/history/` (committed reports)
-- Impact: Secrets accidentally published to GitHub Pages when tests fail with credential-related errors.
-- Fix approach: Add secret masking in `publish-results.py` before writing JSON — redact patterns like `Authorization: Bearer ****` and API keys.
-
-## Fragile Areas
-
-**Config-validation spec has 100+ hardcoded test cases — brittle selector maintenance:**
-- Issue: `tests/e2e/b2b/config-validation.spec.ts` is 1,762 lines with ~80 inline test() blocks. Each flag validation uses brittle CSS/text selectors that break when UI changes.
-- Files: `tests/e2e/b2b/config-validation.spec.ts`
-- Impact: High fragility — any B2B frontend CSS refactor breaks 20+ tests simultaneously. Selectors like `page.getByText(/mínimo:\s*1$/i)` will fail if label text changes slightly.
-- Fix approach: 
-  1. Extract selector constants to `fixtures/selectors.ts` (single source of truth)
-  2. Add `data-testid` attributes to B2B components for all validated flags
-  3. Split into per-feature files (cart.spec.ts, pricing.spec.ts, etc.) with <200 lines each
-
-**Maestro flows depend on hardcoded UI steps without abstraction:**
-- Issue: `tests/app/flows/prinorte/*.yaml` files have inline tap/swipe/type steps with no helper layers. One UI change requires editing multiple YAML files.
-- Files: `tests/app/flows/prinorte/*.yaml`
-- Impact: APP tests brittle — UI refactor = multiple manual YAML edits. No code reuse.
-- Fix approach: Create Maestro helper library in `tests/app/helpers/` with common actions (login, selectCommerce, addToCart) as reusable YAML includes or functions.
-
-**Live reporter not handling concurrent test runs:**
-- Issue: `tools/live-reporter.js` writes to a single `public/live.json` file. If two test suites run in parallel, writes race and corrupt the state.
-- Files: `tools/live-reporter.js`
-- Impact: Live dashboard shows garbage data during parallel test runs. Concurrent test execution breaks the live reporter.
-- Fix approach: Use file locks or separate live JSON per client (e.g., `live-{clientKey}.json`), then aggregate in dashboard.
-
-## Performance Bottlenecks
-
-**Large config-validation spec runs slow (80+ tests sequentially):**
-- Issue: `config-validation.spec.ts` iterates over all clients and runs sequential tests. With 15-20 active clients, this is 80+ tests × 30s each = 40+ minutes for one spec.
-- Files: `tests/e2e/b2b/config-validation.spec.ts` (loops per-client)
-- Impact: Full B2B test suite takes 60+ minutes. Feedback loop slow for developers.
-- Fix approach:
-  1. Extract into separate spec per client (`codelpa.spec.ts`, `surtiventas.spec.ts`, etc.) to enable parallelization
-  2. Or use `test.describe.parallel()` to run client suites in parallel
-  3. Add `--reporter=dot` for faster console feedback
-
-## Test Coverage Gaps
-
-**No validation of B2B payment integrations (Khipu, Webpay, Stripe):**
-- Issue: `config-validation.spec.ts` checks if payment sections exist, but doesn't validate that payment flows work end-to-end or that the correct gateway is wired.
-- Files: `tests/e2e/b2b/config-validation.spec.ts` (enablePayments checks only visibility)
-- Impact: Payment bugs in staging go undetected. Config says Khipu enabled but Webpay integration actually active = silent failure.
-- Fix approach: Add `payments.spec.ts` that:
-  - Mock each payment provider's webhook
-  - Place order through each enabled payment type
-  - Assert correct provider endpoint is called
-
-**No validation of admin panel configuration:**
-- Issue: QA focuses on B2B storefront and APP. Admin panel tests exist (`tests/e2e/admin/`) but have no client-specific config validation.
-- Files: `tests/e2e/admin/` (exists but coverage unclear)
-- Impact: Admin config bugs (e.g., broken coupon code UI for specific clients) discovered too late.
-- Fix approach: Extend `config-validation.spec.ts` pattern to admin specs — validate per-client settings in admin panel match MongoDB config.
-
-**Prinorte APP flows not integrated with CI pipeline:**
-- Issue: `tests/app/flows/prinorte/` flows exist but are run manually via `tools/run-maestro.sh`. No nightly CI job.
-- Files: `tools/run-maestro.sh`, `tests/app/flows/prinorte/`
-- Impact: APP regressions aren't caught automatically. Prinorte breaks and QA discovers it a week later.
-- Fix approach: Add `.github/workflows/app-maestro.yml` to run APP flows nightly for Prinorte (and other app-enabled clients).
-
-## Dependencies at Risk
-
-**Playwright version pinning unclear:**
-- Issue: `package.json` likely has `@playwright/test: "^1.x.y"`. Minor version bumps can introduce breaking locator changes or timeout behavior shifts.
-- Files: `package.json` (not read due to scope, but critical)
-- Impact: Tests flake unexpectedly after Playwright minor upgrade. No explicit version lock.
-- Fix approach: Use exact semver (e.g., `"@playwright/test": "1.47.0"`) in package.json. Test upgrades in separate branch before applying.
-
-**Maestro SDK version not locked:**
-- Issue: `tools/run-maestro.sh` downloads Maestro SDK at runtime. If Maestro releases breaking changes, flows fail without warning.
-- Files: `tools/run-maestro.sh` (lines 80+, where SDK is installed)
-- Impact: APP tests suddenly fail due to SDK incompatibility. No clear error message.
-- Fix approach: Pin Maestro SDK version in `run-maestro.sh` and document minimum/maximum compatible versions.
-
-## Scaling Limits
-
-**QA matrix extraction takes too long for 60+ clients:**
-- Issue: `data/mongo-extractor.py` extracts all 60 clients every time. MongoDB aggregation queries grow quadratically as client count increases.
-- Files: `data/mongo-extractor.py`
-- Impact: Full extraction takes 10+ minutes. Incremental updates not supported.
-- Fix approach: Implement incremental extraction (only changed clients since last run) using MongoDB's `modifiedDate` field.
-
-**Dashboard history accumulation unbounded:**
-- Issue: `tools/publish-results.py` keeps last 30 days of history in `public/history/`. After 1 year, directory becomes 365 files. GitHub Pages performance may degrade.
-- Files: `tools/publish-results.py` (lines 632), `public/history/`
-- Impact: Dashboard load time increases. Git repo size grows with artifact history.
-- Fix approach: Archive old history to separate branch (`history-archive`) or object storage (S3). Keep only last 90 days in GitHub Pages.
-
-## Issues with Automation & Orchestration
-
-**Global setup/teardown race conditions with LIVE mode:**
-- Issue: `run-live.sh` starts HTTP server in global setup, but `live-reporter.js` writes to same `public/live.json` during tests. If teardown runs before reporter finishes, state is lost.
-- Files: `tools/run-live.sh`, `tests/e2e/global-setup.ts`, `tests/e2e/global-teardown.ts`, `tools/live-reporter.js`
-- Impact: Live dashboard shows incomplete results if tests finish just as teardown kills the server.
-- Fix approach: Add explicit wait in teardown for reporter to flush (check if `live.json` has `running: false`).
-
-## Documentation / Maintainability
-
-**update-docs.md command is a stub:**
-- Issue: `ai-specs/.commands/update-docs.md` points to nonexistent `ai-specs/specs/documentation-standards.mdc`.
-- Files: `ai-specs/.commands/update-docs.md`
-- Impact: Documentation workflow undefined. Specs lack standards guidance.
-- Fix approach: Either create `documentation-standards.mdc` with real guidelines or remove the command.
-
-**Checklist index outdated:**
-- Issue: `checklists/INDICE.md` exists but is 131 lines — hasn't been updated to match current checklist files. New checklists added without updating index.
-- Files: `checklists/INDICE.md`
-- Impact: QA team can't discover checklists. Test coverage gaps hidden.
-- Fix approach: Auto-generate INDICE.md from checklist files using a Python script run before each commit (pre-commit hook).
+**Analysis Date:** 2026-04-19
 
 ---
 
-*Concerns audit: 2026-04-17*
+## 1. Pipeline Gaps
+
+### Cowork results are not in the live dashboard — they live in a separate silo
+
+**Issue:** The live dashboard (`public/index.html`) renders two separate data streams: Playwright results (from `public/history/{date}.json` via `public/history/index.json`) and Cowork reports (from `public/manifest.json`). These are never merged into a unified "QA status per client" view.
+
+- Playwright tab shows pass/fail counts per client, updated automatically after each run.
+- The "Reportes QA Cowork" card reads `public/manifest.json` and renders cards per client-date.
+- There is no view that joins both: you cannot see "Bastien — Playwright 82% + Cowork CON_CONDICIONES + App BLOQUEADO" in a single row.
+
+**Files:** `public/index.html` lines 1311-1317, 2261-2307; `public/manifest.json`
+
+**Impact:** To get a full QA picture for a client you must check the Playwright tab, then scroll to the Cowork card, then check the APP tab. There is no single "is this client QA-ready?" answer.
+
+**Fix approach:** Add a "QA Status" summary section at the top of the dashboard that, for each client, aggregates `clients[slug]` from history JSON (Playwright score), `manifest.json` (Cowork verdict + score), and `app-reports/manifest.json` (Maestro health). One row per client, three status badges.
+
+---
+
+### Two separate manifests for Cowork and Maestro are never merged
+
+**Issue:** `run-maestro.sh` writes to `public/app-reports/manifest.json`. `/report-qa` (per `report-qa.md` line 59-65) writes to `public/manifest.json`. The dashboard's APP tab reads `manifest.json?v=...` (line 2323 of `index.html`), which is the same file as the B2B tab — but `run-maestro.sh` writes to `app-reports/manifest.json`, not `manifest.json`.
+
+**Files:** `tools/run-maestro.sh` lines 53-55 (`MANIFEST_FILE="$PUBLIC_DIR/manifest.json"` where `PUBLIC_DIR=public/app-reports`); `public/index.html` line 2323; `public/app-reports/manifest.json`
+
+**Impact:** APP reports from `run-maestro.sh` go to `public/app-reports/manifest.json`. The dashboard reads `public/manifest.json`. The APP tab is currently populated by `run-maestro.sh` reports only if they were produced by `/report-qa` (which writes to `public/manifest.json`). Maestro HTML reports in `public/app-reports/` (e.g., `bastien-2026-04-15.html`) exist but their manifest is never read by the dashboard.
+
+**Fix approach:** Either (a) unify both manifests into `public/manifest.json` and update `run-maestro.sh` to write there, or (b) make the dashboard read both files and merge client data.
+
+---
+
+### No automatic trigger from `/run-playwright` to `publish-results.py` in docs
+
+**Issue:** `publish-results.py` IS automatically invoked — it runs in `global-teardown.ts` (line 19: `execSync('python3 tools/publish-results.py', ...)`), which Playwright calls after every test run. However, the command documentation in `ai-specs/.commands/run-playwright.md` does not mention this. Step 5 ("Generate report") says to create a file in `QA/{CLIENT}/{DATE}/playwright-report.html` — but the actual automated output goes to `public/history/`. The command doc is misleading.
+
+**Files:** `tests/e2e/global-teardown.ts` lines 18-22; `ai-specs/.commands/run-playwright.md` lines 38-50
+
+**Impact:** Users reading the docs believe they need to manually run `publish-results.py`. They also believe reports go to `QA/{CLIENT}/{DATE}/` (the doc says "Create `QA/{CLIENT}/{DATE}/playwright-report.html`"), but the real output is in `public/history/{date}.json` and `public/reports/`.
+
+**Fix approach:** Update `run-playwright.md` step 5 to reflect real behavior: Playwright automatically publishes via `global-teardown.ts` → `publish-results.py`. Remove the stale `QA/{CLIENT}/{DATE}/playwright-report.html` claim.
+
+---
+
+### Admin tests are permanently skipped and invisible in the dashboard
+
+**Issue:** All 4 admin specs (`tests/e2e/admin/login.spec.ts`, `orders.spec.ts`, `reports.spec.ts`, `stores.spec.ts`, total 321 lines) require `ADMIN_PASSWORD` in `.env`. Per `PENDING.md` lines 20-26, this variable is empty in the active `.env`. Tests auto-skip. `publish-results.py` has no code to handle admin specs separately — they either appear as skipped in the general count or are invisible. The dashboard has no admin section.
+
+**Files:** `tests/e2e/admin/` (4 specs); `PENDING.md` lines 19-26; `tests/e2e/.env.example` line 33; `public/index.html` (no admin section)
+
+**Impact:** 321 lines of admin test code produce zero QA value. Admin panel regressions go undetected.
+
+**Fix approach:** Add `ADMIN_PASSWORD` to `.env` (per PENDING.md). Add an admin results card to the dashboard that reads from the `admin` project suites in the history JSON.
+
+---
+
+### No smoke test for production — staging pass does not imply production pass
+
+**Issue:** `publish-results.py` determines environment from the URL in `qa-matrix-staging.json` (line 535: `"staging" if "solopide.me" in url else "production"`). All day-to-day tests run against staging (`*.solopide.me`). There is no automated validation that passes on production (`youorder.me`) after deploy. Per `PENDING.md` lines 28-38, a production smoke test is planned but does not exist.
+
+**Files:** `tools/publish-results.py` lines 487-535; `PENDING.md` lines 28-38
+
+**Impact:** A client can be marked "QA LISTO" in staging, deploy to production, and have a different MongoDB config (e.g., different banner, price list) that is never validated.
+
+---
+
+## 2. Reliability Concerns
+
+### live.json is stale and shows misleading data between runs
+
+**Issue:** `public/live.json` currently shows `running: false, total: 2932, passed: 0, failed: 0`. The `total: 2932` is the count of all tests discovered at suite start (line 30 in `live-reporter.js`: `this.state.total = suite.allTests().length`), but `passed` and `failed` are 0 because the run from 2026-04-17 21:35 UTC finished in 0.4 seconds (start/end diff) — likely a dry run or error. Between test runs, the dashboard live panel shows this stale state.
+
+**Files:** `public/live.json`; `tools/live-reporter.js` lines 29-31, 55-60
+
+**Impact:** Dashboard always shows a "finished run" state with suspicious totals. Users cannot distinguish "no tests have run today" from "tests ran and passed". `total: 2932` with `passed: 0` looks like a failure.
+
+**Fix approach:** Reset `live.json` to a "no active run" sentinel value (`running: false, total: 0`) after a configurable idle period, or add a `lastRunDate` field the dashboard can compare to today's date to hide stale data.
+
+---
+
+### GitHub API failure in live-reporter.js silently drops all pushes
+
+**Issue:** `live-reporter.js` pushes to GitHub API to update `public/live.json` in the remote repo. The error handler at lines 115, 147 only sets `this._pushPending = false` — there is no retry, no alerting, and no fallback. If the GitHub API is unavailable (rate limit, network issue, bad token), live updates silently stop.
+
+**Files:** `tools/live-reporter.js` lines 86-151
+
+**Impact:** Live dashboard stops updating mid-run with no indication. The `GITHUB_TOKEN` requirement is undocumented in `.env.example` — if token is missing or expired, `_pushToGitHub` returns silently at line 75 (`if (!token) return`). No warning shown.
+
+**Fix approach:** Log a warning to stderr when `GITHUB_TOKEN` is missing. Add exponential backoff with a maximum of 3 retries on API errors. Document `GITHUB_TOKEN` in `tests/e2e/.env.example`.
+
+---
+
+### live-reporter.js has a hardcoded private GitHub repo reference
+
+**Issue:** Line 8 of `tools/live-reporter.js`: `const GITHUB_REPO = 'eduardolaloyom/qa';`. This is hardcoded — if the repo is renamed or transferred, live updates silently stop. No config file or env var controls this.
+
+**Files:** `tools/live-reporter.js` line 8
+
+**Impact:** Breaking change on repo rename. Also exposes the repo slug in committed source.
+
+**Fix approach:** Replace with `process.env.GITHUB_REPO || 'eduardolaloyom/qa'` and document the var in `.env.example`.
+
+---
+
+### publish-results.py called without --client in teardown — client auto-detect may fail
+
+**Issue:** `global-teardown.ts` line 19 calls `python3 tools/publish-results.py` with no arguments. `publish-results.py` lines 823-839 attempt to auto-detect client slug from suite titles. If tests ran across multiple clients (the common case for the full B2B suite), `unique_slugs` will have >1 entry and auto-detection returns None, falling back to the shared `public/reports/` directory instead of per-client report paths.
+
+**Files:** `tests/e2e/global-teardown.ts` line 19; `tools/publish-results.py` lines 820-851
+
+**Impact:** Multi-client runs always write to `public/reports/index.html` (shared), not `public/reports/{slug}/index.html` (per-client). The `reportUrl` in history JSON points to `reports/index.html` for all clients, which is the generic shared report, not the client-specific one.
+
+**Fix approach:** The global teardown should accept a `--client` param when running single-client. For multi-client runs, consider running `publish-results.py --client {slug}` once per client using the per-client results files mentioned in the docstring (lines 762-771 of `publish-results.py`).
+
+---
+
+### Git commit in teardown can fail silently — dashboard may not update on GitHub Pages
+
+**Issue:** `global-teardown.ts` lines 27-34 run `git add public/ && git commit && git push` in a shell command. The outer `try/catch` at line 35 only logs `⚠️ git push falló` to console — the test run still exits 0. If push fails (merge conflict, auth error, network), the dashboard is not updated on GitHub Pages but the local run shows success.
+
+**Files:** `tests/e2e/global-teardown.ts` lines 24-36
+
+**Impact:** Silent dashboard staleness. Playwright run "succeeds" locally but results never reach the public dashboard.
+
+**Fix approach:** Exit non-zero if push fails (or at minimum emit a clear warning block that includes "Dashboard NOT updated"). Add a post-push check that verifies the remote `public/history/index.json` SHA matches local.
+
+---
+
+### Maestro flakiness handled by manual-pass — not tracked in reports as flaky
+
+**Issue:** `run-maestro.sh` supports 3 auto-retries for individual flows and 1 attempt for session flows. When all retries fail, interactive mode prompts `[m] Manual-Pass`. A manual-pass is logged as `[Manual-Pass] {flow_name}` and counted identically to auto-pass when computing health score (line 318: `(passed + manual) / effective`). The dashboard HTML report shows a "👤 MANUAL-PASS" badge, but `manifest.json` does not distinguish manual from auto — both contribute to `health`. Persistent flakiness is invisible at the manifest level.
+
+**Files:** `tools/run-maestro.sh` lines 218-266, 312-318; `public/app-reports/manifest.json` (no `manual_pass_count` field in read entries)
+
+**Impact:** A Maestro run with 8/10 auto-pass + 2/10 manual-pass reports `health: 100%` — identical to a fully automated pass. Trend analysis cannot distinguish genuine stability from human intervention masking failures.
+
+**Fix approach:** Add `manual_pass_count` as a distinct field in the manifest entry (it's present in the HTML but not committed to the manifest's top-level stats). Surface it in the dashboard APP card as a separate badge.
+
+---
+
+## 3. Reporting Completeness
+
+### Manual checklist results are not in the dashboard — only in local markdown files
+
+**Issue:** `tools/checklist-generator.py` produces `QA/{CLIENT}/{DATE}/checklist.md`. These are never parsed and published. The dashboard has no section for manual checklist results. The "Cowork Reports" card in the dashboard (`public/index.html` lines 1311-1317) shows `/report-qa` HTML output, which includes a checklist summary from reading `cowork-session.md` — but only if `/report-qa` was run and the HTML was placed in `public/qa-reports/`.
+
+**Files:** `tools/checklist-generator.py`; `tools/run-qa.sh` line 36; `public/index.html` lines 1311-1317
+
+**Impact:** Manual checklist execution results (regression, post-mortems, ERP integrations) are invisible in the dashboard unless a full Cowork session + `/report-qa` is completed. Ad-hoc checklist runs have no visibility.
+
+**Fix approach:** Add a lightweight "Checklist Status" panel to the dashboard that reads from a committed `public/checklists/{CLIENT}-{DATE}.json` — generated by `checklist-generator.py` if an `--output-json` flag is added.
+
+---
+
+### Manual QA notes in APP tab are localStorage-only — not committed or visible across machines
+
+**Issue:** The APP tab has an inline "Manual QA" system (lines 2496-2596 of `index.html`). Notes are stored in `localStorage` with key `yom-manual-qa-entries`. The "Export" button generates a JSON file, but there is no import or commit flow. Notes are device-specific and invisible to other team members.
+
+**Files:** `public/index.html` lines 2496-2596; `MQ_KEY = 'yom-manual-qa-entries'`
+
+**Impact:** QA findings added via the dashboard UI are lost on page reload in a different browser or another device. No team-visible record of manual QA observations.
+
+**Fix approach:** Add an export-then-commit flow: "Export + Save to repo" that writes to `public/data/manual-notes-{CLIENT}.json` and triggers a git commit via the existing teardown pattern. Or use GitHub API directly (the `GITHUB_TOKEN` is already available for live-reporter).
+
+---
+
+### Staging vs production distinction exists in data but not enforced in UI
+
+**Issue:** `publish-results.py` line 535 sets `environment: "staging"` or `"production"` based on URL. The dashboard has an environment landing screen (lines 722-796 of `index.html`) that filters by `selectedEnv`. But the history JSON `clients[slug].environment` is always `"staging"` because `load_staging_urls()` only reads `qa-matrix-staging.json` — there is no production matrix equivalent loaded. So selecting "Producción" in the dashboard shows zero B2B Playwright results.
+
+**Files:** `tools/publish-results.py` lines 487-503 (`load_staging_urls` reads only staging matrix); `public/index.html` lines 1376-1416 (env filter logic)
+
+**Impact:** The production/staging split in the dashboard is cosmetic — production view is always empty for Playwright. The environment filter only meaningfully affects Cowork reports (which have an explicit `environment` field in `manifest.json`).
+
+**Fix approach:** Either remove the environment landing for Playwright (B2B is always staging) and reserve it for Cowork reports, or implement a production matrix extraction and publication path.
+
+---
+
+## 4. Process Clarity Gaps
+
+### When to run /report-qa vs just viewing HTML is ambiguous
+
+**Issue:** `CLAUDE.md` says "Para debugging rápido, leer el HTML de Playwright directamente" and "generar reporte solo cuando hay una sesión Cowork completa o al cierre de una semana QA." `/report-qa` generates two outputs: `QA/{CLIENT}/{DATE}/qa-report-{DATE}.md` and `public/qa-reports/{CLIENT}-{DATE}.html`. But `run-playwright.md` says to create `QA/{CLIENT}/{DATE}/playwright-report.html` (a file that does not exist in the real pipeline). The actual Playwright HTML is at `tests/e2e/playwright-report/index.html` and published to `public/reports/`.
+
+**Files:** `CLAUDE.md` lines in "Cuándo reportar vs solo ver resultados"; `ai-specs/.commands/run-playwright.md` line 39; `tests/e2e/global-teardown.ts` line 19
+
+**Impact:** Claude instances (and human users) are confused about where Playwright results are after a run. The command doc points to a non-existent path. The real path (`public/reports/index.html`) is only documented in `publish-results.py` internals.
+
+**Fix approach:** Update `run-playwright.md` step 5 and `CLAUDE.md` to state: "After each test run, results are auto-published to `public/history/{date}.json` and `public/reports/` via `global-teardown.ts`. View via `public/index.html` or directly at `public/reports/index.html`."
+
+---
+
+### No definition of "QA done for the week" — no dashboard completion indicator
+
+**Issue:** No document defines what makes a client's QA complete for a week. There is no "Done" flag in `history/{date}.json` or `manifest.json`. The dashboard shows individual run results but no aggregate weekly completion status. A client could have Playwright passing, Cowork not run, and Maestro blocked — and the dashboard shows three separate data points with no rollup verdict.
+
+**Files:** `public/manifest.json` (per-run verdict only); `public/history/{date}.json` (per-run stats); `public/index.html` (no weekly summary)
+
+**Impact:** The QA team cannot tell from the dashboard alone whether this week's QA is complete for each client. This is assessed manually by cross-referencing Playwright stats, Cowork manifest cards, and Maestro health — a mental aggregation step.
+
+**Fix approach:** Define a weekly QA completion criteria document (e.g., Playwright ≥ 80% + Cowork verdict not null + Maestro health ≥ 70% or N/A). Write a script that evaluates these criteria per client from the three data sources and updates a `public/weekly-status.json`. Add a "Weekly Status" card to `index.html` that reads it.
+
+---
+
+### /triage-playwright triggers after run but no triage output appears in dashboard
+
+**Issue:** `global-teardown.ts` lines 39-52 print a triage hint to the console when failures exist: `"corre /triage-playwright para analizar"`. But `/triage-playwright` is a Claude command (prompt-based), not a script — its output is a chat response, not a committed file. There is no mechanism to surface triage analysis in the dashboard.
+
+**Files:** `tests/e2e/global-teardown.ts` lines 39-52; `ai-specs/.commands/triage-playwright.md`
+
+**Impact:** Triage insights live only in Claude chat sessions. After a failed run, the failure classification in the dashboard (bug/ambiente/ux) comes from `publish-results.py`'s `classify_error()` — which is good — but the actionable triage from `/triage-playwright` is never committed. Future Claude instances and team members cannot see why a failure was triaged as "won't fix" vs "open bug".
+
+**Fix approach:** Add a `QA/{CLIENT}/{DATE}/triage-{date}.md` output convention for `/triage-playwright`. Teach `publish-results.py` to read an optional triage file for each run date and embed its conclusions in the history JSON.
+
+---
+
+## 5. Dashboard UX Gaps
+
+### B2B client cards show seeded data from previous days without date staleness indicator
+
+**Issue:** `publish-results.py` lines 879-887 seed today's run with clients from previous days so they "stay visible in the dashboard." As of the 2026-04-17 run, 3 of 40 clients (Bastien, Codelpa, Surtiventas) have `last_tested: 2026-04-15` or `2026-04-16`. The dashboard shows their pass rates without visually distinguishing them from clients tested today.
+
+**Files:** `tools/publish-results.py` lines 673-695 (`load_previous_clients`), 879-887; `public/history/2026-04-17.json`
+
+**Impact:** A stale client's 2026-04-15 results appear alongside fresh 2026-04-17 results with no visual difference. Users cannot tell which clients were actually tested in this run.
+
+**Fix approach:** In the client card rendering in `index.html`, display `last_tested` date and apply a visual indicator (e.g., amber color, "Stale" badge) when `last_tested` is more than 2 days older than the selected run date.
+
+---
+
+### Dashboard "Tendencia Histórica" chart ignores per-client trends
+
+**Issue:** The trend chart (line 1320-1336 of `index.html`) shows aggregate pass/fail counts across all clients. There is no way to select a single client and see its pass-rate trend over time. The history JSON has per-client data across all run files — the chart just does not use it.
+
+**Files:** `public/index.html` lines 1319-1336; `public/history/` (contains per-client breakdown in each date JSON)
+
+**Impact:** Cannot tell if a client's quality is improving or degrading over time. Aggregate trend hides individual regressions.
+
+**Fix approach:** Add a client selector to the trend chart section that filters `public/history/*.json` files for the chosen client slug and renders its individual pass-rate over time.
+
+---
+
+### Cowork report cards show verdict and score but no Playwright pass rate alongside
+
+**Issue:** The "Reportes QA Cowork" card (lines 2277-2303 of `index.html`) renders verdict, score, and modes-done from `manifest.json`. It does not look up the corresponding Playwright stats from `history/{date}.json`. A card saying "CON_CONDICIONES 87/100" gives no indication of whether Playwright was also run on that date.
+
+**Files:** `public/index.html` lines 2277-2303; `public/manifest.json`; `public/history/{date}.json`
+
+**Impact:** Cowork report cards are not actionable without opening the linked HTML report to see Playwright results. The dashboard fails to provide a unified answer.
+
+**Fix approach:** In `loadCoworkReports()`, for each report, cross-reference `history/{rep.date}.json` and display the client's Playwright pass rate as a secondary badge on the Cowork card.
+
+---
+
+*Concerns audit: 2026-04-19*

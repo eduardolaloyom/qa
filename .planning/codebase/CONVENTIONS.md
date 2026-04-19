@@ -1,346 +1,283 @@
-# Coding Conventions
+# Coding Conventions — QA Reporting Pipeline
 
-**Analysis Date:** 2026-04-17
-
-## Naming Patterns
-
-### Files
-
-**Playwright specs (B2B and Admin):**
-- Pattern: `{feature}.spec.ts`
-- Examples: `cart.spec.ts`, `checkout.spec.ts`, `promotions.spec.ts`, `login.spec.ts`
-- Location: `tests/e2e/b2b/` or `tests/e2e/admin/`
-
-**Maestro flows (APP mobile):**
-- Pattern: `{NN}-{feature}.yaml` where NN is sequential two-digit number
-- Examples: `01-login.yaml`, `05-pedido.yaml`, `09-concurrencia.yaml`
-- Helper flows: `helpers/{name}.yaml` (e.g., `helpers/login.yaml`, `helpers/sync.yaml`)
-- Session master flows: `{client}-session.yaml` (e.g., `prinorte-session.yaml`)
-
-**Checklists (manual test cases):**
-- Pattern: `checklist-{category}-{area}.md`
-- Examples: `checklist-regresion-postmortems.md`, `checklist-deuda-tecnica-pagos.md`
-- Location: `checklists/{category}/`
-
-**Fixture and helper modules:**
-- Pattern: descriptive lowercase with hyphens
-- Examples: `multi-client-auth.ts`, `login.ts`, `b2b-feature.ts`
-
-### Functions and Variables
-
-**Test names in Playwright:**
-- Prefix with Tier/Case ID: `C2-05`, `PM5-01`, `ADM-01`
-- Pattern: `{PREFIX}: {Human-readable description}`
-- Example: `C2-05 Agregar producto al carro`
-- Use backticks in template literals for client keys: `` ${key}: C2-05 Agregar ... ``
-
-**Test names in Maestro flows:**
-- Format: `{NN} - {Feature Name}` in YAML comments
-- Example: `# 05 - Crear Pedido`
-
-**Helper functions:**
-- camelCase: `loginHelper`, `selectCommerceHelper`, `clearCartHelper`, `loginIfNeeded`
-- Suffix: `Helper` for reusable authentication/setup functions
-
-**Variables:**
-- camelCase for JavaScript: `baseURL`, `authedPage`, `couponCode`
-- SCREAMING_SNAKE_CASE for env variables: `TEST_SELLER_EMAIL`, `ADMIN_PASSWORD`
-- Placeholder syntax in flows: `${VAR_NAME}` (e.g., `${SELLER_EMAIL}`)
-
-### Types and Interfaces
-
-**TypeScript interfaces:**
-- PascalCase: `ClientConfig`
-- Suffix `Config` for configuration objects
-- Example: `interface ClientConfig { ... }`
-
-**Client keys in object destructuring:**
-- lowercase with hyphens: `codelpa`, `seis-sur`, `surtiventas`
-- Variable name: `key` when iterating `Object.entries(clients)`
-
-## Code Style
-
-### Formatting
-
-**No dedicated linter config found** — relies on IDE defaults and manual consistency. Pattern observed:
-- 2-space indentation (consistent throughout test files)
-- Single quotes for strings in TypeScript/JavaScript
-- Template literals for interpolation
-
-**Playwright test structure (consistent across all specs):**
-```typescript
-import { createClientTest, expect } from '../fixtures/multi-client-auth';
-import clients from '../fixtures/clients';
-
-for (const [key, client] of Object.entries(clients)) {
-  const test = createClientTest(client);
-  test.describe(`{TIER} — {Feature}: ${client.name}`, () => {
-    test.beforeEach(async ({ authedPage: page }) => {
-      // Setup (navigate, wait for elements)
-    });
-
-    test(`${key}: {ID} {Description}`, async ({ authedPage: page }) => {
-      // Arrange
-      // Act
-      // Assert
-    });
-  });
-}
-```
-
-**Playwright test patterns:**
-- Use `test.skip(condition, message)` for conditional skips with client flags
-- Use `Promise.all([waitForResponse(...), click()])` to capture network responses
-- Use `.first()`, `.nth(i)`, `.count()` to handle multiple matching elements
-- Error handling: `.catch(() => false)` for graceful timeout handling
-
-### Import Organization
-
-**Order in Playwright specs:**
-
-1. Playwright test imports
-   ```typescript
-   import { createClientTest, expect } from '../fixtures/multi-client-auth';
-   ```
-
-2. Fixture/client imports
-   ```typescript
-   import clients from '../fixtures/clients';
-   ```
-
-3. Optional feature-specific helpers
-   ```typescript
-   import { skipIfNotInB2B } from '../fixtures/b2b-feature';
-   ```
-
-**Import style:**
-- Relative paths from current file location
-- Named imports: `{ createClientTest, expect }`
-- Default imports: `import clients from ...`
-
-### Path Aliases
-
-**Environment variables:**
-- `process.env.BASE_URL` — B2B base URL (default: `https://tienda.youorder.me`)
-- `process.env.ADMIN_URL` — Admin base URL (default: `https://admin.youorder.me`)
-- `process.env.CI` — Set in GitHub Actions (skip certain operations)
-- Client-specific: `process.env.{SLUG}_COMMERCE_EMAIL`, `process.env.{SLUG}_COMMERCE_PASSWORD`
-  - Slugs convert hyphens to underscores: `seis-sur` → `SEIS_SUR_PASSWORD`
-
-**Maestro env vars (in flows and config):**
-- Reference via `${VAR_NAME}` syntax
-- Provided at runtime via shell env or YAML config file
-- Examples: `${APP_PACKAGE}`, `${TEST_SELLER_EMAIL}`, `${TEST_SELLER_PASSWORD}`
-
-## Error Handling
-
-### Pattern: Graceful Fallback
-
-Most Playwright code uses `.catch(() => false)` after `.isVisible()` or `.boundingBox()`:
-
-```typescript
-const emailIsReal = emailBox !== null && emailBox.width > 10 && emailBox.height > 10;
-const emailInput = emailIsReal ? emailByName : page.getByRole('textbox', { name: /correo|email/i }).first();
-```
-
-**Why:** MUI hidden inputs (opacity:0) need bounding box detection. Tests must tolerate UI variations across staging/production.
-
-### Pattern: Skip with Context
-
-```typescript
-if (!hasMinUnit) {
-  test.skip(true, `C2-06: ${client.name} no tiene MinUnit/showMinOne configurado`);
-  return;
-}
-```
-
-Tests skip conditionally based on client config, not hard failures. Reasons are explicit.
-
-### Pattern: Best-Effort Setup
-
-```typescript
-try {
-  await page.goto(`${baseURL}/cart`, { waitUntil: 'domcontentloaded' });
-  const deleteAll = page.getByRole('button', { name: /eliminar todos/i });
-  if (await deleteAll.isVisible({ timeout: 5_000 }).catch(() => false)) {
-    await deleteAll.click();
-  }
-} catch {
-  // Cart clear is best-effort — don't fail the test if it errors
-}
-```
-
-Helper functions use try/catch to prevent cascade failures. Comments explain why.
-
-### Pattern: Promise.all for Response Capture
-
-```typescript
-const [response] = await Promise.all([
-  page.waitForResponse(resp => resp.url().includes('/cart') && resp.request().method() === 'POST'),
-  addButton.click(),
-]);
-expect(response.ok()).toBeTruthy();
-```
-
-Avoids race conditions when capturing network responses alongside clicks.
-
-## Logging
-
-**No structured logging framework** — uses browser console via Playwright:
-- Screenshot on failure: `page.screenshot({ path: '...', fullPage: true })`
-- Annotations in test results: `test.info().annotations.push({ type: 'info', description: '...' })`
-- Screenshots stored in `test-results/` directory
-
-**Example annotation pattern:**
-```typescript
-test.info().annotations.push({
-  type: 'info',
-  description: `${priceCount} precios visibles en catálogo — promotions respondiendo`,
-});
-```
-
-## Comments
-
-### JSDoc/TSDoc
-
-**Used in Playwright fixture files** (`tests/e2e/fixtures/`):
-
-```typescript
-/**
- * Login helper — navigates directly to loginPath and submits credentials.
- * Uses Enter key to submit (avoids ambiguity with header "Iniciar sesión" button).
- */
-export async function loginHelper(
-  page: Page,
-  email: string,
-  password: string,
-  loginPath: string = '/auth/jwt/login',
-  baseURL?: string
-) { ... }
-```
-
-**When to comment:**
-- Always on exported functions explaining behavior and parameters
-- Inline when logic is non-obvious (e.g., "MUI hidden inputs have 0x0 size")
-- Not on self-documenting test cases (test names are clear enough)
-
-### Test Documentation
-
-**Spec files include narrative comments:**
-
-```typescript
-/**
- * PM5 — Regresión de promotions
- * Fuente: Post-mortem "Servicio de promotions con exceso de carga"
- *
- * Incidente: Promotions colapsó por pocos pods → catálogo, carrito y precios caídos.
- */
-```
-
-**Maestro flows include YAML comments:**
-
-```yaml
-# {NN} - {Feature Name}
-# Tests: {what this validates}
-# Related: {checklist ID or ticket reference}
-```
-
-## Function Design
-
-### Size
-
-**Playwright helpers:**
-- `loginHelper`: 30-50 lines (handles MUI detection, retry logic, wait states)
-- `selectCommerceHelper`: 30 lines (navigation, modal handling, wait)
-- `clearCartHelper`: 15 lines (best-effort cart clear)
-
-**Test functions:**
-- Individual tests: 10-40 lines
-- Reusable setup (`addProducts`): 15-20 lines, extracted and called multiple times
-
-### Parameters
-
-**loginHelper signature:**
-```typescript
-async function loginHelper(
-  page: Page,                     // Playwright Page
-  email: string,                  // User email
-  password: string,               // User password
-  loginPath: string = '/auth/jwt/login',  // Optional, defaults to standard
-  baseURL?: string                // Optional, constructs full URL
-)
-```
-
-**createClientTest (factory):**
-```typescript
-function createClientTest(client: ClientConfig) {
-  return base.extend<{ authedPage: typeof base['prototype']['page'] }>({ ... })
-}
-```
-
-Uses Playwright's fixture extension pattern — no positional args, extends base test context.
-
-### Return Values
-
-- Helpers return `void` (they perform side effects on `page`)
-- Fixtures return extended test context (implicit via `use()`)
-- Network capture returns response object: `const [response] = await Promise.all([...])`
-
-## Module Design
-
-### Exports
-
-**Fixture modules export functions and test contexts:**
-
-`tests/e2e/fixtures/multi-client-auth.ts`:
-- Exports helper functions: `selectCommerceHelper`, `clearCartHelper`, `loginHelper`
-- Exports factory: `createClientTest`
-- Re-exports: `expect` from `@playwright/test`
-
-`tests/e2e/fixtures/login.ts`:
-- Single export: `loginHelper` function
-
-**No barrel files** (`index.ts`) — each fixture imported directly by path.
-
-### Barrel Files
-
-Not used in test codebase. Each spec imports what it needs:
-```typescript
-import { createClientTest, expect } from '../fixtures/multi-client-auth';
-import clients from '../fixtures/clients';
-```
-
-## Multi-Client Pattern
-
-**Core pattern in all B2B specs:**
-
-```typescript
-for (const [key, client] of Object.entries(clients)) {
-  const test = createClientTest(client);
-  test.describe(`{FEATURE}: ${client.name}`, () => {
-    // Each test runs for every client
-    test(`${key}: {CASE}`, async ({ authedPage: page }) => { ... });
-  });
-}
-```
-
-- `clients` is auto-generated from MongoDB via `sync-clients.py`
-- `key` is the client slug (e.g., `codelpa`, `seis-sur`)
-- Each test runs once per client with client-specific credentials and config
-- Tests validate that client config (payment methods, promotions, domain rules) works correctly
-
-**Conditional tests by config:**
-
-```typescript
-const hasMinUnit = client.config.showMinOne || client.config.minUnit;
-if (!hasMinUnit) {
-  test.skip(true, `${client.name} no tiene MinUnit configurado`);
-  return;
-}
-```
-
-Skips tests if client doesn't have the feature enabled.
+**Analysis Date:** 2026-04-19
 
 ---
 
-*Convention analysis: 2026-04-17*
+## Report Directory Structure
+
+All QA output lives under `QA/{CLIENTE}/{FECHA}/`. The capitalized client display name and ISO date are mandatory.
+
+```
+QA/
+├── Bastien/
+│   └── 2026-04-15/
+│       ├── cowork-session.md          # Cowork HANDOFF blocks (input for /report-qa)
+│       └── qa-report-2026-04-15.md   # Generated MD report (output of /report-qa)
+├── Prinorte/
+│   └── 2026-04-15/
+│       └── maestro.log                # Raw Maestro flow output
+└── Sonrie/
+    └── 2026-04-16/
+        ├── cowork-session.md
+        └── qa-report-2026-04-16.md
+```
+
+**Rules:**
+- `{CLIENTE}` uses the capitalized display name (Bastien, Sonrie, Soprole) — not the slug
+- `{FECHA}` is always `YYYY-MM-DD`
+- `cowork-session.md` is a single file per day per client — modes are appended, never replaced
+- Both the `.md` and `.html` reports are generated by `/report-qa {CLIENTE} {FECHA}`
+
+---
+
+## Client Keys (Slugs)
+
+Clients are keyed by their **slug** from `data/qa-matrix-staging.json`. The slug is the MongoDB domain subdomain, stripped of the `-staging` suffix.
+
+```
+Matrix key:     "bastien-staging"
+Slug:           "bastien"
+Staging URL:    bastien.solopide.me
+Prod URL:       bastien.youorder.me
+```
+
+**Slug → env var conversion:** Hyphens convert to underscores for bash compatibility.
+
+```
+slug: "new-soprole"   →   env var prefix: NEW_SOPROLE
+slug: "seis-sur"      →   env var prefix: SEIS_SUR
+```
+
+**Where slugs appear:**
+- `tests/e2e/fixtures/clients.ts` — keys in the `clients` object (AUTO-GENERATED)
+- `.env` — `{SLUG_UPPER}_EMAIL` / `{SLUG_UPPER}_PASSWORD`
+- `public/manifest.json` — `client_slug` field
+- `public/app-reports/manifest.json` — `client_slug` field
+- `public/history/{YYYY-MM-DD}.json` — keys in the `clients` object
+
+---
+
+## Cowork Session File — `cowork-session.md`
+
+**Location:** `QA/{CLIENTE}/{FECHA}/cowork-session.md`
+
+**Header (on first creation only):**
+```
+# Sesión Cowork — {CLIENTE} — {FECHA}
+```
+
+**Content:** One HANDOFF block per Cowork mode executed that day. Modes are appended in execution order (A → B → C → D). Never replace or truncate existing blocks.
+
+**HANDOFF block format** (produced by Cowork at end of each mode):
+```
+HANDOFF — {CLIENTE} — Modo {A/B/C/D} — {FECHA}
+Completado: [C1 ✓/✗] [C2 ✓/✗] [C3 ✓/✗] [C7 ✓/✗/N/A — enablePaymentDocumentsB2B={valor}] [D ✓/✗/N/A]
+Issues encontrados: {lista de IDs o "ninguno"}
+SIGUIENTE MODO: {B / C / D / "FULL completo — emitir veredicto final"}
+Staging blockers: {casos no ejecutables y por qué, o "ninguno"}
+Info-cliente pendiente: {features con PENDIENTE-INFO y qué necesita el cliente, o "ninguno"}
+Coverage: Tier 1 ejecutados: {X/Y} · Tier 2: {X/Y}
+Contexto: {credenciales usadas, flags confirmados, estado del carrito}
+Process improvements: {issues sin test Playwright, pasos fuera del playbook, flags nuevos — o "ninguna"}
+```
+
+**What goes in `cowork-session.md`:**
+- Raw HANDOFF blocks from each mode (A, B, C, D)
+- Cumulative context between modes (credentials, flags observed, cart state)
+- Issues found per mode with their IDs
+- Staging blockers per mode
+
+**What does NOT go in `cowork-session.md`:**
+- Playwright results (stay in `tests/e2e/playwright-report/`)
+- Maestro flow logs (stay in `QA/{CLIENTE}/{FECHA}/maestro.log`)
+- Final rendered HTML report (generated at `public/qa-reports/{client_slug}-{FECHA}.html`)
+
+**Trigger for saving:** User says `"agrega modo X al archivo de sesión de {CLIENTE}"` or `"guarda el handoff modo X para {CLIENTE}"`. Claude Code writes/appends to the file; it does NOT generate the HANDOFF — Cowork does.
+
+---
+
+## Issue ID Convention
+
+Format: `{CLIENTE}-QA-{NNN}`
+
+```
+Codelpa-QA-001
+Bastien-QA-002
+new-soprole-QA-003
+```
+
+**Rules:**
+- `{CLIENTE}` matches the display name used in the session (same as directory name capitalization)
+- `{NNN}` is zero-padded to 3 digits, sequential per client — never skip or reuse
+- IDs are assigned at discovery time during the Cowork session, not at report generation time
+- IDs must be referenced consistently across `cowork-session.md`, the `.md` report, the `.html` report, and any Linear tickets
+
+**For data-blocked items (not bugs):** use `{CLIENTE}-INFO-{NNN}` with tag `PENDIENTE-INFO`
+
+```
+Prinorte-INFO-001 | PENDIENTE-INFO | C2-11 | Fechas de despacho no configuradas
+```
+
+---
+
+## Severity Scale
+
+| Level | When | Action |
+|-------|------|--------|
+| P0 | Critical flow completely broken (auth down, checkout impossible) | Escalate to Slack #engineering immediately, stop QA |
+| P1 | Feature broken or config not reflected correctly | Create Linear ticket with `qa` + `bug` labels, continue QA |
+| P2 | Incorrect behavior, not blocking | Note in report, no immediate escalation |
+| P3 | Cosmetic or confusing but functional | Note in report as observation |
+
+---
+
+## Verdict Values
+
+**Cowork (B2B) verdicts** — three valid values:
+
+| Verdict | Condition |
+|---------|-----------|
+| `LISTO` | All Tier 1 flows pass, no open P0/P1 |
+| `CON CONDICIONES` | Minor issues present, go-live conditional on caveats |
+| `BLOQUEADO` | P0 open or critical flow completely untestable |
+
+**Maestro (APP) verdicts** — computed automatically by `tools/run-maestro.sh`:
+
+| Verdict | Health Score threshold |
+|---------|----------------------|
+| `LISTO` | 100% |
+| `CON OBSERVACIONES` | >= 70% |
+| `BLOQUEADO` | < 70% |
+
+**In `public/manifest.json`** verdicts are stored with underscores: `CON_CONDICIONES`, `CON_OBSERVACIONES`, `LISTO`, `NO_APTO`, `BLOQUEADO`.
+
+---
+
+## Health Score
+
+**Maestro APP — calculated automatically (`tools/run-maestro.sh`):**
+
+```python
+health = round((passed + manual_pass) / effective_flows * 100)
+effective_flows = total_flows - skipped_flows
+```
+
+Color thresholds: green `#10b981` ≥ 80%, amber `#f59e0b` ≥ 60%, red `#ef4444` < 60%.
+
+**Cowork B2B — weighted scoring, calculated manually during `/report-qa`:**
+
+| Category | Weight |
+|----------|--------|
+| Flujos core | 25% |
+| Datos y catálogo | 20% |
+| Integraciones | 20% |
+| Features | 15% |
+| UX y visual | 10% |
+| Performance | 5% |
+| Consola/Errores | 3% |
+| Accesibilidad | 2% |
+
+Score 0–100. Template: `templates/qa-report-template.md`.
+
+---
+
+## Dashboard Manifest Files
+
+Two manifests feed the GitHub Pages dashboard at `public/index.html`:
+
+**`public/manifest.json`** — Cowork (B2B) reports. Written by `/report-qa`:
+```json
+{
+  "reports": [
+    {
+      "client": "Sonrie",
+      "client_slug": "sonrie",
+      "date": "2026-04-16",
+      "file": "qa-reports/sonrie-2026-04-16.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 87,
+      "modes_done": ["A", "B", "C", "D"],
+      "platform": "b2b",
+      "environment": "staging"
+    }
+  ]
+}
+```
+
+**`public/app-reports/manifest.json`** — Maestro (APP) reports. Written by `tools/run-maestro.sh`:
+```json
+{
+  "reports": [
+    {
+      "client": "Prinorte",
+      "client_slug": "prinorte",
+      "date": "2026-04-15",
+      "file": "prinorte-2026-04-15.html",
+      "platform": "app",
+      "environment": "production",
+      "passed": 8,
+      "manual": 2,
+      "failed": 1,
+      "skipped": 0,
+      "total": 11,
+      "health": 90,
+      "verdict": "CON OBSERVACIONES"
+    }
+  ]
+}
+```
+
+**Rules for both manifests:**
+- Never delete existing entries — only append or update same `client_slug` + `date` combination
+- Sort by `date` descending
+- `environment` must reflect actual testing environment (staging = `solopide.me`, production = `youorder.me`)
+- `modes_done` lists completed Cowork modes only (not planned)
+
+**Playwright dashboard** — separate, fed by `tools/publish-results.py`:
+- `public/history/index.json` — run history (last 30 days)
+- `public/history/{YYYY-MM-DD}.json` — per-day run details with per-client stats
+
+---
+
+## Report File Naming
+
+| File | Location | Generator |
+|------|----------|-----------|
+| Cowork MD report | `QA/{CLIENTE}/{FECHA}/qa-report-{FECHA}.md` | `/report-qa` command |
+| Cowork HTML report | `public/qa-reports/{client_slug}-{FECHA}.html` | `/report-qa` command |
+| Maestro HTML report | `public/app-reports/{client_slug}-{FECHA}.html` | `tools/run-maestro.sh` |
+| Playwright HTML (local) | `tests/e2e/playwright-report/index.html` | `npx playwright test` |
+| Playwright JSON | `tests/e2e/playwright-report/results.json` | `npx playwright test` |
+| Published Playwright | `public/reports/{client_slug}/index.html` | `tools/publish-results.py` |
+| Per-day run data | `public/history/{YYYY-MM-DD}.json` | `tools/publish-results.py` |
+
+---
+
+## Naming Conventions Summary
+
+| Entity | Pattern | Example |
+|--------|---------|---------|
+| E2E spec files | `{feature}.spec.ts` | `coupons.spec.ts`, `cart.spec.ts` |
+| Config-validation specs | `cv-{area}.spec.ts` | `cv-cart.spec.ts`, `cv-access.spec.ts` |
+| Maestro session file | `{cliente}-session.yaml` | `prinorte-session.yaml` |
+| Maestro subflows | `{NN}-{feature}.yaml` inside `{cliente}/` subdir | `prinorte/03-pedido.yaml` |
+| Maestro client config | `config.{cliente}.yaml` | `config.prinorte.yaml` |
+| Checklist files | `checklist-{category}-{area}.md` | `checklist-regresion-postmortems.md` |
+| Test case IDs | `{PREFIX}-{NN}` | `C2-11`, `PM1`, `ERP-01` |
+| Issue IDs | `{CLIENTE}-QA-{NNN}` | `Bastien-QA-002` |
+| Info-blocked items | `{CLIENTE}-INFO-{NNN}` | `Prinorte-INFO-001` |
+
+---
+
+## Environment Conventions
+
+- **Staging:** `{slug}.solopide.me` — use for all active QA runs; orders OK up to $100.000 CLP
+- **Production:** `{slug}.youorder.me` — observation only; C2-11/C2-12 marked `BLOQUEADO-PROD`
+- Credentials live in `.env`, never in source files
+- `tests/e2e/fixtures/clients.ts` is AUTO-GENERATED by `tools/sync-clients.py` from `data/qa-matrix-staging.json` — never edit manually
+- When Playwright client credentials are missing (empty `_EMAIL`), the fixture auto-skips: `testInfo.skip(!client.credentials.email, ...)`
+
+---
+
+*Convention analysis: 2026-04-19*

@@ -1,259 +1,260 @@
-# Architecture
+# Architecture — QA Reporting Pipeline
 
-**Analysis Date:** 2026-04-17
-
-## Pattern Overview
-
-**Overall:** Multi-layer, data-driven QA automation framework with AI-assisted testing as primary methodology.
-
-**Key Characteristics:**
-- Cowork (Claude AI) as primary QA validation tool; automated tests as regression verification
-- MongoDB as single source of truth for client configuration → auto-generated test fixtures
-- AI Specs framework providing standardized roles, workflows, and test standards
-- Multi-client, multi-platform testing (B2B web, mobile APP, Admin portal)
-- Session-based reporting with consolidated Cowork + Playwright results
-
-## Layers
-
-**Data Extraction & Configuration Layer:**
-- Purpose: Connect to MongoDB and extract client configuration into QA matrix
-- Location: `data/mongo-extractor.py`, `data/qa-matrix.json`, `data/b2b-feature-status.json`
-- Contains: MongoDB connection logic (LEGACY, MICRO, INTEGRATIONS clusters), collection-specific parsers, environment variable mapping
-- Depends on: MongoDB URIs from `.env`, client domain mappings
-- Used by: `tools/sync-clients.py` to generate test fixtures
-
-**Fixture & Configuration Sync Layer:**
-- Purpose: Synchronize extracted MongoDB data into Playwright test fixtures
-- Location: `tools/sync-clients.py`, `tests/e2e/fixtures/clients.ts` (AUTO-GENERATED)
-- Contains: TypeScript client config objects (baseURL, credentials, MongoDB-sourced feature flags)
-- Depends on: `data/qa-matrix.json`, `.env` credentials
-- Used by: Playwright test specs via `createClientTest()` factory
-
-**AI Specs Framework Layer:**
-- Purpose: Define standardized roles, workflows, and test conventions
-- Location: `ai-specs/.agents/`, `ai-specs/.commands/`, `ai-specs/specs/`
-- Contains: 
-  - Roles: `qa-coordinator.md`, `playwright-specialist.md`, `maestro-specialist.md`
-  - Workflows: `/qa-plan-client`, `/run-playwright`, `/report-qa`, `/qa-improve`
-  - Standards: `qa-standards.mdc`, `maestro-standards.mdc`, `admin-testing-standards.mdc`
-- Depends on: Nothing (self-contained framework)
-- Used by: Claude instructions (CLAUDE.md, COWORK.md) and orchestrators
-
-**Playwright E2E Testing Layer (B2B Web):**
-- Purpose: Automated regression testing for B2B tienda.youorder.me platform
-- Location: `tests/e2e/b2b/`, `tests/e2e/fixtures/`, `tests/e2e/playwright.config.ts`
-- Contains: 
-  - 13 spec files: `login.spec.ts`, `cart.spec.ts`, `checkout.spec.ts`, `prices.spec.ts`, `coupons.spec.ts`, `promotions.spec.ts`, `payments.spec.ts`, `config-validation.spec.ts`, `mongo-data.spec.ts`, `payment-documents.spec.ts`, `step-pricing.spec.ts`, `catalog.spec.ts`, `orders.spec.ts` (3200+ lines total)
-  - Fixtures: `multi-client-auth.ts` (client factory + helpers), `login.ts` (credential resolution), `clients.ts` (auto-generated)
-  - Global setup/teardown: `global-setup.ts` (HTTP server for dashboard), `global-teardown.ts`
-- Depends on: `clients.ts`, `.env` credentials, Playwright runtime
-- Used by: CI/CD (npm run test), manual regression runs
-
-**Maestro Mobile Testing Layer (Android APP):**
-- Purpose: Test YOM seller mobile app user journeys
-- Location: `tests/app/flows/`, `tests/app/config/`
-- Contains: 
-  - 13 YAML flows: `01-login.yaml`, `05-pedido.yaml`, `07-offline.yaml`, `10-descuentos.yaml`, etc. (2000+ lines)
-  - Helpers: `helpers/login.yaml`, `helpers/sync.yaml`
-  - Client-specific flows: `prinorte/` (11 Prinorte-specific test flows)
-  - Master session: `prinorte-session.yaml` (end-to-end workflow composition)
-- Depends on: Maestro CLI, Android device/emulator, `tests/app/config/config.yaml`
-- Used by: Manual QA validation, Maestro CLI
-
-**Manual Checklist Layer (Backend/Integration Testing):**
-- Purpose: Comprehensive testing of backend services, ERP integrations, payment systems
-- Location: `checklists/` (regresion, deuda-tecnica, servicios, funcional, admin, integraciones)
-- Contains: 
-  - Post-mortems: `checklist-regresion-postmortems.md` (PM1-PM7 regressions)
-  - Tech debt: `checklist-deuda-tecnica-*.md` (payments, concurrency, migrations)
-  - Integrations: `checklist-integraciones-erp.md`, `checklist-webhooks.md`, `checklist-fintech-khipu.md`
-  - Functional: `checklist-carrito-b2b.md`, `checklist-pricing-engine.md`, `checklist-puesta-en-marcha-app.md`
-- Depends on: Manual execution or API testing tools
-- Used by: QA checklists, Cowork validation, coverage mapping
-
-**Reporting & Results Layer:**
-- Purpose: Consolidate test results from all platforms and generate client reports
-- Location: `QA/{CLIENT}/{DATE}/`, `public/`, `ai-specs/.commands/report-qa.md`
-- Contains:
-  - Cowork sessions: `QA/{CLIENT}/{DATE}/cowork-session.md` (consolidated HANDOFFs)
-  - QA reports: `QA/{CLIENT}/{DATE}/qa-report-{DATE}.md` (markdown report)
-  - Dashboard: `public/index.html`, `public/qa-reports/`, `public/app-reports/`, `public/manifest.json`
-  - Playwright reports: `tests/e2e/playwright-report/` (local HTML)
-- Depends on: `tests/e2e/fixtures/clients.ts`, Cowork results, Playwright JSON results
-- Used by: GitHub Pages dashboard, stakeholder communication
-
-## Data Flow
-
-**Primary Flow: MongoDB → Tests → Reports**
-
-1. **Extraction:** `python3 data/mongo-extractor.py [--full] [--cliente X]`
-   - Connects to MongoDB (LEGACY: yom-stores, yom-production; MICRO: yom-b2b; INTEGRATIONS: segments, overrides)
-   - Extracts per-client: site variables, coupons, banners, promotions, integrations data
-   - Outputs: `data/qa-matrix.json` (33 clients × 20+ MongoDB variables each)
-   - Optional `--full` flag extracts 13 collections (products, orders, commerces, sellers, segments, coupons, promotions, etc.)
-
-2. **Fixture Sync:** `python3 tools/sync-clients.py`
-   - Reads: `data/qa-matrix.json` + `data/b2b-feature-status.json` (notImplementedInB2B flags)
-   - Generates: `tests/e2e/fixtures/clients.ts` (TypeScript object)
-   - Per-client: baseURL mapping (solopide.me vs youorder.me), credentials from env vars, config object with 20-40 flags
-
-3. **Test Execution (Parallel):**
-   - **Playwright:** `cd tests/e2e && npx playwright test --project=b2b` → runs all 13 specs across all 17 clients (13 specs × 17 clients = 221 tests) → `playwright-report/index.html`
-   - **Maestro:** Manual `maestro test tests/app/flows/` or per-client sessions (e.g., `prinorte-session.yaml`) → PASS/FAIL per flow
-   - **Cowork:** Claude manual testing via `COWORK.md` → 4 modes (A/B/C/D) per client session
-
-4. **Result Collection:**
-   - Playwright JSON: `tests/e2e/playwright-report/results.json`
-   - Cowork: `QA/{CLIENT}/{DATE}/cowork-session.md` (one file per day, all modes concatenated)
-   - Maestro: stdout/Maestro dashboard (not persisted in repo)
-
-5. **Report Generation:** `/report-qa {CLIENT} {DATE}`
-   - Reads: `QA/{CLIENT}/{DATE}/cowork-session.md` + playwright results + Maestro results
-   - Generates: 
-     - `QA/{CLIENT}/{DATE}/qa-report-{DATE}.md` (comprehensive markdown)
-     - `public/qa-reports/{CLIENT}-{DATE}.html` (standalone HTML report)
-     - Updates: `public/manifest.json` (new entry)
-   - Result: GitHub Pages dashboard auto-refreshes
-
-**State Management:**
-
-- **MongoDB config** = source of truth for client feature flags (extracted once per week or on-demand)
-- **qa-matrix.json** = cached extraction (4 hours old before re-extraction recommended)
-- **clients.ts** = auto-generated, never manually edited
-- **Test results** = ephemeral (Playwright), session-based (Cowork/Maestro)
-- **Dashboard manifest** = persistent (append-only, never deleted)
-
-## Key Abstractions
-
-**ClientConfig (Fixture Model):**
-- Purpose: Represents a single client with all MongoDB-derived flags and credentials
-- Examples: `tests/e2e/fixtures/clients.ts` (entries for Bastien, Codelpa, Soprole, Surtiventas, etc.)
-- Pattern: Key-value object with `name`, `baseURL`, `loginPath`, `credentials`, `config` (nested flags), `coupons`, `banners`, `promotions`, `integrations`
-- Usage: Passed to `createClientTest(client)` factory to create parameterized test suite per client
-
-**Test Factory (createClientTest):**
-- Purpose: Creates Playwright test instance with authenticated page for a specific client
-- Location: `tests/e2e/fixtures/multi-client-auth.ts`
-- Pattern: Takes ClientConfig, returns test.extend<{ authedPage }> with:
-  - Login helper (`loginHelper` from `login.ts`)
-  - Commerce selector (`selectCommerceHelper` for price-gated clients)
-  - Cart clear (`clearCartHelper` for session hygiene)
-- Usage: Each spec file iterates clients and calls `createClientTest()` to generate N parameterized describe blocks
-
-**Test Spec Pattern (Multi-client):**
-- Purpose: Single spec file that runs across all clients with config-aware branching
-- Example: `tests/e2e/b2b/cart.spec.ts` (100+ lines for one feature, multiplied by 17 clients)
-- Pattern:
-  ```typescript
-  for (const [key, client] of Object.entries(clients)) {
-    const test = createClientTest(client);
-    test.describe(`Feature: ${client.name}`, () => {
-      test('test name', async ({ authedPage: page }) => {
-        // Use client.config.flagName to branch
-      });
-    });
-  }
-  ```
-- Benefit: DRY — write once, run across all clients; config-dependent features auto-skip if flag not enabled
-
-**Cowork Session:**
-- Purpose: Consolidate all human QA findings from a single day into one file
-- Location: `QA/{CLIENT}/{YYYY-MM-DD}/cowork-session.md`
-- Pattern: 4 sections (Modo A, Modo B, Modo C, Modo D), each with HANDOFF block containing:
-  - Flujos completados (list with ✓/✗)
-  - Issues encontrados (list with ID, severity, description)
-  - Staging blockers (cases that couldn't be tested and why)
-  - Coverage (Tier 1/2/3 executed over total)
-  - Process improvements (suggested tests/flags/playbook updates)
-- Benefit: Single file per day (not per mode) avoids file fragmentation; `/report-qa` reads one file to consolidate
-
-**MongoDB Collection Mapper:**
-- Purpose: Abstract the multi-database layout (LEGACY + MICRO + INTEGRATIONS) into a unified client config
-- Location: `data/mongo-extractor.py` (extract_collections function)
-- Pattern: Per-collection lookup strategy (domain → yom-stores, customerId/ObjectId → yom-b2b or integrations)
-- Examples: `sites` (domain), `products` (domain), `promotions` (customerId), `overrides` (ObjectId)
-
-## Entry Points
-
-**Playwright E2E (B2B):**
-- Location: `tests/e2e/b2b/` (13 spec files)
-- Triggers: `npm test`, `npx playwright test --project=b2b`, CI/CD workflows
-- Responsibilities:
-  1. Load `clients.ts` fixture
-  2. For each client, instantiate authedPage with login + commerce selection
-  3. Run feature-specific assertions (cart, checkout, prices, etc.)
-  4. Capture failures as screenshots/videos
-  5. Output JSON + HTML reports
-
-**Maestro Mobile (APP):**
-- Location: `tests/app/flows/` (13 YAML flows + client-specific subdirectories)
-- Triggers: Manual `maestro test tests/app/flows/`, Maestro dashboard, scheduled runs
-- Responsibilities:
-  1. Launch Android app
-  2. Execute YAML step sequence (tapOn, inputText, assertVisible, etc.)
-  3. Wait for async UI states (animations, network)
-  4. Detect failures (selector not found, assertion failed)
-  5. Record video/screenshots
-
-**Cowork QA (Human):**
-- Location: COWORK.md (playbook) + claude.ai (execution)
-- Triggers: User runs Cowork session with `/qa-plan-client {CLIENT}`
-- Responsibilities:
-  1. Read COWORK.md for modos A/B/C/D
-  2. Execute UI flows manually (login, order, checkout, etc.)
-  3. Validate visual config (banners, prices, availability)
-  4. Document issues with ID, severity, steps
-  5. Provide HANDOFF block to be saved by user
-
-**Report Generation:**
-- Location: `ai-specs/.commands/report-qa.md` (orchestration) + Python/TypeScript report generators
-- Triggers: User runs `/report-qa {CLIENT} {DATE}` or scheduled post-QA session
-- Responsibilities:
-  1. Read `QA/{CLIENT}/{DATE}/cowork-session.md` (Cowork results)
-  2. Locate Playwright JSON results + Maestro results
-  3. Consolidate findings, detect regressions, categorize severity
-  4. Generate `qa-report-{DATE}.md` + `qa-reports/{CLIENT}-{DATE}.html`
-  5. Update `public/manifest.json` (GitHub Pages index)
-
-## Error Handling
-
-**Strategy:** Graceful degradation with non-blocking validation.
-
-**Patterns:**
-
-- **Login Failures:** `loginHelper()` uses fallback selectors (by name, then by role, then by attribute) to handle UI variations across staging environments
-- **Element Not Visible:** Tests use `.isVisible({ timeout })` with `.catch(() => false)` to avoid hard failures on optional UI elements; annotate with `test.info().annotations.push({ type: 'warning' })`
-- **Network Timeouts:** Playwright config sets `actionTimeout: 30s`, `navigationTimeout: 60s`; use `page.waitForResponse()` to explicitly wait for API responses
-- **Maestro Flaky Flows:** Use `retry` with backoff, `pause` before assertions, `extendedWaitUntil` for async UI states
-- **MongoDB Connection Loss:** `mongo-extractor.py` catches connection errors and returns empty result; re-run with `--full` to retry
-- **Missing Credentials:** Specs skip tests for clients with empty `credentials.email` or `credentials.password`
-
-## Cross-Cutting Concerns
-
-**Logging:** 
-- Playwright: built-in test output + `list` reporter shows pass/fail per test
-- Maestro: YAML flow shows step-by-step execution; `--verbose` flag for debugging
-- Cowork: Claude session logs (Slack integration possible via future enhancement)
-- Python scripts: stdout to terminal, structured JSON to files
-
-**Validation:**
-- MongoDB config validation: `b2b-feature-status.json` flags variables not yet implemented in frontend (skip those tests)
-- Fixture validation: `clients.ts` must have entries for all real clients; sync script logs missing clients
-- Playwright multi-client: Config-conditional branching (skip tests for clients with flag=false)
-- Maestro: Element selectors validated by `maestro studio` interactive inspector; fallback patterns for layout changes
-
-**Authentication:**
-- Credentials stored in `.env` (never in code) with pattern `{CLIENT}_EMAIL`, `{CLIENT}_PASSWORD`
-- Login helper uses bounding box detection to distinguish MUI hidden inputs from visible ones
-- Session tokens cached in browser context; Cowork may need manual re-login between modos if session expires
-- Maestro uses device-level credentials from `tests/app/config/config.yaml` (env vars interpolated)
-
-**Configuration Management:**
-- Environment: baseURL mapped from `domain` (MongoDB) to actual frontend URL via `sync-clients.py` (e.g., codelpa.solopide.me → beta-codelpa.solopide.me)
-- Feature flags: MongoDB extracted per-client; `b2b-feature-status.json` marks unimplemented flags
-- Test selection: Specs branch on `client.config.flagName` to skip config-dependent tests
-- Overrides: Manual edits to `data/b2b-feature-status.json` or `tests/e2e/fixtures/clients.ts` should trigger re-sync
+**Analysis Date:** 2026-04-19
+**Focus:** How test results flow from run to public GitHub Pages dashboard
 
 ---
 
-*Architecture analysis: 2026-04-17*
+## Pipeline Overview
+
+Three result types feed the dashboard independently. None are connected to each other in real-time — they publish to `public/` via different mechanisms and the dashboard reads them from GitHub Pages.
+
+```
+Playwright run → live.json (real-time) → publish-results.py → public/history/{date}.json
+Maestro run    → run-maestro.sh        → public/app-reports/{client}-{date}.html
+Cowork session → /report-qa command    → public/qa-reports/{client}-{date}.html
+
+All three → public/manifest.json (unified listing)
+           public/ committed to git → GitHub Pages
+```
+
+---
+
+## Layer 1 — Test Execution
+
+### Playwright (B2B and Admin)
+
+Entry point: `tests/e2e/playwright.config.ts`
+
+- **Workers:** `workers: 4` — four spec files run concurrently
+- **fullyParallel: true** — tests within a spec also run in parallel
+- **Retries:** 1 locally, 2 in CI
+- **Reporters active per run:**
+  - `html` → `tests/e2e/playwright-report/` (Playwright's native HTML report)
+  - `json` → `tests/e2e/playwright-report/results.json` (machine-readable source of truth)
+  - `list` → stdout
+  - `../../tools/live-reporter.js` → `public/live.json` (only when `CI` env var is not set)
+
+Parallel results aggregate into a single `results.json`. The JSON has a nested suite tree; `publish-results.py` flattens it recursively via `flatten_tests()`.
+
+**Per-client runs** are also supported: run Playwright with `--grep {client_slug}`, copy `results.json` to `results-{client}.json`, then call `publish-results.py --results-file results-{client}.json --client {slug}`. This allows parallel publish sessions without overwriting each other.
+
+### Maestro (APP mobile)
+
+Entry point: `tools/run-maestro.sh <cliente>`
+
+- Reads flow definitions from `tests/app/flows/{cliente}-session.yaml` or numbered flows `tests/app/flows/{cliente}-NN-{feature}.yaml`
+- Reads env vars from `tests/app/config/config.{cliente}.yaml` (preferred) or `env.{cliente}.yaml` (legacy)
+- Runs each flow via `maestro test` subprocess with up to 3 automatic retries (1 for session flows)
+- Writes raw log to `QA/{Cliente}/{date}/maestro.log`
+- Generates HTML report inline (Python embedded in shell script) and writes to `public/app-reports/{client}-{date}.html`
+- Updates `public/manifest.json` immediately after the run (no git commit step inside the script)
+
+### Cowork (manual + AI-assisted sessions)
+
+No automated execution. Output is:
+
+1. Tester saves HANDOFF blocks to `QA/{CLIENT}/{DATE}/cowork-session.md` (one file per day, all modes appended)
+2. `/report-qa {CLIENT} {DATE}` command (defined in `ai-specs/.commands/report-qa.md`) reads that file
+3. Command generates `public/qa-reports/{client}-{date}.html` and updates `public/manifest.json`
+
+---
+
+## Layer 2 — Live Reporting (Playwright only)
+
+**File:** `tools/live-reporter.js`
+
+Implements the Playwright `Reporter` interface. Active during local runs only (skipped when `CI` env var is set — see `playwright.config.ts` line 25).
+
+**Atomic write pattern:**
+```
+state → JSON.stringify → write to public/live.json.tmp → fs.renameSync → public/live.json
+```
+The `rename` is atomic on POSIX — the dashboard never reads a partially-written file.
+
+**GitHub push cadence:** Maximum once every 10 seconds (`PUSH_INTERVAL_MS = 10_000`). Uses GitHub Contents API (PUT to `/repos/eduardolaloyom/qa/contents/public/live.json`). Caches the SHA of `public/live.json` to avoid a GET on every push.
+
+**On test end:** `onEnd()` forces an immediate push (bypasses the 10s interval) to ensure the final state is published even if the run is short.
+
+**State shape:**
+```json
+{
+  "running": true,
+  "startTime": "2026-04-19T10:00:00.000Z",
+  "total": 252,
+  "passed": 120,
+  "failed": 3,
+  "skipped": 0,
+  "currentTest": "bastien: C2-08 cart adds product",
+  "recentTests": [
+    { "title": "...", "status": "passed", "duration": 1230 }
+  ]
+}
+```
+
+**Dashboard polling:** `public/index.html` polls `live.json?t={timestamp}` every 3 seconds (`setTimeout(pollLive, 3000)`) and shows a live panel (dark navy card with pulse dot) when `running: true`.
+
+**Gitignore:** `public/live.json` and `public/live.json.tmp` are gitignored — they exist only locally during a run and are pushed directly to GitHub via API, not via git commit.
+
+---
+
+## Layer 3 — Result Publishing (Playwright)
+
+**File:** `tools/publish-results.py`
+
+Triggered two ways:
+1. Automatically via `tests/e2e/global-teardown.ts` — executes `python3 tools/publish-results.py` after every `npx playwright test` invocation
+2. Manually via `tools/run-live.sh` — called explicitly after the test run completes
+
+**What it does:**
+
+1. Reads `tests/e2e/playwright-report/results.json` (or a custom `--results-file`)
+2. Copies the Playwright HTML report directory to `public/reports/` (or `public/reports/{slug}/` for per-client runs)
+3. Copies failure screenshots from `tests/e2e/test-results/*.png` to `public/data/`
+4. Generates a structured run JSON via `generate_run_json()`:
+   - Extracts per-client stats from test titles using the `{client_slug}: test name` prefix convention
+   - Loads client metadata (name, staging URL, environment) from `data/qa-matrix-staging.json` via `load_staging_urls()`
+   - Classifies failures via `classify_error()` into categories: `bug`, `ux`, `ambiente`, `flaky`
+   - Groups failures by root cause for dashboard display (`generate_failure_groups()`)
+   - Identifies skipped tests with `{var} no implementado en B2B frontend` annotation (`generate_pending_b2b()`)
+   - Redacts secrets from error messages before writing (`mask_secrets()`)
+5. Writes `public/history/{date}.json` — merges with existing file if same date (`merge_run_json()`); seeds with previous days' clients if new date (`load_previous_clients()`)
+6. Updates `public/history/index.json` (rolling 30-day index of run summaries)
+
+**Merge behavior (same date, multiple runs):**
+- `merge_run_json()` keeps the client with more active tests (passed + failed) — new data wins only if it ran at least as many tests as existing
+- Failure groups: replaces groups for clients that appeared in the new run; keeps others
+- Duration: accumulated (sum of all runs that day)
+- Totals: recalculated from merged client data, not raw suite counts
+
+**Persistence across days:**
+New day's `{date}.json` is seeded with the most recent result per client from prior days via `load_previous_clients()`. This keeps all clients visible in the dashboard even if only a subset ran today. Seeded clients are overridden by today's results only if the new run has active (non-skipped) tests.
+
+---
+
+## Layer 4 — Dashboard (GitHub Pages)
+
+**File:** `public/index.html`
+
+Single-file static dashboard (~2600 lines). No build step, no bundler. Fetches all data client-side via `fetch()` with cache-busting query params.
+
+**Data sources fetched at load:**
+
+| Source | What it provides |
+|--------|-----------------|
+| `history/index.json` | List of run dates (last 30 days) |
+| `history/{date}.json` | Full run stats, per-client results, failure groups, pending B2B vars |
+| `live.json` | Real-time test progress (polled every 3s during active run) |
+| `manifest.json` | List of all Cowork + Maestro HTML reports |
+
+**Tabs:**
+- **B2B tab:** reads `history/{date}.json` — shows per-client pass/fail, failure groups grouped by category (bug/ux/ambiente/flaky), pending B2B variables
+- **APP tab:** reads `manifest.json` filtering `platform: "app"` — shows Maestro reports grouped by client with drill-down history
+- **Cowork reports:** links to `public/qa-reports/index.html` — a separate directory index
+
+**History navigation:** user selects any date from the last 30 runs; dashboard re-fetches `history/{date}.json` and re-renders.
+
+---
+
+## Layer 5 — manifest.json (Unified Report Listing)
+
+**File:** `public/manifest.json`
+
+Single JSON file listing all completed QA reports (Cowork B2B and Maestro APP).
+
+Entry shape:
+```json
+{
+  "client": "Bastien",
+  "client_slug": "bastien",
+  "date": "2026-04-15",
+  "file": "qa-reports/bastien-2026-04-15.html",
+  "verdict": "CON_CONDICIONES",
+  "score": 82,
+  "modes_done": ["A", "B", "D"],
+  "platform": "b2b",
+  "environment": "staging"
+}
+```
+
+**Writers:**
+- `tools/run-maestro.sh` (Python embedded) — writes `platform: "app"`, `file: "app-reports/{client}-{date}.html"`, `health` instead of `score`
+- `/report-qa` command (Claude Code) — writes `platform: "b2b"`, `file: "qa-reports/{client}-{date}.html"`, `score`, `modes_done`
+
+**Write pattern:** load existing → remove matching `(client_slug, date)` entry → append new → sort descending by date → write back. No atomic rename; no concurrent writes expected.
+
+---
+
+## Layer 6 — git Commit → GitHub Pages
+
+**Trigger:** `tests/e2e/global-teardown.ts` (after Playwright) or `tools/run-live.sh`
+
+```bash
+git add public/
+git commit -m "chore: publish playwright results {date}"
+git push || (git pull --rebase && git push)
+```
+
+In CI: `global-teardown.ts` skips the git step (handled by the CI workflow instead).
+
+GitHub Pages serves the `public/` directory directly from `main` branch. No build step, no Jekyll.
+
+**What gets committed:**
+- `public/history/{date}.json` and `public/history/index.json`
+- `public/reports/{slug}/` (full Playwright HTML report tree)
+- `public/data/*.png` (failure screenshots)
+- `public/app-reports/{client}-{date}.html` (Maestro reports — committed manually or after run-maestro.sh)
+- `public/qa-reports/{client}-{date}.html` (Cowork reports — committed by Claude/tester)
+- `public/manifest.json`
+
+**What is NOT committed (gitignored):**
+- `public/live.json` and `public/live.json.tmp` — pushed directly via GitHub Contents API during the run
+- `public/reports/data/*.webm`, `*.zip` — large video/trace artifacts
+- `public/reports/trace/` — Playwright traces
+
+---
+
+## grouped-report.html
+
+**File:** `public/grouped-report.html`
+
+Static HTML grouping all tests by tag category (crítico, funcional, configuración, regresión). Generated by:
+
+- `tests/e2e/reporters/grouped-report.ts` — Playwright Reporter that groups tests by `@tag` annotations during a run
+- `tools/report/generate-grouped-report.py` — standalone generator that parses spec files without running them
+
+Referenced in `/run-playwright` command docs as the expected HTML summary output. Not wired into `global-teardown.ts` — must be regenerated manually or configured as an additional reporter.
+
+---
+
+## /report-qa Command Flow
+
+Defined in `ai-specs/.commands/report-qa.md`. Claude Code adopts QA Coordinator role and:
+
+1. Reads `QA/{CLIENT}/{DATE}/cowork-session.md` (all mode HANDOFFs for the day)
+2. Reads `public/grouped-report.html` or `QA/{CLIENT}/{DATE}/` for Playwright results
+3. Extracts: flows completed, issues found, staging blockers, coverage from HANDOFF fields
+4. Cross-references with Linear tickets
+5. Writes two files simultaneously:
+   - `QA/{CLIENT}/{DATE}/qa-report-{DATE}.md` — markdown for GitHub/local reading
+   - `public/qa-reports/{CLIENT}-{DATE}.html` — standalone HTML for dashboard
+6. Updates `public/manifest.json` with new entry
+
+---
+
+## Gaps: What Is NOT Connected
+
+| Gap | Detail |
+|-----|--------|
+| Cowork not in live view | `live.json` is Playwright-only. Cowork sessions have no real-time dashboard status |
+| Maestro not in history/ | Maestro results populate `manifest.json` and `app-reports/` only — NOT `history/{date}.json`. The B2B history tab never shows Maestro pass/fail counts |
+| Cowork not in history/ | Cowork HTML reports update `manifest.json` but never update `history/{date}.json` totals |
+| No unified health score | Each pipeline has its own metric: Playwright pass rate, Maestro health %, Cowork verdict score — no single combined number |
+| grouped-report not auto-updated | Not wired into `global-teardown.ts`; requires manual invocation |
+| staging-full-report not auto-updated | `public/staging-full-report.html` is not regenerated by the main pipeline |
+| Cowork session unstructured | `cowork-session.md` is free-form markdown; no parser extracts structured data into JSON for the dashboard |
+| manifest.json not committed automatically | After Maestro or `/report-qa`, the tester must manually `git add public/ && git commit && git push` to publish to GitHub Pages |
+
+---
+
+*Pipeline architecture analysis: 2026-04-19*
