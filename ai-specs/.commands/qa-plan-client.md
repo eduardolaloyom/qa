@@ -24,7 +24,7 @@ Plan QA concreto para un cliente: lee sus flags desde `qa-matrix.json`, aplica l
    - Guardar en `QA/{CLIENT}/{DATE}/checklist-preproduccion.md`
    - Indicar: _"Checklist generado en QA/{CLIENT}/{DATE}/checklist-preproduccion.md — Tech/Analytics deben completarlo y escribir veredicto LISTO antes de ejecutar `/qa-client-validation`"_
 
-4. **Leer flags del cliente desde `data/qa-matrix.json`**
+5. **Leer flags del cliente desde `data/qa-matrix-staging.json`**
    - Buscar la entrada del cliente por `slug` o `name`
    - Extraer todos los flags booleanos y de configuración
    - Ejemplos de flags críticos a revisar:
@@ -43,13 +43,12 @@ Plan QA concreto para un cliente: lee sus flags desde `qa-matrix.json`, aplica l
    **4a. Tests obligatorios** (siempre, todo cliente):
    | Test | Tool |
    |------|------|
-   | `login.spec.ts` | Playwright |
-   | `config-validation.spec.ts` | Playwright |
+   | `config-validation/` (cv-*.spec.ts — 6 archivos) | Playwright |
    | `cart.spec.ts` | Playwright |
    | `checkout.spec.ts` | Playwright |
    | `checklist-regresion-postmortems.md` (PM1-PM7) | Checklist |
    | COWORK: C1 (Login) + C2 (Flujo de compra) | Cowork |
-   | Maestro: `01-login.yaml` + `05-pedido.yaml` | Maestro |
+   | Maestro: `helpers/login.yaml` + flujo de pedido del cliente | Maestro |
 
    **4b. Tests condicionales** (por flag activo del cliente):
    - `enableCoupons: true` → `coupons.spec.ts` · COWORK: C3-14, C3-15
@@ -134,15 +133,12 @@ Orden recomendado:
 - [ ] [condicionales según flags]
 
 **2. Playwright** (regresión E2E)
-- [ ] `npx playwright test --project=b2b login.spec.ts`
-- [ ] `npx playwright test --project=b2b config-validation.spec.ts`
-- [ ] `npx playwright test --project=b2b cart.spec.ts`
-- [ ] `npx playwright test --project=b2b checkout.spec.ts`
+- [ ] `npx playwright test --project=b2b` (corre todos los specs del cliente)
+- [ ] Specs obligatorios: config-validation/, cart.spec.ts, checkout.spec.ts
 - [ ] [specs condicionales según flags]
 
-**3. Maestro** (APP mobile) — solo si APP desplegada
-- [ ] `maestro test tests/app/flows/01-login.yaml`
-- [ ] `maestro test tests/app/flows/05-pedido.yaml`
+**3. Maestro** (APP mobile) — solo si APP desplegada para el cliente
+- [ ] `./tools/run-maestro.sh {cliente}` (usa {cliente}-session.yaml)
 
 **4. Checklists** (manual)
 - [ ] `checklists/regresion/checklist-regresion-postmortems.md`
@@ -163,4 +159,4 @@ Orden recomendado:
 - `COWORK.md` — Pasos UI concretos para Cowork
 - `B2B_REFERENCE.md` — Selectores UI, rutas, stack
 - `checklists/INDICE.md` — Mapa de cobertura existente
-- `data/qa-matrix.json` — Flags MongoDB por cliente (AUTO-GENERADO)
+- `data/qa-matrix-staging.json` — Flags MongoDB por cliente (staging)

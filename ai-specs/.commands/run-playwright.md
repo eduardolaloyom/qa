@@ -5,9 +5,8 @@ Execute Playwright E2E tests across configured clients and generate results.
 ## Usage
 
 ```bash
-/run-playwright b2b          # Run B2B tests (tienda.youorder.me)
+/run-playwright b2b          # Run B2B tests (*.solopide.me staging clients)
 /run-playwright admin        # Run Admin tests (admin.youorder.me)
-/run-playwright staging      # Run staging tests (*.solopide.me)
 ```
 
 ## Steps
@@ -15,13 +14,13 @@ Execute Playwright E2E tests across configured clients and generate results.
 1. **Adopt Playwright Specialist role** (see `ai-specs/.agents/playwright-specialist.md`)
 
 2. **Verify prerequisites**
-   - Check `.env` has `BASE_URL`, `COMMERCE_EMAIL`, `COMMERCE_PASSWORD`
-   - Run `sync-clients.py` to ensure `clients.ts` is current
-   - Confirm `tests/e2e/fixtures/clients.ts` is populated
+   - Check `.env` has credentials per client: `{CLIENTE}_EMAIL`, `{CLIENTE}_PASSWORD`
+   - Run `sync-clients.py --input data/qa-matrix-staging.json` if clients.ts is stale
+   - Confirm `tests/e2e/fixtures/clients.ts` is populated (non-empty clients object)
 
 3. **Execute tests**
    ```bash
-   # B2B project (17 clients)
+   # B2B project (active staging clients — credentials in .env)
    npx playwright test --project=b2b
    
    # Admin project
@@ -57,13 +56,13 @@ Execute Playwright E2E tests across configured clients and generate results.
 
 If tests fail:
 
-1. Check `.env` credentials match `qa-matrix.json`
-2. Verify MongoDB config is current (run `mongo-extractor.py`)
+1. Check `.env` credentials: `{CLIENTE}_EMAIL` / `{CLIENTE}_PASSWORD` por cliente activo
+2. Verify MongoDB config is current (run `mongo-extractor.py --input data/qa-matrix-staging.json`)
 3. Check if selectors need updating (UI changed? run `playwright codegen {URL}`)
 4. Look for timeout issues (staging performance, network)
 
 ## Key Documents
 
 - `tests/e2e/fixtures/clients.ts` — Auto-generated client data
-- `tests/e2e/fixtures/loginHelper.ts` — Authentication logic
-- `qa-master-prompt.md` — Expected behavior per feature
+- `tests/e2e/fixtures/login.ts` — Authentication logic
+- `qa-master-guide.md` — Expected behavior per feature
