@@ -529,22 +529,22 @@ function updateClients(run = latestRun) {
 
 **Si esta tabla tiene items:** Se sugiere al planner agregar una tarea de verificación del shape de datos antes del desarrollo, o al ejecutor incluir una precaución defensiva.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **¿Cuál es el threshold para el slice del dropdown cuando `allRuns.length` está entre 11 y 13?**
    - Qué sabemos: D-04 dice "si `allRuns.length <= 10`, mostrar todos; si > 10, limitar a los últimos 14 runs".
    - Qué es ambiguo: Con 11 runs, ¿mostramos 11 o 14? La redacción sugiere que si es > 10 aplicamos el límite de 14 — pero 11 ≤ 14 entonces es equivalente a "todos". Asumimos: si > 10, `slice(0, 14)` (que devuelve todos los existentes si son menos de 14).
-   - Recomendación: Implementar como `allRuns.length > 10 ? allRuns.slice(0, 14) : allRuns`. Esto funciona correctamente para 11, 12, 13, 14, 15+ runs.
+   - **RESOLVED:** Implementar como `allRuns.length > 10 ? allRuns.slice(0, 14) : allRuns`. Esto funciona correctamente para 11, 12, 13, 14, 15+ runs. Plan 02-02 Task 2 adopta esta fórmula textualmente.
 
 2. **¿El `<select>` debe re-poblarse cuando el dashboard hace live polling (pollLive)?**
    - Qué sabemos: `pollLive()` se llama en `initDashboard` (línea 1454) y actualiza el estado live de un run en curso.
    - Qué es ambiguo: Si durante el día llega un nuevo run, ¿el dropdown se actualiza?
-   - Recomendación: Fuera de scope de Phase 2. El dropdown se popula una vez al cargar. Si el usuario quiere ver un nuevo run, recarga la página. Documentar como follow-up.
+   - **DEFERRED:** Fuera de scope de Phase 2. El dropdown se popula una vez al cargar. Si el usuario quiere ver un nuevo run, recarga la página. Registrado como follow-up en `<deferred>` de CONTEXT.md.
 
 3. **¿Cómo debe comportarse el grid cuando el usuario cambia el filtro de ambiente (`selectedEnv`) después de cambiar el run?**
    - Qué sabemos: Líneas 1393-1394 y 1413-1414 llaman `updateClients()` (sin argumento) cuando cambia el ambiente.
    - Qué es ambiguo: Si el usuario está viendo un run histórico (selectedRun != latestRun) y cambia el ambiente, ¿vuelve al latestRun o mantiene selectedRun?
-   - Recomendación: **Mantener el selectedRun del dropdown.** Solución: en `enterEnv` y `backToLanding`, leer el valor actual de `#runSelector` y llamar `updateClients(runForDate(sel.value))`. Alternativa más simple: mantener un `selectedRun` en variable de módulo y usarlo en ambos handlers. El planner debe decidir.
+   - **RESOLVED:** Mantener el comportamiento actual de `enterEnv`/`backToLanding` — regresan a `latestRun` (default param de `updateClients`). Esta es una regresión UX menor documentada: si el usuario cambia de ambiente mientras ve un run histórico, el grid vuelve a mostrar el último run. Aceptado como trade-off de Phase 2 para mantener scope mínimo. Follow-up en phases posteriores si el usuario lo reporta como problema.
 
 ## Environment Availability
 
