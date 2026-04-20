@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 125,
+  "passed": 131,
   "failed": 2,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: enableTask=false",
+      "status": "passed",
+      "duration": 5232
+    },
+    {
+      "title": "bastien: pointsEnabled=false",
+      "status": "passed",
+      "duration": 5577
+    },
+    {
+      "title": "bastien: pendingDocuments=false",
+      "status": "passed",
+      "duration": 5060
+    },
+    {
+      "title": "sonrie: suggestions.hide=true",
+      "status": "passed",
+      "duration": 10875
+    },
+    {
+      "title": "sonrie: enableBetaButtons=false",
+      "status": "passed",
+      "duration": 7911
+    },
+    {
+      "title": "sonrie: useNewPromotions=false",
+      "status": "passed",
+      "duration": 7848
+    },
     {
       "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "bastien: enablePaymentsCollection=false",
       "status": "passed",
       "duration": 4662
-    },
-    {
-      "title": "bastien: enableSellerDiscount=false",
-      "status": "passed",
-      "duration": 9206
-    },
-    {
-      "title": "bastien: taxes.showSummary=false",
-      "status": "passed",
-      "duration": 8728
-    },
-    {
-      "title": "sonrie: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 9856
-    },
-    {
-      "title": "bastien: enablePayments=false",
-      "status": "passed",
-      "duration": 8447
-    },
-    {
-      "title": "sonrie: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 10157
-    },
-    {
-      "title": "sonrie: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 10447
     }
   ]
 }
