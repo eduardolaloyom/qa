@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 151,
+  "passed": 156,
   "failed": 4,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 5345
+    },
+    {
+      "title": "bastien: Login exitoso",
+      "status": "passed",
+      "duration": 8841
+    },
+    {
+      "title": "sonrie: Agregar producto al carro",
+      "status": "passed",
+      "duration": 9791
+    },
+    {
+      "title": "bastien: Acceso anónimo muestra catálogo",
+      "status": "passed",
+      "duration": 5323
+    },
+    {
+      "title": "sonrie: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 9744
+    },
     {
       "title": "bastien: PM1-02 Cupón válido aplica descuento",
       "status": "failed",
@@ -81,31 +106,6 @@
       "title": "sonrie: PM1-02 Cupón válido aplica descuento",
       "status": "skipped",
       "duration": 12431
-    },
-    {
-      "title": "bastien: enableNewUI=false",
-      "status": "passed",
-      "duration": 7939
-    },
-    {
-      "title": "bastien: enableBetaButtons=false",
-      "status": "passed",
-      "duration": 5012
-    },
-    {
-      "title": "bastien: useNewPromotions=true",
-      "status": "passed",
-      "duration": 4693
-    },
-    {
-      "title": "bastien: blockedClientAlert.enableBlockedClientAlert=false",
-      "status": "passed",
-      "duration": 4831
-    },
-    {
-      "title": "bastien: externalAccess=false",
-      "status": "passed",
-      "duration": 4746
     }
   ]
 }
