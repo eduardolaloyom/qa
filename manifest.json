@@ -14,6 +14,17 @@
     {
       "client": "Bastien",
       "client_slug": "bastien",
+      "date": "2026-04-20",
+      "file": "qa-reports/bastien-2026-04-20.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 44,
+      "modes_done": ["A", "B", "C", "D"],
+      "platform": "b2b",
+      "environment": "staging"
+    },
+    {
+      "client": "Bastien",
+      "client_slug": "bastien",
       "date": "2026-04-15",
       "file": "qa-reports/bastien-2026-04-15.html",
       "verdict": "CON_CONDICIONES",
