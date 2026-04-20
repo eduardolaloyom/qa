@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 12,
+  "passed": 16,
   "failed": 0,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C2-13 Pedido aparece en historial",
+      "status": "passed",
+      "duration": 13058
+    },
+    {
+      "title": "bastien: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+      "status": "passed",
+      "duration": 21417
+    },
+    {
+      "title": "bastien: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 28933
+    },
+    {
+      "title": "bastien: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 23991
+    },
     {
       "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
       "status": "passed",
