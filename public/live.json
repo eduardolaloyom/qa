@@ -2,11 +2,16 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 190,
+  "passed": 191,
   "failed": 5,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 19459
+    },
     {
       "title": "bastien: PM5-02 Carrito muestra totales con descuentos aplicados",
       "status": "passed",
@@ -101,11 +106,6 @@
       "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
       "status": "passed",
       "duration": 17047
-    },
-    {
-      "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
-      "status": "passed",
-      "duration": 14301
     }
   ]
 }
