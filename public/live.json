@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 117,
+  "passed": 125,
   "failed": 2,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
+      "status": "passed",
+      "duration": 7745
+    },
+    {
+      "title": "sonrie: externalAccess=true",
+      "status": "passed",
+      "duration": 7413
+    },
+    {
+      "title": "sonrie: showMinOne=false",
+      "status": "passed",
+      "duration": 7832
+    },
+    {
+      "title": "sonrie: enableCreditNotes=false",
+      "status": "passed",
+      "duration": 7489
+    },
+    {
+      "title": "sonrie: enableTask=false",
+      "status": "passed",
+      "duration": 7538
+    },
+    {
+      "title": "sonrie: pointsEnabled=false",
+      "status": "passed",
+      "duration": 7691
+    },
+    {
+      "title": "sonrie: pendingDocuments=false",
+      "status": "passed",
+      "duration": 7689
+    },
+    {
+      "title": "bastien: payment.enableNewPaymentModule=false",
+      "status": "passed",
+      "duration": 9114
+    },
     {
       "title": "bastien: paymentsWithoutAccount=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: discountTypes.enableOrderDiscountType=false",
       "status": "passed",
       "duration": 10447
-    },
-    {
-      "title": "sonrie: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 10525
-    },
-    {
-      "title": "sonrie: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 8079
-    },
-    {
-      "title": "sonrie: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 7745
-    },
-    {
-      "title": "sonrie: includeTaxRateInPrices=false",
-      "status": "passed",
-      "duration": 9336
-    },
-    {
-      "title": "sonrie: taxes.showSummary=true",
-      "status": "passed",
-      "duration": 11215
-    },
-    {
-      "title": "sonrie: enableSellerDiscount=false",
-      "status": "passed",
-      "duration": 10227
-    },
-    {
-      "title": "sonrie: enablePayments=false",
-      "status": "passed",
-      "duration": 9012
-    },
-    {
-      "title": "bastien: disableCommerceEdit=false",
-      "status": "passed",
-      "duration": 7887
     }
   ]
 }
