@@ -31,14 +31,14 @@ for (const [key, client] of Object.entries(clients)) {
       await confirmButton.scrollIntoViewIfNeeded();
 
       await Promise.all([
-        page.waitForURL(/\/confirmation\//, { timeout: 30_000 }),
+        page.waitForURL(/\/confirmation\/\w+/, { timeout: 30_000 }),
         confirmButton.click({ force: true }),
       ]);
 
       await page.screenshot({ path: `test-results/checkout-confirm-${key}.png`, fullPage: true });
 
-      // El redirect a /confirmation/{orderId} confirma que el pedido fue generado
-      expect(page.url()).toMatch(/\/confirmation\//);
+      // Requires actual order ID after /confirmation/ — bare /confirmation/ means order was not processed
+      expect(page.url()).toMatch(/\/confirmation\/\w+/);
     });
 
     test(`${key}: C2-12 Doble click en crear pedido no genera duplicado`, async ({ authedPage: page }) => {
