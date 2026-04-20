@@ -52,6 +52,20 @@ Generate comprehensive QA report for a client: test results summary, issue group
      - **Staging Blockers**: tabla con casos no ejecutables, motivo, qué se necesita para desbloquearlos
      - **Mejoras sugeridas al proceso**: tabla con mejoras del campo `Process improvements:` — tipo (test/playbook/flag), descripción, acción (`/qa-improve {CLIENTE} {FECHA}`)
      - Issues detallados: ID, severidad, descripción, pasos, evidencia
+     - **Accionables** (auto-generado por Claude, solo P0 y P1):
+       Tabla 4 columnas: `Issue | Severidad | Dueño | Plazo`
+       - Dueño: uno de `Tech`, `QA`, `PM` — asignar según tipo de issue:
+         - Bug de app/API → Tech
+         - Selector roto / flaky / cobertura de test → QA
+         - Config de cliente, precio, dato incorrecto visible → PM
+       - Plazo relativo a la fecha del run:
+         - P0 → "0-1 días (urgente)"
+         - P1 → "2-5 días (esta semana)"
+       - P2 y P3 NO van en Accionables — continúan en sección "Issues detallados"
+       Ejemplo:
+       | Issue | Severidad | Dueño | Plazo |
+       |-------|-----------|-------|-------|
+       | Checkout falla para mobile | P1 | Tech | 2-5 días |
      - Gate de Rollout con veredicto final
      - Ship Readiness block para Slack
 
@@ -107,12 +121,13 @@ Generate comprehensive QA report for a client: test results summary, issue group
 2. **P1**: Maestro flow 09 timeout on concurrent orders
 3. **P2**: Config banner not rendering in admin (UI change?)
 
-## Recommendations
-| Issue | Priority | Owner | Action |
-|-------|----------|-------|--------|
-| Payment auth | P0 | Backend | Check credential rotation |
-| Maestro sync | P1 | Mobile | Re-record selectors |
-| Banner render | P2 | Frontend | CSS regression? |
+## Accionables
+
+> Solo P0 y P1. P2/P3 continúan en Issues detallados.
+
+| Issue | Severidad | Dueño | Plazo |
+|-------|-----------|-------|-------|
+| {descripción corta del issue} | P0/P1 | Tech/QA/PM | 0-1 días / 2-5 días |
 
 ## Appendix
 - [Test logs](test-results/)
