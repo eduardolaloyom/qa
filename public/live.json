@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 181,
+  "passed": 185,
   "failed": 5,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 14065
+    },
+    {
+      "title": "bastien: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 20806
+    },
+    {
+      "title": "bastien: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 17701
+    },
+    {
+      "title": "bastien: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 19585
+    },
     {
       "title": "bastien: C3-11 Precio bruto vs neto — impuestos segun config",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
       "status": "passed",
       "duration": 15906
-    },
-    {
-      "title": "bastien: PAG-04 Historial de pagos carga correctamente",
-      "status": "passed",
-      "duration": 17618
-    },
-    {
-      "title": "sonrie: C3-04 Descuento visible en catalogo",
-      "status": "skipped",
-      "duration": 76
-    },
-    {
-      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
-      "status": "passed",
-      "duration": 12961
-    },
-    {
-      "title": "sonrie: C3-02 Detectar productos con precio $0",
-      "status": "skipped",
-      "duration": 47
     }
   ]
 }
