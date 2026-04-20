@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 188,
+  "passed": 190,
   "failed": 5,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 22819
+    },
+    {
+      "title": "sonrie: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 15629
+    },
     {
       "title": "bastien: PM5-01 Catálogo carga productos con precios (promotions funcional)",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
       "status": "passed",
       "duration": 14301
-    },
-    {
-      "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
-      "status": "passed",
-      "duration": 12690
-    },
-    {
-      "title": "sonrie: C3-15 Cupon invalido muestra error claro",
-      "status": "skipped",
-      "duration": 16034
     }
   ]
 }
