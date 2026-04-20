@@ -41,7 +41,11 @@ Generate comprehensive QA report for a client: test results summary, issue group
    **a) `QA/{CLIENT}/{DATE}/qa-report-{DATE}.md`** (lectura local / GitHub)
    - Use `templates/qa-report-template.md` as base
    - Include:
-     - Resumen ejecutivo: modos completados, issues por severidad, veredicto
+     - **Resumen ejecutivo** (primeras 3 líneas bajo el título, ANTES de cualquier sección):
+       `{VEREDICTO} | Score {N}/100 | {X} issues críticos (P0: {N}, P1: {M})`
+       Ejemplo: `CON_CONDICIONES | Score 72/100 | 1 issue crítico (P0: 0, P1: 1)`
+       Valores posibles de veredicto: LISTO, CON_CONDICIONES, NO_APTO, BLOQUEADO
+       Seguido de `---` (línea horizontal separadora)
      - Cowork results: tabla por modo (A/B/C/D) con ✓/✗ por flujo
      - Playwright results: pass rate por spec
      - **Cobertura Ejecutada**: tabla con C1/C2/C3/C7/C5/C9/C10/A2/A3 — estado y Tier 1/2 ejecutados de N
@@ -53,6 +57,7 @@ Generate comprehensive QA report for a client: test results summary, issue group
 
    **b) `public/qa-reports/{CLIENT}-{DATE}.html`** (dashboard GitHub Pages)
    - HTML autónomo, mismo contenido que el .md pero formateado
+   - Resumen ejecutivo en las primeras 3 líneas visibles del body: `{VEREDICTO} | Score {N}/100 | {X} issues críticos (P0: {N}, P1: {M})` — mismo contenido que el .md, en un `<div class="executive-summary">` antes del primer `<section>`
    - Estructura: header con cliente/fecha/veredicto, secciones colapsables por modo, tabla de issues con colores por severidad
    - Incluir enlace "← Dashboard" a `../`
 
@@ -74,6 +79,10 @@ Generate comprehensive QA report for a client: test results summary, issue group
 
 ```markdown
 # QA Report: {CLIENT} — {DATE}
+
+{VEREDICTO} | Score {N}/100 | {X} issues críticos (P0: {N}, P1: {M})
+
+---
 
 ## Summary
 - Tests run: X, Passed: Y (Z%)
