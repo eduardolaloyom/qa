@@ -19,6 +19,8 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Optional
 
+import yaml
+
 
 def load_results(results_file: Path) -> dict:
     """Load Playwright JSON results."""
@@ -502,6 +504,177 @@ def load_staging_urls(project_root: Path) -> dict:
         url = f"https://{domain}" if domain and not domain.startswith("http") else domain
         result[slug] = {"name": name, "url": url}
     return result
+
+
+def _triage_file_path(slug: str, date: str, project_root: Path,
+                      staging_urls: dict) -> Path:
+    """Resolve QA/{Display|slug}/{date}/triage-{date}.md.
+
+    Tries the display name derived from qa-matrix-staging.json first, then
+    falls back to the raw slug if that directory doesn't exist. This handles
+    new-soprole and any future client with lowercase dir convention.
+    """
+    info = staging_urls.get(slug, {})
+    raw_name = info.get("name", slug.capitalize())
+    display = re.sub(r"\s*\(staging\)\s*$", "", raw_name).strip() or slug.capitalize()
+
+    by_display = project_root / "QA" / display / date / f"triage-{date}.md"
+    by_slug = project_root / "QA" / slug / date / f"triage-{date}.md"
+
+    if by_display.exists():
+        return by_display
+    if by_slug.exists():
+        return by_slug
+    # Neither exists — return display path so caller's .exists() returns False
+    return by_display
+
+
+def _parse_triage_file(path: Path) -> tuple:
+    """Parse a triage-{date}.md file into (frontmatter, sections).
+
+    Format:
+      ---
+      <YAML frontmatter>
+      ---
+      ## <title>
+      ```yaml
+      reason_match: "..."
+      category: bug|flaky|ambiente
+      rationale: "..."
+      linear_ticket: YOM-NNN|null
+      action_taken: "..."
+      ```
+
+    Returns ({}, []) on any IO / parse error after logging a warning to stderr.
+    Sections with invalid YAML are skipped individually (not fatal).
+    """
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError as e:
+        print(f"⚠️  No se pudo leer triage file {path}: {e}", file=sys.stderr)
+        return ({}, [])
+
+    fm_match = re.match(r"^---\n(.*?)\n---\n(.*)$", text, re.DOTALL)
+    if not fm_match:
+        print(f"⚠️  {path}: falta YAML frontmatter — skip triage file",
+              file=sys.stderr)
+        return ({}, [])
+
+    try:
+        frontmatter = yaml.safe_load(fm_match.group(1)) or {}
+    except yaml.YAMLError as e:
+        print(f"⚠️  {path}: YAML frontmatter inválido ({e}) — skip triage file",
+              file=sys.stderr)
+        return ({}, [])
+    if not isinstance(frontmatter, dict):
+        frontmatter = {}
+
+    body = fm_match.group(2)
+
+    # Matches: "## <title>\n ... ```yaml\n<body>\n``` "
+    section_pattern = re.compile(
+        r"^##\s+(?P<title>.+?)\n\s*```yaml\n(?P<body>.*?)\n```",
+        re.MULTILINE | re.DOTALL,
+    )
+    sections = []
+    for m in section_pattern.finditer(body):
+        raw_body = m.group("body")
+        try:
+            data = yaml.safe_load(raw_body) or {}
+        except yaml.YAMLError as e:
+            print(f"⚠️  {path}: sección '{m.group('title')[:60]}' "
+                  f"con YAML inválido ({e}) — skip section", file=sys.stderr)
+            continue
+        if not isinstance(data, dict):
+            continue
+        data["_title"] = m.group("title").strip()
+        sections.append(data)
+
+    return (frontmatter, sections)
+
+
+def _apply_triage_overlay(failure_groups: list, date: str,
+                          project_root: Path) -> None:
+    """Mutate failure_groups in place, adding a 'triage' field where a
+    matching QA/{client}/{date}/triage-{date}.md section exists.
+
+    D-15: Missing files are silently ignored (no regression).
+    D-16: Invalid YAML logs a warning and continues without triage.
+    D-17: Orphan sections (no matching failure_group) log a warning and are
+          ignored.
+
+    The overlay MUST run before merge_run_json: by applying it inside
+    generate_run_json() the new run's failure_groups already carry the triage
+    field when the merge logic replaces per-client groups.
+    """
+    if not failure_groups:
+        return
+
+    staging_urls = load_staging_urls(project_root)
+
+    # Unique client slugs that appear in this run's failure_groups
+    slugs = {c for g in failure_groups for c in g.get("clients", [])}
+
+    # Index by (slug, reason) → group for O(1) matching
+    index = {}
+    for g in failure_groups:
+        reason = g.get("reason", "")
+        for slug in g.get("clients", []):
+            index[(slug, reason)] = g
+
+    n_files = 0
+    n_sections_matched = 0
+    n_orphans = 0
+
+    for slug in sorted(slugs):
+        path = _triage_file_path(slug, date, project_root, staging_urls)
+        if not path.exists():
+            continue
+        n_files += 1
+
+        frontmatter, sections = _parse_triage_file(path)
+        if not sections:
+            continue
+
+        triaged_at = str(frontmatter.get("date") or date)
+        triaged_by = str(frontmatter.get("triaged_by", "Claude"))
+
+        for section in sections:
+            reason_match = section.get("reason_match")
+            if not isinstance(reason_match, str) or not reason_match.strip():
+                print(f"⚠️  {path}: sección '{section.get('_title','?')[:60]}' "
+                      f"sin reason_match — skip", file=sys.stderr)
+                continue
+
+            group = index.get((slug, reason_match))
+            if group is None:
+                n_orphans += 1
+                print(f"⚠️  {path}: reason_match "
+                      f"'{reason_match[:60]}...' no coincide con ningún "
+                      f"failure_group para {slug} — skip", file=sys.stderr)
+                continue
+
+            rationale = section.get("rationale")
+            action_taken = section.get("action_taken")
+            if isinstance(rationale, str):
+                rationale = mask_secrets(rationale)
+            if isinstance(action_taken, str):
+                action_taken = mask_secrets(action_taken)
+
+            group["triage"] = {
+                "category": section.get("category"),
+                "rationale": rationale,
+                "linear_ticket": section.get("linear_ticket"),
+                "action_taken": action_taken,
+                "triaged_at": triaged_at,
+                "triaged_by": triaged_by,
+            }
+            n_sections_matched += 1
+
+    if n_files:
+        print(f"ℹ️  Triage aplicado: {n_files} archivo(s), "
+              f"{n_sections_matched} sección(es) matched, "
+              f"{n_orphans} huérfana(s)")
 
 
 def extract_config_validation_clients(all_tests_flat: list, staging_urls: dict) -> dict:
