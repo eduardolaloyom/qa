@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: QA Pipeline & Dashboard v2
 status: active
-stopped_at: Phase 3 UI-SPEC approved — resume with /gsd-discuss-phase 3
+stopped_at: Phase 3 planned — ready to execute
 last_updated: "2026-04-19"
-last_activity: 2026-04-19 — Phase 3 UI-SPEC approved (6/6 dimensions PASS, first round). Next session starts discuss-phase.
+last_activity: 2026-04-19 — Phase 3 (Unified QA Status View) planned — 3 plans in 3 waves, plan-checker PASSED iteration 2
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 4
+  total_plans: 7
   completed_plans: 4
   percent: 33
 ---
