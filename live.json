@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 160,
+  "passed": 163,
   "failed": 4,
-  "skipped": 6,
+  "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
+      "status": "skipped",
+      "duration": 13107
+    },
+    {
+      "title": "bastien: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 21922
+    },
+    {
+      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
+      "status": "passed",
+      "duration": 13216
+    },
+    {
+      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "status": "passed",
+      "duration": 15135
+    },
     {
       "title": "sonrie: Historial de pedidos carga @orders @funcional",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "bastien: PM2-04 Modal/UI de cupón no queda en loading infinito",
       "status": "passed",
       "duration": 23363
-    },
-    {
-      "title": "bastien: PM1-04 Cupón inválido muestra error (no crash)",
-      "status": "passed",
-      "duration": 23272
-    },
-    {
-      "title": "bastien: PM1-02 Cupón válido aplica descuento",
-      "status": "failed",
-      "duration": 23368
-    },
-    {
-      "title": "bastien: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 21323
-    },
-    {
-      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "passed",
-      "duration": 17497
     }
   ]
 }
