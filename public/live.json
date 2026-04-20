@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 0,
+  "passed": 3,
   "failed": 0,
-  "skipped": 1,
+  "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: C2-06 Cantidad mínima — sistema corrige o bloquea",
+      "status": "skipped",
+      "duration": 19108
+    },
+    {
+      "title": "sonrie: C2-08 Modificar cantidad en carro",
+      "status": "passed",
+      "duration": 17012
+    },
+    {
+      "title": "sonrie: C2-09 Eliminar producto del carro",
+      "status": "passed",
+      "duration": 16824
+    },
+    {
+      "title": "sonrie: C2-05 Agregar producto al carro",
+      "status": "passed",
+      "duration": 15385
+    },
     {
       "title": "sonrie: C2-06 Cantidad mínima — sistema corrige o bloquea",
       "status": "skipped",
