@@ -71,6 +71,10 @@ Si hay screenshot → mostrarlo con Read tool.
 - Si el test es incorrecto → ir a flujo "reescribir"
 
 **Si `ambiente` (owner: qa):**
+- **Clasificar el timeout por duración** (leer la duración del error en el output de Playwright):
+  - `<5s` → **selector issue**: el elemento no existe o cambió (bug de UI o deploy reciente) — reclasificar como `bug` si es reproducible
+  - `5-30s` → **red/staging**: staging lento o caído — ignorar para este run, verificar `{slug}.solopide.me`
+  - `>30s` → **bug o infinite loop**: lógica de la app, no infraestructura — escalar como `bug`
 - Leer el spec afectado
 - Identificar selector o timeout problemático
 - Evaluar si el método es el problema o si hay una forma más robusta de validar lo mismo
@@ -233,6 +237,7 @@ npx playwright test --grep "{tests parcheados}"
 
 ## Reglas
 
+- **Rúbrica de timeout por duración**: `<5s` = selector issue, `5-30s` = red/staging (ambiente), `>30s` = bug o infinite loop — usar siempre al triagear categoría `ambiente`
 - **Máximo 1 ticket por grupo de fallo** — no crear duplicados por cada test del grupo
 - **Buscar primero en Linear** si ya existe un ticket abierto para el mismo fallo antes de crear uno nuevo
 - **No parchear specs flaky** — solo bugs confirmados (unexpected, no flaky)
