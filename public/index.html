@@ -2327,21 +2327,53 @@ function toggleCard(header) {
 
 // ── Charts ────────────────────────────────────────────────
 
-async function updateTrendChart() {
+async function updateTrendChart(filterSlug = null) {
+    const canvas = document.getElementById('trendChart');
+    // Pitfall 1: destroy existing chart instance before creating a new one (Chart.js v4 API)
+    const existing = Chart.getChart(canvas);
+    if (existing) existing.destroy();
+
     const labels = allRuns.map(r => r.date).reverse();
-    const passedData = allRuns.map(r => r.passed).reverse();
-    const failedData = allRuns.map(r => r.failed).reverse();
+    let passedData, failedData, title, passedColor;
 
-    document.getElementById('chartTitle').textContent =
-        `${labels.length} run${labels.length !== 1 ? 's' : ''} · últimos 30 días`;
+    if (!filterSlug) {
+        // AGGREGATE PATH — must be pixel-identical to pre-Phase 3 behavior
+        passedData = allRuns.map(r => r.passed).reverse();
+        failedData = allRuns.map(r => r.failed).reverse();
+        title = `${labels.length} run${labels.length !== 1 ? 's' : ''} · últimos 30 días`;
+        passedColor = '#10b981';
+    } else {
+        // PER-CLIENT PATH — lazy-load allRunsDetailed, map to per-client series
+        const detailed = await loadAllRunDetails();
+        // Align detailed array to allRuns order (both sorted desc by date from loadHistoryIndex)
+        // Fallback to 0 when a run has no entry for this slug (D-05: nullish coalesce)
+        const detailedByDate = {};
+        for (const run of detailed) {
+            if (run && run.date) detailedByDate[run.date] = run;
+        }
+        passedData = allRuns.map(r => detailedByDate[r.date]?.clients?.[filterSlug]?.passed ?? 0).reverse();
+        failedData = allRuns.map(r => detailedByDate[r.date]?.clients?.[filterSlug]?.failed ?? 0).reverse();
+        // Derive client name from any run that has it
+        let clientName = filterSlug;
+        for (const run of detailed) {
+            if (run?.clients?.[filterSlug]?.name) { clientName = run.clients[filterSlug].name; break; }
+        }
+        const hasAnyData = passedData.some(v => v > 0) || failedData.some(v => v > 0);
+        title = hasAnyData
+            ? `${clientName} · ${labels.length} runs · últimos 30 días`
+            : `Sin datos para ${clientName}`;
+        passedColor = '#667eea';  // accent when filtered (UI-SPEC Dimension 3)
+    }
 
-    new Chart(document.getElementById('trendChart').getContext('2d'), {
+    document.getElementById('chartTitle').textContent = title;
+
+    new Chart(canvas.getContext('2d'), {
         type: 'line',
         data: {
             labels,
             datasets: [
-                { label: 'Passed', data: passedData, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.06)', borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 5, pointBackgroundColor: '#10b981', pointBorderColor: '#fff', pointBorderWidth: 2 },
-                { label: 'Failed',  data: failedData,  borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.06)',  borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 5, pointBackgroundColor: '#ef4444', pointBorderColor: '#fff', pointBorderWidth: 2 }
+                { label: 'Passed', data: passedData, borderColor: passedColor, backgroundColor: filterSlug ? 'rgba(102,126,234,0.06)' : 'rgba(16,185,129,0.06)', borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 5, pointBackgroundColor: passedColor, pointBorderColor: '#fff', pointBorderWidth: 2 },
+                { label: 'Failed',  data: failedData,  borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.06)', borderWidth: 2.5, fill: true, tension: 0.35, pointRadius: 5, pointBackgroundColor: '#ef4444', pointBorderColor: '#fff', pointBorderWidth: 2 }
             ]
         },
         options: {
