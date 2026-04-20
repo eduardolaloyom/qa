@@ -137,8 +137,38 @@ const clients: Record<string, ClientConfig> = {{
     }
     KEY_STRIP_SUFFIX = "-staging"
 
+    # Active QA clients — only these are propagated to clients.ts.
+    # Raw MongoDB keys (as they appear in qa-matrix-staging.json / qa-matrix.json).
+    # Update this list when a contract ends or a new client is onboarded.
+    # Inactive clients remain in the matrix JSON (data intact), but skip sync.
+    ACTIVE_CLIENTS = {
+        "prisur-staging",
+        "prinorte-staging",
+        "prisa-staging",            # aliased to "surtiventas" in clients.ts
+        "bastien-staging",
+        "marleycoffee-staging",
+        "soprole-staging",
+        "elmuneco-staging",
+        "cedisur-staging",
+        "codelpa-staging",
+        "codelpa-peru-staging",
+        "coexito-staging",
+        "new-soprole-staging",
+        "expressdent-staging",
+        "globalwines-staging",
+        "softys-cencocal-staging",
+        "softys-dimak-staging",
+        "sonrie-staging",
+        # Production-matrix keys (used when syncing from qa-matrix.json)
+        "surtiventas",
+    }
+
     client_entries = []
+    skipped_inactive = []
     for raw_key, client_data in qa_matrix.get("clients", {}).items():
+        if raw_key not in ACTIVE_CLIENTS:
+            skipped_inactive.append(raw_key)
+            continue
         client_key = raw_key.removesuffix(KEY_STRIP_SUFFIX)
         client_key = KEY_ALIASES.get(raw_key, KEY_ALIASES.get(client_key, client_key))
         domain = client_data.get("domain", "")
@@ -256,6 +286,9 @@ const clients: Record<string, ClientConfig> = {{
 export default clients;
 '''
 
+    if skipped_inactive:
+        print(f"   Skipped {len(skipped_inactive)} inactive clients: {', '.join(sorted(skipped_inactive))}")
+
     return header + clients_section + footer
 
 
@@ -264,9 +297,20 @@ def generate_b2b_variables_json(qa_matrix: dict, b2b_feature_map: dict) -> dict:
     SKIP_VARS = {"_id", "__v", "createdAt", "updatedAt", "domain", "customerId", "currency", "inMaintenance"}
     HOOK_PREFIX = "hooks."
 
+    # Keep active allowlist in sync with generate_clients_ts.
+    ACTIVE_CLIENTS = {
+        "prisur-staging", "prinorte-staging", "prisa-staging", "bastien-staging",
+        "marleycoffee-staging", "soprole-staging", "elmuneco-staging", "cedisur-staging",
+        "codelpa-staging", "codelpa-peru-staging", "coexito-staging", "new-soprole-staging",
+        "expressdent-staging", "globalwines-staging", "softys-cencocal-staging",
+        "softys-dimak-staging", "sonrie-staging", "surtiventas",
+    }
+
     # {var: {clientKey: value}} — actual value per client
     var_client_values: dict = {}
     for raw_key, client_data in qa_matrix.get("clients", {}).items():
+        if raw_key not in ACTIVE_CLIENTS:
+            continue
         client_key = raw_key.removesuffix("-staging")
         for var, value in client_data.get("variables", {}).items():
             if var in SKIP_VARS or var.startswith(HOOK_PREFIX):
