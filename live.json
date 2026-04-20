@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 37,
+  "passed": 41,
   "failed": 1,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: disableObservationInput=false",
+      "status": "passed",
+      "duration": 17839
+    },
+    {
+      "title": "bastien: disableCart=false",
+      "status": "passed",
+      "duration": 7710
+    },
+    {
+      "title": "sonrie: hasSingleDistributionCenter=true",
+      "status": "passed",
+      "duration": 15614
+    },
+    {
+      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
+      "status": "passed",
+      "duration": 15900
+    },
     {
       "title": "sonrie: hasTransportCode=false",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: loginButtons.google=false",
       "status": "passed",
       "duration": 4655
-    },
-    {
-      "title": "bastien: anonymousAccess=true",
-      "status": "passed",
-      "duration": 4162
-    },
-    {
-      "title": "bastien: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 17044
-    },
-    {
-      "title": "sonrie: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 4500
-    },
-    {
-      "title": "sonrie: inMaintenance=false",
-      "status": "passed",
-      "duration": 4345
     }
   ]
 }
