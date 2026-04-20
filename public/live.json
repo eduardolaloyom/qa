@@ -2,11 +2,16 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 192,
+  "passed": 193,
   "failed": 6,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "passed",
+      "duration": 76046
+    },
     {
       "title": "bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
       "status": "passed",
@@ -101,11 +106,6 @@
       "title": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
       "status": "passed",
       "duration": 15104
-    },
-    {
-      "title": "bastien: C3-02 Detectar productos con precio $0",
-      "status": "passed",
-      "duration": 5632
     }
   ]
 }
