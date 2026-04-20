@@ -141,7 +141,7 @@
       "tests": 100,
       "passed": 99,
       "failed": 1,
-      "reportUrl": "reports/bastien/index.html",
+      "reportUrl": "reports/index.html",
       "last_tested": "2026-04-21"
     },
     "sonrie": {
@@ -151,7 +151,7 @@
       "tests": 95,
       "passed": 95,
       "failed": 0,
-      "reportUrl": "reports/sonrie/index.html",
+      "reportUrl": "reports/index.html",
       "last_tested": "2026-04-21"
     },
     "codelpa": {
@@ -176,33 +176,33 @@
   "failure_groups": [
     {
       "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Cup\u00f3n v\u00e1lido aplica descuento",
+      "label": "🔴 Bug",
+      "reason": "Cupón válido aplica descuento",
       "owner": "qa",
-      "action": "Revisar en staging el flujo 'Cup\u00f3n v\u00e1lido aplica descuento'.",
+      "action": "Revisar en staging el flujo 'Cupón válido aplica descuento'.",
       "count": 1,
       "tests": [
-        "[coupons.spec.ts] bastien: PM1-02 Cup\u00f3n v\u00e1lido aplica descuento"
+        "[coupons.spec.ts] bastien: PM1-02 Cupón válido aplica descuento"
       ],
       "clients": [
         "bastien"
       ],
-      "error_sample": "Error: Cup\u00f3n TEST10OFF rechazado como inv\u00e1lido\n\nexpect(received).toBeFalsy()\n\nReceived: true",
+      "error_sample": "Error: Cupón TEST10OFF rechazado como inválido\n\nexpect(received).toBeFalsy()\n\nReceived: true",
       "annotations_sample": [],
       "spec_file": "coupons.spec.ts"
     },
     {
       "category": "flaky",
-      "label": "\u26a0\ufe0f Flaky",
-      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "label": "⚠️ Flaky",
+      "reason": "Pasaron en retry — no son bugs confirmados",
       "owner": "qa",
-      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "action": "Monitorear en próximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
       "count": 4,
       "tests": [
-        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout",
+        "[checkout.spec.ts] bastien: C2-11 Flujo completo catalogo → carro → checkout",
         "[cv-cart.spec.ts] bastien: hasTransportCode=false",
         "[prices.spec.ts] bastien: C3-04 Descuento visible en catalogo",
-        "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento"
+        "[promotions.spec.ts] bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento"
       ],
       "clients": [
         "bastien"

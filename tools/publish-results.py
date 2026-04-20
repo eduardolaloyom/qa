@@ -1043,7 +1043,7 @@ def main():
     else:
         for slug, client_data in run_json["clients"].items():
             if client_data.get("passed", 0) + client_data.get("failed", 0) > 0:
-                client_data["reportUrl"] = f"reports/{slug}/index.html" if not client_slug else report_url
+                client_data["reportUrl"] = report_url
 
     # Write run details — merge with existing if present (accumulate clients across runs)
     run_file = history_dir / f"{date}.json"
