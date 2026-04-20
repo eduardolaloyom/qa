@@ -3,10 +3,15 @@
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
   "passed": 191,
-  "failed": 5,
+  "failed": 6,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "failed",
+      "duration": 53173
+    },
     {
       "title": "bastien: PM4-01 Productos con step pricing muestran escalones",
       "status": "passed",
@@ -101,11 +106,6 @@
       "title": "bastien: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
       "status": "passed",
       "duration": 5827
-    },
-    {
-      "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
-      "status": "passed",
-      "duration": 17047
     }
   ]
 }
