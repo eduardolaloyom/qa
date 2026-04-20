@@ -628,7 +628,7 @@ Step 2.6: SKIPPED. Phase 5 is pure file I/O + git operations. No external servic
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does `all_slugs` for the script come from all three data sources or only from history clients?**
    - What we know: History has ~36 slugs (including seeded); manifest has 5 unique slugs; their union has ~36 entries
