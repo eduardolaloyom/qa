@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 139,
+  "passed": 141,
   "failed": 2,
-  "skipped": 5,
+  "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "passed",
+      "duration": 18897
+    },
+    {
+      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
+      "status": "passed",
+      "duration": 16402
+    },
+    {
+      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
+      "status": "skipped",
+      "duration": 12431
+    },
     {
       "title": "bastien: enableNewUI=false",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: showMinOne=false",
       "status": "passed",
       "duration": 7832
-    },
-    {
-      "title": "sonrie: enableCreditNotes=false",
-      "status": "passed",
-      "duration": 7489
-    },
-    {
-      "title": "sonrie: enableTask=false",
-      "status": "passed",
-      "duration": 7538
-    },
-    {
-      "title": "sonrie: pointsEnabled=false",
-      "status": "passed",
-      "duration": 7691
     }
   ]
 }
