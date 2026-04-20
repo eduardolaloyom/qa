@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 33,
+  "passed": 37,
   "failed": 1,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: hasTransportCode=false",
+      "status": "passed",
+      "duration": 15855
+    },
+    {
+      "title": "bastien: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "passed",
+      "duration": 22536
+    },
+    {
+      "title": "sonrie: editAddress=true",
+      "status": "passed",
+      "duration": 15642
+    },
+    {
+      "title": "sonrie: limitAddingByStock=false",
+      "status": "passed",
+      "duration": 8030
+    },
     {
       "title": "sonrie: purchaseOrderEnabled=false",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: inMaintenance=false",
       "status": "passed",
       "duration": 4345
-    },
-    {
-      "title": "bastien: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 20978
-    },
-    {
-      "title": "sonrie: anonymousAccess=false",
-      "status": "passed",
-      "duration": 6251
-    },
-    {
-      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 17699
-    },
-    {
-      "title": "sonrie: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 13058
     }
   ]
 }
