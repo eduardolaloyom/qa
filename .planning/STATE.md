@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: QA Pipeline & Dashboard v2
 status: active
-stopped_at: Phase 4 planned — ready to execute
+stopped_at: Phase 4 complete — awaiting Phase 5 planning
 last_updated: "2026-04-21"
-last_activity: 2026-04-21 — Phase 4 (Triage Persistence) planned — 2 plans in 1 wave, plan-checker PASSED first round
+last_activity: 2026-04-21 — Phase 4 (Triage Persistence) executed — 2/2 plans complete in 1 wave
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 9
-  completed_plans: 7
-  percent: 50
+  completed_plans: 9
+  percent: 67
 ---
 
 # STATE — QA Pipeline & Dashboard v2
@@ -26,14 +26,14 @@ progress:
 
 ## Current Position
 
-**Phase:** Phase 4 — Triage Persistence (CONTEXT.md captured, awaiting plan-phase)
+**Phase:** Phase 5 — QA LISTO Weekly Status (not started)
 **Plan:** None yet
-**Status:** Phase 3 complete. Phase 4 discuss done (17 decisions locked). Next: /gsd-plan-phase 4
-**Progress:** 3/6 phases complete
+**Status:** Phase 4 complete — PROC-01 and PROC-02 closed. Next: /gsd-plan-phase 5
+**Progress:** 4/6 phases complete
 
 ```
-[██████████░░░░░░░░░░] 50%
-Phase 1 ✓ ──▶ Phase 2 ✓ ──▶ Phase 3 ✓ ──▶ Phase 4 (CONTEXT ✓) ──▶ Phase 5 ──▶ Phase 6
+[█████████████░░░░░░░] 67%
+Phase 1 ✓ ──▶ Phase 2 ✓ ──▶ Phase 3 ✓ ──▶ Phase 4 ✓ ──▶ Phase 5 ──▶ Phase 6
 ```
 
 ## Active Requirements (v1)

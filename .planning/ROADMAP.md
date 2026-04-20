@@ -21,7 +21,7 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
 - [x] **Phase 1: Pipeline Bug Fixes** — Fix manifest path and stale live.json so downstream dashboard data is trustworthy
 - [x] **Phase 2: Data Freshness Signals** — Make stale client cards visually obvious so users trust (or distrust) what they see
 - [x] **Phase 3: Unified QA Status View** — Deliver the core value — one row per client showing all three pipelines + per-client trend
-- [ ] **Phase 4: Triage Persistence** — Capture triage decisions as committed files so history is auditable
+- [x] **Phase 4: Triage Persistence** — Capture triage decisions as committed files so history is auditable
 - [ ] **Phase 5: QA LISTO Weekly Status** — Give Tech a deploy-readiness signal driven by objective criteria
 - [ ] **Phase 6: Actionable Reports & Agent Precision** — Make HTML reports useful to stakeholders and make Claude agents consistent in triage/classification
 
@@ -80,8 +80,8 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
   3. If no triage file exists, `publish-results.py` continues to work exactly as before — no failure, no regression
   4. A user inspecting `public/history/{date}.json` for a past date can see which failures were triaged and how, without opening chat history
 **Plans:** 2 plans
-- [ ] 04-01-PLAN.md — publish-results.py: triage overlay (3 helpers + generate_run_json wiring) — PROC-02
-- [ ] 04-02-PLAN.md — /triage-playwright command: Step 5 persistir archivo + commit+push — PROC-01
+- [x] 04-01-PLAN.md — publish-results.py: triage overlay (3 helpers + generate_run_json wiring) — PROC-02
+- [x] 04-02-PLAN.md — /triage-playwright command: Step 5 persistir archivo + commit+push — PROC-01
 
 ### Phase 5: QA LISTO Weekly Status
 **Goal**: Tech has an objective, dashboard-visible signal of whether each client is ready to deploy, derived from the three pipelines
@@ -114,7 +114,7 @@ Each phase produces a visible, testable outcome. No phase leaves the dashboard i
 | 1. Pipeline Bug Fixes | 2/2 | Complete ✓ | 2026-04-19 |
 | 2. Data Freshness Signals | 2/2 | Complete ✓ | 2026-04-19 |
 | 3. Unified QA Status View | 3/3 | Complete ✓ | 2026-04-20 |
-| 4. Triage Persistence | 0/? | Not started | - |
+| 4. Triage Persistence | 2/2 | Complete ✓ | 2026-04-21 |
 | 5. QA LISTO Weekly Status | 0/? | Not started | - |
 | 6. Actionable Reports & Agent Precision | 0/? | Not started | - |
 
