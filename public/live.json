@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 27,
+  "passed": 30,
   "failed": 0,
   "skipped": 3,
-  "currentTest": "sonrie: enableCoupons=true",
+  "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableCoupons=true",
+      "status": "passed",
+      "duration": 15335
+    },
+    {
+      "title": "sonrie: disableCart=false",
+      "status": "passed",
+      "duration": 10051
+    },
+    {
+      "title": "bastien: loginButtons.google=false",
+      "status": "passed",
+      "duration": 4696
+    },
     {
       "title": "bastien: anonymousHideCart=false",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
       "status": "passed",
       "duration": 17801
-    },
-    {
-      "title": "bastien: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 14226
-    },
-    {
-      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 25049
-    },
-    {
-      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 23771
     }
   ]
 }
