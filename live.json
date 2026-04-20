@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 88,
+  "passed": 94,
   "failed": 2,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: shareOrderNewDesign=false",
+      "status": "passed",
+      "duration": 4849
+    },
+    {
+      "title": "bastien: hasVoucherPrinterEnabled=false",
+      "status": "passed",
+      "duration": 4932
+    },
+    {
+      "title": "bastien: enableOrderApproval=false",
+      "status": "passed",
+      "duration": 4839
+    },
+    {
+      "title": "bastien: ordersRequireVerification=false",
+      "status": "passed",
+      "duration": 5786
+    },
+    {
+      "title": "sonrie: disableCommerceEdit=false",
+      "status": "passed",
+      "duration": 9907
+    },
+    {
+      "title": "sonrie: enablePaymentDocumentsB2B=false",
+      "status": "passed",
+      "duration": 11352
+    },
     {
       "title": "bastien: ordersRequireAuthorization=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "bastien: weightInfo=false",
       "status": "passed",
       "duration": 4579
-    },
-    {
-      "title": "bastien: hasNoSaleFilter=false",
-      "status": "passed",
-      "duration": 5764
-    },
-    {
-      "title": "bastien: packagingInformation.hidePackagingInformationB2B=true",
-      "status": "passed",
-      "duration": 4930
-    },
-    {
-      "title": "bastien: hasMultiUnitEnabled=false",
-      "status": "passed",
-      "duration": 5158
-    },
-    {
-      "title": "bastien: hasStockEnabled=false",
-      "status": "passed",
-      "duration": 4964
-    },
-    {
-      "title": "bastien: lazyLoadingPrices=false",
-      "status": "passed",
-      "duration": 5466
-    },
-    {
-      "title": "bastien: enableChooseSaleUnit=false",
-      "status": "passed",
-      "duration": 4682
     }
   ]
 }
