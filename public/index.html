@@ -1783,7 +1783,10 @@ async function initDashboard() {
         updatePendingB2b();
         updateSuitesTable();
         updateClients();
+        updateUnifiedQaTable(latestRun);              // Phase 3: render inicial INMEDIATAMENTE después de updateClients() (D-02)
+        setupUnifiedFilterPills();                    // Phase 3: wire pills una vez (después del primer render)
         populateRunSelector();
+        wireUnifiedQaRunListener();                   // Phase 3: listener adicional sobre #runSelector (D-01) — después de populateRunSelector
         updateTrendChart();
     } catch (e) {
         console.error(e);
@@ -2251,6 +2254,21 @@ function populateRunSelector() {
                 updateClients(run);
             } else {
                 console.warn('Run not found for date:', e.target.value);
+            }
+        });
+    });
+}
+
+function wireUnifiedQaRunListener() {
+    const sel = document.getElementById('runSelector');
+    if (!sel || sel.dataset.phase3Wired === 'true') return;
+    sel.dataset.phase3Wired = 'true';
+    // D-01: listener ADICIONAL — no reemplaza el de Phase 2. Ambos se disparan en orden de registro.
+    sel.addEventListener('change', (e) => {
+        loadRunDetails(e.target.value).then(run => {
+            if (run) {
+                updateUnifiedQaTable(run);
+                // resetUnifiedFilterPills ya se invoca dentro de updateUnifiedQaTable (D-12)
             }
         });
     });
