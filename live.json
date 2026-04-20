@@ -2,11 +2,16 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 193,
+  "passed": 194,
   "failed": 6,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "passed",
+      "duration": 80437
+    },
     {
       "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
       "status": "passed",
@@ -101,11 +106,6 @@
       "title": "bastien: C3-03 Precios consistentes catalogo vs carro",
       "status": "passed",
       "duration": 21326
-    },
-    {
-      "title": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
-      "status": "passed",
-      "duration": 15104
     }
   ]
 }
