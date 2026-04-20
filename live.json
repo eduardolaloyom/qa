@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 163,
+  "passed": 164,
   "failed": 4,
-  "skipped": 7,
+  "skipped": 9,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "status": "passed",
+      "duration": 20204
+    },
+    {
+      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 13408
+    },
+    {
+      "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
+      "status": "skipped",
+      "duration": 13259
+    },
     {
       "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
       "status": "skipped",
@@ -91,21 +106,6 @@
       "title": "bastien: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "passed",
       "duration": 7871
-    },
-    {
-      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
-      "status": "passed",
-      "duration": 10633
-    },
-    {
-      "title": "bastien: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "passed",
-      "duration": 22526
-    },
-    {
-      "title": "bastien: PM2-04 Modal/UI de cupón no queda en loading infinito",
-      "status": "passed",
-      "duration": 23363
     }
   ]
 }
