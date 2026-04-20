@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 185,
+  "passed": 188,
   "failed": 5,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 18203
+    },
+    {
+      "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 16405
+    },
+    {
+      "title": "sonrie: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "passed",
+      "duration": 13226
+    },
     {
       "title": "sonrie: PM5-01 Catálogo carga productos con precios (promotions funcional)",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: C3-15 Cupon invalido muestra error claro",
       "status": "skipped",
       "duration": 16034
-    },
-    {
-      "title": "sonrie: C3-14 Campo de cupon visible en carro (enableCoupons)",
-      "status": "passed",
-      "duration": 17596
-    },
-    {
-      "title": "bastien: PAG-16 Montos en historial no muestran valores negativos confusos",
-      "status": "passed",
-      "duration": 17582
-    },
-    {
-      "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
-      "status": "passed",
-      "duration": 15906
     }
   ]
 }
