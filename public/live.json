@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 165,
+  "passed": 169,
   "failed": 4,
-  "skipped": 12,
+  "skipped": 15,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 15906
+    },
+    {
+      "title": "bastien: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 17618
+    },
+    {
+      "title": "sonrie: C3-04 Descuento visible en catalogo",
+      "status": "skipped",
+      "duration": 76
+    },
+    {
+      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 12961
+    },
+    {
+      "title": "sonrie: C3-02 Detectar productos con precio $0",
+      "status": "skipped",
+      "duration": 47
+    },
+    {
+      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "skipped",
+      "duration": 51
+    },
+    {
+      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 12823
+    },
     {
       "title": "bastien: C7-12 /payment-documents carga sin error cuando flag=true",
       "status": "skipped",
@@ -71,41 +106,6 @@
       "title": "bastien: No hay productos con precio $0",
       "status": "passed",
       "duration": 9937
-    },
-    {
-      "title": "bastien: Agregar producto al carro",
-      "status": "passed",
-      "duration": 6451
-    },
-    {
-      "title": "sonrie: No hay productos con precio $0",
-      "status": "passed",
-      "duration": 14690
-    },
-    {
-      "title": "bastien: Catálogo muestra productos con precios",
-      "status": "passed",
-      "duration": 5345
-    },
-    {
-      "title": "bastien: Login exitoso",
-      "status": "passed",
-      "duration": 8841
-    },
-    {
-      "title": "sonrie: Agregar producto al carro",
-      "status": "passed",
-      "duration": 9791
-    },
-    {
-      "title": "bastien: Acceso anónimo muestra catálogo",
-      "status": "passed",
-      "duration": 5323
-    },
-    {
-      "title": "sonrie: Catálogo muestra productos con precios",
-      "status": "passed",
-      "duration": 9744
     }
   ]
 }
