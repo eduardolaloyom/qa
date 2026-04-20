@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 94,
+  "passed": 99,
   "failed": 2,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enablePayments=false",
+      "status": "passed",
+      "duration": 9012
+    },
+    {
+      "title": "bastien: disableCommerceEdit=false",
+      "status": "passed",
+      "duration": 7887
+    },
+    {
+      "title": "bastien: enablePaymentDocumentsB2B=false",
+      "status": "passed",
+      "duration": 7716
+    },
+    {
+      "title": "bastien: enableInvoicesList=false",
+      "status": "passed",
+      "duration": 6744
+    },
+    {
+      "title": "bastien: enableOrderValidation=false",
+      "status": "passed",
+      "duration": 11301
+    },
     {
       "title": "bastien: shareOrderNewDesign=false",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "bastien: enablePriceOracle=false",
       "status": "passed",
       "duration": 8390
-    },
-    {
-      "title": "bastien: hasMultipleBusinessUnit=false",
-      "status": "passed",
-      "duration": 8552
-    },
-    {
-      "title": "bastien: enableDistributionCentersSelector=false",
-      "status": "passed",
-      "duration": 4833
-    },
-    {
-      "title": "bastien: uploadOrderFileWithMinUnits=false",
-      "status": "passed",
-      "duration": 4543
-    },
-    {
-      "title": "bastien: showEmptyCategories=false",
-      "status": "passed",
-      "duration": 4883
-    },
-    {
-      "title": "bastien: weightInfo=false",
-      "status": "passed",
-      "duration": 4579
     }
   ]
 }
