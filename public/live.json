@@ -1,1 +1,10 @@
-{"running": false, "total": 0, "passed": 0, "failed": 0, "skipped": 0, "currentTest": null, "recentTests": []}
+{
+  "running": true,
+  "startTime": "2026-04-20T19:25:44.817Z",
+  "total": 212,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 0,
+  "currentTest": null,
+  "recentTests": []
+}
