@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 131,
+  "passed": 139,
   "failed": 2,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: enableNewUI=false",
+      "status": "passed",
+      "duration": 7939
+    },
+    {
+      "title": "bastien: enableBetaButtons=false",
+      "status": "passed",
+      "duration": 5012
+    },
+    {
+      "title": "bastien: useNewPromotions=true",
+      "status": "passed",
+      "duration": 4693
+    },
+    {
+      "title": "bastien: blockedClientAlert.enableBlockedClientAlert=false",
+      "status": "passed",
+      "duration": 4831
+    },
+    {
+      "title": "bastien: externalAccess=false",
+      "status": "passed",
+      "duration": 4746
+    },
+    {
+      "title": "bastien: showMinOne=false",
+      "status": "passed",
+      "duration": 5901
+    },
+    {
+      "title": "sonrie: enableNewUI=false",
+      "status": "passed",
+      "duration": 11168
+    },
+    {
+      "title": "bastien: enableCreditNotes=false",
+      "status": "passed",
+      "duration": 5163
+    },
     {
       "title": "bastien: enableTask=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: pointsEnabled=false",
       "status": "passed",
       "duration": 7691
-    },
-    {
-      "title": "sonrie: pendingDocuments=false",
-      "status": "passed",
-      "duration": 7689
-    },
-    {
-      "title": "bastien: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 9114
-    },
-    {
-      "title": "bastien: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 6839
-    },
-    {
-      "title": "bastien: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 9298
-    },
-    {
-      "title": "bastien: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 5098
-    },
-    {
-      "title": "bastien: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 8066
-    },
-    {
-      "title": "bastien: includeTaxRateInPrices=false",
-      "status": "passed",
-      "duration": 8759
-    },
-    {
-      "title": "bastien: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 4662
     }
   ]
 }
