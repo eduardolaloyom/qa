@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 20,
+  "passed": 27,
   "failed": 0,
-  "skipped": 2,
-  "currentTest": null,
+  "skipped": 3,
+  "currentTest": "sonrie: enableCoupons=true",
   "recentTests": [
+    {
+      "title": "bastien: anonymousHideCart=false",
+      "status": "passed",
+      "duration": 5500
+    },
+    {
+      "title": "bastien: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 4527
+    },
+    {
+      "title": "bastien: inMaintenance=false",
+      "status": "passed",
+      "duration": 4491
+    },
+    {
+      "title": "bastien: anonymousHidePrice=false",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: loginButtons.google=false",
+      "status": "passed",
+      "duration": 4655
+    },
+    {
+      "title": "bastien: anonymousAccess=true",
+      "status": "passed",
+      "duration": 4162
+    },
+    {
+      "title": "bastien: C2-13 Pedido aparece en historial",
+      "status": "passed",
+      "duration": 17044
+    },
+    {
+      "title": "sonrie: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 4500
+    },
     {
       "title": "sonrie: inMaintenance=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
       "status": "passed",
       "duration": 23771
-    },
-    {
-      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 17153
-    },
-    {
-      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 14695
-    },
-    {
-      "title": "bastien: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 21091
-    },
-    {
-      "title": "bastien: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 21094
-    },
-    {
-      "title": "bastien: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 20146
-    },
-    {
-      "title": "bastien: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 19108
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 17012
-    },
-    {
-      "title": "sonrie: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 16824
     }
   ]
 }
