@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 41,
+  "passed": 43,
   "failed": 1,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: enableCoupons=true",
+      "status": "passed",
+      "duration": 39909
+    },
+    {
+      "title": "sonrie: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 16033
+    },
     {
       "title": "sonrie: disableObservationInput=false",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "bastien: inMaintenance=false",
       "status": "passed",
       "duration": 4491
-    },
-    {
-      "title": "bastien: anonymousHidePrice=false",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie: loginButtons.google=false",
-      "status": "passed",
-      "duration": 4655
     }
   ]
 }
