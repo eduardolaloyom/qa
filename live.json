@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 51,
+  "passed": 54,
   "failed": 2,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 8834
+    },
+    {
+      "title": "sonrie: hidePrices=false",
+      "status": "passed",
+      "duration": 8929
+    },
+    {
+      "title": "sonrie: currency=undefined",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "bastien: disableObservationInput=false",
+      "status": "passed",
+      "duration": 41196
+    },
     {
       "title": "bastien: hasSingleDistributionCenter=true",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: hasTransportCode=false",
       "status": "passed",
       "duration": 15855
-    },
-    {
-      "title": "bastien: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "passed",
-      "duration": 22536
-    },
-    {
-      "title": "sonrie: editAddress=true",
-      "status": "passed",
-      "duration": 15642
-    },
-    {
-      "title": "sonrie: limitAddingByStock=false",
-      "status": "passed",
-      "duration": 8030
-    },
-    {
-      "title": "sonrie: purchaseOrderEnabled=false",
-      "status": "passed",
-      "duration": 15902
     }
   ]
 }
