@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 48,
+  "passed": 50,
   "failed": 1,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: disableShowEstimatedDeliveryHour=false",
+      "status": "passed",
+      "duration": 40942
+    },
+    {
+      "title": "bastien: editAddress=true",
+      "status": "passed",
+      "duration": 41194
+    },
     {
       "title": "bastien: purchaseOrderEnabled=false",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie: hideReceiptType=false",
       "status": "passed",
       "duration": 15638
-    },
-    {
-      "title": "bastien: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "failed",
-      "duration": 51712
-    },
-    {
-      "title": "sonrie: enableCoupons=true",
-      "status": "passed",
-      "duration": 15335
     }
   ]
 }
