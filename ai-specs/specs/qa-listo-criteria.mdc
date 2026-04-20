@@ -1,0 +1,87 @@
+# QA LISTO — Criterios de Deploy-Readiness
+
+Criterios objetivos para determinar si un cliente está listo para deployarse, basados en las tres pipelines de QA del equipo.
+
+## Qué es QA LISTO
+
+El script `tools/evaluate-qa-listo.py` evalúa si cada cliente puede deployarse con confianza, basándose en tres señales de pipeline. Se corre manualmente después de tener datos frescos disponibles (Playwright + Cowork + Maestro) y escribe el resultado en `public/weekly-status.json`, que el dashboard lee automáticamente.
+
+No reemplaza el juicio del equipo — es un resumen objetivo para acelerar la decisión de deploy.
+
+## Los tres estados
+
+| Estado | Significado | Color en dashboard |
+|--------|-------------|-------------------|
+| LISTO | El cliente puede deployarse con confianza — las tres pipelines están en verde | Verde |
+| PENDIENTE | Falta información o hay condiciones — revisar antes de deployar | Ámbar |
+| BLOQUEADO | Existe un bloqueo explícito — NO deployar sin resolver | Rojo |
+
+## Thresholds actuales
+
+Estos valores son la fuente de verdad para la clasificación:
+
+- `PLAYWRIGHT_MIN_PASS_PCT = 80` — Un cliente necesita pasar al menos el **80%** de sus tests Playwright para no bloquear el deploy. Por debajo de ese porcentaje, hay regresiones significativas que requieren atención.
+
+- `MAESTRO_MIN_HEALTH = 60` — El health score de Maestro (APP mobile) debe ser al menos **60/100** para clientes con flujos APP registrados. Por debajo de 60, el flujo principal de la app está comprometido.
+
+Los mismos thresholds aparecen en el campo `thresholds` de `public/weekly-status.json` para trazabilidad.
+
+## Lógica de clasificación
+
+El script evalúa las señales en este orden. **BLOQUEADO se evalúa primero** — un solo bloqueo es suficiente para bloquear el deploy.
+
+### 1. BLOQUEADO (cualquiera de estas condiciones bloquea el deploy)
+
+- Playwright tiene datos y el porcentaje de tests pasados es **menor al 80%**
+- Cowork entregó veredicto `BLOQUEADO`
+- El cliente tiene flujos Maestro (APP) y el health score es **menor a 60**
+
+Si hay varios bloqueos, el `reason` los lista todos separados por `;`.
+
+### 2. LISTO (se asigna solo si TODAS las siguientes son verdad)
+
+- Playwright tiene datos y pasa **80% o más** de sus tests
+- Cowork entregó veredicto `LISTO`
+- Maestro health es **60 o más** (o el cliente no tiene flujos APP — N/A no penaliza)
+
+### 3. PENDIENTE (caso por defecto)
+
+Cuando no hay bloqueo explícito pero tampoco están todos los semáforos en verde. Ejemplos:
+
+- Playwright aún sin datos recientes (no se han corrido tests para ese cliente)
+- Cowork entregó veredicto `CON_CONDICIONES` — el cliente puede deployarse con conciencia de las condiciones observadas, pero no es un LISTO completo
+- Cowork sin reporte aún para este cliente
+- Mix de señales que no completa el criterio LISTO pero sin bloqueo explícito
+
+## Maestro N/A
+
+Si un cliente no tiene flujos Maestro registrados en `public/manifest.json` (ninguna entrada `platform: app`), se considera automáticamente N/A en la evaluación.
+
+**N/A no penaliza** — un cliente puede ser LISTO sin datos de Maestro. El script lo determina dinámicamente: no hay lista hardcodeada de "clientes con app". En el momento en que se agreguen flows Maestro para un cliente en el manifest, el script lo incluirá en la evaluación automáticamente.
+
+## Cómo ajustar los thresholds
+
+Los thresholds viven en `tools/evaluate-qa-listo.py` como constantes al inicio del archivo:
+
+```
+PLAYWRIGHT_MIN_PASS_PCT = 80
+MAESTRO_MIN_HEALTH = 60
+```
+
+Para ajustarlos: editar esas dos líneas, correr el script, y el nuevo `weekly-status.json` reflejará los nuevos criterios. No hay que tocar el dashboard — lee el JSON dinámicamente.
+
+## Cómo correr el script
+
+Para actualizar el estado en producción (escribe el JSON + commit + push):
+
+```
+python3 tools/evaluate-qa-listo.py
+```
+
+Para preview sin escribir (útil para validar antes de publicar):
+
+```
+python3 tools/evaluate-qa-listo.py --dry-run
+```
+
+El script imprime un resumen por consola con todos los clientes ordenados: BLOQUEADOS primero, PENDIENTES segundo, LISTOS último.
