@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-20T19:25:44.817Z",
   "total": 212,
-  "passed": 156,
+  "passed": 160,
   "failed": 4,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 16171
+    },
+    {
+      "title": "bastien: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 9937
+    },
+    {
+      "title": "bastien: Agregar producto al carro",
+      "status": "passed",
+      "duration": 6451
+    },
+    {
+      "title": "sonrie: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 14690
+    },
     {
       "title": "bastien: Catálogo muestra productos con precios",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
       "status": "passed",
       "duration": 17497
-    },
-    {
-      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
-      "status": "passed",
-      "duration": 18878
-    },
-    {
-      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
-      "status": "passed",
-      "duration": 18897
-    },
-    {
-      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 16402
-    },
-    {
-      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 12431
     }
   ]
 }
