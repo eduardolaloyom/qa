@@ -115,3 +115,42 @@ Identificar: ¿en qué step exacto falló? ¿cuál es el mensaje de error?
 - Los datos de prueba pueden resetearse con `launchApp`
 
 **Cuando se activa manual-pass:** registrar la razón antes de continuar (ver `## Manual-Pass Logging` abajo).
+
+## Manual-Pass Logging
+
+Cuando se activa un manual-pass, registrar la decisión en el HTML del reporte Maestro existente del cliente. No hay nueva infraestructura — el HTML de Maestro ya existe en `public/app-reports/` o en el path del manifest.
+
+### Cómo registrar
+
+Localizar el HTML del run en `public/manifest.json` → buscar la entrada del cliente/fecha → abrir el archivo HTML referenciado.
+
+Si el HTML no tiene una sección `## Manual-pass decisions`, agregarla antes del cierre del `<body>`:
+
+```html
+<section class="manual-pass">
+  <h2>Manual-pass decisions</h2>
+  <ul>
+    <li>
+      <strong>{NN}-{feature}.yaml</strong> — {razón concisa del manual-pass}.<br>
+      Razón: {descripción del error y por qué no se puede corregir en el momento}.<br>
+      Aprobado por: {nombre} | {YYYY-MM-DD}
+    </li>
+  </ul>
+</section>
+```
+
+Si ya existe la sección, agregar un nuevo `<li>` al `<ul>` existente.
+
+### Campos obligatorios por entrada
+
+| Campo | Descripción | Ejemplo |
+|-------|-------------|---------|
+| Flow name | Nombre del archivo YAML | `05-pedido.yaml` |
+| Razón | Por qué falló y por qué se activa manual-pass | `Selector cambió en build 1.4.2` |
+| Descripción | Detalle del error y qué se intentó | `No se encontró id="checkout_btn", se verificó en log` |
+| Aprobado por | Quién activó el manual-pass | `Eduardo` |
+| Fecha | Fecha del run | `2026-04-21` |
+
+### Regla
+
+**El manual-pass sin registro en el HTML no es válido.** Si no hay forma de abrir el HTML (no existe el archivo), crear una entrada en `QA/{CLIENT}/{DATE}/maestro-manual-pass.md` con los mismos campos.
