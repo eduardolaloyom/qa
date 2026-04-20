@@ -1602,6 +1602,23 @@ async function loadManifestCached() {
     }
 }
 
+let weeklyStatusCache = null;
+
+async function loadWeeklyStatus() {
+    if (weeklyStatusCache) return weeklyStatusCache;
+    try {
+        const r = await fetch('weekly-status.json?v=' + Date.now());
+        if (!r.ok) throw new Error('no weekly-status');
+        weeklyStatusCache = await r.json();
+        console.info('weekly-status.json loaded:', weeklyStatusCache.reference_date);
+        return weeklyStatusCache;
+    } catch {
+        console.info('weekly-status.json not found — showing "Sin evaluar"');
+        weeklyStatusCache = { clients: {} };
+        return weeklyStatusCache;
+    }
+}
+
 function daysDiff(fromDateISO, toDateISO) {
     if (!fromDateISO || !toDateISO) return null;
     return Math.round((new Date(fromDateISO) - new Date(toDateISO)) / 86400000);
@@ -1706,15 +1723,36 @@ function renderMaestroBadge(slug, runDate, manifest) {
     return `<span class="u-badge ${cls}">${health}/100${stale}</span>`;
 }
 
+function renderEstadoBadge(slug, weeklyStatus) {
+    const entry = weeklyStatus?.clients?.[slug];
+    const status = entry?.status;
+    const reason = entry?.reason;
+    const titleAttr = reason ? ` title="${escapeHtml(reason)}"` : '';
+    if (status === 'LISTO') {
+        return `<span class="u-badge estado-listo"${titleAttr}>&#10003; LISTO</span>`;
+    }
+    if (status === 'PENDIENTE') {
+        return `<span class="u-badge estado-pendiente"${titleAttr}>&#9680; PENDIENTE</span>`;
+    }
+    if (status === 'BLOQUEADO') {
+        return `<span class="u-badge estado-bloqueado"${titleAttr}>&#10007; BLOQUEADO</span>`;
+    }
+    if (status !== undefined && status !== null) {
+        console.warn(`weekly-status: unknown status "${status}" for client "${slug}"`);
+    }
+    return '<span class="u-badge estado-sin-dato">Sin evaluar</span>';
+}
+
 async function updateUnifiedQaTable(run = latestRun) {
     const tbody = document.getElementById('unifiedQaBody');
     if (!tbody) return;
     if (!run || !run.clients || Object.keys(run.clients).length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="loading">Sin datos en este run. Ejecuta /run-playwright para poblar la tabla.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="loading">Sin datos en este run. Ejecuta /run-playwright para poblar la tabla.</td></tr>';
         resetUnifiedFilterPills();
         return;
     }
     const manifest = await loadManifestCached();
+    const weeklyStatus = weeklyStatusCache || { clients: {} };
     const rows = Object.entries(run.clients)
         .sort(([aSlug, a], [bSlug, b]) => (a.name || aSlug).localeCompare(b.name || bSlug))  // D-13
         .map(([slug, c]) => {
@@ -1724,17 +1762,20 @@ async function updateUnifiedQaTable(run = latestRun) {
             const combined = pwBadge + cwBadge + mtBadge;
             const hasProblem = /pw-fail|cw-bloqueado|mt-fail/.test(combined);
             const hasStale = /u-badge-stale-suffix/.test(combined);
+            const estadoBadge = renderEstadoBadge(slug, weeklyStatus);
+            const estadoStatus = weeklyStatus?.clients?.[slug]?.status?.toLowerCase() || 'sin-dato';
             const clientName = escapeHtml(c.name || slug);
             const clientSlug = escapeHtml(slug);
-            return `<tr data-problemas="${hasProblem}" data-stale="${hasStale}">
+            return `<tr data-problemas="${hasProblem}" data-stale="${hasStale}" data-estado="${estadoStatus}">
                 <td><div class="u-client-name">${clientName}</div>
                     <div class="u-client-slug">${clientSlug}</div></td>
                 <td>${pwBadge}</td>
                 <td>${cwBadge}</td>
                 <td>${mtBadge}</td>
+                <td>${estadoBadge}</td>
             </tr>`;
         });
-    tbody.innerHTML = rows.join('') || '<tr><td colspan="4" class="loading">Sin datos en este run. Ejecuta /run-playwright para poblar la tabla.</td></tr>';
+    tbody.innerHTML = rows.join('') || '<tr><td colspan="5" class="loading">Sin datos en este run. Ejecuta /run-playwright para poblar la tabla.</td></tr>';
     resetUnifiedFilterPills();  // D-12: cambiar run resetea filtro a "Todos"
 }
 
@@ -1749,10 +1790,11 @@ function setupUnifiedFilterPills() {
         pill.classList.add('active');
         const tbody = document.getElementById('unifiedQaBody');
         if (!tbody) return;
-        tbody.classList.remove('filter-problemas', 'filter-stale');
+        tbody.classList.remove('filter-problemas', 'filter-stale', 'filter-bloqueado');
         const mode = pill.dataset.filter;
         if (mode === 'problemas') tbody.classList.add('filter-problemas');
         else if (mode === 'stale') tbody.classList.add('filter-stale');
+        else if (mode === 'bloqueado') tbody.classList.add('filter-bloqueado');
     });
 }
 
@@ -1763,7 +1805,7 @@ function resetUnifiedFilterPills() {
     const allPill = container.querySelector('[data-filter="all"]');
     if (allPill) allPill.classList.add('active');
     const tbody = document.getElementById('unifiedQaBody');
-    if (tbody) tbody.classList.remove('filter-problemas', 'filter-stale');
+    if (tbody) tbody.classList.remove('filter-problemas', 'filter-stale', 'filter-bloqueado');
 }
 
 // ── Ambiente helpers ───────────────────────────────────────
@@ -1839,6 +1881,7 @@ async function initDashboard() {
         updatePendingB2b();
         updateSuitesTable();
         updateClients();
+        await loadWeeklyStatus();                          // Phase 5: pre-load so updateUnifiedQaTable has cache available
         updateUnifiedQaTable(latestRun);              // Phase 3: render inicial INMEDIATAMENTE después de updateClients() (D-02)
         setupUnifiedFilterPills();                    // Phase 3: wire pills una vez (después del primer render)
         populateRunSelector();
