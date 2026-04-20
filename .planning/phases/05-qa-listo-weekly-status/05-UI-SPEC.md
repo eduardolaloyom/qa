@@ -82,8 +82,9 @@ Heredada de Phase 2/3. Sin nuevos tamaños ni pesos.
 |------|------|--------|-------------|-------------------|
 | Body | 14px | 400 | 1.5 | (no se usa — la celda ya hereda del `td`) |
 | Badge text | 11px | 700 | 1.2 | Texto "LISTO" / "PENDIENTE" / "BLOQUEADO" |
-| Filter pill | 12px | 600 | 1.4 | Texto del nuevo pill "Bloqueados" (hereda `.unified-filter-pill`) |
 | Column header | 11px | 700 | 1 | Header `Estado` (hereda `.unified-qa-table th` con uppercase) |
+
+> El pill "Bloqueados" reusa `.unified-filter-pill` sin modificar estilos (peso 600 heredado de Phase 3 CSS existente). Phase 5 solo declara pesos 400 y 700.
 
 No se declaran tamaños nuevos. La fase es aditiva al contrato tipográfico de Phase 3.
 
