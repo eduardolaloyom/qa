@@ -56,6 +56,69 @@ def load_qa_matrix(matrix_path: str = "data/qa-matrix.json") -> dict:
         return json.load(f)
 
 
+# ── Contract validation ────────────────────────────────────────────────────────
+
+_CONTRACT_BOOL_FIELDS = {
+    "anonymousAccess", "anonymousHideCart", "anonymousHidePrice",
+    "disableCart", "disableCommerceEdit", "disableShowEstimatedDeliveryHour",
+    "disableShowDiscount", "disableShowOffer",
+    "editAddress", "enableAskDeliveryDate", "enableCoupons",
+    "enableDialogNoSellReason", "enableInvoicesList", "enableOrderApproval",
+    "enableOrderValidation", "enableSellerDiscount", "externalAccess",
+    "hasMultiUnitEnabled", "hidePrices", "hideReceiptType",
+    "hooks.cartShoppingHook", "hooks.getPendingDocumentsHook",
+    "hooks.shippingHook", "hooks.stockHook", "hooks.updateTrafficLightHook",
+    "inMaintenance", "includeTaxRateInPrices", "lazyLoadingPrices",
+    "ordersRequireAuthorization", "ordersRequireVerification",
+    "pendingDocuments", "pointsEnabled", "purchaseOrderEnabled",
+    "showEmptyCategories", "showMinOne", "taxes.showSummary",
+    "taxes.useTaxRate", "useMobileGps", "weightInfo",
+}
+
+
+def validate_client_variables(qa_matrix: dict) -> int:
+    """Validate client variables against the contract schema.
+    Non-blocking: prints [CONTRACT WARN] lines, never raises.
+    Schema ref: data/schemas/client-variables.schema.json
+    Bug ref: BAS-QA-006 (taxes.taxRate: 19 should be 0.19)
+    """
+    violations = 0
+    for client_key, client_data in qa_matrix.get("clients", {}).items():
+        variables = client_data.get("variables", {})
+        for field in _CONTRACT_BOOL_FIELDS:
+            value = variables.get(field)
+            if value is None:
+                continue
+            if not isinstance(value, bool):
+                print(
+                    f"[CONTRACT WARN] {client_key} / {field}: "
+                    f"expected bool, got {type(value).__name__} {value!r} "
+                    f"(schema: data/schemas/client-variables.schema.json)"
+                )
+                violations += 1
+        tax_rate = variables.get("taxes.taxRate")
+        if tax_rate is not None:
+            if isinstance(tax_rate, bool) or not isinstance(tax_rate, (int, float)):
+                print(
+                    f"[CONTRACT WARN] {client_key} / taxes.taxRate: "
+                    f"expected number, got {type(tax_rate).__name__} {tax_rate!r} "
+                    f"(schema: data/schemas/client-variables.schema.json)"
+                )
+                violations += 1
+            elif not (0.0 <= float(tax_rate) <= 1.0):
+                print(
+                    f"[CONTRACT WARN] {client_key} / taxes.taxRate: "
+                    f"value {tax_rate} out of range [0, 1] — BAS-QA-006: use 0.19 not 19 "
+                    f"(schema: data/schemas/client-variables.schema.json)"
+                )
+                violations += 1
+    if violations == 0:
+        print("   Contract validation: OK (0 violations)")
+    else:
+        print(f"   Contract validation: {violations} violation(s) — see [CONTRACT WARN] lines above")
+    return violations
+
+
 def map_domain_to_baseurl(domain: str) -> str:
     """Map MongoDB domain to frontend baseURL.
 
@@ -349,6 +412,7 @@ def main():
 
     print(f"Loading {args.input}...")
     qa_matrix = load_qa_matrix(args.input)
+    validate_client_variables(qa_matrix)
     b2b_feature_map = load_b2b_feature_status()
 
     print(f"Generating clients.ts from {len(qa_matrix.get('clients', {}))} clients...")

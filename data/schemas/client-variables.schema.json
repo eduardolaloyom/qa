@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ClientVariables",
+  "description": "Contract schema for YOM client config variables extracted from MongoDB. Bug ref: BAS-QA-006 (taxes.taxRate: 19 should be 0.19).",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "taxes.taxRate": {
+      "description": "Tax rate as decimal fraction. 0 = no tax, 0.19 = 19%. BAS-QA-006: integer 19 was written instead of 0.19.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "taxes.showSummary":               { "type": "boolean" },
+    "taxes.useTaxRate":                { "type": "boolean" },
+    "includeTaxRateInPrices":          { "type": "boolean" },
+
+    "anonymousAccess":                 { "type": "boolean" },
+    "anonymousHideCart":               { "type": "boolean" },
+    "anonymousHidePrice":              { "type": "boolean" },
+    "externalAccess":                  { "type": "boolean" },
+    "inMaintenance":                   { "type": "boolean" },
+
+    "disableCart":                     { "type": "boolean" },
+    "disableCommerceEdit":             { "type": "boolean" },
+    "disableShowEstimatedDeliveryHour":{ "type": "boolean" },
+    "disableShowDiscount":             { "type": "boolean" },
+    "disableShowOffer":                { "type": "boolean" },
+
+    "enableCoupons":                   { "type": "boolean" },
+    "enableAskDeliveryDate":           { "type": "boolean" },
+    "enableDialogNoSellReason":        { "type": "boolean" },
+    "enableInvoicesList":              { "type": "boolean" },
+    "enableOrderApproval":             { "type": "boolean" },
+    "enableOrderValidation":           { "type": "boolean" },
+    "enableSellerDiscount":            { "type": "boolean" },
+
+    "editAddress":                     { "type": "boolean" },
+    "hidePrices":                      { "type": "boolean" },
+    "hideReceiptType":                 { "type": "boolean" },
+    "lazyLoadingPrices":               { "type": "boolean" },
+    "ordersRequireAuthorization":      { "type": "boolean" },
+    "ordersRequireVerification":       { "type": "boolean" },
+    "pendingDocuments":                { "type": "boolean" },
+    "pointsEnabled":                   { "type": "boolean" },
+    "purchaseOrderEnabled":            { "type": "boolean" },
+    "showEmptyCategories":             { "type": "boolean" },
+    "showMinOne":                      { "type": "boolean" },
+    "useMobileGps":                    { "type": "boolean" },
+    "weightInfo":                      { "type": "boolean" },
+
+    "hasMultiUnitEnabled":             { "type": "boolean" },
+
+    "hooks.cartShoppingHook":          { "type": "boolean" },
+    "hooks.getPendingDocumentsHook":   { "type": "boolean" },
+    "hooks.shippingHook":              { "type": "boolean" },
+    "hooks.stockHook":                 { "type": "boolean" },
+    "hooks.updateTrafficLightHook":    { "type": "boolean" }
+  }
+}
