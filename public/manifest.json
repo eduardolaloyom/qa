@@ -12,10 +12,21 @@
       "environment": "staging"
     },
     {
+      "client": "Bastien",
+      "client_slug": "bastien",
+      "date": "2026-04-20",
+      "file": "qa-reports/bastien-2026-04-20.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 44,
+      "modes_done": ["A", "B", "C", "D"],
+      "platform": "b2b",
+      "environment": "staging"
+    },
+    {
       "client": "Sonrie Market",
       "client_slug": "sonrie-market",
       "date": "2026-04-20",
-      "file": "qa-reports/bastien-2026-04-20.html",
+      "file": "qa-reports/sonrie-market-2026-04-20.html",
       "verdict": "CON_CONDICIONES",
       "score": 78,
       "modes_done": ["A", "B", "C", "D"],

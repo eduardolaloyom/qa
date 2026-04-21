@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B QA — Sonrie Market — 2026-04-20</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); min-height: 100vh; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        .back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9em; display: inline-block; margin-bottom: 16px; }
+        .back-link:hover { color: white; }
+        header { color: white; margin-bottom: 24px; }
+        header h1 { font-size: 1.9em; margin-bottom: 4px; }
+        header p { opacity: 0.8; font-size: 0.95em; }
+        .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.18); }
+        .card-title { font-size: 1.05em; font-weight: 700; color: #111827; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .stat { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; padding: 14px; border-radius: 10px; text-align: center; }
+        .stat.green { background: linear-gradient(135deg, #10b981, #059669); }
+        .stat.amber { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .stat.gray { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+        .stat-value { font-size: 1.8em; font-weight: 800; line-height: 1; }
+        .stat-label { font-size: 0.72em; opacity: 0.9; font-weight: 600; margin-top: 4px; }
+        .verdict-badge { display: inline-block; padding: 6px 18px; border-radius: 99px; font-weight: 700; font-size: 0.9em; margin-bottom: 18px; }
+        .verdict-condiciones { background: #fef3c7; color: #92400e; }
+        .health-bar { margin-bottom: 8px; }
+        .health-meta { display: flex; justify-content: space-between; font-size: 0.82em; color: #6b7280; font-weight: 600; margin-bottom: 5px; }
+        .health-meta strong { color: #111827; }
+        .health-track { height: 10px; background: #f3f4f6; border-radius: 99px; overflow: hidden; }
+        .health-fill { height: 100%; border-radius: 99px; }
+        .health-fill.green { background: #10b981; }
+        .health-fill.amber { background: #f59e0b; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f9fafb; text-align: left; padding: 10px 14px; font-size: 0.78em; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1.5px solid #e5e7eb; }
+        td { padding: 10px 14px; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+        .badge { padding: 2px 10px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }
+        .badge.pass { background: #d1fae5; color: #065f46; }
+        .badge.fail { background: #fee2e2; color: #991b1b; }
+        .badge.blocked { background: #fef3c7; color: #92400e; }
+        .badge.na { background: #f3f4f6; color: #9ca3af; }
+        .badge.p2 { background: #ffedd5; color: #9a3412; }
+        .badge.p3 { background: #fef9c3; color: #713f12; }
+        .badge.info { background: #e0f2fe; color: #0369a1; }
+        .issue-row td:first-child { font-weight: 600; color: #374151; }
+        .sub { font-size: 0.8em; color: #6b7280; margin-top: 3px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, 1fr); } }
+        footer { color: rgba(255,255,255,0.7); font-size: 0.82em; text-align: center; margin-top: 24px; }
+        .accionable { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 10px; font-size: 0.87em; }
+        .accionable strong { color: #111827; }
+        .flag-ok { color: #059669; font-weight: 700; }
+        .flag-fail { color: #dc2626; font-weight: 700; }
+        .btn-linear { display: inline-block; margin-top: 6px; padding: 3px 10px; background: #f0ebff; color: #5b44c4; border: 1px solid #c4b5fd; border-radius: 6px; font-size: 0.75em; font-weight: 700; cursor: pointer; text-decoration: none; }
+        .btn-linear:hover { background: #e0d9ff; }
+        .blocker-tag { display: inline-block; padding: 2px 8px; background: #f3f4f6; color: #6b7280; border-radius: 4px; font-size: 0.75em; font-weight: 600; margin-right: 4px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../" class="back-link">← Dashboard principal</a>
+    <header>
+        <h1>🌐 B2B QA — Sonrie Market</h1>
+        <p>Cowork FULL (A+B+C+D) · sonrie.solopide.me · 2026-04-20</p>
+    </header>
+
+    <!-- Resumen ejecutivo -->
+    <div class="card">
+        <div class="card-title">Resumen ejecutivo</div>
+        <span class="verdict-badge verdict-condiciones">LISTO CON CONDICIONES</span>
+        <div class="stats">
+            <div class="stat gray"><div class="stat-value">0</div><div class="stat-label">P0/P1 Críticos</div></div>
+            <div class="stat amber"><div class="stat-value">1</div><div class="stat-label">P2 Alto</div></div>
+            <div class="stat" style="background:linear-gradient(135deg,#fbbf24,#d97706)"><div class="stat-value">3</div><div class="stat-label">P3 Medios</div></div>
+            <div class="stat green"><div class="stat-value">5/5</div><div class="stat-label">Flujos core OK</div></div>
+        </div>
+        <div class="health-bar">
+            <div class="health-meta"><strong>Health Score</strong><span>78/100</span></div>
+            <div class="health-track"><div class="health-fill green" style="width:78%"></div></div>
+        </div>
+        <p style="font-size:0.88em;color:#374151;margin-top:12px;">Flujos core funcionales: login, catálogo (30 productos), carrito, confirmación de pedido, historial y documentos. Un P2 activo (3 SKUs sin imagen en S3). Issues P3 no bloquean operación. Flag <code>enablePaymentDocumentsB2B=true</code> y <code>taxRate=$0</code> aplicados correctamente. Staging blockers pendientes de datos en fixture (C10, cupones).</p>
+    </div>
+
+    <!-- Accionables -->
+    <div class="card">
+        <div class="card-title">📋 Accionables prioritarios</div>
+        <div class="accionable">
+            <strong>Bastien-QA-001 — 3 productos sin imagen en S3</strong><br>
+            <span class="sub">SKUs afectados: 006010-008 (NEXT Agua Frambuesa 6x1,5Lt), 000947-057 (Leche Proteína Capuccino 1L), 000948-057 (Leche Proteína Capuccino 200ml). Muestran placeholder gris. · <strong>Dueño:</strong> Cliente/Ops · <strong>Plazo:</strong> Cargar imágenes a S3 staging</span>
+        </div>
+        <div class="accionable">
+            <strong>Bastien-QA-002 — Número de pedido muestra ID MongoDB en /confirmation</strong><br>
+            <span class="sub">Confirmación muestra <code>#69e695dfc51b5ae6070baa0d</code> en vez de <code>#43</code>. En /orders muestra correlativo correcto. · <strong>Dueño:</strong> Tech · <strong>Plazo:</strong> Fix en componente Confirmation</span>
+        </div>
+        <div class="accionable">
+            <strong>Bastien-INFO-001 — Fechas de entrega no configuradas</strong><br>
+            <span class="sub">Todos los pedidos muestran "Fecha estimada de entrega: No disponible". Cliente debe configurar rangos de despacho en Admin → Configuración → Despacho. · <strong>Dueño:</strong> Cliente · <strong>Acción:</strong> Config admin</span>
+        </div>
+    </div>
+
+    <!-- Hallazgos -->
+    <div class="card">
+        <div class="card-title">Hallazgos por severidad</div>
+        <table>
+            <tr><th>ID</th><th>Sev.</th><th>Área</th><th>Descripción</th></tr>
+            <tr class="issue-row">
+                <td>Bastien-QA-001</td>
+                <td><span class="badge p2">P2</span></td>
+                <td>Catálogo</td>
+                <td>3 de 30 productos sin imagen en S3 staging — muestran placeholder gris.
+                    <div class="sub">SKUs: 006010-008, 000947-057, 000948-057</div>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20Sonrie-Market-QA-001%20%E2%80%94%203%20productos%20sin%20imagen%20en%20S3%20staging&description=**Cliente%3A**%20Sonrie%20Market%20(sonrie.solopide.me)%0A**Severidad%3A**%20P2%0A%0A3%20SKUs%20sin%20imagen%20en%20S3%20staging%3A%20006010-008%2C%20000947-057%2C%20000948-057.%20Muestran%20placeholder%20gris%20en%20cat%C3%A1logo." target="_blank">🔗 Crear ticket</a>
+                </td>
+            </tr>
+            <tr class="issue-row">
+                <td>Bastien-QA-002</td>
+                <td><span class="badge p3">P3</span></td>
+                <td>Confirmación</td>
+                <td>Número de pedido muestra ID MongoDB (<code>#69e695dfc51b5ae6070baa0d</code>) en /confirmation en vez del correlativo (<code>#43</code>).
+                    <div class="sub">En /orders sí muestra el correlativo correctamente.</div>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20Sonrie-Market-QA-002%20%E2%80%94%20Confirmaci%C3%B3n%20muestra%20ID%20MongoDB%20en%20vez%20de%20correlativo&description=**Cliente%3A**%20Sonrie%20Market%0A**Severidad%3A**%20P3%0A%0AP%C3%A1gina%20%2Fconfirmation%20muestra%20%23ID-MongoDB%20como%20n%C3%BAmero%20de%20pedido.%20En%20%2Forders%20el%20mismo%20pedido%20muestra%20el%20correlativo%20(ej%3A%2043)%20correctamente." target="_blank">🔗 Crear ticket</a>
+                </td>
+            </tr>
+            <tr class="issue-row">
+                <td>Bastien-QA-003</td>
+                <td><span class="badge p3">P3</span></td>
+                <td>Home</td>
+                <td>Área completamente vacía debajo del banner principal hasta el footer.
+                    <div class="sub">Sin productos destacados, recomendados ni ofertas.</div>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20Sonrie-Market-QA-003%20%E2%80%94%20Home%20vac%C3%ADa%20bajo%20banner&description=**Cliente%3A**%20Sonrie%20Market%0A**Severidad%3A**%20P3%0A%0A%C3%81rea%20debajo%20del%20banner%20principal%20completamente%20vac%C3%ADa%20hasta%20el%20footer.%20Sin%20productos%20destacados%20ni%20recomendados." target="_blank">🔗 Crear ticket</a>
+                </td>
+            </tr>
+            <tr class="issue-row">
+                <td>Bastien-QA-004</td>
+                <td><span class="badge p3">P3</span></td>
+                <td>Confirmación</td>
+                <td>Campo "Impuestos:" aparece sin valor en los detalles de pago de /confirmation.
+                    <div class="sub">Muestra "Impuestos:" vacío. Valor correcto: $0 (taxRate=0). En /orders sí muestra "$0".</div>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20Sonrie-Market-QA-004%20%E2%80%94%20Campo%20Impuestos%20sin%20valor%20en%20confirmaci%C3%B3n&description=**Cliente%3A**%20Sonrie%20Market%0A**Severidad%3A**%20P3%0A%0ACampo%20%22Impuestos%3A%22%20aparece%20vac%C3%ADo%20en%20%2Fconfirmation.%20Valor%20esperado%3A%20%240%20(taxRate%3D0)." target="_blank">🔗 Crear ticket</a>
+                </td>
+            </tr>
+            <tr class="issue-row">
+                <td>Bastien-INFO-001</td>
+                <td><span class="badge info">INFO</span></td>
+                <td>Despacho</td>
+                <td>Fecha estimada de entrega muestra "No disponible" en todos los pedidos.
+                    <div class="sub">Acción requerida: cliente configura rangos en Admin → Configuración → Despacho.</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Resultados por modo -->
+    <div class="card">
+        <div class="card-title">Resultados por modo Cowork</div>
+        <div class="two-col">
+            <div>
+                <p style="font-size:0.78em;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Modo A+B — Catálogo &amp; Compra</p>
+                <table>
+                    <tr><th>Caso</th><th>Resultado</th></tr>
+                    <tr><td>C1 Login</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C2-01 Catálogo (30 prods)</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C2-04 Imágenes</td><td><span class="badge amber" style="background:#ffedd5;color:#9a3412;">PARCIAL</span></td></tr>
+                    <tr><td>C2-02 Búsqueda</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C2-05 Agregar al carrito</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C2-11 Confirmar pedido</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C2-13 Historial</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>Banner homepage</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C2-06 MinUnit</td><td><span class="badge na">N/A</span></td></tr>
+                    <tr><td>C2-12 Doble submit</td><td><span class="badge na">N/A</span></td></tr>
+                </table>
+            </div>
+            <div>
+                <p style="font-size:0.78em;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Modo C — Documentos</p>
+                <table>
+                    <tr><th>Caso</th><th>Resultado</th></tr>
+                    <tr><td>C7-10 Tab Documentos visible</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C7-11 Opción en menú</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C7-12 Badge pendientes</td><td><span class="badge na">N/A</span></td></tr>
+                </table>
+                <p style="font-size:0.78em;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;margin-top:16px;">Modo D — Tier 2 + PM</p>
+                <table>
+                    <tr><th>Caso</th><th>Resultado</th></tr>
+                    <tr><td>C9 Seguimiento pedido</td><td><span class="badge pass">PASS</span></td></tr>
+                    <tr><td>C5 Recomendados</td><td><span class="badge na">N/A</span></td></tr>
+                    <tr><td>C10 Comercio bloqueado</td><td><span class="badge blocked">BLOQUEADO</span></td></tr>
+                    <tr><td>PM5 Precios promo</td><td><span class="badge na">N/A</span></td></tr>
+                    <tr><td>PM7 lazyLoadingPrices</td><td><span class="badge na">N/A</span></td></tr>
+                    <tr><td>C3-14/15 Cupones</td><td><span class="badge blocked">BLOQUEADO</span></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flags config -->
+    <div class="card">
+        <div class="card-title">Validación flags de configuración</div>
+        <table>
+            <tr><th>Flag</th><th>Valor observado</th><th>Estado</th></tr>
+            <tr><td><code>enablePaymentDocumentsB2B</code></td><td>true → Tab "Mis documentos" visible</td><td><span class="badge pass">PASS</span></td></tr>
+            <tr><td><code>taxRate</code></td><td>$0 — sin IVA (Impuestos $0)</td><td><span class="badge pass">PASS</span></td></tr>
+            <tr><td><code>disableObservationInput</code></td><td>false → Campo observaciones visible</td><td><span class="badge pass">PASS</span></td></tr>
+            <tr><td><code>enableCoupons</code></td><td>Campo cupón visible en carrito</td><td><span class="badge pass">PASS</span></td></tr>
+            <tr><td><code>lazyLoadingPrices</code></td><td>No activo — precios cargan directo</td><td><span class="badge na">N/A</span></td></tr>
+            <tr><td>Línea de crédito</td><td>$674.892 disponible</td><td><span class="badge pass">PASS</span></td></tr>
+            <tr><td>Dropdown dirección en checkout</td><td>Visible y funcional</td><td><span class="badge pass">PASS</span></td></tr>
+        </table>
+    </div>
+
+    <!-- Staging blockers -->
+    <div class="card">
+        <div class="card-title">Staging blockers (no ejecutados)</div>
+        <table>
+            <tr><th>Caso</th><th>Motivo</th></tr>
+            <tr><td><span class="blocker-tag">C2-06</span> Cantidad mínima (MinUnit)</td><td>Sin producto con MinUnit configurado en staging</td></tr>
+            <tr><td><span class="blocker-tag">C2-12</span> Doble submit</td><td>No ejecutado en esta sesión</td></tr>
+            <tr><td><span class="blocker-tag">C3-14/15</span> Cupones</td><td>Sin cupones activos en staging</td></tr>
+            <tr><td><span class="blocker-tag">C10</span> Comercio bloqueado</td><td>Sin credenciales de comercio bloqueado en fixture</td></tr>
+        </table>
+    </div>
+
+    <!-- Próximos pasos -->
+    <div class="card">
+        <div class="card-title">Próximos pasos</div>
+        <table>
+            <tr><th>Acción</th><th>Dueño</th></tr>
+            <tr><td>Cargar imágenes faltantes para SKUs 006010-008, 000947-057, 000948-057 en S3 staging</td><td>Ops / Cliente</td></tr>
+            <tr><td>Fix: /confirmation debe mostrar correlativo numérico en vez de ObjectId MongoDB</td><td>Tech</td></tr>
+            <tr><td>Fix: Campo "Impuestos:" debe mostrar "$0" cuando taxRate=0</td><td>Tech</td></tr>
+            <tr><td>Configurar rangos de despacho en Admin → Configuración → Despacho</td><td>Cliente</td></tr>
+            <tr><td>Agregar cupones en staging para validar C3-14/15</td><td>Ops</td></tr>
+            <tr><td>Agregar fixture de comercio bloqueado para validar C10</td><td>QA</td></tr>
+        </table>
+    </div>
+
+    <!-- Contexto técnico -->
+    <div class="card">
+        <div class="card-title">Contexto técnico de la sesión</div>
+        <p style="font-size:0.85em;color:#374151;line-height:1.7;">
+            <strong>Login:</strong> eduardo+bastien@yom.ai · <strong>Ambiente:</strong> sonrie.solopide.me (staging)<br>
+            <strong>Pedido creado:</strong> #43 (MongoDB: 69e695dfc51b5ae6070baa0d) · Monto $2.873 · NEXT Agua Con Gas 6x1,5Lt<br>
+            <strong>Productos en catálogo:</strong> 30 · <strong>Categorías:</strong> Agua, Crema, Jugo, Leche, Mantequilla, Postre, Queso, Yoghurt<br>
+            <strong>Cobertura Tier 1:</strong> 5/5 ejecutados (parciales) · Tier 2: 2/3 (C10 bloqueado)
+        </p>
+    </div>
+
+    <footer>QA — Sonrie Market — 2026-04-20 · Cowork FULL (A+B+C+D) · Health 78/100 · Próxima QA tras fix imágenes + correlativo</footer>
+</div>
+</body>
+</html>
