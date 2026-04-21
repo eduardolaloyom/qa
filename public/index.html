@@ -225,9 +225,10 @@
             font-weight: 600;
             white-space: nowrap;
         }
-        .mq-badge.bug     { background:#fee2e2;color:#991b1b; }
-        .mq-badge.ux      { background:#fef3c7;color:#92400e; }
-        .mq-badge.ambiente{ background:#dbeafe;color:#1e40af; }
+        .mq-badge.bug         { background:#fee2e2;color:#991b1b; }
+        .mq-badge.ux          { background:#fef3c7;color:#92400e; }
+        .mq-badge.ambiente    { background:#dbeafe;color:#1e40af; }
+        .mq-badge.integracion { background:#ede9fe;color:#6d28d9; }
         .mq-badge.ok      { background:#d1fae5;color:#065f46; }
         .mq-badge.nota    { background:#f3f4f6;color:#374151; }
         .mq-title { font-weight: 600; font-size: 14px; color: #111827; }
@@ -418,7 +419,8 @@
             border: 1.5px solid #e5e7eb;
         }
         .failure-group.bug      { border-color: #fca5a5; }
-        .failure-group.ambiente { border-color: #93c5fd; }
+        .failure-group.ambiente    { border-color: #93c5fd; }
+        .failure-group.integracion { border-color: #c4b5fd; }
         .failure-group.flaky    { border-color: #86efac; }
         .failure-group.ux       { border-color: #fcd34d; }
 
@@ -429,10 +431,11 @@
             padding: 12px 16px;
             gap: 16px;
         }
-        .failure-group.bug      .failure-group-header { background: #fff1f2; }
-        .failure-group.ux       .failure-group-header { background: #fffbeb; }
-        .failure-group.ambiente .failure-group-header { background: #eff6ff; }
-        .failure-group.flaky    .failure-group-header { background: #f0fdf4; }
+        .failure-group.bug         .failure-group-header { background: #fff1f2; }
+        .failure-group.ux          .failure-group-header { background: #fffbeb; }
+        .failure-group.ambiente    .failure-group-header { background: #eff6ff; }
+        .failure-group.integracion .failure-group-header { background: #f5f3ff; }
+        .failure-group.flaky       .failure-group-header { background: #f0fdf4; }
 
         .fg-left { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 0; }
         .fg-top-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -1410,6 +1413,7 @@
                 <button class="filter-btn" onclick="filterFailures('bug', this)" style="color:#991b1b;border-color:#fca5a5">🔴 Bug</button>
                 <button class="filter-btn" onclick="filterFailures('ux', this)" style="color:#92400e;border-color:#fcd34d">🟡 Mejora UX</button>
                 <button class="filter-btn" onclick="filterFailures('ambiente', this)" style="color:#1e40af;border-color:#93c5fd">🔵 Ambiente</button>
+                <button class="filter-btn" onclick="filterFailures('integracion', this)" style="color:#6d28d9;border-color:#c4b5fd">🟣 Integración</button>
                 <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
                     <span class="filter-label">Owner:</span>
                     <button class="filter-btn" onclick="filterOwner('all', this)">Todos</button>
@@ -2330,7 +2334,7 @@ function updateClients(run = latestRun) {
                         <div class="progress-bar-fill ${passRate < 70 ? 'red' : ''}" style="width:${passRate}%"></div>
                     </div>
                 </div>
-                <a href="${c.reportUrl}" class="report-link" target="_blank">→ Ver reporte Playwright</a>
+                <a href="${c.reportUrl}${c.client_slug ? '#?q=' + encodeURIComponent(c.client_slug + ':') : ''}" class="report-link" target="_blank">→ Ver reporte Playwright</a>
             </div>
         </div>`;
     }).join('');
