@@ -4,7 +4,7 @@
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
 
-ENV_FILE="tests/app/config/env.prinorte.yaml"
+ENV_FILE="tests/app/config/config.prinorte.yaml"
 SESSION="tests/app/flows/prinorte-session.yaml"
 
 RED='\033[0;31m'
