@@ -1,6 +1,17 @@
 {
   "reports": [
     {
+      "client": "Prinorte",
+      "client_slug": "prinorte",
+      "date": "2026-04-21",
+      "file": "app-reports/prinorte-2026-04-21.html",
+      "verdict": "LISTO",
+      "score": 88,
+      "modes_done": ["01","02","03","04","05","06","07","08","09","10","11"],
+      "platform": "app",
+      "environment": "production"
+    },
+    {
       "client": "Sonrie",
       "client_slug": "sonrie",
       "date": "2026-04-16",

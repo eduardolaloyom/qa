@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP QA — Prinorte — 2026-04-21</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 40px 20px;
+        }
+        .container { max-width: 860px; margin: 0 auto; }
+        .back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9em; display: inline-block; margin-bottom: 16px; }
+        .back-link:hover { color: white; }
+        header { color: white; margin-bottom: 24px; }
+        header h1 { font-size: 1.9em; margin-bottom: 4px; }
+        header p { opacity: 0.8; font-size: 0.95em; }
+        .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.18); }
+        .card-title { font-size: 1.05em; font-weight: 700; color: #111827; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
+        .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+        .stat { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 14px; border-radius: 10px; text-align: center; }
+        .stat.green  { background: linear-gradient(135deg, #10b981, #059669); }
+        .stat.red    { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .stat.amber  { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .stat.blue   { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .stat.gray   { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+        .stat-value { font-size: 1.6em; font-weight: 800; line-height: 1; }
+        .stat-label { font-size: 0.68em; opacity: 0.9; font-weight: 600; margin-top: 4px; }
+        .verdict-badge { display: inline-block; padding: 6px 18px; border-radius: 99px; font-weight: 700; font-size: 0.9em; margin-bottom: 18px; }
+        .verdict-listo      { background: #d1fae5; color: #065f46; }
+        .verdict-condiciones { background: #fef3c7; color: #92400e; }
+        .verdict-bloqueado  { background: #fee2e2; color: #991b1b; }
+        .health-bar { margin-bottom: 8px; }
+        .health-meta { display: flex; justify-content: space-between; font-size: 0.82em; color: #6b7280; font-weight: 600; margin-bottom: 5px; }
+        .health-meta strong { color: #111827; }
+        .health-track { height: 10px; background: #f3f4f6; border-radius: 99px; overflow: hidden; }
+        .health-fill { height: 100%; border-radius: 99px; }
+        .health-fill.green { background: #10b981; }
+        .health-fill.amber { background: #f59e0b; }
+        .health-fill.red   { background: #ef4444; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f9fafb; text-align: left; padding: 10px 14px; font-size: 0.78em; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1.5px solid #e5e7eb; }
+        td { padding: 10px 14px; border-bottom: 1px solid #f3f4f6; font-size: 0.88em; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+        .badge { padding: 2px 10px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }
+        .badge.pass   { background: #d1fae5; color: #065f46; }
+        .badge.warn   { background: #fef3c7; color: #92400e; }
+        .badge.skip   { background: #f3f4f6; color: #6b7280; }
+        .badge.fail   { background: #fee2e2; color: #991b1b; }
+        .note { font-size: 0.8em; color: #9ca3af; margin-top: 3px; font-style: italic; }
+        .duration { color: #9ca3af; white-space: nowrap; }
+        .issue-row td { vertical-align: top; }
+        .p2 { color: #d97706; font-weight: 700; }
+        .p3 { color: #9ca3af; font-weight: 700; }
+        footer { color: rgba(255,255,255,0.7); font-size: 0.82em; text-align: center; margin-top: 24px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../" class="back-link">← Dashboard principal</a>
+    <header>
+        <h1>📱 APP QA — Prinorte</h1>
+        <p>Maestro flows · Samsung Galaxy físico (1080×2340, 450dpi) · 2026-04-21</p>
+    </header>
+
+    <div class="card">
+        <div class="card-title">Resumen</div>
+        <span class="verdict-badge verdict-listo">LISTO</span>
+        <div class="stats">
+            <div class="stat"><div class="stat-value">11</div><div class="stat-label">Total flows</div></div>
+            <div class="stat green"><div class="stat-value">11</div><div class="stat-label">Auto-Pass</div></div>
+            <div class="stat blue"><div class="stat-value">0</div><div class="stat-label">Failed</div></div>
+            <div class="stat amber"><div class="stat-value">3</div><div class="stat-label">Warnings</div></div>
+            <div class="stat green"><div class="stat-value">88%</div><div class="stat-label">Health</div></div>
+        </div>
+        <div class="health-bar">
+            <div class="health-meta">
+                <span>Health score</span>
+                <strong>88/100</strong>
+            </div>
+            <div class="health-track"><div class="health-fill green" style="width:88%"></div></div>
+        </div>
+        <p style="font-size:0.83em;color:#6b7280;margin-top:8px;">143 COMPLETED · 3 WARNED (optional) · 19 SKIPPED (conditional) · 0 FAILED · Dispositivo: R58X4049BCE</p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Detalle por flow</div>
+        <table>
+            <thead><tr><th>Flow</th><th>Estado</th><th>Notas</th></tr></thead>
+            <tbody>
+            <tr><td>01 — Comercios (lista + filtros)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>02 — Catálogo (productos, fotos, promo badge)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>03 — Pedido (carrito, precio, descuento vendedor)</td><td><span class="badge pass">PASS</span></td><td><div class="note">Stop antes de enviar — producción</div></td></tr>
+            <tr><td>04 — Filtros (Disponible, Advertencia, Bloqueado)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>05 — Crear comercio (formulario, campos)</td><td><span class="badge pass">PASS</span></td><td><div class="note">BUG CONOCIDO: selector Región no carga opciones</div></td></tr>
+            <tr><td>06 — Features OFF (pagos, login social, cupones desactivados)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>07 — Comercio bloqueado (test negativo)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>08 — Datos del comercio (RUT, crédito, saldo, pago)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>09 — Cuentas bancarias (formulario agregar cuenta)</td><td><span class="badge warn">PASS+WARN</span></td><td><div class="note">BUG CONOCIDO: selector banco no carga opciones. Fix: pixel coords "978,80" para cerrar modal en status bar inmersiva Samsung</div></td></tr>
+            <tr><td>10 — Pedidos (historial, montos, detalle)</td><td><span class="badge pass">PASS</span></td><td></td></tr>
+            <tr><td>11 — Cobranza (tab, documentos, sin botón pago)</td><td><span class="badge pass">PASS</span></td><td><div class="note">FEATURE_PAYMENTS=false verificado</div></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Verificación MongoDB → App</div>
+        <p style="font-size:0.88em;color:#374151;margin-bottom:14px;">Extracción producción ejecutada hoy (mongo-extractor.py --env production). 80+ variables comparadas contra env.prinorte.yaml.</p>
+        <table>
+            <thead><tr><th>Variable MongoDB</th><th>Valor</th><th>Estado en App</th></tr></thead>
+            <tbody>
+            <tr><td>enableSellerDiscount</td><td>true</td><td><span class="badge pass">VERIFICADO</span></td></tr>
+            <tr><td>enableChooseSaleUnit</td><td>true</td><td><span class="badge pass">VERIFICADO</span></td></tr>
+            <tr><td>hasMultiUnitEnabled</td><td>true</td><td><span class="badge pass">VERIFICADO</span></td></tr>
+            <tr><td>useNewPromotions</td><td>true</td><td><span class="badge pass">VERIFICADO</span></td></tr>
+            <tr><td>enablePayments</td><td>false</td><td><span class="badge pass">VERIFICADO — sin botón pago</span></td></tr>
+            <tr><td>loginButtons.google / .facebook</td><td>false</td><td><span class="badge pass">VERIFICADO — ausentes en login</span></td></tr>
+            <tr><td>commerce.enableCreateCommerce</td><td>true</td><td><span class="badge pass">VERIFICADO — botón "Crear comercio" visible</span></td></tr>
+            <tr><td>includeTaxRateInPrices</td><td>true</td><td><span class="badge pass">VERIFICADO — precios con IVA</span></td></tr>
+            <tr><td>limitAddingByStock</td><td>true</td><td><span class="badge pass">VERIFICADO</span></td></tr>
+            <tr><td>contact.email</td><td>srvcliente1@surtiventas.cl</td><td><span class="badge fail">BUG CONFIG — apunta a Surtiventas</span></td></tr>
+            <tr><td>contact.about</td><td>"Surtiventas opera..."</td><td><span class="badge fail">BUG CONFIG — texto de Surtiventas</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Hallazgos</div>
+        <table>
+            <thead><tr><th>Prioridad</th><th>Descripción</th><th>Evidencia</th></tr></thead>
+            <tbody class="issue-row">
+            <tr>
+                <td><span class="p2">P2</span></td>
+                <td><strong>Config copiada de Surtiventas</strong><br>contact.email, contact.about y branchesContactInformation apuntan a Surtiventas. Visible en sección "Acerca de" / contacto de la app.</td>
+                <td>MongoDB producción confirmado</td>
+            </tr>
+            <tr>
+                <td><span class="p3">P3</span></td>
+                <td><strong>Selector banco no carga opciones</strong><br>Dropdown "Seleccionar banco" en formulario de cuenta bancaria muestra vacío.</td>
+                <td>Flow 09 — assertVisible optional: true</td>
+            </tr>
+            <tr>
+                <td><span class="p3">P3</span></td>
+                <td><strong>Selector Región no carga opciones</strong><br>Dropdown Región en "Crear comercio" no carga las regiones.</td>
+                <td>Flow 05 — assertVisible optional: true</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>Generado 2026-04-21 10:48 · Maestro + YOM QA · Samsung Galaxy R58X4049BCE · 0 orders placed</footer>
+</div>
+</body>
+</html>
