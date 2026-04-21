@@ -890,13 +890,13 @@
             transition:border-color 0.2s, box-shadow 0.2s;
         }
         .cowork-history-toggle {
-            display:flex; align-items:center; justify-content:center;
-            width:36px; min-width:36px; height:100%; cursor:pointer;
-            background:#f9fafb; border-left:1px solid #e5e7eb;
-            color:#9ca3af; font-size:14px; transition:background 0.15s, color 0.15s;
-            align-self:stretch; padding:0 10px;
+            display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+            width:42px; min-width:42px; cursor:pointer;
+            background:#f9fafb; border:none; border-left:1px solid #e5e7eb;
+            color:#6b7280; transition:background 0.15s, color 0.15s;
+            align-self:stretch; padding:0; border-radius:0;
         }
-        .cowork-history-toggle:hover { background:#f3f4f6; color:#6366f1; }
+        .cowork-history-toggle:hover { background:#ede9fe; color:#6366f1; }
         .cowork-history-toggle .toggle-arrow { transition:transform 0.2s; display:inline-block; }
         .cowork-history-toggle.open .toggle-arrow { transform:rotate(180deg); }
         .cowork-history-body { display:none; padding:10px 14px; border-top:1px solid #e5e7eb; background:#fafafa; }
@@ -2879,10 +2879,14 @@ async function loadCoworkReports() {
             return;
         }
 
-        // Group by client, latest first
+        // Normalize client aliases before grouping
+        const CLIENT_ALIASES = { 'Sonrie': 'Sonrie Market' };
+        const normalizeClient = name => CLIENT_ALIASES[name] || name;
+
+        // Group by normalized client, latest first
         const byClient = {};
         reports.forEach(rep => {
-            const key = rep.client;
+            const key = normalizeClient(rep.client);
             if (!byClient[key]) byClient[key] = [];
             byClient[key].push(rep);
         });
@@ -2902,10 +2906,12 @@ async function loadCoworkReports() {
             }).join('');
 
             const hasHistory = reps.length > 1;
+            const historyCount = reps.length - 1;
             const toggleBtn = hasHistory
-                ? `<div class="cowork-history-toggle" onclick="toggleCoworkHistory(this)" title="${reps.length - 1} reporte${reps.length > 2 ? 's' : ''} anterior${reps.length > 2 ? 'es' : ''}">
-                    <span class="toggle-arrow">▾</span>
-                   </div>`
+                ? `<button class="cowork-history-toggle" onclick="toggleCoworkHistory(this)" title="${historyCount} reporte${historyCount > 1 ? 's' : ''} anterior${historyCount > 1 ? 'es' : ''}">
+                    <span style="font-size:10px;font-weight:600;color:#6b7280;line-height:1;">${historyCount}</span>
+                    <span class="toggle-arrow" style="font-size:16px;line-height:1;margin-top:1px;">▾</span>
+                   </button>`
                 : '';
             const historyBody = hasHistory
                 ? `<div class="cowork-history-body">${historyItems}</div>`
