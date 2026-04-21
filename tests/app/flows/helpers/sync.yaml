@@ -16,7 +16,7 @@ appId: ${APP_PACKAGE}
           optional: true
       - waitForAnimationToEnd
 
-# Si aparece popup de error de sync, reintentar (intento 1)
+# Si aparece popup de error de sync, reintentar una vez
 - runFlow:
     when:
       visible:
@@ -26,46 +26,7 @@ appId: ${APP_PACKAGE}
           text: "Volver a sincronizar"
       - waitForAnimationToEnd
 
-# Esperar que el re-sync intento 1 termine (60s)
-- extendedWaitUntil:
-    notVisible:
-      text: ".*[Ss]incronizando.*"
-    timeout: 60000
-
-# Si sigue fallando, reintentar una vez más (intento 2)
-- runFlow:
-    when:
-      visible:
-        text: ".*[Vv]olver a sincronizar.*"
-    commands:
-      - tapOn:
-          text: "Volver a sincronizar"
-      - waitForAnimationToEnd
-
-# Esperar que el re-sync intento 2 termine (60s)
-- extendedWaitUntil:
-    notVisible:
-      text: ".*[Ss]incronizando.*"
-    timeout: 60000
-
-# Si todavía falla, último intento (intento 3)
-- runFlow:
-    when:
-      visible:
-        text: ".*[Vv]olver a sincronizar.*"
-    commands:
-      - tapOn:
-          text: "Volver a sincronizar"
-      - waitForAnimationToEnd
-
-# Esperar sync principal — 180s: device físico ~40s; margen para red lenta
-# (el popup puede tener "CANCELAR" visible independientemente del estado)
-- extendedWaitUntil:
-    notVisible:
-      text: ".*[Ss]incronizando.*"
-    timeout: 180000
-
-# Si después de 3 reintentos sigue fallando, seguir sin sincronizar (fallback definitivo)
+# Si sigue fallando, seguir sin sincronizar (fallback definitivo)
 - runFlow:
     when:
       visible:
@@ -74,6 +35,13 @@ appId: ${APP_PACKAGE}
       - tapOn:
           text: "Seguir sin sincronizar"
       - waitForAnimationToEnd
+
+# Esperar que termine de sincronizar — 360s: dispositivo físico en red lenta puede tardar 3-4 min
+# (el popup puede tener "CANCELAR" visible independientemente del estado del sync)
+- extendedWaitUntil:
+    notVisible:
+      text: ".*[Ss]incronizando.*"
+    timeout: 360000
 
 # Descartar popup "nueva versión" que puede aparecer post-sync
 - runFlow:

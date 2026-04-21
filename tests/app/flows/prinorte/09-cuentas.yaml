@@ -19,61 +19,60 @@ name: "PRINORTE: 09 — Cuentas bancarias"
 # Tomar screenshot del formulario
 - takeScreenshot: /tmp/prinorte-cuentas-form
 
-# BUG CONOCIDO: selector banco puede no cargar opciones — documentar sin bloquear
-- tapOn:
-    text: ".*[Ss]eleccionar.*[Bb]anco.*"
-    optional: true
+# Verificar campos presentes (sin abrir dropdowns que compliquen la salida)
 - assertVisible:
-    text: ".*Banco.*Estado.*|.*Banco.*Chile.*|.*Scotiabank.*|.*BCI.*|.*Santander.*|.*Itaú.*"
+    text: ".*RUT.*|.*[Nn]ombre.*|.*[Tt]ipo.*[Cc]uenta.*|.*N[uú]mero.*"
     optional: true
 
-# Descartar permisos si aparecieron (mic, etc.)
-- runFlow:
-    when:
-      visible:
-        text: ".*[Dd]eny.*|.*[Pp]ermission.*"
-    commands:
-      - tapOn:
-          text: "Deny"
-          optional: true
-      - waitForAnimationToEnd
+# BUG CONOCIDO: selector banco puede no cargar opciones
+- assertVisible:
+    text: ".*Banco.*Estado.*|.*Banco.*Chile.*|.*Scotiabank.*|.*BCI.*"
+    optional: true
 
-# Cerrar el formulario: Back cierra teclado si está abierto
-- pressKey: Back
+# --- SALIDA DEL FORMULARIO ---
+# resource-id: me.youorder.yomventas:id/close_dialog
+# bounds Samsung físico (1080x2340): [944,23][1012,91]
+# CLAVE: el botón cruza la status bar (~0-67px). %3 = y70 falla (gesture zone).
+# Maestro acepta pixel coords sin %. "978,80" = bajo la gesture zone → VERIFIED.
+
+# Intento 1: pixel coords verificados en Samsung físico 1080x2340
+- tapOn:
+    point: "978,80"
+    optional: true
 - waitForAnimationToEnd
 
-# Si el formulario sigue abierto (teclado era lo que se cerró), Back lo cierra
+# Intento 2: emulador / Pixel (X en toolbar normal, fuera de status bar)
 - runFlow:
     when:
       visible:
         text: "Agregar cuenta nueva"
     commands:
-      - pressKey: Back
+      - tapOn:
+          point: "93%,9%"
+          optional: true
       - waitForAnimationToEnd
 
-# Salir de datos-comercio → commerce detail → listado
-# Stack profundo requiere hasta 5 Backs condicionales
+# Intento 3: variación emulador
 - runFlow:
     when:
-      notVisible:
-        text: "Listado de comercios"
+      visible:
+        text: "Agregar cuenta nueva"
     commands:
-      - pressKey: Back
+      - tapOn:
+          point: "93%,7%"
+          optional: true
       - waitForAnimationToEnd
-- runFlow:
-    when:
-      notVisible:
-        text: "Listado de comercios"
-    commands:
-      - pressKey: Back
-      - waitForAnimationToEnd
-- runFlow:
-    when:
-      notVisible:
-        text: "Listado de comercios"
-    commands:
-      - pressKey: Back
-      - waitForAnimationToEnd
+
+# Esperar que el modal termine de cerrarse
+- waitForAnimationToEnd
+
+# Navegar de vuelta al listado via tab COMERCIOS (más confiable que Backs)
+- tapOn:
+    text: "COMERCIOS"
+    optional: true
+- waitForAnimationToEnd
+
+# Fallback: si COMERCIOS no está visible (modal sigue abierto), Backs adicionales
 - runFlow:
     when:
       notVisible:

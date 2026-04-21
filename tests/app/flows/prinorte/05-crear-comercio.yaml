@@ -46,14 +46,37 @@ name: "PRINORTE: 05 — Crear comercio"
           optional: true
       - waitForAnimationToEnd
 
-# Cerrar teclado primero
+# Cerrar picker Región
+- pressKey: Back
+- waitForAnimationToEnd
+# Cerrar teclado si reaparece tras cerrar picker (Samsung refoca campos de texto)
 - pressKey: Back
 - waitForAnimationToEnd
 
-# Tapar X del form (título visible, sin teclado encima)
+# X del form — dispositivos físicos Samsung tienen status bar más alta (~9%)
+# Cascade: 9% → 7% → 4% cubre Samsung One UI, Pixel y emulador
 - tapOn:
-    point: "93%,4%"
+    point: "93%,9%"
+    optional: true
 - waitForAnimationToEnd
+- runFlow:
+    when:
+      visible:
+        text: "Crear nuevo comercio"
+    commands:
+      - tapOn:
+          point: "93%,7%"
+          optional: true
+      - waitForAnimationToEnd
+- runFlow:
+    when:
+      visible:
+        text: "Crear nuevo comercio"
+    commands:
+      - tapOn:
+          point: "93%,4%"
+          optional: true
+      - waitForAnimationToEnd
 
 # Esperar título de lista
 - extendedWaitUntil:
