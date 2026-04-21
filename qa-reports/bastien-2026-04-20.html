@@ -120,7 +120,7 @@
                 <td><span class="badge p1">P1</span></td>
                 <td>Pricing</td>
                 <td>Cálculo de impuestos erróneo. Neto $6.434 → Impuestos $122.252 → Total $128.686 (~1.900%). IVA 19% correcto = ~$1.222. <code>taxes.useTaxRate=false</code> y <code>taxes.taxRate=0</code> ignorados. Dato incorrecto almacenado en pedido.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-006%20%E2%80%94%20Bug%20cr%C3%ADtico%20impuestos%20(1900%25%20IVA)&description=**Cliente%3A**%20Bastien%20(bastien.solopide.me)%0A**Severidad%3A**%20P1%20CR%C3%8DTICO%0A%0ANeto%20%246.434%20%E2%86%92%20Impuestos%20%24122.252%20%E2%86%92%20Total%20%24128.686%20(%7E1900%25).%20taxes.useTaxRate%3Dfalse%20y%20taxes.taxRate%3D0%20pero%20se%20aplica%20IVA%20incorrecto.%20Dato%20corrupto%20almacenado%20en%20pedido." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-006%20%E2%80%94%20Bug%20cr%C3%ADtico%20impuestos%20%281900%25%20IVA%29&description=taxes.useTaxRate%3Dfalse%20y%20taxes.taxRate%3D0%20en%20config%20pero%20se%20aplican%20impuestos%20incorrectamente%2C%20inflando%20el%20total%20~1900%25.%0A%0A1.%20Neto%20%246.434%20%E2%86%92%20Impuestos%20%24122.252%20%E2%86%92%20Total%20%24128.686%20%28IVA%2019%25%20correcto%20ser%C3%ADa%20~%241.222%29%0A2.%20El%20flag%20taxes.useTaxRate%3Dfalse%20es%20ignorado%20por%20la%20plataforma%0A3.%20El%20precio%20corrupto%20se%20almacena%20en%20el%20pedido%20%E2%80%94%20dato%20irrecuperable%20post-compra%0A%0AImpact%3A%20Cada%20pedido%20en%20Bastien%20staging%20se%20registra%20con%20monto%20~20x%20inflado%0AReal%20case%3A%20Cualquier%20SKU%2C%20pedido%20%2310%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-006%20%C2%B7%20Severidad%3A%20P1%20CR%C3%8DTICO" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -128,7 +128,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Imágenes</td>
                 <td>~80% de 40 productos sin imagen. Solo 2-3 tienen foto real.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-001%20%E2%80%94%2080%25%20productos%20sin%20imagen&description=**Cliente%3A**%20Bastien%20(bastien.solopide.me)%0A**Severidad%3A**%20P2%0A%0A~80%25%20de%2040%20productos%20sin%20imagen.%20Solo%202-3%20tienen%20foto%20real.%20Impacto%20directo%20en%20experiencia%20de%20compra." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-001%20%E2%80%94%2080%25%20productos%20sin%20imagen%20en%20cat%C3%A1logo&description=~80%25%20de%20los%2040%20productos%20no%20tienen%20imagen%20asignada%20en%20S3%20staging%2C%20mostrando%20placeholder%20gris.%0A%0A1.%20Solo%202-3%20SKUs%20tienen%20imagen%20real%20cargada%0A2.%20Los%20dem%C3%A1s%20muestran%20placeholder%20gris%20gen%C3%A9rico%0A%0AImpact%3A%20Cat%C3%A1logo%20visualmente%20pobre%2C%20dificulta%20identificar%20productos%20al%20comprar%0AReal%20case%3A%20/products%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-001%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -136,7 +136,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Homepage</td>
                 <td>Carrusel "Recomendados" vacío. Botón existe pero sin productos.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-002%20%E2%80%94%20Carrusel%20Recomendados%20vac%C3%ADo&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0ACarrusel%20%22Recomendados%22%20en%20homepage%20vac%C3%ADo.%20El%20bot%C3%B3n%20existe%20pero%20no%20hay%20productos%20configurados." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-002%20%E2%80%94%20Carrusel%20Recomendados%20vac%C3%ADo%20en%20homepage&description=El%20carrusel%20Recomendados%20en%20la%20homepage%20no%20muestra%20productos%20aunque%20el%20componente%20existe%20en%20la%20UI.%0A%0A1.%20La%20secci%C3%B3n%20de%20Recomendados%20es%20visible%20en%20la%20homepage%0A2.%20No%20hay%20productos%20configurados%20como%20recomendados%20para%20este%20comercio%0A%0AImpact%3A%20Homepage%20visualmente%20pobre%2C%20sin%20productos%20destacados%20bajo%20el%20banner%0AReal%20case%3A%20/%20%28homepage%29%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-002%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -144,7 +144,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Filtros</td>
                 <td>Filtros de categoría no reducen resultados — siempre 40 productos. Filtro por URL no pre-aplica.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-003%20%E2%80%94%20Filtros%20de%20categor%C3%ADa%20no%20funcionan&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0AFiltros%20Elaborados%2FInsumos%20no%20reducen%20resultados%3B%20siempre%20devuelven%2040%20productos.%20Filtro%20por%20URL%20no%20pre-aplica." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-003%20%E2%80%94%20Filtros%20de%20categor%C3%ADa%20no%20reducen%20resultados&description=Los%20filtros%20de%20categor%C3%ADa%20%28Elaborados/Insumos%29%20no%20reducen%20el%20conjunto%20de%20productos%20mostrados.%0A%0A1.%20Al%20aplicar%20filtro%20de%20categor%C3%ADa%2C%20siempre%20se%20muestran%20los%2040%20productos%0A2.%20El%20filtro%20por%20URL%20%28%3Fcategory%3DX%29%20tampoco%20pre-aplica%20el%20filtro%20al%20cargar%0A%0AImpact%3A%20Navegaci%C3%B3n%20por%20categor%C3%ADas%20no%20funciona%20%E2%80%94%20compradores%20no%20pueden%20filtrar%20cat%C3%A1logo%0AReal%20case%3A%20/products%20con%20filtros%20activos%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-003%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -152,7 +152,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Filtros/Ofertas</td>
                 <td>Filtro "Ofertas" muestra badge "Promociones" pero devuelve los mismos 40 productos sin precio tachado. PM5 FAIL.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-004%20%E2%80%94%20Filtro%20Ofertas%20no%20funciona&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0AFiltro%20%22Ofertas%22%20devuelve%20mismos%2040%20productos%20sin%20precio%20tachado%20ni%20badge%20de%20descuento.%20PM5%20FAIL." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-004%20%E2%80%94%20Filtro%20Ofertas%20sin%20precio%20tachado%20ni%20badge&description=El%20filtro%20Ofertas%20devuelve%20los%20mismos%2040%20productos%20sin%20diferenciaci%C3%B3n%20visual%20de%20descuento.%0A%0A1.%20Filtro%20Ofertas%20activo%20%E2%86%92%20mismo%20resultado%20que%20sin%20filtro%0A2.%20Sin%20precio%20tachado%20ni%20badge%20de%20descuento%20en%20ning%C3%BAn%20producto%0A3.%20PM5%20tambi%C3%A9n%20falla%20%E2%80%94%20no%20hay%20productos%20con%20badge%20Promoci%C3%B3n%0A%0AImpact%3A%20Los%20compradores%20no%20pueden%20identificar%20ni%20filtrar%20productos%20en%20oferta%0AReal%20case%3A%20/products%3Ftype%3Doffers%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-004%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -160,7 +160,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Confirmación</td>
                 <td>Número de orden no aparece en pantalla de confirmación post-compra.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-007%20%E2%80%94%20N%C3%BAmero%20de%20orden%20ausente%20en%20confirmaci%C3%B3n&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0AN%C3%BAmero%20de%20orden%20no%20aparece%20en%20pantalla%20de%20confirmaci%C3%B3n%20post-compra.%20Usuario%20no%20conoce%20su%20ID%20hasta%20ir%20al%20historial." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-007%20%E2%80%94%20N%C3%BAmero%20de%20orden%20ausente%20en%20confirmaci%C3%B3n&description=La%20pantalla%20de%20confirmaci%C3%B3n%20post-compra%20no%20muestra%20el%20n%C3%BAmero%20de%20orden%20al%20usuario.%0A%0A1.%20P%C3%A1gina%20/confirmation%20carga%20sin%20mostrar%20el%20ID%20del%20pedido%0A2.%20El%20ID%20s%C3%AD%20aparece%20correctamente%20en%20/orders%20%28historial%29%0A%0AImpact%3A%20El%20comprador%20no%20sabe%20su%20n%C3%BAmero%20de%20pedido%20hasta%20ir%20al%20historial%20manualmente%0AReal%20case%3A%20/confirmation/%7Bid%7D%20post-compra%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-007%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -168,7 +168,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Historial</td>
                 <td>"Fecha de entrega: No disponible" en todos los pedidos, incluso en estado "Procesada".
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-008%20%E2%80%94%20Fecha%20entrega%20No%20disponible&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0A%22Fecha%20de%20entrega%3A%20No%20disponible%22%20en%20todos%20los%20pedidos%2C%20incluso%20en%20estado%20Procesada." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-008%20%E2%80%94%20Fecha%20de%20entrega%20No%20disponible%20en%20todos%20los%20pedidos&description=Todos%20los%20pedidos%20muestran%20Fecha%20estimada%20de%20entrega%3A%20No%20disponible%20independiente%20del%20estado.%0A%0A1.%20Pedidos%20en%20estado%20Procesada%20tambi%C3%A9n%20muestran%20fecha%20no%20disponible%0A2.%20No%20hay%20rangos%20de%20despacho%20configurados%20en%20Admin%20para%20este%20comercio%0A%0AImpact%3A%20Los%20compradores%20no%20saben%20cu%C3%A1ndo%20recibir%C3%A1n%20su%20pedido%0AReal%20case%3A%20/orders%20y%20/orders/%7Bid%7D%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-008%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -176,7 +176,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Estados</td>
                 <td>Confirmación muestra "Ingresado" pero historial muestra "Procesada" inmediatamente — estado inconsistente.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-009%20%E2%80%94%20Estado%20inconsistente%20confirmaci%C3%B3n%20vs%20historial&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0AConfirmaci%C3%B3n%20muestra%20%22Ingresado%22%20pero%20historial%20muestra%20%22Procesada%22%20inmediatamente." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-009%20%E2%80%94%20Estado%20inconsistente%20entre%20confirmaci%C3%B3n%20e%20historial&description=La%20pantalla%20de%20confirmaci%C3%B3n%20muestra%20estado%20Ingresado%20pero%20el%20historial%20muestra%20Procesada%20inmediatamente.%0A%0A1.%20Post-compra%3A%20/confirmation%20muestra%20estado%20Ingresado%0A2.%20Al%20ir%20a%20/orders%20el%20mismo%20pedido%20aparece%20como%20Procesada%20al%20instante%0A%0AImpact%3A%20Inconsistencia%20que%20confunde%20al%20comprador%20sobre%20el%20estado%20real%20de%20su%20pedido%0AReal%20case%3A%20Pedido%20reci%C3%A9n%20creado%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-009%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -184,7 +184,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Documentos</td>
                 <td>Tab "Mis documentos" + URL /payment-documents accesibles con <code>enablePaymentDocumentsB2B=false</code>. Muestra documentos reales.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-011%20%E2%80%94%20Tab%20documentos%20visible%20con%20flag%3Dfalse&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0ATab%20%22Mis%20documentos%22%20%2B%20URL%20%2Fpayment-documents%20accesibles%20con%20enablePaymentDocumentsB2B%3Dfalse.%20Flag%20ignorado." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-011%20%E2%80%94%20Tab%20Mis%20documentos%20visible%20con%20enablePaymentDocumentsB2B%3Dfalse&description=El%20flag%20enablePaymentDocumentsB2B%3Dfalse%20es%20ignorado%20%E2%80%94%20el%20tab%20y%20la%20URL%20/payment-documents%20son%20accesibles.%0A%0A1.%20Tab%20Mis%20documentos%20visible%20en%20navegaci%C3%B3n%20con%20flag%3Dfalse%0A2.%20URL%20/payment-documents%20accesible%20directamente%0A3.%20La%20p%C3%A1gina%20muestra%20documentos%20reales%20con%20valores%20pendientes%20del%20cliente%0A%0AImpact%3A%20Datos%20financieros%20del%20cliente%20expuestos%20cuando%20el%20flag%20deber%C3%ADa%20ocultarlos%0AReal%20case%3A%20/payment-documents%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-011%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -192,7 +192,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Detalle pedido</td>
                 <td>"Número de pedido: #No disponible" en /orders/{id}. ID existe en listado pero no en el detalle.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-012%20%E2%80%94%20%23No%20disponible%20en%20detalle%20pedido&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0A%22N%C3%BAmero%20de%20pedido%3A%20%23No%20disponible%22%20en%20%2Forders%2F%7Bid%7D.%20El%20ID%20num%C3%A9rico%20existe%20en%20el%20listado%20pero%20no%20en%20el%20detalle." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-012%20%E2%80%94%20N%C3%BAmero%20de%20pedido%20%23No%20disponible%20en%20detalle%20de%20orden&description=La%20p%C3%A1gina%20de%20detalle%20de%20pedido%20muestra%20%23No%20disponible%20en%20vez%20del%20n%C3%BAmero%20correlativo.%0A%0A1.%20/orders/%7Bid%7D%20muestra%20N%C3%BAmero%20de%20pedido%3A%20%23No%20disponible%0A2.%20El%20listado%20/orders%20s%C3%AD%20muestra%20el%20correlativo%20num%C3%A9rico%20correcto%20%28ej%3A%20%2310%29%0A%0AImpact%3A%20El%20comprador%20no%20puede%20confirmar%20su%20n%C3%BAmero%20de%20pedido%20desde%20el%20detalle%0AReal%20case%3A%20/orders/%7Bmongodb-id%7D%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-012%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -201,7 +201,7 @@
                 <td>Detalle pedido</td>
                 <td>Precio unitario en resumen del pedido = $128.686 (total inflado) en vez de $6.434. BAS-QA-006 contamina datos almacenados.
                     <div class="sub">Consecuencia directa del bug de impuestos P1.</div>
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-013%20%E2%80%94%20Precio%20unitario%20corrupto%20en%20detalle%20pedido&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0APrecio%20unitario%20registrado%20como%20%24128.686%20en%20vez%20de%20%246.434.%20Consecuencia%20directa%20del%20bug%20BAS-QA-006." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-013%20%E2%80%94%20Precio%20unitario%20corrupto%20en%20detalle%20de%20pedido&description=El%20precio%20unitario%20almacenado%20en%20el%20pedido%20refleja%20el%20total%20inflado%20por%20BAS-QA-006%2C%20no%20el%20precio%20real.%0A%0A1.%20Precio%20unitario%20en%20resumen%20del%20pedido%3A%20%24128.686%20%28total%20inflado%29%0A2.%20Precio%20real%20del%20producto%3A%20%246.434%0A3.%20El%20dato%20corrupto%20qued%C3%B3%20persistido%20en%20la%20base%20de%20datos%0A%0AImpact%3A%20Datos%20hist%C3%B3ricos%20de%20pedidos%20incorrectos%20%E2%80%94%20precio%20unitario%20~20x%20inflado%20en%20registro%0AReal%20case%3A%20/orders/%7Bid%7D%20detalle%2C%20pedido%20%2310%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-013%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
@@ -209,7 +209,7 @@
                 <td><span class="badge p2">P2</span></td>
                 <td>Catálogo anónimo</td>
                 <td>Productos con precio $0/Unidad visibles sin login. Productos sin precio expuestos al catálogo público.
-                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-014%20%E2%80%94%20Productos%20%240%20visibles%20sin%20login&description=**Cliente%3A**%20Bastien%0A**Severidad%3A**%20P2%0A%0AProductos%20con%20precio%20%240%2FUnidad%20visibles%20sin%20login%20en%20cat%C3%A1logo%20an%C3%B3nimo." target="_blank">🔗 Crear ticket</a>
+                    <a class="btn-linear" href="https://linear.app/yom-tech/new?title=%5BQA%5D%20BAS-QA-014%20%E2%80%94%20Productos%20con%20precio%20%240%20visibles%20en%20cat%C3%A1logo%20an%C3%B3nimo&description=Productos%20sin%20precio%20asignado%20%28%240/Unidad%29%20son%20visibles%20en%20el%20cat%C3%A1logo%20p%C3%BAblico%20sin%20requerir%20login.%0A%0A1.%20anonymousAccess%3Dtrue%20%E2%80%94%20cat%C3%A1logo%20visible%20sin%20login%20%28correcto%29%0A2.%20Productos%20con%20precio%20%240%20aparecen%20en%20cat%C3%A1logo%20p%C3%BAblico%20%28incorrecto%29%0A3.%20Ejemplo%3A%20Brocha%20Pastelera%20visible%20con%20precio%20%240/Unidad%0A%0AImpact%3A%20Cat%C3%A1logo%20an%C3%B3nimo%20expone%20productos%20sin%20precio%20%E2%80%94%20confunde%20y%20puede%20generar%20pedidos%20a%20%240%0AReal%20case%3A%20/products%20sin%20sesi%C3%B3n%20activa%2C%20bastien.solopide.me%0ACliente%3A%20Bastien%20%28bastien.solopide.me%29%0AID%20QA%3A%20BAS-QA-014%20%C2%B7%20Severidad%3A%20P2" target="_blank">🔗 Crear ticket</a>
                 </td>
             </tr>
             <tr class="issue-row">
