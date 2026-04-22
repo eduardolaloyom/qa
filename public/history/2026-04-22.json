@@ -1,10 +1,10 @@
 {
   "date": "2026-04-22",
-  "timestamp": "2026-04-22T14:05:22.799348+00:00",
+  "timestamp": "2026-04-22T14:12:39.045828+00:00",
   "total": 254,
   "passed": 240,
   "failed": 12,
-  "duration": 1438,
+  "duration": 2156,
   "suites": [
     {
       "name": "00-contract.spec.ts",
@@ -149,6 +149,7 @@
       "passed": 99,
       "failed": 2,
       "reportUrl": "reports/index.html",
+      "client_slug": "bastien",
       "last_tested": "2026-04-22"
     },
     "sonrie": {
@@ -159,6 +160,7 @@
       "passed": 95,
       "failed": 1,
       "reportUrl": "reports/index.html",
+      "client_slug": "sonrie",
       "last_tested": "2026-04-22"
     },
     "codelpa": {

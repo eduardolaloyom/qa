@@ -726,6 +726,7 @@ def extract_config_validation_clients(all_tests_flat: list, staging_urls: dict) 
             "passed": passed,
             "failed": failed,
             "reportUrl": "reports/index.html",
+            "client_slug": client_key,
             # last_tested will be set by generate_run_json
         }
 
@@ -799,6 +800,7 @@ def generate_run_json(results: dict, date: str, project_root: Path = None) -> di
             "passed": stats["passed"],
             "failed": stats["failed"],
             "reportUrl": "reports/index.html",
+            "client_slug": suite_name,
         }
 
     # Stamp all clients with last_tested = today
