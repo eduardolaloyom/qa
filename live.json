@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 107,
+  "passed": 109,
   "failed": 3,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableAskDeliveryDate=false",
+      "status": "passed",
+      "duration": 11759
+    },
+    {
+      "title": "sonrie: hideReceiptType=false",
+      "status": "passed",
+      "duration": 13884
+    },
     {
       "title": "sonrie: disableCart=false",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie: C2-13 Pedido aparece en historial",
       "status": "passed",
       "duration": 9389
-    },
-    {
-      "title": "bastien: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 18302
-    },
-    {
-      "title": "bastien: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 25422
     }
   ]
 }
