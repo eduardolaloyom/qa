@@ -64,13 +64,9 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
 <div class="card">
   <div class="card-title">Bugs de producto confirmados</div>
 
-  <div class="bug-item bug-p1">
-    <div class="bug-header">🔴 P1 — CAREN-QA-002: Bloqueo crediticio sin enforcement</div>
-    <div class="bug-desc">Comercios bloqueados permiten acceder al Tomador de Pedido y mostrar "Finalizar pedido". El popup de bloqueo es solo informativo — no impide el envío de pedidos.</div>
-    <div class="bug-actions">
-      <button class="action-btn btn-linear" onclick="openLinear(0)">🎫 Crear ticket</button>
-      <button class="action-btn btn-slack" onclick="copySlack(0)">💬 Slack</button>
-    </div>
+  <div class="bug-item" style="background:#f0f4ff;border-left:4px solid #6366f1;color:#3730a3;">
+    <div class="bug-header">🔵 En revisión — CAREN-QA-002: Bloqueo crediticio sin enforcement</div>
+    <div class="bug-desc">Flow 05 detectó "Finalizar pedido" visible en comercio bloqueado. Pendiente verificación mañana con carrito limpio — el carrito puede ser compartido entre comercios (residuo del flow 02 con MARIA TERESA). Si se confirma con carrito limpio → P1.</div>
   </div>
 
   <div class="bug-item bug-p2">
@@ -103,16 +99,16 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
 
 <div class="card">
   <div class="card-title">Resumen</div>
-  <span class="verdict-badge">CON BUGS CRÍTICOS</span>
+  <span class="verdict-badge" style="background:#fef3c7;color:#92400e;">CON BUGS</span>
   <div class="stats">
     <div class="stat purple"><div class="stat-value">10</div><div class="stat-label">Flows ejecutados</div></div>
     <div class="stat green"><div class="stat-value">10/10</div><div class="stat-label">Automatización</div></div>
-    <div class="stat red"><div class="stat-value">4</div><div class="stat-label">Con bugs</div></div>
-    <div class="stat amber"><div class="stat-value">30%</div><div class="stat-label">Health producto</div></div>
+    <div class="stat red"><div class="stat-value">3</div><div class="stat-label">Bugs confirmados</div></div>
+    <div class="stat amber"><div class="stat-value">55%</div><div class="stat-label">Health producto</div></div>
   </div>
   <div class="health-bar">
-    <div class="health-meta"><span>Health de producto (no automatización)</span><strong>30%</strong></div>
-    <div class="health-track"><div class="health-fill" style="width:30%"></div></div>
+    <div class="health-meta"><span>Health de producto (no automatización)</span><strong>55%</strong></div>
+    <div class="health-track"><div class="health-fill" style="width:55%;background:#f59e0b"></div></div>
   </div>
 </div>
 
@@ -125,7 +121,7 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
       <tr><td><span>✅</span> 02 — Pedido completo (staging — SE ENVÍA)</td><td><span class="badge pass">OK</span></td></tr>
       <tr><td><span>✅</span> 03 — Comercios bloqueados (popup)</td><td><span class="badge pass">OK</span></td></tr>
       <tr><td><span>✅</span> 04 — Verificación features ON/OFF</td><td><span class="badge pass">OK</span></td></tr>
-      <tr><td><span>⚠️</span> 05 — Bug bloqueado: Tomador de Pedido<div class="flow-error">🔴 CAREN-QA-002: Finalizar pedido visible en bloqueado (pendiente verificación carrito limpio)</div></td><td><span class="badge warn">BUGS</span></td></tr>
+      <tr><td><span>🔵</span> 05 — Bug bloqueado: Tomador de Pedido<div class="flow-error" style="color:#6366f1;">CAREN-QA-002: En revisión — pendiente verificación con carrito limpio (QA mañana)</div></td><td><span class="badge" style="background:#e0e7ff;color:#3730a3;">REVISIÓN</span></td></tr>
       <tr><td><span>⚠️</span> 06 — Lista completa de comercios<div class="flow-error">🟠 CAREN-QA-001: MARIA TERESA solo 3 productos</div></td><td><span class="badge warn">BUGS</span></td></tr>
       <tr><td><span>⚠️</span> 07 — Historial de pedidos<div class="flow-error">🟡 CAREN-QA-003: historial no encontrado, sin número de pedido</div></td><td><span class="badge warn">BUGS</span></td></tr>
       <tr><td><span>✅</span> 08 — Búsqueda en lista de comercios</td><td><span class="badge pass">OK</span></td></tr>
@@ -135,7 +131,7 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
   </table>
 </div>
 
-<footer>Generado 2026-04-22 · Maestro + YOM QA · Staging · Automatización 10/10 · Bugs producto: 4</footer>
+<footer>Generado 2026-04-22 · Maestro + YOM QA · Staging · Automatización 10/10 · Bugs confirmados: 3 · En revisión: 1 (CAREN-QA-002)</footer>
 </div>
 
 <div id="toast"></div>

@@ -5,16 +5,16 @@
 **Ejecutado por:** Maestro / Eduardo  
 **Flujos ejecutados:** 01–10 (10 flows, primer QA completo Caren)  
 **Comercio de prueba (disponible):** MARIA TERESA (0010001575, Potrerillo S/N, Puchuncaví)  
-**Health Score producto: 30/100** _(4 bugs confirmados: 1 P1, 2 P2, 1 P3)_  
+**Health Score producto: 55/100** _(3 bugs confirmados: 2 P2, 1 P3 · 1 en revisión: CAREN-QA-002)_  
 **Automatización: 10/10 PASS** _(flows corren sin crashear — bugs detectados por inspección)_
 
 ---
 
 ## Resumen ejecutivo
 
-Primer QA completo de Caren staging. Se ejecutaron **10 flujos Maestro** cubriendo todos los comercios, catálogos, búsqueda, historial y datos. El flujo end-to-end de pedido funciona y los feature flags OFF se respetan. Se detectaron **4 bugs de producto**:
+Primer QA completo de Caren staging. Se ejecutaron **10 flujos Maestro** cubriendo todos los comercios, catálogos, búsqueda, historial y datos. El flujo end-to-end de pedido funciona y los feature flags OFF se respetan. Se detectaron **3 bugs confirmados** y 1 en revisión:
 
-- **P1 — CAREN-QA-002**: Bloqueo crediticio sin enforcement — vendedor puede enviar pedidos a comercios bloqueados
+- **🔵 En revisión — CAREN-QA-002**: Bloqueo crediticio sin enforcement — pendiente verificación con carrito limpio (QA 2026-04-23). Puede ser falso positivo por residuo de carrito del flow 02.
 - **P2 — CAREN-QA-001**: Inversión de catálogo — disponible muestra 3 productos, bloqueados muestran catálogo completo
 - **P2 — CAREN-QA-004**: Sin fotos en ningún producto de ningún comercio (disponible y bloqueados)
 - **P3 — CAREN-QA-003**: Historial de pedidos sin número de pedido visible / sección no encontrada
@@ -23,11 +23,11 @@ Primer QA completo de Caren staging. Se ejecutaron **10 flujos Maestro** cubrien
 
 ## Hallazgos por severidad
 
-### 🔴 P1 — Crítico (1)
+### 🔵 En revisión (1)
 
 | ID | Área | Descripción |
 |----|------|-------------|
-| **CAREN-QA-002** | Bloqueo crediticio / Tomador de Pedido | Un comercio bloqueado por estado crediticio permite al vendedor ingresar al Tomador de Pedido, agregar productos al carrito y llegar al botón "Finalizar pedido". Flow 05 confirmó: assertion `"Finalizar pedido" no visible` falló → botón SÍ está visible. El popup "Este comercio se encuentra bloqueado" es solo informativo — no hay enforcement en el flujo de pedido. Impacto: pedidos enviados a comercios sin crédito disponible. |
+| **CAREN-QA-002** | Bloqueo crediticio / Tomador de Pedido | Flow 05 detectó "Finalizar pedido" visible en comercio bloqueado. **Pendiente verificación 2026-04-23 con carrito limpio.** Hipótesis: el carrito es por vendedor (no por comercio), por lo que el carrito de MARIA TERESA (flow 02) pudo haberse arrastrado al entrar al bloqueado. Si se confirma con carrito vacío → P1. |
 
 ### 🟠 P2 — Alto (2)
 
