@@ -1,39 +1,31 @@
 {
   "date": "2026-04-22",
   "timestamp": "2026-04-22T13:34:13.467866+00:00",
-  "total": 660,
-  "passed": 660,
-  "failed": 0,
-  "duration": 3,
-  "suites": [
-    {
-      "name": "00-contract.spec.ts",
-      "tests": 660,
-      "passed": 660,
-      "failed": 0,
-      "reportUrl": "reports/index.html"
-    }
-  ],
+  "total": 252,
+  "passed": 238,
+  "failed": 12,
+  "duration": 720,
+  "suites": [],
   "clients": {
     "bastien": {
       "name": "Bastien (staging)",
       "url": "https://bastien.solopide.me",
       "environment": "staging",
       "tests": 100,
-      "passed": 99,
-      "failed": 1,
+      "passed": 98,
+      "failed": 2,
       "reportUrl": "reports/index.html",
-      "last_tested": "2026-04-21"
+      "last_tested": "2026-04-22"
     },
     "sonrie": {
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
       "environment": "staging",
       "tests": 95,
-      "passed": 95,
-      "failed": 0,
+      "passed": 94,
+      "failed": 1,
       "reportUrl": "reports/index.html",
-      "last_tested": "2026-04-21"
+      "last_tested": "2026-04-22"
     },
     "codelpa": {
       "name": "Codelpa",
