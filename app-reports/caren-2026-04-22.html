@@ -68,8 +68,8 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
     <div class="bug-header">🔴 P1 — CAREN-QA-002: Bloqueo crediticio sin enforcement</div>
     <div class="bug-desc">Comercios bloqueados permiten acceder al Tomador de Pedido y mostrar "Finalizar pedido". El popup de bloqueo es solo informativo — no impide el envío de pedidos.</div>
     <div class="bug-actions">
-      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-002','P1','fix(app): bloqueo crediticio no impide Finalizar pedido en comercio bloqueado','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P1 — Crítico\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nComercio bloqueado por estado crediticio permite al vendedor:\n1. Ingresar al Tomador de Pedido via \"Hacer pedido\"\n2. Agregar productos al carrito\n3. Ver el botón \"Finalizar pedido\"\n\nEl popup \"Este comercio se encuentra bloqueado por estado crediticio\" es puramente informativo. No hay enforcement real en el flujo de pedido.\n\n## Impacto\n\nVendedores pueden enviar pedidos a comercios sin crédito disponible.\n\n## Acción requerida\n\nDeshabilitar \"Hacer pedido\" en ficha del comercio bloqueado, o bloquear \"Finalizar pedido\" en el Tomador de Pedido cuando el comercio está bloqueado crediticiamente.')">🎫 Crear ticket</button>
-      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-002','P1','Bloqueo crediticio sin enforcement en comercio bloqueado','Comercios bloqueados permiten acceder al Tomador de Pedido y mostrar Finalizar pedido. El popup de bloqueo es solo informativo.','Dev')">💬 Slack</button>
+      <button class="action-btn btn-linear" onclick="openLinear(0)">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack(0)">💬 Slack</button>
     </div>
   </div>
 
@@ -77,8 +77,8 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
     <div class="bug-header">🟠 P2 — CAREN-QA-001: Inversión de catálogo disponible vs bloqueado</div>
     <div class="bug-desc">MARIA TERESA (disponible) muestra solo 3 productos. Los 4 comercios bloqueados muestran catálogo completo. El catálogo debería ser idéntico para todos los comercios.</div>
     <div class="bug-actions">
-      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-001','P2','fix(app): catálogo disponible muestra 3 productos vs catálogo completo en bloqueados','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P2 — Alto\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nEl catálogo de productos debería ser el mismo para todos los comercios (catálogo del vendedor). Sin embargo:\n- MARIA TERESA (comercio disponible): muestra solo 3 productos (100418, 100419, 100449)\n- 4 comercios bloqueados: muestran catálogo completo via \"Hacer pedido\"\n\nInversión directa: el comercio que PUEDE hacer pedidos tiene catálogo restringido.\n\n## Acción requerida\n\nInvestigar si hay un filtro de stock, categoría o fecha que afecta solo al comercio disponible. Comparar contra producción.')">🎫 Crear ticket</button>
-      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-001','P2','Inversión de catálogo: disponible muestra 3 productos, bloqueados muestran catálogo completo','El catálogo debería ser idéntico para todos los comercios. MARIA TERESA (disponible) = 3 productos. Los 4 bloqueados = catálogo completo.','Dev')">💬 Slack</button>
+      <button class="action-btn btn-linear" onclick="openLinear(1)">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack(1)">💬 Slack</button>
     </div>
   </div>
 
@@ -86,8 +86,8 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
     <div class="bug-header">🟠 P2 — CAREN-QA-004: Sin fotos en ningún producto</div>
     <div class="bug-desc">Todos los productos en todos los comercios (disponible y bloqueados) muestran placeholder de imagen. Ningún producto tiene foto. Impacta la experiencia del vendedor al tomar pedidos.</div>
     <div class="bug-actions">
-      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-004','P2','fix(app): sin fotos de producto en ningún comercio Caren staging','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P2 — Alto\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nNingún producto en ningún comercio muestra foto — todos muestran placeholder de imagen. Aplica a MARIA TERESA (disponible) y a los 4 comercios bloqueados.\n\n## Acción requerida\n\nVerificar si es problema de datos en staging (URLs de imagen no configuradas) o bug de carga de imágenes en la app.')">🎫 Crear ticket</button>
-      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-004','P2','Sin fotos en ningún producto de ningún comercio Caren','Todos los productos muestran placeholder de imagen en staging. Aplica a comercio disponible y 4 bloqueados.','Dev')">💬 Slack</button>
+      <button class="action-btn btn-linear" onclick="openLinear(2)">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack(2)">💬 Slack</button>
     </div>
   </div>
 
@@ -95,8 +95,8 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
     <div class="bug-header">🟡 P3 — CAREN-QA-003: Historial de pedidos sin número de pedido</div>
     <div class="bug-desc">La sección de historial de pedidos no fue encontrada desde la navegación principal. Los pedidos enviados en flow 02 no aparecen con número de pedido visible.</div>
     <div class="bug-actions">
-      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-003','P3','fix(app): historial de pedidos no accesible / sin número de pedido Caren','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P3 — Medio\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nFlow 07 no encontró sección de historial de pedidos desde menú hamburger ni bottom nav. Los pedidos enviados en staging no aparecen con número de pedido visible.\n\n## Acción requerida\n\nIdentificar ruta de navegación al historial y verificar que los pedidos aparezcan con número de pedido.')">🎫 Crear ticket</button>
-      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-003','P3','Historial de pedidos no encontrado / sin número de pedido','Sección historial no accesible desde navegación principal. Pedidos enviados en staging no muestran número de pedido.','QA')">💬 Slack</button>
+      <button class="action-btn btn-linear" onclick="openLinear(3)">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack(3)">💬 Slack</button>
     </div>
   </div>
 </div>
@@ -152,30 +152,46 @@ footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:2
 </div>
 
 <script>
-function openLinear(id, sev, title, desc) {
-    const t = encodeURIComponent(title);
-    const d = encodeURIComponent(desc);
-    const url = 'https://linear.app/yom-tech/new?title=' + t + '&description=' + d;
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+const BUGS = [
+  {
+    id: 'CAREN-QA-002', sev: 'P1', owner: 'Dev',
+    title: 'fix(app): bloqueo crediticio no impide Finalizar pedido en comercio bloqueado',
+    desc: '## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P1 — Crítico\n**App:** YOM Ventas Debug\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nComercio bloqueado por estado crediticio permite al vendedor:\n1. Ingresar al Tomador de Pedido via "Hacer pedido"\n2. Agregar productos al carrito\n3. Ver el botón "Finalizar pedido"\n\nEl popup "Este comercio se encuentra bloqueado por estado crediticio" es puramente informativo. No hay enforcement real en el flujo de pedido.\n\n## Impacto\n\nVendedores pueden enviar pedidos a comercios sin crédito disponible.\n\n## Acción requerida\n\nDeshabilitar "Hacer pedido" en ficha del comercio bloqueado, o bloquear "Finalizar pedido" en el Tomador de Pedido cuando el comercio está bloqueado crediticiamente.',
+    slack: 'Comercios bloqueados permiten acceder al Tomador de Pedido y mostrar Finalizar pedido. El popup de bloqueo es solo informativo.'
+  },
+  {
+    id: 'CAREN-QA-001', sev: 'P2', owner: 'Dev',
+    title: 'fix(app): catálogo disponible muestra 3 productos vs catálogo completo en bloqueados',
+    desc: '## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P2 — Alto\n**App:** YOM Ventas Debug\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nEl catálogo debería ser el mismo para todos los comercios (catálogo del vendedor). Sin embargo:\n- MARIA TERESA (disponible): muestra solo 3 productos (100418, 100419, 100449)\n- 4 comercios bloqueados: muestran catálogo completo via "Hacer pedido"\n\nInversión directa: el comercio que PUEDE hacer pedidos tiene catálogo restringido.\n\n## Acción requerida\n\nInvestigar si hay un filtro de stock, categoría o fecha que afecta solo al comercio disponible. Comparar contra producción.',
+    slack: 'El catálogo debería ser idéntico para todos los comercios. MARIA TERESA (disponible) = 3 productos. Los 4 bloqueados = catálogo completo.'
+  },
+  {
+    id: 'CAREN-QA-004', sev: 'P2', owner: 'Dev',
+    title: 'fix(app): sin fotos de producto en ningún comercio Caren staging',
+    desc: '## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P2 — Alto\n**App:** YOM Ventas Debug\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nNingún producto en ningún comercio muestra foto — todos muestran placeholder de imagen. Aplica a MARIA TERESA (disponible) y a los 4 comercios bloqueados.\n\n## Acción requerida\n\nVerificar si es problema de datos en staging (URLs de imagen no configuradas) o bug de carga de imágenes en la app.',
+    slack: 'Todos los productos muestran placeholder de imagen en staging. Aplica a comercio disponible y 4 bloqueados.'
+  },
+  {
+    id: 'CAREN-QA-003', sev: 'P3', owner: 'QA',
+    title: 'fix(app): historial de pedidos no accesible / sin número de pedido Caren',
+    desc: '## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P3 — Medio\n**App:** YOM Ventas Debug\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nFlow 07 no encontró sección de historial de pedidos desde menú hamburger ni bottom nav. Los pedidos enviados en staging no aparecen con número de pedido visible.\n\n## Acción requerida\n\nIdentificar ruta de navegación al historial y verificar que los pedidos aparezcan con número de pedido.',
+    slack: 'Sección historial no accesible desde navegación principal. Pedidos enviados en staging no muestran número de pedido.'
+  }
+];
+
+function openLinear(i) {
+    const b = BUGS[i];
+    const url = 'https://linear.app/yom-tech/new?title=' + encodeURIComponent(b.title) + '&description=' + encodeURIComponent(b.desc);
+    window.open(url, '_blank');
 }
 
-function copySlack(id, sev, title, desc, owner) {
-    const date = '2026-04-22';
-    const sevEmoji = sev === 'P1' ? '🔴' : sev === 'P2' ? '🟠' : '🟡';
-    const text = `${sevEmoji} *[${id}] ${sev} — ${title}* — QA App ${date}\n>${desc}\n*Acción requerida (${owner}):* Revisar en staging · caren.solopide.me\n*App:* YOM Ventas Debug (me.youorder.yomventas.debug)`;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(() => {
-            showToast('✅ Mensaje Slack copiado');
-        }).catch(() => showCopyModal(text));
-    } else {
-        showCopyModal(text);
-    }
+function copySlack(i) {
+    const b = BUGS[i];
+    const sevEmoji = b.sev === 'P1' ? '🔴' : b.sev === 'P2' ? '🟠' : '🟡';
+    const text = sevEmoji + ' *[' + b.id + '] ' + b.sev + ' — ' + b.id + '* — QA App 2026-04-22\n>' + b.slack + '\n*Acción requerida (' + b.owner + '):* Revisar en staging · caren.solopide.me\n*App:* YOM Ventas Debug (me.youorder.yomventas.debug)';
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('✅ Mensaje Slack copiado');
+    }).catch(() => showCopyModal(text));
 }
 
 function showCopyModal(text) {
