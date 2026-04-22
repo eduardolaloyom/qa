@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 109,
-  "failed": 3,
+  "passed": 112,
+  "failed": 4,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: purchaseOrderEnabled=false",
+      "status": "passed",
+      "duration": 13989
+    },
+    {
+      "title": "sonrie: enableCoupons=true",
+      "status": "failed",
+      "duration": 24334
+    },
+    {
+      "title": "sonrie: limitAddingByStock=false",
+      "status": "passed",
+      "duration": 4757
+    },
+    {
+      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "passed",
+      "duration": 14756
+    },
     {
       "title": "sonrie: enableAskDeliveryDate=false",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "bastien: C2-11 Flujo completo catalogo → carro → checkout",
       "status": "passed",
       "duration": 19503
-    },
-    {
-      "title": "bastien: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 14435
-    },
-    {
-      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 13287
-    },
-    {
-      "title": "bastien: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 19270
-    },
-    {
-      "title": "sonrie: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 9389
     }
   ]
 }
