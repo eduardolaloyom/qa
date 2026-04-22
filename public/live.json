@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 92,
+  "passed": 95,
   "failed": 2,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: C2-13 Pedido aparece en historial",
+      "status": "passed",
+      "duration": 14435
+    },
+    {
+      "title": "sonrie: C2-12 Doble click en crear pedido no genera duplicado",
+      "status": "passed",
+      "duration": 13287
+    },
+    {
+      "title": "bastien: C2-09 Eliminar producto del carro",
+      "status": "passed",
+      "duration": 19270
+    },
     {
       "title": "sonrie: C2-13 Pedido aparece en historial",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: C2-05 Agregar producto al carro",
       "status": "passed",
       "duration": 12155
-    },
-    {
-      "title": "sonrie: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 11670
-    },
-    {
-      "title": "fixture shape: name, baseURL, config",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "taxes.taxRate must be number in [0, 1]",
-      "status": "passed",
-      "duration": 0
     }
   ]
 }
