@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 83,
+  "passed": 85,
   "failed": 1,
   "skipped": 2,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 20348
+    },
+    {
+      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
+      "status": "passed",
+      "duration": 10287
+    },
     {
       "title": "sonrie: C2-08 Modificar cantidad en carro",
       "status": "passed",
@@ -94,16 +104,6 @@
     },
     {
       "title": "pointsEnabled must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "pendingDocuments must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "ordersRequireVerification must be boolean (got boolean false)",
       "status": "passed",
       "duration": 0
     }
