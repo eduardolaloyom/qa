@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 134,
+  "passed": 141,
   "failed": 4,
   "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: showEmptyCategories=false",
+      "status": "passed",
+      "duration": 4816
+    },
+    {
+      "title": "sonrie: weightInfo=false",
+      "status": "passed",
+      "duration": 4814
+    },
+    {
+      "title": "bastien: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 37947
+    },
+    {
+      "title": "bastien: disableObservationInput=false",
+      "status": "passed",
+      "duration": 37911
+    },
+    {
+      "title": "sonrie: packagingInformation.hidePackagingInformationB2B=true",
+      "status": "passed",
+      "duration": 4955
+    },
+    {
+      "title": "sonrie: hasNoSaleFilter=false",
+      "status": "passed",
+      "duration": 4700
+    },
+    {
+      "title": "bastien: hasSingleDistributionCenter=true",
+      "status": "passed",
+      "duration": 37784
+    },
     {
       "title": "sonrie: hasMultiUnitEnabled=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "bastien: enableAskDeliveryDate=false",
       "status": "passed",
       "duration": 36606
-    },
-    {
-      "title": "bastien: hideReceiptType=false",
-      "status": "passed",
-      "duration": 36985
-    },
-    {
-      "title": "bastien: enableCoupons=true",
-      "status": "passed",
-      "duration": 36852
-    },
-    {
-      "title": "sonrie: shoppingDetail.lastOrder=false",
-      "status": "passed",
-      "duration": 16104
-    },
-    {
-      "title": "sonrie: disableObservationInput=false",
-      "status": "passed",
-      "duration": 12725
-    },
-    {
-      "title": "bastien: disableCart=false",
-      "status": "passed",
-      "duration": 4110
-    },
-    {
-      "title": "sonrie: hasSingleDistributionCenter=true",
-      "status": "passed",
-      "duration": 12748
-    },
-    {
-      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
-      "status": "passed",
-      "duration": 12797
     }
   ]
 }
