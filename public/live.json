@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 174,
+  "passed": 181,
   "failed": 4,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: discountTypes.enableProductDiscountType=false",
+      "status": "passed",
+      "duration": 5428
+    },
+    {
+      "title": "sonrie: enablePaymentsCollection=false",
+      "status": "passed",
+      "duration": 4494
+    },
+    {
+      "title": "sonrie: enableSellerDiscount=false",
+      "status": "passed",
+      "duration": 7408
+    },
+    {
+      "title": "sonrie: includeTaxRateInPrices=false",
+      "status": "passed",
+      "duration": 5970
+    },
+    {
+      "title": "sonrie: enablePayments=false",
+      "status": "passed",
+      "duration": 5805
+    },
+    {
+      "title": "bastien: disableCommerceEdit=false",
+      "status": "passed",
+      "duration": 3904
+    },
+    {
+      "title": "bastien: enablePaymentDocumentsB2B=false",
+      "status": "passed",
+      "duration": 3723
+    },
     {
       "title": "bastien: enableInvoicesList=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "sonrie: hasVoucherPrinterEnabled=false",
       "status": "passed",
       "duration": 4679
-    },
-    {
-      "title": "sonrie: enableOrderApproval=false",
-      "status": "passed",
-      "duration": 4813
-    },
-    {
-      "title": "sonrie: ordersRequireVerification=false",
-      "status": "passed",
-      "duration": 4625
-    },
-    {
-      "title": "sonrie: ordersRequireAuthorization=false",
-      "status": "passed",
-      "duration": 4826
-    },
-    {
-      "title": "bastien: enablePriceOracle=false",
-      "status": "passed",
-      "duration": 4853
-    },
-    {
-      "title": "bastien: hasMultipleBusinessUnit=false",
-      "status": "passed",
-      "duration": 4885
-    },
-    {
-      "title": "bastien: enableDistributionCentersSelector=false",
-      "status": "passed",
-      "duration": 1732
-    },
-    {
-      "title": "bastien: uploadOrderFileWithMinUnits=false",
-      "status": "passed",
-      "duration": 1760
     }
   ]
 }
