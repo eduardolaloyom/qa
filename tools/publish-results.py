@@ -196,16 +196,8 @@ def classify_error(error: str, annotations: list = None, title: str = "") -> tup
         action = f"Revisar logs del servidor para {', '.join(unique_urls[:2])} — retorna 500 en staging."
         return ("ambiente", reason, "dev", action)
 
-    # ── Integración: PM8 tax sanity (taxRate entero vs decimal) ─────────────
-    if "pm8" in t or ("impuesto" in e and "mongodb" in e) or ("taxrate" in e and "0.19" in e) or \
-       ("lessthanorequal" in e and "0.3" in e):
-        return ("integracion",
-                "Impuestos exceden 30% del neto — product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
-                "dev",
-                "Corregir product.taxes[].taxRate en MongoDB: debe ser 0.19 (decimal), no 19 (entero). Actualizar todos los productos del comercio afectado.")
-
     # ── Integración: productos con precio $0 ────────────────────────────────
-    if ("c3-02" in t or "precio $0" in t or "precio cero" in t) and ("0" in e or "zeroProducts" in e):
+    if ("c3-02" in title.lower() or "precio $0" in title.lower() or "precio cero" in title.lower()) and ("0" in error.lower() or "zeroProducts" in error.lower()):
         return ("integracion",
                 "Productos con precio $0 en catálogo — dato faltante en integración de productos",
                 "dev",
@@ -237,6 +229,14 @@ def classify_error(error: str, annotations: list = None, title: str = "") -> tup
                 "dev", "Revisar el Trace del test para identificar qué devolvió la app.")
 
     t = title.lower()
+
+    # ── Integración: PM8 tax sanity (taxRate entero vs decimal) ─────────────
+    if "pm8" in t or ("impuesto" in e and "mongodb" in e) or ("taxrate" in e and "0.19" in e) or \
+       ("lessthanorequal" in e and "0.3" in e):
+        return ("integracion",
+                "Impuestos exceden 30% del neto — product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
+                "dev",
+                "Corregir product.taxes[].taxRate en MongoDB: debe ser 0.19 (decimal), no 19 (entero). Actualizar todos los productos del comercio afectado.")
 
     # ── UX: toBeDisabled failures ────────────────────────────────────────────
     if "tobedisabled" in e or ("expected: disabled" in e and "received: enabled" in e):
