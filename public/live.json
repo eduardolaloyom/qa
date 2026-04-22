@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 249,
-  "failed": 8,
+  "passed": 255,
+  "failed": 9,
   "skipped": 16,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: C3-04 Descuento visible en catalogo",
+      "status": "passed",
+      "duration": 2302
+    },
+    {
+      "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 9383
+    },
+    {
+      "title": "bastien: C3-02 Detectar productos con precio $0",
+      "status": "passed",
+      "duration": 2213
+    },
+    {
+      "title": "bastien: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "passed",
+      "duration": 2187
+    },
+    {
+      "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "passed",
+      "duration": 14203
+    },
+    {
+      "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 12290
+    },
+    {
+      "title": "sonrie: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "failed",
+      "duration": 13782
+    },
     {
       "title": "sonrie: C3-15 Cupon invalido muestra error claro",
       "status": "skipped",
@@ -71,41 +106,6 @@
       "title": "bastien: C7-10 Facturas visibles en /orders cuando flag=true",
       "status": "skipped",
       "duration": 14098
-    },
-    {
-      "title": "bastien: Login exitoso",
-      "status": "passed",
-      "duration": 4611
-    },
-    {
-      "title": "bastien: C7-INV /payment-documents no accesible cuando flag=false",
-      "status": "passed",
-      "duration": 14333
-    },
-    {
-      "title": "bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "status": "passed",
-      "duration": 16083
-    },
-    {
-      "title": "bastien: Login exitoso",
-      "status": "failed",
-      "duration": 50935
-    },
-    {
-      "title": "sonrie: C7-12 /payment-documents carga sin error cuando flag=true",
-      "status": "skipped",
-      "duration": 9218
-    },
-    {
-      "title": "sonrie: C7-11 Opción de facturas en menú lateral cuando flag=true",
-      "status": "skipped",
-      "duration": 9639
-    },
-    {
-      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
-      "status": "skipped",
-      "duration": 9293
     }
   ]
 }
