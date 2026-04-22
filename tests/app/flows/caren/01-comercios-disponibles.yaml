@@ -31,6 +31,12 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
     text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
     optional: true
 
+# Forzar tab "Sugerencias" (la app puede recordar tab "Mi pedido" del run anterior)
+- tapOn:
+    text: "Sugerencias"
+    optional: true
+- waitForAnimationToEnd
+
 - extendedWaitUntil:
     visible:
       text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*"
