@@ -1,6 +1,13 @@
 {
   "runs": [
     {
+      "date": "2026-04-22",
+      "total": 660,
+      "passed": 660,
+      "failed": 0,
+      "duration": 3
+    },
+    {
       "date": "2026-04-21",
       "total": 252,
       "passed": 240,
