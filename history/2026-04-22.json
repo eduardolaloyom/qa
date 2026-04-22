@@ -1,18 +1,152 @@
 {
   "date": "2026-04-22",
-  "timestamp": "2026-04-22T13:34:13.467866+00:00",
-  "total": 252,
-  "passed": 238,
+  "timestamp": "2026-04-22T14:05:22.799348+00:00",
+  "total": 254,
+  "passed": 240,
   "failed": 12,
-  "duration": 720,
-  "suites": [],
+  "duration": 1438,
+  "suites": [
+    {
+      "name": "00-contract.spec.ts",
+      "tests": 78,
+      "passed": 78,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cart.spec.ts",
+      "tests": 8,
+      "passed": 6,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "catalog.spec.ts",
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "checkout.spec.ts",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "coupons.spec.ts",
+      "tests": 10,
+      "passed": 8,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-access.spec.ts",
+      "tests": 10,
+      "passed": 9,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-cart.spec.ts",
+      "tests": 25,
+      "passed": 25,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-catalog.spec.ts",
+      "tests": 28,
+      "passed": 26,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-orders.spec.ts",
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-payments.spec.ts",
+      "tests": 20,
+      "passed": 20,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-ui-features.spec.ts",
+      "tests": 21,
+      "passed": 21,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "mongo-data.spec.ts",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "multi-client.spec.ts",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "orders.spec.ts",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payment-documents.spec.ts",
+      "tests": 10,
+      "passed": 4,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payments.spec.ts",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "prices.spec.ts",
+      "tests": 22,
+      "passed": 15,
+      "failed": 2,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "promotions.spec.ts",
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "step-pricing.spec.ts",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
   "clients": {
     "bastien": {
       "name": "Bastien (staging)",
       "url": "https://bastien.solopide.me",
       "environment": "staging",
-      "tests": 100,
-      "passed": 98,
+      "tests": 101,
+      "passed": 99,
       "failed": 2,
       "reportUrl": "reports/index.html",
       "last_tested": "2026-04-22"
@@ -21,8 +155,8 @@
       "name": "Sonrie (staging)",
       "url": "https://sonrie.solopide.me",
       "environment": "staging",
-      "tests": 95,
-      "passed": 94,
+      "tests": 96,
+      "passed": 95,
       "failed": 1,
       "reportUrl": "reports/index.html",
       "last_tested": "2026-04-22"
@@ -46,7 +180,66 @@
       "last_tested": "2026-04-07"
     }
   },
-  "failure_groups": [],
+  "failure_groups": [
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Cup\u00f3n v\u00e1lido aplica descuento",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Cup\u00f3n v\u00e1lido aplica descuento'.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] bastien: PM1-02 Cup\u00f3n v\u00e1lido aplica descuento"
+      ],
+      "clients": [
+        "bastien"
+      ],
+      "error_sample": "Error: Cup\u00f3n TEST10OFF rechazado como inv\u00e1lido\n\nexpect(received).toBeFalsy()\n\nReceived: true",
+      "annotations_sample": [],
+      "spec_file": "coupons.spec.ts"
+    },
+    {
+      "category": "integracion",
+      "label": "\ud83d\udfe3 Integraci\u00f3n",
+      "reason": "Impuestos exceden 30% del neto \u2014 product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
+      "owner": "dev",
+      "action": "Corregir product.taxes[].taxRate en MongoDB: debe ser 0.19 (decimal), no 19 (entero). Actualizar todos los productos del comercio afectado.",
+      "count": 2,
+      "tests": [
+        "[prices.spec.ts] sonrie: C3-PM8 Sanity impuestos \u2014 impuesto no excede 30% del neto",
+        "[prices.spec.ts] bastien: C3-PM8 Sanity impuestos \u2014 impuesto no excede 30% del neto"
+      ],
+      "clients": [
+        "bastien",
+        "sonrie"
+      ],
+      "error_sample": "TypeError: Cannot read properties of undefined (reading 'replace')",
+      "annotations_sample": [],
+      "spec_file": "prices.spec.ts"
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 8,
+      "tests": [
+        "[cart.spec.ts] sonrie: C2-08 Modificar cantidad en carro",
+        "[cart.spec.ts] bastien: C2-09 Eliminar producto del carro",
+        "[checkout.spec.ts] sonrie: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout",
+        "[cv-cart.spec.ts] sonrie: enableCoupons=true",
+        "[cv-payments.spec.ts] sonrie: taxes.showSummary=true",
+        "[multi-client.spec.ts] bastien: Login exitoso",
+        "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento",
+        "[step-pricing.spec.ts] bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto"
+      ],
+      "clients": [
+        "bastien",
+        "sonrie"
+      ]
+    }
+  ],
   "pending_b2b": [],
   "evidence": {
     "screenshots": [],
