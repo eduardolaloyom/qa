@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 268,
+  "passed": 270,
   "failed": 13,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "passed",
+      "duration": 72365
+    },
+    {
+      "title": "bastien: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 16475
+    },
     {
       "title": "bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
       "status": "failed",
@@ -96,16 +106,6 @@
       "title": "sonrie: C5-05 Sugerencias se pueden agregar al carro",
       "status": "passed",
       "duration": 12234
-    },
-    {
-      "title": "bastien: C3-04 Descuento visible en catalogo",
-      "status": "passed",
-      "duration": 2302
-    },
-    {
-      "title": "sonrie: Sin imágenes rotas en catálogo @catalog @calidad",
-      "status": "passed",
-      "duration": 9383
     }
   ]
 }
