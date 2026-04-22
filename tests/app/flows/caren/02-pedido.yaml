@@ -60,14 +60,36 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
 - takeScreenshot: /tmp/caren-pedido-resumen
 
 # Verificar precios — sin IVA incluido (includeTaxRateInPrices: false)
-# Los precios deben mostrarse sin indicador de IVA
 - assertNotVisible:
     text: ".*IVA [Ii]ncluido.*|.*incl\\..*IVA.*"
     optional: true
 
+# Seleccionar dirección de despacho si es requerida
+- runFlow:
+    when:
+      visible:
+        text: ".*[Ss]eleccione.*direcci[oó]n.*|.*[Dd]irecci[oó]n.*despacho.*"
+    commands:
+      - tapOn:
+          text: ".*[Ss]eleccione.*direcci[oó]n.*|.*[Dd]irecci[oó]n.*despacho.*"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Dd]irecci[oó]n.*"
+          index: 0
+          optional: true
+      - waitForAnimationToEnd
+
+# Scroll para revelar botón confirmar
+- swipe:
+    direction: UP
+    duration: 800
+
+- takeScreenshot: /tmp/caren-pedido-confirmacion-scroll
+
 # STAGING: confirmar y enviar el pedido
 - tapOn:
-    text: ".*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*|.*[Cc]onfirmar.*"
+    text: ".*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*|.*[Cc]onfirmar.*|.*ENVIAR.*|.*CONFIRMAR.*"
     optional: true
 
 - waitForAnimationToEnd
@@ -76,7 +98,7 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
 # Esperar confirmación exitosa
 - extendedWaitUntil:
     visible:
-      text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*Listado de comercios.*"
+      text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*Listado de comercios.*|.*[Pp]edido.*[Ee]nviado.*"
     timeout: 30000
 
 - takeScreenshot: /tmp/caren-pedido-resultado
