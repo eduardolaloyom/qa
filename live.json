@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 243,
+  "passed": 246,
   "failed": 8,
-  "skipped": 11,
+  "skipped": 15,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 14744
+    },
+    {
+      "title": "sonrie: C3-04 Descuento visible en catalogo",
+      "status": "skipped",
+      "duration": 40
+    },
+    {
+      "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 9594
+    },
+    {
+      "title": "sonrie: C3-02 Detectar productos con precio $0",
+      "status": "skipped",
+      "duration": 61
+    },
+    {
+      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "skipped",
+      "duration": 47
+    },
+    {
+      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 9465
+    },
+    {
+      "title": "bastien: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 9881
+    },
     {
       "title": "bastien: C7-11 Opción de facturas en menú lateral cuando flag=true",
       "status": "skipped",
@@ -71,41 +106,6 @@
       "title": "sonrie: Historial de pedidos carga @orders @funcional",
       "status": "passed",
       "duration": 12848
-    },
-    {
-      "title": "bastien: No hay productos con precio $0",
-      "status": "passed",
-      "duration": 6809
-    },
-    {
-      "title": "bastien: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "passed",
-      "duration": 48576
-    },
-    {
-      "title": "bastien: Agregar producto al carro",
-      "status": "passed",
-      "duration": 3681
-    },
-    {
-      "title": "sonrie: No hay productos con precio $0",
-      "status": "passed",
-      "duration": 10343
-    },
-    {
-      "title": "bastien: Catálogo muestra productos con precios",
-      "status": "passed",
-      "duration": 2430
-    },
-    {
-      "title": "bastien: Acceso anónimo muestra catálogo",
-      "status": "passed",
-      "duration": 2283
-    },
-    {
-      "title": "sonrie: Agregar producto al carro",
-      "status": "passed",
-      "duration": 6113
     }
   ]
 }
