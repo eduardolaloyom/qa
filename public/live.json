@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 121,
+  "passed": 125,
   "failed": 4,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: orderObservations=",
+      "status": "passed",
+      "duration": 37114
+    },
+    {
+      "title": "bastien: limitAddingByStock=false",
+      "status": "passed",
+      "duration": 1778
+    },
+    {
+      "title": "bastien: enableAskDeliveryDate=false",
+      "status": "passed",
+      "duration": 36606
+    },
+    {
+      "title": "bastien: hideReceiptType=false",
+      "status": "passed",
+      "duration": 36985
+    },
     {
       "title": "bastien: enableCoupons=true",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie: disableCart=false",
       "status": "passed",
       "duration": 6086
-    },
-    {
-      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "failed",
-      "duration": 43493
-    },
-    {
-      "title": "bastien: loginButtons.google=false",
-      "status": "passed",
-      "duration": 1446
-    },
-    {
-      "title": "bastien: anonymousHideCart=false",
-      "status": "passed",
-      "duration": 2435
-    },
-    {
-      "title": "bastien: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 1672
     }
   ]
 }
