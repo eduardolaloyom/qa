@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 181,
+  "passed": 187,
   "failed": 4,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: enableSellerDiscount=false",
+      "status": "passed",
+      "duration": 5254
+    },
+    {
+      "title": "sonrie: paymentsWithoutAccount=false",
+      "status": "passed",
+      "duration": 6542
+    },
+    {
+      "title": "sonrie: payment.enableNewPaymentModule=false",
+      "status": "passed",
+      "duration": 7357
+    },
+    {
+      "title": "bastien: enablePayments=false",
+      "status": "passed",
+      "duration": 4049
+    },
+    {
+      "title": "sonrie: discountTypes.enableOrderDiscountType=false",
+      "status": "passed",
+      "duration": 7317
+    },
+    {
+      "title": "sonrie: hasTransferPaymentType=false",
+      "status": "passed",
+      "duration": 7256
+    },
     {
       "title": "sonrie: discountTypes.enableProductDiscountType=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "bastien: enableOrderApproval=false",
       "status": "passed",
       "duration": 1948
-    },
-    {
-      "title": "bastien: ordersRequireVerification=false",
-      "status": "passed",
-      "duration": 1794
-    },
-    {
-      "title": "sonrie: enableInvoicesList=false",
-      "status": "passed",
-      "duration": 6666
-    },
-    {
-      "title": "bastien: ordersRequireAuthorization=false",
-      "status": "passed",
-      "duration": 1786
-    },
-    {
-      "title": "sonrie: shareOrderNewDesign=false",
-      "status": "passed",
-      "duration": 4870
-    },
-    {
-      "title": "sonrie: enableOrderValidation=false",
-      "status": "passed",
-      "duration": 7678
-    },
-    {
-      "title": "sonrie: hasVoucherPrinterEnabled=false",
-      "status": "passed",
-      "duration": 4679
     }
   ]
 }
