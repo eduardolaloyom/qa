@@ -7,11 +7,11 @@
       "file": "app-reports/caren-2026-04-22.html",
       "platform": "app",
       "environment": "staging",
-      "passed": 4,
+      "passed": 10,
       "manual": 0,
       "failed": 0,
       "skipped": 0,
-      "total": 4,
+      "total": 10,
       "health": 100,
       "verdict": "LISTO"
     },

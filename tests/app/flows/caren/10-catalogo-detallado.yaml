@@ -1,11 +1,17 @@
 appId: ${APP_PACKAGE}
-name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
-# OBJETIVO: Auditar el catálogo de MARIA TERESA en profundidad
-# Chequea: fotos de producto, todos los tabs disponibles, SKUs visibles,
-#          precios correctos, unidades, y si hay más productos ocultos
+name: "CAREN: 10 — Catálogo de TODOS los comercios (fotos, SKUs, tabs, precios)"
+# OBJETIVO: Auditar catálogo de cada uno de los 5 comercios
+# Chequea por comercio: fotos presentes, tabs disponibles, SKUs visibles, precios
+# MARIA TERESA (disponible) + 4 bloqueados (que según flow 05 muestran catálogo completo)
 ---
 
 - runFlow: helpers-startup.yaml
+- runFlow: helpers-volver-lista.yaml
+
+# ── HELPER interno: explorar tabs y scroll del catálogo ───────────────────────
+# Se repite para cada comercio — tab Sugerencias, tab Todos, scroll profundo
+
+# ── 1. MARIA TERESA (disponible) ─────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
 
 - tapOn:
@@ -18,16 +24,11 @@ name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
     optional: true
 - waitForAnimationToEnd
 
-# ── TAB SUGERENCIAS ───────────────────────────────────────────────────────────
 - tapOn:
     text: "Sugerencias"
     optional: true
 - waitForAnimationToEnd
 
-# Scroll completo en Sugerencias — documentar todos los productos visibles
-- swipe:
-    direction: DOWN
-    duration: 1500
 - swipe:
     direction: DOWN
     duration: 1500
@@ -38,9 +39,8 @@ name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
     direction: DOWN
     duration: 1500
 
-# ── TAB TODOS / CATÁLOGO COMPLETO ─────────────────────────────────────────────
 - tapOn:
-    text: ".*[Tt]odos.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|.*[Tt]odo.*"
+    text: ".*[Tt]odos.*|.*[Tt]odo.*|.*[Pp]roductos.*"
     optional: true
 - waitForAnimationToEnd
 
@@ -53,11 +53,7 @@ name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
 - swipe:
     direction: DOWN
     duration: 1500
-- swipe:
-    direction: DOWN
-    duration: 1500
 
-# ── TAB CATEGORÍAS (si existe) ────────────────────────────────────────────────
 - tapOn:
     text: ".*[Cc]ategor[ií]a.*"
     optional: true
@@ -66,19 +62,44 @@ name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
 - swipe:
     direction: DOWN
     duration: 1500
-- swipe:
-    direction: DOWN
-    duration: 1500
 
-# ── ABRIR DETALLE DE PRODUCTO (primer producto) ───────────────────────────────
+- runFlow: helpers-volver-lista.yaml
+
+# ── 2. BLOQUEADO 1: 0000000000 ────────────────────────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 0
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Hacer pedido"
+    optional: true
+- waitForAnimationToEnd
+
 - tapOn:
     text: "Sugerencias"
     optional: true
 - waitForAnimationToEnd
 
-# Tap en el nombre/imagen de un producto para ver su detalle
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
 - tapOn:
-    text: "100418|100419|100449"
+    text: ".*[Tt]odos.*|.*[Tt]odo.*|.*[Pp]roductos.*"
     optional: true
 - waitForAnimationToEnd
 
@@ -89,8 +110,145 @@ name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
     direction: DOWN
     duration: 1500
 
-# Volver al catálogo
-- pressKey: Back
+- runFlow: helpers-volver-lista.yaml
+
+# ── 3. BLOQUEADO 2: 000 / 0010010531 ─────────────────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 1
 - waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Hacer pedido"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Sugerencias"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- tapOn:
+    text: ".*[Tt]odos.*|.*[Tt]odo.*|.*[Pp]roductos.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml
+
+# ── 4. BLOQUEADO 3: 2 A SERVICIOS LOGISTICOS SPA ─────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 2
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Hacer pedido"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Sugerencias"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- tapOn:
+    text: ".*[Tt]odos.*|.*[Tt]odo.*|.*[Pp]roductos.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml
+
+# ── 5. BLOQUEADO 4: 5TA ZONA CARABINEROS VALPO ────────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 3
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Hacer pedido"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Sugerencias"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- tapOn:
+    text: ".*[Tt]odos.*|.*[Tt]odo.*|.*[Pp]roductos.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
 
 - runFlow: helpers-volver-lista.yaml

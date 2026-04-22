@@ -1,14 +1,14 @@
 appId: ${APP_PACKAGE}
-name: "CAREN: 09 — Datos del comercio (dirección, info, crédito)"
-# OBJETIVO: Verificar la ficha de datos del comercio
-# Chequea: nombre, RUT, dirección, teléfono, email, estado crediticio, límite de crédito
-# Para disponible (MARIA TERESA) y bloqueado (0000000000)
+name: "CAREN: 09 — Datos de TODOS los comercios (ficha, dirección, crédito)"
+# OBJETIVO: Visitar los 5 comercios uno a uno y documentar su ficha completa
+# Comercios: MARIA TERESA (disponible) + 4 bloqueados
+# Chequea: nombre, RUT, dirección, estado, info de crédito en bloqueados
 ---
 
 - runFlow: helpers-startup.yaml
 - runFlow: helpers-volver-lista.yaml
 
-# ── COMERCIO DISPONIBLE: MARIA TERESA ────────────────────────────────────────
+# ── 1. MARIA TERESA (disponible) ─────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
 
 - tapOn:
@@ -16,8 +16,6 @@ name: "CAREN: 09 — Datos del comercio (dirección, info, crédito)"
     index: 0
 - waitForAnimationToEnd
 
-# En la ficha del comercio — explorar toda la info antes de "Hacer pedido"
-# Scroll DOWN para ver todos los campos de la ficha
 - swipe:
     direction: DOWN
     duration: 1500
@@ -25,7 +23,6 @@ name: "CAREN: 09 — Datos del comercio (dirección, info, crédito)"
     direction: DOWN
     duration: 1500
 
-# Buscar tab o sección de "Información" / "Datos"
 - tapOn:
     text: ".*[Ii]nformaci[oó]n.*|.*[Dd]atos.*|.*[Pp]erfil.*|.*[Dd]etalle.*"
     optional: true
@@ -40,7 +37,7 @@ name: "CAREN: 09 — Datos del comercio (dirección, info, crédito)"
 
 - runFlow: helpers-volver-lista.yaml
 
-# ── COMERCIO BLOQUEADO: datos de crédito ─────────────────────────────────────
+# ── 2. BLOQUEADO 1: 0000000000 ────────────────────────────────────────────────
 - runFlow: helpers-filtro-bloqueado.yaml
 
 - tapOn:
@@ -48,13 +45,11 @@ name: "CAREN: 09 — Datos del comercio (dirección, info, crédito)"
     index: 0
 - waitForAnimationToEnd
 
-# Cerrar popup si aparece
 - tapOn:
     text: "Continuar"
     optional: true
 - waitForAnimationToEnd
 
-# Explorar ficha del bloqueado
 - swipe:
     direction: DOWN
     duration: 1500
@@ -62,7 +57,108 @@ name: "CAREN: 09 — Datos del comercio (dirección, info, crédito)"
     direction: DOWN
     duration: 1500
 
-# Buscar info de crédito: límite, deuda, vencimiento
+- tapOn:
+    text: ".*[Ii]nformaci[oó]n.*|.*[Dd]atos.*|.*[Cc]r[eé]dito.*|.*[Dd]euda.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml
+
+# ── 3. BLOQUEADO 2: 000 / 0010010531 ─────────────────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 1
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- tapOn:
+    text: ".*[Ii]nformaci[oó]n.*|.*[Dd]atos.*|.*[Cc]r[eé]dito.*|.*[Dd]euda.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml
+
+# ── 4. BLOQUEADO 3: 2 A SERVICIOS LOGISTICOS SPA ─────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 2
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- tapOn:
+    text: ".*[Ii]nformaci[oó]n.*|.*[Dd]atos.*|.*[Cc]r[eé]dito.*|.*[Dd]euda.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml
+
+# ── 5. BLOQUEADO 4: 5TA ZONA CARABINEROS VALPO ────────────────────────────────
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 3
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
 - tapOn:
     text: ".*[Ii]nformaci[oó]n.*|.*[Dd]atos.*|.*[Cc]r[eé]dito.*|.*[Dd]euda.*"
     optional: true

@@ -3,37 +3,40 @@
 **Ambiente:** Staging · caren.solopide.me  
 **App:** YOM Ventas Debug (me.youorder.yomventas.debug)  
 **Ejecutado por:** Maestro / Eduardo  
-**Flujos ejecutados:** 01 Comercios disponibles · 02 Pedido completo · 03 Comercios bloqueados · 04 Features ON/OFF  
+**Flujos ejecutados:** 01 Comercios disponibles · 02 Pedido completo · 03 Comercios bloqueados · 04 Features ON/OFF · 05 Bug bloqueado Tomador de Pedido · 06 Lista completa comercios  
 **Comercio de prueba (disponible):** MARIA TERESA (0010001575, Potrerillo S/N, Puchuncaví)  
-**Health Score: 75/100**
+**Health Score: 45/100** _(P1 confirmado — bloqueo crediticio sin enforcement real)_
 
 ---
 
 ## Resumen ejecutivo
 
-QA de sesión vendedor completa en staging. Se ejecutaron los 4 flujos Maestro con exit code 0. El flujo end-to-end de pedido funciona correctamente y todos los feature flags OFF se respetan. Se detectaron **2 hallazgos**: 1 P2 (catálogo disponible con muy pocos productos — bug sospechado confirmado) y 1 P3 (botón "Hacer pedido" accesible en ficha de comercio bloqueado tras dismiss del popup). Los 4 comercios bloqueados muestran correctamente el aviso de bloqueo crediticio.
+QA de sesión vendedor completa en staging. Se ejecutaron **6 flujos Maestro** (6/6 PASS en automatización). El flujo end-to-end de pedido funciona y los feature flags OFF se respetan. Sin embargo se detectaron **2 hallazgos críticos de producto**:
+
+- **P1 CONFIRMADO (CAREN-QA-002)**: El bloqueo crediticio de un comercio NO impide que el vendedor acceda al Tomador de Pedido, agregue productos al carrito y vea el botón "Finalizar pedido". Un vendedor puede enviar pedidos a comercios bloqueados. El popup de bloqueo es puramente informativo.
+- **P2 (CAREN-QA-001)**: El catálogo del único comercio disponible (MARIA TERESA) muestra solo ~3 productos en Sugerencias. El catálogo completo no carga correctamente.
 
 ---
 
 ## Hallazgos por severidad
 
+### 🔴 P1 — Crítico (1)
+
+| ID | Área | Descripción |
+|----|------|-------------|
+| **CAREN-QA-002** | Bloqueo crediticio / Tomador de Pedido | Un comercio bloqueado por estado crediticio permite al vendedor ingresar al Tomador de Pedido, agregar productos al carrito y llegar al botón "Finalizar pedido". Flow 05 confirmó: `assertNotVisible "Finalizar pedido"` → WARNING (la assertion falló = el botón SÍ está visible). El popup "Este comercio se encuentra bloqueado" es solo informativo — no hay enforcement en el flujo de pedido. Impacto: pedidos enviados a comercios sin crédito disponible. |
+
 ### 🟠 P2 — Alto (1)
 
 | ID | Área | Descripción |
 |----|------|-------------|
-| **CAREN-QA-001** | Catálogo / Tomador de Pedido | Catálogo del comercio disponible (MARIA TERESA) muestra solo ~3 productos en el tab Sugerencias. Las capturas top/mid/bottom del catálogo muestran exactamente los mismos 3 ítems (100418, 100419, 100449+) sin avanzar — no hay más productos visibles aunque existan en el sistema. Bug documentado como "BUG A CONFIRMAR" en el flujo. Impacto directo en la capacidad del vendedor de tomar pedidos completos. |
-
-### 🟡 P3 — Medio (1)
-
-| ID | Área | Descripción |
-|----|------|-------------|
-| **CAREN-QA-002** | Comercios bloqueados | Después de cerrar el popup "Este comercio se encuentra bloqueado por estado crediticio", la ficha del comercio muestra el botón "Hacer pedido" activo. El flow de Maestro validó que no hay acceso a "Confirmar Pedido" ni "Enviar Pedido" (assertNotVisible pasó), pero no se verificó si el Tomador de Pedido permite armar carrito dentro del bloqueado. Requiere verificación manual del flujo completo en un bloqueado. |
+| **CAREN-QA-001** | Catálogo / Tomador de Pedido | Catálogo del comercio disponible (MARIA TERESA) muestra solo ~3 productos en el tab Sugerencias (100418, 100419, 100449). Flow 06 confirmó scroll completo del catálogo sin más productos. El staging tiene 1 único comercio disponible — no se puede comparar con otros disponibles. Comparar contra producción para determinar si es bug de datos o de rendering. |
 
 ### ℹ️ Info (1)
 
 | ID | Área | Descripción |
 |----|------|-------------|
-| **CAREN-QA-003** | Catálogo / Imágenes | Los 3 productos del catálogo disponible (100418, 100419, 100449) muestran placeholder de imagen — sin fotos de producto. Bajo en prioridad para staging pero impacta la experiencia de validación visual. |
+| **CAREN-QA-003** | Catálogo / Imágenes | Los 3 productos del catálogo disponible (100418, 100419, 100449) muestran placeholder de imagen — sin fotos de producto. Esperado en staging (datos de prueba). |
 
 ---
 
@@ -63,14 +66,12 @@ QA de sesión vendedor completa en staging. Se ejecutaron los 4 flujos Maestro c
 
 ### Flujo 03 — Comercios bloqueados
 
-| Comercio | Popup crediticio | Sin Confirmar Pedido |
-|----------|-----------------|---------------------|
+| Comercio | Popup crediticio | Sin Confirmar Pedido (flow 03) |
+|----------|-----------------|-------------------------------|
 | 0000000000 (Nuevo San Juan, 23 B N 19 238) | ✅ PASS | ✅ PASS |
 | 000 / 0010010531 (Los Alerces, Arica) | ✅ PASS | ✅ PASS |
 | 2 A SERVICIOS LOGISTICOS SPA / 0010010445 | ✅ PASS | ✅ PASS |
 | 5TA ZONA CARABINEROS VALPO / 0010005517 | ✅ PASS | ✅ PASS |
-
-Nota: todos muestran "Este comercio se encuentra bloqueado por estado crediticio". Botón "Hacer pedido" visible en ficha tras cerrar popup (ver CAREN-QA-002).
 
 ### Flujo 04 — Features ON/OFF
 
@@ -81,6 +82,23 @@ Nota: todos muestran "Este comercio se encuentra bloqueado por estado crediticio
 | useNewPromotions | false | Sin badge PROMO/% descuento en catálogo | ✅ PASS |
 | enableSellerDiscount | false | Sin "Descuento Vendedor" en carrito | ✅ PASS |
 | loginButtons.facebook/google | false | Login completado sin botones sociales (implícito) | ✅ PASS |
+
+### Flujo 05 — Bug bloqueado: acceso a Tomador de Pedido
+
+| Check | Resultado |
+|-------|-----------|
+| Ingresa al Tomador de Pedido desde comercio bloqueado | ✅ PASS (acceso exitoso = bug confirmado) |
+| Agrega producto al carrito desde comercio bloqueado | ✅ PASS (agrega = bug confirmado) |
+| "Finalizar pedido" NO visible en comercio bloqueado | ❌ FAIL — botón SÍ visible → **P1 confirmado** |
+
+### Flujo 06 — Lista completa de comercios
+
+| Check | Resultado |
+|-------|-----------|
+| Scroll completo de lista sin filtro | ✅ PASS |
+| Solo 1 comercio disponible en staging (MARIA TERESA) | ✅ PASS — índices 1, 2, 3 no encontrados |
+| Catálogo del disponible accesible con scroll 3x | ✅ PASS |
+| No existe segundo comercio disponible para comparar catálogos | ✅ INFO |
 
 ---
 
@@ -98,9 +116,9 @@ Nota: todos muestran "Este comercio se encuentra bloqueado por estado crediticio
 
 ## Acciones prioritarias
 
-1. **🟠 CAREN-QA-001**: Investigar por qué el catálogo disponible de MARIA TERESA muestra solo ~3 productos. Verificar si hay un filtro de stock, fecha o categoria que limita los productos mostrados en el tab Sugerencias. Comparar contra el catálogo del mismo comercio en producción.
-2. **🟡 CAREN-QA-002**: Verificar manualmente si el Tomador de Pedido dentro de un comercio bloqueado permite armar carrito y llegar al botón Finalizar — si puede enviarse un pedido desde un bloqueado es P1. De lo contrario queda como P3 de UX.
+1. **🔴 CAREN-QA-002 (P1)**: Implementar enforcement real del bloqueo crediticio en el flujo de pedido. El popup informativo debe ir acompañado de bloqueo funcional: deshabilitar "Hacer pedido" en la ficha del comercio bloqueado, o bloquear el botón "Finalizar pedido" en el Tomador de Pedido cuando el comercio está bloqueado.
+2. **🟠 CAREN-QA-001 (P2)**: Verificar por qué MARIA TERESA muestra solo 3 productos en Sugerencias. Comparar contra producción. Posibles causas: filtro de stock, categoría, fecha de vigencia, o bug de paginación en el tab Sugerencias.
 
 ---
 
-*Generado: 2026-04-22 | Tool: Maestro (4 flows, exit 0) | Próxima QA recomendada: post-fix CAREN-QA-001*
+*Generado: 2026-04-22 | Tool: Maestro (6 flows, 6/6 PASS automatización) | Próxima QA: post-fix CAREN-QA-002*
