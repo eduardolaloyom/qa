@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 263,
+  "passed": 266,
   "failed": 12,
   "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 15178
+    },
+    {
+      "title": "sonrie: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "passed",
+      "duration": 9405
+    },
+    {
+      "title": "bastien: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 16566
+    },
     {
       "title": "sonrie: PM5-02 Carrito muestra totales con descuentos aplicados",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: C3-11 Precio bruto vs neto — impuestos segun config",
       "status": "passed",
       "duration": 14203
-    },
-    {
-      "title": "sonrie: Catálogo carga con productos visibles @catalog @calidad",
-      "status": "passed",
-      "duration": 12290
-    },
-    {
-      "title": "sonrie: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
-      "status": "failed",
-      "duration": 13782
-    },
-    {
-      "title": "sonrie: C3-15 Cupon invalido muestra error claro",
-      "status": "skipped",
-      "duration": 12992
     }
   ]
 }
