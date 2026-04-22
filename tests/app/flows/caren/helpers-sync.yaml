@@ -51,12 +51,12 @@ appId: ${APP_PACKAGE}
           optional: true
       - waitForAnimationToEnd
 
-# ── ESPERAR TODAS LAS FASES DE SYNC (hasta 15 min total) ────────────────────
-# Fase 1: sync principal
+# ── ESPERAR TODAS LAS FASES DE SYNC (hasta 45 min total) ────────────────────
+# Fase 1: sync principal — staging puede tardar más de 10 min
 - extendedWaitUntil:
     notVisible:
       text: ".*[Ss]incronizando.*"
-    timeout: 300000
+    timeout: 900000
 
 # Fase 2: sync precios (si aparece, esperar que termine)
 - runFlow:
