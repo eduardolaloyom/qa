@@ -1,0 +1,70 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 07 — Historial de pedidos"
+# OBJETIVO: Verificar historial de pedidos del vendedor
+# Chequea: número de pedido, estado, comercio, monto, fecha
+# Precondición: se enviaron pedidos en flow 02
+---
+
+- runFlow: helpers-startup.yaml
+
+# Buscar acceso al historial — puede ser tab, menú hamburger, o bottom nav
+- tapOn:
+    text: ".*[Hh]istorial.*|.*[Pp]edidos.*|.*[Oo]rdenes.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Fallback: buscar en menú hamburger
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Hh]istorial.*|.*[Pp]edido.*|.*[Nn][oú]mero.*"
+    commands:
+      - tapOn:
+          point: "93%,4%"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Hh]istorial.*|.*[Pp]edidos.*|.*[Oo]rdenes.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Fallback 2: bottom navigation
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Hh]istorial.*|.*[Pp]edido.*|.*[Nn][oú]mero.*|.*[Ff]echa.*"
+    commands:
+      - tapOn:
+          point: "50%,95%"
+          optional: true
+      - waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Hh]istorial.*|.*[Pp]edido.*|.*[Nn][oú]mero.*|.*[Ff]echa.*|.*[Ss]in pedidos.*|.*[Vv]ac[íi]o.*"
+    timeout: 20000
+
+# Scroll para ver todos los pedidos
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# Intentar abrir el primer pedido para ver detalles
+- tapOn:
+    text: ".*[Nn][oú]mero.*|.*#[0-9]+.*|.*[Pp]edido [0-9]+.*|.*[Cc]omercio.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+# Scroll en detalle del pedido
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml

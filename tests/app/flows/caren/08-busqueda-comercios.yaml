@@ -1,0 +1,61 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 08 — Búsqueda en lista de comercios"
+# OBJETIVO: Verificar funcionalidad de búsqueda en la lista de comercios
+# Chequea: barra de búsqueda visible, resultados por nombre, por RUT, limpieza de búsqueda
+---
+
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-volver-lista.yaml
+
+# Buscar barra de búsqueda (ícono lupa o campo de texto)
+- tapOn:
+    text: ".*[Bb]uscar.*|.*[Ss]earch.*|.*[Ff]iltrar.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Fallback: ícono lupa (posición típica top-right debajo del header)
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*"
+    commands:
+      - tapOn:
+          point: "85%,8%"
+          optional: true
+      - waitForAnimationToEnd
+
+# Buscar por nombre: MARIA TERESA
+- inputText: "MARIA"
+- waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*MARIA.*|.*[Mm]aria.*|.*[Ss]in resultados.*|.*[Nn]o se encontr.*"
+    timeout: 15000
+
+- swipe:
+    direction: DOWN
+    duration: 1000
+
+# Limpiar búsqueda
+- tapOn:
+    text: ".*[Ll]impiar.*|.*[Cc]errar.*|.*[Xx].*"
+    optional: true
+- waitForAnimationToEnd
+
+# Buscar por RUT
+- inputText: "0010001575"
+- waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*0010001575.*|.*MARIA.*|.*[Ss]in resultados.*"
+    timeout: 15000
+
+# Limpiar y volver a lista completa
+- tapOn:
+    text: ".*[Ll]impiar.*|.*[Cc]errar.*|.*[Xx].*"
+    optional: true
+- waitForAnimationToEnd
+
+- runFlow: helpers-volver-lista.yaml

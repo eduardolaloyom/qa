@@ -1,35 +1,12 @@
 appId: ${APP_PACKAGE}
-name: "CAREN: Sesión Vendedor Completa (Sin Sync)"
-# Usar cuando el sync ya se hizo manualmente — no limpia estado ni sincroniza
+name: "CAREN: Sesión Completa (Flows 01-10, sin clearState)"
+# Sesión completa sin limpiar estado Realm — no fuerza sync desde cero.
+# Usar cuando la app ya tiene datos sincronizados (caso más común).
+# Para sync limpio usar caren-session.yaml.
 ---
 
-# Traer la app al frente sin limpiar datos Realm
-- launchApp
-
-# Si por algún motivo aparece pantalla de login, manejarlo
-- runFlow:
-    when:
-      visible:
-        text: ".*[Ee]mail.*|.*[Cc]orreo.*"
-    commands:
-      - runFlow: helpers/login.yaml
-
-# Descartar popup de nueva versión si aparece
-- runFlow:
-    when:
-      visible:
-        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
-    commands:
-      - tapOn:
-          text: "CANCELAR"
-          optional: true
-      - waitForAnimationToEnd
-
-# Esperar listado de comercios (ya sincronizado)
-- extendedWaitUntil:
-    visible:
-      text: "Listado de comercios|.*[Cc]omercio.*|.*[Cc]liente.*"
-    timeout: 15000
+# ── Startup único ─────────────────────────────────────────────────────────────
+- runFlow: caren/helpers-startup.yaml
 
 # ── 01: Catálogo comercios disponibles ───────────────────────────────────────
 - runFlow: caren/01-comercios-disponibles.yaml

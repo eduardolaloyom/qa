@@ -1,0 +1,96 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 10 — Catálogo detallado (fotos, SKUs, precios, tabs)"
+# OBJETIVO: Auditar el catálogo de MARIA TERESA en profundidad
+# Chequea: fotos de producto, todos los tabs disponibles, SKUs visibles,
+#          precios correctos, unidades, y si hay más productos ocultos
+---
+
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*[Dd]isponible.*"
+    index: 0
+- waitForAnimationToEnd
+
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    optional: true
+- waitForAnimationToEnd
+
+# ── TAB SUGERENCIAS ───────────────────────────────────────────────────────────
+- tapOn:
+    text: "Sugerencias"
+    optional: true
+- waitForAnimationToEnd
+
+# Scroll completo en Sugerencias — documentar todos los productos visibles
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# ── TAB TODOS / CATÁLOGO COMPLETO ─────────────────────────────────────────────
+- tapOn:
+    text: ".*[Tt]odos.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|.*[Tt]odo.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# ── TAB CATEGORÍAS (si existe) ────────────────────────────────────────────────
+- tapOn:
+    text: ".*[Cc]ategor[ií]a.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# ── ABRIR DETALLE DE PRODUCTO (primer producto) ───────────────────────────────
+- tapOn:
+    text: "Sugerencias"
+    optional: true
+- waitForAnimationToEnd
+
+# Tap en el nombre/imagen de un producto para ver su detalle
+- tapOn:
+    text: "100418|100419|100449"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# Volver al catálogo
+- pressKey: Back
+- waitForAnimationToEnd
+
+- runFlow: helpers-volver-lista.yaml

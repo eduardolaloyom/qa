@@ -1,0 +1,65 @@
+appId: ${APP_PACKAGE}
+# Helper: lanza la app y deja al usuario en la lista de comercios
+# NO-OP si ya estamos en la lista (seguro llamar desde cualquier flow en sesión)
+---
+
+# Si ya estamos en la lista de comercios, nada que hacer
+- runFlow:
+    when:
+      notVisible:
+        text: "Seleccionar filtros|Listado de comercios"
+    commands:
+      - launchApp:
+          clearState: false
+
+      - waitForAnimationToEnd
+
+      # Manejar login si es necesario
+      - runFlow:
+          when:
+            visible:
+              text: ".*[Cc]orreo.*|.*[Ee]-mail.*|.*[Ee]mail.*|.*[Uu]suario.*"
+          commands:
+            - tapOn:
+                text: ".*[Cc]orreo.*|.*[Ee]-mail.*|.*[Ee]mail.*|.*[Uu]suario.*"
+                optional: true
+            - inputText: ${TEST_SELLER_EMAIL}
+            - tapOn:
+                text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
+                optional: true
+            - inputText: ${TEST_SELLER_PASSWORD}
+            - tapOn:
+                text: ".*[Ii]niciar [Ss]esi[oó]n.*|.*[Ll]ogin.*|.*[Ee]ntrar.*|.*INGRESAR.*|.*[Aa]cceder.*"
+                optional: true
+            - waitForAnimationToEnd
+
+      # Esperar pantalla post-login — puede estar sincronizando o ya en lista
+      - extendedWaitUntil:
+          visible:
+            text: "Seleccionar filtros|Listado de comercios|.*[Ss]incronizando.*|.*[Cc]omercio.*"
+          timeout: 30000
+
+      # Si hay sync automático al lanzar, esperar que termine
+      - runFlow:
+          when:
+            visible:
+              text: ".*[Ss]incronizando.*"
+          commands:
+            - extendedWaitUntil:
+                notVisible:
+                  text: ".*[Ss]incronizando.*"
+                timeout: 300000
+
+      # Descartar popup de nueva versión si aparece
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd
+
+      # Confirmar lista de comercios lista
+      - extendedWaitUntil:
+          visible:
+            text: "Seleccionar filtros|Listado de comercios|.*[Cc]omercio.*"
+          timeout: 30000
+
+      - waitForAnimationToEnd
