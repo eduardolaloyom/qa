@@ -9,7 +9,7 @@ appId: ${APP_PACKAGE}
 - runFlow:
     when:
       notVisible:
-        text: "Listado de comercios"
+        text: "Seleccionar filtros|.*[Ss]eleccionar filtros.*"
     commands:
       - pressKey: Back
       - waitForAnimationToEnd
@@ -17,7 +17,7 @@ appId: ${APP_PACKAGE}
 - runFlow:
     when:
       notVisible:
-        text: "Listado de comercios"
+        text: "Seleccionar filtros|.*[Ss]eleccionar filtros.*"
     commands:
       - pressKey: Back
       - waitForAnimationToEnd
@@ -25,12 +25,12 @@ appId: ${APP_PACKAGE}
 - runFlow:
     when:
       notVisible:
-        text: "Listado de comercios"
+        text: "Seleccionar filtros|.*[Ss]eleccionar filtros.*"
     commands:
       - pressKey: Back
       - waitForAnimationToEnd
 
 - extendedWaitUntil:
     visible:
-      text: "Listado de comercios"
+      text: "Seleccionar filtros|.*[Ss]eleccionar filtros.*"
     timeout: 20000
