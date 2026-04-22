@@ -2,11 +2,46 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 202,
-  "failed": 4,
+  "passed": 208,
+  "failed": 5,
   "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: enableNewUI=false",
+      "status": "passed",
+      "duration": 7685
+    },
+    {
+      "title": "bastien: enableTask=false",
+      "status": "passed",
+      "duration": 1667
+    },
+    {
+      "title": "sonrie: suggestions.hide=true",
+      "status": "passed",
+      "duration": 7856
+    },
+    {
+      "title": "bastien: pendingDocuments=false",
+      "status": "passed",
+      "duration": 1596
+    },
+    {
+      "title": "sonrie: enableBetaButtons=false",
+      "status": "passed",
+      "duration": 4690
+    },
+    {
+      "title": "sonrie: useNewPromotions=false",
+      "status": "passed",
+      "duration": 4713
+    },
+    {
+      "title": "sonrie: taxes.showSummary=true",
+      "status": "failed",
+      "duration": 47454
+    },
     {
       "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
       "status": "passed",
@@ -71,41 +106,6 @@
       "title": "bastien: hasTransferPaymentType=false",
       "status": "passed",
       "duration": 4272
-    },
-    {
-      "title": "bastien: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 1667
-    },
-    {
-      "title": "bastien: includeTaxRateInPrices=false",
-      "status": "passed",
-      "duration": 4074
-    },
-    {
-      "title": "bastien: enableSellerDiscount=false",
-      "status": "passed",
-      "duration": 5254
-    },
-    {
-      "title": "sonrie: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 6542
-    },
-    {
-      "title": "sonrie: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 7357
-    },
-    {
-      "title": "bastien: enablePayments=false",
-      "status": "passed",
-      "duration": 4049
-    },
-    {
-      "title": "sonrie: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 7317
     }
   ]
 }
