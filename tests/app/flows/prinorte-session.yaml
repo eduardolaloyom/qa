@@ -59,3 +59,7 @@ name: "PRINORTE: Sesión Vendedor Completa"
 # ── Cobranza ──────────────────────────────────────────────────
 # Tab COBRANZA: verifica recaudación y documentos
 - runFlow: prinorte/11-cobranza.yaml
+
+# ── Precios y fotos ──────────────────────────────────
+# Verifica que precios no son $0 e imágenes cargan correctamente
+- runFlow: prinorte/12-precios-fotos.yaml
