@@ -2,11 +2,16 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 125,
+  "passed": 126,
   "failed": 4,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: purchaseOrderEnabled=false",
+      "status": "passed",
+      "duration": 37901
+    },
     {
       "title": "bastien: orderObservations=",
       "status": "passed",
@@ -101,11 +106,6 @@
       "title": "sonrie: hideReceiptType=false",
       "status": "passed",
       "duration": 13884
-    },
-    {
-      "title": "sonrie: disableCart=false",
-      "status": "passed",
-      "duration": 6086
     }
   ]
 }
