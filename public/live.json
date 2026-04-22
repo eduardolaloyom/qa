@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 237,
+  "passed": 240,
   "failed": 7,
-  "skipped": 6,
+  "skipped": 7,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: C7-10 Facturas visibles en /orders cuando flag=true",
+      "status": "skipped",
+      "duration": 9293
+    },
+    {
+      "title": "sonrie: C7-INV /payment-documents no accesible cuando flag=false",
+      "status": "passed",
+      "duration": 9440
+    },
+    {
+      "title": "bastien: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 17316
+    },
+    {
+      "title": "sonrie: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "status": "passed",
+      "duration": 11375
+    },
     {
       "title": "sonrie: Historial de pedidos carga @orders @funcional",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "bastien: PM2-04 Modal/UI de cupón no queda en loading infinito",
       "status": "passed",
       "duration": 20174
-    },
-    {
-      "title": "bastien: PM1-02 Cupón válido aplica descuento",
-      "status": "failed",
-      "duration": 20386
-    },
-    {
-      "title": "bastien: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 18517
-    },
-    {
-      "title": "sonrie: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "passed",
-      "duration": 14365
-    },
-    {
-      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
-      "status": "passed",
-      "duration": 15875
     }
   ]
 }
