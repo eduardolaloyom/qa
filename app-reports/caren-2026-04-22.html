@@ -1,5 +1,165 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>APP QA — Caren — 2026-04-22</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:40px 20px}.container{max-width:860px;margin:0 auto}.back-link{color:rgba(255,255,255,.8);text-decoration:none;font-size:.9em;display:inline-block;margin-bottom:16px}header{color:white;margin-bottom:24px}header h1{font-size:1.9em;margin-bottom:4px}header p{opacity:.8;font-size:.95em}.card{background:white;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.18)}.card-title{font-size:1.05em;font-weight:700;color:#111827;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #e5e7eb}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}.stat{color:white;padding:14px;border-radius:10px;text-align:center}.stat.purple{background:linear-gradient(135deg,#667eea,#764ba2)}.stat.green{background:linear-gradient(135deg,#10b981,#059669)}.stat.red{background:linear-gradient(135deg,#ef4444,#dc2626)}.stat.amber{background:linear-gradient(135deg,#f59e0b,#d97706)}.stat-value{font-size:1.6em;font-weight:800;line-height:1}.stat-label{font-size:.68em;opacity:.9;font-weight:600;margin-top:4px}.verdict-badge{display:inline-block;padding:6px 18px;border-radius:99px;font-weight:700;font-size:.9em;margin-bottom:18px;background:#fee2e2;color:#991b1b}.health-bar{margin-bottom:8px}.health-meta{display:flex;justify-content:space-between;font-size:.82em;color:#6b7280;font-weight:600;margin-bottom:5px}.health-meta strong{color:#111827}.health-track{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}.health-fill{height:100%;border-radius:99px;background:#ef4444}.bugs-grid{display:grid;gap:8px;margin-bottom:4px}.bug-item{padding:10px 14px;border-radius:8px;font-size:.85em;border-left:4px solid}.bug-p1{background:#fef2f2;border-color:#ef4444;color:#991b1b}.bug-p2{background:#fffbeb;border-color:#f59e0b;color:#92400e}.bug-p3{background:#f0fdf4;border-color:#6b7280;color:#374151}table{width:100%;border-collapse:collapse}th{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb}td{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top}tr:last-child td{border-bottom:none}.badge{padding:2px 10px;border-radius:99px;font-size:.75em;font-weight:700}.badge.pass{background:#d1fae5;color:#065f46}.badge.warn{background:#fef3c7;color:#92400e}.flow-error{font-size:.78em;color:#9ca3af;margin-top:3px}footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:24px}</style></head><body><div class="container"><a href="../" class="back-link">← Dashboard principal</a><header><h1>📱 APP QA — Caren</h1><p>Maestro flows · Staging (caren.solopide.me) · 2026-04-22 · Primer QA</p></header>
-<div class="card"><div class="card-title">Bugs de producto confirmados</div><div class="bugs-grid"><div class="bug-item bug-p1">🔴 P1 — CAREN-QA-002: Comercios bloqueados permiten "Finalizar pedido" — bloqueo sin enforcement</div><div class="bug-item bug-p2">🟠 P2 — CAREN-QA-001: Inversión de catálogo — disponible muestra 3 productos, bloqueados muestran catálogo completo</div><div class="bug-item bug-p2">🟠 P2 — CAREN-QA-004: Sin fotos en ningún producto de ningún comercio</div><div class="bug-item bug-p3">🟡 P3 — CAREN-QA-003: Historial de pedidos sin número de pedido / sección no encontrada</div></div></div>
-<div class="card"><div class="card-title">Resumen</div><span class="verdict-badge">CON BUGS CRÍTICOS</span><div class="stats"><div class="stat purple"><div class="stat-value">10</div><div class="stat-label">Flows ejecutados</div></div><div class="stat green"><div class="stat-value">10/10</div><div class="stat-label">Automatización</div></div><div class="stat red"><div class="stat-value">4</div><div class="stat-label">Con bugs</div></div><div class="stat amber"><div class="stat-value">30%</div><div class="stat-label">Health producto</div></div></div><div class="health-bar"><div class="health-meta"><span>Health de producto (no automatización)</span><strong>30%</strong></div><div class="health-track"><div class="health-fill" style="width:30%"></div></div></div></div>
-<div class="card"><div class="card-title">Detalle por flow</div><table><thead><tr><th>Flow</th><th>Producto</th></tr></thead><tbody><tr><td><span>✅</span> 01 — Catálogo comercios DISPONIBLES</td><td><span class="badge pass">OK</span></td></tr><tr><td><span>✅</span> 02 — Pedido completo (staging — SE ENVÍA)</td><td><span class="badge pass">OK</span></td></tr><tr><td><span>✅</span> 03 — Comercios bloqueados (popup)</td><td><span class="badge pass">OK</span></td></tr><tr><td><span>✅</span> 04 — Verificación features ON/OFF</td><td><span class="badge pass">OK</span></td></tr><tr><td><span>⚠️</span> 05 — Bug bloqueado: Tomador de Pedido<div class="flow-error">🔴 P1 CAREN-QA-002: Finalizar pedido visible en bloqueado</div></td><td><span class="badge warn">BUGS</span></td></tr><tr><td><span>⚠️</span> 06 — Lista completa de comercios<div class="flow-error">🔴 P2 CAREN-QA-001: MARIA TERESA solo 3 productos</div></td><td><span class="badge warn">BUGS</span></td></tr><tr><td><span>⚠️</span> 07 — Historial de pedidos<div class="flow-error">🔴 P3 CAREN-QA-003: historial no encontrado, sin número de pedido</div></td><td><span class="badge warn">BUGS</span></td></tr><tr><td><span>✅</span> 08 — Búsqueda en lista de comercios</td><td><span class="badge pass">OK</span></td></tr><tr><td><span>✅</span> 09 — Datos de TODOS los comercios</td><td><span class="badge pass">OK</span></td></tr><tr><td><span>⚠️</span> 10 — Catálogo de TODOS los comercios<div class="flow-error">🔴 P2 CAREN-QA-004: sin fotos en ningún comercio</div><div class="flow-error">🔴 P2 CAREN-QA-001: bloqueados muestran catálogo completo vs 3 productos en disponible</div></td><td><span class="badge warn">BUGS</span></td></tr></tbody></table></div>
-<footer>Generado 2026-04-22 17:38 · Maestro + YOM QA · Staging · Automatización 10/10 PASS · Bugs producto: 4</footer></div></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>APP QA — Caren — 2026-04-22</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+.back-link{color:rgba(255,255,255,.8);text-decoration:none;font-size:.9em;display:inline-block;margin-bottom:16px}
+header{color:white;margin-bottom:24px}
+header h1{font-size:1.9em;margin-bottom:4px}
+header p{opacity:.8;font-size:.95em}
+.card{background:white;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 10px 40px rgba(0,0,0,.18)}
+.card-title{font-size:1.05em;font-weight:700;color:#111827;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #e5e7eb}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat{color:white;padding:14px;border-radius:10px;text-align:center}
+.stat.purple{background:linear-gradient(135deg,#667eea,#764ba2)}
+.stat.green{background:linear-gradient(135deg,#10b981,#059669)}
+.stat.red{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.stat.amber{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.stat-value{font-size:1.6em;font-weight:800;line-height:1}
+.stat-label{font-size:.68em;opacity:.9;font-weight:600;margin-top:4px}
+.verdict-badge{display:inline-block;padding:6px 18px;border-radius:99px;font-weight:700;font-size:.9em;margin-bottom:18px;background:#fee2e2;color:#991b1b}
+.health-bar{margin-bottom:8px}
+.health-meta{display:flex;justify-content:space-between;font-size:.82em;color:#6b7280;font-weight:600;margin-bottom:5px}
+.health-meta strong{color:#111827}
+.health-track{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}
+.health-fill{height:100%;border-radius:99px;background:#ef4444}
+.bug-item{padding:12px 16px;border-radius:8px;font-size:.88em;border-left:4px solid;margin-bottom:10px}
+.bug-p1{background:#fef2f2;border-color:#ef4444;color:#991b1b}
+.bug-p2{background:#fffbeb;border-color:#f59e0b;color:#92400e}
+.bug-p3{background:#f9fafb;border-color:#9ca3af;color:#374151}
+.bug-header{font-weight:700;margin-bottom:4px}
+.bug-desc{font-size:.85em;margin-bottom:8px;opacity:.85}
+.bug-actions{display:flex;gap:8px;margin-top:8px}
+.action-btn{padding:5px 12px;border-radius:6px;font-size:.78em;font-weight:600;cursor:pointer;border:1.5px solid;background:white;transition:all .15s}
+.btn-linear{border-color:#5e6ad2;color:#5e6ad2}
+.btn-linear:hover{background:#5e6ad2;color:white}
+.btn-slack{border-color:#611f69;color:#611f69}
+.btn-slack:hover{background:#611f69;color:white}
+table{width:100%;border-collapse:collapse}
+th{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb}
+td{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top}
+tr:last-child td{border-bottom:none}
+.badge{padding:2px 10px;border-radius:99px;font-size:.75em;font-weight:700}
+.badge.pass{background:#d1fae5;color:#065f46}
+.badge.warn{background:#fef3c7;color:#92400e}
+.flow-error{font-size:.78em;color:#9ca3af;margin-top:3px}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:10px 20px;border-radius:8px;font-size:.85em;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
+#toast.show{opacity:1}
+footer{color:rgba(255,255,255,.7);font-size:.82em;text-align:center;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../" class="back-link">← Dashboard principal</a>
+<header>
+  <h1>📱 APP QA — Caren</h1>
+  <p>Maestro flows · Staging (caren.solopide.me) · 2026-04-22 · Primer QA</p>
+</header>
+
+<div class="card">
+  <div class="card-title">Bugs de producto confirmados</div>
+
+  <div class="bug-item bug-p1">
+    <div class="bug-header">🔴 P1 — CAREN-QA-002: Bloqueo crediticio sin enforcement</div>
+    <div class="bug-desc">Comercios bloqueados permiten acceder al Tomador de Pedido y mostrar "Finalizar pedido". El popup de bloqueo es solo informativo — no impide el envío de pedidos.</div>
+    <div class="bug-actions">
+      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-002','P1','fix(app): bloqueo crediticio no impide Finalizar pedido en comercio bloqueado','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P1 — Crítico\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nComercio bloqueado por estado crediticio permite al vendedor:\n1. Ingresar al Tomador de Pedido via \"Hacer pedido\"\n2. Agregar productos al carrito\n3. Ver el botón \"Finalizar pedido\"\n\nEl popup \"Este comercio se encuentra bloqueado por estado crediticio\" es puramente informativo. No hay enforcement real en el flujo de pedido.\n\n## Impacto\n\nVendedores pueden enviar pedidos a comercios sin crédito disponible.\n\n## Acción requerida\n\nDeshabilitar \"Hacer pedido\" en ficha del comercio bloqueado, o bloquear \"Finalizar pedido\" en el Tomador de Pedido cuando el comercio está bloqueado crediticiamente.')">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-002','P1','Bloqueo crediticio sin enforcement en comercio bloqueado','Comercios bloqueados permiten acceder al Tomador de Pedido y mostrar Finalizar pedido. El popup de bloqueo es solo informativo.','Dev')">💬 Slack</button>
+    </div>
+  </div>
+
+  <div class="bug-item bug-p2">
+    <div class="bug-header">🟠 P2 — CAREN-QA-001: Inversión de catálogo disponible vs bloqueado</div>
+    <div class="bug-desc">MARIA TERESA (disponible) muestra solo 3 productos. Los 4 comercios bloqueados muestran catálogo completo. El catálogo debería ser idéntico para todos los comercios.</div>
+    <div class="bug-actions">
+      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-001','P2','fix(app): catálogo disponible muestra 3 productos vs catálogo completo en bloqueados','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P2 — Alto\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nEl catálogo de productos debería ser el mismo para todos los comercios (catálogo del vendedor). Sin embargo:\n- MARIA TERESA (comercio disponible): muestra solo 3 productos (100418, 100419, 100449)\n- 4 comercios bloqueados: muestran catálogo completo via \"Hacer pedido\"\n\nInversión directa: el comercio que PUEDE hacer pedidos tiene catálogo restringido.\n\n## Acción requerida\n\nInvestigar si hay un filtro de stock, categoría o fecha que afecta solo al comercio disponible. Comparar contra producción.')">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-001','P2','Inversión de catálogo: disponible muestra 3 productos, bloqueados muestran catálogo completo','El catálogo debería ser idéntico para todos los comercios. MARIA TERESA (disponible) = 3 productos. Los 4 bloqueados = catálogo completo.','Dev')">💬 Slack</button>
+    </div>
+  </div>
+
+  <div class="bug-item bug-p2">
+    <div class="bug-header">🟠 P2 — CAREN-QA-004: Sin fotos en ningún producto</div>
+    <div class="bug-desc">Todos los productos en todos los comercios (disponible y bloqueados) muestran placeholder de imagen. Ningún producto tiene foto. Impacta la experiencia del vendedor al tomar pedidos.</div>
+    <div class="bug-actions">
+      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-004','P2','fix(app): sin fotos de producto en ningún comercio Caren staging','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P2 — Alto\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nNingún producto en ningún comercio muestra foto — todos muestran placeholder de imagen. Aplica a MARIA TERESA (disponible) y a los 4 comercios bloqueados.\n\n## Acción requerida\n\nVerificar si es problema de datos en staging (URLs de imagen no configuradas) o bug de carga de imágenes en la app.')">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-004','P2','Sin fotos en ningún producto de ningún comercio Caren','Todos los productos muestran placeholder de imagen en staging. Aplica a comercio disponible y 4 bloqueados.','Dev')">💬 Slack</button>
+    </div>
+  </div>
+
+  <div class="bug-item bug-p3">
+    <div class="bug-header">🟡 P3 — CAREN-QA-003: Historial de pedidos sin número de pedido</div>
+    <div class="bug-desc">La sección de historial de pedidos no fue encontrada desde la navegación principal. Los pedidos enviados en flow 02 no aparecen con número de pedido visible.</div>
+    <div class="bug-actions">
+      <button class="action-btn btn-linear" onclick="openLinear('CAREN-QA-003','P3','fix(app): historial de pedidos no accesible / sin número de pedido Caren','## Bug\n\nDetectado por QA Maestro — 2026-04-22\n**Severidad:** P3 — Medio\n**App:** YOM Ventas Debug (me.youorder.yomventas.debug)\n**Ambiente:** Staging · caren.solopide.me\n\n## Descripción\n\nFlow 07 no encontró sección de historial de pedidos desde menú hamburger ni bottom nav. Los pedidos enviados en staging no aparecen con número de pedido visible.\n\n## Acción requerida\n\nIdentificar ruta de navegación al historial y verificar que los pedidos aparezcan con número de pedido.')">🎫 Crear ticket</button>
+      <button class="action-btn btn-slack" onclick="copySlack('CAREN-QA-003','P3','Historial de pedidos no encontrado / sin número de pedido','Sección historial no accesible desde navegación principal. Pedidos enviados en staging no muestran número de pedido.','QA')">💬 Slack</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Resumen</div>
+  <span class="verdict-badge">CON BUGS CRÍTICOS</span>
+  <div class="stats">
+    <div class="stat purple"><div class="stat-value">10</div><div class="stat-label">Flows ejecutados</div></div>
+    <div class="stat green"><div class="stat-value">10/10</div><div class="stat-label">Automatización</div></div>
+    <div class="stat red"><div class="stat-value">4</div><div class="stat-label">Con bugs</div></div>
+    <div class="stat amber"><div class="stat-value">30%</div><div class="stat-label">Health producto</div></div>
+  </div>
+  <div class="health-bar">
+    <div class="health-meta"><span>Health de producto (no automatización)</span><strong>30%</strong></div>
+    <div class="health-track"><div class="health-fill" style="width:30%"></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Detalle por flow</div>
+  <table>
+    <thead><tr><th>Flow</th><th>Producto</th></tr></thead>
+    <tbody>
+      <tr><td><span>✅</span> 01 — Catálogo comercios DISPONIBLES</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td><span>✅</span> 02 — Pedido completo (staging — SE ENVÍA)</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td><span>✅</span> 03 — Comercios bloqueados (popup)</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td><span>✅</span> 04 — Verificación features ON/OFF</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td><span>⚠️</span> 05 — Bug bloqueado: Tomador de Pedido<div class="flow-error">🔴 CAREN-QA-002: Finalizar pedido visible en bloqueado (pendiente verificación carrito limpio)</div></td><td><span class="badge warn">BUGS</span></td></tr>
+      <tr><td><span>⚠️</span> 06 — Lista completa de comercios<div class="flow-error">🟠 CAREN-QA-001: MARIA TERESA solo 3 productos</div></td><td><span class="badge warn">BUGS</span></td></tr>
+      <tr><td><span>⚠️</span> 07 — Historial de pedidos<div class="flow-error">🟡 CAREN-QA-003: historial no encontrado, sin número de pedido</div></td><td><span class="badge warn">BUGS</span></td></tr>
+      <tr><td><span>✅</span> 08 — Búsqueda en lista de comercios</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td><span>✅</span> 09 — Datos de TODOS los comercios</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td><span>⚠️</span> 10 — Catálogo de TODOS los comercios<div class="flow-error">🟠 CAREN-QA-004: sin fotos en ningún comercio</div><div class="flow-error">🟠 CAREN-QA-001: bloqueados muestran catálogo completo vs 3 productos en disponible</div></td><td><span class="badge warn">BUGS</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>Generado 2026-04-22 · Maestro + YOM QA · Staging · Automatización 10/10 · Bugs producto: 4</footer>
+</div>
+
+<div id="toast"></div>
+
+<script>
+function openLinear(id, sev, title, desc) {
+    const t = encodeURIComponent(title);
+    const d = encodeURIComponent(desc);
+    window.open('https://linear.app/yom-tech/new?title=' + t + '&description=' + d, '_blank');
+}
+
+function copySlack(id, sev, title, desc, owner) {
+    const date = '2026-04-22';
+    const sevEmoji = sev === 'P1' ? '🔴' : sev === 'P2' ? '🟠' : '🟡';
+    const text = `${sevEmoji} *[${id}] ${sev} — ${title}* — QA App ${date}\n>${desc}\n*Acción requerida (${owner}):* Revisar en staging · caren.solopide.me\n*App:* YOM Ventas Debug (me.youorder.yomventas.debug)`;
+    navigator.clipboard.writeText(text).then(() => showToast('✅ Mensaje Slack copiado'));
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
