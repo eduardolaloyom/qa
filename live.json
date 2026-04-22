@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 217,
+  "passed": 220,
   "failed": 5,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "passed",
+      "duration": 15875
+    },
+    {
+      "title": "sonrie: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "passed",
+      "duration": 15568
+    },
+    {
+      "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
+      "status": "passed",
+      "duration": 12883
+    },
     {
       "title": "sonrie: PM1-02 Cupón válido aplica descuento",
       "status": "skipped",
@@ -91,21 +106,6 @@
       "title": "sonrie: taxes.showSummary=true",
       "status": "failed",
       "duration": 47454
-    },
-    {
-      "title": "sonrie: blockedClientAlert.enableBlockedClientAlert=false",
-      "status": "passed",
-      "duration": 4615
-    },
-    {
-      "title": "sonrie: showMinOne=false",
-      "status": "passed",
-      "duration": 5164
-    },
-    {
-      "title": "sonrie: externalAccess=true",
-      "status": "passed",
-      "duration": 4511
     }
   ]
 }
