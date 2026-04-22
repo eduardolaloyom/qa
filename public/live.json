@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 223,
+  "passed": 225,
   "failed": 6,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "passed",
+      "duration": 4655
+    },
+    {
+      "title": "sonrie: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "passed",
+      "duration": 7500
+    },
     {
       "title": "bastien: PM2-04 Modal/UI de cupón no queda en loading infinito",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie: enableNewUI=false",
       "status": "passed",
       "duration": 7685
-    },
-    {
-      "title": "bastien: enableTask=false",
-      "status": "passed",
-      "duration": 1667
-    },
-    {
-      "title": "sonrie: suggestions.hide=true",
-      "status": "passed",
-      "duration": 7856
     }
   ]
 }
