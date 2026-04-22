@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 225,
-  "failed": 6,
+  "passed": 230,
+  "failed": 7,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: Agregar producto al carro",
+      "status": "passed",
+      "duration": 6113
+    },
+    {
+      "title": "sonrie: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 4463
+    },
+    {
+      "title": "bastien: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "passed",
+      "duration": 44663
+    },
+    {
+      "title": "sonrie: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 3299
+    },
+    {
+      "title": "sonrie: Login exitoso",
+      "status": "passed",
+      "duration": 4540
+    },
+    {
+      "title": "bastien: PM1-02 Cupón válido aplica descuento",
+      "status": "failed",
+      "duration": 20733
+    },
     {
       "title": "bastien: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "bastien: blockedClientAlert.enableBlockedClientAlert=false",
       "status": "passed",
       "duration": 1996
-    },
-    {
-      "title": "bastien: showMinOne=false",
-      "status": "passed",
-      "duration": 1697
-    },
-    {
-      "title": "bastien: externalAccess=false",
-      "status": "passed",
-      "duration": 1465
-    },
-    {
-      "title": "sonrie: taxes.showSummary=true",
-      "status": "passed",
-      "duration": 7363
-    },
-    {
-      "title": "bastien: pointsEnabled=false",
-      "status": "passed",
-      "duration": 5946
-    },
-    {
-      "title": "bastien: enableCreditNotes=false",
-      "status": "passed",
-      "duration": 1644
-    },
-    {
-      "title": "sonrie: enableNewUI=false",
-      "status": "passed",
-      "duration": 7685
     }
   ]
 }
