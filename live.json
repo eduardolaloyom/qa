@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 129,
+  "passed": 131,
   "failed": 4,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 5412
+    },
+    {
+      "title": "sonrie: currency=undefined",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie: hidePrices=false",
+      "status": "passed",
+      "duration": 5713
+    },
     {
       "title": "bastien: disableShowEstimatedDeliveryHour=false",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: editAddress=true",
       "status": "passed",
       "duration": 12844
-    },
-    {
-      "title": "sonrie: purchaseOrderEnabled=false",
-      "status": "passed",
-      "duration": 13989
-    },
-    {
-      "title": "sonrie: enableCoupons=true",
-      "status": "failed",
-      "duration": 24334
-    },
-    {
-      "title": "sonrie: limitAddingByStock=false",
-      "status": "passed",
-      "duration": 4757
     }
   ]
 }
