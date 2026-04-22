@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 126,
+  "passed": 129,
   "failed": 4,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: disableShowEstimatedDeliveryHour=false",
+      "status": "passed",
+      "duration": 37979
+    },
+    {
+      "title": "bastien: hasTransportCode=false",
+      "status": "passed",
+      "duration": 37863
+    },
+    {
+      "title": "bastien: editAddress=true",
+      "status": "passed",
+      "duration": 40707
+    },
     {
       "title": "bastien: purchaseOrderEnabled=false",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: limitAddingByStock=false",
       "status": "passed",
       "duration": 4757
-    },
-    {
-      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "passed",
-      "duration": 14756
-    },
-    {
-      "title": "sonrie: enableAskDeliveryDate=false",
-      "status": "passed",
-      "duration": 11759
-    },
-    {
-      "title": "sonrie: hideReceiptType=false",
-      "status": "passed",
-      "duration": 13884
     }
   ]
 }
