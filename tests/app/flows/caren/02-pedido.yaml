@@ -87,10 +87,13 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
           optional: true
       - waitForAnimationToEnd
 
-# Scroll para revelar botón confirmar
+# Scroll para revelar botón confirmar (puede estar muy abajo)
 - swipe:
     direction: UP
-    duration: 800
+    duration: 1200
+- swipe:
+    direction: UP
+    duration: 1200
 
 - takeScreenshot: /tmp/caren-pedido-confirmacion-scroll
 
