@@ -2,11 +2,81 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 95,
-  "failed": 2,
-  "skipped": 2,
+  "passed": 107,
+  "failed": 3,
+  "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: disableCart=false",
+      "status": "passed",
+      "duration": 6086
+    },
+    {
+      "title": "sonrie: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "failed",
+      "duration": 43493
+    },
+    {
+      "title": "bastien: loginButtons.google=false",
+      "status": "passed",
+      "duration": 1446
+    },
+    {
+      "title": "bastien: anonymousHideCart=false",
+      "status": "passed",
+      "duration": 2435
+    },
+    {
+      "title": "bastien: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 1672
+    },
+    {
+      "title": "bastien: inMaintenance=false",
+      "status": "passed",
+      "duration": 1396
+    },
+    {
+      "title": "bastien: anonymousHidePrice=false",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "bastien: anonymousAccess=true",
+      "status": "passed",
+      "duration": 1505
+    },
+    {
+      "title": "sonrie: loginButtons.google=false",
+      "status": "passed",
+      "duration": 1597
+    },
+    {
+      "title": "sonrie: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 1569
+    },
+    {
+      "title": "bastien: C2-12 Doble click en crear pedido no genera duplicado",
+      "status": "passed",
+      "duration": 18521
+    },
+    {
+      "title": "sonrie: inMaintenance=false",
+      "status": "passed",
+      "duration": 1449
+    },
+    {
+      "title": "sonrie: anonymousAccess=false",
+      "status": "passed",
+      "duration": 3428
+    },
+    {
+      "title": "bastien: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "passed",
+      "duration": 19503
+    },
     {
       "title": "bastien: C2-13 Pedido aparece en historial",
       "status": "passed",
@@ -36,76 +106,6 @@
       "title": "bastien: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
       "status": "passed",
       "duration": 25422
-    },
-    {
-      "title": "bastien: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 25267
-    },
-    {
-      "title": "bastien: C2-09 Eliminar producto del carro",
-      "status": "failed",
-      "duration": 47840
-    },
-    {
-      "title": "bastien: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 15260
-    },
-    {
-      "title": "sonrie: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20402
-    },
-    {
-      "title": "sonrie: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 13404
-    },
-    {
-      "title": "sonrie: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 20348
-    },
-    {
-      "title": "sonrie: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "passed",
-      "duration": 10287
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 13873
-    },
-    {
-      "title": "bastien: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 17898
-    },
-    {
-      "title": "bastien: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 16746
-    },
-    {
-      "title": "bastien: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 16167
-    },
-    {
-      "title": "sonrie: C2-08 Modificar cantidad en carro",
-      "status": "failed",
-      "duration": 22852
-    },
-    {
-      "title": "sonrie: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 12914
-    },
-    {
-      "title": "sonrie: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 12155
     }
   ]
 }
