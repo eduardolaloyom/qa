@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 230,
+  "passed": 235,
   "failed": 7,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "passed",
+      "duration": 48576
+    },
+    {
+      "title": "bastien: Agregar producto al carro",
+      "status": "passed",
+      "duration": 3681
+    },
+    {
+      "title": "sonrie: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 10343
+    },
+    {
+      "title": "bastien: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 2430
+    },
+    {
+      "title": "bastien: Acceso anónimo muestra catálogo",
+      "status": "passed",
+      "duration": 2283
+    },
     {
       "title": "sonrie: Agregar producto al carro",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie: PM1-01 Campo de cupón existe y es interactuable",
       "status": "passed",
       "duration": 12883
-    },
-    {
-      "title": "sonrie: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 9243
-    },
-    {
-      "title": "bastien: enableNewUI=false",
-      "status": "passed",
-      "duration": 4856
-    },
-    {
-      "title": "bastien: enableBetaButtons=false",
-      "status": "passed",
-      "duration": 1664
-    },
-    {
-      "title": "bastien: useNewPromotions=true",
-      "status": "passed",
-      "duration": 1885
-    },
-    {
-      "title": "bastien: blockedClientAlert.enableBlockedClientAlert=false",
-      "status": "passed",
-      "duration": 1996
     }
   ]
 }
