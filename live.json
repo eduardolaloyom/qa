@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 257,
-  "failed": 10,
-  "skipped": 16,
+  "passed": 258,
+  "failed": 11,
+  "skipped": 17,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "bastien: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "failed",
+      "duration": 17936
+    },
+    {
+      "title": "bastien: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 17858
+    },
+    {
+      "title": "bastien: C3-14 Campo de cupon visible en carro (enableCoupons)",
+      "status": "passed",
+      "duration": 17730
+    },
     {
       "title": "bastien: C3-03 Precios consistentes catalogo vs carro",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie: PAG-16 Montos en historial no muestran valores negativos confusos",
       "status": "passed",
       "duration": 9594
-    },
-    {
-      "title": "sonrie: C3-02 Detectar productos con precio $0",
-      "status": "skipped",
-      "duration": 61
-    },
-    {
-      "title": "sonrie: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
-      "status": "skipped",
-      "duration": 47
-    },
-    {
-      "title": "sonrie: PAG-04 Historial de pagos carga correctamente",
-      "status": "passed",
-      "duration": 9465
     }
   ]
 }
