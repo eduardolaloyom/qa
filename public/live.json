@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-22T13:22:18.070Z",
   "total": 292,
-  "passed": 115,
+  "passed": 120,
   "failed": 4,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 16104
+    },
+    {
+      "title": "sonrie: disableObservationInput=false",
+      "status": "passed",
+      "duration": 12725
+    },
+    {
+      "title": "bastien: disableCart=false",
+      "status": "passed",
+      "duration": 4110
+    },
+    {
+      "title": "sonrie: hasSingleDistributionCenter=true",
+      "status": "passed",
+      "duration": 12748
+    },
+    {
+      "title": "sonrie: disableShowEstimatedDeliveryHour=false",
+      "status": "passed",
+      "duration": 12797
+    },
     {
       "title": "sonrie: enableCoupons=true",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "bastien: inMaintenance=false",
       "status": "passed",
       "duration": 1396
-    },
-    {
-      "title": "bastien: anonymousHidePrice=false",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "bastien: anonymousAccess=true",
-      "status": "passed",
-      "duration": 1505
-    },
-    {
-      "title": "sonrie: loginButtons.google=false",
-      "status": "passed",
-      "duration": 1597
-    },
-    {
-      "title": "sonrie: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 1569
-    },
-    {
-      "title": "bastien: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "passed",
-      "duration": 18521
     }
   ]
 }
