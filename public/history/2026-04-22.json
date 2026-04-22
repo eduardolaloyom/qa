@@ -1,0 +1,63 @@
+{
+  "date": "2026-04-22",
+  "timestamp": "2026-04-22T13:34:13.467866+00:00",
+  "total": 660,
+  "passed": 660,
+  "failed": 0,
+  "duration": 3,
+  "suites": [
+    {
+      "name": "00-contract.spec.ts",
+      "tests": 660,
+      "passed": 660,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "bastien": {
+      "name": "Bastien (staging)",
+      "url": "https://bastien.solopide.me",
+      "environment": "staging",
+      "tests": 100,
+      "passed": 99,
+      "failed": 1,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-21"
+    },
+    "sonrie": {
+      "name": "Sonrie (staging)",
+      "url": "https://sonrie.solopide.me",
+      "environment": "staging",
+      "tests": 95,
+      "passed": 95,
+      "failed": 0,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-21"
+    },
+    "codelpa": {
+      "name": "Codelpa",
+      "url": "https://beta-codelpa.solopide.me",
+      "tests": 32,
+      "passed": 26,
+      "failed": 4,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-07"
+    },
+    "surtiventas": {
+      "name": "Surtiventas",
+      "url": "https://surtiventas.solopide.me",
+      "tests": 25,
+      "passed": 20,
+      "failed": 5,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-07"
+    }
+  },
+  "failure_groups": [],
+  "pending_b2b": [],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}
