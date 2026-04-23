@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 114,
+  "passed": 116,
   "failed": 4,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "status": "passed",
+      "duration": 13885
+    },
+    {
+      "title": "sonrie-prod: Historial de pedidos carga @orders @funcional",
+      "status": "passed",
+      "duration": 14566
+    },
     {
       "title": "sonrie-prod: No hay productos con precio $0",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie-prod: showMinOne=false",
       "status": "passed",
       "duration": 7062
-    },
-    {
-      "title": "sonrie-prod: pointsEnabled=false",
-      "status": "passed",
-      "duration": 6739
-    },
-    {
-      "title": "sonrie-prod: enableTask=false",
-      "status": "passed",
-      "duration": 5864
     }
   ]
 }
