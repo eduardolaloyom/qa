@@ -1,13 +1,13 @@
 appId: ${APP_PACKAGE}
 # Helper: lanza la app y deja al usuario en la lista de comercios
-# NO-OP si ya estamos en la lista (seguro llamar desde cualquier flow en sesión)
+# NO-OP si ya estamos en la lista (detecta por badges Disponible/Bloqueado o header)
 ---
 
-# Si ya estamos en la lista de comercios, nada que hacer
+# Si ya hay comercios visibles en pantalla, no hacer nada
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros|Listado de comercios"
+        text: "Seleccionar filtros|Listado de comercios|.*[Dd]isponible.*|.*[Bb]loqueado.*|MARIA TERESA"
     commands:
       - launchApp:
           clearState: false
@@ -33,13 +33,13 @@ appId: ${APP_PACKAGE}
                 optional: true
             - waitForAnimationToEnd
 
-      # Esperar pantalla post-login — puede estar sincronizando o ya en lista
+      # Esperar pantalla post-login
       - extendedWaitUntil:
           visible:
-            text: "Seleccionar filtros|Listado de comercios|.*[Ss]incronizando.*|.*[Cc]omercio.*"
+            text: "Seleccionar filtros|Listado de comercios|.*[Ss]incronizando.*|.*[Cc]omercio.*|.*[Dd]isponible.*|.*[Bb]loqueado.*"
           timeout: 30000
 
-      # Si hay sync automático al lanzar, esperar que termine
+      # Si hay sync automático, esperar que termine
       - runFlow:
           when:
             visible:
@@ -50,16 +50,16 @@ appId: ${APP_PACKAGE}
                   text: ".*[Ss]incronizando.*"
                 timeout: 300000
 
-      # Descartar popup de nueva versión si aparece
+      # Descartar popup si aparece
       - tapOn:
           text: "CANCELAR"
           optional: true
       - waitForAnimationToEnd
 
-      # Confirmar lista de comercios lista
+      # Confirmar lista lista
       - extendedWaitUntil:
           visible:
-            text: "Seleccionar filtros|Listado de comercios|.*[Cc]omercio.*"
+            text: "Seleccionar filtros|Listado de comercios|.*[Dd]isponible.*|.*[Bb]loqueado.*"
           timeout: 30000
 
       - waitForAnimationToEnd

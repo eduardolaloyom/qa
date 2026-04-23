@@ -19,9 +19,9 @@ for (const [key, client] of Object.entries(clients)) {
       }
     }
 
-    // C2-11 y C2-12 crean pedidos reales — BLOQUEADOS en producción y staging con backend compartido
-    test.describe('Confirmar pedido — BLOQUEADO en prod y backends compartidos', () => {
-      test.skip(client.baseURL.includes('youorder.me') || !!client.blockOrderCreation, 'BLOQUEADO — no crear pedidos en producción ni en staging con backend compartido (ej: sonrie.solopide.me)');
+    // C2-11 y C2-12 crean pedidos reales — BLOQUEADOS en producción (youorder.me)
+    test.describe('Confirmar pedido — BLOQUEADO-PROD en youorder.me', () => {
+      test.skip(client.baseURL.includes('youorder.me'), 'BLOQUEADO-PROD — no crear pedidos en producción');
 
       test(`${key}: C2-11 Flujo completo catalogo → carro → checkout`, async ({ authedPage: page }) => {
         await addProducts(page);

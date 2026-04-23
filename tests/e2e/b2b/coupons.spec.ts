@@ -178,8 +178,8 @@ for (const [key, client] of Object.entries(clients)) {
       expect(stillLoading).toBeFalsy();
     });
 
-    test.describe('Crear orden — BLOQUEADO en prod y backends compartidos', () => {
-      test.skip(client.baseURL.includes('youorder.me') || !!client.blockOrderCreation, 'BLOQUEADO — no crear pedidos en producción ni en staging con backend compartido (ej: sonrie.solopide.me)');
+    test.describe('Crear orden — BLOQUEADO-PROD en youorder.me', () => {
+      test.skip(client.baseURL.includes('youorder.me'), 'BLOQUEADO-PROD — no crear pedidos en producción');
 
       test(`${key}: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones`, async ({ authedPage: page }) => {
         await addProductsAndGoToCart(page);

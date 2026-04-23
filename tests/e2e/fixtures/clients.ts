@@ -32,7 +32,6 @@ interface ClientConfig {
   promotions?: Array<any>; // From yom-promotions
   integrations?: { segments: any; overrides: any; userSegments: any }; // From integrations cluster
   defaultCommerce?: string; // Commerce to select after login (env: {CLIENT}_DEFAULT_COMMERCE)
-  blockOrderCreation?: boolean; // true when staging shares production backend — order tests must not run
 }
 
 const clients: Record<string, ClientConfig> = {
@@ -47,7 +46,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "2100|*|*|*|*|004|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|083|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|093|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|134|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|337|*|*|*|*|*|*|*|", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "6942647df3bbf69eb7adaf77", "userCount": 0}, {"name": "", "segmentId": "6942647df3bbf69eb7adaf77", "userCount": 0}, {"name": "", "segmentId": "6942647df3bbf69eb7adaf77", "userCount": 0}, {"name": "", "segmentId": "6942647df3bbf69eb7adaf77", "userCount": 0}, {"name": "", "segmentId": "6942647df3bbf69eb7adaf77", "userCount": 0}]},
         defaultCommerce: process.env["SOPROLE_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A2, C2-E10, C2-E9, C3-E3, C3-E4, C3-E5, C3-E6, C3-E9, P1-01, P1-07, +11 more
+    // Conditional tests: C1-A2, C2-E10, C2-E9, C3-E3, C3-E4, C3-E5, C3-E6, C3-E9, P1-01, P1-07, +11 more
     config: {
       anonymousAccess: false,
       anonymousHideCart: true,
@@ -129,7 +128,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "B-ANT042020", "code": "", "active": true}, {"name": "B-ANT0924", "code": "", "active": true}, {"name": "B-CAL042020", "code": "", "active": true}, {"name": "B-CON042020", "code": "", "active": true}, {"name": "B-CON0924", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}], "userSegments": [{"name": "", "segmentId": "670e7d50f328113264f5979a", "userCount": 0}, {"name": "", "segmentId": "67507fac3d79db9109b55e92", "userCount": 0}, {"name": "", "segmentId": "670e7d50f328113264f5979a", "userCount": 0}, {"name": "", "segmentId": "5f8dba3ab9622407cbeb5886", "userCount": 0}, {"name": "", "segmentId": "5f8dba3ab9622407cbeb5886", "userCount": 0}]},
         defaultCommerce: process.env["CODELPA_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, C2-E10, C2-E4, C2-E5, C2-E9, C3-E3, C3-E4, C3-E6, C5-E2, C5-E4, +12 more
+    // Conditional tests: C1-A1, C2-E10, C2-E4, C2-E5, C2-E9, C3-E3, C3-E4, C3-E6, C5-E2, C5-E4, +12 more
     config: {
       anonymousAccess: true,
       anonymousHideCart: true,
@@ -207,7 +206,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "3101", "code": "", "active": true}, {"name": "3102", "code": "", "active": true}, {"name": "3103", "code": "", "active": true}, {"name": "3104", "code": "", "active": true}, {"name": "3105", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "668c87f23ca20a15c92399f5", "userCount": 0}, {"name": "", "segmentId": "668c87f23ca20a15c92399f5", "userCount": 0}, {"name": "", "segmentId": "668c87f23ca20a15c92399f5", "userCount": 0}, {"name": "", "segmentId": "668c87f23ca20a15c92399f5", "userCount": 0}, {"name": "", "segmentId": "668c87f23ca20a15c92399f5", "userCount": 0}]},
         defaultCommerce: process.env["SOFTYS_CENCOCAL_DEFAULT_COMMERCE"],
-        // Conditional tests: C2-E10, C2-E5, C2-E6, C2-E9, C3-E6, C5-E2, C5-E4, C6-E3, P1-03, P1-04, +11 more
+    // Conditional tests: C2-E10, C2-E5, C2-E6, C2-E9, C3-E6, C5-E2, C5-E4, C6-E3, P1-03, P1-04, +11 more
     config: {
       anonymousAccess: false,
       anonymousHideCart: false,
@@ -308,7 +307,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "dimak-base", "code": "", "active": true}, {"name": "dimak-not-base", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "65e7b8386ca9fa66c72c9986", "userCount": 0}, {"name": "", "segmentId": "65e7b8386ca9fa66c72c9986", "userCount": 0}, {"name": "", "segmentId": "65e7b8386ca9fa66c72c9986", "userCount": 0}, {"name": "", "segmentId": "65e7b8386ca9fa66c72c9986", "userCount": 0}, {"name": "", "segmentId": "65e7b8386ca9fa66c72c9986", "userCount": 0}]},
         defaultCommerce: process.env["SOFTYS_DIMAK_DEFAULT_COMMERCE"],
-        // Conditional tests: P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: false,
       anonymousHideCart: false,
@@ -399,7 +398,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "CENTROS DE EDUCACION", "code": "", "active": true}, {"name": "CLINICA PRIVADA", "code": "", "active": true}, {"name": "DISTRIBUIDORES", "code": "", "active": true}, {"name": "FUNCIONARIOS", "code": "", "active": true}, {"name": "HOLDING", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "6920c0ccacb4558eb917dcab", "userCount": 0}, {"name": "", "segmentId": "6920c0ccacb4558eb917dcab", "userCount": 0}, {"name": "", "segmentId": "6920c0ccacb4558eb917dcab", "userCount": 0}, {"name": "", "segmentId": "6920c0ccacb4558eb917dcac", "userCount": 0}, {"name": "", "segmentId": "6920c0ccacb4558eb917dcab", "userCount": 0}]},
         defaultCommerce: process.env["EXPRESSDENT_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, C2-E10, P1-05, P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: C1-A1, C2-E10, P1-05, P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: true,
       anonymousHideCart: true,
@@ -506,7 +505,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Almacen_Cadena_Estrellas3", "code": "", "active": true}, {"name": "BATERIAS_AUTO_BLANCOYNEGRO_CALI", "code": "", "active": true}, {"name": "BATERIAS_AUTO_GRUPOINTEGRADO_CALI", "code": "", "active": true}, {"name": "BATERIAS_AUTO_MAYORISTA_GOLD", "code": "", "active": true}, {"name": "BAT_AUTO_MAYORISTA_BLACK", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "693ffa87f3bbf69eb7a08d23", "userCount": 0}, {"name": "", "segmentId": "693ffa87f3bbf69eb7a08d27", "userCount": 0}, {"name": "", "segmentId": "693ffa87f3bbf69eb7a08d23", "userCount": 0}, {"name": "", "segmentId": "693ffa87f3bbf69eb7a08d1f", "userCount": 0}, {"name": "", "segmentId": "693ffa87f3bbf69eb7a08d23", "userCount": 0}]},
         defaultCommerce: process.env["COEXITO_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A3, C2-E8, C2-E9, C3-E6, C3-E7, P1-03, P2-03, P3-01, P3-02, P4-04, +5 more
+    // Conditional tests: C1-A3, C2-E8, C2-E9, C3-E6, C3-E7, P1-03, P2-03, P3-01, P3-02, P4-04, +5 more
     config: {
       "adminConfiguration.showDiscountLimitAdmin": true,
       anonymousAccess: false,
@@ -613,7 +612,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Aramark", "code": "", "active": true}, {"name": "Arriendo Maquinarias", "code": "", "active": true}, {"name": "Asesorias Jur\u00eddicas", "code": "", "active": true}, {"name": "Austral Vending", "code": "", "active": true}, {"name": "B2B_Bronze", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}], "userSegments": [{"name": "", "segmentId": "682690351e1eae43fcc2bc51", "userCount": 0}, {"name": "", "segmentId": "682690351e1eae43fcc2bc55", "userCount": 0}, {"name": "", "segmentId": "682690351e1eae43fcc2bc51", "userCount": 0}, {"name": "", "segmentId": "682690351e1eae43fcc2bc51", "userCount": 0}, {"name": "", "segmentId": "682690351e1eae43fcc2bc51", "userCount": 0}]},
         defaultCommerce: process.env["MARLEYCOFFEE_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, C2-E10, P1-05, P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: C1-A1, C2-E10, P1-05, P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: true,
       anonymousHideCart: true,
@@ -719,7 +718,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Segmento Base", "code": "", "active": true}, {"name": "segmento-base-yom", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "68278b7f1e1eae43fcc2c77d", "userCount": 0}, {"name": "", "segmentId": "68278b7f1e1eae43fcc2c77d", "userCount": 0}, {"name": "", "segmentId": "68278b7f1e1eae43fcc2c77d", "userCount": 0}, {"name": "", "segmentId": "68278b7f1e1eae43fcc2c77d", "userCount": 0}, {"name": "", "segmentId": "68278b7f1e1eae43fcc2c77d", "userCount": 0}]},
         defaultCommerce: process.env["ELMUNECO_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: C1-A1, P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: true,
       anonymousHideCart: true,
@@ -824,7 +823,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Lista de precios", "code": "", "active": true}, {"name": "segmento-base-yom", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "68386df11e1eae43fcc59cdb", "userCount": 0}, {"name": "", "segmentId": "68386df11e1eae43fcc59cdb", "userCount": 0}, {"name": "", "segmentId": "68386df11e1eae43fcc59cdb", "userCount": 0}, {"name": "", "segmentId": "68386df11e1eae43fcc59cdb", "userCount": 0}, {"name": "", "segmentId": "68386df11e1eae43fcc59cdb", "userCount": 0}]},
         defaultCommerce: process.env["SURTIVENTAS_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, C2-E2, C2-E4, C2-E6, C3-E6, P2-01, P2-03, P3-01, P3-02, P3-04, +4 more
+    // Conditional tests: C1-A1, C2-E2, C2-E4, C2-E6, C3-E6, P2-01, P2-03, P3-01, P3-02, P3-04, +4 more
     config: {
       anonymousAccess: true,
       anonymousHideCart: true,
@@ -935,7 +934,6 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Segmento Base", "code": "", "active": true}, {"name": "segmento-base-yom", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "68c40fe63910480d1825abfe", "userCount": 0}, {"name": "", "segmentId": "68c40fe63910480d1825abfe", "userCount": 0}, {"name": "", "segmentId": "68c40fe63910480d1825abfe", "userCount": 0}, {"name": "", "segmentId": "68c40fe63910480d1825abfe", "userCount": 0}, {"name": "", "segmentId": "68c40fe63910480d1825abfe", "userCount": 0}]},
         defaultCommerce: process.env["SONRIE_DEFAULT_COMMERCE"],
-        blockOrderCreation: true,
     // Conditional tests: C1-A2, C3-E3, C5-E1, P2-03, P3-01, P3-02, P4-03, V1-E4
     config: {
       anonymousAccess: false,
@@ -1043,7 +1041,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "segmento-base-yom", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "689dfb984e31dd2938ef5142", "userCount": 0}, {"name": "", "segmentId": "689dfb984e31dd2938ef5142", "userCount": 0}, {"name": "", "segmentId": "689dfb984e31dd2938ef5142", "userCount": 0}, {"name": "", "segmentId": "689dfb984e31dd2938ef5142", "userCount": 0}, {"name": "", "segmentId": "689dfb984e31dd2938ef5142", "userCount": 0}]},
         defaultCommerce: process.env["GLOBALWINES_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, C2-E2, C2-E9, C3-E6, P2-03, P3-01, P3-02, P6-06, V1-E1, V1-E4
+    // Conditional tests: C1-A1, C2-E2, C2-E9, C3-E6, P2-03, P3-01, P3-02, P6-06, V1-E1, V1-E4
     config: {
       anonymousAccess: true,
       anonymousHideCart: true,
@@ -1149,7 +1147,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "BASE", "code": "", "active": true}, {"name": "PINTURERIA A 03-2025", "code": "", "active": true}, {"name": "PINTURERIA ESTRAT\u00c9GICA 03-2025", "code": "", "active": true}, {"name": "PINTURERIA VIP 03-2025", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "689607214e31dd2938e6a77d", "userCount": 0}, {"name": "", "segmentId": "689607214e31dd2938e6a77d", "userCount": 0}, {"name": "", "segmentId": "689607214e31dd2938e6a77d", "userCount": 0}, {"name": "", "segmentId": "689607214e31dd2938e6a77d", "userCount": 0}, {"name": "", "segmentId": "689607214e31dd2938e6a77d", "userCount": 0}]},
         defaultCommerce: process.env["CODELPA_PERU_DEFAULT_COMMERCE"],
-        // Conditional tests: C2-E9, P1-03, P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: C2-E9, P1-03, P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: false,
       anonymousHideCart: false,
@@ -1252,7 +1250,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "2100|*|*|*|*|001|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|004|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|006|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|014|*|*|*|*|*|*|*|", "code": "", "active": true}, {"name": "2100|*|*|*|*|015|*|*|*|*|*|*|*|", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}], "userSegments": [{"name": "", "segmentId": "69308846f3bbf69eb79d83c5", "userCount": 0}, {"name": "", "segmentId": "69308846f3bbf69eb79d83c5", "userCount": 0}, {"name": "", "segmentId": "69308846f3bbf69eb79d83c5", "userCount": 0}, {"name": "", "segmentId": "69308846f3bbf69eb79d83c5", "userCount": 0}, {"name": "", "segmentId": "69308846f3bbf69eb79d83c5", "userCount": 0}]},
         defaultCommerce: process.env["NEW_SOPROLE_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A2, C2-E6, C3-E3, C3-E4, C3-E5, C3-E6, C3-E9, C4-E2, P1-01, P1-03, +20 more
+    // Conditional tests: C1-A2, C2-E6, C3-E3, C3-E4, C3-E5, C3-E6, C3-E9, C4-E2, P1-01, P1-03, +20 more
     config: {
       anonymousAccess: false,
       anonymousHideCart: true,
@@ -1350,7 +1348,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Lista-de-precios-SEG000", "code": "", "active": true}, {"name": "Lista-de-precios-SEG005", "code": "", "active": true}, {"name": "Lista-de-precios-SEG006", "code": "", "active": true}, {"name": "Lista-de-precios-SEG007", "code": "", "active": true}, {"name": "Lista-de-precios-SEG008", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "6929cbc4f3bbf69eb79ac4ec", "userCount": 0}, {"name": "", "segmentId": "69725bb4f0bcf943584e333c", "userCount": 0}, {"name": "", "segmentId": "69725bb4f0bcf943584e333c", "userCount": 0}, {"name": "", "segmentId": "693985cef3bbf69eb79fb277", "userCount": 0}, {"name": "", "segmentId": "693985cef3bbf69eb79fb277", "userCount": 0}]},
         defaultCommerce: process.env["PRISUR_DEFAULT_COMMERCE"],
-        // Conditional tests: P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: false,
       anonymousHideCart: false,
@@ -1457,7 +1455,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Agua", "code": "", "active": true}, {"name": "Alimentaci\u00f3n", "code": "", "active": true}, {"name": "Arriendo Casa Matriz", "code": "", "active": true}, {"name": "Arriendo Sucursales", "code": "", "active": true}, {"name": "Arriendos", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}], "userSegments": [{"name": "", "segmentId": "69430c59f3bbf69eb7b311c7", "userCount": 0}, {"name": "", "segmentId": "69430c59f3bbf69eb7b311c7", "userCount": 0}, {"name": "", "segmentId": "69430c59f3bbf69eb7b311c7", "userCount": 0}, {"name": "", "segmentId": "69430c59f3bbf69eb7b311c7", "userCount": 0}, {"name": "", "segmentId": "69430c59f3bbf69eb7b311c7", "userCount": 0}]},
         defaultCommerce: process.env["BASTIEN_DEFAULT_COMMERCE"],
-        // Conditional tests: C1-A1, C2-E10, P2-03, P3-01, P3-02, V1-E4
+    // Conditional tests: C1-A1, C2-E10, P2-03, P3-01, P3-02, V1-E4
     config: {
       anonymousAccess: true,
       anonymousHideCart: false,
@@ -1567,7 +1565,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "10% toda la lista", "code": "", "active": true}, {"name": "12% toda la lista", "code": "", "active": true}, {"name": "5% toda la lista", "code": "", "active": true}, {"name": "8% toda la lista", "code": "", "active": true}, {"name": "Lista Distribuidores", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}, {"productId": "", "price": null, "discount": null, "enabled": true}], "userSegments": [{"name": "", "segmentId": "69711774dc77c02c4a98c397", "userCount": 0}, {"name": "", "segmentId": "69711774dc77c02c4a98c397", "userCount": 0}, {"name": "", "segmentId": "69711774dc77c02c4a98c397", "userCount": 0}, {"name": "", "segmentId": "69711774dc77c02c4a98c397", "userCount": 0}, {"name": "", "segmentId": "69711774dc77c02c4a98c397", "userCount": 0}]},
         defaultCommerce: process.env["CEDISUR_DEFAULT_COMMERCE"],
-        // Conditional tests: C2-E2, C2-E5, C2-E6, C3-E6, C4-E2, C4-E3, P1-01, P1-03, P1-06, P1-12, +7 more
+    // Conditional tests: C2-E2, C2-E5, C2-E6, C3-E6, C4-E2, C4-E3, P1-01, P1-03, P1-06, P1-12, +7 more
     config: {
       anonymousAccess: false,
       anonymousHideCart: false,
@@ -1684,7 +1682,7 @@ const clients: Record<string, ClientConfig> = {
     promotions: [],
     integrations: {"segments": [{"name": "Lista-de-precios-SEG000", "code": "", "active": true}, {"name": "Lista-de-precios-SEG001", "code": "", "active": true}, {"name": "Lista-de-precios-SEG002", "code": "", "active": true}, {"name": "Lista-de-precios-SEG003", "code": "", "active": true}, {"name": "Lista-de-precios-SEG004", "code": "", "active": true}], "overrides": [{"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}, {"productId": "", "price": null, "discount": null, "enabled": false}], "userSegments": [{"name": "", "segmentId": "69960aeae54067183825b6ba", "userCount": 0}, {"name": "", "segmentId": "69960aeae54067183825b6ba", "userCount": 0}, {"name": "", "segmentId": "69960aeae54067183825b6ba", "userCount": 0}, {"name": "", "segmentId": "69960aeae54067183825b6ba", "userCount": 0}, {"name": "", "segmentId": "69960aeae54067183825b6ba", "userCount": 0}]},
         defaultCommerce: process.env["PRINORTE_DEFAULT_COMMERCE"],
-        // Conditional tests: C2-E2, C2-E6, P2-01, P2-03, P3-01, P3-02, P3-04, P3-05, P6-06, V1-E4
+    // Conditional tests: C2-E2, C2-E6, P2-01, P2-03, P3-01, P3-02, P3-04, P3-05, P6-06, V1-E4
     config: {
       anonymousAccess: false,
       anonymousHideCart: false,

@@ -188,7 +188,6 @@ interface ClientConfig {{
   promotions?: Array<any>; // From yom-promotions
   integrations?: {{ segments: any; overrides: any; userSegments: any }}; // From integrations cluster
   defaultCommerce?: string; // Commerce to select after login (env: {{CLIENT}}_DEFAULT_COMMERCE)
-  blockOrderCreation?: boolean; // true when staging shares production backend — order tests must not run
 }}
 
 const clients: Record<string, ClientConfig> = {{
@@ -322,13 +321,6 @@ const clients: Record<string, ClientConfig> = {{
         # Quote client keys that have hyphens or start with numbers (invalid TS identifiers)
         client_key_str = f'"{client_key}"' if '-' in client_key or client_key[0].isdigit() else client_key
 
-        # Staging clients whose backend is shared with production — order creation must be blocked
-        # Add the normalized client_key (post-alias, post-suffix-strip) here when confirmed.
-        SHARED_PROD_BACKEND = {
-            "sonrie",  # sonrie.solopide.me shares MongoDB with sonrie.youorder.me
-        }
-        block_order_line = "    blockOrderCreation: true,\n" if client_key in SHARED_PROD_BACKEND else ""
-
         # defaultCommerce: optional env var {CLIENT_KEY_UPPER}_DEFAULT_COMMERCE
         env_key_upper = client_key.upper().replace('-', '_')
         default_commerce_line = f'    defaultCommerce: process.env["{env_key_upper}_DEFAULT_COMMERCE"],\n'
@@ -343,7 +335,7 @@ const clients: Record<string, ClientConfig> = {{
     banners: {banners_str},
     promotions: {promotions_str},
     integrations: {integrations_str},
-    {default_commerce_line}    {block_order_line}    {conditional_comment}
+    {default_commerce_line}    {conditional_comment}
     config: {{
 {config_str}
     }},
