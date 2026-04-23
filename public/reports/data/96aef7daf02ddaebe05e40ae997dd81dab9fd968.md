@@ -1,0 +1,201 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e7]:
+        - link [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img [ref=e9]
+        - generic [ref=e10]:
+          - combobox "Buscar productos" [ref=e13]
+          - button [ref=e15] [cursor=pointer]:
+            - img [ref=e16]
+        - generic [ref=e18]:
+          - button "Eduardo" [ref=e19] [cursor=pointer]:
+            - img [ref=e22]
+            - paragraph [ref=e24]: Eduardo
+            - img [ref=e26]
+          - button "1" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]:
+              - img [ref=e30]
+              - generic [ref=e34]: "1"
+          - button "3 $26.782" [ref=e35] [cursor=pointer]:
+            - generic [ref=e37]:
+              - img [ref=e38]
+              - generic [ref=e40]: "3"
+            - paragraph [ref=e41]: $26.782
+      - region "scrollable content" [ref=e48]:
+        - navigation [ref=e50]:
+          - generic [ref=e51]:
+            - link "Categorías de productos" [ref=e54] [cursor=pointer]:
+              - /url: /products
+              - img [ref=e56]
+              - generic [ref=e59]: Categorías de productos
+            - link "Ofertas" [ref=e62] [cursor=pointer]:
+              - /url: /products?promotions=true
+              - img [ref=e64]
+              - generic [ref=e67]: Ofertas
+          - generic [ref=e69]:
+            - link "Agua" [ref=e71] [cursor=pointer]:
+              - /url: /products?category=agua%7Cagua
+              - generic [ref=e73]: Agua
+            - link "Crema" [ref=e75] [cursor=pointer]:
+              - /url: /products?category=crema%7Ccrema
+              - generic [ref=e77]: Crema
+            - link "Jugo" [ref=e79] [cursor=pointer]:
+              - /url: /products?category=jugo%7Cjugo
+              - generic [ref=e81]: Jugo
+            - link "Leche" [ref=e83] [cursor=pointer]:
+              - /url: /products?category=leche%7Cleche
+              - generic [ref=e85]: Leche
+            - link "Mantequilla" [ref=e87] [cursor=pointer]:
+              - /url: /products?category=mantequilla%7Cmantequilla
+              - generic [ref=e89]: Mantequilla
+            - link "Postre" [ref=e91] [cursor=pointer]:
+              - /url: /products?category=postre%7Cpostre
+              - generic [ref=e93]: Postre
+            - link "Queso" [ref=e95] [cursor=pointer]:
+              - /url: /products?category=queso%7Cqueso
+              - generic [ref=e97]: Queso
+            - link "Yoghurt" [ref=e99] [cursor=pointer]:
+              - /url: /products?category=yoghurt%7Cyoghurt
+              - generic [ref=e101]: Yoghurt
+    - main [ref=e103]:
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - heading "Filtros" [level=4] [ref=e107]
+          - generic [ref=e108]:
+            - generic [ref=e109] [cursor=pointer]:
+              - generic [ref=e111]:
+                - checkbox [ref=e112]
+                - img [ref=e113]
+              - generic [ref=e116]: Ofertas
+            - generic [ref=e117] [cursor=pointer]:
+              - generic [ref=e119]:
+                - checkbox [ref=e120]
+                - img [ref=e121]
+              - generic [ref=e124]: Nuevos
+            - generic [ref=e125] [cursor=pointer]:
+              - generic [ref=e127]:
+                - checkbox [ref=e128]
+                - img [ref=e129]
+              - generic [ref=e132]: Destacados
+          - navigation [ref=e133]:
+            - button "Categorías" [ref=e134] [cursor=pointer]:
+              - generic [ref=e136]: Categorías
+              - img [ref=e137]
+            - navigation [ref=e143]:
+              - button "Agua" [ref=e145] [cursor=pointer]:
+                - generic [ref=e147]:
+                  - checkbox [ref=e148]
+                  - img [ref=e149]
+                - generic [ref=e152]: Agua
+              - button "Crema" [ref=e154] [cursor=pointer]:
+                - generic [ref=e156]:
+                  - checkbox [ref=e157]
+                  - img [ref=e158]
+                - generic [ref=e161]: Crema
+              - button "Jugo" [ref=e163] [cursor=pointer]:
+                - generic [ref=e165]:
+                  - checkbox [ref=e166]
+                  - img [ref=e167]
+                - generic [ref=e170]: Jugo
+              - button "Leche" [ref=e172] [cursor=pointer]:
+                - generic [ref=e174]:
+                  - checkbox [ref=e175]
+                  - img [ref=e176]
+                - generic [ref=e179]: Leche
+              - button "Mantequilla" [ref=e181] [cursor=pointer]:
+                - generic [ref=e183]:
+                  - checkbox [ref=e184]
+                  - img [ref=e185]
+                - generic [ref=e188]: Mantequilla
+              - button "Postre" [ref=e190] [cursor=pointer]:
+                - generic [ref=e192]:
+                  - checkbox [ref=e193]
+                  - img [ref=e194]
+                - generic [ref=e197]: Postre
+              - button "Queso" [ref=e199] [cursor=pointer]:
+                - generic [ref=e201]:
+                  - checkbox [ref=e202]
+                  - img [ref=e203]
+                - generic [ref=e206]: Queso
+              - button "Yoghurt" [ref=e208] [cursor=pointer]:
+                - generic [ref=e210]:
+                  - checkbox [ref=e211]
+                  - img [ref=e212]
+                - generic [ref=e215]: Yoghurt
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - paragraph [ref=e218]: Catálogo de productos
+            - paragraph [ref=e219]: 0 productos encontrados
+          - navigation "pagination navigation" [ref=e221]:
+            - list [ref=e222]:
+              - listitem [ref=e223]:
+                - button "Go to first page" [disabled]:
+                  - img
+              - listitem [ref=e224]:
+                - button "Go to previous page" [disabled]:
+                  - img
+              - listitem [ref=e225]:
+                - button "page 1" [ref=e226] [cursor=pointer]: "1"
+              - listitem [ref=e227]:
+                - button "Go to next page" [disabled]:
+                  - img
+              - listitem [ref=e228]:
+                - button "Go to last page" [disabled]:
+                  - img
+          - generic [ref=e230]:
+            - img [ref=e231]
+            - generic [ref=e232]:
+              - paragraph [ref=e233]: Tu búsqueda no arrojó resultados 😥
+              - paragraph [ref=e234]: Puedes probar con una búsqueda más general o navegando por categorías
+    - generic [ref=e237]:
+      - link [ref=e239] [cursor=pointer]:
+        - /url: /
+        - img [ref=e240]
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - paragraph [ref=e243]: CUENTA
+          - generic [ref=e244]:
+            - link "Mis Datos" [ref=e245] [cursor=pointer]:
+              - /url: /profile
+              - paragraph [ref=e246]: Mis Datos
+            - link "Carrito de Compra" [ref=e247] [cursor=pointer]:
+              - /url: /cart
+              - paragraph [ref=e248]: Carrito de Compra
+            - link "Mis pedidos" [ref=e249] [cursor=pointer]:
+              - /url: /orders
+              - paragraph [ref=e250]: Mis pedidos
+        - generic [ref=e251]:
+          - paragraph [ref=e252]: ENLACES ÚTILES
+          - generic [ref=e253]:
+            - link "Pagos" [ref=e254] [cursor=pointer]:
+              - /url: /payment-documents
+              - paragraph [ref=e255]: Pagos
+            - link "Ofertas" [ref=e256] [cursor=pointer]:
+              - /url: /products?promotions=true
+              - paragraph [ref=e257]: Ofertas
+            - link "Nuevos Productos" [ref=e258] [cursor=pointer]:
+              - /url: /products?new=true
+              - paragraph [ref=e259]: Nuevos Productos
+            - link "Destacados" [ref=e260] [cursor=pointer]:
+              - /url: /products?featured=true
+              - paragraph [ref=e261]: Destacados
+        - generic [ref=e262]:
+          - paragraph [ref=e263]: CENTRO DE AYUDA
+          - generic [ref=e264]:
+            - link "Contacto" [ref=e265] [cursor=pointer]:
+              - /url: /contact
+              - paragraph [ref=e266]: Contacto
+            - link "Preguntas Frecuentes" [ref=e267] [cursor=pointer]:
+              - /url: /faq
+              - paragraph [ref=e268]: Preguntas Frecuentes
+            - paragraph [ref=e269] [cursor=pointer]: Condiciones de Despacho
+            - link "Terminos y Condiciones" [ref=e270] [cursor=pointer]:
+              - /url: /terms
+              - paragraph [ref=e271]: Terminos y Condiciones
+```
