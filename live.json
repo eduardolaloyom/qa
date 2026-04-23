@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 61,
+  "passed": 65,
   "failed": 3,
-  "skipped": 3,
+  "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 11251
+    },
+    {
+      "title": "sonrie-prod: enableChooseSaleUnit=false",
+      "status": "passed",
+      "duration": 6007
+    },
+    {
+      "title": "sonrie-prod: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 16674
+    },
+    {
+      "title": "sonrie-prod: disableObservationInput=false",
+      "status": "passed",
+      "duration": 16092
+    },
+    {
+      "title": "sonrie-prod: currency=undefined",
+      "status": "skipped",
+      "duration": 0
+    },
     {
       "title": "sonrie-prod: hidePrices=false",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie-prod: inMaintenance=false",
       "status": "passed",
       "duration": 2643
-    },
-    {
-      "title": "sonrie-prod: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 23526
-    },
-    {
-      "title": "sonrie-prod: anonymousAccess=false",
-      "status": "passed",
-      "duration": 4585
-    },
-    {
-      "title": "sonrie-prod: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 15048
-    },
-    {
-      "title": "sonrie-prod: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie-prod: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "skipped",
-      "duration": 0
     }
   ]
 }
