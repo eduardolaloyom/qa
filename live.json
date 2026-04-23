@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 110,
+  "passed": 113,
   "failed": 2,
-  "skipped": 5,
+  "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: Agregar producto al carro",
+      "status": "passed",
+      "duration": 8576
+    },
+    {
+      "title": "sonrie-prod: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 6229
+    },
+    {
+      "title": "sonrie-prod: PM1-02 Cupón válido aplica descuento",
+      "status": "skipped",
+      "duration": 40669
+    },
+    {
+      "title": "sonrie-prod: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 5145
+    },
     {
       "title": "sonrie-prod: Login exitoso",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie-prod: enableTask=false",
       "status": "passed",
       "duration": 6309
-    },
-    {
-      "title": "sonrie-prod: pointsEnabled=false",
-      "status": "passed",
-      "duration": 7281
-    },
-    {
-      "title": "sonrie-prod: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 8780
-    },
-    {
-      "title": "sonrie-prod: pendingDocuments=false",
-      "status": "passed",
-      "duration": 6323
-    },
-    {
-      "title": "sonrie-prod: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 9637
     }
   ]
 }
