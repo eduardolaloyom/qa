@@ -2,9 +2,110 @@
   "running": true,
   "startTime": "2026-04-23T16:20:16.290Z",
   "total": 85,
-  "passed": 0,
-  "failed": 0,
-  "skipped": 0,
+  "passed": 40,
+  "failed": 1,
+  "skipped": 16,
   "currentTest": null,
-  "recentTests": []
+  "recentTests": [
+    {
+      "title": "sonrie-prod: Login exitoso",
+      "status": "failed",
+      "duration": 48850
+    },
+    {
+      "title": "sonrie-prod: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 4767
+    },
+    {
+      "title": "sonrie-prod: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-08 Modificar cantidad en carro",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: PM1-02 Cupón válido aplica descuento",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: PM1-01 Campo de cupón existe y es interactuable",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-13 Pedido aparece en historial",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: C2-09 Eliminar producto del carro",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: C2-12 Doble click en crear pedido no genera duplicado",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "skipped",
+      "duration": 1
+    },
+    {
+      "title": "sonrie-prod: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-05 Agregar producto al carro",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-01 Catálogo muestra productos con precio @catalog @funcional",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-06 Cantidad mínima — sistema corrige o bloquea",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "taxes.taxRate must be number in [0, 1]",
+      "status": "passed",
+      "duration": 1
+    },
+    {
+      "title": "fixture shape: name, baseURL, config",
+      "status": "passed",
+      "duration": 1
+    }
+  ]
 }
