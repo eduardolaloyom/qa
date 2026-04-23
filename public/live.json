@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 129,
+  "passed": 131,
   "failed": 6,
   "skipped": 13,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 25311
+    },
+    {
+      "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 23850
+    },
     {
       "title": "sonrie-prod: PM4-01 Productos con step pricing muestran escalones",
       "status": "failed",
@@ -96,16 +106,6 @@
       "title": "sonrie-prod: C7-12 /payment-documents carga sin error cuando flag=true",
       "status": "skipped",
       "duration": 11523
-    },
-    {
-      "title": "sonrie-prod: C3-02 Detectar productos con precio $0",
-      "status": "skipped",
-      "duration": 46
-    },
-    {
-      "title": "sonrie-prod: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
-      "status": "skipped",
-      "duration": 57
     }
   ]
 }
