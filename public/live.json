@@ -2,11 +2,16 @@
   "running": true,
   "startTime": "2026-04-23T16:41:54.656Z",
   "total": 145,
-  "passed": 43,
+  "passed": 44,
   "failed": 0,
   "skipped": 1,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 20578
+    },
     {
       "title": "sonrie-prod: C2-01 Catálogo muestra productos con precio @catalog @funcional",
       "status": "passed",
@@ -99,11 +104,6 @@
     },
     {
       "title": "ordersRequireAuthorization must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "includeTaxRateInPrices must be boolean (got boolean false)",
       "status": "passed",
       "duration": 0
     }
