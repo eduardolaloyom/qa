@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 121,
-  "failed": 2,
-  "skipped": 12,
+  "passed": 123,
+  "failed": 3,
+  "skipped": 13,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "passed",
+      "duration": 16378
+    },
+    {
+      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "failed",
+      "duration": 15287
+    },
+    {
+      "title": "sonrie-prod: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 15398
+    },
+    {
+      "title": "sonrie-prod: C3-14 Campo de cupon visible en carro (enableCoupons)",
+      "status": "passed",
+      "duration": 16407
+    },
     {
       "title": "sonrie-prod: C3-03 Precios consistentes catalogo vs carro",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie-prod: Catálogo muestra productos con precios",
       "status": "passed",
       "duration": 6229
-    },
-    {
-      "title": "sonrie-prod: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 40669
-    },
-    {
-      "title": "sonrie-prod: Sin acceso anónimo redirige a login",
-      "status": "passed",
-      "duration": 5145
-    },
-    {
-      "title": "sonrie-prod: Login exitoso",
-      "status": "passed",
-      "duration": 6355
-    },
-    {
-      "title": "sonrie-prod: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
-      "status": "passed",
-      "duration": 9633
     }
   ]
 }
