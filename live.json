@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 62,
+  "passed": 70,
   "failed": 1,
   "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: packagingInformation.hidePackagingInformationB2B=true",
+      "status": "passed",
+      "duration": 7597
+    },
+    {
+      "title": "sonrie-prod: hasNoSaleFilter=false",
+      "status": "passed",
+      "duration": 6486
+    },
+    {
+      "title": "sonrie-prod: hasMultiUnitEnabled=false",
+      "status": "passed",
+      "duration": 6542
+    },
+    {
+      "title": "sonrie-prod: hasStockEnabled=false",
+      "status": "passed",
+      "duration": 6585
+    },
+    {
+      "title": "sonrie-prod: enableChooseSaleUnit=false",
+      "status": "passed",
+      "duration": 6355
+    },
+    {
+      "title": "sonrie-prod: shoppingDetail.lastOrder=false",
+      "status": "passed",
+      "duration": 15211
+    },
+    {
+      "title": "sonrie-prod: lazyLoadingPrices=false",
+      "status": "passed",
+      "duration": 6921
+    },
+    {
+      "title": "sonrie-prod: disableObservationInput=false",
+      "status": "passed",
+      "duration": 14945
+    },
     {
       "title": "sonrie-prod: hidePrices=false",
       "status": "passed",
@@ -66,46 +106,6 @@
       "title": "sonrie-prod: disableCart=false",
       "status": "passed",
       "duration": 7867
-    },
-    {
-      "title": "sonrie-prod: C2-13 Pedido aparece en historial",
-      "status": "passed",
-      "duration": 11809
-    },
-    {
-      "title": "sonrie-prod: loginButtons.google=false",
-      "status": "passed",
-      "duration": 3437
-    },
-    {
-      "title": "sonrie-prod: loginButtons.facebook=false",
-      "status": "passed",
-      "duration": 3359
-    },
-    {
-      "title": "sonrie-prod: inMaintenance=false",
-      "status": "passed",
-      "duration": 3267
-    },
-    {
-      "title": "sonrie-prod: anonymousAccess=false",
-      "status": "passed",
-      "duration": 6109
-    },
-    {
-      "title": "sonrie-prod: C2-08 Modificar cantidad en carro",
-      "status": "passed",
-      "duration": 15698
-    },
-    {
-      "title": "sonrie-prod: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
-      "status": "passed",
-      "duration": 15550
-    },
-    {
-      "title": "sonrie-prod: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
-      "status": "passed",
-      "duration": 22165
     }
   ]
 }
