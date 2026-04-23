@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 110,
+  "passed": 114,
   "failed": 4,
   "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: No hay productos con precio $0",
+      "status": "passed",
+      "duration": 11988
+    },
+    {
+      "title": "sonrie-prod: Agregar producto al carro",
+      "status": "passed",
+      "duration": 9386
+    },
+    {
+      "title": "sonrie-prod: Catálogo muestra productos con precios",
+      "status": "passed",
+      "duration": 5625
+    },
+    {
+      "title": "sonrie-prod: Sin acceso anónimo redirige a login",
+      "status": "passed",
+      "duration": 4584
+    },
     {
       "title": "sonrie-prod: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie-prod: enableTask=false",
       "status": "passed",
       "duration": 5864
-    },
-    {
-      "title": "sonrie-prod: paymentsWithoutAccount=false",
-      "status": "passed",
-      "duration": 9439
-    },
-    {
-      "title": "sonrie-prod: pendingDocuments=false",
-      "status": "passed",
-      "duration": 6895
-    },
-    {
-      "title": "sonrie-prod: payment.enableNewPaymentModule=false",
-      "status": "passed",
-      "duration": 10789
-    },
-    {
-      "title": "sonrie-prod: discountTypes.enableOrderDiscountType=false",
-      "status": "passed",
-      "duration": 12659
     }
   ]
 }
