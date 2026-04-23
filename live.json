@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 87,
+  "passed": 93,
   "failed": 4,
   "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: discountTypes.enableOrderDiscountType=false",
+      "status": "passed",
+      "duration": 12659
+    },
+    {
+      "title": "sonrie-prod: hasTransferPaymentType=false",
+      "status": "passed",
+      "duration": 9788
+    },
+    {
+      "title": "sonrie-prod: discountTypes.enableProductDiscountType=false",
+      "status": "passed",
+      "duration": 6070
+    },
+    {
+      "title": "sonrie-prod: enablePaymentsCollection=false",
+      "status": "passed",
+      "duration": 9990
+    },
+    {
+      "title": "sonrie-prod: enableSellerDiscount=false",
+      "status": "passed",
+      "duration": 13767
+    },
+    {
+      "title": "sonrie-prod: includeTaxRateInPrices=false",
+      "status": "passed",
+      "duration": 10389
+    },
     {
       "title": "sonrie-prod: taxes.showSummary=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie-prod: enablePriceOracle=false",
       "status": "passed",
       "duration": 9027
-    },
-    {
-      "title": "sonrie-prod: uploadOrderFileWithMinUnits=false",
-      "status": "passed",
-      "duration": 6146
-    },
-    {
-      "title": "sonrie-prod: hasMultipleBusinessUnit=false",
-      "status": "passed",
-      "duration": 8970
-    },
-    {
-      "title": "sonrie-prod: showEmptyCategories=false",
-      "status": "passed",
-      "duration": 7029
-    },
-    {
-      "title": "sonrie-prod: weightInfo=false",
-      "status": "passed",
-      "duration": 7062
-    },
-    {
-      "title": "sonrie-prod: packagingInformation.hidePackagingInformationB2B=true",
-      "status": "passed",
-      "duration": 7940
-    },
-    {
-      "title": "sonrie-prod: hasNoSaleFilter=false",
-      "status": "passed",
-      "duration": 7450
     }
   ]
 }
