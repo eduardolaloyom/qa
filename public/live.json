@@ -2,11 +2,51 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 43,
+  "passed": 49,
   "failed": 1,
-  "skipped": 1,
+  "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 3359
+    },
+    {
+      "title": "sonrie-prod: inMaintenance=false",
+      "status": "passed",
+      "duration": 3267
+    },
+    {
+      "title": "sonrie-prod: anonymousAccess=false",
+      "status": "passed",
+      "duration": 6109
+    },
+    {
+      "title": "sonrie-prod: C2-08 Modificar cantidad en carro",
+      "status": "passed",
+      "duration": 15698
+    },
+    {
+      "title": "sonrie-prod: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+      "status": "passed",
+      "duration": 15550
+    },
+    {
+      "title": "sonrie-prod: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 22165
+    },
+    {
+      "title": "sonrie-prod: C2-12 Doble click en crear pedido no genera duplicado",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C2-11 Flujo completo catalogo → carro → checkout",
+      "status": "skipped",
+      "duration": 0
+    },
     {
       "title": "sonrie-prod: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
       "status": "passed",
@@ -64,46 +104,6 @@
     },
     {
       "title": "showMinOne must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "taxes.showSummary must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "showEmptyCategories must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 1
-    },
-    {
-      "title": "pointsEnabled must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "purchaseOrderEnabled must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "ordersRequireVerification must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "pendingDocuments must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "ordersRequireAuthorization must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "inMaintenance must be boolean (got boolean false)",
       "status": "passed",
       "duration": 0
     }
