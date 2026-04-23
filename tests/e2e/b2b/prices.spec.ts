@@ -151,6 +151,10 @@ for (const [key, client] of Object.entries(clients)) {
     test(`${key}: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto`, async ({ authedPage: page }) => {
       // PM8: detecta product.taxes[].taxRate = 19 (entero) en vez de 0.19 (decimal)
       // Descubierto en Bastien 2026-04-20 — aplica a todos los clientes
+      if (!client.config['taxes.useTaxRate']) {
+        test.skip(true, `C3-PM8: ${client.name} no usa impuestos (taxes.useTaxRate=false) — nada que sanear`);
+        return;
+      }
 
       await page.goto(`${client.baseURL}/products`);
       await expect(page.getByRole('button', { name: 'Agregar' }).first()).toBeVisible({ timeout: 30_000 });
