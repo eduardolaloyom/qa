@@ -2,11 +2,26 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 125,
-  "failed": 7,
+  "passed": 127,
+  "failed": 8,
   "skipped": 13,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 14964
+    },
+    {
+      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "failed",
+      "duration": 14712
+    },
+    {
+      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 13262
+    },
     {
       "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
       "status": "passed",
@@ -91,21 +106,6 @@
       "title": "sonrie-prod: C7-12 /payment-documents carga sin error cuando flag=true",
       "status": "skipped",
       "duration": 11180
-    },
-    {
-      "title": "sonrie-prod: C7-11 Opción de facturas en menú lateral cuando flag=true",
-      "status": "skipped",
-      "duration": 10370
-    },
-    {
-      "title": "sonrie-prod: C7-INV /payment-documents no accesible cuando flag=false",
-      "status": "passed",
-      "duration": 11118
-    },
-    {
-      "title": "sonrie-prod: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
-      "status": "passed",
-      "duration": 13885
     }
   ]
 }
