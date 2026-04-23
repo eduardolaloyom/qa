@@ -503,22 +503,42 @@ def generate_pending_b2b(results: dict) -> list:
 
 
 def load_staging_urls(project_root: Path) -> dict:
-    """Load client slug → URL mapping from qa-matrix-staging.json."""
-    matrix_file = project_root / "data" / "qa-matrix-staging.json"
-    if not matrix_file.exists():
-        return {}
-    with open(matrix_file) as f:
-        data = json.load(f)
-    clients = data.get("clients", {})
-    # Map: stripped slug → {name, url}
-    # Keys in matrix look like "bastien-staging", strip "-staging" suffix
+    """Load client slug → URL mapping from qa-matrix-staging.json and qa-matrix.json (prod)."""
     result = {}
-    for key, val in clients.items():
-        slug = re.sub(r"-staging$", "", key)
-        domain = val.get("domain", "")
-        name = val.get("name", slug.capitalize())
-        url = f"https://{domain}" if domain and not domain.startswith("http") else domain
-        result[slug] = {"name": name, "url": url}
+
+    def _load_matrix(matrix_file: Path, strip_suffix: str = "") -> None:
+        if not matrix_file.exists():
+            return
+        with open(matrix_file) as f:
+            data = json.load(f)
+        for key, val in data.get("clients", {}).items():
+            slug = re.sub(rf"{re.escape(strip_suffix)}$", "", key) if strip_suffix else key
+            domain = val.get("domain", "")
+            name = val.get("name", slug.capitalize())
+            url = f"https://{domain}" if domain and not domain.startswith("http") else domain
+            result[slug] = {"name": name, "url": url}
+
+    # Same aliases as sync-clients.py KEY_ALIASES — maps raw prod key → clients.ts key
+    KEY_ALIASES = {
+        "prisa-staging": "surtiventas",
+        "prisa": "surtiventas",
+        "sonrie": "sonrie-prod",
+    }
+
+    # Staging matrix (keys end in -staging → strip suffix)
+    _load_matrix(project_root / "data" / "qa-matrix-staging.json", strip_suffix="-staging")
+    # Production matrix (keys are raw slugs — apply aliases so test title prefixes match)
+    prod_matrix = project_root / "data" / "qa-matrix.json"
+    if prod_matrix.exists():
+        with open(prod_matrix) as f:
+            data = json.load(f)
+        for key, val in data.get("clients", {}).items():
+            slug = KEY_ALIASES.get(key, key)
+            domain = val.get("domain", "")
+            name = val.get("name", slug.capitalize())
+            url = f"https://{domain}" if domain and not domain.startswith("http") else domain
+            result[slug] = {"name": name, "url": url}
+
     return result
 
 

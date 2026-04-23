@@ -1,10 +1,10 @@
 {
   "date": "2026-04-23",
-  "timestamp": "2026-04-23T21:26:08.914664+00:00",
+  "timestamp": "2026-04-23T22:36:21.952557+00:00",
   "total": 254,
   "passed": 240,
   "failed": 12,
-  "duration": 1496,
+  "duration": 1513,
   "suites": [
     {
       "name": "00-contract.spec.ts",
@@ -120,9 +120,9 @@
     },
     {
       "name": "prices.spec.ts",
-      "tests": 11,
-      "passed": 6,
-      "failed": 1,
+      "tests": 1,
+      "passed": 0,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
@@ -330,36 +330,47 @@
       "reportUrl": "reports/index.html",
       "client_slug": "prinorte",
       "last_tested": "2026-04-23"
+    },
+    "sonrie-prod": {
+      "name": "Sonrie Market",
+      "url": "https://sonrie.youorder.me",
+      "environment": "production",
+      "tests": 131,
+      "passed": 130,
+      "failed": 1,
+      "reportUrl": "reports/index.html",
+      "client_slug": "sonrie-prod",
+      "last_tested": "2026-04-23"
     }
   },
   "failure_groups": [
     {
       "category": "bug",
-      "label": "\ud83d\udd34 Bug",
-      "reason": "Cup\u00f3n v\u00e1lido aplica descuento",
+      "label": "🔴 Bug",
+      "reason": "Cupón válido aplica descuento",
       "owner": "qa",
-      "action": "Revisar en staging el flujo 'Cup\u00f3n v\u00e1lido aplica descuento'.",
+      "action": "Revisar en staging el flujo 'Cupón válido aplica descuento'.",
       "count": 1,
       "tests": [
-        "[coupons.spec.ts] bastien: PM1-02 Cup\u00f3n v\u00e1lido aplica descuento"
+        "[coupons.spec.ts] bastien: PM1-02 Cupón válido aplica descuento"
       ],
       "clients": [
         "bastien"
       ],
-      "error_sample": "Error: Cup\u00f3n TEST10OFF rechazado como inv\u00e1lido\n\nexpect(received).toBeFalsy()\n\nReceived: true",
+      "error_sample": "Error: Cupón TEST10OFF rechazado como inválido\n\nexpect(received).toBeFalsy()\n\nReceived: true",
       "annotations_sample": [],
       "spec_file": "coupons.spec.ts"
     },
     {
       "category": "integracion",
-      "label": "\ud83d\udfe3 Integraci\u00f3n",
-      "reason": "Impuestos exceden 30% del neto \u2014 product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
+      "label": "🟣 Integración",
+      "reason": "Impuestos exceden 30% del neto — product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
       "owner": "dev",
       "action": "Corregir product.taxes[].taxRate en MongoDB: debe ser 0.19 (decimal), no 19 (entero). Actualizar todos los productos del comercio afectado.",
       "count": 2,
       "tests": [
-        "[prices.spec.ts] sonrie: C3-PM8 Sanity impuestos \u2014 impuesto no excede 30% del neto",
-        "[prices.spec.ts] bastien: C3-PM8 Sanity impuestos \u2014 impuesto no excede 30% del neto"
+        "[prices.spec.ts] sonrie: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+        "[prices.spec.ts] bastien: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto"
       ],
       "clients": [
         "bastien",
@@ -371,19 +382,19 @@
     },
     {
       "category": "flaky",
-      "label": "\u26a0\ufe0f Flaky",
-      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "label": "⚠️ Flaky",
+      "reason": "Pasaron en retry — no son bugs confirmados",
       "owner": "qa",
-      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "action": "Monitorear en próximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
       "count": 8,
       "tests": [
         "[cart.spec.ts] sonrie: C2-08 Modificar cantidad en carro",
         "[cart.spec.ts] bastien: C2-09 Eliminar producto del carro",
-        "[checkout.spec.ts] sonrie: C2-11 Flujo completo catalogo \u2192 carro \u2192 checkout",
+        "[checkout.spec.ts] sonrie: C2-11 Flujo completo catalogo → carro → checkout",
         "[cv-cart.spec.ts] sonrie: enableCoupons=true",
         "[cv-payments.spec.ts] sonrie: taxes.showSummary=true",
         "[multi-client.spec.ts] bastien: Login exitoso",
-        "[promotions.spec.ts] bastien: PM5-03 Cat\u00e1logo no queda en loading infinito si promotions es lento",
+        "[promotions.spec.ts] bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
         "[step-pricing.spec.ts] bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto"
       ],
       "clients": [
@@ -393,13 +404,13 @@
     },
     {
       "category": "integracion",
-      "label": "\ud83d\udfe3 Integraci\u00f3n",
-      "reason": "Impuestos exceden 30% del neto \u2014 product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
+      "label": "🟣 Integración",
+      "reason": "Impuestos exceden 30% del neto — product.taxes[].taxRate con valor entero (19) en vez de decimal (0.19)",
       "owner": "dev",
       "action": "Corregir product.taxes[].taxRate en MongoDB: debe ser 0.19 (decimal), no 19 (entero). Actualizar todos los productos del comercio afectado.",
       "count": 1,
       "tests": [
-        "[prices.spec.ts] sonrie-prod: C3-PM8 Sanity impuestos \u2014 impuesto no excede 30% del neto"
+        "[prices.spec.ts] sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto"
       ],
       "clients": [
         "sonrie-prod"
@@ -410,10 +421,10 @@
     },
     {
       "category": "flaky",
-      "label": "\u26a0\ufe0f Flaky",
-      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "label": "⚠️ Flaky",
+      "reason": "Pasaron en retry — no son bugs confirmados",
       "owner": "qa",
-      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "action": "Monitorear en próximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
       "count": 4,
       "tests": [
         "[cart.spec.ts] sonrie-prod: C2-08 Modificar cantidad en carro",
