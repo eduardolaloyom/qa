@@ -178,9 +178,11 @@ for (const [key, client] of Object.entries(clients)) {
       expect(stillLoading).toBeFalsy();
     });
 
-    test(`${key}: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones`, async ({ authedPage: page }) => {
+    test.describe('Crear orden — BLOQUEADO-PROD en youorder.me', () => {
       test.skip(client.baseURL.includes('youorder.me'), 'BLOQUEADO-PROD — no crear pedidos en producción');
-      await addProductsAndGoToCart(page);
+
+      test(`${key}: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones`, async ({ authedPage: page }) => {
+        await addProductsAndGoToCart(page);
 
       const confirmButton = page.getByRole('button', { name: /confirmar|crear pedido|finalizar/i });
       await expect(confirmButton.first()).toBeVisible({ timeout: 10_000 });
@@ -210,6 +212,7 @@ for (const [key, client] of Object.entries(clients)) {
       const hasCrash = await page.getByText(/error interno|500|server error/i)
         .isVisible().catch(() => false);
       expect(hasCrash).toBeFalsy();
-    });
+      });
+    }); // fin describe BLOQUEADO-PROD
   });
 }
