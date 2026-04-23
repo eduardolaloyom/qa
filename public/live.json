@@ -2,11 +2,21 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 123,
-  "failed": 3,
+  "passed": 124,
+  "failed": 4,
   "skipped": 13,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "failed",
+      "duration": 19116
+    },
+    {
+      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 13575
+    },
     {
       "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
       "status": "passed",
@@ -96,16 +106,6 @@
       "title": "sonrie-prod: PM1-04 Cupón inválido muestra error (no crash)",
       "status": "passed",
       "duration": 47328
-    },
-    {
-      "title": "sonrie-prod: Agregar producto al carro",
-      "status": "passed",
-      "duration": 8576
-    },
-    {
-      "title": "sonrie-prod: Catálogo muestra productos con precios",
-      "status": "passed",
-      "duration": 6229
     }
   ]
 }
