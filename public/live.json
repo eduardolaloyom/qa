@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 107,
+  "passed": 110,
   "failed": 4,
-  "skipped": 4,
+  "skipped": 6,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "passed",
+      "duration": 10221
+    },
+    {
+      "title": "sonrie-prod: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "passed",
+      "duration": 18857
+    },
+    {
+      "title": "sonrie-prod: PM1-04 Cupón inválido muestra error (no crash)",
+      "status": "passed",
+      "duration": 18473
+    },
+    {
+      "title": "sonrie-prod: PM1-02 Cupón válido aplica descuento",
+      "status": "skipped",
+      "duration": 12864
+    },
+    {
+      "title": "sonrie-prod: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "skipped",
+      "duration": 0
+    },
     {
       "title": "sonrie-prod: PM1-01 Campo de cupón existe y es interactuable",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie-prod: discountTypes.enableOrderDiscountType=false",
       "status": "passed",
       "duration": 12659
-    },
-    {
-      "title": "sonrie-prod: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 9788
-    },
-    {
-      "title": "sonrie-prod: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 6070
-    },
-    {
-      "title": "sonrie-prod: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 9990
-    },
-    {
-      "title": "sonrie-prod: enableSellerDiscount=false",
-      "status": "passed",
-      "duration": 13767
-    },
-    {
-      "title": "sonrie-prod: includeTaxRateInPrices=false",
-      "status": "passed",
-      "duration": 10389
     }
   ]
 }
