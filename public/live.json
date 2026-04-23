@@ -3,10 +3,30 @@
   "startTime": "2026-04-23T16:20:16.290Z",
   "total": 85,
   "passed": 40,
-  "failed": 1,
+  "failed": 5,
   "skipped": 16,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: Catálogo muestra productos con precios",
+      "status": "failed",
+      "duration": 48788
+    },
+    {
+      "title": "sonrie-prod: Agregar producto al carro",
+      "status": "failed",
+      "duration": 48956
+    },
+    {
+      "title": "sonrie-prod: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "failed",
+      "duration": 48979
+    },
+    {
+      "title": "sonrie-prod: Catálogo muestra productos con precios",
+      "status": "failed",
+      "duration": 48891
+    },
     {
       "title": "sonrie-prod: Login exitoso",
       "status": "failed",
@@ -86,26 +106,6 @@
       "title": "sonrie-prod: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
       "status": "skipped",
       "duration": 0
-    },
-    {
-      "title": "sonrie-prod: C2-01 Catálogo muestra productos con precio @catalog @funcional",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie-prod: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "taxes.taxRate must be number in [0, 1]",
-      "status": "passed",
-      "duration": 1
-    },
-    {
-      "title": "fixture shape: name, baseURL, config",
-      "status": "passed",
-      "duration": 1
     }
   ]
 }
