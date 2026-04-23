@@ -1,10 +1,10 @@
 {
   "date": "2026-04-23",
-  "timestamp": "2026-04-23T16:24:59.535481+00:00",
+  "timestamp": "2026-04-23T16:29:55.389299+00:00",
   "total": 254,
   "passed": 240,
   "failed": 12,
-  "duration": 921,
+  "duration": 1124,
   "suites": [
     {
       "name": "00-contract.spec.ts",
