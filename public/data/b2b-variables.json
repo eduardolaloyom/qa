@@ -1,220 +1,55 @@
 {
-  "generatedAt": "2026-04-16T13:37:59.830839+00:00",
-  "total": 133,
+  "generatedAt": "2026-04-23T20:20:43.433189+00:00",
+  "total": 88,
   "variables": {
-    "adminConfiguration.showDiscountLimitAdmin": {
-      "clients": {
-        "coexito": true
-      },
-      "implemented": null
-    },
     "anonymousAccess": {
       "clients": {
-        "bastien": true,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": true
     },
     "anonymousHideCart": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": true,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": true
     },
     "anonymousHidePrice": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": true,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": true
     },
-    "blockedClientAlert.blockedClientAlertHtmlContent": {
-      "clients": {
-        "new-soprole": "<div class=\"text-center\">\n  <h4>Tu comercio se encuentra bloqueado para compras. Favor contactarse con nuestro Servicio al Cliente (600 600 6600) y revisaremos su caso.</h4>\n  <div class=\"modal-buttons\">\n    <button type=\"button\" class=\"btn-back\" ng-click=\"redirectTo('/contact')\"><b>Contacto</b></button>\n  </div>\n</div>",
-        "soprole": "<div class=\"text-center\">\n  <h4>Tu comercio se encuentra bloqueado para compras. Favor contactarse con nuestro Servicio al Cliente (600 600 6600) y revisaremos su caso.</h4>\n  <div class=\"modal-buttons\">\n    <button type=\"button\" class=\"btn-back\" ng-click=\"redirectTo('/contact')\"><b>Contacto</b></button>\n  </div>\n</div>"
-      },
-      "implemented": null
-    },
     "blockedClientAlert.enableBlockedClientAlert": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "businessUnits": {
       "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "codelpa-peru": [],
-        "coexito": [],
-        "elmuneco": [],
-        "expressdent": [],
-        "globalwines": [],
-        "marleycoffee": [],
-        "prinorte": [],
-        "prisa": [],
-        "prisur": [],
-        "softys-cencocal": [],
-        "softys-dimak": [],
-        "sonrie": []
+        "surtiventas": []
       },
       "implemented": null
     },
     "commerce.enableCreateCommerce": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": false,
-        "sonrie": false
+        "surtiventas": true
       },
       "implemented": false
     },
-    "confirmCartText": {
-      "clients": {
-        "new-soprole": "Pasar a confirmaci\u00f3n del pedido",
-        "soprole": "Pasar a confirmaci\u00f3n del pedido"
-      },
-      "implemented": null
-    },
     "contact.about": {
       "clients": {
-        "bastien": "En Grupo Bastien no solo abastecemos: construimos relaciones de confianza y colaboramos estrat\u00e9gicamente para que el \u00e9xito de nuestros clientes sea tambi\u00e9n el nuestro.",
-        "codelpa": "Grupo Codelpa Colores del Pac\u00edfico, es la empresa de pinturas y revestimientos m\u00e1s grande del pa\u00eds, agrupando marcas de pinturas como Ceresita, Sipa, Soquina, Chilcorrof\u00edn, Pinmor y Titanium 2K de Sipa.",
-        "elmuneco": "Distribuidora de helados, confites, congelados y bebidas. Tenemos todo para tu almac\u00e9n a los precios m\u00e1s convenientes.",
-        "expressdent": "Una soluci\u00f3n integral para el dentista",
-        "globalwines": "",
-        "marleycoffee": "La principal marca cafetera org\u00e1nica del mundo, siempre respetando el legado de Bob Marley, manifest\u00e1ndolo en cada taza.",
-        "new-soprole": "Comprometidos desde 1949 con la alimentaci\u00f3n saludable de las familias chilenas, entregando productos sanos y ricos.",
-        "prisa": "Surtiventas opera con el claro prop\u00f3sito de satisfacer las necesidades b\u00e1sicas del comerciante chileno, con un servicio personalizado de venta que se extiende a lo largo y ancho del pa\u00eds.",
-        "soprole": "Comprometidos desde 1949 con la alimentaci\u00f3n saludable de las familias chilenas, entregando productos sanos y ricos."
+        "surtiventas": "Surtiventas opera con el claro prop\u00f3sito de satisfacer las necesidades b\u00e1sicas del comerciante chileno, con un servicio personalizado de venta que se extiende a lo largo y ancho del pa\u00eds."
       },
       "implemented": true
     },
-    "contact.address": {
-      "clients": {
-        "expressdent": "Av. Presidente Err\u00e1zuriz 4125, Las Condes, Santiago, Chile"
-      },
-      "implemented": null
-    },
     "contact.branchesContactInformation": {
       "clients": {
-        "bastien": [
-          {
-            "phone": "+56 9 34133500 | +56 9 34133501 | +56 9 66190753",
-            "email": "ventas@bastien.cl"
-          }
-        ],
-        "codelpa": [
-          {
-            "address": "Camino Lo Echevers 801, Quilicura",
-            "phone": "+562227262800",
-            "email": "info@codelpa.cl"
-          }
-        ],
-        "elmuneco": [
-          {
-            "address": "Lucila Godoy #374, Quilicura, Santiago",
-            "phone": "+56965995359",
-            "email": "elmuneco@tie.cl"
-          }
-        ],
-        "globalwines": [
-          {
-            "phone": "3188032591",
-            "email": "distribuidoramericas@gmail.com"
-          }
-        ],
-        "marleycoffee": [
-          {
-            "phone": "+56998946436",
-            "email": "servicioalcliente@marleycoffee.cl"
-          }
-        ],
-        "new-soprole": [
-          {
-            "phone": "600 600 6600"
-          }
-        ],
-        "prisa": [
+        "surtiventas": [
           {
             "phone": "+562 2820 6400",
             "email": "srvcliente1@surtiventas.cl"
-          }
-        ],
-        "soprole": [
-          {
-            "phone": "600 600 6600"
           }
         ]
       },
@@ -222,2233 +57,484 @@
     },
     "contact.email": {
       "clients": {
-        "bastien": "ventas@bastien.cl",
-        "codelpa": "info@codelpa.cl",
-        "elmuneco": "elmuneco@tie.cl",
-        "expressdent": "contacto@expressdent.cl",
-        "globalwines": "distribuidoramericas@gmail.com",
-        "marleycoffee": "servicioalcliente@marleycoffee.cl",
-        "prisa": "srvcliente1@surtiventas.cl"
-      },
-      "implemented": true
-    },
-    "contact.phone": {
-      "clients": {
-        "expressdent": "Fijo: +562 4367 1570  -  Whatsapp: +569 5819 3883",
-        "new-soprole": "600 600 6600",
-        "soprole": "600 600 6600"
+        "surtiventas": "srvcliente1@surtiventas.cl"
       },
       "implemented": true
     },
     "disableCart": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "disableCommerceEdit": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
-      },
-      "implemented": null
-    },
-    "disableManualDiscount": {
-      "clients": {
-        "coexito": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "disableObservationInput": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": true
     },
     "disablePayments": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "disableShowEstimatedDeliveryHour": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
-      },
-      "implemented": null
-    },
-    "disableSyncDate": {
-      "clients": {
-        "codelpa": false
-      },
-      "implemented": null
-    },
-    "disableWrongPrices": {
-      "clients": {
-        "new-soprole": true,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "discountTypes.discountTypesList": {
       "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "codelpa-peru": [],
-        "coexito": [],
-        "elmuneco": [],
-        "expressdent": [],
-        "globalwines": [],
-        "marleycoffee": [],
-        "prinorte": [],
-        "prisa": [],
-        "prisur": [],
-        "softys-cencocal": [
-          "descuento1",
-          "descuento2",
-          "descuento3"
-        ],
-        "softys-dimak": [],
-        "sonrie": []
+        "surtiventas": []
       },
       "implemented": null
     },
     "discountTypes.enableOrderDiscountType": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "discountTypes.enableProductDiscountType": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "editAddress": {
       "clients": {
-        "bastien": true,
-        "cedisur": true,
-        "codelpa": false,
-        "codelpa-peru": true,
-        "coexito": true,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "new-soprole": false,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-cencocal": true,
-        "softys-dimak": true,
-        "sonrie": true,
-        "soprole": false
+        "surtiventas": true
       },
       "implemented": null
     },
-    "enableActivation": {
-      "clients": {
-        "codelpa": true
-      },
-      "implemented": false
-    },
     "enableAskDeliveryDate": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": true,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "enableBetaButtons": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "enableChooseSaleUnit": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": true
       },
       "implemented": null
     },
     "enableCoupons": {
       "clients": {
-        "bastien": true,
-        "cedisur": true,
-        "codelpa": false,
-        "codelpa-peru": true,
-        "coexito": true,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-cencocal": true,
-        "softys-dimak": true,
-        "sonrie": true,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "enableCreditNotes": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
-    "enableCreditStateMessage": {
-      "clients": {
-        "codelpa": false,
-        "softys-cencocal": true
-      },
-      "implemented": false
-    },
     "enableDialogNoSellReason": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "enableDistributionCentersSelector": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": true
     },
-    "enableFinancePortal": {
-      "clients": {
-        "softys-cencocal": false
-      },
-      "implemented": null
-    },
-    "enableHome": {
-      "clients": {
-        "new-soprole": true
-      },
-      "implemented": false
-    },
     "enableInvoicesList": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": true
     },
     "enableMassiveOrderSend": {
       "clients": {
-        "cedisur": true,
-        "codelpa": true,
-        "softys-cencocal": true
-      },
-      "implemented": null
-    },
-    "enableNewPaymentModule": {
-      "clients": {
-        "cedisur": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "enableNewUI": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "enableOrderApproval": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
-    "enableOrderAproval": {
-      "clients": {
-        "new-soprole": false,
-        "soprole": false
-      },
-      "implemented": false
-    },
     "enableOrderValidation": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "enablePaymentDocumentsB2B": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": true
     },
     "enablePayments": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "enablePaymentsCollection": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "enablePriceOracle": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": true
     },
     "enableSellerDiscount": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": true,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "enableTask": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": true,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "externalAccess": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": true,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": true
     },
     "filterGroupedSuggestionsBy": {
       "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "codelpa-peru": [],
-        "coexito": [],
-        "elmuneco": [],
-        "expressdent": [],
-        "globalwines": [],
-        "marleycoffee": [],
-        "prinorte": [],
-        "prisa": [],
-        "prisur": [],
-        "softys-cencocal": [],
-        "softys-dimak": [],
-        "sonrie": []
+        "surtiventas": []
       },
       "implemented": null
     },
-    "flagFeatures.reactNativeOrderTaker": {
-      "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false
-      },
-      "implemented": false
-    },
-    "flagFeatures.reactNativeOrderTakerForAll": {
-      "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false
-      },
-      "implemented": false
-    },
-    "flagFeatures.reactNativeOrderTakerSellers": {
-      "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "prisa": [],
-        "prisur": []
-      },
-      "implemented": false
-    },
-    "footerCustomContent.footerCustomHtmlContent": {
-      "clients": {
-        "new-soprole": "<p class=\"footer-links\">\n  <a href=\"/\">Inicio</a>\n  &middot;\n  <a href=\"/catalog\">Cat\u00e1logo</a>\n  &middot;\n  <a href=\"/contact\">Contacto</a>\n  &middot;\n  <a href=\"/faq\">Preguntas frecuentes</a>\n</p>",
-        "soprole": "<p class=\"footer-links\">\n  <a href=\"/\">Inicio</a>\n  &middot;\n  <a href=\"/catalog\">Cat\u00e1logo</a>\n  &middot;\n  <a href=\"/contact\">Contacto</a>\n  &middot;\n  <a href=\"/faq\">Preguntas frecuentes</a>\n</p>"
-      },
-      "implemented": true
-    },
     "footerCustomContent.useFooterCustomContent": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "hasAllDistributionCenters": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "hasMultiUnitEnabled": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": true
     },
     "hasMultipleBusinessUnit": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "hasNoSaleFilter": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": true,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": true,
-        "marleycoffee": false,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": true
       },
       "implemented": null
     },
     "hasSingleDistributionCenter": {
       "clients": {
-        "bastien": true,
-        "cedisur": true,
-        "codelpa": false,
-        "codelpa-peru": true,
-        "coexito": true,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-cencocal": true,
-        "softys-dimak": true,
-        "sonrie": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "hasStockEnabled": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": true,
-        "expressdent": false,
-        "globalwines": true,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": true
       },
       "implemented": null
     },
     "hasTransferPaymentType": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "hasTransportCode": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "hasVoucherPrinterEnabled": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "hidePrices": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "hideReceiptType": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "includeTaxRateInPrices": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": true,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": true,
-        "prisur": true,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": true
       },
       "implemented": null
     },
     "lazyLoadingPrices": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "limitAddingByStock": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": true,
-        "marleycoffee": false,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": true
       },
       "implemented": null
     },
     "loginButtons.facebook": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "loginButtons.google": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
-      },
-      "implemented": null
-    },
-    "logo3": {
-      "clients": {
-        "softys-cencocal": "https://res.cloudinary.com/yom/image/upload/v1697729105/icons/logo-cencocal1232312321321.png"
-      },
-      "implemented": null
-    },
-    "mobileAccess.passwordDisabled": {
-      "clients": {
-        "coexito": true
-      },
-      "implemented": null
-    },
-    "mustHaveOverride": {
-      "clients": {
-        "new-soprole": true,
-        "soprole": true
-      },
-      "implemented": false
-    },
-    "orderObservations": {
-      "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "coexito": [
-          {
-            "disabled": false,
-            "maxCharacters": 240,
-            "observationKey": "purchaseObservation",
-            "observationTitle": "Observaciones Factura"
-          },
-          {
-            "disabled": false,
-            "maxCharacters": 240,
-            "observationKey": "internalObservation",
-            "observationTitle": "Observaciones Internas"
-          }
-        ],
-        "prinorte": [],
-        "prisur": []
-      },
-      "implemented": null
-    },
-    "orderPolicy.creditExceededStatus": {
-      "clients": {
-        "new-soprole": "retain",
-        "sonrie": "block",
-        "soprole": "block"
-      },
-      "implemented": false
-    },
-    "orderPolicy.newPricePromotionsOverall": {
-      "clients": {
-        "soprole": true
-      },
-      "implemented": null
-    },
-    "orderPolicy.overdueDebtConfiguration.blockSetting.enabled": {
-      "clients": {
-        "softys-cencocal": true
-      },
-      "implemented": null
-    },
-    "orderPolicy.overdueDebtConfiguration.blockSetting.thresholdDays": {
-      "clients": {
-        "softys-cencocal": 50000
-      },
-      "implemented": null
-    },
-    "orderPolicy.overdueDebtConfiguration.blockSettings.enabled": {
-      "clients": {
-        "cedisur": false,
-        "new-soprole": true
-      },
-      "implemented": false
-    },
-    "orderPolicy.overdueDebtConfiguration.blockSettings.thresholdDays": {
-      "clients": {
-        "new-soprole": 30
-      },
-      "implemented": false
-    },
-    "orderPolicy.overdueDebtConfiguration.retentionSetting.enabled": {
-      "clients": {
-        "softys-cencocal": true
-      },
-      "implemented": null
-    },
-    "orderPolicy.overdueDebtConfiguration.retentionSetting.thresholdDays": {
-      "clients": {
-        "softys-cencocal": 25
-      },
-      "implemented": null
-    },
-    "orderPolicy.overdueDebtConfiguration.retentionSettings.enabled": {
-      "clients": {
-        "cedisur": true,
-        "new-soprole": true
-      },
-      "implemented": false
-    },
-    "orderPolicy.overdueDebtConfiguration.retentionSettings.thresholdDays": {
-      "clients": {
-        "cedisur": 3,
-        "new-soprole": 10
-      },
-      "implemented": false
-    },
-    "orderPolicy.retainBelowMinimumOrder": {
-      "clients": {
-        "new-soprole": false,
-        "sonrie": false
-      },
-      "implemented": false
-    },
-    "orderPolicy.retainBlockedCommerces": {
-      "clients": {
-        "cedisur": true,
-        "softys-cencocal": true
-      },
-      "implemented": null
-    },
-    "orderPolicy.retainCreditBlockedCommerces": {
-      "clients": {
-        "cedisur": true,
-        "new-soprole": true,
-        "sonrie": false
-      },
-      "implemented": false
-    },
-    "orderPolicy.sendRetainedOrdersToClientErp": {
-      "clients": {
-        "cedisur": true
-      },
-      "implemented": null
-    },
-    "orderTypes": {
-      "clients": {
-        "coexito": [
-          {
-            "displayName": "VENTA NORMAL",
-            "key": "VEN_NOR_"
-          },
-          {
-            "displayName": "VENTA ENTREGA TERCEROS",
-            "key": "VEN_ENT_3ROS_"
-          },
-          {
-            "displayName": "VENTA CLIENTE RECOGE",
-            "key": "VEN_RETIRA_"
-          },
-          {
-            "displayName": "VENTA MARCA PROPIA",
-            "key": "VEN_MPRO_"
-          },
-          {
-            "displayName": "VENTA SAN ANDRES",
-            "key": "VEN_SAN_ANDRES"
-          },
-          {
-            "displayName": "VENTA OTRO CEDI",
-            "key": "VEN_OTROCEDI_"
-          }
-        ]
+        "surtiventas": false
       },
       "implemented": null
     },
     "ordersRequireAuthorization": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "ordersRequireVerification": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "packaging.amountUsesUnits": {
       "clients": {
-        "cedisur": true,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": false
     },
     "packagingInformation.hidePackagingInformationB2B": {
       "clients": {
-        "bastien": true,
-        "cedisur": true,
-        "codelpa": false,
-        "codelpa-peru": true,
-        "coexito": true,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-dimak": true,
-        "sonrie": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "packagingInformation.hideSingleItemPackagingInformationB2B": {
       "clients": {
-        "bastien": true,
-        "cedisur": true,
-        "codelpa": true,
-        "codelpa-peru": true,
-        "coexito": true,
-        "elmuneco": true,
-        "expressdent": true,
-        "globalwines": true,
-        "marleycoffee": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-dimak": true,
-        "sonrie": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "packagingInformation.ignoreUnitOnPackInformationB2B": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "payment.balances": {
       "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "codelpa-peru": [],
-        "coexito": [
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Pago parcial",
-            "addsToTotal": false
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Descuento Pronto Pago",
-            "addsToTotal": true
-          }
-        ],
-        "elmuneco": [],
-        "expressdent": [],
-        "globalwines": [],
-        "marleycoffee": [],
-        "new-soprole": [
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Pago parcial",
-            "addsToTotal": false
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Descuento Pronto Pago",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo Descuento comercial",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Nota de cr\u00e9dito existente",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "supplier",
-                "displayName": "Proveedor",
-                "type": "dropdown",
-                "dropdownOptions": [
-                  "Proveedor de prueba 1",
-                  "Proveedor de prueba 2"
-                ]
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo proveedor",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo Log\u00edstica",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "almin",
-                "displayName": "Almin",
-                "type": "textField"
-              },
-              {
-                "key": "reteFuente",
-                "displayName": "Rete Fuente",
-                "type": "textField"
-              },
-              {
-                "key": "reteIca",
-                "displayName": "Rete Ica",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo por Retenci\u00f3n",
-            "addsToTotal": true
-          }
-        ],
-        "prinorte": [],
-        "prisa": [],
-        "prisur": [],
-        "softys-cencocal": [
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Pago parcial",
-            "addsToTotal": false
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Descuento Pronto Pago",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo Descuento comercial",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Nota de cr\u00e9dito existente",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "supplier",
-                "displayName": "Proveedor",
-                "type": "dropdown",
-                "dropdownOptions": [
-                  "Proveedor de prueba 1",
-                  "Proveedor de prueba 2"
-                ]
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo proveedor",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo Log\u00edstica",
-            "addsToTotal": true
-          },
-          {
-            "additionalBalanceFields": [
-              {
-                "key": "balance",
-                "displayName": "Saldo",
-                "type": "textField"
-              },
-              {
-                "key": "almin",
-                "displayName": "Almin",
-                "type": "textField"
-              },
-              {
-                "key": "reteFuente",
-                "displayName": "Rete Fuente",
-                "type": "textField"
-              },
-              {
-                "key": "reteIca",
-                "displayName": "Rete Ica",
-                "type": "textField"
-              },
-              {
-                "key": "observations",
-                "displayName": "Observaciones",
-                "type": "textAndPhotoField"
-              }
-            ],
-            "displayName": "Saldo por Retenci\u00f3n",
-            "addsToTotal": true
-          }
-        ],
-        "sonrie": []
-      },
-      "implemented": null
-    },
-    "payment.consolidatePayments": {
-      "clients": {
-        "cedisur": false
+        "surtiventas": []
       },
       "implemented": null
     },
     "payment.enableNewPaymentModule": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa": true,
-        "codelpa-peru": true,
-        "coexito": true,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
-    },
-    "payment.externalPayment": {
-      "clients": {
-        "expressdent": "khipu",
-        "marleycoffee": "khipu"
-      },
-      "implemented": true
     },
     "payment.requiresFullPayment": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "sonrie": false
-      },
-      "implemented": null
-    },
-    "payment.walletEnabled": {
-      "clients": {
-        "new-soprole": true,
-        "softys-cencocal": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "paymentsWithoutAccount": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "pendingDocuments": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "pointsEnabled": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "priceRoundingDecimals": {
       "clients": {
-        "bastien": 0,
-        "cedisur": 2,
-        "codelpa-peru": 2,
-        "coexito": 0,
-        "elmuneco": 0,
-        "expressdent": 0,
-        "globalwines": 0,
-        "marleycoffee": 0,
-        "new-soprole": 0,
-        "prinorte": 0,
-        "prisa": 0,
-        "prisur": 0,
-        "sonrie": 0,
-        "soprole": 0
+        "surtiventas": 0
       },
       "implemented": null
     },
     "productDetailViewConfiguration.tabsOrder": {
       "clients": {
-        "codelpa": [
-          "steps",
-          "description"
-        ],
-        "new-soprole": [
-          "steps",
-          "description"
-        ],
-        "prisa": [
-          "steps",
-          "description"
-        ],
-        "soprole": [
+        "surtiventas": [
           "steps",
           "description"
         ]
       },
       "implemented": true
     },
-    "productList.enableSuggestionByCategories": {
-      "clients": {
-        "codelpa": true,
-        "softys-cencocal": true
-      },
-      "implemented": false
-    },
     "productVariability": {
       "clients": {
-        "bastien": "none",
-        "cedisur": "none",
-        "codelpa": "full",
-        "codelpa-peru": "none",
-        "elmuneco": "none",
-        "expressdent": "full",
-        "globalwines": "none",
-        "marleycoffee": "none",
-        "new-soprole": "low",
-        "prinorte": "none",
-        "prisa": "none",
-        "prisur": "none",
-        "sonrie": "none",
-        "soprole": "low"
+        "surtiventas": "none"
       },
       "implemented": true
     },
     "purchaseOrderEnabled": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": true,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "shareOrderNewDesign": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "shoppingDetail.lastOrder": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "showEmptyCategories": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": true
     },
     "showMinOne": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
-      },
-      "implemented": null
-    },
-    "suggestions.enableSortingByCategories": {
-      "clients": {
-        "codelpa": true,
-        "softys-cencocal": true
-      },
-      "implemented": null
-    },
-    "suggestions.hide": {
-      "clients": {
-        "sonrie": true
+        "surtiventas": false
       },
       "implemented": null
     },
     "synchronization.backgroundSyncList": {
       "clients": {
-        "bastien": [],
-        "cedisur": [],
-        "codelpa-peru": [],
-        "coexito": [],
-        "elmuneco": [],
-        "expressdent": [],
-        "globalwines": [],
-        "marleycoffee": [],
-        "prinorte": [],
-        "prisa": [],
-        "prisur": [],
-        "sonrie": []
+        "surtiventas": []
       },
       "implemented": null
     },
     "synchronization.enableBackgroundSendOrders": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "synchronization.enableBackgroundSync": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "synchronization.enableSyncImages": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "taxes.showSummary": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": true,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": true,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "taxes.taxRate": {
       "clients": {
-        "bastien": 0,
-        "cedisur": 0,
-        "codelpa": 0,
-        "codelpa-peru": 0,
-        "coexito": 0,
-        "elmuneco": 0,
-        "expressdent": 0,
-        "globalwines": 0,
-        "marleycoffee": 0,
-        "new-soprole": 0,
-        "prinorte": 0,
-        "prisa": 0,
-        "prisur": 0,
-        "softys-cencocal": 0,
-        "softys-dimak": 0,
-        "sonrie": 0,
-        "soprole": 0
+        "surtiventas": 0
       },
       "implemented": null
     },
     "taxes.useTaxRate": {
       "clients": {
-        "bastien": false,
-        "cedisur": true,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": true,
-        "elmuneco": false,
-        "expressdent": true,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": true
     },
     "uploadOrderFileWithMinUnits": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "useMobileGps": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": true,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "useMongoPricing": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": true,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": false
       },
       "implemented": false
     },
     "useNewPromotions": {
       "clients": {
-        "bastien": true,
-        "cedisur": true,
-        "codelpa": true,
-        "codelpa-peru": false,
-        "coexito": true,
-        "globalwines": false,
-        "new-soprole": true,
-        "prinorte": true,
-        "prisa": true,
-        "prisur": true,
-        "softys-cencocal": true,
-        "sonrie": false,
-        "soprole": true
+        "surtiventas": true
       },
       "implemented": null
     },
     "validatePaymentFromAdmin": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false
+        "surtiventas": false
       },
       "implemented": null
     },
     "weightInfo": {
       "clients": {
-        "bastien": false,
-        "cedisur": false,
-        "codelpa": false,
-        "codelpa-peru": false,
-        "coexito": false,
-        "elmuneco": false,
-        "expressdent": false,
-        "globalwines": false,
-        "marleycoffee": false,
-        "new-soprole": false,
-        "prinorte": false,
-        "prisa": false,
-        "prisur": false,
-        "softys-cencocal": false,
-        "softys-dimak": false,
-        "sonrie": false,
-        "soprole": false
-      },
-      "implemented": null
-    },
-    "wrongPrices.block": {
-      "clients": {
-        "new-soprole": false,
-        "soprole": true
-      },
-      "implemented": null
-    },
-    "wrongPrices.threshold": {
-      "clients": {
-        "new-soprole": 50,
-        "soprole": 50
+        "surtiventas": false
       },
       "implemented": null
     }

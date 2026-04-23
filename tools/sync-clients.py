@@ -197,6 +197,7 @@ const clients: Record<string, ClientConfig> = {{
     KEY_ALIASES = {
         "prisa-staging": "surtiventas",
         "prisa":         "surtiventas",
+        "sonrie":        "sonrie-prod",  # prod matrix key "sonrie" → "sonrie-prod" to avoid conflict with staging "sonrie"
     }
     KEY_STRIP_SUFFIX = "-staging"
 
@@ -223,8 +224,9 @@ const clients: Record<string, ClientConfig> = {{
         "softys-dimak-staging",
         "sonrie-staging",
         # Production-matrix keys (used when syncing from qa-matrix.json)
+        # Raw keys as they appear in prod MongoDB — aliases map them to final client key
         "surtiventas",
-        "sonrie-prod",
+        "sonrie",        # aliased to "sonrie-prod" via KEY_ALIASES
     }
 
     client_entries = []
