@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 118,
+  "passed": 121,
   "failed": 5,
-  "skipped": 8,
+  "skipped": 11,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 14409
+    },
+    {
+      "title": "sonrie-prod: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 12288
+    },
+    {
+      "title": "sonrie-prod: C3-04 Descuento visible en catalogo",
+      "status": "skipped",
+      "duration": 44
+    },
+    {
+      "title": "sonrie-prod: Login exitoso",
+      "status": "passed",
+      "duration": 5921
+    },
+    {
+      "title": "sonrie-prod: C3-02 Detectar productos con precio $0",
+      "status": "skipped",
+      "duration": 63
+    },
+    {
+      "title": "sonrie-prod: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "skipped",
+      "duration": 52
+    },
     {
       "title": "sonrie-prod: PAG-04 Historial de pagos carga correctamente",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie-prod: PM1-04 Cupón inválido muestra error (no crash)",
       "status": "passed",
       "duration": 18473
-    },
-    {
-      "title": "sonrie-prod: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 12864
-    },
-    {
-      "title": "sonrie-prod: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
-      "status": "skipped",
-      "duration": 0
-    },
-    {
-      "title": "sonrie-prod: PM1-01 Campo de cupón existe y es interactuable",
-      "status": "passed",
-      "duration": 15507
-    },
-    {
-      "title": "sonrie-prod: enableNewUI=false",
-      "status": "passed",
-      "duration": 12310
-    },
-    {
-      "title": "sonrie-prod: suggestions.hide=true",
-      "status": "passed",
-      "duration": 9908
-    },
-    {
-      "title": "sonrie-prod: enableBetaButtons=false",
-      "status": "passed",
-      "duration": 10393
     }
   ]
 }
