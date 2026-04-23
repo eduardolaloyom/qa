@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-23T16:41:54.656Z",
   "total": 145,
-  "passed": 47,
+  "passed": 52,
   "failed": 0,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: disableCart=false",
+      "status": "passed",
+      "duration": 10120
+    },
+    {
+      "title": "sonrie-prod: C2-13 Pedido aparece en historial",
+      "status": "passed",
+      "duration": 14886
+    },
+    {
+      "title": "sonrie-prod: loginButtons.google=false",
+      "status": "passed",
+      "duration": 2935
+    },
+    {
+      "title": "sonrie-prod: loginButtons.facebook=false",
+      "status": "passed",
+      "duration": 2979
+    },
+    {
+      "title": "sonrie-prod: anonymousAccess=false",
+      "status": "passed",
+      "duration": 4567
+    },
     {
       "title": "sonrie-prod: C2-12 Doble click en crear pedido no genera duplicado",
       "status": "skipped",
@@ -79,31 +104,6 @@
     },
     {
       "title": "weightInfo must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "showMinOne must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "taxes.useTaxRate must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "taxes.showSummary must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "showEmptyCategories must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "purchaseOrderEnabled must be boolean (got boolean false)",
       "status": "passed",
       "duration": 0
     }
