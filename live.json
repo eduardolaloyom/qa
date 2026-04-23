@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-23T19:02:01.442Z",
   "total": 145,
-  "passed": 41,
-  "failed": 2,
-  "skipped": 0,
+  "passed": 43,
+  "failed": 3,
+  "skipped": 1,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: C2-06 Cantidad mínima — sistema corrige o bloquea",
+      "status": "skipped",
+      "duration": 15921
+    },
+    {
+      "title": "sonrie-prod: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "status": "passed",
+      "duration": 24527
+    },
+    {
+      "title": "sonrie-prod: C2-09 Eliminar producto del carro",
+      "status": "failed",
+      "duration": 47110
+    },
+    {
+      "title": "sonrie-prod: C2-08 Modificar cantidad en carro",
+      "status": "passed",
+      "duration": 18373
+    },
     {
       "title": "sonrie-prod: C2-06 Cantidad mínima — sistema corrige o bloquea",
       "status": "failed",
@@ -86,26 +106,6 @@
       "title": "pointsEnabled must be boolean (got boolean false)",
       "status": "passed",
       "duration": 0
-    },
-    {
-      "title": "ordersRequireAuthorization must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "includeTaxRateInPrices must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 0
-    },
-    {
-      "title": "inMaintenance must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 1
-    },
-    {
-      "title": "lazyLoadingPrices must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 1
     }
   ]
 }
