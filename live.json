@@ -3,107 +3,107 @@
   "startTime": "2026-04-23T16:20:16.290Z",
   "total": 85,
   "passed": 40,
-  "failed": 5,
-  "skipped": 16,
+  "failed": 9,
+  "skipped": 40,
   "currentTest": null,
   "recentTests": [
     {
-      "title": "sonrie-prod: Catálogo muestra productos con precios",
+      "title": "sonrie-prod: No hay productos con precio $0",
       "status": "failed",
-      "duration": 48788
+      "duration": 48803
     },
     {
       "title": "sonrie-prod: Agregar producto al carro",
       "status": "failed",
-      "duration": 48956
+      "duration": 48894
     },
     {
-      "title": "sonrie-prod: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
-      "status": "failed",
-      "duration": 48979
-    },
-    {
-      "title": "sonrie-prod: Catálogo muestra productos con precios",
-      "status": "failed",
-      "duration": 48891
-    },
-    {
-      "title": "sonrie-prod: Login exitoso",
-      "status": "failed",
-      "duration": 48850
-    },
-    {
-      "title": "sonrie-prod: Sin acceso anónimo redirige a login",
-      "status": "passed",
-      "duration": 4767
-    },
-    {
-      "title": "sonrie-prod: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "title": "sonrie-prod: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
       "status": "skipped",
       "duration": 0
     },
     {
-      "title": "sonrie-prod: C2-08 Modificar cantidad en carro",
-      "status": "skipped",
-      "duration": 1
-    },
-    {
-      "title": "sonrie-prod: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "title": "sonrie-prod: PM4-01 Productos con step pricing muestran escalones",
       "status": "skipped",
       "duration": 0
     },
     {
-      "title": "sonrie-prod: PM1-04 Cupón inválido muestra error (no crash)",
+      "title": "sonrie-prod: C3-04 Descuento visible en catalogo",
       "status": "skipped",
-      "duration": 1
+      "duration": 59
     },
     {
-      "title": "sonrie-prod: PM1-02 Cupón válido aplica descuento",
-      "status": "skipped",
-      "duration": 1
-    },
-    {
-      "title": "sonrie-prod: PM1-01 Campo de cupón existe y es interactuable",
+      "title": "sonrie-prod: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
       "status": "skipped",
       "duration": 0
     },
     {
-      "title": "sonrie-prod: C2-13 Pedido aparece en historial",
-      "status": "skipped",
-      "duration": 1
-    },
-    {
-      "title": "sonrie-prod: C2-09 Eliminar producto del carro",
-      "status": "skipped",
-      "duration": 1
-    },
-    {
-      "title": "sonrie-prod: C2-12 Doble click en crear pedido no genera duplicado",
-      "status": "skipped",
-      "duration": 1
-    },
-    {
-      "title": "sonrie-prod: C2-11 Flujo completo catalogo → carro → checkout",
-      "status": "skipped",
-      "duration": 1
-    },
-    {
-      "title": "sonrie-prod: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+      "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
       "status": "skipped",
       "duration": 0
     },
     {
-      "title": "sonrie-prod: C2-05 Agregar producto al carro",
+      "title": "sonrie-prod: PM5-01 Catálogo carga productos con precios (promotions funcional)",
       "status": "skipped",
       "duration": 0
     },
     {
-      "title": "sonrie-prod: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
       "status": "skipped",
       "duration": 0
     },
     {
-      "title": "sonrie-prod: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+      "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-14 Campo de cupon visible en carro (enableCoupons)",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-03 Precios consistentes catalogo vs carro",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "skipped",
+      "duration": 93
+    },
+    {
+      "title": "sonrie-prod: C3-02 Detectar productos con precio $0",
+      "status": "skipped",
+      "duration": 88
+    },
+    {
+      "title": "sonrie-prod: PAG-04 Historial de pagos carga correctamente",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: PAG-16 Montos en historial no muestran valores negativos confusos",
       "status": "skipped",
       "duration": 0
     }
