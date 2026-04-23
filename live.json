@@ -2,11 +2,36 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 53,
+  "passed": 58,
   "failed": 1,
   "skipped": 3,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: editAddress=true",
+      "status": "passed",
+      "duration": 14936
+    },
+    {
+      "title": "sonrie-prod: limitAddingByStock=false",
+      "status": "passed",
+      "duration": 6816
+    },
+    {
+      "title": "sonrie-prod: purchaseOrderEnabled=false",
+      "status": "passed",
+      "duration": 14876
+    },
+    {
+      "title": "sonrie-prod: enableAskDeliveryDate=false",
+      "status": "passed",
+      "duration": 13542
+    },
+    {
+      "title": "sonrie-prod: hideReceiptType=false",
+      "status": "passed",
+      "duration": 13965
+    },
     {
       "title": "sonrie-prod: enableCoupons=true",
       "status": "passed",
@@ -81,31 +106,6 @@
       "title": "sonrie-prod: C2-01 Catálogo muestra productos con precio @catalog @funcional",
       "status": "passed",
       "duration": 12189
-    },
-    {
-      "title": "sonrie-prod: C2-09 Eliminar producto del carro",
-      "status": "passed",
-      "duration": 16589
-    },
-    {
-      "title": "sonrie-prod: C2-05 Agregar producto al carro",
-      "status": "passed",
-      "duration": 14441
-    },
-    {
-      "title": "sonrie-prod: C2-06 Cantidad mínima — sistema corrige o bloquea",
-      "status": "skipped",
-      "duration": 13869
-    },
-    {
-      "title": "fixture shape: name, baseURL, config",
-      "status": "passed",
-      "duration": 2
-    },
-    {
-      "title": "weightInfo must be boolean (got boolean false)",
-      "status": "passed",
-      "duration": 1
     }
   ]
 }
