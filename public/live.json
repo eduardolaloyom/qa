@@ -2,9 +2,110 @@
   "running": true,
   "startTime": "2026-04-23T16:41:54.656Z",
   "total": 145,
-  "passed": 0,
+  "passed": 39,
   "failed": 0,
-  "skipped": 0,
+  "skipped": 1,
   "currentTest": null,
-  "recentTests": []
+  "recentTests": [
+    {
+      "title": "sonrie-prod: C2-06 Cantidad mínima — sistema corrige o bloquea",
+      "status": "skipped",
+      "duration": 14750
+    },
+    {
+      "title": "fixture shape: name, baseURL, config",
+      "status": "passed",
+      "duration": 3
+    },
+    {
+      "title": "taxes.taxRate must be number in [0, 1]",
+      "status": "passed",
+      "duration": 1
+    },
+    {
+      "title": "useMobileGps must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "weightInfo must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "showMinOne must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "taxes.useTaxRate must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "taxes.showSummary must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "showEmptyCategories must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "purchaseOrderEnabled must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "pointsEnabled must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "pendingDocuments must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "ordersRequireVerification must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "lazyLoadingPrices must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "ordersRequireAuthorization must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "includeTaxRateInPrices must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "inMaintenance must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "hooks.updateTrafficLightHook must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "hooks.stockHook must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    },
+    {
+      "title": "hooks.getPendingDocumentsHook must be boolean (got boolean false)",
+      "status": "passed",
+      "duration": 0
+    }
+  ]
 }
