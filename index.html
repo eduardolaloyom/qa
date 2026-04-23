@@ -1864,7 +1864,12 @@ function enterEnv(env) {
     localStorage.setItem('qa-selected-env', env);
     document.querySelector('.env-landing').classList.add('hidden');
     updateEnvBadge();
-    if (latestRun) updateClients();
+    if (latestRun) {
+        updateClients();
+        activeClientFilter = 'all';
+        buildClientFilter();
+        renderFailureGroups();
+    }
     loadCoworkReports();
     loadAppReports();
 }
@@ -2004,7 +2009,11 @@ function updateFailureGroups() {
 
 function buildClientFilter() {
     const groups = latestRun.failure_groups || [];
-    const allClients = [...new Set(groups.flatMap(g => g.clients || []))].sort();
+    const envClientSet = getEnvClientSet();
+    // Only show clients that belong to the active environment
+    const allClients = [...new Set(groups.flatMap(g => g.clients || []))]
+        .filter(c => !envClientSet || envClientSet.has(c))
+        .sort();
 
     const bar = document.getElementById('clientFilterBar');
     const btns = document.getElementById('clientFilterBtns');
@@ -2023,12 +2032,25 @@ function filterClient(client, btn) {
     renderFailureGroups();
 }
 
+function getEnvClientSet() {
+    if (!selectedEnv) return null;
+    const clients = (latestRun && latestRun.clients) || {};
+    return new Set(
+        Object.entries(clients)
+            .filter(([, c]) => selectedEnv === 'production' ? c.environment === 'production' : c.environment !== 'production')
+            .map(([key]) => key)
+    );
+}
+
 function renderFailureGroups() {
+    const envClientSet = getEnvClientSet();
     const groups = (latestRun.failure_groups || []).filter(g => {
         const catOk = activeFailureFilter === 'all' || g.category === activeFailureFilter;
         const ownOk = activeOwnerFilter === 'all' || g.owner === activeOwnerFilter;
         const cliOk = activeClientFilter === 'all' || (g.clients || []).includes(activeClientFilter);
-        return catOk && ownOk && cliOk;
+        // Only show groups that have at least one client in the active environment
+        const envOk = !envClientSet || (g.clients || []).some(c => envClientSet.has(c));
+        return catOk && ownOk && cliOk && envOk;
     });
 
     const ownerLabel = { dev: '👨‍💻 Dev', qa: '🧪 QA' };
