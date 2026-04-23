@@ -2,11 +2,31 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 107,
+  "passed": 110,
   "failed": 2,
-  "skipped": 4,
+  "skipped": 5,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: Login exitoso",
+      "status": "passed",
+      "duration": 6355
+    },
+    {
+      "title": "sonrie-prod: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+      "status": "passed",
+      "duration": 9633
+    },
+    {
+      "title": "sonrie-prod: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "passed",
+      "duration": 18298
+    },
+    {
+      "title": "sonrie-prod: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+      "status": "skipped",
+      "duration": 0
+    },
     {
       "title": "sonrie-prod: payment.enableNewPaymentModule=false",
       "status": "passed",
@@ -86,26 +106,6 @@
       "title": "sonrie-prod: discountTypes.enableOrderDiscountType=false",
       "status": "passed",
       "duration": 9637
-    },
-    {
-      "title": "sonrie-prod: hasTransferPaymentType=false",
-      "status": "passed",
-      "duration": 9268
-    },
-    {
-      "title": "sonrie-prod: discountTypes.enableProductDiscountType=false",
-      "status": "passed",
-      "duration": 6649
-    },
-    {
-      "title": "sonrie-prod: includeTaxRateInPrices=false",
-      "status": "passed",
-      "duration": 9689
-    },
-    {
-      "title": "sonrie-prod: enablePaymentsCollection=false",
-      "status": "passed",
-      "duration": 6177
     }
   ]
 }
