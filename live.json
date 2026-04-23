@@ -2,11 +2,41 @@
   "running": true,
   "startTime": "2026-04-23T20:57:28.615Z",
   "total": 145,
-  "passed": 94,
+  "passed": 100,
   "failed": 1,
   "skipped": 4,
   "currentTest": null,
   "recentTests": [
+    {
+      "title": "sonrie-prod: externalAccess=true",
+      "status": "passed",
+      "duration": 6377
+    },
+    {
+      "title": "sonrie-prod: enableCreditNotes=false",
+      "status": "passed",
+      "duration": 7207
+    },
+    {
+      "title": "sonrie-prod: showMinOne=false",
+      "status": "passed",
+      "duration": 6614
+    },
+    {
+      "title": "sonrie-prod: enableTask=false",
+      "status": "passed",
+      "duration": 6309
+    },
+    {
+      "title": "sonrie-prod: pointsEnabled=false",
+      "status": "passed",
+      "duration": 7281
+    },
+    {
+      "title": "sonrie-prod: paymentsWithoutAccount=false",
+      "status": "passed",
+      "duration": 8780
+    },
     {
       "title": "sonrie-prod: pendingDocuments=false",
       "status": "passed",
@@ -76,36 +106,6 @@
       "title": "sonrie-prod: hasVoucherPrinterEnabled=false",
       "status": "passed",
       "duration": 7619
-    },
-    {
-      "title": "sonrie-prod: enableOrderValidation=false",
-      "status": "passed",
-      "duration": 9857
-    },
-    {
-      "title": "sonrie-prod: enableOrderApproval=false",
-      "status": "passed",
-      "duration": 6851
-    },
-    {
-      "title": "sonrie-prod: ordersRequireVerification=false",
-      "status": "passed",
-      "duration": 7126
-    },
-    {
-      "title": "sonrie-prod: ordersRequireAuthorization=false",
-      "status": "passed",
-      "duration": 6672
-    },
-    {
-      "title": "sonrie-prod: enablePriceOracle=false",
-      "status": "passed",
-      "duration": 9500
-    },
-    {
-      "title": "sonrie-prod: enableDistributionCentersSelector=false",
-      "status": "passed",
-      "duration": 6561
     }
   ]
 }
