@@ -3596,7 +3596,13 @@ function initCollapsibleCards() {
             arrow.classList.toggle('collapsed', isCollapsed);
             localStorage.setItem(`card-collapsed-${cardId}`, isCollapsed);
             if (!isCollapsed) setTimeout(() => {
-                body.querySelectorAll('canvas').forEach(c => Chart.getChart(c)?.resize());
+                // For trendCard, recreate charts completely (resize alone doesn't work when created while hidden)
+                if (cardId === 'trendCard') {
+                    const slug = document.getElementById('trendClientSelector')?.value || null;
+                    updateTrendChart(slug || null);
+                } else {
+                    body.querySelectorAll('canvas').forEach(c => Chart.getChart(c)?.resize());
+                }
                 window.dispatchEvent(new Event('resize'));
             }, 50);
         });
