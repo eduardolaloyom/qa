@@ -880,9 +880,11 @@
             gap: 28px;
             align-items: start;
         }
+        .chart-grid > div { min-width: 0; overflow: hidden; }
         .chart-container {
             position: relative;
             height: 280px;
+            width: 100%;
         }
         .donut-container {
             position: relative;
@@ -2913,6 +2915,10 @@ async function updateTrendChart(filterSlug = null) {
     const canvas = document.getElementById('trendChart');
     const existing = Chart.getChart(canvas);
     if (existing) existing.destroy();
+    canvas.removeAttribute('width');
+    canvas.removeAttribute('height');
+    canvas.style.width = '';
+    canvas.style.height = '';
 
     // Slice allRuns to the selected day window
     const cutoff = new Date(latestRun?.date || new Date());
