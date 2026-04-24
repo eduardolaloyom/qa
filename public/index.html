@@ -2392,7 +2392,7 @@ function updateClients(run = latestRun) {
                         <div class="progress-bar-fill ${passRate < 70 ? 'red' : ''}" style="width:${passRate}%"></div>
                     </div>
                 </div>
-                <a href="${c.reportUrl}${c.client_slug ? '#?q=' + encodeURIComponent(c.client_slug + ':') : ''}" class="report-link" target="_blank">→ Ver reporte Playwright</a>
+                <a href="${(() => { let f = c.client_slug || ''; try { if (c.url) { const h = new URL(c.url).hostname; f = h.replace(/\.(solopide|youorder)\.me$/, '').replace(/\.(com|cl)$/, '') || f; } } catch(e) {} return c.reportUrl + (f ? '#?q=' + encodeURIComponent(f + ':') : ''); })()}" class="report-link" target="_blank">→ Ver reporte Playwright</a>
             </div>
         </div>`;
     }).join('');
