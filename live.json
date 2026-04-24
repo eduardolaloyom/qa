@@ -1,17 +1,111 @@
 {
-  "running": false,
-  "startTime": "2026-04-23T21:25:53.759Z",
-  "total": 1,
-  "passed": 0,
-  "failed": 0,
-  "skipped": 1,
+  "running": true,
+  "startTime": "2026-04-24T14:43:14.825Z",
+  "total": 108,
+  "passed": 98,
+  "failed": 4,
+  "skipped": 9,
   "currentTest": null,
   "recentTests": [
     {
-      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "title": "bastien: C3-15 Cupon invalido muestra error claro",
       "status": "skipped",
-      "duration": 13722
+      "duration": 14462
+    },
+    {
+      "title": "bastien: C3-15 Cupon invalido muestra error claro",
+      "status": "failed",
+      "duration": 106430
+    },
+    {
+      "title": "bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+      "status": "passed",
+      "duration": 25336
+    },
+    {
+      "title": "bastien: PM4-01 Productos con step pricing muestran escalones",
+      "status": "passed",
+      "duration": 12196
+    },
+    {
+      "title": "bastien: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "skipped",
+      "duration": 10476
+    },
+    {
+      "title": "bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "passed",
+      "duration": 9960
+    },
+    {
+      "title": "bastien: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 14314
+    },
+    {
+      "title": "bastien: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 16010
+    },
+    {
+      "title": "bastien: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "failed",
+      "duration": 48247
+    },
+    {
+      "title": "bastien: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 12223
+    },
+    {
+      "title": "bastien: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 10183
+    },
+    {
+      "title": "bastien: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "passed",
+      "duration": 14324
+    },
+    {
+      "title": "bastien: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 13183
+    },
+    {
+      "title": "bastien: C3-14 Campo de cupon visible en carro (enableCoupons)",
+      "status": "passed",
+      "duration": 15845
+    },
+    {
+      "title": "bastien: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 18505
+    },
+    {
+      "title": "bastien: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 14653
+    },
+    {
+      "title": "bastien: C3-04 Descuento visible en catalogo",
+      "status": "passed",
+      "duration": 3716
+    },
+    {
+      "title": "bastien: C3-02 Detectar productos con precio $0",
+      "status": "passed",
+      "duration": 3651
+    },
+    {
+      "title": "bastien: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 10544
+    },
+    {
+      "title": "bastien: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 14511
     }
-  ],
-  "endTime": "2026-04-23T21:26:09.916Z"
+  ]
 }

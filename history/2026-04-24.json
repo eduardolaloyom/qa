@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-24",
+  "timestamp": "2026-04-24T14:49:56.460378+00:00",
+  "total": 1,
+  "passed": 0,
+  "failed": 0,
+  "duration": 17,
+  "suites": [
+    {
+      "name": "prices.spec.ts",
+      "tests": 1,
+      "passed": 0,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "bastien": {
+      "name": "Bastien (staging)",
+      "url": "https://bastien.solopide.me",
+      "environment": "staging",
+      "tests": 101,
+      "passed": 99,
+      "failed": 2,
+      "reportUrl": "reports/index.html",
+      "client_slug": "bastien",
+      "last_tested": "2026-04-23"
+    },
+    "sonrie": {
+      "name": "Sonrie (staging)",
+      "url": "https://sonrie.solopide.me",
+      "environment": "staging",
+      "tests": 96,
+      "passed": 95,
+      "failed": 1,
+      "reportUrl": "reports/index.html",
+      "client_slug": "sonrie",
+      "last_tested": "2026-04-23"
+    },
+    "codelpa": {
+      "name": "Codelpa",
+      "url": "https://beta-codelpa.solopide.me",
+      "tests": 32,
+      "passed": 26,
+      "failed": 4,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-07"
+    },
+    "surtiventas": {
+      "name": "Surtiventas",
+      "url": "https://surtiventas.solopide.me",
+      "tests": 25,
+      "passed": 20,
+      "failed": 5,
+      "reportUrl": "reports/index.html",
+      "last_tested": "2026-04-07"
+    },
+    "sonrie-prod": {
+      "name": "Sonrie Market",
+      "url": "https://sonrie.youorder.me",
+      "environment": "production",
+      "tests": 131,
+      "passed": 130,
+      "failed": 1,
+      "reportUrl": "reports/index.html",
+      "client_slug": "sonrie-prod",
+      "last_tested": "2026-04-23"
+    }
+  },
+  "failure_groups": [],
+  "pending_b2b": [],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}
