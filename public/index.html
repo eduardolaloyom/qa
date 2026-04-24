@@ -1233,6 +1233,62 @@
             .env-scene { width: 185px; height: 148px; }
             .env-gear { width: 44px; height: 44px; }
         }
+
+        /* ── Inline failures inside client cards ── */
+        .client-failures {
+            margin: 12px 0 0;
+            border-top: 1px solid #f3f4f6;
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .inline-failure {
+            border-radius: 8px;
+            border: 1.5px solid #e5e7eb;
+            padding: 10px 14px;
+        }
+        .inline-failure.bug         { border-color: #fca5a5; background: #fff9f9; }
+        .inline-failure.ux          { border-color: #fcd34d; background: #fffdf0; }
+        .inline-failure.ambiente    { border-color: #93c5fd; background: #f0f6ff; }
+        .inline-failure.integracion { border-color: #c4b5fd; background: #faf5ff; }
+        .inline-failure.flaky       { border-color: #86efac; background: #f0fdf4; }
+        .inline-failure-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+        .inline-failure-reason {
+            font-size: 0.88em;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        .inline-no-failures {
+            font-size: 0.85em;
+            color: #10b981;
+            font-weight: 600;
+            padding: 6px 0;
+        }
+        .failure-analysis-toggle {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            padding: 4px 0;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .failure-analysis-toggle:hover { color: #374151; }
     </style>
 </head>
 <body>
@@ -1439,6 +1495,13 @@
             </div>
         </div>
 
+        <!-- Failure analysis toggle -->
+        <div class="card" id="failureAnalysisToggle" style="display:none;padding:12px 20px;">
+            <button id="failureAnalysisBtn" class="failure-analysis-toggle" onclick="toggleFailureAnalysis()">
+                🔍 Ver análisis detallado de fallos →
+            </button>
+        </div>
+
         <!-- Failure analysis -->
         <div class="card" id="failureCard" style="display:none;">
             <div class="card-title">⚠️ Análisis de Fallos</div>
@@ -1624,6 +1687,7 @@ let activeFailureFilter = 'all';
 let activeOwnerFilter = 'all';
 let activeClientFilter = 'all';
 let selectedEnv = null; // 'staging' | 'production' | null
+let _inlineFailureRegistry = [];
 
 // ── Phase 3: Unified QA Status View ──────────────────────────────────────
 const appClients = ['prinorte', 'surtiventas', 'coexito'];  // MEMORY.md project_app_clients
@@ -1947,8 +2011,14 @@ function updateSummary() {
     const passRate = total > 0 ? Math.round(passed / total * 100) : 0;
     const durationMins = (duration / 60).toFixed(1);
 
-    document.getElementById('statusBadge').textContent =
-        failed === 0 ? '✅ ALL PASSED' : `⚠️ ${failed} FALLARON`;
+    const clientsData = latestRun.clients || {};
+    const failedClientCount = Object.values(clientsData).filter(c => (c.failed ?? (c.tests - c.passed)) > 0).length;
+    const statusText = failed === 0
+        ? '✅ ALL PASSED'
+        : failedClientCount > 0
+            ? `⚠️ ${failedClientCount} cliente${failedClientCount > 1 ? 's' : ''} con fallas`
+            : `⚠️ ${failed} FALLARON`;
+    document.getElementById('statusBadge').textContent = statusText;
     document.getElementById('statusBadge').style.background =
         failed === 0 ? '#10b981' : '#ef4444';
 
@@ -2002,9 +2072,19 @@ function updateFailureGroups() {
     const groups = latestRun.failure_groups;
     if (!groups || !groups.length) return;
 
-    document.getElementById('failureCard').style.display = 'block';
+    const toggleCard = document.getElementById('failureAnalysisToggle');
+    if (toggleCard) toggleCard.style.display = 'block';
     buildClientFilter();
     renderFailureGroups();
+}
+
+function toggleFailureAnalysis() {
+    const card = document.getElementById('failureCard');
+    if (!card) return;
+    const showing = card.style.display !== 'none';
+    card.style.display = showing ? 'none' : 'block';
+    const btn = document.getElementById('failureAnalysisBtn');
+    if (btn) btn.textContent = showing ? '🔍 Ver análisis detallado de fallos →' : '✖ Ocultar análisis de fallos';
 }
 
 function buildClientFilter() {
@@ -2129,6 +2209,66 @@ function filterOwner(owner, btn) {
 function toggleGroup(header) {
     header.querySelector('.expand-icon').classList.toggle('expanded');
     header.nextElementSibling.classList.toggle('show');
+}
+
+// ── Client failure helpers ────────────────────────────────
+
+function getClientFailureGroups(clientKey) {
+    return (latestRun.failure_groups || []).filter(g =>
+        (g.clients || []).includes(clientKey)
+    );
+}
+
+function renderInlineFailures(groups) {
+    if (!groups.length) return '<div class="inline-no-failures">✅ Sin fallos en este run</div>';
+    return groups.map(g => {
+        const gi = _inlineFailureRegistry.length;
+        _inlineFailureRegistry.push(g);
+        return `<div class="inline-failure ${g.category}">
+            <div class="inline-failure-header">
+                <span class="fg-label">${g.label}</span>
+                <span class="fg-owner ${g.owner === 'dev' ? 'owner-dev' : 'owner-qa'}">${g.owner === 'dev' ? '👨‍💻 Dev' : '🧪 QA'}</span>
+                <span class="fg-count">${g.count} test${g.count > 1 ? 's' : ''}</span>
+            </div>
+            <div class="inline-failure-reason">${escapeHtml(g.reason)}</div>
+            <div class="fg-action"><span class="fg-action-arrow">→</span><span>${escapeHtml(g.action)}</span></div>
+            <div class="fg-actions">
+                <button class="action-btn btn-copy" onclick="copyFailureGroupDirect(${gi})">📋 Copiar</button>
+                <button class="action-btn btn-linear" onclick="openLinearDirect(${gi})">🔗 Crear ticket</button>
+                <button class="action-btn btn-slack" onclick="copySlackDirect(${gi})">💬 Slack</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function copyFailureGroupDirect(i) {
+    const g = _inlineFailureRegistry[i];
+    if (!g) return;
+    const text = `${g.label} — ${g.reason}\n\nAcción: ${g.action}\nOwner: ${g.owner === 'dev' ? 'Dev' : 'QA'}\n\nTests afectados (${g.count}):\n${g.tests.map(t => '  • ' + t).join('\n')}`;
+    navigator.clipboard.writeText(text).then(() => showToast('✅ Copiado al portapapeles'));
+}
+function copySlackDirect(i) {
+    const g = _inlineFailureRegistry[i];
+    if (!g) return;
+    const date = (latestRun || {}).date || 'hoy';
+    const text = `*${g.label}* — QA Run ${date}\n>${g.reason}\n*Acción requerida (${g.owner === 'dev' ? 'Dev' : 'QA'}):* ${g.action}\n*Tests afectados:* ${g.count}\n${g.tests.slice(0, 5).map(t => '  • \`' + t + '\`').join('\n')}${g.tests.length > 5 ? `\n  _(+${g.tests.length - 5} más)_` : ''}`;
+    navigator.clipboard.writeText(text).then(() => showToast('✅ Mensaje Slack copiado'));
+}
+function openLinearDirect(i) {
+    const g = _inlineFailureRegistry[i];
+    if (!g) return;
+    const gi = (latestRun.failure_groups || []).indexOf(g);
+    if (gi >= 0) {
+        const prev = [activeFailureFilter, activeOwnerFilter];
+        [activeFailureFilter, activeOwnerFilter] = ['all', 'all'];
+        openLinear(gi);
+        [activeFailureFilter, activeOwnerFilter] = prev;
+    } else {
+        const scope = g.category === 'bug' ? 'b2b' : g.category === 'ux' ? 'ux' : g.category === 'ambiente' ? 'infra' : 'qa';
+        const title = encodeURIComponent(`fix(${scope}): ${g.reason.slice(0, 70)}`);
+        const desc = encodeURIComponent(`## Bug\n\n${g.reason}\n\n## Acción\n${g.action}\n\n## Tests (${g.count})\n${g.tests.map(t => '- ' + t).join('\n')}\n\n---\n_Generado automáticamente por QA Dashboard — YOM B2B_`);
+        window.open(`https://linear.app/yom-tech/new?title=${title}&description=${desc}`, '_blank');
+    }
 }
 
 // ── Action buttons ────────────────────────────────────────
@@ -2332,17 +2472,19 @@ function updateClients(run = latestRun) {
         container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
         return;
     }
+    _inlineFailureRegistry = [];
+    const runGroups = run.failure_groups || [];
     container.innerHTML = activeClients.map(([key, c]) => {
         const failed = c.failed ?? (c.tests - c.passed);
         const passRate = Math.round(c.passed / c.tests * 100);
         const rateColor = passRate === 100 ? '#10b981' : passRate >= 70 ? '#f59e0b' : '#ef4444';
+        const autoExpand = failed > 0;
+        const clientFailures = runGroups.filter(g => (g.clients || []).includes(key));
 
-        // DASH-02 (D-07, D-11): fecha siempre visible
         const lastTestedText = c.last_tested
             ? `Testeado: ${c.last_tested}`
             : 'Sin datos de test';
 
-        // DASH-01 (D-07, D-08, D-09): badge ámbar solo si diffDays > 2 vs run.date
         let freshnessBadge = '';
         if (c.last_tested && referenceDate) {
             const diffDays = Math.round(
@@ -2355,8 +2497,8 @@ function updateClients(run = latestRun) {
         }
 
         return `
-        <div class="client-card${failed > 0 ? ' has-failures' : ''}">
-            <div class="client-card-header" onclick="toggleCard(this)">
+        <div class="client-card${autoExpand ? ' has-failures' : ''}">
+            <div class="client-card-header"${autoExpand ? '' : ' onclick="toggleCard(this)"'}>
                 <div style="min-width:0;">
                     <div class="client-name">🏪 ${c.name}</div>
                     <div class="client-last-tested">${lastTestedText}</div>
@@ -2366,10 +2508,10 @@ function updateClients(run = latestRun) {
                     ${freshnessBadge}
                     ${failed > 0 ? `<span style="background:#fee2e2;color:#991b1b;border-radius:9999px;padding:2px 7px;font-size:11px;font-weight:700;white-space:nowrap;">${failed} fallaron</span>` : ''}
                     <span class="pass-rate-badge" style="color:${rateColor}">${passRate}%</span>
-                    <span class="expand-icon">▼</span>
+                    ${autoExpand ? '' : '<span class="expand-icon">▼</span>'}
                 </div>
             </div>
-            <div class="client-card-body">
+            <div class="client-card-body${autoExpand ? ' show' : ''}">
                 <div class="client-stats">
                     <div class="client-stat">
                         <div class="client-stat-val">${c.tests}</div>
@@ -2392,6 +2534,7 @@ function updateClients(run = latestRun) {
                         <div class="progress-bar-fill ${passRate < 70 ? 'red' : ''}" style="width:${passRate}%"></div>
                     </div>
                 </div>
+                ${autoExpand ? `<div class="client-failures">${renderInlineFailures(clientFailures)}</div>` : ''}
                 <a href="${(() => { let f = c.client_slug || ''; try { if (c.url) { const h = new URL(c.url).hostname; f = h.replace(/\.(solopide|youorder)\.me$/, '').replace(/\.(com|cl)$/, '') || f; } } catch(e) {} return c.reportUrl + (f ? '#?q=' + encodeURIComponent(f + ':') : ''); })()}" class="report-link" target="_blank">→ Ver reporte Playwright</a>
             </div>
         </div>`;
