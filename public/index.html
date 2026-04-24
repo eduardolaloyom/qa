@@ -1379,6 +1379,97 @@
             gap: 6px;
         }
         .failure-analysis-toggle:hover { color: #374151; }
+
+        /* ── Two-column B2B layout ───────────────────────────── */
+        .b2b-layout {
+            display: grid;
+            grid-template-columns: 210px 1fr;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .b2b-sidebar {
+            background: #f9fafb;
+            border-right: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+        .b2b-sidebar-label {
+            font-size: 0.68em;
+            font-weight: 700;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 10px 13px 6px;
+        }
+        .csi {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 13px;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+            transition: background 0.1s;
+            border-left: 3px solid transparent;
+        }
+        .csi:last-child { border-bottom: none; }
+        .csi:hover { background: #f0f0f5; }
+        .csi.active { background: #ede9fe; border-left-color: #6366f1; }
+        .csi-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .csi-dot.green { background: #22c55e; }
+        .csi-dot.amber { background: #f59e0b; }
+        .csi-dot.red   { background: #ef4444; }
+        .csi-info { flex: 1; min-width: 0; }
+        .csi-name { font-size: 0.8em; font-weight: 700; color: #111827; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .csi-rate { font-size: 0.7em; color: #6b7280; margin-top: 1px; }
+        .csi-fail-badge {
+            font-size: 0.65em; font-weight: 700;
+            background: #fee2e2; color: #991b1b;
+            padding: 1px 6px; border-radius: 9999px; flex-shrink: 0;
+        }
+
+        /* Detail panel */
+        .b2b-detail { padding: 22px 26px; min-height: 340px; }
+        .cdp-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f3f4f6; }
+        .cdp-name { font-size: 1.08em; font-weight: 800; color: #111827; margin-bottom: 3px; }
+        .cdp-url  { font-size: 0.78em; color: #9ca3af; }
+        .cdp-stats-row { display: flex; gap: 28px; margin-bottom: 14px; }
+        .cdp-stat { text-align: center; }
+        .cdp-stat-val { font-size: 1.55em; font-weight: 800; line-height: 1; }
+        .cdp-stat-val.green { color: #16a34a; }
+        .cdp-stat-val.red   { color: #dc2626; }
+        .cdp-stat-val.gray  { color: #374151; }
+        .cdp-stat-lbl { font-size: 0.7em; color: #9ca3af; font-weight: 600; margin-top: 2px; text-transform: uppercase; }
+        .cdp-bar-wrap { margin-bottom: 18px; }
+        .cdp-bar-track { height: 7px; background: #f3f4f6; border-radius: 99px; overflow: hidden; }
+        .cdp-bar-track.has-fails { background: #fee2e2; }
+        .cdp-bar-fill  { height: 100%; border-radius: 99px; transition: width 0.5s ease; }
+        .cdp-bar-label { display: flex; justify-content: space-between; font-size: 0.72em; color: #9ca3af; margin-top: 4px; }
+        .cdp-section-title {
+            font-weight: 700; font-size: 0.75em; color: #6b7280;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            margin-bottom: 10px; padding-bottom: 7px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .cdp-no-failures {
+            background: #f0fdf4; border: 1.5px solid #86efac;
+            border-radius: 10px; padding: 18px;
+            text-align: center; color: #16a34a;
+            font-weight: 700; font-size: 0.9em;
+        }
+        .cdp-report-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 18px; padding: 8px 16px;
+            background: #f3f4f6; border: 1.5px solid #d1d5db;
+            border-radius: 8px; color: #374151;
+            text-decoration: none; font-size: 0.82em; font-weight: 600;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .cdp-report-btn:hover { border-color: #667eea; color: #667eea; }
+
+        @media (max-width: 720px) {
+            .b2b-layout { grid-template-columns: 1fr; }
+            .b2b-sidebar { border-right: none; border-bottom: 1px solid #e5e7eb; max-height: 180px; }
+        }
     </style>
 </head>
 <body>
@@ -1778,6 +1869,8 @@ let activeOwnerFilter = 'all';
 let activeClientFilter = 'all';
 let selectedEnv = null; // 'staging' | 'production' | null
 let _inlineFailureRegistry = [];
+let selectedClientKey = null;
+let _currentRunForDetail = null;
 
 // ── Phase 3: Unified QA Status View ──────────────────────────────────────
 const appClients = ['prinorte', 'surtiventas', 'coexito'];  // MEMORY.md project_app_clients
@@ -2558,26 +2651,8 @@ function renderSuitesTable() {
 
 // ── Clients ───────────────────────────────────────────────
 
-function updateClients(run = latestRun) {
-    if (!run) {
-        const container = document.getElementById('clientsContainer');
-        if (container) container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
-        return;
-    }
-    const clients = run.clients || {};
+function _clientHelpers(run) {
     const referenceDate = run.date;
-    const container = document.getElementById('clientsContainer');
-
-    const activeClients = Object.entries(clients)
-        .filter(([, c]) => c.tests > 0)
-        .filter(([, c]) => !selectedEnv || getClientEnv(c.url, c.name) === selectedEnv);
-    if (activeClients.length === 0) {
-        container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
-        return;
-    }
-    _inlineFailureRegistry = [];
-    const runGroups = run.failure_groups || [];
-
     const getReportUrl = (c, key) => {
         let f = c.client_slug || key || '';
         try { if (c.url) { const h = new URL(c.url).hostname; f = h.replace(/\.(solopide|youorder)\.me$/, '').replace(/\.(com|cl)$/, '') || f; } } catch(e) {}
@@ -2589,79 +2664,162 @@ function updateClients(run = latestRun) {
         const d = Math.round((new Date(referenceDate) - new Date(c.last_tested)) / 86400000);
         return d > 2 ? (d === 1 ? 'Hace 1 día' : `Hace ${d} días`) : '';
     };
+    return { referenceDate, getReportUrl, shortName, getStale };
+}
 
-    // ── Scoreboard: all clients as compact tiles ──────────
-    const scoreboard = `<div class="client-scoreboard">${
-        activeClients.map(([key, c]) => {
-            const failed = c.failed ?? (c.tests - c.passed);
-            const passRate = Math.round(c.passed / c.tests * 100);
-            const cls = passRate >= 95 ? 'sc-green' : passRate >= 70 ? 'sc-amber' : 'sc-red';
-            const staleLabel = getStale(c);
-            const hasGroups = runGroups.some(g => (g.clients || []).includes(key));
-            const statusIcon = hasGroups ? `${failed} ❌` : failed > 0 ? `${failed} ❌ · ${staleLabel || 'stale'}` : `✅${staleLabel ? ` · ${staleLabel}` : ''}`;
-            return `<div class="scoreboard-item ${cls}" title="${escapeHtml(c.url || '')}">
-                <div class="sc-rate">${passRate}%</div>
-                <div class="sc-name">${escapeHtml(shortName(c.name))}</div>
-                <div class="sc-status">${statusIcon}</div>
-            </div>`;
-        }).join('')
-    }</div>`;
+function updateClients(run = latestRun) {
+    const container = document.getElementById('clientsContainer');
+    if (!run) {
+        if (container) container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos</div>';
+        return;
+    }
+    _currentRunForDetail = run;
+    const clients = run.clients || {};
+    const runGroups = run.failure_groups || [];
+    const { referenceDate, getReportUrl, shortName, getStale } = _clientHelpers(run);
 
-    // ── Clients with failures: only if they have actual groups in THIS run ──
-    // run.clients acumulates historical data; run.failure_groups is run-specific.
-    // Avoid showing "Sin fallos" contradicting a non-zero failed count from stale data.
-    const withFails = activeClients.filter(([key]) =>
-        runGroups.some(g => (g.clients || []).includes(key))
-    );
-    const noFails = activeClients.filter(([key]) =>
-        !runGroups.some(g => (g.clients || []).includes(key))
-    );
+    const activeClients = Object.entries(clients)
+        .filter(([, c]) => c.tests > 0)
+        .filter(([, c]) => !selectedEnv || getClientEnv(c.url, c.name) === selectedEnv);
 
-    let failSections = '';
-    if (withFails.length === 0) {
-        failSections = '<div class="all-pass-banner">✅ Todos los clientes pasaron sin fallas en este run</div>';
-    } else {
-        failSections = `<div class="failures-section-label">Fallas por cliente</div>` +
-        withFails.map(([key, c]) => {
-            const failed = c.failed ?? (c.tests - c.passed);
-            const passRate = Math.round(c.passed / c.tests * 100);
-            const rateColor = passRate >= 80 ? '#f59e0b' : '#ef4444';
-            const clientFailures = runGroups.filter(g => (g.clients || []).includes(key));
-            return `<div class="client-section">
-                <div class="client-section-header">
-                    <div class="cs-left">
-                        <span class="cs-name">🏪 ${escapeHtml(c.name)}</span>
-                        <span class="cs-url">${escapeHtml(c.url || '')}</span>
-                    </div>
-                    <div class="cs-right">
-                        <span class="cs-rate" style="color:${rateColor}">${passRate}%</span>
-                        <span class="cs-fail-badge">${failed} fallaron de ${c.tests}</span>
-                        <a href="${getReportUrl(c, key)}" class="cs-report-link" target="_blank">Ver reporte →</a>
-                    </div>
+    if (activeClients.length === 0) {
+        container.innerHTML = '<div class="loading" style="color:#9ca3af;font-size:0.9em;">Sin datos de clientes en este run</div>';
+        return;
+    }
+
+    // Sort: clients with failure groups first, then by pass rate asc
+    const sorted = [...activeClients].sort(([ka,ca], [kb,cb]) => {
+        const aFail = runGroups.some(g => (g.clients || []).includes(ka));
+        const bFail = runGroups.some(g => (g.clients || []).includes(kb));
+        if (aFail !== bFail) return bFail ? 1 : -1;
+        const aRate = Math.round(ca.passed / ca.tests * 100);
+        const bRate = Math.round(cb.passed / cb.tests * 100);
+        return aRate - bRate;
+    });
+
+    // Auto-select: first client with failures, else first client
+    if (!selectedClientKey || !sorted.some(([k]) => k === selectedClientKey)) {
+        const firstFail = sorted.find(([k]) => runGroups.some(g => (g.clients || []).includes(k)));
+        selectedClientKey = (firstFail || sorted[0])?.[0] || null;
+    }
+
+    // Build sidebar
+    _inlineFailureRegistry = [];
+    const sidebarItems = sorted.map(([key, c]) => {
+        const passRate = Math.round(c.passed / c.tests * 100);
+        const dotCls = passRate >= 95 ? 'green' : passRate >= 70 ? 'amber' : 'red';
+        const failed = c.failed ?? (c.tests - c.passed);
+        const hasGroups = runGroups.some(g => (g.clients || []).includes(key));
+        const stale = getStale(c);
+        const staleTxt = stale ? ` · ${stale}` : '';
+        const failBadge = hasGroups ? `<span class="csi-fail-badge">${failed} ❌</span>` : '';
+        return `<div class="csi${key === selectedClientKey ? ' active' : ''}" onclick="selectClient('${key}')" id="csi-${key}">
+            <div class="csi-dot ${dotCls}"></div>
+            <div class="csi-info">
+                <div class="csi-name">${escapeHtml(shortName(c.name))}</div>
+                <div class="csi-rate">${passRate}%${staleTxt}</div>
+            </div>
+            ${failBadge}
+        </div>`;
+    }).join('');
+
+    // Build detail panel for currently selected client
+    const selEntry = sorted.find(([k]) => k === selectedClientKey);
+    const detailHtml = selEntry
+        ? _renderClientDetail(selectedClientKey, selEntry[1], runGroups, referenceDate, getReportUrl, shortName)
+        : '<div class="loading" style="color:#9ca3af;padding:20px;">Selecciona un cliente</div>';
+
+    container.innerHTML = `<div class="b2b-layout">
+        <div class="b2b-sidebar" id="b2bSidebar">
+            <div class="b2b-sidebar-label">Clientes</div>
+            ${sidebarItems}
+        </div>
+        <div class="b2b-detail" id="b2bDetail">${detailHtml}</div>
+    </div>`;
+}
+
+function _renderClientDetail(key, c, runGroups, referenceDate, getReportUrl, shortName) {
+    const passRate = Math.round(c.passed / c.tests * 100);
+    const failed = c.failed ?? (c.tests - c.passed);
+    const barStyle = passRate >= 95
+        ? 'linear-gradient(90deg,#10b981,#059669)'
+        : passRate >= 70 ? 'linear-gradient(90deg,#f59e0b,#d97706)'
+        : 'linear-gradient(90deg,#ef4444,#dc2626)';
+
+    const stale = (() => {
+        if (!c.last_tested || !referenceDate) return '';
+        const d = Math.round((new Date(referenceDate) - new Date(c.last_tested)) / 86400000);
+        return d > 2 ? ` · ${d === 1 ? 'Hace 1 día' : `Hace ${d} días`}` : '';
+    })();
+
+    const clientGroups = runGroups.filter(g => (g.clients || []).includes(key));
+    const failuresHtml = clientGroups.length === 0
+        ? `<div class="cdp-no-failures">✅ Sin fallos en este run</div>`
+        : clientGroups.map(g => {
+            const gi = _inlineFailureRegistry.length;
+            _inlineFailureRegistry.push(g);
+            return `<div class="inline-failure ${g.category}">
+                <div class="inline-failure-header">
+                    <span class="fg-label">${escapeHtml(g.label)}</span>
+                    <span class="fg-owner ${g.owner === 'dev' ? 'owner-dev' : 'owner-qa'}">${g.owner === 'dev' ? '👨‍💻 Dev' : '🧪 QA'}</span>
+                    <span class="fg-count">${g.count} test${g.count > 1 ? 's' : ''}</span>
                 </div>
-                <div class="cs-failures">${renderInlineFailures(clientFailures)}</div>
+                <div class="inline-failure-reason">${escapeHtml(g.reason)}</div>
+                <div class="fg-action"><span class="fg-action-arrow">→</span> ${escapeHtml(g.action)}</div>
+                <div class="fg-actions" style="margin-top:7px;">
+                    <button class="action-btn btn-copy" onclick="copyFailureGroupDirect(${gi})">📋 Copiar</button>
+                    <button class="action-btn btn-linear" onclick="openLinearDirect(${gi})">🔗 Crear ticket</button>
+                    <button class="action-btn btn-slack" onclick="copySlackDirect(${gi})">💬 Slack</button>
+                </div>
             </div>`;
         }).join('');
-    }
 
-    // ── Clients OK: compact pills ─────────────────────────
-    let okSection = '';
-    if (noFails.length > 0 && withFails.length > 0) {
-        okSection = `<div class="clients-ok-section">
-            <div class="clients-ok-label">✅ Sin fallas</div>
-            <div class="clients-ok-pills">${noFails.map(([key, c]) => {
-                const passRate = Math.round(c.passed / c.tests * 100);
-                return `<div class="client-ok-pill">
-                    ${escapeHtml(shortName(c.name))}
-                    <span class="ok-rate">${passRate}%</span>
-                    <span class="ok-tests">${c.tests} tests</span>
-                    <a href="${getReportUrl(c, key)}" class="ok-link" target="_blank">→</a>
-                </div>`;
-            }).join('')}</div>
-        </div>`;
-    }
+    const reportUrl = getReportUrl(c, key);
+    return `<div class="cdp-header">
+        <div class="cdp-name">🏪 ${escapeHtml(shortName(c.name))}</div>
+        <div class="cdp-url">${escapeHtml(c.url || '')}${stale}</div>
+    </div>
+    <div class="cdp-stats-row">
+        <div class="cdp-stat">
+            <div class="cdp-stat-val gray">${c.tests}</div>
+            <div class="cdp-stat-lbl">Total</div>
+        </div>
+        <div class="cdp-stat">
+            <div class="cdp-stat-val green">${c.passed}</div>
+            <div class="cdp-stat-lbl">Pasaron</div>
+        </div>
+        <div class="cdp-stat">
+            <div class="cdp-stat-val ${failed > 0 ? 'red' : 'green'}">${failed}</div>
+            <div class="cdp-stat-lbl">Fallaron</div>
+        </div>
+    </div>
+    <div class="cdp-bar-wrap">
+        <div class="cdp-bar-track${failed > 0 ? ' has-fails' : ''}">
+            <div class="cdp-bar-fill" style="width:${passRate}%;background:${barStyle};"></div>
+        </div>
+        <div class="cdp-bar-label"><span>Pass rate</span><span style="font-weight:700;color:#111827;">${passRate}%</span></div>
+    </div>
+    <div class="cdp-section-title">Fallos de este run</div>
+    ${failuresHtml}
+    <a href="${reportUrl}" class="cdp-report-btn" target="_blank">📊 Ver reporte Playwright completo →</a>`;
+}
 
-    container.innerHTML = scoreboard + failSections + okSection;
+function selectClient(key) {
+    selectedClientKey = key;
+    // Update active state in sidebar
+    document.querySelectorAll('.csi').forEach(el => el.classList.remove('active'));
+    const item = document.getElementById('csi-' + key);
+    if (item) item.classList.add('active');
+
+    const run = _currentRunForDetail || latestRun;
+    if (!run) return;
+    const c = (run.clients || {})[key];
+    if (!c) return;
+
+    const { referenceDate, getReportUrl, shortName } = _clientHelpers(run);
+    _inlineFailureRegistry = [];
+    const detail = document.getElementById('b2bDetail');
+    if (detail) detail.innerHTML = _renderClientDetail(key, c, run.failure_groups || [], referenceDate, getReportUrl, shortName);
 }
 
 function populateRunSelector() {
