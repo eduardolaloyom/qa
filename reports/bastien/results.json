@@ -1,0 +1,4615 @@
+{
+  "config": {
+    "configFile": "/Users/lalojimenez/qa/tests/e2e/playwright.config.ts",
+    "rootDir": "/Users/lalojimenez/qa/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": "/Users/lalojimenez/qa/tests/e2e/global-setup.ts",
+    "globalTeardown": "/Users/lalojimenez/qa/tests/e2e/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 4
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/lalojimenez/qa/tests/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "b2b",
+        "name": "b2b",
+        "testDir": "/Users/lalojimenez/qa/tests/e2e/b2b",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      },
+      {
+        "outputDir": "/Users/lalojimenez/qa/tests/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 4
+        },
+        "id": "admin",
+        "name": "admin",
+        "testDir": "/Users/lalojimenez/qa/tests/e2e/admin",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "/Users/lalojimenez/qa/tools/live-reporter.js",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 4,
+    "webServer": {
+      "command": "python3 -m http.server 8080 --directory ../../public",
+      "url": "http://localhost:8080",
+      "reuseExistingServer": true,
+      "stdout": "ignore",
+      "stderr": "pipe"
+    }
+  },
+  "suites": [
+    {
+      "title": "b2b/cart.spec.ts",
+      "file": "b2b/cart.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C2 — Carrito de compras: Bastien (staging)",
+          "file": "b2b/cart.spec.ts",
+          "line": 6,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: C2-05 Agregar producto al carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18123,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:15.427Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1981448f0b79506fb670-92cf6bb92af1bc1ac091",
+              "file": "b2b/cart.spec.ts",
+              "line": 18,
+              "column": 5
+            },
+            {
+              "title": "bastien: C2-06 Cantidad mínima — sistema corrige o bloquea",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "C2-06: Bastien (staging) no tiene MinUnit/showMinOne configurado",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
+                        "line": 35,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "skipped",
+                      "duration": 12532,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:15.425Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "C2-06: Bastien (staging) no tiene MinUnit/showMinOne configurado",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/cart.spec.ts",
+                            "line": 35,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "1981448f0b79506fb670-bf3d90c34a54b4a47d2d",
+              "file": "b2b/cart.spec.ts",
+              "line": 31,
+              "column": 5
+            },
+            {
+              "title": "bastien: C2-08 Modificar cantidad en carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 43884,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:15.417Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1981448f0b79506fb670-30af4a49e899394dcdfc",
+              "file": "b2b/cart.spec.ts",
+              "line": 67,
+              "column": 5
+            },
+            {
+              "title": "bastien: C2-09 Eliminar producto del carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 21191,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:15.417Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1981448f0b79506fb670-550208a524a94bf5ccd3",
+              "file": "b2b/cart.spec.ts",
+              "line": 85,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/catalog.spec.ts",
+      "file": "b2b/catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C2 — Catálogo y búsqueda: Bastien (staging)",
+          "file": "b2b/catalog.spec.ts",
+          "line": 7,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: C2-01 Catálogo muestra productos con precio @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10813,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:28.907Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-a01d0788fd722eb79911",
+              "file": "b2b/catalog.spec.ts",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "bastien: C2-02 Búsqueda por nombre devuelve resultados o mensaje @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21315,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:34.526Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-8d2bca2fb6d99cde572a",
+              "file": "b2b/catalog.spec.ts",
+              "line": 19,
+              "column": 5
+            },
+            {
+              "title": "bastien: C2-03 Búsqueda sin resultados muestra mensaje @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 25851,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:37.570Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-7409fc7ccbe39bd5d5ed",
+              "file": "b2b/catalog.spec.ts",
+              "line": 33,
+              "column": 5
+            },
+            {
+              "title": "bastien: C2-04 Sin imágenes rotas (404) en catálogo @catalog @funcional",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 13830,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:43:39.728Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "30aa42b97d8966d0c2dc-6e9276dedb66ae8f0858",
+              "file": "b2b/catalog.spec.ts",
+              "line": 48,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/checkout.spec.ts",
+      "file": "b2b/checkout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C2 — Checkout / crear pedido: Bastien (staging)",
+          "file": "b2b/checkout.spec.ts",
+          "line": 6,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: C2-13 Pedido aparece en historial",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 15036,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:00.312Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "25ab1bfc84c57e3e3a45-5a3bb25af32b1ec9aa90",
+              "file": "b2b/checkout.spec.ts",
+              "line": 72,
+              "column": 5
+            }
+          ],
+          "suites": [
+            {
+              "title": "Confirmar pedido — BLOQUEADO-PROD en youorder.me",
+              "file": "b2b/checkout.spec.ts",
+              "line": 23,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "bastien: C2-11 Flujo completo catalogo → carro → checkout",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "b2b",
+                      "projectName": "b2b",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "failed",
+                          "duration": 44063,
+                          "error": {
+                            "message": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+                            "stack": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:37:16",
+                            "location": {
+                              "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                              "column": 16,
+                              "line": 37
+                            },
+                            "snippet": "  35 |\n  36 |         await Promise.all([\n> 37 |           page.waitForURL(/\\/confirmation\\/\\w+/, { timeout: 30_000 }),\n     |                ^\n  38 |           confirmButton.click({ force: true }),\n  39 |         ]);\n  40 |"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                                "column": 16,
+                                "line": 37
+                              },
+                              "message": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n\n  35 |\n  36 |         await Promise.all([\n> 37 |           page.waitForURL(/\\/confirmation\\/\\w+/, { timeout: 30_000 }),\n     |                ^\n  38 |           confirmButton.click({ force: true }),\n  39 |         ]);\n  40 |\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:37:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-24T14:43:53.568Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-0b13a-catalogo-→-carro-→-checkout-b2b/test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-0b13a-catalogo-→-carro-→-checkout-b2b/error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                            "column": 16,
+                            "line": 37
+                          }
+                        },
+                        {
+                          "workerIndex": 4,
+                          "parallelIndex": 1,
+                          "status": "failed",
+                          "duration": 44530,
+                          "error": {
+                            "message": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================",
+                            "stack": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:37:16",
+                            "location": {
+                              "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                              "column": 16,
+                              "line": 37
+                            },
+                            "snippet": "  35 |\n  36 |         await Promise.all([\n> 37 |           page.waitForURL(/\\/confirmation\\/\\w+/, { timeout: 30_000 }),\n     |                ^\n  38 |           confirmButton.click({ force: true }),\n  39 |         ]);\n  40 |"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                                "column": 16,
+                                "line": 37
+                              },
+                              "message": "TimeoutError: page.waitForURL: Timeout 30000ms exceeded.\n=========================== logs ===========================\nwaiting for navigation until \"load\"\n============================================================\n\n  35 |\n  36 |         await Promise.all([\n> 37 |           page.waitForURL(/\\/confirmation\\/\\w+/, { timeout: 30_000 }),\n     |                ^\n  38 |           confirmButton.click({ force: true }),\n  39 |         ]);\n  40 |\n    at /Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts:37:16"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 1,
+                          "startTime": "2026-04-24T14:44:38.129Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-0b13a-catalogo-→-carro-→-checkout-b2b-retry1/test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-0b13a-catalogo-→-carro-→-checkout-b2b-retry1/error-context.md"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/Users/lalojimenez/qa/tests/e2e/test-results/checkout-C2-—-Checkout-cre-0b13a-catalogo-→-carro-→-checkout-b2b-retry1/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/checkout.spec.ts",
+                            "column": 16,
+                            "line": 37
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "25ab1bfc84c57e3e3a45-f5ec58c57fcc55e14fb3",
+                  "file": "b2b/checkout.spec.ts",
+                  "line": 26,
+                  "column": 7
+                },
+                {
+                  "title": "bastien: C2-12 Doble click en crear pedido no genera duplicado",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "b2b",
+                      "projectName": "b2b",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 14591,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-24T14:43:55.851Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "25ab1bfc84c57e3e3a45-f235c792e2fe5ee763ae",
+                  "file": "b2b/checkout.spec.ts",
+                  "line": 45,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation/cv-access.spec.ts",
+      "file": "b2b/config-validation/cv-access.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation — Access: Bastien (staging)",
+          "file": "b2b/config-validation/cv-access.spec.ts",
+          "line": 9,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: anonymousAccess=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2099,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:03.433Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6cc3f33e8693c37fa6c-185328dce8210882153d",
+              "file": "b2b/config-validation/cv-access.spec.ts",
+              "line": 12,
+              "column": 9
+            },
+            {
+              "title": "bastien: inMaintenance=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2014,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:05.538Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6cc3f33e8693c37fa6c-d1503fa50fde5f0a38d3",
+              "file": "b2b/config-validation/cv-access.spec.ts",
+              "line": 29,
+              "column": 11
+            },
+            {
+              "title": "bastien: anonymousHideCart=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3774,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:07.559Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6cc3f33e8693c37fa6c-8f490b8a598b0ac5d5d6",
+              "file": "b2b/config-validation/cv-access.spec.ts",
+              "line": 51,
+              "column": 13
+            },
+            {
+              "title": "bastien: anonymousHidePrice=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "bastien: anonymousHidePrice=false pero requiere comercio seleccionado — precios sólo visibles después de elegir comercio",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation/cv-access.spec.ts",
+                        "line": 77,
+                        "column": 18
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:10.451Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "bastien: anonymousHidePrice=false pero requiere comercio seleccionado — precios sólo visibles después de elegir comercio",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation/cv-access.spec.ts",
+                            "line": 77,
+                            "column": 18
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "a6cc3f33e8693c37fa6c-24b76288af6aadfd8477",
+              "file": "b2b/config-validation/cv-access.spec.ts",
+              "line": 73,
+              "column": 13
+            },
+            {
+              "title": "bastien: loginButtons.facebook=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2058,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:10.455Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6cc3f33e8693c37fa6c-3f6e7b18da2d9117f1ea",
+              "file": "b2b/config-validation/cv-access.spec.ts",
+              "line": 102,
+              "column": 11
+            },
+            {
+              "title": "bastien: loginButtons.google=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1962,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:11.337Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6cc3f33e8693c37fa6c-c8e7ef6611e3fee320dc",
+              "file": "b2b/config-validation/cv-access.spec.ts",
+              "line": 125,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation/cv-cart.spec.ts",
+      "file": "b2b/config-validation/cv-cart.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation — Cart: Bastien (staging)",
+          "file": "b2b/config-validation/cv-cart.spec.ts",
+          "line": 9,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: disableCart=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4512,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:12.523Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-03414d9f45dbc0a0de0f",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 11,
+              "column": 9
+            },
+            {
+              "title": "bastien: enableCoupons=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 37483,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:13.309Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-c24aa215cd9945014824",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 36,
+              "column": 11
+            },
+            {
+              "title": "bastien: hideReceiptType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 37274,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:15.362Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-64c992eb771dd2b46134",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableAskDeliveryDate=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 37224,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:17.042Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-3e315068871196c4b878",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 88,
+              "column": 11
+            },
+            {
+              "title": "bastien: orderObservations=",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 37462,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:50.812Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-d63d007f1ff7efef7c8f",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 114,
+              "column": 11
+            },
+            {
+              "title": "bastien: purchaseOrderEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 38295,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:52.641Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-30abb55b73fbc4ad1b2f",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 142,
+              "column": 11
+            },
+            {
+              "title": "bastien: editAddress=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 38254,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[bastien] editAddress=true but edit button not found — may require commerce with address\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:44:54.271Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-993438bc51a1676a0ead",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 163,
+              "column": 11
+            },
+            {
+              "title": "bastien: limitAddingByStock=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2257,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:45:23.999Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-2d4d8099b797e8a2b8de",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 184,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasTransportCode=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 38739,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:45:26.891Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-f0889f34437a403bf292",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 204,
+              "column": 11
+            },
+            {
+              "title": "bastien: disableShowEstimatedDeliveryHour=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 38177,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:45:28.279Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-13b12552f0844c27f6a2",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 225,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasSingleDistributionCenter=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 38188,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:45:30.942Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-dc3947eac92deee21633",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 246,
+              "column": 11
+            },
+            {
+              "title": "bastien: disableObservationInput=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 38293,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:45:32.530Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-5e7e6dcf3a06456fa493",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 267,
+              "column": 11
+            },
+            {
+              "title": "bastien: shoppingDetail.lastOrder=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 38349,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:05.636Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ead186869697d594d261-059b46ede98f6a6a5f69",
+              "file": "b2b/config-validation/cv-cart.spec.ts",
+              "line": 289,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation/cv-catalog.spec.ts",
+      "file": "b2b/config-validation/cv-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation — Catalog: Bastien (staging)",
+          "file": "b2b/config-validation/cv-catalog.spec.ts",
+          "line": 9,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: hidePrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3078,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:06.467Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-afa25edf77496b531d21",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 11,
+              "column": 9
+            },
+            {
+              "title": "bastien: currency=undefined",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation/cv-catalog.spec.ts",
+                        "line": 30,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:09.135Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/config-validation/cv-catalog.spec.ts",
+                            "line": 30,
+                            "column": 10
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-e8b1c447a201b4bcbcd5",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 30,
+              "column": 10
+            },
+            {
+              "title": "bastien: lazyLoadingPrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2917,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:09.141Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-b9b42de972ddcac0cd4a",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 45,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableChooseSaleUnit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2150,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:09.550Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-202f1ab82e32b106b6c8",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 69,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasStockEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2404,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:10.830Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-2ace8bfc67af4e2024a3",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 89,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasMultiUnitEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2341,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:11.707Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-73b8867702954e5be516",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 111,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasNoSaleFilter=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2117,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:12.064Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-a7965f552eb6817897d9",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 131,
+              "column": 11
+            },
+            {
+              "title": "bastien: packagingInformation.hidePackagingInformationB2B=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2263,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:13.239Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-7e7426175c26011136d5",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 150,
+              "column": 11
+            },
+            {
+              "title": "bastien: weightInfo=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2176,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:14.055Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-10651094554c47a7f008",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 170,
+              "column": 11
+            },
+            {
+              "title": "bastien: showEmptyCategories=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2330,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] showEmptyCategories=false — 0 categories visible\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:14.185Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-2e96a626fa20dd0b1f88",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 191,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasMultipleBusinessUnit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5129,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:15.507Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-a8e855feacff9794e2b6",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 210,
+              "column": 11
+            },
+            {
+              "title": "bastien: enablePriceOracle=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5070,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:16.235Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-75211ae33fb25c38eaab",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 232,
+              "column": 11
+            },
+            {
+              "title": "bastien: uploadOrderFileWithMinUnits=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2248,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:16.519Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-cdee905f29579a6b733f",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 253,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableDistributionCentersSelector=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2226,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:18.771Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0b626e00b8eab3dfe16b-07f4d60d7ff25d361354",
+              "file": "b2b/config-validation/cv-catalog.spec.ts",
+              "line": 273,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation/cv-orders.spec.ts",
+      "file": "b2b/config-validation/cv-orders.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation — Orders: Bastien (staging)",
+          "file": "b2b/config-validation/cv-orders.spec.ts",
+          "line": 9,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: ordersRequireAuthorization=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2220,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:20.644Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-b96be7c3028afd213537",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 13,
+              "column": 11
+            },
+            {
+              "title": "bastien: ordersRequireVerification=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2142,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:21.004Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-2cffa20539938f2a33d4",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 33,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableOrderValidation=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5793,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:21.313Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-16e1dbcc0ce5a942c442",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 58,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableOrderApproval=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2296,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:22.870Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-6a138a549e41151af916",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 81,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasVoucherPrinterEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2164,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:23.150Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-e6f7f45d1b9db610234e",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 106,
+              "column": 11
+            },
+            {
+              "title": "bastien: shareOrderNewDesign=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2129,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] shareOrderNewDesign=false — share button visible: false\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:25.170Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-3bada7db7890233b6da2",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 131,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableInvoicesList=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4063,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:25.318Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-9fc63fc102b7a226d81f",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 156,
+              "column": 11
+            },
+            {
+              "title": "bastien: enablePaymentDocumentsB2B=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4191,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:27.111Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-c8d33ca06c2462271cc0",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 181,
+              "column": 11
+            },
+            {
+              "title": "bastien: disableCommerceEdit=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3983,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] disableCommerceEdit=false — edit expected to be available\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:27.303Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e4b871d0ecc75d74fa9-54f097eebb3916590066",
+              "file": "b2b/config-validation/cv-orders.spec.ts",
+              "line": 209,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation/cv-payments.spec.ts",
+      "file": "b2b/config-validation/cv-payments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation — Payments: Bastien (staging)",
+          "file": "b2b/config-validation/cv-payments.spec.ts",
+          "line": 9,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: enablePayments=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4395,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:29.390Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-8cb7a4fec5e78eb5a1ef",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 13,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableSellerDiscount=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5954,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:31.293Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-d3fa78b6ca40517fc0bf",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 68,
+              "column": 11
+            },
+            {
+              "title": "bastien: taxes.showSummary=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5937,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:31.309Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-2c641b4259ba200ef98e",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 90,
+              "column": 11
+            },
+            {
+              "title": "bastien: includeTaxRateInPrices=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "No tax rate configured (taxes.useTaxRate=false) — IVA line not expected"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4731,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:33.791Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "No tax rate configured (taxes.useTaxRate=false) — IVA line not expected"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-ba52bf44fd4deb5b4a1f",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 113,
+              "column": 11
+            },
+            {
+              "title": "bastien: enablePaymentsCollection=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1942,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:37.253Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-dbc405db4ddf25a4f656",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 149,
+              "column": 11
+            },
+            {
+              "title": "bastien: hasTransferPaymentType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5688,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:37.254Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-31232297ea1ba3f96099",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 174,
+              "column": 11
+            },
+            {
+              "title": "bastien: discountTypes.enableOrderDiscountType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5849,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:38.526Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-38cec899042ee6bea000",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 197,
+              "column": 11
+            },
+            {
+              "title": "bastien: discountTypes.enableProductDiscountType=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2186,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:39.200Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-326844cd23fe9fb685a9",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 220,
+              "column": 11
+            },
+            {
+              "title": "bastien: payment.enableNewPaymentModule=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5822,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[bastien] payment.enableNewPaymentModule=false — using legacy payment flow\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:41.391Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-65639918b2e9fdbb8fc1",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 245,
+              "column": 11
+            },
+            {
+              "title": "bastien: paymentsWithoutAccount=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4307,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:42.947Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b6ecf49dbf46c54275f0-536040c63f28c2058c4f",
+              "file": "b2b/config-validation/cv-payments.spec.ts",
+              "line": 267,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/config-validation/cv-ui-features.spec.ts",
+      "file": "b2b/config-validation/cv-ui-features.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Config validation — UI Features: Bastien (staging)",
+          "file": "b2b/config-validation/cv-ui-features.spec.ts",
+          "line": 9,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: pendingDocuments=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1951,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:43.996Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-81056af59620adcd6aa5",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 13,
+              "column": 11
+            },
+            {
+              "title": "bastien: pointsEnabled=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1945,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:44.384Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-25456be87e6df6446376",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 37,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableTask=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1994,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:45.952Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-612214cae3fa5cd94f1a",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 61,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableCreditNotes=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1996,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:46.334Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-47dc8342324b8745b8e0",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 85,
+              "column": 11
+            },
+            {
+              "title": "bastien: showMinOne=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2195,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:47.223Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-b7b520c5b428aaf55927",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 109,
+              "column": 11
+            },
+            {
+              "title": "bastien: externalAccess=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1930,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:47.267Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-bf423803257716e9236c",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 154,
+              "column": 11
+            },
+            {
+              "title": "bastien: blockedClientAlert.enableBlockedClientAlert=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1998,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:47.951Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-993333666c460f915417",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 179,
+              "column": 11
+            },
+            {
+              "title": "bastien: useNewPromotions=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2267,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "[bastien] useNewPromotions=true — no promo content found in staging\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:48.333Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-5fc499390f651a4e40bb",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 204,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableBetaButtons=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2145,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:49.202Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-06beb6aa6ce9a5715798",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 222,
+              "column": 11
+            },
+            {
+              "title": "bastien: enableNewUI=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 5216,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:49.422Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1b0f8c25953106aa13d6-b0921847ecb87287ab7a",
+              "file": "b2b/config-validation/cv-ui-features.spec.ts",
+              "line": 272,
+              "column": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/coupons.spec.ts",
+      "file": "b2b/coupons.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PM1/PM2 — Cupones: regresión post-mortem: Bastien (staging)",
+          "file": "b2b/coupons.spec.ts",
+          "line": 17,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: PM1-01 Campo de cupón existe y es interactuable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 14879,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:49.958Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-e7771cd9ff1c3738f111",
+              "file": "b2b/coupons.spec.ts",
+              "line": 69,
+              "column": 5
+            },
+            {
+              "title": "bastien: PM1-02 Cupón válido aplica descuento",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "PM1-02: No hay cupón de prueba configurado para Bastien (staging) — agrega BASTIEN_TEST_COUPON al .env",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
+                        "line": 91,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 10281,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:50.608Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "PM1-02: No hay cupón de prueba configurado para Bastien (staging) — agrega BASTIEN_TEST_COUPON al .env",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/coupons.spec.ts",
+                            "line": 91,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "754bc36b729af055b674-3d9a68e75fc59f29e220",
+              "file": "b2b/coupons.spec.ts",
+              "line": 85,
+              "column": 5
+            },
+            {
+              "title": "bastien: PM1-04 Cupón inválido muestra error (no crash)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20972,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:51.354Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-8c5dfca874b001477890",
+              "file": "b2b/coupons.spec.ts",
+              "line": 127,
+              "column": 5
+            },
+            {
+              "title": "bastien: PM2-04 Modal/UI de cupón no queda en loading infinito",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 20678,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:46:54.646Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "754bc36b729af055b674-2d3711b263d32a069620",
+              "file": "b2b/coupons.spec.ts",
+              "line": 155,
+              "column": 5
+            }
+          ],
+          "suites": [
+            {
+              "title": "Crear orden — BLOQUEADO-PROD en youorder.me",
+              "file": "b2b/coupons.spec.ts",
+              "line": 181,
+              "column": 10,
+              "specs": [
+                {
+                  "title": "bastien: PM1-03 Crear orden SIN cupón no se rompe por cambios en cupones",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [
+                        {
+                          "type": "warn",
+                          "description": "POST /order no respondió en 30s — API de órdenes lenta en staging"
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "b2b",
+                      "projectName": "b2b",
+                      "results": [
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 2,
+                          "status": "passed",
+                          "duration": 43941,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-04-24T14:47:00.898Z",
+                          "annotations": [
+                            {
+                              "type": "warn",
+                              "description": "POST /order no respondió en 30s — API de órdenes lenta en staging"
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "754bc36b729af055b674-58676329c2e412b57fc8",
+                  "file": "b2b/coupons.spec.ts",
+                  "line": 184,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/mongo-data.spec.ts",
+      "file": "b2b/mongo-data.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Mongo Data Validation: Bastien (staging)",
+          "file": "b2b/mongo-data.spec.ts",
+          "line": 21,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: Pipeline API catálogo devuelve productos con nombre y pricing @catalog @critico",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "critico"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "API /v2/catalog: 40 productos"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4862,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:04.844Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "API /v2/catalog: 40 productos"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e06546f5b585fa5fe864-cac430834a62048aaa89",
+              "file": "b2b/mongo-data.spec.ts",
+              "line": 128,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/multi-client.spec.ts",
+      "file": "b2b/multi-client.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Bastien (staging) (https://bastien.solopide.me)",
+          "file": "b2b/multi-client.spec.ts",
+          "line": 7,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: Login exitoso",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5306,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:09.717Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-c9f22e431cb650e890be",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 10,
+              "column": 9
+            },
+            {
+              "title": "bastien: Acceso anónimo muestra catálogo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2664,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:12.339Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-4a47fa337cadcc8d63e5",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 34,
+              "column": 11
+            },
+            {
+              "title": "bastien: Catálogo muestra productos con precios",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3628,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:15.011Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-566657826ca6bd17e4a1",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 54,
+              "column": 9
+            },
+            {
+              "title": "bastien: Agregar producto al carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:15.028Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-2523e290dfdd8ee04e9a",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 75,
+              "column": 11
+            },
+            {
+              "title": "bastien: No hay productos con precio $0",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 7145,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:15.329Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2a9fe09f1aa1004e241f-d4655e2c2559942301d0",
+              "file": "b2b/multi-client.spec.ts",
+              "line": 106,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/orders.spec.ts",
+      "file": "b2b/orders.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Pedidos: Bastien (staging)",
+          "file": "b2b/orders.spec.ts",
+          "line": 7,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: Historial de pedidos carga @orders @funcional",
+              "ok": true,
+              "tags": [
+                "orders",
+                "funcional"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17457,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:18.648Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "de3f15501f825e0a6f88-46b1ecbc5c08ee6ea9d2",
+              "file": "b2b/orders.spec.ts",
+              "line": 9,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/payment-documents.spec.ts",
+      "file": "b2b/payment-documents.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C7 — Documentos Tributarios: Bastien (staging)",
+          "file": "b2b/payment-documents.spec.ts",
+          "line": 18,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 11945,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:18.779Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-cb384a6e7c5ecba15727",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 20,
+              "column": 5
+            },
+            {
+              "title": "bastien: C7-INV /payment-documents no accesible cuando flag=false",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 9716,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:22.482Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-418eaac176da8577c630",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 40,
+              "column": 5
+            },
+            {
+              "title": "bastien: C7-10 Facturas visibles en /orders cuando flag=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "enablePaymentDocumentsB2B=false en Bastien (staging)",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                        "line": 62,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "skipped",
+                      "duration": 10147,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:30.730Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "enablePaymentDocumentsB2B=false en Bastien (staging)",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                            "line": 62,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-809ebcdff31afc9bb4ff",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 60,
+              "column": 5
+            },
+            {
+              "title": "bastien: C7-11 Opción de facturas en menú lateral cuando flag=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "enablePaymentDocumentsB2B=false en Bastien (staging)",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                        "line": 77,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "skipped",
+                      "duration": 14271,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:32.204Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "enablePaymentDocumentsB2B=false en Bastien (staging)",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                            "line": 77,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-11536acaf4b0fd9bd49d",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 75,
+              "column": 5
+            },
+            {
+              "title": "bastien: C7-12 /payment-documents carga sin error cuando flag=true",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "enablePaymentDocumentsB2B=false en Bastien (staging)",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                        "line": 92,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "skipped",
+                      "duration": 14511,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:36.114Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "enablePaymentDocumentsB2B=false en Bastien (staging)",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/payment-documents.spec.ts",
+                            "line": 92,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "7feb3d11c4a0e63a62ef-78721c08275628132e3c",
+              "file": "b2b/payment-documents.spec.ts",
+              "line": 90,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/payments.spec.ts",
+      "file": "b2b/payments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PAG — Pagos y documentos tributarios (B2B): Bastien (staging)",
+          "file": "b2b/payments.spec.ts",
+          "line": 12,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: PAG-04 Historial de pagos carga correctamente",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 10544,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:40.885Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bd51122182d9e4115608-8368b7c2783339435153",
+              "file": "b2b/payments.spec.ts",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "bastien: PAG-16 Montos en historial no muestran valores negativos confusos",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 14653,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:44.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bd51122182d9e4115608-5f4fe5ad3abb31407f92",
+              "file": "b2b/payments.spec.ts",
+              "line": 48,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/prices.spec.ts",
+      "file": "b2b/prices.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "C3 — Precios y descuentos: Bastien (staging)",
+          "file": "b2b/prices.spec.ts",
+          "line": 6,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3606,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:46.493Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-320d5a214bc14309bb30",
+              "file": "b2b/prices.spec.ts",
+              "line": 8,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-02 Detectar productos con precio $0",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3651,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:50.108Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-3c3e82ac1d0712d9a881",
+              "file": "b2b/prices.spec.ts",
+              "line": 18,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-03 Precios consistentes catalogo vs carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "warning",
+                      "description": "Precio catalogo $0 no encontrado exacto en carro — posible descuento aplicado"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 18505,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:50.635Z",
+                      "annotations": [
+                        {
+                          "type": "warning",
+                          "description": "Precio catalogo $0 no encontrado exacto en carro — posible descuento aplicado"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-14ba16f5cd116f4b495e",
+              "file": "b2b/prices.spec.ts",
+              "line": 40,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-04 Descuento visible en catalogo",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3716,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:51.438Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-aed58b811e640875df91",
+              "file": "b2b/prices.spec.ts",
+              "line": 71,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-14 Campo de cupon visible en carro (enableCoupons)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 15845,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:53.776Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-a030b7dfce62819ea79d",
+              "file": "b2b/prices.spec.ts",
+              "line": 88,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-15 Cupon invalido muestra error claro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "C3-15: Bastien (staging) no tiene campo de cupón accesible en /cart",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "line": 147,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 106430,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: /correo|email/i }).first() to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: /correo|email/i }).first() to be visible\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:35:20)\n    at Object.authedPage (/Users/lalojimenez/qa/tests/e2e/fixtures/multi-client-auth.ts:111:7)",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 20,
+                          "line": 35
+                        },
+                        "snippet": "   at fixtures/login.ts:35\n\n  33 |     : page.locator('input[type=\"password\"]').first();\n  34 |\n> 35 |   await emailInput.waitFor({ state: 'visible', timeout: 45000 });\n     |                    ^\n  36 |\n  37 |   // fill() triggers React onChange in MUI inputs on these staging sites\n  38 |   await emailInput.click();"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 20,
+                            "line": 35
+                          },
+                          "message": "TimeoutError: locator.waitFor: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('textbox', { name: /correo|email/i }).first() to be visible\u001b[22m\n\n\n   at fixtures/login.ts:35\n\n  33 |     : page.locator('input[type=\"password\"]').first();\n  34 |\n> 35 |   await emailInput.waitFor({ state: 'visible', timeout: 45000 });\n     |                    ^\n  36 |\n  37 |   // fill() triggers React onChange in MUI inputs on these staging sites\n  38 |   await emailInput.click();\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:35:20)\n    at Object.authedPage (/Users/lalojimenez/qa/tests/e2e/fixtures/multi-client-auth.ts:111:7)"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:55.160Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-cf32a-nvalido-muestra-error-claro-b2b/test-failed-1.png"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 20,
+                        "line": 35
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 14462,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-24T14:49:41.624Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "C3-15: Bastien (staging) no tiene campo de cupón accesible en /cart",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "line": 147,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-cf32a-nvalido-muestra-error-claro-b2b-retry1/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-cb6fe754a700c131eb8c",
+              "file": "b2b/prices.spec.ts",
+              "line": 110,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "C3-PM8: Bastien (staging) no usa impuestos (taxes.useTaxRate=false) — nada que sanear",
+                      "location": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                        "line": 155,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "expectedStatus": "skipped",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 48247,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://bastien.solopide.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://bastien.solopide.me/auth/jwt/login\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://bastien.solopide.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://bastien.solopide.me/auth/jwt/login\"\u001b[22m\n\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at Object.authedPage (/Users/lalojimenez/qa/tests/e2e/fixtures/multi-client-auth.ts:111:7)",
+                        "location": {
+                          "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                          "column": 26,
+                          "line": 56
+                        },
+                        "snippet": "   at fixtures/login.ts:56\n\n  54 |\n  55 |   // Wait for redirect away from login page\n> 56 |   await expect(page).not.toHaveURL(/auth\\/jwt\\/login|\\/login$/, { timeout: 45_000 });\n     |                          ^\n  57 | }\n  58 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                            "column": 26,
+                            "line": 56
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).not.\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: not \u001b[32m/auth\\/jwt\\/login|\\/login$/\u001b[39m\nReceived string: \u001b[31m\"https://bastien.solopide.me/\u001b[7mauth/jwt/login\u001b[27m\"\u001b[39m\nTimeout: 45000ms\n\nCall log:\n\u001b[2m  - Expect \"not toHaveURL\" with timeout 45000ms\u001b[22m\n\u001b[2m    49 × unexpected value \"https://bastien.solopide.me/auth/jwt/login\"\u001b[22m\n\n\n   at fixtures/login.ts:56\n\n  54 |\n  55 |   // Wait for redirect away from login page\n> 56 |   await expect(page).not.toHaveURL(/auth\\/jwt\\/login|\\/login$/, { timeout: 45_000 });\n     |                          ^\n  57 | }\n  58 |\n    at loginHelper (/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts:56:26)\n    at Object.authedPage (/Users/lalojimenez/qa/tests/e2e/fixtures/multi-client-auth.ts:111:7)"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:47:59.507Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-7cd74-uesto-no-excede-30-del-neto-b2b/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-7cd74-uesto-no-excede-30-del-neto-b2b/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/lalojimenez/qa/tests/e2e/fixtures/login.ts",
+                        "column": 26,
+                        "line": 56
+                      }
+                    },
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 2,
+                      "status": "skipped",
+                      "duration": 10476,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-04-24T14:48:48.448Z",
+                      "annotations": [
+                        {
+                          "type": "skip",
+                          "description": "C3-PM8: Bastien (staging) no usa impuestos (taxes.useTaxRate=false) — nada que sanear",
+                          "location": {
+                            "file": "/Users/lalojimenez/qa/tests/e2e/b2b/prices.spec.ts",
+                            "line": 155,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/Users/lalojimenez/qa/tests/e2e/test-results/prices-C3-—-Precios-y-desc-7cd74-uesto-no-excede-30-del-neto-b2b-retry1/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "flaky"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-977b8112ebe29e832a2a",
+              "file": "b2b/prices.spec.ts",
+              "line": 151,
+              "column": 5
+            },
+            {
+              "title": "bastien: C3-11 Precio bruto vs neto — impuestos segun config",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "Desglose: neto=true, impuesto=true, total=true"
+                    },
+                    {
+                      "type": "info",
+                      "description": "Montos encontrados: $1, $1, $26, $28, $1, $1, $2, $1, $2, $1"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14324,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:09.147Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "Desglose: neto=true, impuesto=true, total=true"
+                        },
+                        {
+                          "type": "info",
+                          "description": "Montos encontrados: $1, $1, $26, $28, $1, $1, $2, $1, $2, $1"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-26f9a7b85bf1c6b37ac7",
+              "file": "b2b/prices.spec.ts",
+              "line": 205,
+              "column": 5
+            },
+            {
+              "title": "bastien: Catálogo carga con productos visibles @catalog @calidad",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "calidad"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 13183,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:09.627Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-40a4fda10f0e432ee4d2",
+              "file": "b2b/prices.spec.ts",
+              "line": 254,
+              "column": 5
+            },
+            {
+              "title": "bastien: Sin imágenes rotas en catálogo @catalog @calidad",
+              "ok": true,
+              "tags": [
+                "catalog",
+                "calidad"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 10183,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:22.815Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-81810b02a8fb8d0e41da",
+              "file": "b2b/prices.spec.ts",
+              "line": 270,
+              "column": 5
+            },
+            {
+              "title": "bastien: C5-05 Sugerencias se pueden agregar al carro",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12223,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:23.487Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7753f7023fc2cdfb93f7-fdb2f8355fc0b404bb86",
+              "file": "b2b/prices.spec.ts",
+              "line": 295,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/promotions.spec.ts",
+      "file": "b2b/promotions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PM5 — Promotions: regresión post-mortem: Bastien (staging)",
+          "file": "b2b/promotions.spec.ts",
+          "line": 14,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "1 precios visibles en catálogo — promotions respondiendo"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 16010,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:33.006Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "1 precios visibles en catálogo — promotions respondiendo"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "50791752974ef4adecee-6fa5a9c2de5edb561ae9",
+              "file": "b2b/promotions.spec.ts",
+              "line": 16,
+              "column": 5
+            },
+            {
+              "title": "bastien: PM5-02 Carrito muestra totales con descuentos aplicados",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14314,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:35.733Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "50791752974ef4adecee-61750ffd00f846bfae23",
+              "file": "b2b/promotions.spec.ts",
+              "line": 35,
+              "column": 5
+            },
+            {
+              "title": "bastien: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "warn",
+                      "description": "Tiempo de carga: 225ms, contenido visible: false"
+                    },
+                    {
+                      "type": "warn",
+                      "description": "PM5-03: sin precios en 225ms — posible lentitud de staging, ver PM5-01/02 para uptime"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 9960,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:49.021Z",
+                      "annotations": [
+                        {
+                          "type": "warn",
+                          "description": "Tiempo de carga: 225ms, contenido visible: false"
+                        },
+                        {
+                          "type": "warn",
+                          "description": "PM5-03: sin precios en 225ms — posible lentitud de staging, ver PM5-01/02 para uptime"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "50791752974ef4adecee-eeee4fd8a2790fd2dc69",
+              "file": "b2b/promotions.spec.ts",
+              "line": 67,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "b2b/step-pricing.spec.ts",
+      "file": "b2b/step-pricing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "PM4 — Step pricing: regresión post-mortem: Bastien (staging)",
+          "file": "b2b/step-pricing.spec.ts",
+          "line": 14,
+          "column": 8,
+          "specs": [
+            {
+              "title": "bastien: PM4-01 Productos con step pricing muestran escalones",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [
+                    {
+                      "type": "info",
+                      "description": "Indicadores de step pricing encontrados: 1"
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12196,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:50.058Z",
+                      "annotations": [
+                        {
+                          "type": "info",
+                          "description": "Indicadores de step pricing encontrados: 1"
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5f6ae2a57fa8442bbb5-642f35eafb530a045b26",
+              "file": "b2b/step-pricing.spec.ts",
+              "line": 16,
+              "column": 5
+            },
+            {
+              "title": "bastien: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "b2b",
+                  "projectName": "b2b",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 25336,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-24T14:48:58.989Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b5f6ae2a57fa8442bbb5-b23f545089ae94468b50",
+              "file": "b2b/step-pricing.spec.ts",
+              "line": 39,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-24T14:43:13.755Z",
+    "duration": 407930.16699999996,
+    "expected": 98,
+    "skipped": 7,
+    "unexpected": 1,
+    "flaky": 2
+  }
+}
