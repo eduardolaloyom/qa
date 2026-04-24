@@ -2097,11 +2097,21 @@ async function initDashboard() {
 // ── Summary ───────────────────────────────────────────────
 
 function updateSummary() {
-    const { total, passed, failed, duration, timestamp } = latestRun;
+    const { duration, timestamp } = latestRun;
+
+    // Filter clients by active environment so stats match the visible cards
+    const allClients = latestRun.clients || {};
+    const envClientSet = getEnvClientSet();
+    const clientsData = envClientSet
+        ? Object.fromEntries(Object.entries(allClients).filter(([k]) => envClientSet.has(k)))
+        : allClients;
+
+    const total  = Object.values(clientsData).reduce((s, c) => s + (c.tests  || 0), 0) || latestRun.total;
+    const passed = Object.values(clientsData).reduce((s, c) => s + (c.passed || 0), 0);
+    const failed = Object.values(clientsData).reduce((s, c) => s + ((c.failed ?? (c.tests - c.passed)) || 0), 0);
     const passRate = total > 0 ? Math.round(passed / total * 100) : 0;
     const durationMins = (duration / 60).toFixed(1);
 
-    const clientsData = latestRun.clients || {};
     const failedClientCount = Object.values(clientsData).filter(c => (c.failed ?? (c.tests - c.passed)) > 0).length;
     const statusText = failed === 0
         ? '✅ ALL PASSED'
