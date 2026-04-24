@@ -3595,7 +3595,10 @@ function initCollapsibleCards() {
             const isCollapsed = body.classList.toggle('collapsed');
             arrow.classList.toggle('collapsed', isCollapsed);
             localStorage.setItem(`card-collapsed-${cardId}`, isCollapsed);
-            if (!isCollapsed) setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+            if (!isCollapsed) setTimeout(() => {
+                body.querySelectorAll('canvas').forEach(c => Chart.getChart(c)?.resize());
+                window.dispatchEvent(new Event('resize'));
+            }, 50);
         });
     });
 
