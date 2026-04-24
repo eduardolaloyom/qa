@@ -223,10 +223,11 @@ const clients: Record<string, ClientConfig> = {{
         "softys-cencocal-staging",
         "softys-dimak-staging",
         "sonrie-staging",
-        # Production-matrix keys (used when syncing from qa-matrix.json)
-        # Raw keys as they appear in prod MongoDB — aliases map them to final client key
-        "surtiventas",
-        "sonrie",        # aliased to "sonrie-prod" via KEY_ALIASES
+        # Production-matrix keys (raw as they appear in qa-matrix.json)
+        "surtiventas",        # prod key when syncing prod-only (--input qa-matrix.json)
+        "surtiventas-prod",   # renamed in merge mode (collision: prisa-staging → surtiventas)
+        "sonrie",             # prod key when syncing prod-only → aliased to "sonrie-prod"
+        "sonrie-prod",        # renamed in merge mode (collision: sonrie-staging → sonrie)
     }
 
     client_entries = []
@@ -236,7 +237,10 @@ const clients: Record<string, ClientConfig> = {{
             skipped_inactive.append(raw_key)
             continue
         client_key = raw_key.removesuffix(KEY_STRIP_SUFFIX)
-        client_key = KEY_ALIASES.get(raw_key, KEY_ALIASES.get(client_key, client_key))
+        # Only alias on the raw key — do NOT fall back to aliasing the stripped form.
+        # Falling back caused "sonrie-staging" → strip → "sonrie" → alias → "sonrie-prod",
+        # overriding the staging client. Raw-key-only lookup keeps staging "sonrie" distinct.
+        client_key = KEY_ALIASES.get(raw_key, client_key)
         domain = client_data.get("domain", "")
         name = client_data.get("name", "")
         baseurl = map_domain_to_baseurl(domain)
@@ -403,18 +407,61 @@ def generate_b2b_variables_json(qa_matrix: dict, b2b_feature_map: dict) -> dict:
     }
 
 
+def merge_matrices(staging_path: Path, prod_path: Path) -> dict:
+    """Merge staging and prod matrices into one.
+
+    Prod client keys that would normalize to the same key as a staging client
+    get a -prod suffix in the merged dict so both coexist in clients.ts.
+    Currently: prod 'surtiventas' conflicts with staging 'prisa-staging' (→ surtiventas).
+    """
+    merged: dict = {}
+    extracted_at = datetime.now(timezone.utc).isoformat()
+
+    if staging_path.exists():
+        staging = load_qa_matrix(str(staging_path))
+        merged.update(staging.get("clients", {}))
+        extracted_at = staging.get("extractedAt", extracted_at)
+        print(f"  Staging: {len(staging.get('clients', {}))} clients from {staging_path}")
+
+    if prod_path.exists():
+        prod = load_qa_matrix(str(prod_path))
+        # Keys that staging already claims after normalization (strip -staging + aliases)
+        _ALIASES = {"prisa-staging": "surtiventas", "prisa": "surtiventas", "sonrie": "sonrie-prod"}
+        staging_norm = {
+            _ALIASES.get(k, _ALIASES.get(k.removesuffix("-staging"), k.removesuffix("-staging")))
+            for k in merged
+        }
+        for raw_key, data in prod.get("clients", {}).items():
+            norm = _ALIASES.get(raw_key, raw_key)
+            # Rename colliding prod key → raw_key-prod so ACTIVE_CLIENTS can match it
+            final_raw = f"{raw_key}-prod" if norm in staging_norm else raw_key
+            merged[final_raw] = data
+        print(f"  Prod:    {len(prod.get('clients', {}))} clients from {prod_path}")
+
+    return {"clients": merged, "extractedAt": extracted_at}
+
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Generate clients.ts from qa-matrix.json")
     parser.add_argument(
         "--input",
-        default="data/qa-matrix.json",
-        help="Path to qa-matrix.json (default: data/qa-matrix.json)"
+        default=None,
+        help="Path to a single qa-matrix file. Omit to merge staging + prod automatically."
     )
     args = parser.parse_args()
 
-    print(f"Loading {args.input}...")
-    qa_matrix = load_qa_matrix(args.input)
+    project_root = Path(__file__).parent.parent
+    staging_path = project_root / "data" / "qa-matrix-staging.json"
+    prod_path    = project_root / "data" / "qa-matrix.json"
+
+    if args.input:
+        print(f"Loading {args.input}...")
+        qa_matrix = load_qa_matrix(args.input)
+    else:
+        print("Merging staging + prod matrices...")
+        qa_matrix = merge_matrices(staging_path, prod_path)
+
     validate_client_variables(qa_matrix)
     b2b_feature_map = load_b2b_feature_status()
 

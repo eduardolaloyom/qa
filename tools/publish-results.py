@@ -1056,13 +1056,15 @@ def main():
             client_slug = unique_slugs[0]
             print(f"ℹ️  Auto-detected client: {client_slug}")
 
-    # Report directory: per-client if slug known, shared fallback otherwise
+    # Report directory: per-client if slug known, dated shared otherwise.
+    # Dated reports (reports/{date}/) prevent runs from different days or
+    # environments overwriting each other.
     if client_slug:
         dst_reports = project_root / "public" / "reports" / client_slug
         report_url = f"reports/{client_slug}/index.html"
     else:
-        dst_reports = project_root / "public" / "reports"
-        report_url = "reports/index.html"
+        dst_reports = project_root / "public" / "reports" / date
+        report_url = f"reports/{date}/index.html"
 
     # Copy reports
     copy_playwright_report(src_report, dst_reports)
