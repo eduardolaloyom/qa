@@ -1,0 +1,94 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 05b — Verificación P1 carrito limpio (CAREN-QA-002)"
+# OBJETIVO: Confirmar o descartar P1 con clearState=true
+# Lanza la app desde cero (sin carrito previo) y va directo a un comercio bloqueado
+# Si "Finalizar pedido" aparece con carrito vacío → P1 REAL
+# Si no aparece → false positive (carrito compartido de flow 02)
+---
+
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+
+# Login fresco (clearState borra sesión)
+- runFlow:
+    when:
+      visible:
+        text: ".*[Cc]orreo.*|.*[Ee]-mail.*|.*[Ee]mail.*|.*[Uu]suario.*"
+    commands:
+      - tapOn:
+          text: ".*[Cc]orreo.*|.*[Ee]-mail.*|.*[Ee]mail.*|.*[Uu]suario.*"
+          optional: true
+      - inputText: ${TEST_SELLER_EMAIL}
+      - tapOn:
+          text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
+          optional: true
+      - inputText: ${TEST_SELLER_PASSWORD}
+      - tapOn:
+          text: ".*[Ii]niciar [Ss]esi[oó]n.*|.*[Ll]ogin.*|.*[Ee]ntrar.*|.*INGRESAR.*|.*[Aa]cceder.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Esperar sync inicial (clearState = sync completa desde cero)
+- extendedWaitUntil:
+    visible:
+      text: "Seleccionar filtros|Listado de comercios|.*[Ss]incronizando.*|.*[Cc]omercio.*"
+    timeout: 60000
+- runFlow:
+    when:
+      visible:
+        text: ".*[Ss]incronizando.*"
+    commands:
+      - extendedWaitUntil:
+          notVisible:
+            text: ".*[Ss]incronizando.*"
+          timeout: 600000
+- tapOn:
+    text: "CANCELAR"
+    optional: true
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      text: "Seleccionar filtros|Listado de comercios|.*[Cc]omercio.*"
+    timeout: 30000
+
+# Ir directo al primer comercio bloqueado (sin pasar por MARIA TERESA)
+- runFlow: helpers-filtro-bloqueado.yaml
+
+- tapOn:
+    text: ".*[Bb]loqueado.*"
+    index: 0
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Hacer pedido"
+    optional: true
+- waitForAnimationToEnd
+
+# Intentar agregar un producto (carrito debe estar vacío)
+- swipe:
+    direction: DOWN
+    duration: 1000
+- swipe:
+    direction: DOWN
+    duration: 1000
+
+- tapOn:
+    text: ".*[Aa]gregar.*|.*[Aa]ñadir.*|[+]"
+    optional: true
+- waitForAnimationToEnd
+
+# Ir al carrito / intentar finalizar
+- tapOn:
+    text: ".*[Cc]arrito.*|.*[Pp]edido.*|.*[Vv]er [Pp]edido.*"
+    optional: true
+- waitForAnimationToEnd
+
+# ASSERTION CRÍTICA: con carrito limpio, NO debe aparecer "Finalizar pedido"
+- assertNotVisible:
+    text: "Finalizar pedido"
