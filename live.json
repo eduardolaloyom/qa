@@ -1,5 +1,5 @@
 {
-  "running": true,
+  "running": false,
   "startTime": "2026-04-27T19:51:48.436Z",
   "total": 140,
   "passed": 125,
@@ -107,5 +107,6 @@
       "status": "skipped",
       "duration": 57
     }
-  ]
+  ],
+  "endTime": "2026-04-27T20:03:09.036Z"
 }
