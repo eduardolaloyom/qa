@@ -1,10 +1,10 @@
 {
   "date": "2026-04-27",
-  "timestamp": "2026-04-27T18:52:41.419085+00:00",
-  "total": 108,
-  "passed": 100,
-  "failed": 1,
-  "duration": 407,
+  "timestamp": "2026-04-27T19:05:38.835368+00:00",
+  "total": 385,
+  "passed": 371,
+  "failed": 12,
+  "duration": 1254,
   "suites": [
     {
       "name": "cart.spec.ts",
@@ -23,28 +23,28 @@
     {
       "name": "checkout.spec.ts",
       "tests": 3,
-      "passed": 2,
-      "failed": 1,
+      "passed": 1,
+      "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "coupons.spec.ts",
       "tests": 5,
+      "passed": 0,
+      "failed": 4,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-access.spec.ts",
+      "tests": 4,
       "passed": 4,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
     {
-      "name": "cv-access.spec.ts",
-      "tests": 6,
-      "passed": 5,
-      "failed": 0,
-      "reportUrl": "reports/index.html"
-    },
-    {
       "name": "cv-cart.spec.ts",
-      "tests": 13,
-      "passed": 13,
+      "tests": 12,
+      "passed": 12,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
@@ -71,16 +71,16 @@
     },
     {
       "name": "cv-ui-features.spec.ts",
-      "tests": 10,
-      "passed": 10,
-      "failed": 0,
+      "tests": 11,
+      "passed": 9,
+      "failed": 2,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "mongo-data.spec.ts",
       "tests": 1,
-      "passed": 1,
-      "failed": 0,
+      "passed": 0,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
@@ -93,15 +93,15 @@
     {
       "name": "orders.spec.ts",
       "tests": 1,
-      "passed": 1,
-      "failed": 0,
+      "passed": 0,
+      "failed": 1,
       "reportUrl": "reports/index.html"
     },
     {
       "name": "payment-documents.spec.ts",
       "tests": 5,
-      "passed": 2,
-      "failed": 0,
+      "passed": 1,
+      "failed": 3,
       "reportUrl": "reports/index.html"
     },
     {
@@ -114,7 +114,7 @@
     {
       "name": "prices.spec.ts",
       "tests": 11,
-      "passed": 11,
+      "passed": 6,
       "failed": 0,
       "reportUrl": "reports/index.html"
     },
@@ -128,7 +128,14 @@
     {
       "name": "step-pricing.spec.ts",
       "tests": 2,
-      "passed": 2,
+      "passed": 1,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "00-contract.spec.ts",
+      "tests": 39,
+      "passed": 39,
       "failed": 0,
       "reportUrl": "reports/index.html"
     }
@@ -217,6 +224,227 @@
       ],
       "clients": [
         "bastien"
+      ]
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "enableBetaButtons=false",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'enableBetaButtons=false'.",
+      "count": 1,
+      "tests": [
+        "[cv-ui-features.spec.ts] sonrie-prod: enableBetaButtons=false"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/\nCall log:\n  - navigating to \"https://sonrie.youorder.me/\", waiting until \"load\"\n",
+      "annotations_sample": [],
+      "spec_file": "cv-ui-features.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "enableNewUI=false",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'enableNewUI=false'.",
+      "count": 1,
+      "tests": [
+        "[cv-ui-features.spec.ts] sonrie-prod: enableNewUI=false"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/\nCall log:\n  - navigating to \"https://sonrie.youorder.me/\", waiting until \"load\"\n",
+      "annotations_sample": [],
+      "spec_file": "cv-ui-features.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Cup\u00f3n v\u00e1lido aplica descuento",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Cup\u00f3n v\u00e1lido aplica descuento'.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] sonrie-prod: PM1-02 Cup\u00f3n v\u00e1lido aplica descuento"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/auth/jwt/login\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "coupons.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Cup\u00f3n inv\u00e1lido muestra error (no crash)",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Cup\u00f3n inv\u00e1lido muestra error (no crash)'.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] sonrie-prod: PM1-04 Cup\u00f3n inv\u00e1lido muestra error (no crash)"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/auth/jwt/login\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "coupons.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "C7-INV Link \"Mis documentos\" oculto cuando flag=false",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'C7-INV Link \"Mis documentos\" oculto cuando flag=false'.",
+      "count": 1,
+      "tests": [
+        "[payment-documents.spec.ts] sonrie-prod: C7-INV Link \"Mis documentos\" oculto cuando flag=false"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/auth/jwt/login\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "payment-documents.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "C7-INV /payment-documents no accesible cuando flag=false",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'C7-INV /payment-documents no accesible cuando flag=false'.",
+      "count": 1,
+      "tests": [
+        "[payment-documents.spec.ts] sonrie-prod: C7-INV /payment-documents no accesible cuando flag=false"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/auth/jwt/login\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "payment-documents.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Facturas visibles en /orders cuando flag=true",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Facturas visibles en /orders cuando flag=true'.",
+      "count": 1,
+      "tests": [
+        "[payment-documents.spec.ts] sonrie-prod: C7-10 Facturas visibles en /orders cuando flag=true"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/auth/jwt/login\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "payment-documents.spec.ts"
+    },
+    {
+      "category": "bug",
+      "label": "\ud83d\udd34 Bug",
+      "reason": "Agregar producto con cantidad > 1 muestra precio correcto",
+      "owner": "qa",
+      "action": "Revisar en staging el flujo 'Agregar producto con cantidad > 1 muestra precio correcto'.",
+      "count": 1,
+      "tests": [
+        "[step-pricing.spec.ts] sonrie-prod: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Error: page.goto: net::ERR_TIMED_OUT at https://sonrie.youorder.me/auth/jwt/login\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "step-pricing.spec.ts"
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Timeout en: Campo de cup\u00f3n existe y es interactuable",
+      "owner": "qa",
+      "action": "Verificar en staging que 'Campo de cup\u00f3n existe y es interactuable' funciona. Puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] sonrie-prod: PM1-01 Campo de cup\u00f3n existe y es interactuable"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "TimeoutError: locator.waitFor: Timeout 45000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: /correo|email/i }).first() to be visible\n",
+      "annotations_sample": [],
+      "spec_file": "coupons.spec.ts"
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Timeout en: Modal/UI de cup\u00f3n no queda en loading infinito",
+      "owner": "qa",
+      "action": "Verificar en staging que 'Modal/UI de cup\u00f3n no queda en loading infinito' funciona. Puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[coupons.spec.ts] sonrie-prod: PM2-04 Modal/UI de cup\u00f3n no queda en loading infinito"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://sonrie.youorder.me/auth/jwt/login\", waiting until \"domcontentloaded\"\n",
+      "annotations_sample": [],
+      "spec_file": "coupons.spec.ts"
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Timeout en: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico",
+      "owner": "qa",
+      "action": "Verificar en staging que 'Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico' funciona. Puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[mongo-data.spec.ts] sonrie-prod: Pipeline API cat\u00e1logo devuelve productos con nombre y pricing @catalog @critico"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://sonrie.youorder.me/\", waiting until \"load\"\n",
+      "annotations_sample": [],
+      "spec_file": "mongo-data.spec.ts"
+    },
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Timeout en: Historial de pedidos carga @orders @funcional",
+      "owner": "qa",
+      "action": "Verificar en staging que 'Historial de pedidos carga @orders @funcional' funciona. Puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[orders.spec.ts] sonrie-prod: Historial de pedidos carga @orders @funcional"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "Test timeout of 120000ms exceeded while setting up \"authedPage\".",
+      "annotations_sample": [],
+      "spec_file": "orders.spec.ts"
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 4,
+      "tests": [
+        "[payment-documents.spec.ts] sonrie-prod: C7-11 Opci\u00f3n de facturas en men\u00fa lateral cuando flag=true",
+        "[payments.spec.ts] sonrie-prod: PAG-04 Historial de pagos carga correctamente",
+        "[payments.spec.ts] sonrie-prod: PAG-16 Montos en historial no muestran valores negativos confusos",
+        "[promotions.spec.ts] sonrie-prod: PM5-01 Cat\u00e1logo carga productos con precios (promotions funcional)"
+      ],
+      "clients": [
+        "sonrie-prod"
       ]
     }
   ],
