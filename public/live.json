@@ -1,111 +1,111 @@
 {
   "running": true,
-  "startTime": "2026-04-27T18:40:42.130Z",
+  "startTime": "2026-04-27T19:51:48.436Z",
   "total": 140,
-  "passed": 97,
-  "failed": 69,
-  "skipped": 9,
+  "passed": 125,
+  "failed": 5,
+  "skipped": 14,
   "currentTest": null,
   "recentTests": [
     {
       "title": "sonrie-prod: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
-      "status": "failed",
-      "duration": 120033
+      "status": "passed",
+      "duration": 79206
     },
     {
-      "title": "sonrie-prod: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
-      "status": "failed",
-      "duration": 16361
-    },
-    {
-      "title": "sonrie-prod: PM4-01 Productos con step pricing muestran escalones",
-      "status": "failed",
-      "duration": 35274
-    },
-    {
-      "title": "sonrie-prod: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
-      "status": "failed",
-      "duration": 62861
-    },
-    {
-      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
-      "status": "failed",
-      "duration": 125005
-    },
-    {
-      "title": "sonrie-prod: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
-      "status": "failed",
-      "duration": 125004
+      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "skipped",
+      "duration": 16916
     },
     {
       "title": "sonrie-prod: PM4-01 Productos con step pricing muestran escalones",
-      "status": "failed",
-      "duration": 39824
+      "status": "passed",
+      "duration": 18224
+    },
+    {
+      "title": "sonrie-prod: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "passed",
+      "duration": 19794
     },
     {
       "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
-      "status": "failed",
-      "duration": 39267
-    },
-    {
-      "title": "sonrie-prod: PM5-01 Catálogo carga productos con precios (promotions funcional)",
-      "status": "failed",
-      "duration": 65084
-    },
-    {
-      "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
-      "status": "failed",
-      "duration": 38174
-    },
-    {
-      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
-      "status": "failed",
-      "duration": 65085
-    },
-    {
-      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
-      "status": "failed",
-      "duration": 57445
-    },
-    {
-      "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
-      "status": "failed",
-      "duration": 34615
-    },
-    {
-      "title": "sonrie-prod: PM5-01 Catálogo carga productos con precios (promotions funcional)",
-      "status": "failed",
-      "duration": 57333
-    },
-    {
-      "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
-      "status": "failed",
-      "duration": 32752
-    },
-    {
-      "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
-      "status": "failed",
-      "duration": 9767
-    },
-    {
-      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
-      "status": "failed",
-      "duration": 9780
-    },
-    {
-      "title": "sonrie-prod: C3-15 Cupon invalido muestra error claro",
-      "status": "failed",
-      "duration": 29280
+      "status": "passed",
+      "duration": 19695
     },
     {
       "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
       "status": "failed",
-      "duration": 35256
+      "duration": 52193
+    },
+    {
+      "title": "sonrie-prod: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 15929
+    },
+    {
+      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "passed",
+      "duration": 16851
+    },
+    {
+      "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "passed",
+      "duration": 19690
+    },
+    {
+      "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "passed",
+      "duration": 14003
+    },
+    {
+      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "passed",
+      "duration": 15987
+    },
+    {
+      "title": "sonrie-prod: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 22042
+    },
+    {
+      "title": "sonrie-prod: C3-03 Precios consistentes catalogo vs carro",
+      "status": "passed",
+      "duration": 22789
     },
     {
       "title": "sonrie-prod: C3-14 Campo de cupon visible en carro (enableCoupons)",
-      "status": "failed",
-      "duration": 29262
+      "status": "passed",
+      "duration": 19976
+    },
+    {
+      "title": "sonrie-prod: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 15231
+    },
+    {
+      "title": "sonrie-prod: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 14127
+    },
+    {
+      "title": "sonrie-prod: C3-04 Descuento visible en catalogo",
+      "status": "skipped",
+      "duration": 55
+    },
+    {
+      "title": "sonrie-prod: C7-12 /payment-documents carga sin error cuando flag=true",
+      "status": "skipped",
+      "duration": 14217
+    },
+    {
+      "title": "sonrie-prod: C3-02 Detectar productos con precio $0",
+      "status": "skipped",
+      "duration": 77
+    },
+    {
+      "title": "sonrie-prod: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
+      "status": "skipped",
+      "duration": 57
     }
   ]
 }
