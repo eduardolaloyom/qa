@@ -6,11 +6,27 @@
     <title>QA Dashboard — YOM B2B Tests</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* ── Design system ── */
+        :root {
+            --c-primary:      #0284c7;
+            --c-primary-dark: #0369a1;
+            --c-success:      #10b981;
+            --c-danger:       #ef4444;
+            --c-warning:      #f59e0b;
+            --c-surface:      #ffffff;
+            --c-bg:           #f1f5f9;
+            --c-border:       #e2e8f0;
+            --c-text:         #0f172a;
+            --c-muted:        #64748b;
+            --shadow-card:    0 1px 3px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08);
+            --radius-card:    14px;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(150deg, #0284c7 0%, #0369a1 60%, #075985 100%);
+            background: linear-gradient(150deg, #0c4a6e 0%, #075985 50%, #0369a1 100%);
             min-height: 100vh;
             padding: 28px 32px;
         }
@@ -913,14 +929,21 @@
         .trend-day-btn:not(.active):hover { color: #374151; }
 
         /* ── Tab bar ── */
+        .tab-bar-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            margin-bottom: 24px;
+            padding: 10px 0 0;
+        }
         .tab-bar {
             display: flex;
             gap: 4px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: white;
+            border: 1px solid var(--c-border);
             border-radius: 12px;
             padding: 5px;
-            margin-bottom: 24px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
         }
         .tab-btn {
             flex: 1;
@@ -928,14 +951,34 @@
             border-radius: 9px;
             border: none;
             background: transparent;
-            color: rgba(255,255,255,0.65);
+            color: var(--c-muted);
             font-weight: 700;
             font-size: 1em;
             cursor: pointer;
             transition: background 0.2s, color 0.2s;
         }
-        .tab-btn.active { background: white; color: #0284c7; }
-        .tab-btn:not(.active):hover { background: rgba(255,255,255,0.12); color: white; }
+        .tab-btn.active { background: var(--c-primary); color: white; }
+        .tab-btn:not(.active):hover { background: #f1f5f9; color: var(--c-text); }
+
+        /* ── Section labels ── */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.7em;
+            font-weight: 800;
+            color: rgba(255,255,255,0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 28px 0 12px;
+            padding: 0 4px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.12);
+        }
 
         /* ── Footer ── */
         footer { text-align: center; color: white; opacity: 0.75; font-size: 0.85em; margin-top: 32px; }
@@ -1660,9 +1703,11 @@
     </div>
 
     <!-- Tab bar -->
-    <div class="tab-bar">
-        <button id="tab-btn-b2b" class="tab-btn active" onclick="showTab('b2b')">🛒 B2B Tests</button>
-        <button id="tab-btn-app" class="tab-btn" onclick="showTab('app')">📱 APP Tests</button>
+    <div class="tab-bar-wrapper">
+        <div class="tab-bar">
+            <button id="tab-btn-b2b" class="tab-btn active" onclick="showTab('b2b')">🛒 B2B Tests</button>
+            <button id="tab-btn-app" class="tab-btn" onclick="showTab('app')">📱 APP Tests</button>
+        </div>
     </div>
 
     <!-- ══ TAB B2B ══════════════════════════════════════════════ -->
@@ -1786,6 +1831,9 @@
         </div>
 
 
+        <!-- Section: Estado QA -->
+        <div class="section-label">Estado QA por cliente</div>
+
         <!-- Cowork QA Reports -->
         <div class="card" id="coworkCard">
             <div class="card-title">📋 Reportes QA Cowork</div>
@@ -1821,6 +1869,9 @@
                 </table>
             </div>
         </div>
+
+        <!-- Section: Historial -->
+        <div class="section-label">Historial de runs</div>
 
         <!-- Trend chart -->
         <div class="card" id="trendCard">
