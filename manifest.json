@@ -126,6 +126,21 @@
       ],
       "platform": "b2b",
       "environment": "staging"
+    },
+    {
+      "client": "Sonrie Market",
+      "client_slug": "sonrie",
+      "date": "2026-04-28",
+      "file": "qa-reports/Sonrie-2026-04-28.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 85,
+      "modes_done": [
+        "A",
+        "B",
+        "D"
+      ],
+      "platform": "b2b",
+      "environment": "production"
     }
   ]
 }
