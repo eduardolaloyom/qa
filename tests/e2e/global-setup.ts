@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import clients from './fixtures/clients';
 
 export default async function globalSetup() {
@@ -15,12 +14,4 @@ export default async function globalSetup() {
     console.warn('   Tests que crean pedidos (C2-11, C2-12, PM1-03) están BLOQUEADOS automáticamente.\n');
   }
 
-  // Skip en CI — no hay browser que abrir
-  if (process.env.CI) return;
-
-  // webServer config handles server lifecycle.
-  // Just open the dashboard in browser (best-effort, macOS only).
-  try {
-    execSync('open http://localhost:8080');
-  } catch {}
 }
