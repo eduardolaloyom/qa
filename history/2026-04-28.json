@@ -1,0 +1,229 @@
+{
+  "date": "2026-04-28",
+  "timestamp": "2026-04-28T15:14:31.715968+00:00",
+  "total": 140,
+  "passed": 126,
+  "failed": 1,
+  "duration": 681,
+  "suites": [
+    {
+      "name": "00-contract.spec.ts",
+      "tests": 39,
+      "passed": 39,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cart.spec.ts",
+      "tests": 4,
+      "passed": 3,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "catalog.spec.ts",
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "checkout.spec.ts",
+      "tests": 3,
+      "passed": 1,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "coupons.spec.ts",
+      "tests": 5,
+      "passed": 3,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-access.spec.ts",
+      "tests": 4,
+      "passed": 3,
+      "failed": 1,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-cart.spec.ts",
+      "tests": 12,
+      "passed": 12,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-catalog.spec.ts",
+      "tests": 14,
+      "passed": 13,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-orders.spec.ts",
+      "tests": 9,
+      "passed": 9,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-payments.spec.ts",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "cv-ui-features.spec.ts",
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "mongo-data.spec.ts",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "orders.spec.ts",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payment-documents.spec.ts",
+      "tests": 5,
+      "passed": 2,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "payments.spec.ts",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "prices.spec.ts",
+      "tests": 11,
+      "passed": 7,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "promotions.spec.ts",
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    },
+    {
+      "name": "step-pricing.spec.ts",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "reportUrl": "reports/index.html"
+    }
+  ],
+  "clients": {
+    "bastien": {
+      "name": "Bastien (staging)",
+      "url": "https://bastien.solopide.me",
+      "environment": "staging",
+      "tests": 101,
+      "passed": 100,
+      "failed": 1,
+      "reportUrl": "reports/bastien/index.html",
+      "client_slug": "bastien",
+      "last_tested": "2026-04-27"
+    },
+    "sonrie": {
+      "name": "Sonrie (staging)",
+      "url": "https://sonrie.solopide.me",
+      "environment": "staging",
+      "tests": 96,
+      "passed": 95,
+      "failed": 1,
+      "reportUrl": "",
+      "client_slug": "sonrie",
+      "last_tested": "2026-04-23"
+    },
+    "codelpa": {
+      "name": "Codelpa",
+      "url": "https://beta-codelpa.solopide.me",
+      "tests": 32,
+      "passed": 26,
+      "failed": 4,
+      "reportUrl": "",
+      "last_tested": "2026-04-07"
+    },
+    "surtiventas": {
+      "name": "Surtiventas",
+      "url": "https://surtiventas.solopide.me",
+      "tests": 25,
+      "passed": 20,
+      "failed": 5,
+      "reportUrl": "",
+      "last_tested": "2026-04-07"
+    },
+    "sonrie-prod": {
+      "name": "Sonrie Market",
+      "url": "https://sonrie.youorder.me",
+      "environment": "production",
+      "tests": 88,
+      "passed": 87,
+      "failed": 1,
+      "reportUrl": "reports/2026-04-28/index.html",
+      "client_slug": "sonrie-prod",
+      "last_tested": "2026-04-28"
+    }
+  },
+  "failure_groups": [
+    {
+      "category": "ambiente",
+      "label": "\ud83d\udd35 Ambiente / Servidor",
+      "reason": "Timeout en: anonymousAccess=false",
+      "owner": "qa",
+      "action": "Verificar en staging que 'anonymousAccess=false' funciona. Puede ser lentitud del ambiente.",
+      "count": 1,
+      "tests": [
+        "[cv-access.spec.ts] sonrie-prod: anonymousAccess=false"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ],
+      "error_sample": "TimeoutError: page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://sonrie.youorder.me/\", waiting until \"load\"\n",
+      "annotations_sample": [],
+      "spec_file": "cv-access.spec.ts"
+    },
+    {
+      "category": "flaky",
+      "label": "\u26a0\ufe0f Flaky",
+      "reason": "Pasaron en retry \u2014 no son bugs confirmados",
+      "owner": "qa",
+      "action": "Monitorear en pr\u00f3ximas ejecuciones. Si siguen apareciendo, investigar causa de inestabilidad",
+      "count": 3,
+      "tests": [
+        "[cv-access.spec.ts] sonrie-prod: inMaintenance=false",
+        "[cv-access.spec.ts] sonrie-prod: loginButtons.google=false",
+        "[prices.spec.ts] sonrie-prod: C3-PM8 Sanity impuestos \u2014 impuesto no excede 30% del neto"
+      ],
+      "clients": [
+        "sonrie-prod"
+      ]
+    }
+  ],
+  "pending_b2b": [],
+  "evidence": {
+    "screenshots": [],
+    "errors": []
+  }
+}

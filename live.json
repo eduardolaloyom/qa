@@ -1,112 +1,111 @@
 {
-  "running": false,
-  "startTime": "2026-04-27T19:51:48.436Z",
+  "running": true,
+  "startTime": "2026-04-28T15:09:26.026Z",
   "total": 140,
-  "passed": 125,
-  "failed": 5,
-  "skipped": 14,
+  "passed": 120,
+  "failed": 3,
+  "skipped": 20,
   "currentTest": null,
   "recentTests": [
     {
       "title": "sonrie-prod: PM4-02 Agregar producto con cantidad > 1 muestra precio correcto",
       "status": "passed",
-      "duration": 79206
-    },
-    {
-      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
-      "status": "skipped",
-      "duration": 16916
+      "duration": 72546
     },
     {
       "title": "sonrie-prod: PM4-01 Productos con step pricing muestran escalones",
       "status": "passed",
-      "duration": 18224
-    },
-    {
-      "title": "sonrie-prod: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
-      "status": "passed",
-      "duration": 19794
-    },
-    {
-      "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
-      "status": "passed",
-      "duration": 19695
-    },
-    {
-      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
-      "status": "failed",
-      "duration": 52193
-    },
-    {
-      "title": "sonrie-prod: PM5-01 Catálogo carga productos con precios (promotions funcional)",
-      "status": "passed",
-      "duration": 15929
-    },
-    {
-      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
-      "status": "passed",
-      "duration": 16851
-    },
-    {
-      "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
-      "status": "passed",
-      "duration": 19690
-    },
-    {
-      "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
-      "status": "passed",
-      "duration": 14003
-    },
-    {
-      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
-      "status": "passed",
-      "duration": 15987
-    },
-    {
-      "title": "sonrie-prod: C3-15 Cupon invalido muestra error claro",
-      "status": "skipped",
-      "duration": 22042
-    },
-    {
-      "title": "sonrie-prod: C3-03 Precios consistentes catalogo vs carro",
-      "status": "passed",
-      "duration": 22789
-    },
-    {
-      "title": "sonrie-prod: C3-14 Campo de cupon visible en carro (enableCoupons)",
-      "status": "passed",
-      "duration": 19976
-    },
-    {
-      "title": "sonrie-prod: PAG-16 Montos en historial no muestran valores negativos confusos",
-      "status": "passed",
-      "duration": 15231
-    },
-    {
-      "title": "sonrie-prod: PAG-04 Historial de pagos carga correctamente",
-      "status": "passed",
-      "duration": 14127
-    },
-    {
-      "title": "sonrie-prod: C3-04 Descuento visible en catalogo",
-      "status": "skipped",
-      "duration": 55
+      "duration": 40386
     },
     {
       "title": "sonrie-prod: C7-12 /payment-documents carga sin error cuando flag=true",
       "status": "skipped",
-      "duration": 14217
+      "duration": 38290
+    },
+    {
+      "title": "sonrie-prod: PM5-02 Carrito muestra totales con descuentos aplicados",
+      "status": "passed",
+      "duration": 13586
+    },
+    {
+      "title": "sonrie-prod: PM5-03 Catálogo no queda en loading infinito si promotions es lento",
+      "status": "passed",
+      "duration": 9541
+    },
+    {
+      "title": "sonrie-prod: PM5-01 Catálogo carga productos con precios (promotions funcional)",
+      "status": "passed",
+      "duration": 10202
+    },
+    {
+      "title": "sonrie-prod: PAG-16 Montos en historial no muestran valores negativos confusos",
+      "status": "passed",
+      "duration": 9566
+    },
+    {
+      "title": "sonrie-prod: PAG-04 Historial de pagos carga correctamente",
+      "status": "passed",
+      "duration": 9552
+    },
+    {
+      "title": "sonrie-prod: C5-05 Sugerencias se pueden agregar al carro",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: Sin imágenes rotas en catálogo @catalog @calidad",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: Catálogo carga con productos visibles @catalog @calidad",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-11 Precio bruto vs neto — impuestos segun config",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-PM8 Sanity impuestos — impuesto no excede 30% del neto",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-15 Cupon invalido muestra error claro",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-14 Campo de cupon visible en carro (enableCoupons)",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-04 Descuento visible en catalogo",
+      "status": "skipped",
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: C3-03 Precios consistentes catalogo vs carro",
+      "status": "skipped",
+      "duration": 0
     },
     {
       "title": "sonrie-prod: C3-02 Detectar productos con precio $0",
       "status": "skipped",
-      "duration": 77
+      "duration": 0
     },
     {
       "title": "sonrie-prod: C3-01 Precios visibles en catalogo anonimo (formato CLP)",
       "status": "skipped",
-      "duration": 57
+      "duration": 0
+    },
+    {
+      "title": "sonrie-prod: PM2-04 Modal/UI de cupón no queda en loading infinito",
+      "status": "passed",
+      "duration": 44477
     }
-  ],
-  "endTime": "2026-04-27T20:03:09.036Z"
+  ]
 }
