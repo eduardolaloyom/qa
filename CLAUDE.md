@@ -27,6 +27,9 @@ Comandos activos como slash commands en Claude Code (vía `.claude/commands/` �
 | Auditar flow APP Maestro | `/audit-maestro {FLOW}` |
 | Review de PR/cambio de código | "grillame este PR desde perspectiva QA" (inline) |
 | Guardar hallazgos Cowork | `agrega modo {X} al archivo de sesión de {CLIENTE}` |
+| Sincronizar datos MongoDB → clients.ts | `/sync-qa-data` o `/sync-qa-data staging --client {slug}` |
+| Resumen QA semanal de todos los clientes | `/weekly-qa-pulse` o `/weekly-qa-pulse {FECHA}` |
+| Limpiar repo (DS_Store, PNGs viejos, dirs vacíos) | `/cleanup-repo` o `/cleanup-repo deep` |
 
 **Cuándo NO re-extraer MongoDB:** si `data/qa-matrix-staging.json` tiene menos de 7 días y no hubo cambios de config en el cliente, saltarse extracción y correr directo `/run-playwright`.
 
@@ -102,6 +105,9 @@ Los roles se aplican inline — no son sub-agentes separados. Claude adopta el r
 - **QA Coordinator** (`ai-specs/.agents/qa-coordinator.md`): planificación, cobertura, gaps
 - **Playwright Specialist** (`ai-specs/.agents/playwright-specialist.md`): specs E2E, fixtures
 - **Maestro Specialist** (`ai-specs/.agents/maestro-specialist.md`): flows APP Android
+- **Data Pipeline Specialist** (`ai-specs/.agents/data-pipeline-specialist.md`): sincronización MongoDB → clients.ts, KEY_ALIASES, cuándo re-extraer
+- **Weekly QA Pulse** (`ai-specs/.agents/weekly-qa-pulse.md`): síntesis semanal de estado QA por cliente (scores, trends, issues Linear)
+- **Repo Cleanup Specialist** (`ai-specs/.agents/repo-cleanup-specialist.md`): qué archivos son seguros eliminar vs. protegidos
 
 ## Reglas para Claude
 
