@@ -64,6 +64,39 @@ for (const [key, client] of Object.entries(clients)) {
       await page.screenshot({ path: `test-results/promotions-cart-totals-${key}.png`, fullPage: true });
     });
 
+    test(`${key}: C3-FIL01 Filtro "Ofertas" muestra vacío cuando promotions=[]`, async ({ authedPage: page }) => {
+      // Sonrie-QA-003: con promotions=[] el filtro devolvía el catálogo completo en vez de lista vacía
+      if ((client.promotions?.length ?? 0) > 0) {
+        test.skip(true, `${client.name} tiene ${client.promotions!.length} promociones activas — test solo aplica cuando promotions=[]`);
+        return;
+      }
+
+      await page.goto(`${client.baseURL}/products`);
+      await page.waitForLoadState('domcontentloaded');
+
+      // Buscar el filtro "Ofertas" en el catálogo
+      const ofertasFilter = page.getByRole('button', { name: /ofertas/i })
+        .or(page.getByText(/^ofertas$/i))
+        .or(page.locator('[data-filter*="oferta" i], [data-category*="oferta" i]'));
+
+      const filterVisible = await ofertasFilter.first().isVisible({ timeout: 10_000 }).catch(() => false);
+
+      if (!filterVisible) {
+        test.skip(true, `${client.name}: filtro "Ofertas" no encontrado en UI — puede no estar habilitado`);
+        return;
+      }
+
+      await ofertasFilter.first().click();
+      await page.waitForLoadState('domcontentloaded');
+      await page.waitForTimeout(2_000);
+
+      // Con promotions=[], el filtro debe devolver 0 productos (lista vacía o mensaje)
+      const productCards = page.locator('[class*="product-card" i], [class*="productCard" i], [data-testid*="product"]');
+      const count = await productCards.count();
+
+      expect(count, `${client.name}: filtro Ofertas con promotions=[] devolvió ${count} productos — debería ser 0`).toBe(0);
+    });
+
     test(`${key}: PM5-03 Catálogo no queda en loading infinito si promotions es lento`, async ({ authedPage: page }) => {
       // Simula el escenario del PM5: promotions lento pero no completamente caído
       const startTime = Date.now();

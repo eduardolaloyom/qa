@@ -292,6 +292,7 @@ Después del flujo de compra, valida que los flags del cliente se reflejan corre
 | `hasTransferPaymentType` | Opción "Transferencia" en checkout | `/cart` |
 | `enableMassiveOrderSend` | Botón envío masivo en historial | `/orders` |
 | `enableCreditNotes` | Opción notas de crédito en documentos | `/payment-documents` |
+| `packagingInformation.hidePackagingInformationB2B` | Información de embalaje oculta en tarjetas de producto | `/products` |
 
 **Regla:** Para cada flag, anota valor de config (true/false) y lo que observas en la UI. Si difieren → issue P2.
 

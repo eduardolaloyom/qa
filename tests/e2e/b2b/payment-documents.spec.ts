@@ -29,8 +29,11 @@ for (const [key, client] of Object.entries(clients)) {
 
       // El link/opción de documentos NO debe aparecer en el menú lateral ni en nav (NO el footer)
       // Scope a nav/aside/header para excluir el footer que puede tener links a /payment-documents
+      // Match "Mis documentos", "Documentos tributarios", or bare "Documentos" menu item.
+      // Scoped to nav/aside/header to avoid false matches in footer or page body.
+      // Sonrie-QA-001: menu showed plain "Documentos" — regex updated to catch this variant.
       const menuDocLink = page.locator('nav, aside, header, [role="navigation"], [role="banner"]')
-        .getByText(/mis documentos|documentos tributarios/i)
+        .getByText(/\bdocumentos\b/i)
         .or(page.locator('nav a[href*="payment-documents"], aside a[href*="payment-documents"], header a[href*="payment-documents"]'));
 
       const isVisible = await menuDocLink.first().isVisible({ timeout: 5_000 }).catch(() => false);
