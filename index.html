@@ -2246,9 +2246,11 @@ async function initDashboard() {
         latestRun = await loadRunDetails(allRuns[0].date);
         if (!latestRun) return;
 
-        // Point the header button to the latest actual report (has data/ dir)
-        const latestReportUrl = Object.values(latestRun.clients || {}).map(c => c.reportUrl).find(u => u);
-        if (latestReportUrl) document.getElementById('playwrightReportBtn').href = latestReportUrl;
+        // Point the header button to the report with the most tests (most complete run)
+        const bestClient = Object.values(latestRun.clients || {})
+            .filter(c => c.reportUrl)
+            .sort((a, b) => (b.tests || 0) - (a.tests || 0))[0];
+        if (bestClient) document.getElementById('playwrightReportBtn').href = bestClient.reportUrl;
 
         updateSummary();
         updateFailureGroups();
