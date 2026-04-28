@@ -148,7 +148,7 @@
       "tests": 101,
       "passed": 100,
       "failed": 1,
-      "reportUrl": "reports/2026-04-27/index.html",
+      "reportUrl": "reports/bastien/index.html",
       "client_slug": "bastien",
       "last_tested": "2026-04-27"
     },
@@ -159,7 +159,7 @@
       "tests": 96,
       "passed": 95,
       "failed": 1,
-      "reportUrl": "reports/index.html",
+      "reportUrl": "",
       "client_slug": "sonrie",
       "last_tested": "2026-04-23"
     },
@@ -169,7 +169,7 @@
       "tests": 32,
       "passed": 26,
       "failed": 4,
-      "reportUrl": "reports/index.html",
+      "reportUrl": "",
       "last_tested": "2026-04-07"
     },
     "surtiventas": {
@@ -178,7 +178,7 @@
       "tests": 25,
       "passed": 20,
       "failed": 5,
-      "reportUrl": "reports/index.html",
+      "reportUrl": "",
       "last_tested": "2026-04-07"
     },
     "sonrie-prod": {
@@ -188,7 +188,7 @@
       "tests": 131,
       "passed": 130,
       "failed": 1,
-      "reportUrl": "reports/index.html",
+      "reportUrl": "reports/2026-04-27/index.html",
       "client_slug": "sonrie-prod",
       "last_tested": "2026-04-23"
     }
