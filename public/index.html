@@ -1665,7 +1665,7 @@
         <div id="envBadge"></div>
         <div class="header-actions">
 <a href="qa-reports/" class="btn-ghost">📋 Reportes Cowork</a>
-<a href="reports/index.html" class="btn-ghost" target="_blank">🔬 Playwright Report</a>
+<a href="reports/index.html" class="btn-ghost" target="_blank" id="playwrightReportBtn">🔬 Playwright Report</a>
         </div>
     </header>
 
@@ -2245,6 +2245,10 @@ async function initDashboard() {
         }
         latestRun = await loadRunDetails(allRuns[0].date);
         if (!latestRun) return;
+
+        // Point the header button to the latest actual report (has data/ dir)
+        const latestReportUrl = Object.values(latestRun.clients || {}).map(c => c.reportUrl).find(u => u);
+        if (latestReportUrl) document.getElementById('playwrightReportBtn').href = latestReportUrl;
 
         updateSummary();
         updateFailureGroups();
