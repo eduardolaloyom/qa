@@ -195,10 +195,14 @@ for (const [key, client] of Object.entries(clients)) {
         if (client.config.enablePaymentDocumentsB2B) {
           if (!hasContent) console.warn(`[${key}] enablePaymentDocumentsB2B=true but module not found`);
         } else {
-          if (hasContent) {
-            test.info().annotations.push({ type: 'warning', description: `enablePaymentDocumentsB2B=false but module visible` });
-          }
-          expect(notFound || redirected || !hasContent).toBeTruthy();
+          // Check nav/footer link is not visible — Sonrie-QA-001: link visible aunque flag=false
+          await page.goto(`${client.baseURL}`);
+          await page.waitForLoadState('domcontentloaded');
+          const navLink = page.locator('a[href*="payment-document"]');
+          const navLinkVisible = await navLink.first().isVisible({ timeout: 3_000 }).catch(() => false);
+
+          expect(navLinkVisible, `enablePaymentDocumentsB2B=false pero link a /payment-documents visible en navegación`).toBe(false);
+          expect(notFound || redirected || !hasContent, `enablePaymentDocumentsB2B=false pero módulo visible en /payment-documents`).toBeTruthy();
         }
         await context.close();
       });

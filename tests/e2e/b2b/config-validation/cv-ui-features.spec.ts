@@ -209,10 +209,19 @@ for (const [key, client] of Object.entries(clients)) {
 
         await page.goto(`${client.baseURL}/products?promotions=true`);
         await page.waitForLoadState('domcontentloaded');
+        await page.waitForTimeout(2_000);
 
-        const promoSection = page.getByText(SELECTORS.PROMO_TEXT).first();
-        const isVisible = await promoSection.isVisible({ timeout: 8_000 }).catch(() => false);
-        if (!isVisible) console.warn(`[${key}] useNewPromotions=${client.config.useNewPromotions} — no promo content found in staging`);
+        const hasPromotions = client.promotions && client.promotions.length > 0;
+
+        if (!hasPromotions) {
+          // promotions=[] → Ofertas debe mostrar estado vacío, no todos los productos — Sonrie-QA-003
+          const addButtons = await page.getByRole('button', { name: 'Agregar' }).count();
+          expect(addButtons, `promotions=[] pero Ofertas muestra ${addButtons} productos con botón Agregar`).toBe(0);
+        } else {
+          const promoSection = page.getByText(SELECTORS.PROMO_TEXT).first();
+          const isVisible = await promoSection.isVisible({ timeout: 8_000 }).catch(() => false);
+          if (!isVisible) console.warn(`[${key}] useNewPromotions=true pero no se encontró contenido promocional`);
+        }
         await context.close();
       });
     }
