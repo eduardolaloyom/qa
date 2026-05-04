@@ -1947,6 +1947,7 @@ let activeOwnerFilter = 'all';
 let activeClientFilter = 'all';
 let selectedEnv = null; // 'staging' | 'production' | null
 let _inlineFailureRegistry = [];
+let _maestroRegistry = [];
 let selectedClientKey = null;
 let _currentRunForDetail = null;
 let trendDays = 30;
@@ -3504,6 +3505,7 @@ function toggleAppClient(header) {
 
 async function loadAppReports() {
     const grid = document.getElementById('appReportsGrid');
+    _maestroRegistry = [];
     try {
         const r = await fetch('manifest.json?v=' + Date.now());
         if (!r.ok) throw new Error('no manifest');
@@ -3535,6 +3537,9 @@ async function loadAppReports() {
             const noteBadge = noteCount ? `<span style="background:#eef2ff;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;">✍️ ${noteCount}</span>` : '';
             const syncWarn = (latest.syncWarnings || []).filter(w => w.slow || !w.successful);
             const syncBadge = syncWarn.length ? `<span title="Sync lenta: ${syncWarn.map(w => w.actionType + ' ' + w.syncTimeSeconds + 's').join(', ')}" style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;cursor:default;">⚠️ Sync</span>` : '';
+            const regIdx = _maestroRegistry.length;
+            _maestroRegistry.push({ client, date: latest.date, passed: latest.passed, total: latest.total, health: latest.health, verdict: latest.verdict, syncWarn });
+            const linearBtn = latest.verdict !== 'LISTO' ? `<button class="action-btn btn-linear" onclick="event.stopPropagation();openLinearMaestro(${regIdx})" style="font-size:11px;padding:3px 10px;">🔗 Crear ticket</button>` : '';
 
             const historyHtml = reps.slice(1).map(rep => {
                 const hc = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';
@@ -3559,6 +3564,7 @@ async function loadAppReports() {
                     <span class="report-verdict ${verdictCls}" style="font-size:11px;">${latest.verdict}</span>
                     ${noteBadge}
                     ${syncBadge}
+                    ${linearBtn}
                     <span class="app-client-arrow">▾</span>
                 </div>
                 <div class="app-client-body">
@@ -3772,12 +3778,16 @@ function renderClientNotes(client) {
         const label = MQ_LABELS[e.severity] || e.severity;
         const ticketBadge = e.ticket ? `<span style="background:#dbeafe;color:#1e40af;border-radius:9999px;padding:1px 6px;font-size:11px;font-weight:600;">${escapeHtml(e.ticket)}</span>` : '';
         const detail = e.detail ? `<div class="mq-detail" style="font-size:12px;">${escapeHtml(e.detail)}</div>` : '';
+        const linearNoteBtn = (e.severity === 'bug' || e.severity === 'ux')
+            ? `<button class="action-btn btn-linear" onclick="openLinearAppNote(${e.id})" style="font-size:11px;padding:2px 8px;margin-left:4px;">🔗 Linear</button>`
+            : '';
         return `<div class="mq-entry">
             <div class="mq-entry-header">
                 <span class="mq-badge ${e.severity}" style="font-size:11px;">${label}</span>
                 ${ticketBadge}
                 <span class="mq-title" style="font-size:13px;">${escapeHtml(e.title)}</span>
                 <span class="mq-meta">${e.date}</span>
+                ${linearNoteBtn}
                 <button class="mq-delete" onclick="deleteManualQaEntry(${e.id}, '${escapeHtml(client)}')" title="Eliminar">✕</button>
             </div>
             ${detail}
@@ -3792,6 +3802,46 @@ function exportManualQa() {
     const a = document.createElement('a'); a.href = url;
     a.download = `manual-qa-${new Date().toISOString().slice(0,10)}.json`;
     a.click(); URL.revokeObjectURL(url);
+}
+
+function openLinearMaestro(i) {
+    const r = _maestroRegistry[i];
+    if (!r) return;
+    const rawTitle = `fix(app): ${r.client} — ${r.verdict} (${r.passed}/${r.total} flows, ${r.date})`;
+    const lines = [
+        `## Bug APP — Maestro\n\n`,
+        `Cliente: **${r.client}**  |  Fecha: ${r.date}\n`,
+        `Health: ${r.health}/100  |  Flows: ${r.passed}/${r.total}  |  Veredicto: **${r.verdict}**\n`,
+    ];
+    if (r.syncWarn && r.syncWarn.length > 0) {
+        lines.push(`\n## Advertencias de Sync\n\n`);
+        r.syncWarn.forEach(w => lines.push(`- ${w.actionType}: ${w.syncTimeSeconds}s (exitoso: ${w.successful})\n`));
+    }
+    lines.push(`\n## Acción requerida\n\n`);
+    lines.push(`Revisar flows fallidos en reporte Maestro de ${r.date} para cliente ${r.client}.\n`);
+    lines.push(`\n---\n_Generado automáticamente por QA Dashboard — YOM APP_`);
+    const title = encodeURIComponent(rawTitle);
+    const desc  = encodeURIComponent(lines.join(''));
+    window.open(`https://linear.app/yom-tech/new?title=${title}&description=${desc}`, '_blank');
+}
+
+function openLinearAppNote(id) {
+    const entries = loadManualQaEntries();
+    const e = entries.find(x => x.id === id);
+    if (!e) return;
+    const scope = e.severity === 'bug' ? 'app' : 'ux';
+    const rawTitle = `fix(${scope}): ${e.client} — ${e.title.slice(0, 80)}`;
+    const lines = [
+        `## ${e.severity === 'bug' ? 'Bug' : 'UX Issue'} APP — Nota QA Manual\n\n`,
+        `Cliente: **${e.client}**  |  Fecha: ${e.date}\n\n`,
+        `${e.title}\n`,
+    ];
+    if (e.detail) lines.push(`\n${e.detail}\n`);
+    if (e.ticket) lines.push(`\nReferencia: ${e.ticket}\n`);
+    lines.push(`\n---\n_Generado desde notas manuales QA Dashboard — YOM APP_`);
+    const title = encodeURIComponent(rawTitle);
+    const desc  = encodeURIComponent(lines.join(''));
+    window.open(`https://linear.app/yom-tech/new?title=${title}&description=${desc}`, '_blank');
 }
 </script>
 </body>
