@@ -33,3 +33,10 @@ jobs:
           git add public/index.html pattern_history.json
           git diff --cached --quiet || git commit -m "Update PeM dashboard $(date -u +%Y-%m-%d_%H:%M)"
           git pull --rebase && git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          keep_files: true
