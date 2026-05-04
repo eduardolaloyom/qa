@@ -335,10 +335,20 @@ for f in flows:
     else:
         icon, badge_cls, label = '❌', 'fail', 'FAILED'
     err_html = f'<div class="flow-error">{escape(f["error"])}</div>' if f['error'] else ''
+    row_linear = ''
+    if s == 'failed':
+        flt = quote(f'fix(app): {client_cap} — {f["name"]} ({date_str})')
+        fld_parts = [f'## Flow fallido — APP Maestro\n\nCliente: {client_cap}  |  Fecha: {date_str}']
+        fld_parts.append(f'Flow: {f["name"]}')
+        if f['error']:
+            fld_parts.append(f'Error: {f["error"]}')
+        fld_parts.append('\n---\n_Generado automáticamente por QA Dashboard — YOM APP_')
+        fld = quote('\n'.join(fld_parts))
+        row_linear = f'<a href="https://linear.app/yom-tech/new?title={flt}&description={fld}" target="_blank" style="display:inline-block;margin-top:4px;padding:2px 8px;background:#4f6ef7;color:white;border-radius:5px;font-size:0.72em;font-weight:600;text-decoration:none;">🔗 Ticket</a>'
     rows += f"""
         <tr>
             <td><span class="flow-icon">{icon}</span> {escape(f['name'])}{err_html}</td>
-            <td><span class="badge {badge_cls}">{label}</span></td>
+            <td><span class="badge {badge_cls}">{label}</span>{row_linear}</td>
             <td class="duration">{escape(f['duration'])}</td>
         </tr>"""
 
@@ -447,6 +457,44 @@ html = f"""<!DOCTYPE html>
 
     <footer>Generado {generated_at} · Maestro + YOM QA · 👤 Manual-Pass = tester confirmó visualmente</footer>
 </div>
+<script>
+(function(){{
+  const h1 = document.querySelector('h1');
+  const client = h1 ? h1.textContent.replace('📱 APP QA — ','') : '';
+  const pEl = document.querySelector('.site-header p, header p');
+  const parts = pEl ? pEl.textContent.split('·') : [];
+  const date = parts[parts.length-1]?.trim() || '';
+  function makeBtn(lt, ld){{
+    const a = document.createElement('a');
+    a.href = 'https://linear.app/yom-tech/new?title='+encodeURIComponent(lt)+'&description='+encodeURIComponent(ld);
+    a.target = '_blank';
+    a.style.cssText = 'display:inline-block;margin-left:8px;margin-top:3px;padding:2px 9px;background:#4f6ef7;color:white;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle;';
+    a.textContent = '🔗 Ticket';
+    return a;
+  }}
+  // Badge fail/warn cells (MongoDB BUG CONFIG, PASS+WARN, etc.)
+  document.querySelectorAll('.badge.fail, .badge.warn').forEach(function(b){{
+    if (b.closest('a')) return;
+    const txt = b.textContent.trim();
+    const cell = b.parentNode;
+    if (cell.querySelector('a[href*="linear"]')) return;
+    const lt = 'fix(app): '+client+' — '+txt.slice(0,80)+' ('+date+')';
+    const ld = '## Hallazgo APP\n\nCliente: '+client+'  |  Fecha: '+date+'\nHallazgo: '+txt+'\nContexto: '+cell.closest('tr')?.cells[0]?.textContent.trim().slice(0,120)+'\n\n---\n_Generado desde QA Dashboard — YOM APP_';
+    cell.appendChild(makeBtn(lt, ld));
+  }});
+  // P2/P3 hallazgo rows
+  document.querySelectorAll('.p2, .p3').forEach(function(p){{
+    const row = p.closest('tr');
+    if (!row) return;
+    const descCell = row.cells[1];
+    if (!descCell || descCell.querySelector('a[href*="linear"]')) return;
+    const title = descCell.querySelector('strong')?.textContent || descCell.textContent.trim().slice(0,80);
+    const lt = 'fix(app): '+client+' — '+title.slice(0,80)+' ('+date+')';
+    const ld = '## Hallazgo APP\n\nCliente: '+client+'  |  Fecha: '+date+'\nPrioridad: '+p.textContent+'\nDescripción: '+descCell.textContent.trim().slice(0,300)+'\n\n---\n_Generado desde QA Dashboard — YOM APP_';
+    descCell.appendChild(makeBtn(lt, ld));
+  }});
+}})();
+</script>
 </body>
 </html>"""
 

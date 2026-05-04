@@ -153,5 +153,41 @@
 
     <footer>Generado 2026-04-21 10:48 · Maestro + YOM QA · Samsung Galaxy R58X4049BCE · 0 orders placed</footer>
 </div>
+<script>
+(function(){
+  const h1 = document.querySelector("h1");
+  const client = h1 ? h1.textContent.replace("📱 APP QA — ","") : "";
+  const pEl = document.querySelector(".site-header p, header p");
+  const parts = pEl ? pEl.textContent.split("·") : [];
+  const date = parts[parts.length-1]?.trim() || "";
+  function makeBtn(lt, ld){
+    const a = document.createElement("a");
+    a.href = "https://linear.app/yom-tech/new?title="+encodeURIComponent(lt)+"&description="+encodeURIComponent(ld);
+    a.target = "_blank";
+    a.style.cssText = "display:inline-block;margin-left:8px;margin-top:3px;padding:2px 9px;background:#4f6ef7;color:white;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle;";
+    a.textContent = "🔗 Ticket";
+    return a;
+  }
+  document.querySelectorAll(".badge.fail, .badge.warn").forEach(function(b){
+    if (b.closest("a")) return;
+    const txt = b.textContent.trim();
+    const cell = b.parentNode;
+    if (cell.querySelector("a[href*=linear]")) return;
+    const lt = "fix(app): "+client+" — "+txt.slice(0,80)+" ("+date+")";
+    const ld = "## Hallazgo APP\n\nCliente: "+client+"  |  Fecha: "+date+"\nHallazgo: "+txt+"\nContexto: "+(cell.closest("tr")?.cells[0]?.textContent.trim().slice(0,120)||"")+"\n\n---\n_Generado desde QA Dashboard — YOM APP_";
+    cell.appendChild(makeBtn(lt, ld));
+  });
+  document.querySelectorAll(".p2, .p3").forEach(function(p){
+    const row = p.closest("tr");
+    if (!row) return;
+    const descCell = row.cells[1];
+    if (!descCell || descCell.querySelector("a[href*=linear]")) return;
+    const title = descCell.querySelector("strong")?.textContent || descCell.textContent.trim().slice(0,80);
+    const lt = "fix(app): "+client+" — "+title.slice(0,80)+" ("+date+")";
+    const ld = "## Hallazgo APP\n\nCliente: "+client+"  |  Fecha: "+date+"\nPrioridad: "+p.textContent+"\nDescripción: "+descCell.textContent.trim().slice(0,300)+"\n\n---\n_Generado desde QA Dashboard — YOM APP_";
+    descCell.appendChild(makeBtn(lt, ld));
+  });
+})();
+</script>
 </body>
 </html>
