@@ -1057,15 +1057,10 @@ def main():
             client_slug = unique_slugs[0]
             print(f"ℹ️  Auto-detected client: {client_slug}")
 
-    # Report directory: per-client if slug known, dated shared otherwise.
-    # Dated reports (reports/{date}/) prevent runs from different days or
-    # environments overwriting each other.
-    if client_slug:
-        dst_reports = project_root / "public" / "reports" / client_slug
-        report_url = f"reports/{client_slug}/index.html"
-    else:
-        dst_reports = project_root / "public" / "reports" / date
-        report_url = f"reports/{date}/index.html"
+    # Always use dated directory — never per-client paths that overwrite previous runs.
+    # reports/2026-05-04/ never overwrites reports/2026-05-03/
+    dst_reports = project_root / "public" / "reports" / date
+    report_url = f"reports/{date}/index.html"
 
     # Copy reports
     copy_playwright_report(src_report, dst_reports)
@@ -1076,15 +1071,10 @@ def main():
     # Generate run JSON
     run_json = generate_run_json(results, date, project_root=project_root)
 
-    # Update reportUrl only for the client(s) that actually ran in this batch
-    # When --client is explicit, only update that one client
-    # Otherwise update all clients that had non-skipped tests
-    if client_slug and client_slug in run_json["clients"]:
-        run_json["clients"][client_slug]["reportUrl"] = report_url
-    else:
-        for slug, client_data in run_json["clients"].items():
-            if client_data.get("passed", 0) + client_data.get("failed", 0) > 0:
-                client_data["reportUrl"] = report_url
+    # Update reportUrl only for clients that actually ran in this batch
+    for slug, client_data in run_json["clients"].items():
+        if client_data.get("passed", 0) + client_data.get("failed", 0) > 0:
+            client_data["reportUrl"] = report_url
 
     # Write run details — merge with existing if present (accumulate clients across runs)
     run_file = history_dir / f"{date}.json"

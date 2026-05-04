@@ -37,26 +37,14 @@ python3 "$QA_ROOT/tools/checklist-generator.py" --source mongo --cliente "$CLIEN
 echo ""
 
 # 3. Playwright E2E + config validation
+# global-teardown.ts auto-publica + commitea + pushea al terminar
 CLIENT_LOWER=$(echo "$CLIENT" | tr '[:upper:]' '[:lower:]')
 echo "🎭 Corriendo Playwright tests..."
 cd "$QA_ROOT/tests/e2e"
 npx playwright test --grep "$CLIENT_LOWER" 2>&1 || true
 echo ""
 
-# 4. Publicar resultados al dashboard
-echo "📊 Publicando resultados..."
-cd "$QA_ROOT"
-python3 tools/publish-results.py --client "$CLIENT_LOWER"
-echo ""
-
-# 5. Commit y push automático
-echo "🚀 Commiteando y subiendo..."
-git add public/
-git commit -m "chore: publish playwright results $CLIENT_LOWER $DATE" 2>/dev/null || echo "  (sin cambios nuevos)"
-git push origin main 2>/dev/null || true
-echo ""
-
-# 6. Resumen
+# 4. Resumen
 echo "=== RESUMEN ==="
 echo "📋 Checklist: $OUTPUT_DIR/checklist.md"
 echo "🎭 Playwright: dashboard actualizado en GitHub Pages"
