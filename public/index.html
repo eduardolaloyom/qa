@@ -920,7 +920,7 @@ function render() {
   h += '</div>';
   // Page 6: QA Dashboard (embedded via iframe)
   h += '<div class="page" id="page-6" style="padding:0;overflow:hidden">';
-  h += '<iframe id="qa-frame" src="qa/" style="width:100%;border:none;display:block" onload="resizeQaFrame()"></iframe>';
+  h += '<iframe id="qa-frame" style="width:100%;border:none;display:block" onload="resizeQaFrame()"></iframe>';
   h += '</div>';
   // Client detail pages
   DATA.clients.forEach((c, i) => {
@@ -1796,7 +1796,11 @@ function showPage(idx) {
   // Nav has 7 tabs (0-6); client detail pages (idx>=7) highlight "Clientes" tab (index 1)
   const navIdx = idx >= 7 ? 1 : idx;
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===navIdx));
-  if (idx === 6) resizeQaFrame();
+  if (idx === 6) {
+    const f = document.getElementById('qa-frame');
+    if (f && !f.getAttribute('src')) f.setAttribute('src', 'qa/index.html');
+    resizeQaFrame();
+  }
 }
 
 function toggleTheme() {
