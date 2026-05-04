@@ -746,7 +746,7 @@ def extract_config_validation_clients(all_tests_flat: list, staging_urls: dict) 
             "tests": len(tests) - skipped,  # show only executed tests
             "passed": passed,
             "failed": failed,
-            "reportUrl": "reports/index.html",
+            "reportUrl": "",
             "client_slug": client_key,
             # last_tested will be set by generate_run_json
         }
@@ -782,7 +782,7 @@ def generate_run_json(results: dict, date: str, project_root: Path = None) -> di
             "tests": len(suite_tests),
             "passed": passed,
             "failed": failed,
-            "reportUrl": "reports/index.html",
+            "reportUrl": "",
         })
         total_tests += len(suite_tests)
         total_passed += passed
@@ -820,7 +820,7 @@ def generate_run_json(results: dict, date: str, project_root: Path = None) -> di
             "tests": stats["tests"],
             "passed": stats["passed"],
             "failed": stats["failed"],
-            "reportUrl": "reports/index.html",
+            "reportUrl": "",
             "client_slug": suite_name,
         }
 

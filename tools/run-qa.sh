@@ -40,13 +40,26 @@ echo ""
 CLIENT_LOWER=$(echo "$CLIENT" | tr '[:upper:]' '[:lower:]')
 echo "🎭 Corriendo Playwright tests..."
 cd "$QA_ROOT/tests/e2e"
-npx playwright test --grep "$CLIENT_LOWER" --reporter=list 2>&1 || true
+npx playwright test --grep "$CLIENT_LOWER" 2>&1 || true
 echo ""
 
-# 4. Resumen
+# 4. Publicar resultados al dashboard
+echo "📊 Publicando resultados..."
+cd "$QA_ROOT"
+python3 tools/publish-results.py --client "$CLIENT_LOWER"
+echo ""
+
+# 5. Commit y push automático
+echo "🚀 Commiteando y subiendo..."
+git add public/
+git commit -m "chore: publish playwright results $CLIENT_LOWER $DATE" 2>/dev/null || echo "  (sin cambios nuevos)"
+git push origin main 2>/dev/null || true
+echo ""
+
+# 6. Resumen
 echo "=== RESUMEN ==="
 echo "📋 Checklist: $OUTPUT_DIR/checklist.md"
-echo "🎭 Playwright: ver test-results/"
+echo "🎭 Playwright: dashboard actualizado en GitHub Pages"
 echo "📊 Config MongoDB: data/qa-matrix.json"
 echo ""
 echo "Siguiente: revisar checklist y reportar issues"
