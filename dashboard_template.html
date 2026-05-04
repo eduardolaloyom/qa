@@ -918,16 +918,9 @@ function render() {
   h += '<div class="page" id="page-5">';
   h += renderMetricsPage();
   h += '</div>';
-  // Page 6: QA Dashboard
-  h += '<div class="page" id="page-6" style="display:flex;align-items:center;justify-content:center;height:calc(100vh - 56px);flex-direction:column;gap:24px">';
-  h += '<h2 style="color:var(--text);font-size:1.4rem;font-weight:700">QA Dashboard</h2>';
-  h += '<p style="color:var(--text-muted);font-size:0.95rem">Tests E2E, reportes Playwright y estado por cliente.</p>';
-  h += '<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">';
-  h += '<a href="qa/?env=staging" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 36px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-weight:600;font-size:1rem;min-width:160px">';
-  h += '<span style="font-size:1.5rem">🧪</span><span>Staging</span></a>';
-  h += '<a href="qa/?env=production" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 36px;background:#0f172a;color:#fff;border-radius:12px;text-decoration:none;font-weight:600;font-size:1rem;min-width:160px;border:2px solid var(--border)">';
-  h += '<span style="font-size:1.5rem">🚀</span><span>Producción</span></a>';
-  h += '</div>';
+  // Page 6: QA Dashboard (embedded via iframe)
+  h += '<div class="page" id="page-6" style="padding:0;overflow:hidden">';
+  h += '<iframe id="qa-frame" src="qa/" style="width:100%;border:none;display:block" onload="resizeQaFrame()"></iframe>';
   h += '</div>';
   // Client detail pages
   DATA.clients.forEach((c, i) => {
@@ -1803,6 +1796,7 @@ function showPage(idx) {
   // Nav has 7 tabs (0-6); client detail pages (idx>=7) highlight "Clientes" tab (index 1)
   const navIdx = idx >= 7 ? 1 : idx;
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===navIdx));
+  if (idx === 6) resizeQaFrame();
 }
 
 function toggleTheme() {
@@ -1903,6 +1897,16 @@ function showKpiPopup(tipo) {
 function closeKpiPopup() {
   document.getElementById('kpi-popup-overlay').style.display = 'none';
 }
+
+function resizeQaFrame() {
+  const frame = document.getElementById('qa-frame');
+  if (!frame) return;
+  const topbar = document.querySelector('.topbar');
+  const nav = document.getElementById('nav');
+  const used = (topbar ? topbar.offsetHeight : 0) + (nav ? nav.offsetHeight : 0);
+  frame.style.height = (window.innerHeight - used) + 'px';
+}
+window.addEventListener('resize', resizeQaFrame);
 
 // Init
 render();
