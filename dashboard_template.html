@@ -1817,10 +1817,17 @@ function showPage(idx) {
   // Nav has 7 tabs (0-6); client detail pages (idx>=7) highlight "Clientes" tab (index 1)
   const navIdx = idx >= 7 ? 1 : idx;
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===navIdx));
+  const topbar = document.querySelector('.topbar');
+  const nav = document.getElementById('nav');
   if (idx === 6) {
+    if (topbar) topbar.style.display = 'none';
+    if (nav) nav.style.display = 'none';
     const f = document.getElementById('qa-frame');
     if (f && !f.getAttribute('src')) f.setAttribute('src', 'qa/index.html');
     resizeQaFrame();
+  } else {
+    if (topbar) topbar.style.display = '';
+    if (nav) nav.style.display = '';
   }
 }
 
