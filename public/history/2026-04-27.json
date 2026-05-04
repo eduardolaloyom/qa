@@ -148,7 +148,7 @@
       "tests": 101,
       "passed": 100,
       "failed": 1,
-      "reportUrl": "reports/bastien/index.html",
+      "reportUrl": "",
       "client_slug": "bastien",
       "last_tested": "2026-04-27"
     },
