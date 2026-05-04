@@ -3539,7 +3539,7 @@ async function loadAppReports() {
             const syncBadge = syncWarn.length ? `<span title="Sync lenta: ${syncWarn.map(w => w.actionType + ' ' + w.syncTimeSeconds + 's').join(', ')}" style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;cursor:default;">⚠️ Sync</span>` : '';
             const regIdx = _maestroRegistry.length;
             _maestroRegistry.push({ client, date: latest.date, passed: latest.passed, total: latest.total, health: latest.health, verdict: latest.verdict, syncWarn });
-            const linearBtn = latest.verdict !== 'LISTO' ? `<button class="action-btn btn-linear" onclick="event.stopPropagation();openLinearMaestro(${regIdx})" style="font-size:11px;padding:3px 10px;">🔗 Crear ticket</button>` : '';
+            const linearBtn = `<button class="action-btn btn-linear" onclick="event.stopPropagation();openLinearMaestro(${regIdx})" style="font-size:11px;padding:3px 10px;">🔗 Crear ticket</button>`;
 
             const historyHtml = reps.slice(1).map(rep => {
                 const hc = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';

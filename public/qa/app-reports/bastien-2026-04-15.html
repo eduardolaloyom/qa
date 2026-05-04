@@ -9,15 +9,15 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-            min-height: 100vh; padding: 40px 20px;
+            min-height: 100vh; padding: 0 0 40px;
         }
-        .container { max-width: 860px; margin: 0 auto; }
-        .back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9em; display: inline-block; margin-bottom: 16px; }
-        .back-link:hover { color: white; }
-        header { color: white; margin-bottom: 24px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 24px 24px 0; }
+        .back-link { color: #4f6ef7; text-decoration: none; font-size: 0.88em; font-weight: 600; display: inline-block; margin-bottom: 16px; }
+        .back-link:hover { text-decoration: underline; }
+        header { color: #1a1d23; background: #ffffff; border: 1px solid #e2e5e9; border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
         header h1 { font-size: 1.9em; margin-bottom: 4px; }
-        header p { opacity: 0.8; font-size: 0.95em; }
-        .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.18); }
+        header p { opacity: 1; color: #64748b; font-size: 0.95em; }
+        .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.06); }
         .card-title { font-size: 1.05em; font-weight: 700; color: #111827; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }
         .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
         .stat { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; padding: 14px; border-radius: 10px; text-align: center; }
@@ -57,7 +57,7 @@
         .section-label { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin-bottom: 6px; }
         .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, 1fr); } }
-        footer { color: rgba(255,255,255,0.7); font-size: 0.82em; text-align: center; margin-top: 24px; }
+        footer { color: #9ca3af; font-size: 0.82em; text-align: center; margin-top: 24px; }
         .accionable { background: #f0fdf4; border-left: 4px solid #10b981; padding: 10px 14px; border-radius: 0 8px 8px 0; margin-bottom: 10px; font-size: 0.87em; }
         .accionable.warn { background: #fffbeb; border-left-color: #f59e0b; }
         .accionable strong { color: #111827; }
@@ -76,6 +76,7 @@
     <div class="card">
         <div class="card-title">Resumen ejecutivo</div>
         <span class="verdict-badge verdict-condiciones">CON CONDICIONES</span>
+        <a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Bastien%20%E2%80%94%20CON%20CONDICIONES%20%280/10%20flows%2C%202026-04-15%29&description=%23%23%20APP%20QA%20%E2%80%94%20Maestro%0A%0ACliente%3A%20Bastien%20%20%7C%20%20Fecha%3A%202026-04-15%0AHealth%3A%200/100%20%20%7C%20%20Flows%3A%200/10%20%20%7C%20%20Veredicto%3A%20CON%20CONDICIONES%0A%0A%23%23%20Acci%C3%B3n%20requerida%0A%0ARevisar%20reporte%20Maestro%20de%202026-04-15%20para%20cliente%20Bastien.%0A%0A---%0A_Generado%20autom%C3%A1ticamente%20por%20QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" style="display:inline-block;margin-top:12px;padding:7px 16px;background:#4f6ef7;color:white;border-radius:8px;text-decoration:none;font-size:0.85em;font-weight:600;">🔗 Crear ticket en Linear</a>
         <div class="stats">
             <div class="stat green"><div class="stat-value">10</div><div class="stat-label">Playwright pass</div></div>
             <div class="stat red"><div class="stat-value">5</div><div class="stat-label">Playwright fail</div></div>

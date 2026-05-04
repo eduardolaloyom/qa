@@ -284,6 +284,7 @@ python3 - "$CLIENTE_CAP" "$CLIENTE" "$DATE" "$RAW_LOG" "$REPORT_PATH" "$MANIFEST
 import sys, re, json, os
 from datetime import datetime
 from html import escape
+from urllib.parse import quote
 
 client_cap    = sys.argv[1]
 client_slug   = sys.argv[2]
@@ -346,6 +347,11 @@ manual_note = f' <span style="color:#6b7280;font-size:0.8em">(incl. {manual} man
 skip_note   = f' <span style="color:#6b7280;font-size:0.8em">({skipped} saltados)</span>' if skipped else ''
 generated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
 
+# ── Linear ticket link (always shown) ────────────────────────────────────
+lt = quote(f'fix(app): {client_cap} — {verdict} ({passed+manual}/{total} flows, {date_str})')
+ld = quote(f'## APP QA — Maestro\n\nCliente: {client_cap}  |  Fecha: {date_str}\nHealth: {health}/100  |  Flows: {passed+manual}/{total}  |  Veredicto: {verdict}\n\n## Acción requerida\n\nRevisar reporte Maestro de {date_str} para cliente {client_cap}.\n\n---\n_Generado automáticamente por QA Dashboard — YOM APP_')
+linear_btn = f'<a href="https://linear.app/yom-tech/new?title={lt}&description={ld}" target="_blank" style="display:inline-block;margin-top:12px;padding:7px 16px;background:#4f6ef7;color:white;border-radius:8px;text-decoration:none;font-size:0.85em;font-weight:600;">🔗 Crear ticket en Linear</a>'
+
 # ── HTML ──────────────────────────────────────────────────────
 html = f"""<!DOCTYPE html>
 <html lang="es">
@@ -357,19 +363,19 @@ html = f"""<!DOCTYPE html>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh; padding: 40px 20px;
+            background: #f8f9fb;
+            min-height: 100vh; padding: 0 0 40px;
         }}
-        .container {{ max-width: 860px; margin: 0 auto; }}
-        .back-link {{ color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9em; display: inline-block; margin-bottom: 16px; }}
-        .back-link:hover {{ color: white; }}
-        header {{ color: white; margin-bottom: 24px; }}
-        header h1 {{ font-size: 1.9em; margin-bottom: 4px; }}
-        header p {{ opacity: 0.8; font-size: 0.95em; }}
-        .card {{ background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.18); }}
-        .card-title {{ font-size: 1.05em; font-weight: 700; color: #111827; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid #e5e7eb; }}
-        .stats {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }}
-        .stat {{ background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 14px; border-radius: 10px; text-align: center; }}
+        .container {{ max-width: 1100px; margin: 0 auto; padding: 0 24px; }}
+        .site-header {{ background: #ffffff; border-bottom: 1px solid #e2e5e9; padding: 14px 24px; margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }}
+        .back-link {{ color: #4f6ef7; text-decoration: none; font-size: 0.88em; font-weight: 600; }}
+        .back-link:hover {{ text-decoration: underline; }}
+        .site-header h1 {{ font-size: 1.25em; font-weight: 700; color: #1a1d23; margin: 0; }}
+        .site-header p {{ font-size: 0.85em; color: #64748b; margin: 0; }}
+        .card {{ background: white; border-radius: 12px; padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.06); }}
+        .card-title {{ font-size: 1em; font-weight: 700; color: #111827; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1.5px solid #e5e7eb; }}
+        .stats {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 20px; }}
+        .stat {{ background: linear-gradient(135deg, #4f6ef7, #3b5bdb); color: white; padding: 14px; border-radius: 10px; text-align: center; }}
         .stat.green  {{ background: linear-gradient(135deg, #10b981, #059669); }}
         .stat.red    {{ background: linear-gradient(135deg, #ef4444, #dc2626); }}
         .stat.amber  {{ background: linear-gradient(135deg, #f59e0b, #d97706); }}
@@ -393,24 +399,28 @@ html = f"""<!DOCTYPE html>
         .badge {{ padding: 2px 10px; border-radius: 99px; font-size: 0.75em; font-weight: 700; }}
         .badge.pass   {{ background: #d1fae5; color: #065f46; }}
         .badge.manual {{ background: #dbeafe; color: #1e40af; }}
+        .badge.warn   {{ background: #fef3c7; color: #92400e; }}
         .badge.skip   {{ background: #f3f4f6; color: #6b7280; }}
         .badge.fail   {{ background: #fee2e2; color: #991b1b; }}
         .flow-error {{ font-size: 0.8em; color: #9ca3af; margin-top: 3px; font-style: italic; }}
         .duration {{ color: #9ca3af; white-space: nowrap; }}
-        footer {{ color: rgba(255,255,255,0.7); font-size: 0.82em; text-align: center; margin-top: 24px; }}
+        footer {{ color: #9ca3af; font-size: 0.82em; text-align: center; margin-top: 24px; }}
     </style>
 </head>
 <body>
-<div class="container">
+<div class="site-header">
     <a href="../" class="back-link">← Dashboard principal</a>
-    <header>
+    <div>
         <h1>📱 APP QA — {escape(client_cap)}</h1>
         <p>Maestro flows · {date_str}</p>
-    </header>
+    </div>
+</div>
+<div class="container">
 
     <div class="card">
         <div class="card-title">Resumen</div>
         <span class="verdict-badge verdict-{verdict_cls}">{verdict}</span>
+        {linear_btn}
         <div class="stats">
             <div class="stat"><div class="stat-value">{total}</div><div class="stat-label">Total flows</div></div>
             <div class="stat green"><div class="stat-value">{passed}</div><div class="stat-label">Auto-Pass</div></div>
