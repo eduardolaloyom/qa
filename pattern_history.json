@@ -98,12 +98,13 @@
         "id": "block_5. Cuadratura",
         "title": "5. Cuadratura genera bloqueos recurrentes",
         "type": "bloqueo",
-        "severity": "alto",
+        "severity": "critico",
         "clients": [
+          "Caren",
           "Coéxito",
           "Prinorte"
         ],
-        "count": 2
+        "count": 3
       },
       {
         "id": "block_4. Integraciones",
@@ -160,8 +161,8 @@
     ],
     "summary": {
       "total": 6,
-      "critico": 1,
-      "alto": 5,
+      "critico": 2,
+      "alto": 4,
       "medio": 0
     }
   }
