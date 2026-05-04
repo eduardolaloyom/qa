@@ -919,9 +919,15 @@ function render() {
   h += renderMetricsPage();
   h += '</div>';
   // Page 6: QA Dashboard
-  h += '<div class="page" id="page-6" style="display:flex;align-items:center;justify-content:center;height:calc(100vh - 56px);flex-direction:column;gap:16px">';
-  h += '<p style="color:var(--text-muted);font-size:1rem">Dashboard de tests E2E, reportes Playwright y estado por cliente.</p>';
-  h += '<a href="qa/" style="display:inline-block;padding:12px 28px;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:1rem">Abrir QA Dashboard →</a>';
+  h += '<div class="page" id="page-6" style="display:flex;align-items:center;justify-content:center;height:calc(100vh - 56px);flex-direction:column;gap:24px">';
+  h += '<h2 style="color:var(--text);font-size:1.4rem;font-weight:700">QA Dashboard</h2>';
+  h += '<p style="color:var(--text-muted);font-size:0.95rem">Tests E2E, reportes Playwright y estado por cliente.</p>';
+  h += '<div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center">';
+  h += '<a href="qa/?env=staging" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 36px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-weight:600;font-size:1rem;min-width:160px">';
+  h += '<span style="font-size:1.5rem">🧪</span><span>Staging</span></a>';
+  h += '<a href="qa/?env=production" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 36px;background:#0f172a;color:#fff;border-radius:12px;text-decoration:none;font-weight:600;font-size:1rem;min-width:160px;border:2px solid var(--border)">';
+  h += '<span style="font-size:1.5rem">🚀</span><span>Producción</span></a>';
+  h += '</div>';
   h += '</div>';
   // Client detail pages
   DATA.clients.forEach((c, i) => {
