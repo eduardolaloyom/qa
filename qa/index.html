@@ -1914,6 +1914,17 @@
     <!-- ══ TAB APP ══════════════════════════════════════════════ -->
     <div id="tab-app" style="display:none;">
 
+        <!-- Linear token + pending issues -->
+        <div class="card" style="margin-bottom:12px;padding:14px 18px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span style="font-size:13px;font-weight:600;color:#374151;">🔗 Tickets pendientes (Linear)</span>
+                <input id="linearTokenInput" type="password" placeholder="API Token Linear"
+                    style="flex:1;min-width:180px;padding:6px 10px;border:1px solid var(--c-border);border-radius:6px;font-size:12px;font-family:inherit;">
+                <button onclick="refreshLinearPending()" style="padding:6px 14px;background:var(--c-primary);color:white;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">Cargar</button>
+            </div>
+            <div id="linearPendingList" style="margin-top:12px;"></div>
+        </div>
+
         <!-- APP Tests (Maestro) -->
         <div class="card" id="appTestsCard">
             <div class="card-title">📱 Clientes APP (Maestro)
@@ -3610,7 +3621,15 @@ async function loadAppReports() {
         grid.innerHTML = '<p class="reports-empty">Sin reportes aún. Ejecuta <code>./tools/run-maestro.sh {cliente}</code> para generar el primero.</p>';
     }
 }
-document.addEventListener('DOMContentLoaded', loadAppReports);
+document.addEventListener('DOMContentLoaded', () => {
+    loadAppReports();
+    const stored = localStorage.getItem('linear_token');
+    if (stored) {
+        const inp = document.getElementById('linearTokenInput');
+        if (inp) inp.value = stored;
+        refreshLinearPending();
+    }
+});
 
 // ── Collapsible cards ──────────────────────────────────────
 function initCollapsibleCards() {
@@ -3802,6 +3821,74 @@ function exportManualQa() {
     const a = document.createElement('a'); a.href = url;
     a.download = `manual-qa-${new Date().toISOString().slice(0,10)}.json`;
     a.click(); URL.revokeObjectURL(url);
+}
+
+// ── Linear pending issues (APP tab) ──────────────────────────
+
+function saveLinearToken() {
+    const t = document.getElementById('linearTokenInput')?.value.trim();
+    if (t) localStorage.setItem('linear_token', t);
+    refreshLinearPending();
+}
+
+async function refreshLinearPending() {
+    const token = document.getElementById('linearTokenInput')?.value.trim()
+        || localStorage.getItem('linear_token') || '';
+    if (!token) { document.getElementById('linearPendingList').innerHTML = '<p style="font-size:12px;color:#9ca3af;">Ingresa un token Linear para ver los pendientes.</p>'; return; }
+    localStorage.setItem('linear_token', token);
+    const el = document.getElementById('linearPendingList');
+    el.innerHTML = '<p style="font-size:12px;color:#9ca3af;">Cargando...</p>';
+    const issues = await fetchLinearPendingAll();
+    if (!issues.length) { el.innerHTML = '<p style="font-size:12px;color:#9ca3af;">Sin tickets pendientes encontrados para los clientes APP.</p>'; return; }
+    const byClient = {};
+    issues.forEach(issue => {
+        const c = detectClientFromIssue(issue);
+        if (!byClient[c]) byClient[c] = [];
+        byClient[c].push(issue);
+    });
+    const priorityLabel = { 0:'Sin prioridad', 1:'Urgente', 2:'Alta', 3:'Media', 4:'Baja' };
+    const priorityColor = { 0:'#9ca3af', 1:'#ef4444', 2:'#f59e0b', 3:'#3b82f6', 4:'#6b7280' };
+    el.innerHTML = Object.entries(byClient).map(([client, items]) => `
+        <div style="margin-bottom:12px;">
+            <div style="font-size:12px;font-weight:700;color:#374151;margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;">${escapeHtml(client)}</div>
+            ${items.map(i => `
+            <div style="display:flex;align-items:flex-start;gap:8px;padding:7px 10px;background:#f9fafb;border-radius:7px;margin-bottom:4px;border-left:3px solid ${i.state?.color||'#e2e5e9'};">
+                <span style="font-size:11px;font-weight:700;color:#4f6ef7;white-space:nowrap;margin-top:1px;">${escapeHtml(i.identifier)}</span>
+                <span style="font-size:12px;flex:1;color:#111827;">${escapeHtml(i.title)}</span>
+                <span style="font-size:11px;color:${priorityColor[i.priority]||'#9ca3af'};white-space:nowrap;">${priorityLabel[i.priority]||''}</span>
+                <a href="${i.url}" target="_blank" style="font-size:11px;color:#4f6ef7;white-space:nowrap;">↗ Ver</a>
+            </div>`).join('')}
+        </div>`).join('');
+}
+
+async function fetchLinearPendingAll() {
+    const token = localStorage.getItem('linear_token');
+    if (!token) return [];
+    const clientNames = ['Bastien', 'Bastién', 'Prinorte', 'Surtiventas', 'CoExito', 'Caren', 'app', 'APP'];
+    const filterStr = clientNames.map(c => `{ title: { containsIgnoreCase: "${c}" } }`).join(', ');
+    const query = `{ issues(filter: { and: [ { state: { type: { in: ["unstarted","started","backlog"] } } }, { or: [${filterStr}] } ] }, first: 30, orderBy: updatedAt) { nodes { identifier title url priority state { name color } } } }`;
+    try {
+        const res = await fetch('https://api.linear.app/graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': token },
+            body: JSON.stringify({ query })
+        });
+        const d = await res.json();
+        return d?.data?.issues?.nodes || [];
+    } catch (e) {
+        document.getElementById('linearPendingList').innerHTML = `<p style="font-size:12px;color:#ef4444;">Error: ${e.message}</p>`;
+        return [];
+    }
+}
+
+function detectClientFromIssue(issue) {
+    const t = (issue.title + ' ' + (issue.identifier || '')).toLowerCase();
+    if (t.includes('bastien') || t.includes('bastién')) return 'Bastien';
+    if (t.includes('prinorte')) return 'Prinorte';
+    if (t.includes('surtiventas')) return 'Surtiventas';
+    if (t.includes('coexito') || t.includes('co-exito')) return 'CoExito';
+    if (t.includes('caren')) return 'Caren';
+    return 'APP (sin cliente)';
 }
 
 function openLinearMaestro(i) {
