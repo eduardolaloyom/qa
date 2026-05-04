@@ -49,8 +49,8 @@ CONFIG_FILE="$QA_ROOT/tests/app/config/config.${CLIENTE}.yaml"
 FLOWS_DIR="$QA_ROOT/tests/app/flows"
 CLIENTE_CAP=$(python3 -c "print('${CLIENTE}'.capitalize())")
 OUTPUT_DIR="$QA_ROOT/QA/${CLIENTE_CAP}/${DATE}"
-HTML_DIR="$QA_ROOT/public/app-reports"
-MANIFEST_FILE="$QA_ROOT/public/manifest.json"
+HTML_DIR="$QA_ROOT/public/qa/app-reports"
+MANIFEST_FILE="$QA_ROOT/public/qa/manifest.json"
 REPORT_FILE="${CLIENTE}-${DATE}.html"
 REPORT_PATH="$HTML_DIR/${REPORT_FILE}"
 RAW_LOG="${OUTPUT_DIR}/maestro.log"
@@ -505,9 +505,9 @@ manifest['reports'].sort(key=lambda x: x['date'], reverse=True)
 with open(manifest_file, 'w') as f:
     json.dump(manifest, f, indent=2, ensure_ascii=False)
 
-print(f"✅  Reporte: public/app-reports/{report_file}")
+print(f"✅  Reporte: public/qa/app-reports/{report_file}")
 print(f"📊  {passed}✅ {manual}👤 {failed}❌ {skipped}⏭ · Health {health}% · {verdict}")
 PYEOF
 
 echo ""
-echo "🌐 Dashboard: abre public/index.html"
+echo "🌐 Dashboard: abre public/qa/index.html"

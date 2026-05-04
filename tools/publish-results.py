@@ -1028,8 +1028,8 @@ def main():
         src_report = project_root / "tests" / "e2e" / "playwright-report"
     src_test_results = project_root / "tests" / "e2e" / "test-results"
 
-    dst_data = project_root / "public" / "data"
-    history_dir = project_root / "public" / "history"
+    dst_data = project_root / "public" / "qa" / "data"
+    history_dir = project_root / "public" / "qa" / "history"
 
     # Ensure history directory exists
     history_dir.mkdir(parents=True, exist_ok=True)
@@ -1081,11 +1081,11 @@ def main():
 
     if len(clients_in_run) == 1:
         slug = next(iter(clients_in_run))
-        dst_reports = project_root / "public" / "reports" / slug
-        report_url = f"reports/{slug}/index.html"
+        dst_reports = project_root / "public" / "qa" / "reports" / slug
+        report_url = f"qa/reports/{slug}/index.html"
     else:
-        dst_reports = project_root / "public" / "reports" / date
-        report_url = f"reports/{date}/index.html"
+        dst_reports = project_root / "public" / "qa" / "reports" / date
+        report_url = f"qa/reports/{date}/index.html"
 
     # Copy reports
     copy_playwright_report(src_report, dst_reports)

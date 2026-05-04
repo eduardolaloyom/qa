@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const OUTPUT = path.join(__dirname, '../public/live.json');
+const OUTPUT = path.join(__dirname, '../public/qa/live.json');
 const TMP_OUTPUT = OUTPUT + '.tmp';
-const GITHUB_REPO = 'eduardolaloyom/qa';
-const GITHUB_FILE = 'public/live.json';
+const GITHUB_REPO = 'YOMCL/qa';
+const GITHUB_FILE = 'public/qa/live.json';
 const PUSH_INTERVAL_MS = 10_000; // push a GitHub cada 10s máximo
 
 class LiveReporter {

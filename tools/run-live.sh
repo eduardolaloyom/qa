@@ -17,16 +17,16 @@ echo ""
 # Start local HTTP server for dashboard
 python3 -m http.server $PORT --directory public &
 SERVER_PID=$!
-trap "kill $SERVER_PID 2>/dev/null; rm -f public/live.json public/live.json.tmp" EXIT
+trap "kill $SERVER_PID 2>/dev/null; rm -f public/qa/live.json public/qa/live.json.tmp" EXIT
 
 # Open browser (macOS)
-sleep 0.5 && open "http://localhost:${PORT}" &
+sleep 0.5 && open "http://localhost:${PORT}/qa/" &
 
 # Reset live.json to clean idle sentinel BEFORE Playwright boots the reporter.
 # Without this, the dashboard's 3s pollLive() can observe the prior run's
 # counters during the ~1s window before live-reporter.js onBegin() fires.
 # Fixes PIPE-02 gap closed by Option C in 01-RESEARCH.md.
-cat > public/live.json <<'JSON'
+cat > public/qa/live.json <<'JSON'
 {"running":false,"total":0,"passed":0,"failed":0,"skipped":0,"currentTest":null,"recentTests":[]}
 JSON
 
@@ -42,10 +42,10 @@ python3 tools/publish-results.py
 
 # ── Git commit + push ─────────────────────────────────────────────────────────
 DATE=$(date +%Y-%m-%d)
-if git diff --quiet public/ 2>/dev/null && git diff --cached --quiet public/ 2>/dev/null; then
-    echo "ℹ️  Sin cambios nuevos en public/ — skip push"
+if git diff --quiet public/qa/ 2>/dev/null && git diff --cached --quiet public/qa/ 2>/dev/null; then
+    echo "ℹ️  Sin cambios nuevos en public/qa/ — skip push"
 else
-    git add public/
+    git add public/qa/
     git commit -m "chore: publish playwright results ${DATE}"
     git push || (git pull --rebase && git push)
     echo "✅ Dashboard actualizado en GitHub Pages"

@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PeM Dashboard — YOM</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.1.0/chartjs-plugin-annotation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<style>
+:root{--bg:#f8f9fb;--surface:#fff;--surface2:#f1f3f5;--border:#e2e5e9;--text:#1a1d23;--text-dim:#6b7280;--accent:#4f6ef7;--red:#ef4444;--orange:#f59e0b;--yellow:#eab308;--green:#22c55e;--blue:#3b82f6;--purple:#8b5cf6;--pink:#ec4899}
+[data-theme="dark"]{--bg:#0f1117;--surface:#1a1d27;--surface2:#252830;--border:#2d3039;--text:#e4e7ef;--text-dim:#8b90a0;--accent:#6c8cff;--red:#f87171;--orange:#fbbf24;--yellow:#facc15;--green:#4ade80;--blue:#60a5fa;--purple:#a78bfa;--pink:#f472b6}
+*{margin:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:all .3s}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar h1{font-size:18px;font-weight:700}.topbar h1 sup{font-size:10px;color:var(--text-dim);font-weight:400}
+.topbar-right{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--text-dim)}
+.theme-toggle{width:48px;height:26px;cursor:pointer;position:relative;background:var(--surface2);border-radius:20px;border:1px solid var(--border)}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--accent);transition:.3s}
+[data-theme="dark"] .theme-toggle::after{left:25px}
+.nav{display:flex;gap:4px;padding:8px 24px;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;flex-wrap:nowrap;position:sticky;top:0;z-index:99}
+.tab{padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;color:var(--text-dim);white-space:nowrap;transition:all .2s;border:none;background:none}
+.tab:hover{background:var(--surface2);color:var(--text)}
+.tab.active{background:var(--accent);color:#fff}
+.main{padding:24px;max-width:1440px;margin:0 auto}
+.page{display:none}.page.active{display:block}
+.grid{display:grid;gap:16px}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(400px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column}
+.kpi-card .label{font-size:13px;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+.kpi-card .value{font-size:28px;font-weight:700;margin:2px 0 8px}
+.kpi-card .sub{font-size:12px;color:var(--text-dim)}
+.kpi-card .client-list{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:12px}
+.kpi-card .client-row{display:flex;justify-content:space-between;padding:3px 0}
+.section-title{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:600}
+.badge-red{background:rgba(239,68,68,.12);color:var(--red)}
+.badge-orange{background:rgba(245,158,11,.12);color:var(--orange)}
+.badge-yellow{background:rgba(234,179,8,.12);color:var(--yellow)}
+.badge-green{background:rgba(34,197,94,.12);color:var(--green)}
+.badge-blue{background:rgba(59,130,246,.12);color:var(--blue)}
+.badge-gray{background:var(--surface2);color:var(--text-dim)}
+.badge-purple{background:rgba(139,92,250,.12);color:var(--purple)}
+.badge-soon{background:rgba(234,179,8,.12);color:var(--yellow)}
+.badge-upcoming{background:rgba(59,130,246,.12);color:var(--blue)}
+.small-note{font-size:11px;color:var(--text-dim)}
+
+/* Health gauge */
+.gauge{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;flex-shrink:0}
+.gauge-sm{width:44px;height:44px;font-size:15px}
+
+/* Client row */
+.client-row{display:flex;align-items:center;gap:16px;padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.client-row:last-child{border-bottom:none}
+.client-row:hover{background:var(--surface2)}
+.client-info{flex:1;min-width:0}
+.client-name{font-weight:700;font-size:15px}
+.client-phase{font-size:12px;color:var(--text-dim);margin-top:2px}
+.client-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.client-action{font-size:12px;color:var(--text-dim);max-width:420px;margin-top:4px;line-height:1.4}
+.client-metrics{display:flex;gap:20px;align-items:center;font-size:13px}
+.metric-item{text-align:center}
+.metric-item .num{font-size:18px;font-weight:700;display:block}
+.metric-item .lbl{color:var(--text-dim);font-size:11px}
+
+/* Charts */
+.chart-container{position:relative;height:280px}
+.chart-container canvas{max-height:280px}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 12px;border-bottom:2px solid var(--border);font-weight:600;color:var(--text-dim);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:10px 12px;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr:hover{background:var(--surface2)}
+
+/* Detail */
+.detail-section{margin-bottom:24px}
+.detail-section h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--accent)}
+.task-item{padding:12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px}
+.task-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.task-item-name{font-weight:600;font-size:13px}
+.task-item-notes{font-size:12px;color:var(--text-dim);margin-top:6px;line-height:1.5}
+
+/* Phase matrix */
+.phase-matrix{overflow-x:auto}
+.phase-cell{padding:6px 4px;text-align:center;font-size:9px;font-weight:600;color:#fff;min-width:50px}
+
+.compliance-bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;width:100px}
+.compliance-fill{height:100%;border-radius:4px}
+
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:200;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;width:90%;max-width:640px;max-height:80vh;overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+
+.generated-note{text-align:center;padding:16px;font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);margin-top:32px}
+
+@media(max-width:768px){.grid-4{grid-template-columns:1fr 1fr}.grid-2,.grid-3{grid-template-columns:1fr}.main{padding:12px}.chart-container{height:220px}}
+
+.kpi-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;display:flex;align-items:center;justify-content:center}
+.kpi-popup-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 28px;width:660px;max-width:92vw;max-height:80vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.kpi-popup-box h3{margin:0 0 14px;font-size:.95rem;color:var(--text-dim);font-weight:700}
+.kpi-popup-list{list-style:none;padding:0;margin:0}
+.kpi-popup-list li{padding:0;border-bottom:none;font-size:.8rem;color:var(--text)}
+.kpi-popup-list .tk-client{font-weight:700;color:var(--accent);min-width:90px;flex-shrink:0}
+.kpi-popup-list .tk-name{flex:1}
+.kpi-popup-list .tk-due{color:var(--red);font-size:.72rem;white-space:nowrap}
+.kpi-popup-close{margin-top:14px;padding:5px 16px;border:none;background:var(--accent);color:#fff;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600}
+.tk-task-block{padding:8px 10px 10px;border-bottom:1px solid var(--border)}
+.tk-task-block:last-child{border-bottom:none}
+.tk-task-row{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.tk-bloqueado{font-size:.7rem;color:var(--red);margin-top:4px;line-height:1.4;padding-left:2px}
+.tk-bloqueado-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:default}
+.tk-bloqueado-text.expanded{display:block}
+.tk-expand-btn{font-size:.65rem;color:var(--accent);cursor:pointer;font-weight:600;white-space:nowrap;margin-left:2px;background:none;border:none;padding:0}
+.tk-action-chip{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 9px;border-radius:20px;margin-top:5px;border:1.5px solid currentColor;letter-spacing:.02em}
+.kpi-card[onclick]{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.kpi-card[onclick]:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(99,102,241,.3)}
+
+</style>
+</head>
+<body data-theme="light">
+<div class="topbar">
+<h1>PeM Dashboard <sup>v5</sup></h1>
+<div class="topbar-right">
+<span id="timestamp"></span>
+<div class="theme-toggle" onclick="toggleTheme()"></div>
+</div>
+</div>
+<div class="nav" id="nav"></div>
+<div class="main" id="main"></div>
+<div class="generated-note">Generado desde Notion \u2014 \ud83d\uddfa\ufe0f Puesta en Marcha 2026<br><span id="gen-date"></span></div>
+<div class="modal-overlay" id="phase-modal" onclick="if(event.target===this)closeModal()"><div class="modal-box" id="phase-modal-content"></div></div>
+
+<script>
+const DATA = __DATA_JSON__;
+const DATA_OPS = __DATA_OPS_JSON__;
+const PATTERN_HISTORY = __PATTERN_HISTORY_JSON__;
+
+// ── Metrics Operativas Helpers ──
+const RAG_THRESHOLDS = {
+  time_to_live: { green: 120, amber: 180, unit: 'dias', direction: 'lower_better' },
+  cycle_time_stddev: { green: 5, amber: 15, unit: 'dias', direction: 'lower_better' },
+  capacidad_equipo: { green: 3, amber: 7, unit: 'dias_delay', direction: 'lower_better' },
+  bug_rate: { green: 0.5, amber: 1.5, unit: 'ratio', direction: 'lower_better' },
+  atraso_promedio: { green: 0.2, amber: 0.5, unit: 'ratio', direction: 'lower_better' },
+  integraciones_en_tiempo: { green: 0.8, amber: 0.5, unit: 'ratio', direction: 'higher_better' },
+  retrabajo: { green: 0.1, amber: 0.25, unit: 'ratio', direction: 'lower_better' },
+  block_resolution_time: { green: 3, amber: 7, unit: 'dias', direction: 'lower_better' },
+  bug_recurrence: { green: 0.1, amber: 0.3, unit: 'ratio', direction: 'lower_better' },
+  cruce_limpio: { green: 100, amber: 100, unit: 'score', direction: 'higher_better' },
+  tasa_rechazo: { green: 0.15, amber: 0.35, unit: 'ratio', direction: 'lower_better' }
+};
+
+const KPI_DISPLAY_NAMES = {
+  time_to_live: 'Time to Live',
+  cycle_time_stddev: 'Desv. Estandar Cycle Time',
+  capacidad_equipo: 'Capacidad del Equipo',
+  bug_rate: 'Bug Rate',
+  atraso_promedio: 'Atraso Promedio',
+  integraciones_en_tiempo: 'Integraciones en Tiempo',
+  retrabajo: 'Ratio de Retrabajo',
+  block_resolution_time: 'Tiempo Resolucion Bloqueos',
+  bug_recurrence: 'Bug Recurrence',
+  cruce_limpio: 'Cruce Limpio',
+  tasa_rechazo: 'Tasa de Rechazo'
+};
+
+const KPI_FORMATTERS = {
+  time_to_live: v => v + ' dias',
+  cycle_time_stddev: v => v.toFixed(1) + ' dias',
+  capacidad_equipo: v => v + ' dias',
+  bug_rate: v => v.toFixed(2) + 'x',
+  atraso_promedio: v => Math.round(v * 100) + '%',
+  integraciones_en_tiempo: v => Math.round(v * 100) + '%',
+  retrabajo: v => Math.round(v * 100) + '%',
+  block_resolution_time: v => v.toFixed(1) + ' dias',
+  bug_recurrence: v => Math.round(v * 100) + '%',
+  cruce_limpio: v => v === 100 ? 'Limpio' : 'Con errores',
+  tasa_rechazo: v => Math.round(v * 100) + '%'
+};
+
+function ragColor(kpiKey, value) {
+  if (value === null || value === undefined) return 'var(--text-dim)';
+  const t = RAG_THRESHOLDS[kpiKey];
+  if (!t) return 'var(--text-dim)';
+  if (t.direction === 'lower_better') {
+    if (value <= t.green) return 'var(--green)';
+    if (value <= t.amber) return 'var(--orange)';
+    return 'var(--red)';
+  } else {
+    if (value >= t.green) return 'var(--green)';
+    if (value >= t.amber) return 'var(--orange)';
+    return 'var(--red)';
+  }
+}
+
+function formatKpiValue(kpiKey, value) {
+  if (value === null || value === undefined) return 'Sin datos';
+  const fmt = KPI_FORMATTERS[kpiKey];
+  return fmt ? fmt(value) : String(value);
+}
+
+function getCssColor(varName) {
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+}
+
+function getKpiData(kpiKey) {
+  return DATA_OPS[kpiKey] || {};
+}
+
+function getClientKpiValue(kpiKey, client) {
+  const kpi = getKpiData(kpiKey);
+  const entry = kpi[client];
+  if (!entry || entry.status === 'no_data') return null;
+  return entry.value;
+}
+
+// ── Helpers ──
+const TODAY = new Date();
+const parseDate = s => s ? new Date(s + 'T00:00:00') : null;
+const diffDays = (a, b) => Math.round((b - a) / 86400000);
+const clientTasks = c => DATA.tasks.filter(t => t.Cliente === c && t.Tipo === 'Tarea');
+const stateKey = s => {
+  if (!s) return 'pending';
+  const l = s.toLowerCase();
+  if (l.includes('bloqueado')) return 'blocked';
+  if (l.includes('progreso')) return 'progress';
+  if (l.includes('completado')) return 'done';
+  if (l.includes('revisi')) return 'review';
+  if (l.includes('archivado')) return 'archived';
+  return 'pending';
+};
+const stateColor = k => ({blocked:'var(--red)',progress:'var(--blue)',done:'var(--green)',review:'var(--purple)',archived:'var(--text-dim)',pending:'var(--orange)'}[k]||'var(--text-dim)');
+const stateBg = k => ({blocked:'rgba(239,68,68,.12)',progress:'rgba(59,130,246,.12)',done:'rgba(34,197,94,.12)',review:'rgba(139,92,250,.12)',archived:'var(--surface2)',pending:'rgba(245,158,11,.12)'}[k]||'var(--surface2)');
+const stateLabel = k => ({blocked:'Bloqueado',progress:'En progreso',done:'Completado',review:'En revisi\u00f3n',archived:'Archivado',pending:'Pendiente'}[k]||'Pendiente');
+
+// ── Metrics ──
+// Relación del cliente: busca el primer valor no vacío de "Relacion" en sus tareas
+function clientRelacion(client) {
+  const ts = clientTasks(client);
+  for (let i = 0; i < ts.length; i++) {
+    if (ts[i].Relacion) return ts[i].Relacion.toLowerCase();
+  }
+  return 'estable'; // default si no hay dato
+}
+
+// Health Score v4: 100 - overdue - blocked - blockedPhases - relación + progress
+// Formula: 100 - min(60, overdue*6) - min(20, blocked*5) - min(10, blockedPhases*7) - relPenalty + min(10, progress*0.10)
+function healthScore(client) {
+  const ts = clientTasks(client);
+  if (!ts.length) return 0;
+
+  const overdueTasks = ts.filter(t => {
+    const end = parseDate(t.FechaTermino);
+    return end && end < TODAY && stateKey(t.Estado) !== 'done';
+  }).length;
+
+  const blockedTasks = ts.filter(t => stateKey(t.Estado) === 'blocked').length;
+
+  // Fases con al menos 1 tarea bloqueada
+  const phaseMap = {};
+  ts.forEach(t => { if (t.Fase) { if (!phaseMap[t.Fase]) phaseMap[t.Fase] = []; phaseMap[t.Fase].push(t); } });
+  const blockedPhases = Object.values(phaseMap).filter(tasks => tasks.some(t => stateKey(t.Estado) === 'blocked')).length;
+
+  // Penalización por relación: mala=10, estable=5, buena=0
+  const rel = clientRelacion(client);
+  const relPenalty = rel.includes('mala') ? 10 : rel.includes('buena') ? 0 : 5;
+
+  // Progreso general: tareas done / total
+  const done = ts.filter(t => stateKey(t.Estado) === 'done').length;
+  const progressPercent = ts.length ? (done / ts.length) * 100 : 0;
+
+  let score = 100
+    - Math.min(60, overdueTasks * 6)
+    - Math.min(20, blockedTasks * 5)
+    - Math.min(10, blockedPhases * 7)
+    - relPenalty
+    + Math.min(10, progressPercent * 0.10);
+
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+// Pesos por fase calculados dinámicamente desde fechas reales en Notion
+const PHASE_WEIGHTS = DATA.phaseWeights || {};
+const TOTAL_PROJECT_DAYS = DATA.totalProjectDays || 1;
+
+// Progreso ponderado: cada fase pesa según su duración real en días
+function progressPct(client) {
+  const ts = clientTasks(client);
+  if (!ts.length) return 0;
+  let total = 0;
+  DATA.phases.forEach(phase => {
+    const phaseTasks = ts.filter(t => t.Fase === phase);
+    const w = (PHASE_WEIGHTS[phase] || 1) / TOTAL_PROJECT_DAYS;
+    total += phaseProgress(phaseTasks) * w;
+  });
+  return Math.round(total);
+}
+
+// Cumplimiento por FASE: solo cuenta tareas done o en progreso con fechas. Pendientes se ignoran.
+function compliancePct(client) {
+  const ts = clientTasks(client);
+  const phaseMap = {};
+  ts.forEach(t => {
+    if (!t.Fase) return;
+    if (!phaseMap[t.Fase]) phaseMap[t.Fase] = [];
+    phaseMap[t.Fase].push(t);
+  });
+  let totalPhasePct = 0, phaseCount = 0;
+  Object.entries(phaseMap).forEach(([phase, tasks]) => {
+    let pTotal = 0, pCount = 0;
+    tasks.forEach(t => {
+      const start = parseDate(t.FechaInicio);
+      const end = parseDate(t.FechaTermino);
+      const k = stateKey(t.Estado);
+      if (k === 'pending') return; // pendientes no cuentan
+      if (start && end) {
+        const planned = Math.max(diffDays(start, end), 1);
+        if (k === 'done') {
+          pTotal += 100;
+        } else {
+          const actual = Math.max(diffDays(start, TODAY), 1);
+          pTotal += Math.min(100, Math.round(planned / actual * 100));
+        }
+        pCount++;
+      }
+    });
+    if (pCount > 0) {
+      totalPhasePct += Math.round(pTotal / pCount);
+      phaseCount++;
+    }
+  });
+  return phaseCount ? Math.round(totalPhasePct / phaseCount) : null;
+}
+
+// Cumplimiento desglosado por fase (para chart). Mismo criterio: ignora pendientes.
+function complianceByPhase(client) {
+  const ts = clientTasks(client);
+  const phaseMap = {};
+  ts.forEach(t => {
+    if (!t.Fase) return;
+    if (!phaseMap[t.Fase]) phaseMap[t.Fase] = [];
+    phaseMap[t.Fase].push(t);
+  });
+  const result = [];
+  Object.entries(phaseMap).forEach(([phase, tasks]) => {
+    let pTotal = 0, pCount = 0;
+    tasks.forEach(t => {
+      const start = parseDate(t.FechaInicio);
+      const end = parseDate(t.FechaTermino);
+      const k = stateKey(t.Estado);
+      if (k === 'pending') return;
+      if (start && end) {
+        const planned = Math.max(diffDays(start, end), 1);
+        if (k === 'done') pTotal += 100;
+        else {
+          const actual = Math.max(diffDays(start, TODAY), 1);
+          pTotal += Math.min(100, Math.round(planned / actual * 100));
+        }
+        pCount++;
+      }
+    });
+    if (pCount > 0) result.push({ phase, pct: Math.round(pTotal / pCount), tasks: pCount });
+  });
+  return result;
+}
+
+function blockedCount(client) {
+  return clientTasks(client).filter(t => stateKey(t.Estado) === 'blocked').length;
+}
+function overdueCount(client) {
+  return clientTasks(client).filter(t => {
+    const end = parseDate(t.FechaTermino);
+    return end && end < TODAY && stateKey(t.Estado) !== 'done';
+  }).length;
+}
+function delayDays(client) {
+  // Total de d\u00edas de atraso acumulados vs cronograma
+  let total = 0;
+  clientTasks(client).forEach(t => {
+    const end = parseDate(t.FechaTermino);
+    const k = stateKey(t.Estado);
+    if (end && end < TODAY && k !== 'done') {
+      total += diffDays(end, TODAY);
+    }
+  });
+  return total;
+}
+function dueSoonCount(client) {
+  return clientTasks(client).filter(t => dueBucket(t) === 'soon').length;
+}
+function upcomingCount(client) {
+  return clientTasks(client).filter(t => dueBucket(t) === 'upcoming').length;
+}
+function dueBucket(task) {
+  const end = parseDate(task.FechaTermino);
+  const k = stateKey(task.Estado);
+  if (!end || k === 'done') return null;
+  const days = diffDays(TODAY, end);
+  if (days < 0) return 'overdue';
+  if (days <= 3) return 'soon';
+  if (days <= 7) return 'upcoming';
+  return null;
+}
+function phaseStateForTasks(tasks) {
+  const states = tasks.map(t => stateKey(t.Estado));
+  const hasBlocked = states.includes('blocked');
+  const hasProgress = states.includes('progress');
+  const allDone = tasks.length && states.every(s => s === 'done');
+  const hasOverdue = tasks.some(t => dueBucket(t) === 'overdue');
+  if (hasBlocked) return 'blocked';
+  if (hasOverdue) return 'review';
+  if (hasProgress) return 'progress';
+  if (allDone) return 'done';
+  return 'pending';
+}
+function phaseProgress(tasks) {
+  if (!tasks.length) return 0;
+  const done = tasks.filter(t => stateKey(t.Estado) === 'done').length;
+  return Math.round(done / tasks.length * 100);
+}
+function activePhase(client) {
+  const ts = clientTasks(client);
+  // Prioridad: la fase de la tarea m\u00e1s atrasada (overdue con m\u00e1s d\u00edas)
+  let worstTask = null, worstDelay = 0;
+  ts.forEach(t => {
+    const end = parseDate(t.FechaTermino);
+    const k = stateKey(t.Estado);
+    if (end && end < TODAY && k !== 'done') {
+      const delay = diffDays(end, TODAY);
+      if (delay > worstDelay) { worstDelay = delay; worstTask = t; }
+    }
+  });
+  if (worstTask && worstTask.Fase) return worstTask.Fase;
+  // Fallback: fase más temprana con tareas activas (en progreso o bloqueada), luego pendiente
+  const active = ts.filter(t => (stateKey(t.Estado) === 'progress' || stateKey(t.Estado) === 'blocked') && t.Fase);
+  if (active.length) {
+    active.sort((a, b) => (DATA.phases.indexOf(a.Fase) === -1 ? 99 : DATA.phases.indexOf(a.Fase)) - (DATA.phases.indexOf(b.Fase) === -1 ? 99 : DATA.phases.indexOf(b.Fase)));
+    return active[0].Fase;
+  }
+  const pend = ts.filter(t => stateKey(t.Estado) === 'pending');
+  if (pend.length) return pend[0].Fase;
+  return ts.length ? ts[ts.length-1].Fase : 'Sin tareas';
+}
+function topAction(client) {
+  const ts = clientTasks(client);
+  const blocked = ts.find(t => stateKey(t.Estado) === 'blocked');
+  if (blocked) return '\u26d4 ' + (blocked.Bloqueado || blocked.Tarea);
+  const overdue = ts.find(t => {
+    const end = parseDate(t.FechaTermino);
+    return end && end < TODAY && stateKey(t.Estado) !== 'done';
+  });
+  if (overdue) return '\u23f0 Overdue: ' + overdue.Tarea;
+  const prog = ts.filter(t => stateKey(t.Estado) === 'progress');
+  if (prog.length) return '\ud83d\udd04 ' + prog.length + ' tarea(s) en progreso';
+  return '\ud83d\udfe2 Sin acciones urgentes';
+}
+
+// ── Gauge color ──
+function gaugeColor(score) {
+  if (score >= 85) return '#22c55e';  // Saludable (verde)
+  if (score >= 70) return '#eab308';  // Atenci\u00f3n (amarillo)
+  if (score >= 50) return '#f59e0b';  // Riesgo (naranja)
+  return '#ef4444';                   // Cr\u00edtico (rojo)
+}
+function complianceColor(pct) {
+  if (pct === null) return '#6b7280';
+  if (pct >= 100) return '#22c55e';
+  if (pct >= 75) return '#eab308';
+  return '#ef4444';
+}
+
+function isStale(t) {
+  if (stateKey(t.Estado) === 'done' || stateKey(t.Estado) === 'archived') return false;
+  if (!t.FechaInicio) return false;
+  const start = parseDate(t.FechaInicio);
+  if (!start) return false;
+  const elapsed = Math.ceil((TODAY - start) / 864e5);
+  if (t.FechaTermino) {
+    const end = parseDate(t.FechaTermino);
+    const planned = Math.max(1, Math.ceil((end - start) / 864e5));
+    return elapsed >= planned * 0.5;
+  }
+  return stateKey(t.Estado) === 'in_progress' ? elapsed >= 14 : elapsed >= 30;
+}
+
+// ── Global state counts ──
+function globalCounts() {
+  const all = DATA.tasks.filter(t => t.Tipo === 'Tarea' && t.Cliente);
+  return {
+    total: all.length,
+    done: all.filter(t => stateKey(t.Estado) === 'done').length,
+    progress: all.filter(t => stateKey(t.Estado) === 'progress').length,
+    blocked: all.filter(t => stateKey(t.Estado) === 'blocked').length,
+    pending: all.filter(t => stateKey(t.Estado) === 'pending').length,
+    overdue: all.filter(t => dueBucket(t) === 'overdue').length,
+    dueSoon: all.filter(t => dueBucket(t) === 'soon').length,
+    upcoming: all.filter(t => dueBucket(t) === 'upcoming').length
+  };
+}
+
+// ── Chart theme helper ──
+function chartColors() {
+  const dark = document.body.getAttribute('data-theme') === 'dark';
+  return {
+    text: dark ? '#e4e7ef' : '#1a1d23',
+    textDim: dark ? '#8b90a0' : '#6b7280',
+    grid: dark ? '#2d3039' : '#e2e5e9'
+  };
+}
+
+// ── Metricas Operativas ──
+function renderKpiCard(kpiKey, title, kpiData) {
+  const clients = Object.keys(kpiData);
+  const values = clients.map(c => kpiData[c]);
+  const validValues = values.filter(v => v && v.value !== null && v.value !== undefined);
+  const aggregate = validValues.length
+    ? validValues.reduce((s, v) => s + v.value, 0) / validValues.length
+    : null;
+  const color = aggregate !== null ? ragColor(kpiKey, aggregate) : 'var(--text-dim)';
+  const displayValue = aggregate !== null ? formatKpiValue(kpiKey, aggregate) : 'Sin datos';
+
+  let h = '<div class="kpi-card">';
+  h += '<div class="label">' + title + '</div>';
+  h += '<div class="value" style="color:' + color + '">' + displayValue + '</div>';
+  if (clients.length === 0) {
+    h += '<div class="sub">Sin datos disponibles</div>';
+  } else {
+    h += '<div class="client-list">';
+    clients.forEach(c => {
+      const v = kpiData[c];
+      const cv = (v && v.value !== null && v.value !== undefined) ? v.value : null;
+      const clientColor = cv !== null ? ragColor(kpiKey, cv) : 'var(--text-dim)';
+      const clientDisplay = cv !== null ? formatKpiValue(kpiKey, cv) : 'Sin datos';
+      h += '<div class="client-row">';
+      h += '<span style="color:var(--text-dim)">' + c + '</span>';
+      h += '<span style="font-weight:600;color:' + clientColor + '">' + clientDisplay + '</span>';
+      h += '</div>';
+    });
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderCycleTimeCard() {
+  const data = DATA_OPS.cycle_time_stddev || {};
+  const phases = Object.keys(data).sort((a, b) => Number(a) - Number(b));
+  const validPhases = phases.filter(p => data[p] && data[p].stdev !== null);
+  const aggregate = validPhases.length
+    ? validPhases.reduce((s, p) => s + data[p].stdev, 0) / validPhases.length
+    : null;
+  const color = aggregate !== null ? ragColor('cycle_time_stddev', aggregate) : 'var(--text-dim)';
+  const displayValue = aggregate !== null ? formatKpiValue('cycle_time_stddev', aggregate) : 'Sin datos';
+
+  let h = '<div class="kpi-card">';
+  h += '<div class="label">' + KPI_DISPLAY_NAMES.cycle_time_stddev + '</div>';
+  h += '<div class="value" style="color:' + color + '">' + displayValue + '</div>';
+  if (phases.length === 0) {
+    h += '<div class="sub">Sin datos disponibles</div>';
+  } else {
+    h += '<div class="client-list">';
+    phases.forEach(p => {
+      const phase = data[p];
+      const sv = phase && phase.stdev !== null ? phase.stdev : null;
+      const phaseColor = sv !== null ? ragColor('cycle_time_stddev', sv) : 'var(--text-dim)';
+      const phaseDisplay = sv !== null ? formatKpiValue('cycle_time_stddev', sv) : 'Sin datos';
+      h += '<div class="client-row">';
+      h += '<span style="color:var(--text-dim)">Fase ' + p + ' (n=' + (phase ? phase.n : 0) + ')</span>';
+      h += '<span style="font-weight:600;color:' + phaseColor + '">' + phaseDisplay + '</span>';
+      h += '</div>';
+    });
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderCapacidadCard() {
+  const cap = DATA_OPS.capacidad_equipo || {};
+  const activeCount = cap.active_count || 0;
+  const delayByPhase = cap.delay_by_phase || {};
+  const delayNums = Object.values(delayByPhase).map(v => v && typeof v === 'object' ? v.avg_delay : v).filter(v => v !== null && v !== undefined);
+  const avgDelay = delayNums.length ? delayNums.reduce((s, v) => s + v, 0) / delayNums.length : null;
+  const color = avgDelay !== null ? ragColor('capacidad_equipo', avgDelay) : 'var(--text-dim)';
+  const displayValue = avgDelay !== null ? formatKpiValue('capacidad_equipo', avgDelay) : 'Sin datos';
+
+  let h = '<div class="kpi-card">';
+  h += '<div class="label">' + KPI_DISPLAY_NAMES.capacidad_equipo + '</div>';
+  h += '<div class="value" style="color:' + color + '">' + displayValue + '</div>';
+  h += '<div class="sub">' + activeCount + ' clientes activos</div>';
+  if (Object.keys(delayByPhase).length > 0) {
+    h += '<div class="client-list">';
+    Object.keys(delayByPhase).sort((a, b) => Number(a) - Number(b)).forEach(p => {
+      const dvRaw = delayByPhase[p];
+      const dv = dvRaw && typeof dvRaw === 'object' ? dvRaw.avg_delay : dvRaw;
+      const pColor = dv !== null && dv !== undefined ? ragColor('capacidad_equipo', dv) : 'var(--text-dim)';
+      h += '<div class="client-row">';
+      h += '<span style="color:var(--text-dim)">Fase ' + p + '</span>';
+      h += '<span style="font-weight:600;color:' + pColor + '">' + (dv !== null && dv !== undefined ? dv.toFixed(1) + ' dias' : 'Sin datos') + '</span>';
+      h += '</div>';
+    });
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderMetricsPage() {
+  const DATE_KPIS = ['time_to_live', 'cycle_time_stddev', 'capacidad_equipo', 'bug_rate', 'atraso_promedio', 'integraciones_en_tiempo'];
+  const HISTORY_KPIS = ['retrabajo', 'block_resolution_time', 'bug_recurrence', 'cruce_limpio', 'tasa_rechazo'];
+
+  let h = '<div class="section-title">\ud83d\udcca KPIs de Fechas</div>';
+  h += '<div class="grid grid-3">';
+  DATE_KPIS.forEach(kpiKey => {
+    if (kpiKey === 'cycle_time_stddev') {
+      h += renderCycleTimeCard();
+    } else if (kpiKey === 'capacidad_equipo') {
+      h += renderCapacidadCard();
+    } else {
+      h += renderKpiCard(kpiKey, KPI_DISPLAY_NAMES[kpiKey] || kpiKey, getKpiData(kpiKey));
+    }
+  });
+  h += '</div>';
+
+  h += '<div class="section-title" style="margin-top:24px">\ud83d\udccb KPIs de Historial</div>';
+  h += '<div class="grid grid-3">';
+  HISTORY_KPIS.forEach(kpiKey => {
+    h += renderKpiCard(kpiKey, KPI_DISPLAY_NAMES[kpiKey] || kpiKey, getKpiData(kpiKey));
+  });
+  h += '</div>';
+
+  // Chart containers (rendered by initMetricsCharts in Plan 03)
+  h += '<div class="section-title" style="margin-top:32px">\ud83d\udcc8 Graficos Comparativos</div>';
+  h += '<div class="grid grid-2">';
+  h += '<div class="card"><div class="section-title" style="font-size:14px">Tiempos</div><div class="chart-container" style="height:320px"><canvas id="chart-metrics-time"></canvas></div></div>';
+  h += '<div class="card"><div class="section-title" style="font-size:14px">Ratios de Calidad</div><div class="chart-container" style="height:320px"><canvas id="chart-metrics-quality"></canvas></div></div>';
+  h += '</div>';
+  h += '<div class="grid grid-2">';
+  h += '<div class="card"><div class="section-title" style="font-size:14px">Cumplimiento</div><div class="chart-container" style="height:320px"><canvas id="chart-metrics-compliance"></canvas></div></div>';
+  h += '<div class="card"><div class="section-title" style="font-size:14px">Capacidad del Equipo</div><div class="chart-container" style="height:320px"><canvas id="chart-metrics-capacity"></canvas></div></div>';
+  h += '</div>';
+
+  return h;
+}
+
+function initMetricsCharts() {
+  const cc = chartColors();
+  const greenHex = getCssColor('--green');
+  const redHex = getCssColor('--red');
+  const orangeHex = getCssColor('--orange');
+  const accentHex = getCssColor('--accent');
+
+  // Get clients with any data
+  const clients = DATA.clients || [];
+
+  // ── Chart 1: Tiempos (TTL + Block Resolution Time) ──
+  const ctxTime = document.getElementById('chart-metrics-time');
+  if (ctxTime) {
+    const ttlData = clients.map(c => getClientKpiValue('time_to_live', c));
+    const brtData = clients.map(c => getClientKpiValue('block_resolution_time', c));
+    const hasData = ttlData.some(v => v !== null) || brtData.some(v => v !== null);
+
+    if (hasData) {
+      charts.push(new Chart(ctxTime, {
+        type: 'bar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: clients,
+          datasets: [
+            {
+              label: 'Time to Live (dias)',
+              data: ttlData,
+              backgroundColor: ttlData.map(v => v !== null ? (v <= 120 ? greenHex : v <= 180 ? orangeHex : redHex) : '#6b7280'),
+              borderRadius: 6
+            },
+            {
+              label: 'Resolucion Bloqueos (dias)',
+              data: brtData,
+              backgroundColor: brtData.map(v => v !== null ? (v <= 3 ? greenHex : v <= 7 ? orangeHex : redHex) : '#6b7280'),
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { color: cc.grid }, ticks: { color: cc.textDim } },
+            y: { grid: { display: false }, ticks: { color: cc.text } }
+          },
+          plugins: {
+            legend: { labels: { color: cc.text } },
+            datalabels: { anchor: 'end', align: 'right', color: cc.text, font: { size: 10, weight: 'bold' }, formatter: v => v !== null ? v + 'd' : '' },
+            annotation: {
+              annotations: {
+                ttlAmber: { type: 'line', xMin: 120, xMax: 120, borderColor: greenHex, borderWidth: 1, borderDash: [4, 4] },
+                ttlRed: { type: 'line', xMin: 180, xMax: 180, borderColor: redHex, borderWidth: 1, borderDash: [4, 4] }
+              }
+            }
+          }
+        }
+      }));
+    } else {
+      ctxTime.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:13px">Sin datos para este grafico</div>';
+    }
+  }
+
+  // ── Chart 2: Ratios de Calidad (Bug Rate + Retrabajo + Bug Recurrence + Tasa Rechazo) ──
+  const ctxQuality = document.getElementById('chart-metrics-quality');
+  if (ctxQuality) {
+    const brData = clients.map(c => getClientKpiValue('bug_rate', c));
+    const rtData = clients.map(c => getClientKpiValue('retrabajo', c));
+    const bugrData = clients.map(c => getClientKpiValue('bug_recurrence', c));
+    const trData = clients.map(c => getClientKpiValue('tasa_rechazo', c));
+    const hasData = brData.some(v => v !== null) || rtData.some(v => v !== null) || bugrData.some(v => v !== null) || trData.some(v => v !== null);
+
+    if (hasData) {
+      charts.push(new Chart(ctxQuality, {
+        type: 'bar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: clients,
+          datasets: [
+            { label: 'Bug Rate', data: brData, backgroundColor: accentHex, borderRadius: 4 },
+            { label: 'Retrabajo', data: rtData, backgroundColor: orangeHex, borderRadius: 4 },
+            { label: 'Bug Recurrence', data: bugrData, backgroundColor: redHex, borderRadius: 4 },
+            { label: 'Tasa Rechazo', data: trData, backgroundColor: '#8b5cf6', borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { display: false }, ticks: { color: cc.text } },
+            y: { grid: { color: cc.grid }, ticks: { color: cc.textDim, callback: v => Math.round(v * 100) + '%' }, beginAtZero: true, suggestedMax: 1.15 }
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { color: cc.text, boxWidth: 12, padding: 16 } },
+            datalabels: { anchor: 'end', align: 'top', color: cc.text, font: { size: 9 }, formatter: v => (v !== null && v > 0) ? Math.round(v * 100) + '%' : '', display: ctx => { const v = ctx.dataset.data[ctx.dataIndex]; return v !== null && v > 0; } },
+            annotation: {
+              annotations: {
+                goodLine: { type: 'line', yMin: 0.25, yMax: 0.25, borderColor: orangeHex, borderWidth: 1, borderDash: [4, 4] }
+              }
+            }
+          }
+        }
+      }));
+    } else {
+      ctxQuality.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:13px">Sin datos para este grafico</div>';
+    }
+  }
+
+  // ── Chart 3: Cumplimiento (Atraso + Integraciones en Tiempo + Cruce Limpio) ──
+  const ctxCompliance = document.getElementById('chart-metrics-compliance');
+  if (ctxCompliance) {
+    const atData = clients.map(c => { const v = getClientKpiValue('atraso_promedio', c); return v !== null ? Math.round(v * 100) : null; });
+    const intData = clients.map(c => { const v = getClientKpiValue('integraciones_en_tiempo', c); return v !== null ? Math.round(v * 100) : null; });
+    const clData = clients.map(c => getClientKpiValue('cruce_limpio', c));
+    const hasData = atData.some(v => v !== null) || intData.some(v => v !== null) || clData.some(v => v !== null);
+
+    if (hasData) {
+      charts.push(new Chart(ctxCompliance, {
+        type: 'bar',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: clients,
+          datasets: [
+            { label: 'Atraso Promedio %', data: atData, backgroundColor: redHex, borderRadius: 4 },
+            { label: 'Integraciones en Tiempo %', data: intData, backgroundColor: greenHex, borderRadius: 4 },
+            { label: 'Cruce Limpio', data: clData, backgroundColor: accentHex, borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { display: false }, ticks: { color: cc.text } },
+            y: { grid: { color: cc.grid }, ticks: { color: cc.textDim, callback: v => v + '%' }, beginAtZero: true, max: 100 }
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { color: cc.text, boxWidth: 12, padding: 16 } },
+            datalabels: { display: false },
+            tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.parsed.y !== null ? ctx.parsed.y + '%' : 'Sin datos') } },
+            annotation: {
+              annotations: {
+                target: { type: 'line', yMin: 80, yMax: 80, borderColor: greenHex, borderWidth: 1, borderDash: [4, 4],
+                  label: { display: true, content: 'Meta 80%', position: 'start', backgroundColor: greenHex, color: '#fff', font: { size: 9 }, padding: 4 } }
+              }
+            }
+          }
+        }
+      }));
+    } else {
+      ctxCompliance.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:13px">Sin datos para este grafico</div>';
+    }
+  }
+
+  // ── Chart 4: Capacidad del Equipo (delay by phase trend) ──
+  const ctxCapacity = document.getElementById('chart-metrics-capacity');
+  if (ctxCapacity) {
+    const cap = DATA_OPS.capacidad_equipo || {};
+    const delayByPhase = cap.delay_by_phase || {};
+    const phaseKeys = Object.keys(delayByPhase).sort((a, b) => Number(a) - Number(b));
+    const delayValues = phaseKeys.map(p => { const d = delayByPhase[p]; return d && typeof d === 'object' ? d.avg_delay : d; });
+    const hasData = delayValues.some(v => v !== null && v !== undefined && v !== 0);
+
+    if (hasData) {
+      charts.push(new Chart(ctxCapacity, {
+        type: 'line',
+        plugins: [ChartDataLabels],
+        data: {
+          labels: phaseKeys.map(p => 'Fase ' + p),
+          datasets: [{
+            label: 'Atraso Promedio (dias)',
+            data: delayValues,
+            borderColor: accentHex,
+            backgroundColor: accentHex + '33',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointBackgroundColor: delayValues.map(v => v !== null ? (v <= 3 ? greenHex : v <= 7 ? orangeHex : redHex) : '#6b7280')
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { display: false }, ticks: { color: cc.text } },
+            y: { grid: { color: cc.grid }, ticks: { color: cc.textDim }, beginAtZero: true, title: { display: true, text: 'Dias de atraso', color: cc.textDim } }
+          },
+          plugins: {
+            legend: { labels: { color: cc.text } },
+            datalabels: { anchor: 'end', align: 'top', color: cc.text, font: { size: 10, weight: 'bold' }, formatter: v => (v !== null && v > 0) ? v.toFixed(1) + 'd' : '', display: ctx => { const v = ctx.dataset.data[ctx.dataIndex]; return v !== null && v > 0; } },
+            annotation: {
+              annotations: {
+                amberLine: { type: 'line', yMin: 3, yMax: 3, borderColor: greenHex, borderWidth: 1, borderDash: [4, 4] },
+                redLine: { type: 'line', yMin: 7, yMax: 7, borderColor: redHex, borderWidth: 1, borderDash: [4, 4] }
+              }
+            }
+          }
+        }
+      }));
+    } else {
+      ctxCapacity.parentElement.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-dim);font-size:13px">Sin datos para este grafico</div>';
+    }
+  }
+}
+
+function initPatternTrendChart() {
+  const el = document.getElementById('chart-patterns-trend');
+  if (!el || !PATTERN_HISTORY || PATTERN_HISTORY.length < 2) return;
+  const cc = chartColors();
+  const hist = PATTERN_HISTORY.slice(-20);
+  const labels = hist.map(h => h.date);
+  charts.push(new Chart(el, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {label: 'Críticos', data: hist.map(h => (h.summary||{}).critico||0), borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,.1)', fill: true, tension: 0.3, pointRadius: 3},
+        {label: 'Altos', data: hist.map(h => (h.summary||{}).alto||0), borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.1)', fill: true, tension: 0.3, pointRadius: 3},
+        {label: 'Mejora', data: hist.map(h => (h.summary||{}).medio||0), borderColor: '#6366f1', backgroundColor: 'rgba(99,102,241,.1)', fill: true, tension: 0.3, pointRadius: 3},
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {legend: {position: 'top', labels: {color: cc.text, font: {size: 11}}}},
+      scales: {
+        x: {ticks: {color: cc.dim, font: {size: 10}, maxRotation: 45}, grid: {color: cc.grid}},
+        y: {beginAtZero: true, ticks: {color: cc.dim, stepSize: 1}, grid: {color: cc.grid}}
+      }
+    }
+  }));
+}
+
+// ── Render ──
+let charts = [];
+function destroyCharts() { charts.forEach(c => c.destroy()); charts = []; }
+
+function render() {
+  destroyCharts();
+  const nav = document.getElementById('nav');
+  const main = document.getElementById('main');
+  const navPages = ['📊 Dashboard', '👥 Clientes', '🛠️ Tareas', '🗺️ Flujo Fases', '🔍 Patrones', '📊 Métricas de Gestión', '🧪 QA'];
+  const pages = [...navPages];
+  DATA.clients.forEach(c => pages.push(c));
+
+  nav.innerHTML = navPages.map((p, i) => `<button class="tab ${i===0?'active':''}" onclick="showPage(${i})">${p}</button>`).join('');
+
+  let h = '';
+  // Page 0: Dashboard
+  h += '<div class="page active" id="page-0">';
+  h += renderDashboard();
+  h += '</div>';
+  // Page 1: Clients grid
+  h += '<div class="page" id="page-1">';
+  h += renderClientsGrid();
+  h += '</div>';
+  // Page 2: All tasks table
+  h += '<div class="page" id="page-2">';
+  h += renderTasksTable();
+  h += '</div>';
+  // Page 3: Phase flow matrix
+  h += '<div class="page" id="page-3">';
+  h += renderPhaseMatrix();
+  h += '</div>';
+  // Page 4: Problems / patterns
+  h += '<div class="page" id="page-4">';
+  h += renderProblems();
+  h += '</div>';
+  // Page 5: Metricas de Gestion
+  h += '<div class="page" id="page-5">';
+  h += renderMetricsPage();
+  h += '</div>';
+  // Page 6: QA Dashboard
+  h += '<div class="page" id="page-6" style="display:flex;align-items:center;justify-content:center;height:calc(100vh - 56px);flex-direction:column;gap:16px">';
+  h += '<p style="color:var(--text-muted);font-size:1rem">Dashboard de tests E2E, reportes Playwright y estado por cliente.</p>';
+  h += '<a href="qa/" style="display:inline-block;padding:12px 28px;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:1rem">Abrir QA Dashboard →</a>';
+  h += '</div>';
+  // Client detail pages
+  DATA.clients.forEach((c, i) => {
+    h += `<div class="page" id="page-${i+7}">`;
+    h += renderClientDetail(c);
+    h += '</div>';
+  });
+  main.innerHTML = h;
+
+  // Init charts
+  initDashboardCharts();
+  initMetricsCharts();
+  initPatternTrendChart();
+
+  document.getElementById('timestamp').textContent = 'Generado: ' + new Date(DATA.generated).toLocaleDateString('es-CL');
+  document.getElementById('gen-date').textContent = new Date(DATA.generated).toLocaleString('es-CL');
+  document.getElementById('nav').style.top = document.querySelector('.topbar').offsetHeight + 'px';
+}
+
+function renderDashboard() {
+  const g = globalCounts();
+  const avgHealth = Math.round(DATA.clients.reduce((s,c) => s + healthScore(c), 0) / DATA.clients.length);
+
+  let h = '<div class="grid grid-4" style="margin-bottom:24px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">';
+  h += kpi('Health Promedio', avgHealth + '/100', 'Score promedio de todos los clientes', gaugeColor(avgHealth));
+  h += kpi('Tareas Activas', g.progress, 'En progreso ahora', 'var(--blue)', 'activas');
+  h += kpi('Bloqueadas', g.blocked, 'Requieren atenci\u00f3n', 'var(--red)', 'bloqueadas');
+  h += kpi('Overdue', g.overdue, 'Pasadas de fecha', 'var(--orange)', 'overdue');
+  h += kpi('Próx. a vencer', g.dueSoon, 'Próximas en 0–3 días', 'var(--yellow)', 'proximas');
+  h += '</div>';
+
+  // Health Score chart (before charts row)
+  h += '<div class="card" style="margin-bottom:24px"><div class="section-title">Health Score por Cliente</div><div class="chart-container"><canvas id="chart-health"></canvas></div><div style="margin-top:12px;padding:12px;background:var(--surface2);border-radius:8px;font-size:11px;line-height:1.6;color:var(--text-dim)"><strong style="color:var(--text)">Health Score:</strong> Base 100. Penaliza: <span style="color:#ef4444">-6/tarea overdue</span> (m\u00e1x -60), <span style="color:#ef4444">-5/tarea bloqueada</span> (m\u00e1x -20), <span style="color:#ef4444">-7/fase con bloqueo</span> (m\u00e1x -10), <span style="color:#ef4444">relaci\u00f3n</span> (mala -10, estable -5, buena 0). Bonifica: <span style="color:#22c55e">+0.1/% progreso</span> (m\u00e1x +10). Rango 0\u2013100.<br><span style="display:inline-flex;gap:12px;margin-top:4px"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e"></span> 85\u2013100 Saludable</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#eab308"></span> 70\u201384 Atenci\u00f3n</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f59e0b"></span> 50\u201369 Riesgo</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444"></span> 0\u201349 Cr\u00edtico</span></span></div></div>';
+
+  // Charts row
+  h += '<div class="grid grid-2" style="margin-bottom:24px">';
+  h += '<div class="card"><div class="section-title">Progreso por Cliente (%)</div><div class="chart-container"><canvas id="chart-progress"></canvas></div><div style="margin-top:12px;padding:12px;background:var(--surface2);border-radius:8px;font-size:11px;line-height:1.6;color:var(--text-dim)"><strong style="color:var(--text)">Progreso:</strong> 12 fases, ponderado por duraci\u00f3n real de cada fase (calculada desde fechas en Notion, total ' + TOTAL_PROJECT_DAYS + ' d\u00edas). Avance por fase = tareas completadas / total tareas de la fase.</div></div>';
+  h += '</div>';
+
+
+  // ── KPIs Operativos ──
+
+  // Cycle Time por Fase
+  const cycleByPhase = {};
+  DATA.tasks.forEach(t => {
+    if (t.Fase && t.FechaInicio && t.FechaTermino && stateKey(t.Estado) === 'done') {
+      const days = Math.ceil((parseDate(t.FechaTermino) - parseDate(t.FechaInicio)) / 864e5);
+      if (days >= 1) { if (!cycleByPhase[t.Fase]) cycleByPhase[t.Fase] = []; cycleByPhase[t.Fase].push(days); }
+    }
+  });
+  const cycleEntries = DATA.phases.map(p => ({ fase: p.replace(/^\d+\.\s*/, ''), avg: cycleByPhase[p] ? Math.round(cycleByPhase[p].reduce((a,b)=>a+b,0)/cycleByPhase[p].length) : null, n: cycleByPhase[p]?.length||0 })).filter(e => e.n > 0);
+  h += '<div class="card" style="margin-top:24px"><div class="section-title">Cycle Time por Fase <span style="font-size:11px;font-weight:400;color:var(--text-dim)">(días promedio entre inicio y término, tareas completadas)</span></div>';
+  if (cycleEntries.length === 0) {
+    h += '<div style="color:var(--text-dim);padding:12px">Sin tareas completadas con fechas para calcular.</div>';
+  } else {
+    h += '<div style="overflow-x:auto"><table><thead><tr><th>Fase</th><th>Cycle Time Prom. (d)</th><th>N tareas</th></tr></thead><tbody>';
+    cycleEntries.forEach(e => {
+      const bar = Math.min(100, e.avg * 4);
+      h += '<tr><td>' + e.fase + '</td><td><div style="display:flex;align-items:center;gap:8px"><div style="width:100px;background:var(--surface2);border-radius:4px;height:8px"><div style="width:' + bar + '%;background:var(--accent);height:8px;border-radius:4px"></div></div><strong>' + e.avg + ' d</strong></div></td><td style="color:var(--text-dim)">' + e.n + '</td></tr>';
+    });
+    h += '</tbody></table></div>';
+  }
+  h += '</div>';
+
+  // Tasa de Bloqueo y Tareas Estancadas
+  h += '<div class="grid grid-2" style="margin-top:24px">';
+
+  h += '<div class="card"><div class="section-title">Tasa de Bloqueo <span style="font-size:11px;font-weight:400;color:var(--text-dim)">(bloqueadas / activas)</span></div>';
+  h += '<table><thead><tr><th>Cliente</th><th>Bloqueadas</th><th>Total activas</th><th>Tasa</th></tr></thead><tbody>';
+  DATA.clients.forEach(c => {
+    const ts = clientTasks(c);
+    const active = ts.filter(t => ['progress', 'blocked', 'review'].includes(stateKey(t.Estado))).length;
+    const blocked = ts.filter(t => stateKey(t.Estado) === 'blocked').length;
+    const rate = active > 0 ? Math.round(blocked / active * 100) : 0;
+    const color = rate >= 30 ? 'var(--red)' : rate >= 10 ? 'var(--orange)' : 'var(--green)';
+    h += '<tr><td>' + c + '</td>';
+    h += '<td style="color:var(--red);font-weight:700">' + blocked + '</td>';
+    h += '<td>' + active + '</td>';
+    h += '<td><strong style="color:' + color + '">' + rate + '%</strong></td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  h += '<div class="card"><div class="section-title">Tareas Estancadas <span style="font-size:11px;font-weight:400;color:var(--text-dim)">(>=50% duración sin avance)</span></div>';
+  h += '<table><thead><tr><th>Cliente</th><th>Estancadas</th><th>Ejemplos</th></tr></thead><tbody>';
+  DATA.clients.forEach(c => {
+    const stale = clientTasks(c).filter(t => isStale(t));
+    const color = stale.length >= 3 ? 'var(--red)' : stale.length >= 1 ? 'var(--orange)' : 'var(--green)';
+    const ex = stale.slice(0,2).map(t => t.Tarea).join(', ') + (stale.length > 2 ? '...' : '');
+    h += '<tr><td>' + c + '</td>';
+    h += '<td><strong style="color:' + color + '">' + stale.length + '</strong></td>';
+    h += '<td style="font-size:11px;color:var(--text-dim)">' + (ex||'-') + '</td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  h += '</div>';
+
+  // Ranking table
+  h += '<div class="card"><div class="section-title">Ranking de Clientes</div>';
+  h += '<table><thead><tr><th>Cliente</th><th>Health</th><th>Progreso</th><th>Cumplimiento</th><th>Bloq.</th><th>Overdue</th><th>Atraso</th><th>Pr\u00f3x.</th><th>Acci\u00f3n principal</th></tr></thead><tbody>';
+  const ranked = [...DATA.clients].sort((a,b) => healthScore(a) - healthScore(b));
+  ranked.forEach(c => {
+    const hs = healthScore(c);
+    const pp = progressPct(c);
+    const cp = compliancePct(c);
+    const dd = delayDays(c);
+    h += `<tr style="cursor:pointer" onclick="showPage(${DATA.clients.indexOf(c)+7})">`;
+    h += `<td><strong>${c}</strong><br><span style="font-size:11px;color:var(--text-dim)">${activePhase(c)||''}</span></td>`;
+    h += `<td><span class="gauge gauge-sm" style="background:${gaugeColor(hs)};display:inline-flex">${hs}</span></td>`;
+    h += `<td><div class="compliance-bar"><div class="compliance-fill" style="width:${pp}%;background:var(--accent)"></div></div><span style="font-size:11px">${pp}%</span></td>`;
+    h += `<td style="color:${complianceColor(cp)};font-weight:700">${cp !== null ? cp+'%' : 'N/A'}</td>`;
+    h += `<td style="color:${blockedCount(c)?'var(--red)':'var(--text-dim)'};font-weight:700">${blockedCount(c)}</td>`;
+    h += `<td style="color:${overdueCount(c)?'var(--orange)':'var(--text-dim)'};font-weight:700">${overdueCount(c)}</td>`;
+    h += `<td style="color:${dd>0?'var(--red)':'var(--text-dim)'};font-weight:700">${dd>0?dd+'d':'-'}</td>`;
+    h += `<td style="color:${dueSoonCount(c)?'var(--yellow)':'var(--text-dim)'};font-weight:700">${dueSoonCount(c)}</td>`;
+    h += `<td style="font-size:12px;max-width:300px">${topAction(c)}</td>`;
+    h += '</tr>';
+  });
+  h += '</tbody></table></div>';
+
+  return h;
+}
+
+function kpi(label, value, sub, color, tipo) {
+  var oc = tipo ? ' onclick="showKpiPopup(\'' + tipo + '\')" title="Ver detalle"' : '';
+  return '<div class="kpi-card"' + oc + '><div class="label">' + label + '</div><div class="value" style="color:' + (color||'var(--text)') + '">' + value + '</div><div class="sub">' + sub + '</div></div>';
+}
+
+function initDashboardCharts() {
+  const cc = chartColors();
+  const g = globalCounts();
+
+  // Bar - progress per client
+  const ctx2 = document.getElementById('chart-progress');
+  if (ctx2) {
+    charts.push(new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: DATA.clients,
+        datasets: [{
+          label: 'Progreso %',
+          data: DATA.clients.map(c => progressPct(c)),
+          backgroundColor: DATA.clients.map(c => DATA.clientColors[c] || '#4f6ef7'),
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        scales: {
+          x: { max: 100, grid: { color: cc.grid }, ticks: { color: cc.textDim, callback: v => v+'%' } },
+          y: { grid: { display: false }, ticks: { color: cc.text } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    }));
+  }
+
+  // Bar - health score
+  const ctx3 = document.getElementById('chart-health');
+  if (ctx3) {
+    charts.push(new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: DATA.clients,
+        datasets: [{
+          label: 'Health Score',
+          data: DATA.clients.map(c => healthScore(c)),
+          backgroundColor: DATA.clients.map(c => gaugeColor(healthScore(c))),
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        scales: {
+          x: { max: 100, grid: { color: cc.grid }, ticks: { color: cc.textDim } },
+          y: { grid: { display: false }, ticks: { color: cc.text } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    }));
+  }
+
+
+}
+
+function renderClientsGrid() {
+  let h = '<div class="grid grid-3">';
+  DATA.clients.forEach((c, i) => {
+    const hs = healthScore(c);
+    const ts = clientTasks(c);
+    const pp = progressPct(c);
+    h += `<div class="card" style="cursor:pointer;border-left:4px solid ${DATA.clientColors[c]||'var(--accent)'}" onclick="showPage(${i+7})">`;
+    h += `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">`;
+    h += `<div class="gauge" style="background:${gaugeColor(hs)}">${hs}</div>`;
+    const dUrl = DATA.driveLinks && DATA.driveLinks[c];
+    h += `<div><div style="font-weight:700;font-size:16px">${c}${dUrl ? '<a href="' + dUrl + '" target="_blank" onclick="event.stopPropagation()" style="font-size:.65rem;color:#1a73e8;font-weight:600;text-decoration:none;margin-left:6px">📁</a>' : ''}</div><div style="font-size:12px;color:var(--text-dim)">${activePhase(c)||''}</div></div>`;
+    h += `</div>`;
+    h += `<div style="display:flex;gap:16px;font-size:12px;margin-bottom:8px">`;
+    h += `<span><strong>${ts.length}</strong> tareas</span>`;
+    h += `<span style="color:var(--blue)"><strong>${ts.filter(t=>stateKey(t.Estado)==='progress').length}</strong> activas</span>`;
+    h += `<span style="color:var(--red)"><strong>${blockedCount(c)}</strong> bloq.</span>`;
+    h += `</div>`;
+    h += `<div class="compliance-bar" style="width:100%"><div class="compliance-fill" style="width:${pp}%;background:${DATA.clientColors[c]||'var(--accent)'}"></div></div>`;
+    h += `<div style="font-size:11px;color:var(--text-dim);margin-top:4px">${pp}% completado</div>`;
+    h += '</div>';
+  });
+  h += '</div>';
+  return h;
+}
+
+
+function renderPhaseMatrix() {
+  let h = '<div class="card"><div class="section-title">Matriz global cliente \u00d7 fase</div>';
+  h += '<div class="small-note" style="margin-bottom:12px">Click en una celda para ver las tareas de esa fase.</div>';
+  h += '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;font-size:12px">';
+  [{k:'blocked',l:'Bloqueado'},{k:'progress',l:'En progreso'},{k:'done',l:'Completado'},{k:'review',l:'Overdue / En revisión'},{k:'pending',l:'Pendiente'}].forEach(function(item){
+    h += '<span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:14px;border-radius:3px;background:'+stateColor(item.k)+';display:inline-block"></span> '+item.l+'</span>';
+  });
+  h += '<span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:14px;border-radius:3px;background:var(--surface2);border:1px solid var(--border);display:inline-block"></span> Sin tareas</span>';
+  h += '</div>';
+  h += '<div class="phase-matrix"><table><thead><tr><th>Cliente</th>';
+  DATA.phases.forEach(p => h += `<th>${p}<br><small style="opacity:.7;font-weight:normal">${PHASE_WEIGHTS[p]||'?'}d</small></th>`);
+    h += '<th style="white-space:nowrap">Progreso (pond.)</th></tr></thead><tbody>'; DATA.clients.forEach(client => {
+    h += `<tr><td><strong>${client}</strong><br><span class="small-note">${activePhase(client)||''}</span></td>`;
+    DATA.phases.forEach(phase => {
+      const tasks = clientTasks(client).filter(t => t.Fase === phase);
+      if (!tasks.length) {
+        h += `<td style="background:var(--surface2);color:var(--text-dim);font-size:11px">\u2014</td>`;
+      } else {
+        const st = phaseStateForTasks(tasks);
+        const prog = phaseProgress(tasks);
+        const blocked = tasks.filter(t => stateKey(t.Estado)==='blocked').length;
+        const overdue = tasks.filter(t => dueBucket(t)==='overdue').length;
+        const safeClient = client.replace(/'/g, "\\'");
+        const safePhase = phase.replace(/'/g, "\\'");
+        h += `<td class="phase-cell" style="background:${stateColor(st)};cursor:pointer" onclick="showPhaseTasks('${safeClient}','${safePhase}')"><div>${stateLabel(st)}</div><div style="font-size:10px;opacity:.95;margin-top:4px">${prog}%</div><div style="font-size:9px;opacity:.85;margin-top:2px">${tasks.length} tarea(s)</div>${blocked?`<div style="font-size:9px;opacity:.85">${blocked} bloq.</div>`:''}${overdue?`<div style="font-size:9px;opacity:.85">${overdue} overdue</div>`:''}</td>`;
+      }
+    });
+    h += `<td style="text-align:center;font-weight:600;white-space:nowrap">${progressPct(client)}%</td></tr>`;
+  });
+  h += '</tbody></table></div>';
+  h += '</div>';
+  return h;
+}
+
+function showPhaseTasks(client, phase) {
+  const allTasks = DATA.tasks.filter(t => t.Cliente === client && t.Fase === phase);
+  if (!allTasks.length) return;
+
+  // Filter out completed and archived tasks
+  const tasks = allTasks.filter(t => { const k = stateKey(t.Estado); return k !== 'done' && k !== 'archived'; });
+  const completedCount = allTasks.length - tasks.length;
+
+  // Sort by priority: blocked > overdue > progress > review > pending
+  const priority = t => {
+    const k = stateKey(t.Estado);
+    if (k === 'blocked') return 0;
+    if (dueBucket(t) === 'overdue') return 1;
+    if (k === 'progress') return 2;
+    if (k === 'review') return 3;
+    return 4;
+  };
+  tasks.sort((a, b) => priority(a) - priority(b));
+
+  // Separate Tareas and Sub-tareas, build parent→children map
+  const tareas = tasks.filter(t => t.Tipo === 'Tarea');
+  const subtareas = tasks.filter(t => t.Tipo !== 'Tarea');
+
+  // Map pageId → subtareas that reference it via ParentId
+  const childrenOf = {};
+  tareas.forEach(t => { childrenOf[t.PageId] = []; });
+  subtareas.forEach(st => {
+    const parents = st.ParentId || [];
+    if (parents.length) {
+      parents.forEach(pid => {
+        if (childrenOf[pid] !== undefined) childrenOf[pid].push(st);
+      });
+    }
+  });
+  // Orphan subtareas (no matched parent in current view)
+  const orphanSubtareas = subtareas.filter(st => {
+    const parents = st.ParentId || [];
+    return !parents.length || !parents.some(pid => childrenOf[pid] !== undefined);
+  });
+
+  const color = DATA.clientColors[client] || 'var(--accent)';
+  let h = `<div style="border-left:4px solid ${color};padding-left:16px">`;
+  h += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">`;
+  const driveUrl = DATA.driveLinks && DATA.driveLinks[client];
+  h += `<div><strong style="font-size:17px">${client}</strong>${driveUrl ? ` <a href="${driveUrl}" target="_blank" style="font-size:.7rem;color:#1a73e8;font-weight:600;text-decoration:none;margin-left:8px;vertical-align:middle">📁 Drive</a>` : ""}<br><span style="color:var(--text-dim);font-size:13px">${phase}</span></div>`;
+  h += `<button onclick="closeModal()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 16px;cursor:pointer;color:var(--text-dim);font-size:13px">\u2715 Cerrar</button>`;
+  h += `</div>`;
+
+  // Summary badges
+  const blockedN = tasks.filter(t => stateKey(t.Estado) === 'blocked').length;
+  const overdueN = tasks.filter(t => dueBucket(t) === 'overdue').length;
+  const progressN = tasks.filter(t => stateKey(t.Estado) === 'progress').length;
+  h += `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;font-size:12px">`;
+  h += `<span style="padding:3px 10px;border-radius:12px;background:var(--surface2);color:var(--text)">${tasks.length} activa${tasks.length!==1?'s':''}</span>`;
+  if (blockedN) h += `<span style="padding:3px 10px;border-radius:12px;background:rgba(239,68,68,.15);color:var(--red)">${blockedN} bloqueada${blockedN!==1?'s':''}</span>`;
+  if (overdueN) h += `<span style="padding:3px 10px;border-radius:12px;background:rgba(249,115,22,.15);color:var(--orange)">${overdueN} overdue</span>`;
+  if (progressN) h += `<span style="padding:3px 10px;border-radius:12px;background:rgba(59,130,246,.15);color:var(--blue)">${progressN} en progreso</span>`;
+  if (completedCount) h += `<span style="padding:3px 10px;border-radius:12px;background:rgba(34,197,94,.1);color:var(--green)">${completedCount} completada${completedCount!==1?'s':''}</span>`;
+  h += `</div>`;
+
+  // Render a single task row
+  function renderTaskRow(t, indent) {
+    const k = stateKey(t.Estado);
+    const bucket = dueBucket(t);
+    const indentStyle = indent ? 'margin-left:20px;margin-top:6px;' : '';
+    const prefix = indent ? '\u21b3 ' : '';
+    let r = `<div class="task-item" style="border-left:3px solid ${stateColor(k)};padding-left:12px;margin-bottom:${indent?6:10}px;${indentStyle}">`;
+    r += `<div class="task-item-header"><span class="task-item-name">${prefix}${t.Tarea}</span><span class="badge" style="background:${stateBg(k)};color:${stateColor(k)}">${stateLabel(k)}</span>`;
+    if (bucket === 'overdue') r += `<span class="badge" style="background:rgba(249,115,22,.15);color:var(--orange);margin-left:4px">Overdue</span>`;
+    else if (bucket === 'soon') r += `<span class="badge" style="background:rgba(234,179,8,.15);color:var(--yellow);margin-left:4px">Vence pronto</span>`;
+    r += `</div>`;
+    if (t.FechaInicio || t.FechaTermino) r += `<div style="font-size:11px;color:var(--text-dim);margin-top:2px">\ud83d\udcc5 ${t.FechaInicio||'?'} \u2192 ${t.FechaTermino||'?'}</div>`;
+    if (t.Bloqueado) r += `<div style="font-size:12px;color:var(--red);margin-top:4px;font-weight:600">\u26d4 Bloqueado por: ${t.Bloqueado}</div>`;
+    if (t.Responsables && t.Responsables.length) r += `<div style="margin-top:4px;display:flex;gap:4px;flex-wrap:wrap">${t.Responsables.map(n=>'<span class="badge badge-purple">'+n+'</span>').join('')}</div>`;
+    r += `</div>`;
+    return r;
+  }
+
+  // Tareas section — each tarea followed by its nested subtareas
+  if (tareas.length) {
+    h += `<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">\ud83c\udfaf Tareas (${tareas.length})</div>`;
+    tareas.forEach(t => {
+      h += renderTaskRow(t, false);
+      const children = childrenOf[t.PageId] || [];
+      children.forEach(st => { h += renderTaskRow(st, true); });
+    });
+  }
+
+  // Orphan sub-tareas (no parent in current view)
+  if (orphanSubtareas.length) {
+    h += `<div style="font-size:12px;font-weight:600;color:var(--text-dim);margin:12px 0 8px;text-transform:uppercase;letter-spacing:.5px">\ud83d\udd27 Sub-tareas (${orphanSubtareas.length})</div>`;
+    orphanSubtareas.forEach(t => { h += renderTaskRow(t, false); });
+  }
+
+  if (!tasks.length) {
+    h += `<div style="text-align:center;padding:24px;color:var(--text-dim)">Todas las tareas de esta fase est\u00e1n completadas \u2705</div>`;
+  }
+
+  h += `</div>`;
+
+  document.getElementById('phase-modal-content').innerHTML = h;
+  document.getElementById('phase-modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('phase-modal').classList.remove('show');
+}
+
+function renderProblems() {
+  const tasks = DATA.tasks.filter(t => t.Tipo === 'Tarea' && t.Cliente);
+  const patterns = [];
+
+  // ── Detect cross-client patterns ──
+
+  // P1: Bloqueos por fase
+  const blockByPhase = {};
+  tasks.forEach(t => {
+    if (stateKey(t.Estado) === 'blocked' && t.Fase) {
+      if (!blockByPhase[t.Fase]) blockByPhase[t.Fase] = {clients: new Set(), tasks: [], reasons: new Set()};
+      blockByPhase[t.Fase].clients.add(t.Cliente);
+      blockByPhase[t.Fase].tasks.push(t);
+      if (t.Bloqueado) blockByPhase[t.Fase].reasons.add(t.Bloqueado.trim());
+    }
+  });
+  Object.entries(blockByPhase).forEach(([fase, d]) => {
+    if (d.clients.size >= 2 || d.tasks.length >= 3) {
+      patterns.push({
+        title: 'Bloqueos recurrentes', fase: fase, type: 'bloqueo',
+        insight: d.clients.size + ' clientes bloqueados, ' + d.tasks.length + ' tareas afectadas',
+        evidence: d.tasks.map(t => t.Cliente + ': ' + t.Tarea),
+        causes: [...d.reasons].slice(0, 3),
+        action: 'Crear checklist de prerequisitos antes de iniciar esta fase con cada cliente.',
+        severity: d.clients.size >= 3 ? 'critico' : 'alto', icon: '🚫', clients: [...d.clients]
+      });
+    }
+  });
+
+  // P2: Atraso por fase
+  const overdueByPhase = {};
+  tasks.forEach(t => {
+    if (dueBucket(t) === 'overdue' && t.Fase) {
+      if (!overdueByPhase[t.Fase]) overdueByPhase[t.Fase] = {clients: new Set(), tasks: [], totalDays: 0};
+      overdueByPhase[t.Fase].clients.add(t.Cliente);
+      overdueByPhase[t.Fase].tasks.push(t);
+      const end = parseDate(t.FechaTermino);
+      if (end) overdueByPhase[t.Fase].totalDays += Math.ceil((TODAY - end) / 864e5);
+    }
+  });
+  Object.entries(overdueByPhase).forEach(([fase, d]) => {
+    if (d.clients.size >= 2 || d.tasks.length >= 3) {
+      const avgDays = Math.round(d.totalDays / d.tasks.length);
+      patterns.push({
+        title: 'Atrasos acumulados', fase: fase, type: 'atraso',
+        insight: d.tasks.length + ' tareas vencidas en ' + d.clients.size + ' clientes (promedio ' + avgDays + ' días)',
+        evidence: d.tasks.map(t => t.Cliente + ': ' + t.Tarea + ' (' + t.FechaTermino + ')'),
+        causes: [],
+        action: 'Reprogramar fechas en bloque. Evaluar si la duración estimada es realista.',
+        severity: d.clients.size >= 3 ? 'critico' : 'alto', icon: '⏰', clients: [...d.clients]
+      });
+    }
+  });
+
+  // P3: Estancamiento sistémico
+  const staleByPhase = {};
+  tasks.forEach(t => {
+    if (isStale(t) && t.Fase) {
+      if (!staleByPhase[t.Fase]) staleByPhase[t.Fase] = {clients: new Set(), tasks: []};
+      staleByPhase[t.Fase].clients.add(t.Cliente);
+      staleByPhase[t.Fase].tasks.push(t);
+    }
+  });
+  Object.entries(staleByPhase).forEach(([fase, d]) => {
+    if (d.clients.size >= 2 || d.tasks.length >= 3) {
+      patterns.push({
+        title: 'Estancamiento', fase: fase, type: 'estancamiento',
+        insight: d.tasks.length + ' tareas sin avance en ' + d.clients.size + ' clientes',
+        evidence: d.tasks.map(t => t.Cliente + ': ' + t.Tarea),
+        causes: [],
+        action: 'Revisar si hay un recurso compartido o dependencia externa que limita el avance.',
+        severity: 'medio', icon: '🐌', clients: [...d.clients]
+      });
+    }
+  });
+
+  // P4: Cliente concentrador
+  DATA.clients.forEach(client => {
+    const ct = tasks.filter(t => t.Cliente === client);
+    const blocked = ct.filter(t => stateKey(t.Estado) === 'blocked').length;
+    const overdue = ct.filter(t => dueBucket(t) === 'overdue').length;
+    const stale = ct.filter(t => isStale(t)).length;
+    const total = blocked + overdue + stale;
+    if (total >= 5) {
+      patterns.push({
+        title: client + ' concentra problemas', type: 'concentrador',
+        insight: blocked + ' bloqueadas + ' + overdue + ' overdue + ' + stale + ' estancadas = ' + total + ' problemas',
+        evidence: [], causes: [],
+        action: 'Agendar revisión de estado. Priorizar desbloqueos primero, luego atrasos.',
+        severity: total >= 8 ? 'critico' : 'alto', icon: '🔥', clients: [client]
+      });
+    }
+  });
+
+  // P5: Retrabajo
+  if (DATA_OPS && DATA_OPS.retrabajo) {
+    const retClients = Object.entries(DATA_OPS.retrabajo).filter(([c, v]) => v && v.value > 0);
+    if (retClients.length >= 2) {
+      patterns.push({
+        title: 'Retrabajo en múltiples clientes', type: 'retrabajo',
+        insight: retClients.length + ' clientes con tareas que vuelven de Completado a En progreso',
+        evidence: retClients.map(([c, v]) => c + ': ' + (v.value * 100).toFixed(0) + '%'),
+        causes: ['Criterios de "done" poco claros', 'Falta validación con cliente antes de cerrar'],
+        action: 'Definir checklist de cierre por fase. No marcar completado sin validación del cliente.',
+        severity: 'medio', icon: '🔄', clients: retClients.map(([c]) => c)
+      });
+    }
+  }
+
+  // ── Classify into 3 groups ──
+  const phasePatterns = {};
+  const clientPatterns = [];
+  const processPatterns = [];
+  patterns.forEach(p => {
+    if (p.type === 'concentrador') clientPatterns.push(p);
+    else if (p.type === 'retrabajo') processPatterns.push(p);
+    else { phasePatterns[p.fase] = phasePatterns[p.fase] || []; phasePatterns[p.fase].push(p); }
+  });
+
+  // ── Phase health for heatmap ──
+  const sevOrder = {critico: 0, alto: 1, medio: 2};
+  const phaseHealth = {};
+  DATA.phases.forEach(fase => {
+    const pats = phasePatterns[fase] || [];
+    let worstSev = null;
+    pats.forEach(p => { if (!worstSev || sevOrder[p.severity] < sevOrder[worstSev]) worstSev = p.severity; });
+    const allClients = new Set(pats.flatMap(p => p.clients));
+    phaseHealth[fase] = {patterns: pats, severity: worstSev, clientCount: allClients.size, clients: [...allClients]};
+  });
+
+  // Counts
+  const critCount = patterns.filter(p => p.severity === 'critico').length;
+  const highCount = patterns.filter(p => p.severity === 'alto').length;
+  const medCount = patterns.filter(p => p.severity === 'medio').length;
+
+  // ── Render ──
+  let h = '';
+
+  if (!patterns.length) {
+    h += '<div class="card" style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:32px;margin-bottom:8px">✅</div>No se detectaron patrones recurrentes. Los problemas puntuales se ven en cada cliente.</div>';
+    return h;
+  }
+
+  // ── Section A: Phase Health Heatmap ──
+  h += '<div class="card" style="margin-bottom:16px"><div class="section-title" style="margin-bottom:12px">Salud por Fase</div>';
+  h += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+  DATA.phases.forEach(fase => {
+    const ph = phaseHealth[fase];
+    const shortName = fase.replace(/^\d+\.\s*/, '');
+    const bgColor = !ph.severity ? 'var(--surface2)' : ph.severity === 'critico' ? 'rgba(239,68,68,.12)' : ph.severity === 'alto' ? 'rgba(245,158,11,.12)' : 'rgba(99,102,241,.12)';
+    const textColor = !ph.severity ? 'var(--text-dim)' : ph.severity === 'critico' ? '#ef4444' : ph.severity === 'alto' ? '#f59e0b' : '#6366f1';
+    const icon = !ph.severity ? '✅' : ph.severity === 'critico' ? '🔴' : ph.severity === 'alto' ? '🟠' : '🔵';
+    h += `<div style="background:${bgColor};border-radius:8px;padding:8px 4px;text-align:center;border:1px solid ${textColor}20;flex:1 1 0;min-width:70px">`;
+    h += `<div style="font-size:10px;font-weight:700;color:${textColor};line-height:1.3">${shortName}</div>`;
+    h += `<div style="font-size:16px;margin:4px 0">${icon}</div>`;
+    if (ph.patterns.length) {
+      h += `<div style="font-size:10px;color:var(--text-dim)">${ph.patterns.length} patron${ph.patterns.length!==1?'es':''}</div>`;
+      h += `<div style="font-size:10px;color:var(--text-dim)">${ph.clientCount} cliente${ph.clientCount!==1?'s':''}</div>`;
+    } else {
+      h += `<div style="font-size:10px;color:var(--text-dim)">Sin problemas</div>`;
+    }
+    h += '</div>';
+  });
+  h += '</div></div>';
+
+  // ── Section B: Severity counters ──
+  h += '<div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">';
+  h += `<div class="card" style="border-left:4px solid #ef4444;padding:16px;text-align:center"><div style="font-size:28px;font-weight:700;color:#ef4444">${critCount}</div><div style="font-size:12px;color:var(--text-dim)">Patrones críticos</div></div>`;
+  h += `<div class="card" style="border-left:4px solid #f59e0b;padding:16px;text-align:center"><div style="font-size:28px;font-weight:700;color:#f59e0b">${highCount}</div><div style="font-size:12px;color:var(--text-dim)">Patrones altos</div></div>`;
+  h += `<div class="card" style="border-left:4px solid #6366f1;padding:16px;text-align:center"><div style="font-size:28px;font-weight:700;color:#6366f1">${medCount}</div><div style="font-size:12px;color:var(--text-dim)">Mejoras de proceso</div></div>`;
+  h += '</div>';
+
+  // ── Helper: render a single pattern card ──
+  function renderPatternCard(p) {
+    const borderColor = p.severity === 'critico' ? '#ef4444' : p.severity === 'alto' ? '#f59e0b' : '#6366f1';
+    const sevLabel = p.severity === 'critico' ? 'Crítico' : p.severity === 'alto' ? 'Alto' : 'Mejora';
+    let c = `<div style="border-left:3px solid ${borderColor};padding:10px 14px;margin-bottom:10px;border-radius:0 8px 8px 0;background:var(--surface2)">`;
+    c += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">`;
+    c += `<div style="display:flex;gap:8px;align-items:center"><span>${p.icon}</span><strong style="font-size:13px">${p.title}</strong></div>`;
+    c += `<span class="badge" style="background:${borderColor}20;color:${borderColor};font-weight:700;font-size:.65rem">${sevLabel}</span>`;
+    c += `</div>`;
+    c += `<div style="font-size:12px;color:var(--text);margin-bottom:6px">${p.insight}</div>`;
+    // Clients
+    c += `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">`;
+    p.clients.forEach(cl => {
+      const ci = DATA.clients.indexOf(cl);
+      const pi = ci >= 0 ? ci + 7 : -1;
+      const clr = DATA.clientColors[cl] || 'var(--accent)';
+      c += `<span class="badge" style="background:${clr}20;color:${clr};font-weight:600;font-size:.65rem;cursor:${pi>=0?'pointer':'default'}" ${pi>=0?'onclick="showPage('+pi+')"':''}>${cl}</span>`;
+    });
+    c += `</div>`;
+    // Evidence
+    if (p.evidence.length > 0) {
+      const vis = p.evidence.length <= 3 ? p.evidence : p.evidence.slice(0, 2);
+      c += `<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px">`;
+      vis.forEach(e => { c += `<div>· ${e}</div>`; });
+      if (p.evidence.length > 3) c += `<div style="font-style:italic">...y ${p.evidence.length - 2} más</div>`;
+      c += `</div>`;
+    }
+    // Causes
+    if (p.causes.length > 0) {
+      c += `<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px"><strong>Causas:</strong> ${p.causes.join(' · ')}</div>`;
+    }
+    // Action
+    c += `<div style="font-size:12px;line-height:1.4"><strong>→</strong> ${p.action}</div>`;
+    c += `</div>`;
+    return c;
+  }
+
+  // ── Section C: Accordion by phase ──
+  const phasesWithPatterns = DATA.phases.filter(f => phasePatterns[f] && phasePatterns[f].length);
+  if (phasesWithPatterns.length) {
+    h += '<div class="section-title" style="margin-bottom:12px">Patrones por Fase</div>';
+    phasesWithPatterns.forEach((fase, idx) => {
+      const pats = phasePatterns[fase];
+      const ph = phaseHealth[fase];
+      const borderColor = ph.severity === 'critico' ? '#ef4444' : ph.severity === 'alto' ? '#f59e0b' : '#6366f1';
+      const sevLabel = ph.severity === 'critico' ? 'Crítico' : ph.severity === 'alto' ? 'Alto' : 'Mejora';
+      const safeId = 'pat-phase-' + idx;
+      const openByDefault = idx === 0;
+
+      h += `<div class="card" style="border-left:4px solid ${borderColor};margin-bottom:12px;padding:0;overflow:hidden">`;
+      // Header
+      h += `<div onclick="togglePatternPhase('${safeId}')" style="padding:14px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none">`;
+      h += `<div style="display:flex;align-items:center;gap:12px">`;
+      h += `<span id="chevron-${safeId}" style="font-size:12px;transition:transform .2s;color:var(--text-dim);transform:${openByDefault?'rotate(90deg)':''}">▶</span>`;
+      h += `<strong style="font-size:14px">${fase}</strong>`;
+      h += `<span class="badge" style="background:${borderColor}20;color:${borderColor};font-size:.7rem;font-weight:700">${pats.length} patron${pats.length!==1?'es':''}</span>`;
+      h += `<span class="badge badge-gray" style="font-size:.7rem">${ph.clientCount} cliente${ph.clientCount!==1?'s':''}</span>`;
+      h += `</div>`;
+      h += `<span class="badge" style="background:${borderColor}20;color:${borderColor};font-weight:700;font-size:.65rem">${sevLabel}</span>`;
+      h += `</div>`;
+      // Body
+      h += `<div id="body-${safeId}" style="display:${openByDefault?'block':'none'};padding:0 20px 16px">`;
+      pats.forEach(p => { h += renderPatternCard(p); });
+      // Consolidated action
+      h += `<div style="background:var(--accent);color:#fff;border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.5;margin-top:4px">`;
+      h += `<strong>Plan para ${fase.replace(/^\d+\.\s*/, '')}:</strong> `;
+      h += pats.map(p => p.action).join(' ');
+      h += `</div>`;
+      h += `</div></div>`;
+    });
+  }
+
+  // ── Section D: Client patterns ──
+  if (clientPatterns.length) {
+    h += '<div class="section-title" style="margin-top:20px;margin-bottom:12px">Clientes Concentradores</div>';
+    clientPatterns.forEach(p => {
+      const borderColor = p.severity === 'critico' ? '#ef4444' : '#f59e0b';
+      h += `<div class="card" style="border-left:4px solid ${borderColor};margin-bottom:12px;padding:16px 20px">`;
+      h += `<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><span style="font-size:20px">${p.icon}</span><strong style="font-size:14px">${p.title}</strong></div>`;
+      h += `<div style="font-size:13px;color:var(--text);margin-bottom:8px">${p.insight}</div>`;
+      h += `<div style="display:flex;gap:6px;margin-bottom:8px">`;
+      p.clients.forEach(c => {
+        const ci = DATA.clients.indexOf(c); const pi = ci >= 0 ? ci + 7 : -1;
+        const clr = DATA.clientColors[c] || 'var(--accent)';
+        h += `<span class="badge" style="background:${clr}20;color:${clr};font-weight:600;font-size:.7rem;cursor:pointer" onclick="showPage(${pi})">Ver ${c} →</span>`;
+      });
+      h += `</div>`;
+      h += `<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.5"><strong>→</strong> ${p.action}</div>`;
+      h += `</div>`;
+    });
+  }
+
+  // ── Section E: Process patterns ──
+  if (processPatterns.length) {
+    h += '<div class="section-title" style="margin-top:20px;margin-bottom:12px">Patrones de Proceso</div>';
+    processPatterns.forEach(p => { h += `<div class="card" style="border-left:4px solid #6366f1;margin-bottom:12px;padding:16px 20px">${renderPatternCard(p)}</div>`; });
+  }
+
+  // ── Section F: Trend (from PATTERN_HISTORY) ──
+  if (PATTERN_HISTORY && PATTERN_HISTORY.length > 1) {
+    h += `<div class="card" style="margin-top:20px"><div class="section-title" style="margin-bottom:12px">Evolución de Patrones (últimos 4 meses)</div>`;
+    h += `<div class="chart-container" style="height:250px"><canvas id="chart-patterns-trend"></canvas></div>`;
+    h += `<div style="overflow-x:auto;margin-top:16px"><table><thead><tr><th>Fecha</th><th>Total</th><th style="color:#ef4444">Críticos</th><th style="color:#f59e0b">Altos</th><th style="color:#6366f1">Mejora</th><th>Tendencia</th></tr></thead><tbody>`;
+    const hist = PATTERN_HISTORY.slice(-20);
+    hist.forEach((snap, i) => {
+      const s = snap.summary || {};
+      const prev = i > 0 ? (hist[i-1].summary || {}).total || 0 : s.total || 0;
+      const curr = s.total || 0;
+      const trend = curr < prev ? '<span style="color:var(--green)">↓ mejorando</span>' : curr > prev ? '<span style="color:var(--red)">↑ empeorando</span>' : '<span style="color:var(--text-dim)">= estable</span>';
+      h += `<tr><td>${snap.date}</td><td style="font-weight:700">${curr}</td><td style="color:#ef4444">${s.critico||0}</td><td style="color:#f59e0b">${s.alto||0}</td><td style="color:#6366f1">${s.medio||0}</td><td>${trend}</td></tr>`;
+    });
+    h += `</tbody></table></div></div>`;
+  } else if (PATTERN_HISTORY && PATTERN_HISTORY.length === 1) {
+    h += `<div class="card" style="margin-top:20px;padding:20px;text-align:center;color:var(--text-dim);font-size:13px">Primer snapshot registrado hoy. La tendencia se mostrará a partir de la próxima actualización.</div>`;
+  }
+
+  return h;
+}
+
+function togglePatternPhase(id) {
+  const body = document.getElementById('body-' + id);
+  const chevron = document.getElementById('chevron-' + id);
+  if (!body) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  if (chevron) chevron.style.transform = open ? '' : 'rotate(90deg)';
+}
+
+function renderTasksTable() {
+  const tasks = DATA.tasks.filter(t => t.Tipo === 'Tarea' && t.Cliente);
+  const allStates = ['progress','blocked','review','pending','done','archived'];
+  const allPhases = DATA.phases || [];
+  const allClients = DATA.clients || [];
+
+  // Filters bar
+  let h = '<div class="card" style="margin-bottom:16px;padding:16px 20px">';
+  h += '<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">';
+  h += '<span style="font-weight:600;font-size:13px;color:var(--text-dim)">Filtros:</span>';
+  h += '<select id="filter-estado" onchange="filterTasks()" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px"><option value="">Estado: Todos</option>';
+  allStates.forEach(k => { h += `<option value="${k}">${stateLabel(k)}</option>`; });
+  h += '</select>';
+  h += '<select id="filter-cliente" onchange="filterTasks()" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px"><option value="">Cliente: Todos</option>';
+  allClients.forEach(c => { h += `<option value="${c}">${c}</option>`; });
+  h += '</select>';
+  h += '<select id="filter-fase" onchange="filterTasks()" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px"><option value="">Fase: Todas</option>';
+  allPhases.forEach(f => { h += `<option value="${f}">${f}</option>`; });
+  h += '</select>';
+  h += '<select id="filter-riesgo" onchange="filterTasks()" style="padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px"><option value="">Riesgo: Todos</option><option value="overdue">Overdue</option><option value="soon">Próx. 0-3d</option><option value="upcoming">Próx. 4-7d</option><option value="ok">Al día</option></select>';
+  h += '<button onclick="clearTaskFilters()" style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text-dim);font-size:12px;cursor:pointer">Limpiar</button>';
+  h += '<span id="filter-count" style="font-size:12px;color:var(--text-dim);margin-left:auto"></span>';
+  h += '</div></div>';
+
+  // Accordion by client
+  h += '<div id="tasks-accordion">';
+  allClients.forEach((client, ci) => {
+    const clientTasks = tasks.filter(t => t.Cliente === client).sort((a, b) => {
+      const ai = DATA.phases.indexOf(a.Fase); const bi = DATA.phases.indexOf(b.Fase);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
+    if (!clientTasks.length) return;
+    const clientIdx = ci + 7;
+    const color = DATA.clientColors[client] || 'var(--accent)';
+    const activeCount = clientTasks.filter(t => {const k=stateKey(t.Estado); return k==='progress'||k==='blocked'||k==='review';}).length;
+    const blockedCount = clientTasks.filter(t => stateKey(t.Estado)==='blocked').length;
+
+    h += `<div class="card task-client-group" data-client="${client}" style="margin-bottom:12px;border-left:4px solid ${color};padding:0;overflow:hidden">`;
+    // Header (clickable)
+    h += `<div class="task-client-header" onclick="toggleTaskGroup('${client}')" style="padding:14px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none">`;
+    h += `<div style="display:flex;align-items:center;gap:12px">`;
+    h += `<span class="task-chevron" id="chevron-${client}" style="font-size:12px;transition:transform .2s;color:var(--text-dim)">▶</span>`;
+    h += `<strong style="font-size:14px">${client}</strong>`;
+    h += `<span class="badge badge-gray" style="font-size:.7rem">${clientTasks.length} tareas</span>`;
+    if (activeCount) h += `<span class="badge" style="background:rgba(99,102,241,.1);color:var(--accent);font-size:.7rem">${activeCount} activas</span>`;
+    if (blockedCount) h += `<span class="badge badge-red" style="font-size:.7rem">${blockedCount} bloq.</span>`;
+    h += `</div>`;
+    h += `<span style="font-size:.75rem;color:var(--accent);font-weight:600" onclick="event.stopPropagation();showPage(${clientIdx})">Ver detalle →</span>`;
+    h += `</div>`;
+    // Body (hidden by default)
+    h += `<div class="task-client-body" id="tbody-${client}" style="display:none;padding:0 20px 14px">`;
+    h += '<div style="overflow-x:auto"><table style="margin:0"><thead><tr><th>Fase</th><th>Tarea</th><th>Estado</th><th>Riesgo</th><th>Inicio</th><th>Término</th><th>Cumpl.</th></tr></thead><tbody>';
+    clientTasks.forEach(t => {
+      const k = stateKey(t.Estado);
+      const start = parseDate(t.FechaInicio);
+      const end = parseDate(t.FechaTermino);
+      let comp = 'N/A';
+      if (start && end) {
+        const planned = Math.max(diffDays(start, end), 1);
+        if (k === 'done') comp = '100%';
+        else if (k !== 'pending') {
+          const actual = Math.max(diffDays(start, TODAY), 1);
+          comp = Math.min(100, Math.round(planned / actual * 100)) + '%';
+        } else comp = '-';
+      }
+      const bucket = dueBucket(t);
+      const bk = bucket || 'ok';
+      const dueBadge = bucket==='overdue' ? '<span class="badge badge-orange">Overdue</span>' : bucket==='soon' ? '<span class="badge badge-soon">Próx. 0–3d</span>' : bucket==='upcoming' ? '<span class="badge badge-upcoming">Próx. 4–7d</span>' : '<span class="badge badge-green">Al día</span>';
+      h += `<tr class="task-row" data-client="${client}" data-estado="${k}" data-fase="${t.Fase||''}" data-riesgo="${bk}">`;
+      h += `<td style="font-size:12px;white-space:nowrap">${t.Fase||'-'}</td>`;
+      h += `<td>${t.Tarea}${t.Bloqueado ? '<br><span style="font-size:11px;color:var(--red)">' + t.Bloqueado.substring(0,80) + '</span>' : ''}</td>`;
+      h += `<td><span class="badge" style="background:${stateBg(k)};color:${stateColor(k)}">${stateLabel(k)}</span></td>`;
+      h += `<td>${dueBadge}</td>`;
+      h += `<td style="font-size:12px">${t.FechaInicio||'-'}</td>`;
+      h += `<td style="font-size:12px">${t.FechaTermino||'-'}</td>`;
+      h += `<td style="font-weight:700;color:${comp==='N/A'||comp==='-'?'var(--text-dim)':parseInt(comp)>=100?'var(--green)':'var(--red)'}">${comp}</td>`;
+      h += '</tr>';
+    });
+    h += '</tbody></table></div></div></div>';
+  });
+  h += '</div>';
+  return h;
+}
+
+function toggleTaskGroup(client) {
+  const body = document.getElementById('tbody-' + client);
+  const chevron = document.getElementById('chevron-' + client);
+  if (!body) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  if (chevron) chevron.style.transform = open ? '' : 'rotate(90deg)';
+}
+
+function filterTasks() {
+  const estado = document.getElementById('filter-estado').value;
+  const cliente = document.getElementById('filter-cliente').value;
+  const fase = document.getElementById('filter-fase').value;
+  const riesgo = document.getElementById('filter-riesgo').value;
+  const rows = document.querySelectorAll('.task-row');
+  let shown = 0, total = rows.length;
+  // Open all groups if filtering
+  const isFiltering = estado || cliente || fase || riesgo;
+  document.querySelectorAll('.task-client-group').forEach(g => {
+    const c = g.getAttribute('data-client');
+    if (cliente && c !== cliente) { g.style.display = 'none'; return; }
+    g.style.display = '';
+    const body = g.querySelector('.task-client-body');
+    const chevron = document.getElementById('chevron-' + c);
+    if (isFiltering && body) { body.style.display = 'block'; if (chevron) chevron.style.transform = 'rotate(90deg)'; }
+  });
+  var visibleByClient = {};
+  rows.forEach(r => {
+    let show = true;
+    if (estado && r.getAttribute('data-estado') !== estado) show = false;
+    if (cliente && r.getAttribute('data-client') !== cliente) show = false;
+    if (fase && r.getAttribute('data-fase') !== fase) show = false;
+    if (riesgo) {
+      const rv = r.getAttribute('data-riesgo');
+      if (riesgo === 'ok' && (rv === 'overdue' || rv === 'soon' || rv === 'upcoming')) show = false;
+      else if (riesgo !== 'ok' && rv !== riesgo) show = false;
+    }
+    r.style.display = show ? '' : 'none';
+    if (show) { shown++; visibleByClient[r.getAttribute('data-client')] = true; }
+  });
+  // Hide client groups with no visible rows
+  if (isFiltering) {
+    document.querySelectorAll('.task-client-group').forEach(g => {
+      const c = g.getAttribute('data-client');
+      g.style.display = visibleByClient[c] ? '' : 'none';
+    });
+  }
+  document.getElementById('filter-count').textContent = isFiltering ? shown + ' de ' + total + ' tareas' : '';
+}
+
+function clearTaskFilters() {
+  ['filter-estado','filter-cliente','filter-fase','filter-riesgo'].forEach(id => { document.getElementById(id).value = ''; });
+  document.querySelectorAll('.task-client-group').forEach(g => { g.style.display = ''; });
+  document.querySelectorAll('.task-row').forEach(r => { r.style.display = ''; });
+  document.querySelectorAll('.task-client-body').forEach(b => { b.style.display = 'none'; });
+  document.querySelectorAll('.task-chevron').forEach(c => { c.style.transform = ''; });
+  document.getElementById('filter-count').textContent = '';
+}
+
+function renderClientDetail(client) {
+  const ts = clientTasks(client);
+  const hs = healthScore(client);
+  const pp = progressPct(client);
+  const cp = compliancePct(client);
+  const color = DATA.clientColors[client] || 'var(--accent)';
+
+  let h = `<div class="card" style="border-left:4px solid ${color}">`;
+  h += `<div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">`;
+  h += `<div class="gauge" style="background:${gaugeColor(hs)}">${hs}</div>`;
+  h += `<div><div style="font-size:20px;font-weight:700">${client}</div>`;
+  h += `<div style="font-size:13px;color:var(--text-dim)">${activePhase(client)||'Sin fase activa'}</div></div>`;
+  h += `<div style="margin-left:auto;display:flex;gap:24px">`;
+  h += `<div class="metric-item"><span class="num" style="color:var(--accent)">${pp}%</span><span class="lbl">Progreso</span></div>`;
+  h += `<div class="metric-item"><span class="num" style="color:${complianceColor(cp)}">${cp!==null?cp+'%':'N/A'}</span><span class="lbl">Cumplimiento</span></div>`;
+  h += `<div class="metric-item"><span class="num" style="color:${blockedCount(client)?'var(--red)':'var(--green)'}">${blockedCount(client)}</span><span class="lbl">Bloqueadas</span></div>`;
+  h += `<div class="metric-item"><span class="num" style="color:${overdueCount(client)?'var(--orange)':'var(--green)'}">${overdueCount(client)}</span><span class="lbl">Overdue</span></div>`;
+  h += `<div class="metric-item"><span class="num" style="color:${dueSoonCount(client)?'var(--yellow)':'var(--green)'}">${dueSoonCount(client)}</span><span class="lbl">Pr\u00f3x.</span></div>`;
+  const dd = delayDays(client);
+  h += `<div class="metric-item"><span class="num" style="color:${dd>0?'var(--red)':'var(--green)'}">${dd>0?dd+'d':'-'}</span><span class="lbl">Atraso</span></div>`;
+  h += `</div></div></div>`;
+
+  const firstActive = activePhase(client);
+
+  const phases = [...new Set(ts.map(t => t.Fase).filter(Boolean))].sort((a, b) => {
+    if (a === firstActive) return -1;
+    if (b === firstActive) return 1;
+    const ai = DATA.phases.indexOf(a);
+    const bi = DATA.phases.indexOf(b);
+    if (ai === -1 && bi === -1) return 0;
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  }).filter(phase => {
+    const pt = ts.filter(t => t.Fase === phase);
+    return !pt.every(t => stateKey(t.Estado) === 'done');
+  });
+
+  phases.forEach(phase => {
+    const phaseTasks = ts.filter(t => t.Fase === phase);
+    const taskPriority = t => {
+      const k = stateKey(t.Estado);
+      if (k === 'blocked') return 0;
+      if (dueBucket(t) === 'overdue') return 1;
+      if (k === 'progress') return 2;
+      if (k === 'review') return 3;
+      if (k === 'pending') return 4;
+      return 5;
+    };
+    const activePhaseTasks = phaseTasks.filter(t => stateKey(t.Estado) !== 'done').sort((a, b) => taskPriority(a) - taskPriority(b));
+    const doneCount = phaseTasks.length - activePhaseTasks.length;
+    const phaseState = phaseStateForTasks(phaseTasks);
+    const isFirst = phase === firstActive;
+    h += `<div class="detail-section" style="${isFirst?'border:2px solid var(--accent);border-radius:12px;padding:16px;background:rgba(79,110,247,.04)':''}"><h3>${phase} <span class="badge" style="background:${stateBg(phaseState)};color:${stateColor(phaseState)};margin-left:8px">${stateLabel(phaseState)}</span>${isFirst?' <span class="badge badge-blue" style="margin-left:4px">Fase activa principal</span>':''}${doneCount?' <span style="font-size:11px;color:var(--text-dim);margin-left:8px">('+doneCount+' completada'+(doneCount!==1?'s':'')+')</span>':''}</h3>`;
+    activePhaseTasks.forEach(t => {
+      const k = stateKey(t.Estado);
+      const bucket = dueBucket(t);
+      h += `<div class="task-item" style="border-left:3px solid ${stateColor(k)};padding-left:10px">`;
+      h += `<div class="task-item-header"><span class="task-item-name">${t.Tarea}</span><span class="badge" style="background:${stateBg(k)};color:${stateColor(k)}">${stateLabel(k)}</span>`;
+      if (bucket === 'overdue') h += `<span class="badge" style="background:rgba(249,115,22,.15);color:var(--orange);margin-left:4px">Overdue</span>`;
+      else if (bucket === 'soon') h += `<span class="badge" style="background:rgba(234,179,8,.15);color:var(--yellow);margin-left:4px">Vence pronto</span>`;
+      h += `</div>`;
+      if (t.Tipo && t.Tipo !== 'Tarea') h += `<div style="font-size:10px;color:var(--text-dim)">${t.Tipo}</div>`;
+      if (t.FechaInicio || t.FechaTermino) h += `<div style="font-size:11px;color:var(--text-dim)">${t.FechaInicio||'?'} \u2192 ${t.FechaTermino||'?'}</div>`;
+      if (t.Bloqueado) h += `<div style="font-size:12px;color:var(--red);margin-top:4px;font-weight:600">\u26d4 Bloqueado por: ${t.Bloqueado}</div>`;
+      if (t.Responsables && t.Responsables.length) h += `<div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">${t.Responsables.map(r=>'<span class="badge badge-purple">'+r+'</span>').join('')}</div>`;
+      h += '</div>';
+    });
+    h += '</div>';
+  });
+
+  return h;
+}
+
+// ── Navigation ──
+function showPage(idx) {
+  document.querySelectorAll('.page').forEach((p,i) => p.classList.toggle('active', i===idx));
+  // Nav has 7 tabs (0-6); client detail pages (idx>=7) highlight "Clientes" tab (index 1)
+  const navIdx = idx >= 7 ? 1 : idx;
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===navIdx));
+}
+
+function toggleTheme() {
+  const b = document.body;
+  const t = b.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  b.setAttribute('data-theme', t);
+  // Re-render charts with new colors
+  destroyCharts();
+  initDashboardCharts();
+  initMetricsCharts();
+  initPatternTrendChart();
+}
+
+function getActionable(text) {
+  if (!text) return { label: 'Hacer seguimiento', color: 'var(--text-dim)' };
+  var t = text.toLowerCase();
+  if (/bug|cr[ií]tico|error|fix/.test(t))                          return { label: 'Resolver bugs', color: 'var(--blue)' };
+  if (/reprogramado|go.live|nueva fecha|definir fecha/.test(t))    return { label: 'Definir fecha', color: 'var(--orange)' };
+  if (/confirmaci[oó]n|plazos|confirmar/.test(t))                  return { label: 'Confirmar con cliente', color: 'var(--accent)' };
+  if (/aprobaci[oó]n|ciberseguridad|infraestructura/.test(t))      return { label: 'Escalar aprobación', color: 'var(--red)' };
+  if (/contrato|legal|prohibido|costo/.test(t))                    return { label: 'Decidir solución', color: 'var(--red)' };
+  if (/api|endpoint|integraci[oó]n|implementar/.test(t))           return { label: 'Gestionar integración', color: 'var(--blue)' };
+  if (/qa|prueba|testing|configuraci[oó]n/.test(t))                return { label: 'Revisar configuración', color: 'var(--yellow)' };
+  if (/pendiente|aprobaci[oó]n|decisi[oó]n/.test(t))               return { label: 'Desbloquear pendiente', color: 'var(--orange)' };
+  return { label: 'Hacer seguimiento', color: 'var(--text-dim)' };
+}
+
+function showKpiPopup(tipo) {
+  var all = DATA.tasks.filter(function(t){ return t.Tipo === 'Tarea' && t.Cliente; }), tasks, title;
+  if (tipo === 'activas') {
+    tasks = all.filter(function(t){ return stateKey(t.Estado) === 'progress'; });
+    title = 'Tareas Activas';
+  } else if (tipo === 'bloqueadas') {
+    tasks = all.filter(function(t){ return stateKey(t.Estado) === 'blocked'; });
+    title = 'Tareas Bloqueadas';
+  } else if (tipo === 'overdue') {
+    tasks = all.filter(function(t){ return dueBucket(t) === 'overdue'; });
+    title = 'Overdue';
+  } else if (tipo === 'proximas') {
+    tasks = all.filter(function(t){ return dueBucket(t) === 'soon'; });
+    title = 'Próximas a vencer';
+  } else return;
+  document.getElementById('kpi-popup-title').textContent = title + ' (' + tasks.length + ')';
+  // Group by client
+  var grouped = {};
+  tasks.forEach(function(t) {
+    var c = t.Cliente || '?';
+    if (!grouped[c]) grouped[c] = [];
+    grouped[c].push(t);
+  });
+  var html = '';
+  var popupIdCounter = 0;
+  if (!tasks.length) {
+    html = '<li style="color:var(--text-dim)">Sin tareas</li>';
+  } else {
+    Object.keys(grouped).sort().forEach(function(client) {
+      var clientIdx = DATA.clients.indexOf(client);
+      var pageIdx = clientIdx >= 0 ? clientIdx + 7 : -1;
+      var gid = 'popup-grp-' + (popupIdCounter++);
+      // Sort tasks by phase order
+      grouped[client].sort(function(a, b) {
+        var ai = DATA.phases.indexOf(a.Fase); var bi = DATA.phases.indexOf(b.Fase);
+        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+      });
+      html += '<li class="tk-group-header" onclick="var b=document.getElementById(\'' + gid + '\');var o=b.style.display!==\'none\';b.style.display=o?\'none\':\'block\';this.querySelector(\'.tk-chev\').style.transform=o?\'\':\'rotate(90deg)\'" style="background:var(--surface2);font-weight:700;font-size:.85rem;padding:10px;border-radius:6px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none">';
+      html += '<span><span class="tk-chev" style="font-size:10px;display:inline-block;transition:transform .2s;margin-right:6px">▶</span>' + client + ' <span class="badge badge-gray" style="font-size:.7rem;margin-left:4px">' + grouped[client].length + '</span></span>';
+      if (pageIdx >= 0) html += '<span style="font-size:.7rem;color:var(--accent);cursor:pointer;font-weight:600" onclick="event.stopPropagation();closeKpiPopup();showPage(' + pageIdx + ')">Ver cliente →</span>';
+      html += '</li>';
+      html += '<div id="' + gid + '" style="display:none">';
+      grouped[client].forEach(function(t, tidx) {
+        var k = stateKey(t.Estado);
+        var expandId = 'bl-' + gid + '-' + tidx;
+        var action = getActionable(t.Bloqueado || '');
+        html += '<li class="tk-task-block" style="padding-left:16px">';
+        // Row 1: phase, name, badge, date
+        html += '<div class="tk-task-row">';
+        html += '<span class="tk-phase" style="font-size:.7rem;color:var(--text-dim);min-width:100px;flex-shrink:0">' + (t.Fase||'-') + '</span>';
+        html += '<span class="tk-name">' + (t.Tarea||'—') + '</span>';
+        html += '<span class="badge" style="background:' + stateBg(k) + ';color:' + stateColor(k) + ';font-size:.65rem;padding:2px 6px">' + stateLabel(k) + '</span>';
+        if (t.FechaTermino) html += '<span class="tk-due">' + t.FechaTermino + '</span>';
+        html += '</div>';
+        // Row 2: bloqueo text (if any) + action chip
+        if (t.Bloqueado) {
+          html += '<div class="tk-bloqueado">';
+          html += '🚫 <span id="' + expandId + '" class="tk-bloqueado-text">' + t.Bloqueado + '</span>';
+          html += '<button class="tk-expand-btn" onclick="(function(el,btn){if(el.classList.contains(\'expanded\')){el.classList.remove(\'expanded\');btn.textContent=\'ver más\'}else{el.classList.add(\'expanded\');btn.textContent=\'ver menos\'}})(document.getElementById(\'' + expandId + '\'),this)">ver más</button>';
+          html += '</div>';
+        }
+        html += '<div><span class="tk-action-chip" style="color:' + action.color + '">' + action.label + '</span></div>';
+        html += '</li>';
+      });
+      html += '</div>';
+    });
+  }
+  document.getElementById('kpi-popup-list').innerHTML = html;
+  document.getElementById('kpi-popup-overlay').style.display = 'flex';
+}
+function closeKpiPopup() {
+  document.getElementById('kpi-popup-overlay').style.display = 'none';
+}
+
+// Init
+render();
+</script>
+<div id="kpi-popup-overlay" class="kpi-popup-overlay" style="display:none" onclick="if(event.target===this)closeKpiPopup()"><div class="kpi-popup-box"><h3 id="kpi-popup-title"></h3><ul class="kpi-popup-list" id="kpi-popup-list"></ul><button class="kpi-popup-close" onclick="closeKpiPopup()">× Cerrar</button></div></div>
+</body>
+</html>

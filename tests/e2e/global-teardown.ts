@@ -26,8 +26,8 @@ export default async function globalTeardown() {
   try {
     const date = new Date().toISOString().split('T')[0];
     execSync(
-      `git diff --quiet public/ && git diff --cached --quiet public/ || ` +
-      `(git add public/ && git commit -m "chore: publish playwright results ${date}" && ` +
+      `git diff --quiet public/qa/ && git diff --cached --quiet public/qa/ || ` +
+      `(git add public/qa/ && git commit -m "chore: publish playwright results ${date}" && ` +
       `(git push || (git pull --rebase && git push)))`,
       { cwd: root, shell: '/bin/bash', stdio: 'inherit' }
     );
@@ -37,7 +37,7 @@ export default async function globalTeardown() {
 
   // Hint de triage si hay fallos
   try {
-    const historyFile = join(root, 'public', 'history', `${new Date().toISOString().split('T')[0]}.json`);
+    const historyFile = join(root, 'public', 'qa', 'history', `${new Date().toISOString().split('T')[0]}.json`);
     if (existsSync(historyFile)) {
       const run = JSON.parse(readFileSync(historyFile, 'utf8'));
       const failed = run.failed || 0;

@@ -25,10 +25,10 @@ if [ -d "tests/e2e/test-results" ] && [ "$(ls -A tests/e2e/test-results 2>/dev/n
   echo "✓ Cleared tests/e2e/test-results/"
 fi
 
-# 3. Prune public/data/*.png older than 30 days (failure screenshots accumulate)
-PRUNED=$(find public/data -name "*.png" -mtime +30 2>/dev/null | wc -l | tr -d ' ')
+# 3. Prune public/qa/data/*.png older than 30 days (failure screenshots accumulate)
+PRUNED=$(find public/qa/data -name "*.png" -mtime +30 2>/dev/null | wc -l | tr -d ' ')
 if [ "$PRUNED" -gt 0 ]; then
-  find public/data -name "*.png" -mtime +30 -delete
+  find public/qa/data -name "*.png" -mtime +30 -delete
   echo "✓ Pruned $PRUNED failure screenshots older than 30 days"
 fi
 
@@ -43,8 +43,8 @@ done < <(find QA -mindepth 1 -type d 2>/dev/null | sort -r)
 [ "$EMPTY_COUNT" -gt 0 ] && echo "✓ Removed $EMPTY_COUNT empty QA directories"
 
 # 5. Commit and push if there are tracked changes
-if ! git diff --quiet HEAD -- public/data/ 2>/dev/null || git ls-files --deleted | grep -q .; then
-  git add -A public/data/ || true
+if ! git diff --quiet HEAD -- public/qa/data/ 2>/dev/null || git ls-files --deleted | grep -q .; then
+  git add -A public/qa/data/ || true
   git add -u
   git commit -m "chore(cleanup): prune stale screenshots and artifacts" || true
   git push || true

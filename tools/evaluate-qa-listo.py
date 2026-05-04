@@ -39,7 +39,7 @@ def load_manifest_data(project_root: Path) -> tuple:
     Only the most recent entry per slug (by date DESC) is kept.
     Maestro N/A: slug absent from maestro_by_slug (D-08 — determined dynamically).
     """
-    manifest_path = project_root / "public" / "manifest.json"
+    manifest_path = project_root / "public" / "qa" / "manifest.json"
     with open(manifest_path) as f:
         manifest = json.load(f)
 
@@ -81,7 +81,7 @@ def load_playwright_data(project_root: Path) -> dict:
 
     Returns {} for clients with no real run across all history files.
     """
-    pattern = str(project_root / "public" / "history" / "20*.json")
+    pattern = str(project_root / "public" / "qa" / "history" / "20*.json")
     files = sorted(
         (f for f in glob.glob(pattern) if not f.endswith("index.json")),
         reverse=True,
@@ -200,7 +200,7 @@ def build_all_slugs(
 def git_commit_push(project_root: Path, date: str) -> None:
     """Commit and push weekly-status.json (pull --rebase on rejection — D-14)."""
     subprocess.run(
-        ["git", "add", "public/weekly-status.json"],
+        ["git", "add", "public/qa/weekly-status.json"],
         cwd=project_root,
         check=True,
     )
@@ -284,7 +284,7 @@ def main() -> None:
         sys.exit(0)
 
     # ── Write weekly-status.json ────────────────────────────────────────────────
-    output_path = project_root / "public" / "weekly-status.json"
+    output_path = project_root / "public" / "qa" / "weekly-status.json"
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
         f.write("\n")

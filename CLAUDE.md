@@ -3,6 +3,13 @@
 Suite de QA para YOM (You Order Me): B2B web, APP mobile, Admin.  
 Framework: **AI Specs** — roles IA estándar, workflows automatizados, specs reutilizables.
 
+## Lenguaje del dominio
+
+Antes de cualquier tarea, tener presente el glosario de términos exactos de YOM:  
+**`/Users/lalojimenez/Claude Context/ubiquitous-language-yom.md`**
+
+Términos clave: Cliente ≠ Comercio ≠ Usuario. PeM, Segmento, Override, externalId, precio trampa, Staging vs Production.
+
 ## Estrategia de testing
 
 **Cowork (Claude) es la herramienta primaria de QA.** Simula interacción humana real con la app, valida que la configuración del cliente se vea correctamente (banners, fechas, datos, flujos completos). Playwright es **obligatorio** por cliente: corre regresión automatizada y detecta roturas conocidas (post-mortems).

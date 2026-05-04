@@ -1,0 +1,94 @@
+[
+  {
+    "date": "2026-03-20",
+    "patterns": [
+      {
+        "id": "overdue_2. Entrega de datos y servicios",
+        "title": "2. Entrega de datos y servicios acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 4
+      },
+      {
+        "id": "concentrated_Caren",
+        "title": "Caren concentra problemas",
+        "type": "concentracion",
+        "severity": "critico",
+        "clients": [
+          "Caren"
+        ],
+        "count": 9
+      }
+    ],
+    "summary": {
+      "total": 2,
+      "critico": 1,
+      "alto": 1,
+      "medio": 0
+    }
+  },
+  {
+    "date": "2026-03-23",
+    "patterns": [
+      {
+        "id": "overdue_6. Desarrollos",
+        "title": "6. Desarrollos acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 3
+      },
+      {
+        "id": "overdue_2. Entrega de datos y servicios",
+        "title": "2. Entrega de datos y servicios acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 4
+      },
+      {
+        "id": "overdue_3. Kick off",
+        "title": "3. Kick off acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 4
+      },
+      {
+        "id": "overdue_4. Integraciones",
+        "title": "4. Integraciones acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 3
+      },
+      {
+        "id": "concentrated_Caren",
+        "title": "Caren concentra problemas",
+        "type": "concentracion",
+        "severity": "critico",
+        "clients": [
+          "Caren"
+        ],
+        "count": 17
+      }
+    ],
+    "summary": {
+      "total": 5,
+      "critico": 1,
+      "alto": 4,
+      "medio": 0
+    }
+  }
+]

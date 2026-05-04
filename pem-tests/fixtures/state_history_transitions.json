@@ -1,0 +1,452 @@
+[
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-001"]
+  },
+  {
+    "Cambio": "Tarea movida a En revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2026-03-05",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-001"]
+  },
+  {
+    "Cambio": "Tarea devuelta a En progreso",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-06",
+    "Motivo": "Correccion necesaria",
+    "Origen": "Manual",
+    "TareaPeM": ["task-001"]
+  },
+  {
+    "Cambio": "Tarea movida a En revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2026-03-08",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-001"]
+  },
+  {
+    "Cambio": "Tarea completada",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-03-10",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-001"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-02",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-002"]
+  },
+  {
+    "Cambio": "Tarea bloqueada",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Bloqueado",
+    "FechaCambio": "2026-03-04",
+    "Motivo": "Esperando respuesta",
+    "Origen": "Manual",
+    "TareaPeM": ["task-002"]
+  },
+  {
+    "Cambio": "Tarea desbloqueada",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Bloqueado",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-07",
+    "Motivo": "Respuesta recibida",
+    "Origen": "Manual",
+    "TareaPeM": ["task-002"]
+  },
+  {
+    "Cambio": "Tarea bloqueada nuevamente",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Bloqueado",
+    "FechaCambio": "2026-03-09",
+    "Motivo": "Bug encontrado",
+    "Origen": "Manual",
+    "TareaPeM": ["task-002"]
+  },
+  {
+    "Cambio": "Tarea desbloqueada",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Bloqueado",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-12",
+    "Motivo": "Bug corregido",
+    "Origen": "Manual",
+    "TareaPeM": ["task-002"]
+  },
+  {
+    "Cambio": "Tarea completada",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-03-15",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-002"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-003"]
+  },
+  {
+    "Cambio": "Tarea completada",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-03-03",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-003"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-004"]
+  },
+  {
+    "Cambio": "Tarea movida a En revision",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2026-03-03",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-004"]
+  },
+  {
+    "Cambio": "Tarea completada",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-03-05",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-004"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-02",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-005"]
+  },
+  {
+    "Cambio": "Tarea completada",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-03-06",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-005"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteD",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-006"]
+  },
+  {
+    "Cambio": "Tarea bloqueada",
+    "Cliente": "ClienteD",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Bloqueado",
+    "FechaCambio": "2026-03-03",
+    "Motivo": "Esperando datos",
+    "Origen": "Manual",
+    "TareaPeM": ["task-006"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteD",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-02",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-007"]
+  },
+  {
+    "Cambio": "Tarea bloqueada",
+    "Cliente": "ClienteD",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Bloqueado",
+    "FechaCambio": "2026-03-04",
+    "Motivo": "Bug encontrado",
+    "Origen": "Manual",
+    "TareaPeM": ["task-007"]
+  },
+  {
+    "Cambio": "Tarea desbloqueada",
+    "Cliente": "ClienteD",
+    "EstadoAnterior": "Bloqueado",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-06",
+    "Motivo": "Bug corregido",
+    "Origen": "Manual",
+    "TareaPeM": ["task-007"]
+  },
+  {
+    "Cambio": "Tarea completada",
+    "Cliente": "ClienteD",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-03-08",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["task-007"]
+  },
+  {
+    "Cambio": "Rollout iniciado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-01-05",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-rollout"]
+  },
+  {
+    "Cambio": "Rollout bloqueado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Bloqueado",
+    "FechaCambio": "2026-01-10",
+    "Motivo": "Error en despliegue",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-rollout"]
+  },
+  {
+    "Cambio": "Rollout iniciado",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-01-05",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-b-rollout"]
+  },
+  {
+    "Cambio": "Rollout completado",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2026-01-12",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-b-rollout"]
+  },
+  {
+    "Cambio": "QA iniciado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2025-11-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa"]
+  },
+  {
+    "Cambio": "QA enviado a revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2025-11-03",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa"]
+  },
+  {
+    "Cambio": "QA rechazado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2025-11-05",
+    "Motivo": "Errores encontrados",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa"]
+  },
+  {
+    "Cambio": "QA enviado a revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2025-11-07",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa"]
+  },
+  {
+    "Cambio": "QA completado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2025-11-09",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa"]
+  },
+  {
+    "Cambio": "QA 2 iniciado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2025-11-17",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA 2 enviado a revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2025-11-19",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA 2 rechazado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2025-11-20",
+    "Motivo": "Primera correccion",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA 2 enviado a revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2025-11-22",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA 2 rechazado nuevamente",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2025-11-23",
+    "Motivo": "Segunda correccion",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA 2 enviado a revision",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2025-11-25",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA 2 completado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2025-11-27",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-a-qa2"]
+  },
+  {
+    "Cambio": "QA iniciado",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2025-11-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-b-qa"]
+  },
+  {
+    "Cambio": "QA enviado a revision",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "En progreso",
+    "EstadoNuevo": "En revision",
+    "FechaCambio": "2025-11-05",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-b-qa"]
+  },
+  {
+    "Cambio": "QA completado",
+    "Cliente": "ClienteB",
+    "EstadoAnterior": "En revision",
+    "EstadoNuevo": "Completado",
+    "FechaCambio": "2025-11-08",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-b-qa"]
+  },
+  {
+    "Cambio": "Tarea movida a En progreso",
+    "Cliente": "ClienteC",
+    "EstadoAnterior": "Pendiente",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-02-01",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": ["page-c-task"]
+  },
+  {
+    "Cambio": "Estado cambiado",
+    "Cliente": "ClienteA",
+    "EstadoAnterior": "Completado",
+    "EstadoNuevo": "En progreso",
+    "FechaCambio": "2026-03-20",
+    "Motivo": "",
+    "Origen": "Manual",
+    "TareaPeM": []
+  }
+]

@@ -473,7 +473,7 @@ def main():
 
     # Generate b2b-variables.json for dashboard
     b2b_vars = generate_b2b_variables_json(qa_matrix, b2b_feature_map)
-    vars_path = Path("public/data/b2b-variables.json")
+    vars_path = Path("public/qa/data/b2b-variables.json")
     vars_path.parent.mkdir(parents=True, exist_ok=True)
     vars_path.write_text(json.dumps(b2b_vars, indent=2))
 
