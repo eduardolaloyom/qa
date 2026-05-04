@@ -1057,10 +1057,35 @@ def main():
             client_slug = unique_slugs[0]
             print(f"ℹ️  Auto-detected client: {client_slug}")
 
-    # Always use dated directory — never per-client paths that overwrite previous runs.
-    # reports/2026-05-04/ never overwrites reports/2026-05-03/
-    dst_reports = project_root / "public" / "reports" / date
-    report_url = f"reports/{date}/index.html"
+    # One directory per client — never grows unbounded.
+    # Single client run  → reports/{client}/   (replaces only that client's report)
+    # Multi-client run   → reports/{date}/     (one shared report for that day)
+    # Different clients never overwrite each other.
+    clients_in_run = set()
+    if client_slug:
+        clients_in_run = {client_slug}
+    else:
+        import re as _re2
+        def _collect_titles(suite):
+            titles = [t.get("title", "") for t in suite.get("specs", [])]
+            for s in suite.get("suites", []):
+                titles.extend(_collect_titles(s))
+            return titles
+        all_titles = []
+        for s in results.get("suites", []):
+            all_titles.extend(_collect_titles(s))
+        for t in all_titles:
+            m = _re2.match(r'^([a-z][a-z0-9_-]+):', t)
+            if m:
+                clients_in_run.add(m.group(1))
+
+    if len(clients_in_run) == 1:
+        slug = next(iter(clients_in_run))
+        dst_reports = project_root / "public" / "reports" / slug
+        report_url = f"reports/{slug}/index.html"
+    else:
+        dst_reports = project_root / "public" / "reports" / date
+        report_url = f"reports/{date}/index.html"
 
     # Copy reports
     copy_playwright_report(src_report, dst_reports)
