@@ -8,15 +8,15 @@
     <style>
         /* ── Design system ── */
         :root {
-            --c-primary:      #0284c7;
-            --c-primary-dark: #0369a1;
+            --c-primary:      #4f6ef7;
+            --c-primary-dark: #3b5bdb;
             --c-success:      #10b981;
             --c-danger:       #ef4444;
             --c-warning:      #f59e0b;
             --c-surface:      #ffffff;
-            --c-bg:           #f1f5f9;
-            --c-border:       #e2e8f0;
-            --c-text:         #0f172a;
+            --c-bg:           #f8f9fb;
+            --c-border:       #e2e5e9;
+            --c-text:         #1a1d23;
             --c-muted:        #64748b;
             --shadow-card:    0 1px 3px rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.08);
             --radius-card:    14px;
@@ -26,7 +26,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(150deg, #0c4a6e 0%, #075985 50%, #0369a1 100%);
+            background: #f8f9fb;
             min-height: 100vh;
             padding: 28px 32px;
         }
@@ -41,29 +41,32 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
-            margin-bottom: 28px;
+            color: #1a1d23;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e5e9;
+            margin: -28px -32px 28px -32px;
+            padding: 16px 32px;
             gap: 12px;
             flex-wrap: wrap;
         }
         .header-content { flex: 1; min-width: 0; }
         .header-content h1 { font-size: clamp(1.3em, 3vw, 2.2em); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .header-content p { opacity: 0.85; font-size: clamp(0.8em, 1.5vw, 1em); }
+        .header-content p { color: var(--c-muted); font-size: clamp(0.8em, 1.5vw, 1em); }
         .header-actions { display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
 
         .btn-ghost {
-            background: rgba(255,255,255,0.18);
-            color: white;
+            background: #ffffff;
+            color: #1a1d23;
             padding: clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 18px);
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            border: 1.5px solid rgba(255,255,255,0.3);
+            border: 1px solid #e2e5e9;
             transition: background 0.2s, border-color 0.2s;
             font-size: clamp(0.78em, 1.2vw, 0.9em);
             white-space: nowrap;
         }
-        .btn-ghost:hover { background: rgba(255,255,255,0.3); border-color: white; }
+        .btn-ghost:hover { background: #f0f2ff; border-color: var(--c-primary); }
 
         /* ── Live mode ── */
         #livePanel {
@@ -164,7 +167,7 @@
             cursor: pointer;
             user-select: none;
         }
-        .card-title:hover .card-collapse-arrow { color: #0284c7; }
+        .card-title:hover .card-collapse-arrow { color: #4f6ef7; }
         .card-collapse-arrow {
             margin-left: auto;
             font-size: 22px;
@@ -190,7 +193,7 @@
             align-items: center;
             gap: 3px;
         }
-        .card-open-btn:hover { color: #0284c7; border-color: #0284c7; }
+        .card-open-btn:hover { color: #4f6ef7; border-color: #4f6ef7; }
 
         /* ── APP client accordion ── */
         .app-client-section { border:1px solid #e5e7eb; border-radius:10px; margin-bottom:10px; overflow:hidden; }
@@ -244,7 +247,7 @@
         .mq-badge.bug         { background:#fee2e2;color:#991b1b; }
         .mq-badge.ux          { background:#fef3c7;color:#92400e; }
         .mq-badge.ambiente    { background:#dbeafe;color:#1e40af; }
-        .mq-badge.integracion { background:#e0f2fe;color:#6d28d9; }
+        .mq-badge.integracion { background:#eef2ff;color:#6d28d9; }
         .mq-badge.ok      { background:#d1fae5;color:#065f46; }
         .mq-badge.nota    { background:#f3f4f6;color:#374151; }
         .mq-title { font-weight: 600; font-size: 14px; color: #111827; }
@@ -261,7 +264,7 @@
             margin-bottom: 10px;
         }
         .stat-box {
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            background: linear-gradient(135deg, #0ea5e9, #4f6ef7);
             color: white;
             padding: 10px 12px;
             border-radius: 8px;
@@ -339,10 +342,10 @@
             color: #374151;
             transition: all 0.15s;
         }
-        .filter-btn:hover { border-color: #0284c7; color: #0284c7; }
-        .filter-btn.active { background: #0284c7; border-color: #0284c7; color: white; }
+        .filter-btn:hover { border-color: #4f6ef7; color: #4f6ef7; }
+        .filter-btn.active { background: #4f6ef7; border-color: #4f6ef7; color: white; }
         .filter-btn.active span[id^="b2b-count"] { background: rgba(255,255,255,0.25) !important; color: white !important; }
-        .env-btn.active { background: #0369a1 !important; border-color: #0369a1 !important; color: white !important; }
+        .env-btn.active { background: #3b5bdb !important; border-color: #3b5bdb !important; color: white !important; }
         .filter-btn.active-red { background: #ef4444; border-color: #ef4444; color: white; }
         .filter-btn.active-green { background: #10b981; border-color: #10b981; color: white; }
         .filter-btn.active-amber { background: #f59e0b; border-color: #f59e0b; color: white; }
@@ -356,7 +359,7 @@
             width: 200px;
             transition: border-color 0.15s;
         }
-        .search-input:focus { border-color: #0284c7; }
+        .search-input:focus { border-color: #4f6ef7; }
         .filter-count {
             margin-left: auto;
             font-size: 0.8em;
@@ -415,7 +418,7 @@
             padding: 3px 10px; border-radius: 4px;
             font-size: 0.8em; font-weight: 700;
         }
-        .report-link { color: #0284c7; text-decoration: none; font-weight: 600; font-size: 0.85em; }
+        .report-link { color: #4f6ef7; text-decoration: none; font-weight: 600; font-size: 0.85em; }
         .report-link:hover { text-decoration: underline; }
 
         /* ── Failure Groups ── */
@@ -482,7 +485,7 @@
         }
         .fg-action-arrow { color: #6b7280; font-weight: 700; flex-shrink: 0; }
         .failure-group.bug      .fg-action-arrow { color: #ef4444; }
-        .failure-group.ambiente .fg-action-arrow { color: #0284c7; }
+        .failure-group.ambiente .fg-action-arrow { color: #4f6ef7; }
         .failure-group.flaky    .fg-action-arrow { color: #22c55e; }
 
         .fg-right {
@@ -627,7 +630,7 @@
             background: #fee2e2; padding: 2px 9px; border-radius: 9999px;
         }
         .cs-report-link {
-            font-size: 0.82em; color: #0284c7; font-weight: 600;
+            font-size: 0.82em; color: #4f6ef7; font-weight: 600;
             text-decoration: none; white-space: nowrap;
         }
         .cs-report-link:hover { text-decoration: underline; }
@@ -724,7 +727,7 @@
             background: white;
             cursor: pointer;
         }
-        .run-select:focus { outline: none; border-color: #0284c7; }
+        .run-select:focus { outline: none; border-color: #4f6ef7; }
 
         /* ── Unified QA Status View (Phase 3) ── */
         .unified-subtitle {
@@ -836,7 +839,7 @@
         }
         .unified-filter-pill:hover { background: #e5e7eb; }
         .unified-filter-pill.active {
-            background: #0284c7;
+            background: #4f6ef7;
             color: #ffffff;
         }
         /* Client-side filter toggle via class on tbody (Pattern 4 Approach A) */
@@ -925,7 +928,7 @@
             color: #6b7280; cursor: pointer; transition: all 0.15s;
             font-family: inherit;
         }
-        .trend-day-btn.active { background: white; color: #0284c7; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .trend-day-btn.active { background: white; color: #4f6ef7; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         .trend-day-btn:not(.active):hover { color: #374151; }
 
         /* ── Tab bar ── */
@@ -1007,7 +1010,7 @@
             color: inherit;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .report-card:hover { border-color: #0284c7; box-shadow: 0 4px 16px rgba(2,132,199,0.12); }
+        .report-card:hover { border-color: #4f6ef7; box-shadow: 0 4px 16px rgba(79,110,247,0.12); }
         .report-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
         .report-client { font-weight: 700; color: #111827; font-size: 0.95em; }
         .report-date { font-size: 0.75em; color: #9ca3af; }
@@ -1035,7 +1038,7 @@
             display:flex; align-items:center; gap:12px; padding:0;
             text-decoration:none; color:inherit;
         }
-        .cowork-client-card:hover .cowork-card-inner { border-color:#0284c7; box-shadow:0 4px 16px rgba(2,132,199,0.12); }
+        .cowork-client-card:hover .cowork-card-inner { border-color:#4f6ef7; box-shadow:0 4px 16px rgba(79,110,247,0.12); }
         .cowork-card-inner {
             flex:1; border:none; border-radius:0; padding:16px;
             display:flex; flex-direction:column; gap:8px;
@@ -1048,7 +1051,7 @@
             color:#6b7280; transition:background 0.15s, color 0.15s;
             align-self:stretch; padding:0; border-radius:0;
         }
-        .cowork-history-toggle:hover { background:#e0f2fe; color:#0284c7; }
+        .cowork-history-toggle:hover { background:#eef2ff; color:#4f6ef7; }
         .cowork-history-toggle .toggle-arrow { transition:transform 0.2s; display:inline-block; }
         .cowork-history-toggle.open .toggle-arrow { transform:rotate(180deg); }
         .cowork-history-body { display:none; padding:10px 14px; border-top:1px solid #e5e7eb; background:#fafafa; }
@@ -1059,7 +1062,7 @@
             font-size:12px; color:#374151; margin-bottom:4px;
             border:1px solid #e5e7eb;
         }
-        .cowork-history-item:hover { border-color:#0284c7; }
+        .cowork-history-item:hover { border-color:#4f6ef7; }
 
         @media (max-width: 1100px) {
             .summary-row { grid-template-columns: repeat(2, 1fr); }
@@ -1472,7 +1475,7 @@
         }
         .csi:last-child { border-bottom: none; }
         .csi:hover { background: #f0f0f5; }
-        .csi.active { background: #e0f2fe; border-left-color: #0284c7; }
+        .csi.active { background: #eef2ff; border-left-color: #4f6ef7; }
         .csi-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
         .csi-dot.green { background: #22c55e; }
         .csi-dot.amber { background: #f59e0b; }
@@ -1523,7 +1526,7 @@
             text-decoration: none; font-size: 0.82em; font-weight: 600;
             transition: border-color 0.15s, color 0.15s;
         }
-        .cdp-report-btn:hover { border-color: #0284c7; color: #0284c7; }
+        .cdp-report-btn:hover { border-color: #4f6ef7; color: #4f6ef7; }
 
         @media (max-width: 720px) {
             .b2b-layout { grid-template-columns: 1fr; }
@@ -1784,7 +1787,7 @@
             <div id="b2bEnvBar" style="display:flex;gap:8px;align-items:center;margin-bottom:14px;">
                 <span class="filter-label">Entorno:</span>
                 <button class="env-btn active" onclick="switchB2bEnv('staging', this)"
-                    style="padding:4px 14px;border-radius:6px;border:1.5px solid #0284c7;background:#e0f2fe;color:#0369a1;font-size:13px;font-weight:600;cursor:pointer;">
+                    style="padding:4px 14px;border-radius:6px;border:1.5px solid #4f6ef7;background:#eef2ff;color:#3b5bdb;font-size:13px;font-weight:600;cursor:pointer;">
                     🔵 Staging <span style="font-weight:400;font-size:11px;opacity:0.8;">(4 clientes)</span>
                 </button>
                 <button class="env-btn" onclick="switchB2bEnv('production', this)"
@@ -2340,7 +2343,7 @@ function updatePendingB2b() {
                     ${(item.clients || []).map(c => `<span class="test-client-tag">${escapeHtml(c)}</span>`).join('')}
                     <div style="font-size:12px;color:#6b7280;margin-top:3px;">${escapeHtml(item.action)}</div>
                 </div>
-                <span style="background:#e0f2fe;color:#5b21b6;border-radius:9999px;padding:2px 10px;font-size:12px;white-space:nowrap;">${item.tests.length} test${item.tests.length !== 1 ? 's' : ''} skipped</span>
+                <span style="background:#eef2ff;color:#5b21b6;border-radius:9999px;padding:2px 10px;font-size:12px;white-space:nowrap;">${item.tests.length} test${item.tests.length !== 1 ? 's' : ''} skipped</span>
             </div>
         </div>`).join('');
 }
@@ -3007,7 +3010,7 @@ async function updateTrendChart(filterSlug = null) {
         title = hasAnyData
             ? `${clientName} · ${labels.length} runs · últimos ${trendDays} días`
             : `Sin datos para ${clientName}`;
-        passedColor = '#0284c7';
+        passedColor = '#4f6ef7';
     }
 
     document.getElementById('chartTitle').textContent = title;
@@ -3529,7 +3532,7 @@ async function loadAppReports() {
                 : latest.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones'
                 : 'verdict-bloqueado';
             const noteCount = loadManualQaEntries().filter(e => e.client === client).length;
-            const noteBadge = noteCount ? `<span style="background:#e0f2fe;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;">✍️ ${noteCount}</span>` : '';
+            const noteBadge = noteCount ? `<span style="background:#eef2ff;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;">✍️ ${noteCount}</span>` : '';
             const syncWarn = (latest.syncWarnings || []).filter(w => w.slow || !w.successful);
             const syncBadge = syncWarn.length ? `<span title="Sync lenta: ${syncWarn.map(w => w.actionType + ' ' + w.syncTimeSeconds + 's').join(', ')}" style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;cursor:default;">⚠️ Sync</span>` : '';
 
@@ -3563,7 +3566,7 @@ async function loadAppReports() {
                     <a href="${latest.file}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;background:#fff;margin-bottom:8px;">
                         <span style="font-size:13px;font-weight:600;color:#111827;">Ver reporte completo</span>
                         <span style="color:#9ca3af;font-size:12px;">${latest.date}</span>
-                        <span style="margin-left:auto;font-size:12px;color:#0284c7;">↗</span>
+                        <span style="margin-left:auto;font-size:12px;color:#4f6ef7;">↗</span>
                     </a>
                     ${historyHtml ? `<div style="margin-bottom:8px;">${historyHtml}</div>` : ''}
 
@@ -3582,7 +3585,7 @@ async function loadAppReports() {
                                 onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();addClientNote('${escapeHtml(client)}')}"
                                 style="flex:1;min-width:180px;">
                             <input id="mqTck-${cid}" type="text" placeholder="YOM-XXX" style="width:90px;">
-                            <button onclick="addClientNote('${escapeHtml(client)}')" style="background:#0284c7;color:white;border:none;border-radius:6px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;">+</button>
+                            <button onclick="addClientNote('${escapeHtml(client)}')" style="background:#4f6ef7;color:white;border:none;border-radius:6px;padding:5px 14px;font-size:12px;font-weight:600;cursor:pointer;">+</button>
                         </div>
                         <div style="margin-bottom:8px;">
                             <textarea id="mqDet-${cid}" placeholder="Detalle opcional (pasos, contexto)..." rows="2"
@@ -3747,7 +3750,7 @@ function refreshClientBadge(section, client) {
     if (count && !badge) {
         badge = document.createElement('span');
         badge.className = 'mq-note-badge';
-        badge.style.cssText = 'background:#e0f2fe;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;';
+        badge.style.cssText = 'background:#eef2ff;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;';
         const arrow = section.querySelector('.app-client-arrow');
         section.querySelector('.app-client-header').insertBefore(badge, arrow);
     }

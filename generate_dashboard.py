@@ -9,6 +9,7 @@ import json
 import re
 import time
 import random
+import glob
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
@@ -518,6 +519,36 @@ def generate_html(records, now_str, kpis=None, pattern_history=None):
 
     phase_weights, total_days = compute_phase_weights(records)
 
+    # QA history: last run data per client
+    qa_last_run = {}
+    qa_alerts = []
+    try:
+        history_dir = os.path.join(os.path.dirname(__file__), "public", "qa", "history")
+        history_files = sorted(glob.glob(os.path.join(history_dir, "20*.json")))
+        if history_files:
+            with open(history_files[-1]) as f:
+                latest_qa = json.load(f)
+            for slug, client_data in latest_qa.get("clients", {}).items():
+                tests = client_data.get("tests", 0)
+                failed = client_data.get("failed", 0)
+                passed = client_data.get("passed", 0)
+                qa_last_run[slug] = {
+                    "date": client_data.get("last_tested", latest_qa.get("date", "")),
+                    "tests": tests,
+                    "passed": passed,
+                    "failed": failed,
+                    "pass_pct": round(passed / tests * 100) if tests > 0 else None,
+                }
+                if failed > 0:
+                    qa_alerts.append({
+                        "slug": slug,
+                        "name": client_data.get("name", slug),
+                        "failed": failed,
+                        "date": latest_qa.get("date", ""),
+                    })
+    except Exception as e:
+        print(f"Warning: could not load QA history: {e}", file=sys.stderr)
+
     data_obj = {
         "generated": now_str,
         "clients": list(all_colors.keys()),
@@ -528,6 +559,8 @@ def generate_html(records, now_str, kpis=None, pattern_history=None):
         "phaseWeights": phase_weights,
         "totalProjectDays": total_days,
         "driveLinks": CLIENT_DRIVE_LINKS,
+        "qaLastRun": qa_last_run,
+        "qaAlerts": qa_alerts,
     }
     data_json = json.dumps(data_obj, ensure_ascii=False)
     # DATA_OPS: operational KPIs (separate from DATA per locked decision)
