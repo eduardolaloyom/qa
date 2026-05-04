@@ -955,15 +955,36 @@ function renderDashboard() {
   // Health Score chart (before charts row)
   h += '<div class="card" style="margin-bottom:24px"><div class="section-title">Health Score por Cliente</div><div class="chart-container"><canvas id="chart-health"></canvas></div><div style="margin-top:12px;padding:12px;background:var(--surface2);border-radius:8px;font-size:11px;line-height:1.6;color:var(--text-dim)"><strong style="color:var(--text)">Health Score:</strong> Base 100. Penaliza: <span style="color:#ef4444">-6/tarea overdue</span> (m\u00e1x -60), <span style="color:#ef4444">-5/tarea bloqueada</span> (m\u00e1x -20), <span style="color:#ef4444">-7/fase con bloqueo</span> (m\u00e1x -10), <span style="color:#ef4444">relaci\u00f3n</span> (mala -10, estable -5, buena 0). Bonifica: <span style="color:#22c55e">+0.1/% progreso</span> (m\u00e1x +10). Rango 0\u2013100.<br><span style="display:inline-flex;gap:12px;margin-top:4px"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e"></span> 85\u2013100 Saludable</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#eab308"></span> 70\u201384 Atenci\u00f3n</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f59e0b"></span> 50\u201369 Riesgo</span><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ef4444"></span> 0\u201349 Cr\u00edtico</span></span></div></div>';
 
-  // QA Alerts widget
-  if (DATA.qaAlerts && DATA.qaAlerts.length) {
+  // QA Accionables widget
+  const qaGroups = DATA.qaFailureGroups || [];
+  if (qaGroups.length) {
+    const ownerColor = { dev: 'var(--blue)', qa: 'var(--orange)' };
+    const ownerLabel = { dev: '👨‍💻 Dev', qa: '🧪 QA' };
+    const catColor = { bug: 'var(--red)', ux: 'var(--orange)', ambiente: 'var(--blue)', selector: 'var(--text-dim)', flaky: 'var(--text-dim)' };
+    h += '<div class="card" style="margin-bottom:24px;border-left:3px solid var(--red)">';
+    h += `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div class="section-title" style="margin:0">⚠️ QA Accionables — ${qaGroups[0].date}</div><a href="qa/" style="font-size:12px;color:var(--accent)">Ver QA Dashboard →</a></div>`;
+    qaGroups.forEach(function(g) {
+      const clients = (g.clients || []).join(', ');
+      const lTitle = encodeURIComponent(`fix(${g.category||'qa'}): ${(g.reason||'').slice(0,80)}`);
+      const lDesc  = encodeURIComponent(`## ${g.label||'Bug'}\n\n${g.reason}\n\n**Acción:** ${g.action}\n**Clientes:** ${clients}\n**Owner:** ${g.owner}\n\n---\n_QA Dashboard — YOM B2B_`);
+      h += `<div style="padding:10px 0;border-bottom:1px solid var(--border)">`;
+      h += `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">`;
+      h += `<span style="font-size:11px;font-weight:700;color:${catColor[g.category]||'var(--text-dim)'};background:var(--surface2);padding:2px 8px;border-radius:99px">${g.label||g.category}</span>`;
+      h += `<span style="font-size:11px;color:${ownerColor[g.owner]||'var(--text-dim)'};font-weight:600">${ownerLabel[g.owner]||g.owner}</span>`;
+      if (clients) h += `<span style="font-size:11px;color:var(--text-dim)">${clients}</span>`;
+      h += `<span style="font-size:11px;color:var(--text-dim);margin-left:auto">${g.count} test${g.count!==1?'s':''}</span>`;
+      h += `</div>`;
+      h += `<div style="font-size:13px;color:var(--text);margin-bottom:3px">${g.reason}</div>`;
+      h += `<div style="font-size:12px;color:var(--text-dim)">→ ${g.action}</div>`;
+      h += `<div style="margin-top:6px"><a href="https://linear.app/yom-tech/new?title=${lTitle}&description=${lDesc}" target="_blank" style="font-size:11px;background:var(--surface2);border:1px solid var(--border);color:var(--accent);padding:3px 10px;border-radius:6px;text-decoration:none;font-weight:600">🎫 Crear en Linear</a></div>`;
+      h += `</div>`;
+    });
+    h += '</div>';
+  } else if (DATA.qaAlerts && DATA.qaAlerts.length) {
     h += '<div class="card" style="margin-bottom:24px;border-left:3px solid var(--red)">';
     h += '<div class="section-title">⚠️ QA — Fallos recientes</div>';
     DATA.qaAlerts.forEach(function(a) {
-      h += `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)">`;
-      h += `<span>${a.name}</span>`;
-      h += `<span style="color:var(--red);font-size:12px">${a.failed} ❌ · ${a.date}</span>`;
-      h += `</div>`;
+      h += `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border)"><span>${a.name}</span><span style="color:var(--red);font-size:12px">${a.failed} ❌ · ${a.date}</span></div>`;
     });
     h += '<a href="qa/" style="font-size:12px;color:var(--accent);display:block;margin-top:8px">Ver QA Dashboard →</a>';
     h += '</div>';

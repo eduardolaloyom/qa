@@ -519,21 +519,23 @@ def generate_html(records, now_str, kpis=None, pattern_history=None):
 
     phase_weights, total_days = compute_phase_weights(records)
 
-    # QA history: last run data per client
+    # QA history: last run data per client + actionable failure groups
     qa_last_run = {}
     qa_alerts = []
+    qa_failure_groups = []
     try:
         history_dir = os.path.join(os.path.dirname(__file__), "public", "qa", "history")
         history_files = sorted(glob.glob(os.path.join(history_dir, "20*.json")))
         if history_files:
             with open(history_files[-1]) as f:
                 latest_qa = json.load(f)
+            qa_run_date = latest_qa.get("date", "")
             for slug, client_data in latest_qa.get("clients", {}).items():
                 tests = client_data.get("tests", 0)
                 failed = client_data.get("failed", 0)
                 passed = client_data.get("passed", 0)
                 qa_last_run[slug] = {
-                    "date": client_data.get("last_tested", latest_qa.get("date", "")),
+                    "date": client_data.get("last_tested", qa_run_date),
                     "tests": tests,
                     "passed": passed,
                     "failed": failed,
@@ -544,8 +546,20 @@ def generate_html(records, now_str, kpis=None, pattern_history=None):
                         "slug": slug,
                         "name": client_data.get("name", slug),
                         "failed": failed,
-                        "date": latest_qa.get("date", ""),
+                        "date": qa_run_date,
                     })
+            # Failure groups: actionable items for weekly review
+            for g in latest_qa.get("failure_groups", []):
+                qa_failure_groups.append({
+                    "label":    g.get("label", ""),
+                    "category": g.get("category", ""),
+                    "reason":   g.get("reason", ""),
+                    "action":   g.get("action", ""),
+                    "owner":    g.get("owner", ""),
+                    "count":    g.get("count", 0),
+                    "clients":  g.get("clients", []),
+                    "date":     qa_run_date,
+                })
     except Exception as e:
         print(f"Warning: could not load QA history: {e}", file=sys.stderr)
 
@@ -561,6 +575,7 @@ def generate_html(records, now_str, kpis=None, pattern_history=None):
         "driveLinks": CLIENT_DRIVE_LINKS,
         "qaLastRun": qa_last_run,
         "qaAlerts": qa_alerts,
+        "qaFailureGroups": qa_failure_groups,
     }
     data_json = json.dumps(data_obj, ensure_ascii=False)
     # DATA_OPS: operational KPIs (separate from DATA per locked decision)
