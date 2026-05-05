@@ -176,10 +176,11 @@
         "severity": "critico",
         "clients": [
           "Caren",
+          "Codelpa Perú",
           "Coéxito",
           "Prinorte"
         ],
-        "count": 3
+        "count": 4
       },
       {
         "id": "block_4. Integraciones",
