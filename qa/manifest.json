@@ -6,8 +6,11 @@
       "date": "2026-05-05",
       "file": "qa-reports/Caren-2026-05-05.html",
       "verdict": "CON_CONDICIONES",
-      "score": 73,
-      "modes_done": ["01","02","03","04","05","05b","06","07","08","09","10"],
+      "health": 73,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "total": 11,
       "platform": "app",
       "environment": "staging"
     },
