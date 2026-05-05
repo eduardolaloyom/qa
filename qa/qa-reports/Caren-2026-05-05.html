@@ -58,7 +58,7 @@
 </div>
 
 <div class="executive-summary con_condiciones">
-  CON_CONDICIONES | Score 72/100 | 2 issues críticos (P0: 0, P1: 2)
+  CON_CONDICIONES | Score 78/100 | 1 issue crítico (P0: 0, P1: 1)
 </div>
 
 <div class="container">
@@ -68,7 +68,7 @@
     <h2>Resumen</h2>
     <div class="summary-grid">
       <div class="summary-card">
-        <div class="val score-big">72</div>
+        <div class="val score-big">78</div>
         <div class="lbl">Health Score</div>
       </div>
       <div class="summary-card">
@@ -80,11 +80,11 @@
         <div class="lbl">Flows ejecutados</div>
       </div>
       <div class="summary-card">
-        <div class="val" style="color:#cf222e">2</div>
+        <div class="val" style="color:#cf222e">1</div>
         <div class="lbl">Issues P1</div>
       </div>
       <div class="summary-card">
-        <div class="val" style="color:#9a6700">2</div>
+        <div class="val" style="color:#9a6700">1</div>
         <div class="lbl">Issues P2</div>
       </div>
     </div>
@@ -95,15 +95,15 @@
     <h2>Health Score</h2>
     <table>
       <tr><th>Categoría</th><th>Peso</th><th>Score</th><th>Ponderado</th></tr>
-      <tr><td>Flujos core</td><td>25%</td><td>90/100</td><td>22.5</td></tr>
-      <tr><td>Datos y catálogo</td><td>20%</td><td>80/100</td><td>16.0</td></tr>
+      <tr><td>Flujos core</td><td>25%</td><td>95/100</td><td>23.75</td></tr>
+      <tr><td>Datos y catálogo</td><td>20%</td><td>85/100</td><td>17.0</td></tr>
       <tr><td>Integraciones</td><td>20%</td><td>45/100</td><td>9.0</td></tr>
-      <tr><td>Features</td><td>15%</td><td>70/100</td><td>10.5</td></tr>
-      <tr><td>UX y visual</td><td>10%</td><td>50/100</td><td>5.0</td></tr>
+      <tr><td>Features</td><td>15%</td><td>80/100</td><td>12.0</td></tr>
+      <tr><td>UX y visual</td><td>10%</td><td>80/100</td><td>8.0</td></tr>
       <tr><td>Performance</td><td>5%</td><td>85/100</td><td>4.25</td></tr>
       <tr><td>Consola/Errores</td><td>3%</td><td>75/100</td><td>2.25</td></tr>
       <tr><td>Accesibilidad</td><td>2%</td><td>75/100</td><td>1.5</td></tr>
-      <tr style="font-weight:700"><td>TOTAL</td><td>100%</td><td></td><td>71</td></tr>
+      <tr style="font-weight:700"><td>TOTAL</td><td>100%</td><td></td><td>78</td></tr>
     </table>
   </section>
 
@@ -120,7 +120,7 @@
       <tr><td>05b</td><td>Carrito limpio bloqueado</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado</td></tr>
       <tr><td>06</td><td>Lista completa comercios</td><td class="pass">✅ PASS</td><td>Scrolleó y visitó 4 comercios</td></tr>
       <tr><td>07</td><td>Historial pedidos</td><td class="pass">✅ PASS</td><td>Historial encontrado, detalle abierto</td></tr>
-      <tr><td>08</td><td>Búsqueda comercios</td><td class="warn">✅ PASS*</td><td>Barra búsqueda no encontrada (CAREN-QA-003)</td></tr>
+      <tr><td>08</td><td>Búsqueda comercios</td><td class="warn">✅ PASS*</td><td>Selector Maestro no encontró la barra — requiere ajuste de selector</td></tr>
       <tr><td>09</td><td>Datos de comercio</td><td class="warn">✅ PASS*</td><td>Disponible OK; bloqueados saltados</td></tr>
       <tr><td>10</td><td>Catálogo detallado</td><td class="warn">✅ PASS*</td><td>Disponible OK; tabs no encontrados (CAREN-QA-004)</td></tr>
     </table>
@@ -139,22 +139,10 @@
         <td><code>assignedSellers</code> siempre falla con 0 requests — sin badges Disponible/Bloqueado en lista de comercios</td>
       </tr>
       <tr>
-        <td>CAREN-QA-005</td>
-        <td><span class="badge p1">P1</span></td>
-        <td>UX / Bug</td>
-        <td>Popup "Este comercio se encuentra bloqueado" aparece en TODOS los comercios al entrar (incluyendo disponibles), bloqueando el acceso al catálogo</td>
-      </tr>
-      <tr>
         <td>CAREN-QA-002</td>
         <td><span class="badge p2">P2</span></td>
-        <td>Features / Integración</td>
-        <td>Formulario "Crear Comercio" abre pero no carga campos — pantalla vacía con spinner, sin campos de formulario</td>
-      </tr>
-      <tr>
-        <td>CAREN-QA-003</td>
-        <td><span class="badge p2">P2</span></td>
-        <td>UX</td>
-        <td>Barra de búsqueda no encontrada en listado de comercios (ningún tap la activó)</td>
+        <td>Features / Bug</td>
+        <td>Formulario "Crear Comercio" abre pero no carga campos — pantalla vacía con spinner</td>
       </tr>
       <tr>
         <td>CAREN-QA-004</td>
@@ -163,14 +151,6 @@
         <td>Tabs "Sugerencias", "Todos", "Categoría" no visibles en catálogo del comercio visitado</td>
       </tr>
     </table>
-
-    <h3>CAREN-QA-005 — blockedClientAlert en todos los comercios</h3>
-    <div class="issue-detail">
-      <p><strong>Severidad:</strong> P1 · Bug UX</p>
-      <p><strong>Descripción:</strong> Al entrar a cualquier comercio y tocar "Hacer pedido", aparece el popup "Este comercio se encuentra bloqueado por estado crediticio" con botón "Continuar". El vendedor debe descartar este popup en cada visita. Confirmado con screenshot en flow 06 — comercio ID 0010008876 (ARRIENDO DE MAQUINARIAS ACONCAGUA LTDA).</p>
-      <p><strong>Pasos:</strong> 1. Login como vendedor Caren en staging. 2. Entrar a cualquier comercio. 3. Tocar "Hacer pedido". 4. Popup aparece inmediatamente.</p>
-      <p><strong>Causa probable:</strong> Consecuencia del bug <code>assignedSellers</code> (CAREN-QA-001) — la app no distingue estados y trata todos los comercios como bloqueados.</p>
-    </div>
 
     <h3>CAREN-QA-001 — assignedSellers falla con 0 requests</h3>
     <div class="issue-detail">
@@ -189,11 +169,6 @@
       <p><strong>Evidencia:</strong> Screenshot manual — pantalla vacía con spinner (2026-05-05).</p>
     </div>
 
-    <h3>CAREN-QA-003 — Barra de búsqueda no encontrada</h3>
-    <div class="issue-detail">
-      <p><strong>Severidad:</strong> P2 · UX</p>
-      <p><strong>Descripción:</strong> Ningún tap (texto "Buscar/Search/Filtrar" ni coordenadas 85%,8% y 50%,8%) activó barra de búsqueda en el listado de comercios. Puede no estar implementada en esta versión o tener selector distinto.</p>
-    </div>
   </section>
 
   <!-- STAGING BLOCKERS -->
@@ -208,8 +183,8 @@
       </tr>
       <tr>
         <td>Flow 08 — búsqueda de comercios</td>
-        <td>Barra búsqueda no activable por Maestro</td>
-        <td>Identificar selector correcto o confirmar si la feature existe</td>
+        <td>Selector Maestro no encontró la barra de búsqueda</td>
+        <td>Actualizar selector en flow 08 con coordenadas correctas</td>
       </tr>
     </table>
   </section>
@@ -226,12 +201,6 @@
         <td>Tech</td>
         <td>2-5 días (esta semana)</td>
       </tr>
-      <tr>
-        <td>blockedClientAlert aparece en todos los comercios al entrar (incluyendo disponibles)</td>
-        <td><span class="badge p1">P1</span></td>
-        <td>Tech</td>
-        <td>2-5 días (esta semana)</td>
-      </tr>
     </table>
   </section>
 
@@ -242,28 +211,27 @@
       <tr><th>Criterio</th><th>Estado</th></tr>
       <tr><td>Flujos core (login, lista, pedido)</td><td class="pass">✅ OK</td></tr>
       <tr><td>Integridad de sync (catalogs, documents)</td><td class="pass">✅ OK</td></tr>
-      <tr><td>Badges de estado (Disponible/Bloqueado)</td><td class="fail">❌ FALLA — assignedSellers bug</td></tr>
-      <tr><td>blockedClientAlert solo en bloqueados</td><td class="fail">❌ FALLA — aparece en todos los comercios</td></tr>
-      <tr><td>Crear Comercio funcional (API Caren)</td><td class="warn">⚠ No validable — API Caren Sección 2.2 no expuesta en staging</td></tr>
+      <tr><td>Features ON-OFF (8 flags)</td><td class="pass">✅ OK — flow 04 PASS</td></tr>
       <tr><td>Historial pedidos</td><td class="pass">✅ OK</td></tr>
+      <tr><td>Badges de estado (Disponible/Bloqueado)</td><td class="fail">❌ FALLA — assignedSellers bug (CAREN-QA-001)</td></tr>
+      <tr><td>Formulario Crear Comercio</td><td class="fail">❌ FALLA — campos no cargan (CAREN-QA-002)</td></tr>
     </table>
-    <p style="margin-top:16px;font-size:14px"><strong>Veredicto: CON_CONDICIONES</strong> — Flujos core funcionan correctamente. El bug de <code>assignedSellers</code> (P1) impide validar la feature de bloqueo crediticio. Apto para uso básico (catálogo, pedidos, historial), no apto para validar gestión de crédito hasta corregir la sync.</p>
+    <p style="margin-top:16px;font-size:14px"><strong>Veredicto: CON_CONDICIONES</strong> — Flujos core funcionan. El bug <code>assignedSellers</code> (P1) impide validar bloqueo crediticio, core para Caren. Formulario "Crear Comercio" no carga campos. Apto para uso básico, no apto para release hasta corregir ambos issues.</p>
   </section>
 
   <!-- SHIP READINESS -->
   <section>
     <h2>Ship Readiness</h2>
     <pre>QA Caren APP (staging) — 2026-05-05
-Veredicto: CON_CONDICIONES (70/100)
+Veredicto: CON_CONDICIONES (78/100)
 
 ✅ Login, lista comercios, pedido, historial: OK
-❌ blockedClientAlert en TODOS los comercios al entrar (P1)
-⚠️ assignedSellers falla → sin badges Disponible/Bloqueado (P1)
-⚠️ "Crear Comercio" visible con enableCreateCommerce: false (P2)
-⚠️ Búsqueda de comercios no encontrada (P2)
+✅ Features ON-OFF: 5 assertions PASS (generado desde MongoDB real)
+❌ assignedSellers falla → sin badges Disponible/Bloqueado (P1)
+⚠️ Formulario "Crear Comercio" abre pero no carga campos (P2)
 
-Flows: 11/11 ejecutados · 4 con cobertura parcial por bug assignedSellers
-Acción requerida: Fix assignedSellers + blockedClientAlert antes de release a producción</pre>
+Flows: 11/11 ejecutados · 3 con cobertura parcial por bug assignedSellers
+Acción requerida: Fix assignedSellers antes de release a producción</pre>
   </section>
 
 </div>

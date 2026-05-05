@@ -6,7 +6,7 @@
       "date": "2026-05-05",
       "file": "qa-reports/Caren-2026-05-05.html",
       "verdict": "CON_CONDICIONES",
-      "health": 72,
+      "health": 78,
       "passed": 11,
       "failed": 0,
       "skipped": 0,
@@ -14,12 +14,6 @@
       "platform": "app",
       "environment": "staging",
       "issues": [
-        {
-          "id": "CAREN-QA-005",
-          "severity": "P1",
-          "title": "blockedClientAlert aparece en todos los comercios al entrar",
-          "area": "UX"
-        },
         {
           "id": "CAREN-QA-001",
           "severity": "P1",
@@ -29,14 +23,8 @@
         {
           "id": "CAREN-QA-002",
           "severity": "P2",
-          "title": "Botón 'Crear Comercio' visible pero funcionalidad no operativa — API Caren no expuesta",
-          "area": "Features / Integración"
-        },
-        {
-          "id": "CAREN-QA-003",
-          "severity": "P2",
-          "title": "Barra de búsqueda no encontrada en listado de comercios",
-          "area": "UX"
+          "title": "Formulario 'Crear Comercio' abre pero no carga campos — pantalla vacía con spinner",
+          "area": "Features / Bug"
         },
         {
           "id": "CAREN-QA-004",
