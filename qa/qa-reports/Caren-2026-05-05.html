@@ -148,7 +148,7 @@
         <td>CAREN-QA-002</td>
         <td><span class="badge p2">P2</span></td>
         <td>Features / Integración</td>
-        <td>Botón "Crear Comercio" visible pero funcionalidad no operativa — API Caren (Sección 2.2 alcance) no expuesta en staging</td>
+        <td>Formulario "Crear Comercio" abre pero no carga campos — pantalla vacía con spinner, sin campos de formulario</td>
       </tr>
       <tr>
         <td>CAREN-QA-003</td>
@@ -183,9 +183,10 @@
     <h3>CAREN-QA-002 — "Crear Comercio" visible pero funcionalidad no operativa</h3>
     <div class="issue-detail">
       <p><strong>Severidad:</strong> P2 · Features / Integración</p>
-      <p><strong>Descripción:</strong> El botón "Crear Comercio" aparece en lista de comercios (<code>enableCreateCommerce: true</code>), pero al intentar crear un comercio la funcionalidad no opera. Causa probable: la API de Caren para solicitudes de creación de comercios (Sección 2.2 del alcance) no está expuesta en staging.</p>
-      <p><strong>Referencia alcance:</strong> Sección 2.2 — "Solicitud de creación de comercios: API que recibe las solicitudes y se le puede preguntar por el estado de las solicitudes enviadas."</p>
-      <p><strong>Acción requerida:</strong> Caren debe exponer la API en staging para validar el flujo end-to-end.</p>
+      <p><strong>Descripción:</strong> Al tocar "Crear Comercio", se abre la pantalla "Crear nuevo comercio" con el texto "Ingresa datos de comercio" pero sin campos de formulario — solo spinner y botón "Enviar formulario" vacío. La pantalla está en blanco.</p>
+      <p><strong>Causa a investigar:</strong> La API que entrega la definición del formulario puede estar retornando vacío o error, o hay un bug de renderizado en frontend.</p>
+      <p><strong>Referencia alcance:</strong> Sección 2.2 — "Solicitud de creación de comercios."</p>
+      <p><strong>Evidencia:</strong> Screenshot manual — pantalla vacía con spinner (2026-05-05).</p>
     </div>
 
     <h3>CAREN-QA-003 — Barra de búsqueda no encontrada</h3>
