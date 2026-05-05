@@ -1,5 +1,5 @@
 {
-  "extractedAt": "2026-04-16T13:37:59.830839+00:00",
+  "extractedAt": "2026-05-05T19:10:32.464631+00:00",
   "totalSites": 64,
   "totalCustomers": 67,
   "totalSalesterms": 46,
@@ -987,7 +987,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "artel-staging": {
       "name": "Artel (staging)",
@@ -1547,7 +1548,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "solucionestat-staging": {
       "name": "Solucionestat (staging)",
@@ -1716,7 +1718,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "agrosuper-staging": {
       "name": "Agrosuper (staging)",
@@ -1885,7 +1888,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "dulceria-staging": {
       "name": "Dulceria (staging)",
@@ -2061,7 +2065,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "espol-staging": {
       "name": "Espol (staging)",
@@ -2229,7 +2234,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "cial-staging": {
       "name": "Cial (staging)",
@@ -2898,7 +2904,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "paresa-staging": {
       "name": "Paresa (staging)",
@@ -3057,7 +3064,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "surtitiendas-staging": {
       "name": "Surtitiendas (staging)",
@@ -3246,7 +3254,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "dama-staging": {
       "name": "Dama (staging)",
@@ -3415,7 +3424,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "bidfood-staging": {
       "name": "Bidfood (staging)",
@@ -4463,7 +4473,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "soprole-staging": {
       "name": "Soprole (staging)",
@@ -4554,7 +4565,7 @@
         "delivery.text": "",
         "delivery.daysOfWeek": [],
         "order.text": null,
-        "order.minTotalPrice": 48000.0,
+        "order.minTotalPrice": 54000.0,
         "order.orderTotalCreditMax": true,
         "order.orderTotalCreditMaxText": "Pedido supera el saldo disponible, por favor disminuya su orden o libere crédito",
         "order.orderTotalCreditMaxMustBlockOrder": true,
@@ -4693,7 +4704,7 @@
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 717,
+          "total": 708,
           "items": [
             {
               "name": "2100|*|*|*|*|004|*|*|*|*|*|*|*|",
@@ -4948,49 +4959,49 @@
           ]
         },
         "overrides": {
-          "total": 494904,
+          "total": 486867,
           "items": [
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
@@ -5253,7 +5264,7 @@
           ]
         },
         "userSegments": {
-          "total": 1405785,
+          "total": 1401564,
           "items": [
             {
               "name": "",
@@ -5377,52 +5388,52 @@
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "6942647df3bbf69eb7adaf77",
+              "segmentId": "6942647df3bbf69eb7adaf76",
               "userCount": 0
             },
             {
@@ -5507,7 +5518,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "soavega-staging": {
       "name": "Soavega (staging)",
@@ -5688,7 +5700,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "confiteca-staging": {
       "name": "Confiteca (staging)",
@@ -5852,7 +5865,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "pandeazucar-staging": {
       "name": "Pandeazucar (staging)",
@@ -6020,7 +6034,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "cocacola-staging": {
       "name": "Cocacola (staging)",
@@ -6190,7 +6205,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "watts-scjohnson-cencocal-staging": {
       "name": "Watts Scjohnson Cencocal (staging)",
@@ -7317,7 +7333,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "codelpa-staging": {
       "name": "Codelpa (staging)",
@@ -8266,7 +8283,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "softys-cencocal-staging": {
       "name": "Softys Cencocal (staging)",
@@ -9519,7 +9537,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "nutrisco-staging": {
       "name": "Nutrisco (staging)",
@@ -10588,7 +10607,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "tropi-staging": {
       "name": "Tropi (staging)",
@@ -11647,7 +11667,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "softys-dimak-staging": {
       "name": "Softys Dimak (staging)",
@@ -12425,7 +12446,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "lanco-staging": {
       "name": "Lanco (staging)",
@@ -13247,7 +13269,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "lancopuertorico-staging": {
       "name": "Lancopuertorico (staging)",
@@ -14217,7 +14240,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "expressdent-staging": {
       "name": "Expressdent (staging)",
@@ -15086,7 +15110,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "coexito-staging": {
       "name": "Coexito (staging)",
@@ -15413,7 +15438,7 @@
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 51,
+          "total": 103,
           "items": [
             {
               "name": "Almacen_Cadena_Estrellas3",
@@ -15426,12 +15451,97 @@
               "active": true
             },
             {
+              "name": "BATERIAS_AUTO_CERREJON",
+              "code": "",
+              "active": true
+            },
+            {
               "name": "BATERIAS_AUTO_GRUPOINTEGRADO_CALI",
               "code": "",
               "active": true
             },
             {
               "name": "BATERIAS_AUTO_MAYORISTA_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_ALM_DE_CADENA_CENCOSUD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_ALM_DE_CADENA_EXITO",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_ALM_DE_CADENA_MECANELECTRO",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_ALM_DE_CADENA_SODIMAC",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIBUIDOR_CAPSA_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIBUIDOR_FAICO_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIBUIDOR_MAGNA_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIBUIDOR_TUDOR_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIBUIDOR_VARTA_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIB_MARCAPROPIA",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIB_TUDOR_PLATINUM",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIB_VARTA",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIB_VARTATUDOR_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIB_VARTA_PLATINUM",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_DISTRIB_VARTA_UNIGARRO",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_INTEGRADOR_RENTADOR",
               "code": "",
               "active": true
             },
@@ -15451,6 +15561,121 @@
               "active": true
             },
             {
+              "name": "BAT_AUTO_MAYOR_GENERICA_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_MAYOR_VARTA_BLACK",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_MAYOR_VARTA_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_MAYOR_VARTA_PLATINUM",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_MP_NAVITRANS",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_MP_POWERFULL_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_AUTO_MP_POWERFULL_PLATINUM",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_COEXITO_MAYOR_100",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_COEXITO_MAYOR_1A49",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_COEXITO_MAYOR_50A99",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_COEXITO_MAYOR_BLACK",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_COEXITO_VICAL",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_DISTRIB_GOLD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_DISTRIB_PLATINUM",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_BLACK",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_GOLD1",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_GOLD2",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_PLATINUM1",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_PLATINUM2",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_SILVER1",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MOTO_MAGNA_MAYOR_SILVER2",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MTO_ALM_DE_CADENA_CENCOSUD",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "BAT_MTO_ALM_DE_CADENA_SODIMAC",
+              "code": "",
+              "active": true
+            },
+            {
               "name": "BAT_MTO_MAYOR_GOLD1",
               "code": "",
               "active": true
@@ -15464,211 +15689,11 @@
               "name": "BAT_MTO_MAYOR_GOLD3",
               "code": "",
               "active": true
-            },
-            {
-              "name": "BAT_MTO_MAYOR_PLATINUM1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "BAT_MTO_MAYOR_PLATINUM3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "BAT_MTO_MAYOR_SILVER1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "BAT_MTO_MAYOR_SILVER2",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "BAT_MTO_MAYOR_SILVER3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Baterias Th",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Canal_WSP_Gold1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Canal_WSP_Gold2",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Canal_WSP_Gold3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Canal_WSP_Silver1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Canal_WSP_Silver2",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Canal_WSP_Silver3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Distribuidor Prueba",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Distribuidor_Gold",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Distribuidor_Platinum",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Distribuidor_Silver",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Flota_Gold",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Flota_Platinum",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Flota_Silver",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Industria_Gold",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Industria_Platinum",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Industria_Silver",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Integrador_Gold",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Integrador_Platinum",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Integrador_Silver",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "LUBRICANTES_BLACK",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "LUBRICANTES_GOLD",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "LUBRICANTES_PLATINUM",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Gold1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Gold2",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Gold3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Platinum1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Platinum2",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Platinum3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Silver1",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Silver2",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Mayorista_Silver3",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "REPUESTOS_TOTAL",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Rentador_Gold",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Rentador_Silver",
-              "code": "",
-              "active": true
             }
           ]
         },
         "overrides": {
-          "total": 39331,
+          "total": 43830,
           "items": [
             {
               "productId": "",
@@ -15973,21 +15998,51 @@
           ]
         },
         "userSegments": {
-          "total": 101228,
+          "total": 240479,
           "items": [
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d759",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d27",
+              "segmentId": "69e1388c75fd4232e841d759",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d756",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d75b",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d757",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d756",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d756",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d758",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "693ffa87f3bbf69eb7a08d24",
               "userCount": 0
             },
             {
@@ -15997,7 +16052,12 @@
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d756",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d75b",
               "userCount": 0
             },
             {
@@ -16007,12 +16067,22 @@
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d75c",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "694b10b6ae139acf231bff91",
+              "segmentId": "69e1388c75fd4232e841d75b",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d757",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
@@ -16022,52 +16092,32 @@
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
+              "segmentId": "69e1388c75fd4232e841d75c",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
+              "segmentId": "69e1388c75fd4232e841d758",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "694b1814ae139acf231de89d",
+              "segmentId": "69e1388c75fd4232e841d758",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "694b1814ae139acf231de89d",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "694b1814ae139acf231de89d",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
@@ -16077,137 +16127,37 @@
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
+              "segmentId": "69e1388c75fd4232e841d761",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
+              "segmentId": "69e1388c75fd4232e841d758",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d28",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d75c",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d28",
+              "segmentId": "69e1388c75fd4232e841d75b",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d28",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d27",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "694b1814ae139acf231de89d",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "694b1814ae139acf231de89d",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1f",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d1e",
-              "userCount": 0
-            },
-            {
-              "name": "",
-              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "segmentId": "69e1388c75fd4232e841d757",
               "userCount": 0
             },
             {
@@ -16218,6 +16168,81 @@
             {
               "name": "",
               "segmentId": "693ffa87f3bbf69eb7a08d22",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "693ffa87f3bbf69eb7a08d22",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d757",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d759",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d75b",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "693ffa87f3bbf69eb7a08d22",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d758",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d757",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d75c",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d761",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d75b",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "693ffa87f3bbf69eb7a08d20",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "693ffa87f3bbf69eb7a08d23",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d759",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d75b",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e1388c75fd4232e841d759",
               "userCount": 0
             },
             {
@@ -16227,7 +16252,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "marleycoffee-staging": {
       "name": "Marleycoffee (staging)",
@@ -17297,7 +17323,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "elmuneco-staging": {
       "name": "Elmuneco (staging)",
@@ -17553,566 +17580,567 @@
           ]
         },
         "overrides": {
-          "total": 1340,
+          "total": 2341,
           "items": [
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": true
+              "enabled": false
             }
           ]
         },
         "userSegments": {
-          "total": 4821,
+          "total": 11846,
           "items": [
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "68278b7f1e1eae43fcc2c77d",
+              "segmentId": "685b1e3c66009be43121e340",
               "userCount": 0
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "prisa-staging": {
       "name": "Prisa (staging)",
@@ -18180,7 +18208,7 @@
         "hasAllDistributionCenters": false,
         "hasMultipleBusinessUnit": false,
         "hasNoSaleFilter": true,
-        "enableTask": false,
+        "enableTask": true,
         "enableNewUI": false,
         "limitAddingByStock": true,
         "disablePayments": false,
@@ -18258,8 +18286,9 @@
           "newOrderEvent": false
         },
         "integrationHooks": {
-          "createOrderHook": "https://api.solopide.me/hooks/surtiventas/create-order",
-          "createCommerceHook": "yom-hooks.surtiventas.createCommerce"
+          "createOrderHook": "https://webhook.site/1889bbcf-f608-460e-a5ed-64b17f5f9e22",
+          "createCommerceHook": "yom-hooks.surtiventas.createCommerce",
+          "createResponsesHook": "yom-hooks.reten.sendTaskResult"
         }
       },
       "activeTests": {
@@ -18356,13 +18385,14 @@
           "P3-05",
           "P6-06",
           "V1-E1",
+          "V1-E3",
           "V1-E4"
         ]
       },
       "testCount": {
         "standard": 77,
-        "conditional": 14,
-        "total": 91
+        "conditional": 15,
+        "total": 92
       },
       "coupons": [],
       "promotions": [],
@@ -18384,7 +18414,7 @@
           ]
         },
         "overrides": {
-          "total": 7867,
+          "total": 7870,
           "items": [
             {
               "productId": "",
@@ -18943,7 +18973,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "panoramica-staging": {
       "name": "Panoramica (staging)",
@@ -19271,7 +19302,8 @@
           "total": 0,
           "items": []
         }
-      }
+      },
+      "syncMetrics": []
     },
     "sonrie-staging": {
       "name": "Sonrie (staging)",
@@ -20073,7 +20105,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "globalwines-staging": {
       "name": "Globalwines (staging)",
@@ -20906,7 +20939,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "codelpa-peru-staging": {
       "name": "Codelpa Peru (staging)",
@@ -21741,7 +21775,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "new-soprole-staging": {
       "name": "New Soprole (staging)",
@@ -22391,43 +22426,43 @@
           ]
         },
         "overrides": {
-          "total": 6261,
+          "total": 6267,
           "items": [
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
@@ -22950,7 +22985,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "prisur-staging": {
       "name": "Prisur (staging)",
@@ -23799,7 +23835,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "bastien-staging": {
       "name": "Bastien (staging)",
@@ -24049,10 +24086,10 @@
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 128,
+          "total": 133,
           "items": [
             {
-              "name": "Agua",
+              "name": "Agua-105",
               "code": "",
               "active": true
             },
@@ -24062,7 +24099,17 @@
               "active": true
             },
             {
+              "name": "Alimentación-198",
+              "code": "",
+              "active": true
+            },
+            {
               "name": "Arriendo Casa Matriz",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Arriendo Casa Matriz-210",
               "code": "",
               "active": true
             },
@@ -24072,27 +24119,22 @@
               "active": true
             },
             {
-              "name": "Arriendos",
+              "name": "Arriendos-106",
               "code": "",
               "active": true
             },
             {
-              "name": "Articulos De Aseo e Higiene",
+              "name": "Asesores Externos-107",
               "code": "",
               "active": true
             },
             {
-              "name": "Asesores Externos",
+              "name": "Autopistas-108",
               "code": "",
               "active": true
             },
             {
-              "name": "Autopistas",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Bancos",
+              "name": "Bancos-109",
               "code": "",
               "active": true
             },
@@ -24102,12 +24144,12 @@
               "active": true
             },
             {
-              "name": "Banquetería",
+              "name": "Banquetería-102",
               "code": "",
               "active": true
             },
             {
-              "name": "Beneficios Personal",
+              "name": "Beneficios Personal-111",
               "code": "",
               "active": true
             },
@@ -24117,27 +24159,22 @@
               "active": true
             },
             {
-              "name": "Cafeterías",
+              "name": "Cafeterías-103",
               "code": "",
               "active": true
             },
             {
-              "name": "Capacitación",
+              "name": "Casinos de Juegos-104",
               "code": "",
               "active": true
             },
             {
-              "name": "Casinos de Juegos",
+              "name": "Categoria Interna-186",
               "code": "",
               "active": true
             },
             {
-              "name": "Categoria Interna",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Categorías Varias",
+              "name": "Categorías Varias-200",
               "code": "",
               "active": true
             },
@@ -24147,7 +24184,7 @@
               "active": true
             },
             {
-              "name": "Certificados De Calidad",
+              "name": "Certificados De Calidad-113",
               "code": "",
               "active": true
             },
@@ -24157,22 +24194,27 @@
               "active": true
             },
             {
-              "name": "Clubes y Centros de Eventos",
+              "name": "Cliente Asociado-209",
               "code": "",
               "active": true
             },
             {
-              "name": "Combustible",
+              "name": "Clubes y Centros de Eventos-187",
               "code": "",
               "active": true
             },
             {
-              "name": "Control De Plagas",
+              "name": "Combustible-114",
               "code": "",
               "active": true
             },
             {
-              "name": "Distribuidora",
+              "name": "Control De Plagas-115",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Distribuidora-188",
               "code": "",
               "active": true
             },
@@ -24187,27 +24229,27 @@
               "active": true
             },
             {
-              "name": "Educación",
+              "name": "Educación-189",
               "code": "",
               "active": true
             },
             {
-              "name": "Electronica, Telefonía y Computación",
+              "name": "Electronica, Telefonía y Computación-117",
               "code": "",
               "active": true
             },
             {
-              "name": "Elementos De Protección Personal",
+              "name": "Elementos De Protección Personal-118",
               "code": "",
               "active": true
             },
             {
-              "name": "Emprendedores",
+              "name": "Emprendedores-190",
               "code": "",
               "active": true
             },
             {
-              "name": "Energía Electrica",
+              "name": "Energía Electrica-119",
               "code": "",
               "active": true
             },
@@ -24232,32 +24274,27 @@
               "active": true
             },
             {
-              "name": "Ferretería",
+              "name": "Ferias-201",
               "code": "",
               "active": true
             },
             {
-              "name": "Fundaciones",
+              "name": "Ferretería-124",
               "code": "",
               "active": true
             },
             {
-              "name": "GPS",
+              "name": "Fundaciones-191",
               "code": "",
               "active": true
             },
             {
-              "name": "Gas",
+              "name": "Gas-125",
               "code": "",
               "active": true
             },
             {
-              "name": "Gastos Bancarios",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Gastos De Alimentación",
+              "name": "Gastos Bancarios-214",
               "code": "",
               "active": true
             },
@@ -24267,17 +24304,17 @@
               "active": true
             },
             {
-              "name": "Gastos De Control De Plagas",
-              "code": "",
-              "active": true
-            },
-            {
-              "name": "Gastos De Mantención Oficina",
+              "name": "Gastos De Control De Plagas-217",
               "code": "",
               "active": true
             },
             {
               "name": "Gastos Generales",
+              "code": "",
+              "active": true
+            },
+            {
+              "name": "Gastos Generales-220",
               "code": "",
               "active": true
             },
@@ -24297,573 +24334,574 @@
               "active": true
             },
             {
-              "name": "Honorarios Profesionales",
+              "name": "Honorarios Asesores Externos-222",
               "code": "",
               "active": true
             }
           ]
         },
         "overrides": {
-          "total": 8744,
+          "total": 14641,
           "items": [
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             },
             {
               "productId": "",
               "price": null,
               "discount": null,
-              "enabled": false
+              "enabled": true
             }
           ]
         },
         "userSegments": {
-          "total": 4808,
+          "total": 6806,
           "items": [
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d4",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d4",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c59f3bbf69eb7b311d2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c3",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c3",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c59f3bbf69eb7b311c7",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c4",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c3",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c5",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69430c57f3bbf69eb7b311c6",
+              "segmentId": "69430c57f3bbf69eb7b311c2",
               "userCount": 0
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "americas-staging": {
       "name": "Americas (staging)",
@@ -25665,7 +25703,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "cedisur-staging": {
       "name": "Cedisur (staging)",
@@ -25769,6 +25808,7 @@
         "flagFeatures.reactNativeOrderTaker": false,
         "flagFeatures.reactNativeOrderTakerForAll": false,
         "flagFeatures.reactNativeOrderTakerSellers": [],
+        "flagFeatures.enableCreditNoteApplication": true,
         "enableNewPaymentModule": true,
         "enableMassiveOrderSend": true,
         "orderPolicy.retainBlockedCommerces": true,
@@ -25777,7 +25817,8 @@
         "orderPolicy.overdueDebtConfiguration.retentionSettings.enabled": true,
         "orderPolicy.overdueDebtConfiguration.retentionSettings.thresholdDays": 3,
         "orderPolicy.sendRetainedOrdersToClientErp": true,
-        "packaging.amountUsesUnits": true
+        "packaging.amountUsesUnits": true,
+        "activateMultipleDistributionCenter": true
       },
       "salesterms": {
         "delivery.daysOfWeek": [],
@@ -25816,7 +25857,7 @@
         },
         "creditReturnStates": [],
         "integrationHooks": {
-          "createPaymentHook": "https://api.solopide.me/hooks/cedisur/create-payments-test",
+          "createPaymentHook": "https://api.solopide.me/hooks/coexito/create-order",
           "createOrderHook": "https://api.solopide.me/hooks/cedisur/create-order-test"
         }
       },
@@ -26490,131 +26531,131 @@
           ]
         },
         "userSegments": {
-          "total": 7089,
+          "total": 7622,
           "items": [
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
               "name": "",
-              "segmentId": "69711774dc77c02c4a98c397",
+              "segmentId": "69b857c2493061c59c7d23c7",
               "userCount": 0
             },
             {
@@ -26744,7 +26785,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "prinorte-staging": {
       "name": "Prinorte (staging)",
@@ -27587,7 +27629,8 @@
             }
           ]
         }
-      }
+      },
+      "syncMetrics": []
     },
     "caren-staging": {
       "name": "Caren (staging)",
@@ -27610,8 +27653,8 @@
         "enableCoupons": true,
         "showEmptyCategories": false,
         "editAddress": true,
-        "pendingDocuments": false,
-        "includeTaxRateInPrices": false,
+        "pendingDocuments": true,
+        "includeTaxRateInPrices": true,
         "ordersRequireVerification": false,
         "ordersRequireAuthorization": false,
         "enableOrderApproval": false,
@@ -27619,18 +27662,18 @@
         "inMaintenance": false,
         "weightInfo": false,
         "showMinOne": false,
-        "enableSellerDiscount": false,
-        "useMobileGps": false,
-        "enableDialogNoSellReason": false,
-        "enableCreditNotes": false,
-        "enableAskDeliveryDate": false,
+        "enableSellerDiscount": true,
+        "useMobileGps": true,
+        "enableDialogNoSellReason": true,
+        "enableCreditNotes": true,
+        "enableAskDeliveryDate": true,
         "enablePaymentDocumentsB2B": false,
         "enableChooseSaleUnit": false,
-        "lazyLoadingPrices": false,
-        "enableInvoicesList": false,
-        "hasStockEnabled": false,
+        "lazyLoadingPrices": true,
+        "enableInvoicesList": true,
+        "hasStockEnabled": true,
         "hasTransferPaymentType": false,
-        "hasSingleDistributionCenter": true,
+        "hasSingleDistributionCenter": false,
         "hasTransportCode": false,
         "hasMultiUnitEnabled": false,
         "disableCommerceEdit": false,
@@ -27638,35 +27681,31 @@
         "paymentsWithoutAccount": false,
         "hasVoucherPrinterEnabled": false,
         "enableBetaButtons": false,
-        "enableDistributionCentersSelector": false,
+        "enableDistributionCentersSelector": true,
         "useMongoPricing": false,
-        "hooks.stockHook": false,
-        "hooks.shippingHook": false,
-        "hooks.updateTrafficLightHook": false,
-        "hooks.cartShoppingHook": false,
-        "hooks.getPendingDocumentsHook": false,
+        "hooks.shippingHook": true,
         "filterGroupedSuggestionsBy": [],
         "taxes.showSummary": false,
         "taxes.useTaxRate": false,
         "taxes.taxRate": 0,
-        "enablePayments": false,
+        "enablePayments": true,
         "validatePaymentFromAdmin": false,
         "uploadOrderFileWithMinUnits": false,
         "hasAllDistributionCenters": false,
         "hasMultipleBusinessUnit": false,
-        "hasNoSaleFilter": false,
-        "enableTask": false,
+        "hasNoSaleFilter": true,
+        "enableTask": true,
         "enableNewUI": false,
         "limitAddingByStock": false,
         "disablePayments": false,
         "shareOrderNewDesign": false,
-        "enablePaymentsCollection": false,
+        "enablePaymentsCollection": true,
         "disableObservationInput": false,
         "enablePriceOracle": false,
         "packagingInformation.hidePackagingInformationB2B": true,
         "packagingInformation.hideSingleItemPackagingInformationB2B": true,
         "packagingInformation.ignoreUnitOnPackInformationB2B": false,
-        "blockedClientAlert.enableBlockedClientAlert": false,
+        "blockedClientAlert.enableBlockedClientAlert": true,
         "footerCustomContent.useFooterCustomContent": false,
         "payment.enableNewPaymentModule": false,
         "payment.requiresFullPayment": false,
@@ -27674,17 +27713,18 @@
         "shoppingDetail.lastOrder": false,
         "loginButtons.facebook": false,
         "loginButtons.google": false,
-        "discountTypes.enableOrderDiscountType": false,
-        "discountTypes.enableProductDiscountType": false,
+        "discountTypes.enableOrderDiscountType": true,
+        "discountTypes.enableProductDiscountType": true,
         "discountTypes.discountTypesList": [],
         "priceRoundingDecimals": 0,
         "synchronization.enableBackgroundSync": false,
         "synchronization.enableBackgroundSendOrders": false,
         "synchronization.enableSyncImages": false,
         "synchronization.backgroundSyncList": [],
-        "commerce.enableCreateCommerce": false,
+        "synchronization.pendingDocumentsLookbackDays": 60,
+        "commerce.enableCreateCommerce": true,
         "productVariability": "none",
-        "useNewPromotions": false,
+        "useNewPromotions": true,
         "mustHaveOverride": false,
         "businessUnits": [],
         "orderObservations": [],
@@ -27710,7 +27750,10 @@
         "eventOptions": {
           "newOrderEvent": false
         },
-        "creditReturnStates": []
+        "creditReturnStates": [],
+        "integrationHooks": {
+          "shippingCostHook": "https://api.solopide.me/hooks/caren/shipping-cost"
+        }
       },
       "activeTests": {
         "standard": [
@@ -27793,34 +27836,304 @@
           "V1-10"
         ],
         "conditional": [
+          "C3-E1",
+          "C3-E6",
+          "P1-01",
+          "P1-06",
+          "P1-08",
+          "P1-11",
+          "P1-12",
+          "P2-01",
           "P2-03",
+          "P2-04",
           "P3-01",
           "P3-02",
-          "V1-E4"
+          "P6-06",
+          "V1-E1",
+          "V1-E2",
+          "V1-E3"
         ]
       },
       "testCount": {
         "standard": 77,
-        "conditional": 4,
-        "total": 81
+        "conditional": 16,
+        "total": 93
       },
       "coupons": [],
       "promotions": [],
       "banners": [],
       "integrations": {
         "segments": {
-          "total": 0,
-          "items": []
+          "total": 1,
+          "items": [
+            {
+              "name": "segmento-base-yom",
+              "code": "",
+              "active": true
+            }
+          ]
         },
         "overrides": {
           "total": 0,
           "items": []
         },
         "userSegments": {
-          "total": 0,
-          "items": []
+          "total": 25000,
+          "items": [
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            },
+            {
+              "name": "",
+              "segmentId": "69e288e075fd4232e845611a",
+              "userCount": 0
+            }
+          ]
         }
-      }
+      },
+      "syncMetrics": []
     }
   }
 }
