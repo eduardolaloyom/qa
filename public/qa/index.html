@@ -3542,7 +3542,7 @@ async function loadAppReports() {
             const latest = reps[0];
             const healthColor = latest.health >= 80 ? '#10b981' : latest.health >= 60 ? '#f59e0b' : '#ef4444';
             const verdictCls = latest.verdict === 'LISTO' ? 'verdict-listo'
-                : latest.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones'
+                : (latest.verdict === 'CON OBSERVACIONES' || latest.verdict === 'CON_CONDICIONES' || latest.verdict === 'CON CONDICIONES' || latest.verdict === 'CON BUGS') ? 'verdict-condiciones'
                 : 'verdict-bloqueado';
             const noteCount = loadManualQaEntries().filter(e => e.client === client).length;
             const noteBadge = noteCount ? `<span style="background:#eef2ff;color:#5b21b6;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;">✍️ ${noteCount}</span>` : '';
@@ -3554,7 +3554,7 @@ async function loadAppReports() {
 
             const historyHtml = reps.slice(1).map(rep => {
                 const hc = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';
-                const vc = rep.verdict === 'LISTO' ? 'verdict-listo' : rep.verdict === 'CON OBSERVACIONES' ? 'verdict-condiciones' : 'verdict-bloqueado';
+                const vc = rep.verdict === 'LISTO' ? 'verdict-listo' : (rep.verdict === 'CON OBSERVACIONES' || rep.verdict === 'CON_CONDICIONES' || rep.verdict === 'CON CONDICIONES' || rep.verdict === 'CON BUGS') ? 'verdict-condiciones' : 'verdict-bloqueado';
                 return `<a href="${rep.file}" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:#f9fafb;text-decoration:none;font-size:12px;color:#374151;margin-bottom:4px;">
                     <span style="color:#9ca3af;">${rep.date}</span>
                     <span style="font-weight:600;color:${hc}">${rep.health}/100</span>
