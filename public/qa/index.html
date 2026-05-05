@@ -3549,7 +3549,7 @@ async function loadAppReports() {
             const syncWarn = (latest.syncWarnings || []).filter(w => w.slow || !w.successful);
             const syncBadge = syncWarn.length ? `<span title="Sync lenta: ${syncWarn.map(w => w.actionType + ' ' + w.syncTimeSeconds + 's').join(', ')}" style="background:#fef3c7;color:#92400e;border-radius:9999px;padding:1px 8px;font-size:11px;font-weight:600;cursor:default;">⚠️ Sync</span>` : '';
             const regIdx = _maestroRegistry.length;
-            _maestroRegistry.push({ client, date: latest.date, passed: latest.passed, total: latest.total, health: latest.health, verdict: latest.verdict, syncWarn, issues: latest.issues || [], file: latest.file });
+            _maestroRegistry.push({ client, date: latest.date, passed: latest.passed, total: latest.total, health: latest.health, verdict: latest.verdict, syncWarn, issues: latest.issues || [], file: latest.file, syncData: latest.syncData || null });
             const linearBtn = `<button class="action-btn btn-linear" onclick="event.stopPropagation();openLinearMaestro(${regIdx})" style="font-size:11px;padding:3px 10px;">🔗 Crear ticket</button>`;
 
             const historyHtml = reps.slice(1).map(rep => {
@@ -3586,6 +3586,57 @@ async function loadAppReports() {
                         <span style="margin-left:auto;font-size:12px;color:#4f6ef7;">↗</span>
                     </a>
                     ${historyHtml ? `<div style="margin-bottom:8px;">${historyHtml}</div>` : ''}
+
+                    ${(() => {
+                        const sd = latest.syncData;
+                        if (!sd) return '';
+                        const totalOk = sd.actions.filter(a => a.ok).length;
+                        const totalFail = sd.actions.filter(a => !a.ok).length;
+                        const rows = sd.actions.map(a => {
+                            const bar = a.seconds > 0 ? Math.min(Math.round((a.seconds / sd.totalSeconds) * 100), 100) : 0;
+                            const rowColor = !a.ok ? '#fff1f2' : a.seconds > 10 ? '#fffbeb' : '#fff';
+                            const statusIcon = a.ok ? '✅' : '❌';
+                            return `<tr style="background:${rowColor};">
+                                <td style="padding:5px 8px;font-size:12px;font-weight:600;white-space:nowrap;">${a.type}</td>
+                                <td style="padding:5px 8px;font-size:12px;text-align:right;">${a.docs.toLocaleString()}</td>
+                                <td style="padding:5px 8px;font-size:12px;text-align:right;">${a.requests}</td>
+                                <td style="padding:5px 8px;font-size:12px;text-align:right;font-weight:${a.seconds>10?'700':'400'};color:${a.seconds>10?'#d97706':'inherit'};">${a.seconds}s</td>
+                                <td style="padding:5px 8px;min-width:80px;"><div style="background:#e5e7eb;border-radius:4px;height:6px;"><div style="background:${a.ok?'#10b981':'#ef4444'};height:6px;border-radius:4px;width:${bar}%;"></div></div></td>
+                                <td style="padding:5px 8px;text-align:center;">${statusIcon}</td>
+                            </tr>`;
+                        }).join('');
+                        const successLabel = sd.successful
+                            ? `<span style="color:#10b981;font-weight:700;">✅ Exitosa</span>`
+                            : `<span style="color:#ef4444;font-weight:700;">❌ Fallida</span> <span style="color:#6b7280;font-size:11px;">(${sd.note || ''})</span>`;
+                        return `<details style="margin-bottom:8px;">
+                            <summary style="cursor:pointer;font-size:12px;font-weight:600;color:#374151;padding:8px 12px;background:#f3f4f6;border-radius:8px;list-style:none;display:flex;align-items:center;gap:8px;">
+                                ⏱ Sync performance
+                                <span style="font-size:11px;font-weight:400;color:#6b7280;">${sd.capturedDate} · ${sd.totalSeconds}s · ${successLabel}</span>
+                                <span style="margin-left:auto;font-size:11px;color:#10b981;">${totalOk} ok</span>
+                                <span style="font-size:11px;color:#ef4444;">${totalFail} fail</span>
+                            </summary>
+                            <div style="overflow-x:auto;margin-top:6px;">
+                                <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                                    <thead><tr style="background:#f9fafb;">
+                                        <th style="padding:6px 8px;text-align:left;font-size:11px;color:#6b7280;">Action</th>
+                                        <th style="padding:6px 8px;text-align:right;font-size:11px;color:#6b7280;">Docs</th>
+                                        <th style="padding:6px 8px;text-align:right;font-size:11px;color:#6b7280;">Req</th>
+                                        <th style="padding:6px 8px;text-align:right;font-size:11px;color:#6b7280;">Tiempo</th>
+                                        <th style="padding:6px 8px;font-size:11px;color:#6b7280;">%</th>
+                                        <th style="padding:6px 8px;text-align:center;font-size:11px;color:#6b7280;">OK</th>
+                                    </tr></thead>
+                                    <tbody>${rows}</tbody>
+                                    <tfoot><tr style="background:#f3f4f6;font-weight:700;">
+                                        <td style="padding:6px 8px;font-size:12px;">TOTAL</td>
+                                        <td style="padding:6px 8px;font-size:12px;text-align:right;">${sd.actions.reduce((s,a)=>s+a.docs,0).toLocaleString()}</td>
+                                        <td style="padding:6px 8px;font-size:12px;text-align:right;">${sd.actions.reduce((s,a)=>s+a.requests,0)}</td>
+                                        <td style="padding:6px 8px;font-size:12px;text-align:right;">${sd.totalSeconds}s</td>
+                                        <td colspan="2"></td>
+                                    </tr></tfoot>
+                                </table>
+                            </div>
+                        </details>`;
+                    })()}
 
                     <!-- Inline Manual QA Notes -->
                     <div class="mq-inline">
