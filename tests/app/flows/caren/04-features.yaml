@@ -5,31 +5,80 @@ name: "Verificación features ON/OFF — Caren (staging)"
 # Regenerar: python3 tools/gen-maestro-features.py <cliente>
 ---
 
-# ── Login screen checks (antes de iniciar sesión) ────────────────
+# ── Pantalla de login ─────────────────────────────────────────────
 - launchApp:
     clearState: true
 - waitForAnimationToEnd
 
-# Botón login con Facebook — debe ser INVISIBLE (loginButtons.facebook: false)
+# Botón login con Facebook — INVISIBLE (loginButtons.facebook: false)
 - assertNotVisible:
     text: ".*[Ff]acebook.*|.*FB.*"
 
-# Botón login con Google — debe ser INVISIBLE (loginButtons.google: false)
+# Botón login con Google — INVISIBLE (loginButtons.google: false)
 - assertNotVisible:
     text: ".*[Gg]oogle.*"
 
-# ── Startup: llegar a lista de comercios ─────────────────────────
+# ── Startup → lista de comercios ─────────────────────────────────────
 - runFlow: helpers-startup.yaml
 
 # ── Lista de comercios ───────────────────────────────────────────
-# Botón 'Crear Comercio' — debe ser VISIBLE (commerce.enableCreateCommerce: true)
+# Botón 'Crear Comercio' — VISIBLE (commerce.enableCreateCommerce: true)
 - assertVisible:
     text: ".*[Cc]rear [Cc]omercio.*|Crear comercio"
+
+# Filtro 'Sin venta' en lista de comercios — VISIBLE (hasNoSaleFilter: true)
+- assertVisible:
+    text: ".*[Ss]in [Vv]enta.*|.*[Nn]o [Vv]enta.*"
+
+# Banner de mantenimiento en la app — INVISIBLE (inMaintenance: false)
+- assertNotVisible:
+    text: ".*[Mm]antenimiento.*|.*[Mm]aintenance.*"
+
+# ── Menú lateral (drawer) ─────────────────────────────────────────
+- tapOn:
+    text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Módulo Pagos en menú lateral — VISIBLE (enablePayments: true)
+- assertVisible:
+    text: "^Pagos$|^PAGOS$"
+
+# Módulo Cobros en menú lateral — VISIBLE (enablePaymentsCollection: true)
+- assertVisible:
+    text: "^Cobros$|^COBROS$"
+
+# Módulo Tareas en menú lateral — VISIBLE (enableTask: true)
+- assertVisible:
+    text: "^Tareas$|^TAREAS$"
+
+# Módulo Notas de crédito en menú lateral — VISIBLE (enableCreditNotes: true)
+- assertVisible:
+    text: ".*[Nn]ota.*[Cc]r[eé]dito.*|.*[Cc]redit.*[Nn]ote.*"
+
+# Módulo Facturas en menú lateral — VISIBLE (enableInvoicesList: true)
+- assertVisible:
+    text: "^Facturas$|^FACTURAS$"
+
+# Módulo Documentos pendientes en menú lateral — VISIBLE (pendingDocuments: true)
+- assertVisible:
+    text: ".*[Dd]ocumentos.*[Pp]endientes.*|.*[Pp]ending.*[Dd]oc.*"
+
+# Módulo Puntos en menú lateral — INVISIBLE (pointsEnabled: false)
+- assertNotVisible:
+    text: "^Puntos$|^PUNTOS$"
+
+# Opción 'Razón de no venta' — VISIBLE (enableDialogNoSellReason: true)
+- assertVisible:
+    text: ".*[Rr]az[oó]n.*[Nn]o.*[Vv]enta.*|.*[Nn]o [Ss]ell.*"
+
+- back
+- waitForAnimationToEnd
 
 # ── Entrar a comercio disponible ─────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
 - tapOn:
-    text: r'.*\d{7,}.*'
+    text: '.*\d{7,}.*'
     index: 0
     optional: true
 - extendedWaitUntil:
@@ -49,11 +98,19 @@ name: "Verificación features ON/OFF — Caren (staging)"
     timeout: 20000
 
 # ── Catálogo: checks de features ─────────────────────────────────
-# Selector DIS/UND (multi-unidad) — debe ser INVISIBLE (hasMultiUnitEnabled: false)
+# Selector DIS/UND (multi-unidad) — INVISIBLE (hasMultiUnitEnabled: false)
 - assertNotVisible:
     text: ".*DIS.*|.*[Dd]isplay.*"
 
-# ── Agregar producto al carrito ──────────────────────────────────
+# Indicador de stock en productos — VISIBLE (hasStockEnabled: true)
+- assertVisible:
+    text: ".*[Ss]tock.*|.*[Dd]isponible.*\s*[0-9]"
+
+# Selector de centros de distribución — VISIBLE (enableDistributionCentersSelector: true)
+- assertVisible:
+    text: ".*[Cc]entro.*[Dd]istribuci[oó]n.*|.*[Ss]elect.*CD.*"
+
+# ── Agregar producto y ver carrito ───────────────────────────────
 - tapOn:
     text: ".*[Aa]gregar.*"
     index: 0
@@ -61,9 +118,86 @@ name: "Verificación features ON/OFF — Caren (staging)"
 - waitForAnimationToEnd
 
 # ── Carrito: checks de features ──────────────────────────────────
-# Opción 'Descuento Vendedor' — debe ser VISIBLE (enableSellerDiscount: true)
+# Opción 'Descuento Vendedor' — VISIBLE (enableSellerDiscount: true)
 - assertVisible:
     text: ".*[Dd]escuento [Vv]endedor.*"
 
-# ── Volver a lista ───────────────────────────────────────────────
+# Sección de cupones en carrito — VISIBLE (enableCoupons: true)
+- assertVisible:
+    text: ".*[Cc]up[oó]n.*|.*[Cc]oupon.*"
+
+# Campo Orden de compra / Nº pedido — INVISIBLE (purchaseOrderEnabled: false)
+- assertNotVisible:
+    text: ".*[Oo]rden.*[Cc]ompra.*|.*OC\b.*|.*N[°º].*[Pp]edido.*"
+
+# Selector de fecha de entrega — VISIBLE (enableAskDeliveryDate: true)
+- assertVisible:
+    text: ".*[Ff]echa.*[Ee]ntrega.*|.*[Ff]echa.*[Pp]edido.*"
+
+# Resumen de impuestos/IVA en carrito — INVISIBLE (taxes.showSummary: false)
+- assertNotVisible:
+    text: ".*[Ii]mpuesto.*|.*IVA.*"
+
+# ── Volver a lista ───────────────────────────────────────────────────
 - runFlow: helpers-volver-lista.yaml
+
+# ════════════════════════════════════════════════════════════════════
+# Variables MongoDB sin assertion UI en APP (verificar manualmente)
+# ════════════════════════════════════════════════════════════════════
+# [anonymousAccess=False] Acceso anónimo sin login
+# [anonymousHideCart=False] Ocultar carrito a usuarios anónimos
+# [anonymousHidePrice=False] Ocultar precios a usuarios anónimos
+# [blockedClientAlert.enableBlockedClientAlert=True] Alerta visual en comercios bloqueados
+# [businessUnits=[]] Unidades de negocio configuradas
+# [disableCommerceEdit=False] Deshabilitar edición de datos del comercio
+# [disablePayments=False] Alias inverso de enablePayments
+# [disableShowEstimatedDeliveryHour=False] Ocultar hora estimada de entrega
+# [discountTypes.discountTypesList=[]] Lista de tipos de descuento configurados
+# [discountTypes.enableOrderDiscountType=True] Tipo de descuento a nivel de pedido
+# [discountTypes.enableProductDiscountType=True] Tipo de descuento a nivel de producto
+# [editAddress=True] Editar dirección del comercio desde app
+# [enableBetaButtons=False] Botones beta/experimentales visibles
+# [enableNewUI=False] Nueva interfaz de usuario habilitada
+# [enablePaymentDocumentsB2B=False] Módulo documentos de pago (solo B2B web, no APP)
+# [enablePriceOracle=False] Oracle de precios en tiempo real
+# [externalAccess=False] Acceso externo (login alternativo, sin UI assertion directa)
+# [filterGroupedSuggestionsBy=[]] Agrupación de sugerencias (config backend)
+# [flagFeatures.reactNativeOrderTaker=False] App React Native habilitada
+# [flagFeatures.reactNativeOrderTakerForAll=False] App React Native para todos los vendedores
+# [flagFeatures.reactNativeOrderTakerSellers=[]] Lista de vendedores con React Native
+# [footerCustomContent.useFooterCustomContent=False] Footer personalizado habilitado
+# [hasAllDistributionCenters=False] Acceso a todos los centros de distribución
+# [hasMultipleBusinessUnit=False] Múltiples unidades de negocio
+# [hasSingleDistributionCenter=False] Solo un centro de distribución (sin selector)
+# [hasTransportCode=False] Código de transporte en productos
+# [hasVoucherPrinterEnabled=False] Impresora de vouchers habilitada
+# [hooks.shippingHook=True] Hook de cálculo de envío (backend)
+# [includeTaxRateInPrices=True] Impuesto incluido en precio mostrado
+# [lazyLoadingPrices=True] Precios lazy-loaded (backend, sin UI assertion)
+# [limitAddingByStock=False] Limitar cantidad a agregar según stock disponible
+# [mustHaveOverride=False] Requiere override de precio para vender
+# [orderObservations=[]] Observaciones predefinidas de pedido
+# [packagingInformation.hidePackagingInformationB2B=True] Info de empaque (B2B web, no APP)
+# [packagingInformation.hideSingleItemPackagingInformationB2B=True] Info empaque item simple (B2B web)
+# [packagingInformation.ignoreUnitOnPackInformationB2B=False] Ignorar unidad en info empaque (B2B web)
+# [payment.balances=[]] Balances de pago configurados
+# [payment.enableNewPaymentModule=False] Nuevo módulo de pagos (flag migración)
+# [payment.requiresFullPayment=False] Requiere pago completo antes de confirmar
+# [paymentsWithoutAccount=False] Pagos sin cuenta bancaria
+# [priceRoundingDecimals=0] Redondeo de decimales en precios
+# [productVariability='none'] Variabilidad de productos (none/simple/complex)
+# [shareOrderNewDesign=False] Nuevo diseño para compartir pedido
+# [shoppingDetail.lastOrder=False] Ver detalle del último pedido
+# [showEmptyCategories=False] Categorías vacías visibles en catálogo
+# [showMinOne=False] Mostrar mínimo una unidad por producto
+# [synchronization.backgroundSyncList=[]] Colecciones para sync background
+# [synchronization.enableBackgroundSendOrders=False] Envío de pedidos en background
+# [synchronization.enableBackgroundSync=False] Sync en background (sin UI directa)
+# [synchronization.enableSyncImages=False] Sincronización de imágenes
+# [synchronization.pendingDocumentsLookbackDays=60] Días hacia atrás para documentos pendientes
+# [taxes.taxRate=0] Tasa de impuesto configurada (numérico)
+# [taxes.useTaxRate=False] Usar tasa de impuesto personalizada
+# [uploadOrderFileWithMinUnits=False] Subir archivo de pedido con unidades mínimas
+# [useMobileGps=True] Usar GPS del móvil para ubicación
+# [useMongoPricing=False] Precios desde MongoDB vs ERP
+# [validatePaymentFromAdmin=False] Validación de pago desde admin
