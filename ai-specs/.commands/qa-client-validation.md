@@ -19,7 +19,14 @@ Parameters:
 
 1. **Adopt QA Coordinator role** (see `ai-specs/.agents/qa-coordinator.md`)
 
-2. **Verificar checklist pre-producción**
+2. **Verificar scope-gap-report**
+   - Buscar `QA/{CLIENT}/*/scope-gap-report.md` (el más reciente)
+   - Si no existe → ejecutar `/qa-scope-check {CLIENT}` para generarlo antes de continuar
+   - Si existe → revisar la sección "Gaps — Sin Cobertura" y la sección "Desarrollos Custom"
+     - Si hay gaps P0 (desarrollos custom sin test) → indicar cuáles son y preguntar si continuar sin ellos o crearlos primero
+     - Si hay gaps P1 → anotarlos como "cobertura pendiente" en el reporte final
+
+3. **Verificar checklist pre-producción**
    - Buscar `QA/{CLIENT}/*/checklist-preproduccion.md` (el más reciente)
    - Si **no existe** → indicar: _"Ejecutar primero `/qa-plan-client {CLIENT}` para generar el checklist"_ y detener
    - Si existe → leer el veredicto final:

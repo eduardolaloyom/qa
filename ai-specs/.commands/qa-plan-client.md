@@ -10,7 +10,18 @@ Plan QA concreto para un cliente: lee sus flags desde `qa-matrix.json`, aplica l
 
 1. **Adoptar rol QA Coordinator** (ver `ai-specs/.agents/qa-coordinator.md`)
 
-2. **Leer contexto del cliente**
+2. **Leer doc de alcance desde Google Drive** (`/qa-scope-check {CLIENT}`)
+   - Buscar en Drive: `title contains 'Alcance' and title contains '{CLIENTE}' and title contains 'Yom'`
+   - Si hay múltiples versiones → tomar la más reciente por `modifiedTime`
+   - Leer el documento completo y extraer:
+     - **Sección 3** (features existentes activos para este cliente)
+     - **Sección 4** (desarrollos custom — mayor riesgo, requieren tests propios)
+     - **Sección 2.3** (webhooks a validar)
+   - Cruzar features del alcance contra cobertura existente (`checklists/INDICE.md`, specs Playwright, flows Maestro)
+   - Guardar gap report en `QA/{CLIENT}/{DATE}/scope-gap-report.md`
+   - Si hay desarrollos custom (Sección 4) sin ningún test → marcarlos como **P0 obligatorio** en el plan
+
+3. **Leer contexto del cliente**
    - Linear: tickets abiertos del cliente (deuda técnica, features, bugs)
    - `checklists/INDICE.md`: cobertura existente
 
@@ -123,6 +134,16 @@ Skipped por flags ausentes o false:
 |------|-------------|-------|
 | enableKhipu: false | checklist-fintech-khipu.md | Flag desactivado |
 | ... | ... | ... |
+
+## Gaps del Doc de Alcance
+Features en el alcance sin cobertura automatizada (desde `scope-gap-report.md`):
+
+| Feature | Sección | Tipo | Acción |
+|---------|---------|------|--------|
+| [feature sin test] | 3.X | estándar | Crear spec: `{feature}.spec.ts` |
+| [desarrollo custom] | 4 | **custom** | Crear spec: `{feature}.spec.ts` — P0 |
+
+> Si no hay gaps → indicar "Alcance cubierto ✓"
 
 ## Plan de Ejecución
 Orden recomendado:

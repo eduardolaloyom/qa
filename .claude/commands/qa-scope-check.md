@@ -1,0 +1,1 @@
+../../ai-specs/.commands/qa-scope-check.md

@@ -25,6 +25,7 @@ Comandos activos como slash commands en Claude Code (vía `.claude/commands/` �
 | Situación | Comando |
 |-----------|---------|
 | Onboarding cliente nuevo | `/qa-plan-client {CLIENTE}` |
+| Revisar alcance del cliente vs cobertura de tests | `/qa-scope-check {CLIENTE}` |
 | Correr regresión B2B | `/run-playwright b2b` |
 | Triagear fallos post-run Playwright | `/triage-playwright` o `/triage-playwright {FECHA}` |
 | Suite completa (MongoDB→tests→reporte) | `/qa-client-validation {CLIENTE} staging` |
