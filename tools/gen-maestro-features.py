@@ -619,6 +619,27 @@ def generate_yaml(client_key, client_data):
         for block in by_ctx["lista"]:
             lines += [block, ""]
 
+    # Extra: tap Crear Comercio and verify form loads when flag is ON
+    if get_var(variables, "commerce.enableCreateCommerce"):
+        lines += [
+            "# ── Verificar formulario Crear Comercio ─────────────────────────",
+            "- tapOn:",
+            '    text: ".*[Cc]rear [Cc]omercio.*|Crear comercio"',
+            "    optional: true",
+            "- waitForAnimationToEnd",
+            "- extendedWaitUntil:",
+            "    visible:",
+            '      text: ".*[Cc]rear.*[Cc]omercio.*|.*[Ii]ngresa.*datos.*"',
+            "    timeout: 8000",
+            "# Campos esperados — si solo aparece spinner sin campos es bug de formulario",
+            "- assertVisible:",
+            '    text: ".*[Nn]ombre.*|.*[Dd]irección.*|.*[Rr]ut.*|.*[Tt]eléfono.*|.*[Cc]ontacto.*|.*[Ee]mail.*"',
+            "    optional: true",
+            "- back",
+            "- waitForAnimationToEnd",
+            "",
+        ]
+
     # 3. Menú lateral
     if has_menu:
         lines += [

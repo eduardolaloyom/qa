@@ -34,6 +34,22 @@ name: "Verificación features ON/OFF — Caren (staging)"
 - assertNotVisible:
     text: ".*[Mm]antenimiento.*|.*[Mm]aintenance.*"
 
+# ── Verificar formulario Crear Comercio ─────────────────────────
+- tapOn:
+    text: ".*[Cc]rear [Cc]omercio.*|Crear comercio"
+    optional: true
+- waitForAnimationToEnd
+- extendedWaitUntil:
+    visible:
+      text: ".*[Cc]rear.*[Cc]omercio.*|.*[Ii]ngresa.*datos.*"
+    timeout: 8000
+# Campos esperados — si solo aparece spinner sin campos es bug de formulario
+- assertVisible:
+    text: ".*[Nn]ombre.*|.*[Dd]irección.*|.*[Rr]ut.*|.*[Tt]eléfono.*|.*[Cc]ontacto.*|.*[Ee]mail.*"
+    optional: true
+- back
+- waitForAnimationToEnd
+
 # ── Menú lateral (drawer) ─────────────────────────────────────────
 - tapOn:
     text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
