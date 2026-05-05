@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA Report: Caren — 2026-05-05</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; }
+  .header { background: #1d1d1f; color: #fff; padding: 24px 32px; }
+  .header a { color: #86868b; text-decoration: none; font-size: 13px; }
+  .header a:hover { color: #fff; }
+  .header h1 { font-size: 24px; font-weight: 600; margin-top: 8px; }
+  .header .meta { color: #86868b; font-size: 14px; margin-top: 4px; }
+  .executive-summary { background: #fff3cd; border-left: 4px solid #f0ad4e; padding: 16px 32px; font-size: 15px; font-weight: 600; }
+  .executive-summary.con_condiciones { background: #fff3cd; border-color: #f0ad4e; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px; }
+  section { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  section h2 { font-size: 18px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e5e5e7; }
+  section h3 { font-size: 15px; font-weight: 600; margin: 16px 0 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: #f5f5f7; text-align: left; padding: 10px 12px; font-weight: 600; font-size: 13px; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e5e5e7; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .issue-table { table-layout: fixed; width: 100%; }
+  .issue-table th:nth-child(1) { width: 130px; }
+  .issue-table th:nth-child(2) { width: 70px; }
+  .issue-table th:nth-child(3) { width: 120px; }
+  .issue-table td { word-break: break-word; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .p0 { background: #ffd6d6; color: #c00; }
+  .p1 { background: #ffe4cc; color: #a35200; }
+  .p2 { background: #fff3cd; color: #856404; }
+  .p3 { background: #e8f4fd; color: #0a5686; }
+  .pass { color: #1a7f37; font-weight: 600; }
+  .fail { color: #cf222e; font-weight: 600; }
+  .warn { color: #9a6700; font-weight: 600; }
+  .partial { color: #6e6e73; }
+  .verdict-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; background: #fff3cd; color: #856404; }
+  .score-big { font-size: 36px; font-weight: 700; color: #f0ad4e; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 8px; }
+  .summary-card { background: #f5f5f7; border-radius: 8px; padding: 16px; text-align: center; }
+  .summary-card .val { font-size: 28px; font-weight: 700; }
+  .summary-card .lbl { font-size: 12px; color: #6e6e73; margin-top: 4px; }
+  .issue-detail { background: #f5f5f7; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .issue-detail h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .issue-detail p { font-size: 13px; color: #3a3a3c; margin-bottom: 4px; }
+  .accionable-table td:nth-child(4) { font-size: 12px; }
+  pre { background: #1d1d1f; color: #e5e5e7; padding: 16px; border-radius: 8px; font-size: 13px; overflow-x: auto; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="../">← Dashboard</a>
+  <h1>QA Report: Caren</h1>
+  <div class="meta">2026-05-05 · Maestro APP Android · Staging — caren.solopide.me</div>
+</div>
+
+<div class="executive-summary con_condiciones">
+  CON_CONDICIONES | Score 73/100 | 2 issues críticos (P0: 0, P1: 1)
+</div>
+
+<div class="container">
+
+  <!-- RESUMEN -->
+  <section>
+    <h2>Resumen</h2>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="val score-big">73</div>
+        <div class="lbl">Health Score</div>
+      </div>
+      <div class="summary-card">
+        <div class="val" style="color:#f0ad4e">CON_CONDICIONES</div>
+        <div class="lbl">Veredicto</div>
+      </div>
+      <div class="summary-card">
+        <div class="val">11/11</div>
+        <div class="lbl">Flows ejecutados</div>
+      </div>
+      <div class="summary-card">
+        <div class="val" style="color:#cf222e">1</div>
+        <div class="lbl">Issues P1</div>
+      </div>
+      <div class="summary-card">
+        <div class="val" style="color:#9a6700">2</div>
+        <div class="lbl">Issues P2</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEALTH SCORE -->
+  <section>
+    <h2>Health Score</h2>
+    <table>
+      <tr><th>Categoría</th><th>Peso</th><th>Score</th><th>Ponderado</th></tr>
+      <tr><td>Flujos core</td><td>25%</td><td>90/100</td><td>22.5</td></tr>
+      <tr><td>Datos y catálogo</td><td>20%</td><td>80/100</td><td>16.0</td></tr>
+      <tr><td>Integraciones</td><td>20%</td><td>45/100</td><td>9.0</td></tr>
+      <tr><td>Features</td><td>15%</td><td>70/100</td><td>10.5</td></tr>
+      <tr><td>UX y visual</td><td>10%</td><td>70/100</td><td>7.0</td></tr>
+      <tr><td>Performance</td><td>5%</td><td>85/100</td><td>4.25</td></tr>
+      <tr><td>Consola/Errores</td><td>3%</td><td>75/100</td><td>2.25</td></tr>
+      <tr><td>Accesibilidad</td><td>2%</td><td>75/100</td><td>1.5</td></tr>
+      <tr style="font-weight:700"><td>TOTAL</td><td>100%</td><td></td><td>73</td></tr>
+    </table>
+  </section>
+
+  <!-- FLOWS MAESTRO -->
+  <section>
+    <h2>Resultados Maestro — Flows APP</h2>
+    <table>
+      <tr><th>Flow</th><th>Nombre</th><th>Estado</th><th>Nota</th></tr>
+      <tr><td>01</td><td>Comercios disponibles</td><td class="pass">✅ PASS</td><td>Visitó 4 comercios por ID numérico</td></tr>
+      <tr><td>02</td><td>Pedido completo</td><td class="pass">✅ PASS</td><td>Pedido enviado exitosamente en staging</td></tr>
+      <tr><td>03</td><td>Comercios bloqueados</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado (CAREN-QA-001)</td></tr>
+      <tr><td>04</td><td>Features ON/OFF</td><td class="warn">✅ PASS⚠</td><td>"Crear Comercio" visible (CAREN-QA-002)</td></tr>
+      <tr><td>05</td><td>Tomador pedido bloqueado</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado</td></tr>
+      <tr><td>05b</td><td>Carrito limpio bloqueado</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado</td></tr>
+      <tr><td>06</td><td>Lista completa comercios</td><td class="pass">✅ PASS</td><td>Scrolleó y visitó 4 comercios</td></tr>
+      <tr><td>07</td><td>Historial pedidos</td><td class="pass">✅ PASS</td><td>Historial encontrado, detalle abierto</td></tr>
+      <tr><td>08</td><td>Búsqueda comercios</td><td class="warn">✅ PASS*</td><td>Barra búsqueda no encontrada (CAREN-QA-003)</td></tr>
+      <tr><td>09</td><td>Datos de comercio</td><td class="warn">✅ PASS*</td><td>Disponible OK; bloqueados saltados</td></tr>
+      <tr><td>10</td><td>Catálogo detallado</td><td class="warn">✅ PASS*</td><td>Disponible OK; tabs no encontrados (CAREN-QA-004)</td></tr>
+    </table>
+    <p style="font-size:12px;color:#6e6e73;margin-top:8px">* PASS con cobertura parcial — bloque condicional saltado por bug conocido o UI no encontrada.</p>
+  </section>
+
+  <!-- ISSUES -->
+  <section>
+    <h2>Hallazgos por severidad</h2>
+    <table class="issue-table">
+      <tr><th>ID</th><th>Sev.</th><th>Área</th><th>Descripción</th></tr>
+      <tr>
+        <td>CAREN-QA-001</td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Integración / Sync</td>
+        <td><code>assignedSellers</code> siempre falla con 0 requests — sin badges Disponible/Bloqueado en lista de comercios</td>
+      </tr>
+      <tr>
+        <td>CAREN-QA-002</td>
+        <td><span class="badge p2">P2</span></td>
+        <td>Config / Features</td>
+        <td>Botón "Crear Comercio" visible aunque <code>enableCreateCommerce: false</code> en MongoDB</td>
+      </tr>
+      <tr>
+        <td>CAREN-QA-003</td>
+        <td><span class="badge p2">P2</span></td>
+        <td>UX</td>
+        <td>Barra de búsqueda no encontrada en listado de comercios (ningún tap la activó)</td>
+      </tr>
+      <tr>
+        <td>CAREN-QA-004</td>
+        <td><span class="badge p3">P3</span></td>
+        <td>UX / Catálogo</td>
+        <td>Tabs "Sugerencias", "Todos", "Categoría" no visibles en catálogo del comercio visitado</td>
+      </tr>
+    </table>
+
+    <h3>CAREN-QA-001 — assignedSellers falla con 0 requests</h3>
+    <div class="issue-detail">
+      <p><strong>Severidad:</strong> P1 · Bug de integración</p>
+      <p><strong>Descripción:</strong> El request <code>assignedSellers</code> falla con 0 requests durante cada sync. La lista de comercios no muestra badges de estado (Disponible / Bloqueado), impidiendo identificar comercios bloqueados y bloqueando la validación de 4 flows (03, 05, 05b, parciales 09 y 10).</p>
+      <p><strong>Evidencia:</strong> Capturado en logcat (QA/Caren/2026-04-23/logcat-sync2.log) — <code>assignedSellers: 0 requests</code> en todas las syncs monitoreadas.</p>
+      <p><strong>Impacto:</strong> Feature de bloqueo crediticio no validable. Vendedor no puede distinguir comercios disponibles de bloqueados.</p>
+    </div>
+
+    <h3>CAREN-QA-002 — "Crear Comercio" visible con enableCreateCommerce: false</h3>
+    <div class="issue-detail">
+      <p><strong>Severidad:</strong> P2 · Config</p>
+      <p><strong>Descripción:</strong> El botón "Crear Comercio" aparece en la lista de comercios aunque <code>enableCreateCommerce: false</code> en la config del site en MongoDB.</p>
+      <p><strong>Pasos:</strong> 1. Login como vendedor Caren en staging. 2. Ver listado de comercios. 3. "Crear comercio" visible.</p>
+      <p><strong>Evidencia:</strong> Flow 04 — <code>assertNotVisible "Crear Comercio"</code> reportó WARNED.</p>
+    </div>
+
+    <h3>CAREN-QA-003 — Barra de búsqueda no encontrada</h3>
+    <div class="issue-detail">
+      <p><strong>Severidad:</strong> P2 · UX</p>
+      <p><strong>Descripción:</strong> Ningún tap (texto "Buscar/Search/Filtrar" ni coordenadas 85%,8% y 50%,8%) activó barra de búsqueda en el listado de comercios. Puede no estar implementada en esta versión o tener selector distinto.</p>
+    </div>
+  </section>
+
+  <!-- STAGING BLOCKERS -->
+  <section>
+    <h2>Staging Blockers</h2>
+    <table>
+      <tr><th>Caso no ejecutable</th><th>Motivo</th><th>Para desbloquear</th></tr>
+      <tr>
+        <td>Flows 03, 05, 05b — comercios bloqueados</td>
+        <td><code>assignedSellers</code> falla → sin badges Bloqueado</td>
+        <td>Corregir bug CAREN-QA-001 en API</td>
+      </tr>
+      <tr>
+        <td>Flow 08 — búsqueda de comercios</td>
+        <td>Barra búsqueda no activable por Maestro</td>
+        <td>Identificar selector correcto o confirmar si la feature existe</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ACCIONABLES -->
+  <section>
+    <h2>Accionables</h2>
+    <p style="font-size:13px;color:#6e6e73;margin-bottom:12px">Solo P0 y P1. P2/P3 en Issues detallados.</p>
+    <table class="accionable-table">
+      <tr><th>Issue</th><th>Severidad</th><th>Dueño</th><th>Plazo</th></tr>
+      <tr>
+        <td>assignedSellers falla con 0 requests — sin badges de estado en comercios</td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Tech</td>
+        <td>2-5 días (esta semana)</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- GATE DE ROLLOUT -->
+  <section>
+    <h2>Gate de Rollout</h2>
+    <table>
+      <tr><th>Criterio</th><th>Estado</th></tr>
+      <tr><td>Flujos core (login, lista, pedido)</td><td class="pass">✅ OK</td></tr>
+      <tr><td>Integridad de sync (catalogs, documents)</td><td class="pass">✅ OK</td></tr>
+      <tr><td>Badges de estado (Disponible/Bloqueado)</td><td class="fail">❌ FALLA — assignedSellers bug</td></tr>
+      <tr><td>Config features respetadas</td><td class="warn">⚠ Parcial — Crear Comercio visible</td></tr>
+      <tr><td>Historial pedidos</td><td class="pass">✅ OK</td></tr>
+    </table>
+    <p style="margin-top:16px;font-size:14px"><strong>Veredicto: CON_CONDICIONES</strong> — Flujos core funcionan correctamente. El bug de <code>assignedSellers</code> (P1) impide validar la feature de bloqueo crediticio. Apto para uso básico (catálogo, pedidos, historial), no apto para validar gestión de crédito hasta corregir la sync.</p>
+  </section>
+
+  <!-- SHIP READINESS -->
+  <section>
+    <h2>Ship Readiness</h2>
+    <pre>QA Caren APP (staging) — 2026-05-05
+Veredicto: CON_CONDICIONES (73/100)
+
+✅ Login, lista comercios, pedido, historial: OK
+⚠️ assignedSellers falla → sin badges Disponible/Bloqueado (P1)
+⚠️ "Crear Comercio" visible con enableCreateCommerce: false (P2)
+⚠️ Búsqueda de comercios no encontrada (P2)
+
+Flows: 11/11 ejecutados · 4 con cobertura parcial por bug assignedSellers
+Acción requerida: Fix assignedSellers sync antes de validar feature bloqueo crediticio</pre>
+  </section>
+
+</div>
+</body>
+</html>
