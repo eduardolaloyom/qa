@@ -12,7 +12,13 @@
       "skipped": 0,
       "total": 11,
       "platform": "app",
-      "environment": "staging"
+      "environment": "staging",
+      "issues": [
+        { "id": "CAREN-QA-001", "severity": "P1", "title": "assignedSellers falla con 0 requests — sin badges Disponible/Bloqueado", "area": "Sync" },
+        { "id": "CAREN-QA-002", "severity": "P2", "title": "Botón \"Crear Comercio\" visible con enableCreateCommerce: false", "area": "Config" },
+        { "id": "CAREN-QA-003", "severity": "P2", "title": "Barra de búsqueda no encontrada en listado de comercios", "area": "UX" },
+        { "id": "CAREN-QA-004", "severity": "P3", "title": "Tabs Sugerencias/Todos/Categoría no visibles en catálogo", "area": "UX" }
+      ]
     },
     {
       "client": "Caren",
