@@ -1,0 +1,191 @@
+appId: ${APP_PACKAGE}
+name: "Verificación features ON/OFF — Prinorte (staging)"
+# GENERADO AUTOMÁTICAMENTE por tools/gen-maestro-features.py
+# Fuente: prinorte.solopide.me (variables MongoDB reales)
+# Regenerar: python3 tools/gen-maestro-features.py <cliente>
+---
+
+# ── Pantalla de login ─────────────────────────────────────────────
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+
+# Botón login con Facebook — INVISIBLE (loginButtons.facebook: false)
+- assertNotVisible:
+    text: ".*[Ff]acebook.*|.*FB.*"
+
+# Botón login con Google — INVISIBLE (loginButtons.google: false)
+- assertNotVisible:
+    text: ".*[Gg]oogle.*"
+
+# ── Startup → lista de comercios ─────────────────────────────────────
+- runFlow: helpers-startup.yaml
+
+# ── Lista de comercios ───────────────────────────────────────────
+# Botón 'Crear Comercio' — VISIBLE (commerce.enableCreateCommerce: true)
+- assertVisible:
+    text: ".*[Cc]rear [Cc]omercio.*|Crear comercio"
+
+# Filtro 'Sin venta' en lista de comercios — VISIBLE (hasNoSaleFilter: true)
+- assertVisible:
+    text: ".*[Ss]in [Vv]enta.*|.*[Nn]o [Vv]enta.*"
+
+# Banner de mantenimiento en la app — INVISIBLE (inMaintenance: false)
+- assertNotVisible:
+    text: ".*[Mm]antenimiento.*|.*[Mm]aintenance.*"
+
+# ── Menú lateral (drawer) ─────────────────────────────────────────
+- tapOn:
+    text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Módulo Pagos en menú lateral — INVISIBLE (enablePayments: false)
+- assertNotVisible:
+    text: "^Pagos$|^PAGOS$"
+
+# Módulo Cobros en menú lateral — INVISIBLE (enablePaymentsCollection: false)
+- assertNotVisible:
+    text: "^Cobros$|^COBROS$"
+
+# Módulo Tareas en menú lateral — INVISIBLE (enableTask: false)
+- assertNotVisible:
+    text: "^Tareas$|^TAREAS$"
+
+# Módulo Puntos en menú lateral — INVISIBLE (pointsEnabled: false)
+- assertNotVisible:
+    text: "^Puntos$|^PUNTOS$"
+
+- back
+- waitForAnimationToEnd
+
+# ── Entrar a comercio disponible ─────────────────────────────────
+- runFlow: helpers-filtro-disponible.yaml
+- tapOn:
+    text: '.*\d{7,}.*'
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+# ── Catálogo: checks de features ─────────────────────────────────
+# Selector DIS/UND (multi-unidad) — VISIBLE (hasMultiUnitEnabled: true)
+- assertVisible:
+    text: "DIS|UND"
+
+# Indicador de stock en productos — VISIBLE (hasStockEnabled: true)
+- assertVisible:
+    text: ".*[Ss]tock.*|.*[Dd]isponible.*\s*[0-9]"
+
+# Selector de unidad de venta — VISIBLE (enableChooseSaleUnit: true)
+- assertVisible:
+    text: ".*[Uu]nidad.*[Vv]enta.*|.*[Ss]ale [Uu]nit.*"
+
+# Selector de centros de distribución — INVISIBLE (enableDistributionCentersSelector: false)
+- assertNotVisible:
+    text: ".*[Ss]eleccionar.*[Cc][Dd].*|.*[Cc]entro.*[Dd]istribuci[oó]n.*"
+
+# ── Agregar producto y ver carrito ───────────────────────────────
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+# ── Carrito: checks de features ──────────────────────────────────
+# Opción 'Descuento Vendedor' — INVISIBLE (enableSellerDiscount: false)
+- assertNotVisible:
+    text: ".*[Dd]escuento [Vv]endedor.*|.*[Aa]plicar [Dd]escuento.*"
+
+# Sección de cupones en carrito — VISIBLE (enableCoupons: true)
+- assertVisible:
+    text: ".*[Cc]up[oó]n.*|.*[Cc]oupon.*"
+
+# Campo Orden de compra / Nº pedido — INVISIBLE (purchaseOrderEnabled: false)
+- assertNotVisible:
+    text: ".*[Oo]rden.*[Cc]ompra.*|.*OC\b.*|.*N[°º].*[Pp]edido.*"
+
+# Selector de fecha de entrega — INVISIBLE (enableAskDeliveryDate: false)
+- assertNotVisible:
+    text: ".*[Ff]echa.*[Ee]ntrega.*|.*[Ff]echa.*[Pp]edido.*"
+
+# Resumen de impuestos/IVA en carrito — INVISIBLE (taxes.showSummary: false)
+- assertNotVisible:
+    text: ".*[Ii]mpuesto.*|.*IVA.*"
+
+# ── Volver a lista ───────────────────────────────────────────────────
+- runFlow: helpers-volver-lista.yaml
+
+# ════════════════════════════════════════════════════════════════════
+# Variables MongoDB sin assertion UI en APP (verificar manualmente)
+# ════════════════════════════════════════════════════════════════════
+# [anonymousAccess=False] Acceso anónimo sin login
+# [anonymousHideCart=False] Ocultar carrito a usuarios anónimos
+# [anonymousHidePrice=False] Ocultar precios a usuarios anónimos
+# [blockedClientAlert.enableBlockedClientAlert=False] Alerta visual en comercios bloqueados
+# [businessUnits=[]] Unidades de negocio configuradas
+# [disableCommerceEdit=False] Deshabilitar edición de datos del comercio
+# [disablePayments=False] Alias inverso de enablePayments
+# [disableShowEstimatedDeliveryHour=False] Ocultar hora estimada de entrega
+# [discountTypes.discountTypesList=[]] Lista de tipos de descuento configurados
+# [discountTypes.enableOrderDiscountType=False] Tipo de descuento a nivel de pedido
+# [discountTypes.enableProductDiscountType=False] Tipo de descuento a nivel de producto
+# [editAddress=True] Editar dirección del comercio desde app
+# [enableBetaButtons=False] Botones beta/experimentales visibles
+# [enableNewUI=False] Nueva interfaz de usuario habilitada
+# [enablePaymentDocumentsB2B=False] Módulo documentos de pago (solo B2B web, no APP)
+# [enablePriceOracle=False] Oracle de precios en tiempo real
+# [externalAccess=False] Acceso externo (login alternativo, sin UI assertion directa)
+# [filterGroupedSuggestionsBy=[]] Agrupación de sugerencias (config backend)
+# [footerCustomContent.useFooterCustomContent=False] Footer personalizado habilitado
+# [hasAllDistributionCenters=False] Acceso a todos los centros de distribución
+# [hasMultipleBusinessUnit=False] Múltiples unidades de negocio
+# [hasSingleDistributionCenter=True] Solo un centro de distribución (sin selector)
+# [hasTransportCode=False] Código de transporte en productos
+# [hasVoucherPrinterEnabled=False] Impresora de vouchers habilitada
+# [hooks.cartShoppingHook=False] Hook de carrito (backend)
+# [hooks.getPendingDocumentsHook=False] Hook de documentos pendientes (backend)
+# [hooks.shippingHook=False] Hook de cálculo de envío (backend)
+# [hooks.stockHook=False] Hook de stock en tiempo real (backend)
+# [hooks.updateTrafficLightHook=False] Hook de semáforo de crédito (backend)
+# [includeTaxRateInPrices=False] Impuesto incluido en precio mostrado
+# [lazyLoadingPrices=False] Precios lazy-loaded (backend, sin UI assertion)
+# [limitAddingByStock=True] Limitar cantidad a agregar según stock disponible
+# [orderObservations=[]] Observaciones predefinidas de pedido
+# [packaging.amountUsesUnits=True] Cantidad de empaque usa unidades
+# [packagingInformation.hidePackagingInformationB2B=True] Info de empaque (B2B web, no APP)
+# [packagingInformation.hideSingleItemPackagingInformationB2B=True] Info empaque item simple (B2B web)
+# [packagingInformation.ignoreUnitOnPackInformationB2B=False] Ignorar unidad en info empaque (B2B web)
+# [payment.balances=[]] Balances de pago configurados
+# [payment.enableNewPaymentModule=False] Nuevo módulo de pagos (flag migración)
+# [payment.requiresFullPayment=False] Requiere pago completo antes de confirmar
+# [paymentsWithoutAccount=False] Pagos sin cuenta bancaria
+# [priceRoundingDecimals=0] Redondeo de decimales en precios
+# [productVariability='none'] Variabilidad de productos (none/simple/complex)
+# [shareOrderNewDesign=False] Nuevo diseño para compartir pedido
+# [shoppingDetail.lastOrder=False] Ver detalle del último pedido
+# [showEmptyCategories=False] Categorías vacías visibles en catálogo
+# [showMinOne=False] Mostrar mínimo una unidad por producto
+# [synchronization.backgroundSyncList=[]] Colecciones para sync background
+# [synchronization.enableBackgroundSendOrders=False] Envío de pedidos en background
+# [synchronization.enableBackgroundSync=False] Sync en background (sin UI directa)
+# [synchronization.enableSyncImages=False] Sincronización de imágenes
+# [taxes.taxRate=0] Tasa de impuesto configurada (numérico)
+# [taxes.useTaxRate=True] Usar tasa de impuesto personalizada
+# [uploadOrderFileWithMinUnits=False] Subir archivo de pedido con unidades mínimas
+# [useMobileGps=False] Usar GPS del móvil para ubicación
+# [useMongoPricing=False] Precios desde MongoDB vs ERP
+# [validatePaymentFromAdmin=False] Validación de pago desde admin
