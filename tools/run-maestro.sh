@@ -110,6 +110,19 @@ echo "   ${FLOW_COUNT} ${FLOW_DESC} encontrado(s)"
 [ "$INTERACTIVE" = "1" ] && echo "   👤 Modo interactivo activo"
 echo ""
 
+# ── Generar 04-features.yaml desde qa-matrix ─────────────────
+FEATURES_FLOW="$FLOWS_DIR/${CLIENTE}/04-features.yaml"
+if [ -f "$FEATURES_FLOW" ] || [ -d "$FLOWS_DIR/${CLIENTE}" ]; then
+    MATRIX_ENV="staging"
+    [ "$ENVIRONMENT" = "production" ] && MATRIX_ENV="production"
+    echo "⚙  Regenerando 04-features.yaml desde MongoDB ($MATRIX_ENV)..."
+    if python3 "$QA_ROOT/tools/gen-maestro-features.py" "$CLIENTE" --env "$MATRIX_ENV" 2>&1; then
+        echo ""
+    else
+        echo "⚠  No se pudo regenerar 04-features.yaml — usando versión existente"
+    fi
+fi
+
 # ── Verificar dispositivo ─────────────────────────────────────
 if ! adb devices 2>/dev/null | grep -q "device$"; then
     echo "❌ No hay dispositivo Android conectado"

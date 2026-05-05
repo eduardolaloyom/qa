@@ -1,84 +1,69 @@
 appId: ${APP_PACKAGE}
-name: "CAREN: 04 — Verificación features ON/OFF"
-# Verifica que las features configuradas en MongoDB se reflejan en la app
-# Staging caren.solopide.me config:
-#   OFF: enableSellerDiscount, hasMultiUnitEnabled, enablePayments, enablePaymentsCollection,
-#        commerce.enableCreateCommerce, useNewPromotions, loginButtons.facebook/google
-#   ON:  enableCoupons, hasSingleDistributionCenter, editAddress
-# NOTA: assertNotVisible son observaciones (optional) — no bloquean el flow
+name: "Verificación features ON/OFF — Caren (staging)"
+# GENERADO AUTOMÁTICAMENTE por tools/gen-maestro-features.py
+# Fuente: caren.solopide.me (variables MongoDB reales)
+# Regenerar: python3 tools/gen-maestro-features.py <cliente>
 ---
 
-- runFlow: helpers-filtro-disponible.yaml
+# ── Login screen checks (antes de iniciar sesión) ────────────────
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
 
-# ── Verificar que NO hay botón "Crear Comercio" (enableCreateCommerce: false) ──
+# Botón login con Facebook — debe ser INVISIBLE (loginButtons.facebook: false)
 - assertNotVisible:
-    text: ".*[Cc]rear [Cc]omercio.*|.*[Nn]uevo [Cc]omercio.*|.*[Aa]gregar [Cc]omercio.*"
-    optional: true
+    text: ".*[Ff]acebook.*|.*FB.*"
 
-# ── Entrar a comercio disponible para verificar features en catálogo ───────────
+# Botón login con Google — debe ser INVISIBLE (loginButtons.google: false)
+- assertNotVisible:
+    text: ".*[Gg]oogle.*"
+
+# ── Startup: llegar a lista de comercios ─────────────────────────
+- runFlow: helpers-startup.yaml
+
+# ── Lista de comercios ───────────────────────────────────────────
+# Botón 'Crear Comercio' — debe ser VISIBLE (commerce.enableCreateCommerce: true)
+- assertVisible:
+    text: ".*[Cc]rear [Cc]omercio.*|Crear comercio"
+
+# ── Entrar a comercio disponible ─────────────────────────────────
+- runFlow: helpers-filtro-disponible.yaml
 - tapOn:
-    text: ".*\\d{7,}.*"
+    text: r'.*\d{7,}.*'
     index: 0
     optional: true
 - extendedWaitUntil:
     visible:
-      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*"
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
     timeout: 15000
 - tapOn:
     text: "Continuar"
     optional: true
 - waitForAnimationToEnd
-
-- runFlow:
-    when:
-      visible:
-        text: ".*Listado de comercios.*|Crear comercio"
-    commands:
-      - tapOn:
-          text: ".*[Cc]omerci.*"
-          index: 1
-          optional: true
-      - extendedWaitUntil:
-          visible:
-            text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*"
-          timeout: 15000
-      - tapOn:
-          text: "Continuar"
-          optional: true
-      - waitForAnimationToEnd
-
-- waitForAnimationToEnd
-
 - tapOn:
     text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
     optional: true
-
 - extendedWaitUntil:
     visible:
       text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*"
     timeout: 20000
 
-# Sin multi-unidad (hasMultiUnitEnabled: false) — no debe haber selector UND/DIS
+# ── Catálogo: checks de features ─────────────────────────────────
+# Selector DIS/UND (multi-unidad) — debe ser INVISIBLE (hasMultiUnitEnabled: false)
 - assertNotVisible:
     text: ".*DIS.*|.*[Dd]isplay.*"
-    optional: true
 
-# Sin promo badge (useNewPromotions: false)
-- assertNotVisible:
-    text: ".*PROMO.*|.*%.*[Dd]escuento.*"
-    optional: true
-
-# Agregar producto para verificar carrito
+# ── Agregar producto al carrito ──────────────────────────────────
 - tapOn:
     text: ".*[Aa]gregar.*"
     index: 0
     optional: true
-
 - waitForAnimationToEnd
 
-# Sin descuento vendedor en carrito (enableSellerDiscount: false)
-- assertNotVisible:
-    text: ".*[Dd]escuento [Vv]endedor.*|.*[Aa]plicar [Dd]escuento.*"
-    optional: true
+# ── Carrito: checks de features ──────────────────────────────────
+# Opción 'Descuento Vendedor' — debe ser VISIBLE (enableSellerDiscount: true)
+- assertVisible:
+    text: ".*[Dd]escuento [Vv]endedor.*"
 
+# ── Volver a lista ───────────────────────────────────────────────
 - runFlow: helpers-volver-lista.yaml
