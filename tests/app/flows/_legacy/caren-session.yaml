@@ -1,0 +1,33 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: Sesión Vendedor Completa (Staging)"
+# Staging — caren.solopide.me — Yom Ventas Debug
+# NOTA: en staging SE ENVÍAN pedidos (diferente a producción)
+# BUG A CONFIRMAR: catálogo disponibles ~5 productos vs bloqueados catálogo completo
+
+---
+
+# ── Inicio ────────────────────────────────────────────────────────────────────
+- clearState
+- launchApp
+
+# ── Login ─────────────────────────────────────────────────────────────────────
+- runFlow: helpers/login.yaml
+
+# ── Sincronizar ───────────────────────────────────────────────────────────────
+- runFlow: caren/helpers-sync.yaml
+
+# ── 01: Catálogo comercios disponibles (4 comercios) ─────────────────────────
+# Documenta cuántos productos muestra cada comercio disponible
+- runFlow: caren/01-comercios-disponibles.yaml
+
+# ── 02: Pedido completo (staging — se envía) ──────────────────────────────────
+# Arma y ENVÍA un pedido desde el primer comercio disponible
+- runFlow: caren/02-pedido.yaml
+
+# ── 03: Comercios bloqueados (4 comercios) ────────────────────────────────────
+# Documenta el catálogo de bloqueados + verifica que no se puede pedir
+- runFlow: caren/03-comercios-bloqueados.yaml
+
+# ── 04: Verificación features ON/OFF ─────────────────────────────────────────
+# Confirma que la config de MongoDB se refleja correctamente en la app
+- runFlow: caren/04-features.yaml

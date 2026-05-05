@@ -63,17 +63,10 @@ if [ ! -f "$ENV_FILE" ] && [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
-SESSION_FILE="$FLOWS_DIR/${CLIENTE}-session.yaml"
-if [ -f "$SESSION_FILE" ]; then
-    FLOW_COUNT=1
-    FLOW_DESC="session"
-else
-    FLOW_COUNT=$(ls "$FLOWS_DIR"/${CLIENTE}-[0-9]*.yaml 2>/dev/null | wc -l | tr -d ' ')
-    FLOW_DESC="flows individuales"
-fi
+FLOW_COUNT=$(ls "$FLOWS_DIR/${CLIENTE}"/[0-9]*.yaml 2>/dev/null | wc -l | tr -d ' ')
 if [ "$FLOW_COUNT" -eq 0 ]; then
     echo "❌ No hay flows para: $CLIENTE"
-    echo "   Esperado: tests/app/flows/${CLIENTE}-session.yaml"
+    echo "   Esperado: tests/app/flows/${CLIENTE}/01-*.yaml ..."
     exit 1
 fi
 
@@ -105,7 +98,7 @@ echo "📺  Live log activo: tail -f ${LIVE_LOG}"
 echo ""
 
 echo "📱 Maestro QA — ${CLIENTE_CAP} — ${DATE}"
-echo "   ${FLOW_COUNT} ${FLOW_DESC} encontrado(s)"
+echo "   ${FLOW_COUNT} flows encontrados en tests/app/flows/${CLIENTE}/"
 [ -n "$SKIP_TO" ] && echo "   ⏭ Saltando hasta: ${SKIP_TO}"
 [ "$INTERACTIVE" = "1" ] && echo "   👤 Modo interactivo activo"
 echo ""
@@ -171,10 +164,7 @@ if interactive:
         interactive = False
 
 # ── Lista de flows ────────────────────────────────────────────
-session = os.path.join(flows_dir, f'{cliente}-session.yaml')
-flows = [session] if os.path.exists(session) else sorted(
-    glob.glob(os.path.join(flows_dir, f'{cliente}-[0-9]*.yaml'))
-)
+flows = sorted(glob.glob(os.path.join(flows_dir, cliente, '[0-9]*.yaml')))
 
 log_lines = []
 skipping = bool(skip_to)
@@ -206,10 +196,7 @@ for flow_path in flows:
     last_output = ''
     last_error = 'Error desconocido'
 
-    # Reintentos: 1 para session flows (clearState+launchApp hace que reiniciar sea muy costoso)
-    # 3 para flows individuales (flakiness de UI tolerable)
-    is_session = cliente + '-session' in os.path.basename(flow_path)
-    max_attempts = 1 if is_session else 3
+    max_attempts = 3
 
     for attempt in range(1, max_attempts + 1):
         proc = subprocess.Popen(

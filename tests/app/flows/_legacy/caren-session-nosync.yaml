@@ -1,0 +1,62 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: Sesión Vendedor Completa (Sin Sync)"
+# Usar cuando el sync ya se hizo manualmente — no limpia estado ni sincroniza
+---
+
+# Traer la app al frente sin limpiar datos Realm
+- launchApp
+
+# Si por algún motivo aparece pantalla de login, manejarlo
+- runFlow:
+    when:
+      visible:
+        text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+    commands:
+      - runFlow: helpers/login.yaml
+
+# Descartar popup de nueva versión si aparece
+- runFlow:
+    when:
+      visible:
+        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
+    commands:
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd
+
+# Esperar listado de comercios (ya sincronizado)
+- extendedWaitUntil:
+    visible:
+      text: "Listado de comercios|.*[Cc]omercio.*|.*[Cc]liente.*"
+    timeout: 15000
+
+# ── 01: Catálogo comercios disponibles ───────────────────────────────────────
+- runFlow: caren/01-comercios-disponibles.yaml
+
+# ── 02: Pedido completo (staging — se envía) ──────────────────────────────────
+- runFlow: caren/02-pedido.yaml
+
+# ── 03: Comercios bloqueados ──────────────────────────────────────────────────
+- runFlow: caren/03-comercios-bloqueados.yaml
+
+# ── 04: Verificación features ON/OFF ─────────────────────────────────────────
+- runFlow: caren/04-features.yaml
+
+# ── 05: Bug bloqueo crediticio / Tomador de Pedido ───────────────────────────
+- runFlow: caren/05-bloqueado-tomador-pedido.yaml
+
+# ── 06: Lista completa de comercios (scroll) ──────────────────────────────────
+- runFlow: caren/06-lista-todos-comercios.yaml
+
+# ── 07: Historial de pedidos ──────────────────────────────────────────────────
+- runFlow: caren/07-historial-pedidos.yaml
+
+# ── 08: Búsqueda en lista de comercios ───────────────────────────────────────
+- runFlow: caren/08-busqueda-comercios.yaml
+
+# ── 09: Datos del comercio (ficha, crédito) ───────────────────────────────────
+- runFlow: caren/09-datos-comercio.yaml
+
+# ── 10: Catálogo detallado (fotos, SKUs, tabs) ────────────────────────────────
+- runFlow: caren/10-catalogo-detallado.yaml

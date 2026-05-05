@@ -1,0 +1,53 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: Flows 03+04 (resume desde lista de comercios)"
+# Sesión de continuación — corre solo flujos 03 y 04
+# Precondición: app en primer plano, en cualquier pantalla
+---
+
+# Traer la app al frente
+- launchApp
+
+# Manejar login si es necesario
+- runFlow:
+    when:
+      visible:
+        text: ".*[Ee]mail.*|.*[Cc]orreo.*"
+    commands:
+      - runFlow: helpers/login.yaml
+
+# Descartar popup de nueva versión si aparece
+- runFlow:
+    when:
+      visible:
+        text: ".*ACTUALIZAR.*|.*[Nn]ueva.*versi[oó]n.*"
+    commands:
+      - tapOn:
+          text: "CANCELAR"
+          optional: true
+      - waitForAnimationToEnd
+
+# Si estamos en pantalla de éxito del pedido, volver al listado
+- runFlow:
+    when:
+      visible:
+        text: ".*[Vv]olver al listado.*|.*ha sido realizado.*"
+    commands:
+      - tapOn:
+          text: ".*[Vv]olver al listado.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Si estamos dentro de un comercio, volver al listado
+- runFlow: caren/helpers-volver-lista.yaml
+
+# Esperar listado de comercios
+- extendedWaitUntil:
+    visible:
+      text: "Listado de comercios|.*[Ss]eleccionar filtros.*"
+    timeout: 20000
+
+# ── 03: Comercios bloqueados ──────────────────────────────────────────────────
+- runFlow: caren/03-comercios-bloqueados.yaml
+
+# ── 04: Verificación features ON/OFF ─────────────────────────────────────────
+- runFlow: caren/04-features.yaml

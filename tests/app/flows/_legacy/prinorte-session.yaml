@@ -1,0 +1,65 @@
+appId: ${APP_PACKAGE}
+name: "PRINORTE: Sesión Vendedor Completa"
+
+---
+
+# ── Inicio de sesión ──────────────────────────────────────────
+# Una sola apertura de app. Sin reinicios entre tests.
+- clearState
+- launchApp
+
+# ── Login ─────────────────────────────────────────────────────
+- runFlow: helpers/login.yaml
+
+# ── Sincronizar datos ─────────────────────────────────────────
+- runFlow: helpers/sync.yaml
+
+# ── Verificar comercios ───────────────────────────────────────
+# Busca el comercio de prueba, verifica ciudad, canal
+- runFlow: prinorte/01-comercios.yaml
+
+# ── Navegar catálogo ──────────────────────────────────────────
+# Entra al comercio, verifica producto, fotos, badge promo, unidades
+- runFlow: prinorte/02-catalogo.yaml
+
+# ── Armar pedido ──────────────────────────────────────────────
+# Agrega al carro, verifica precio, stock, promo 3%, descuento vendedor
+# STOP antes de confirmar (producción)
+- runFlow: prinorte/03-pedido.yaml
+
+# ── Filtro sin venta ──────────────────────────────────────────
+# Aplica y limpia el filtro de clientes sin compra
+- runFlow: prinorte/04-filtros.yaml
+
+# ── Crear comercio ────────────────────────────────────────────
+# Verifica formulario, campos y carga de regiones
+# STOP antes de enviar (producción)
+- runFlow: prinorte/05-crear-comercio.yaml
+
+# ── Features OFF ──────────────────────────────────────────────
+# Verifica que features desactivadas no aparecen en la app
+- runFlow: prinorte/06-features-off.yaml
+
+# ── Test negativo: comercio bloqueado ─────────────────────────
+# Verifica que un comercio con estado "Bloqueado" no puede pedir
+- runFlow: prinorte/07-bloqueado.yaml
+
+# ── Datos del comercio ────────────────────────────────────────
+# Entra a un comercio y verifica ID, crédito, saldo, forma de pago
+- runFlow: prinorte/08-datos-comercio.yaml
+
+# ── Cuentas bancarias ─────────────────────────────────────────
+# Verifica que el formulario abre y el selector de banco carga
+- runFlow: prinorte/09-cuentas.yaml
+
+# ── Historial de pedidos ──────────────────────────────────────
+# Tab PEDIDOS: lista órdenes, montos, detalle
+- runFlow: prinorte/10-pedidos.yaml
+
+# ── Cobranza ──────────────────────────────────────────────────
+# Tab COBRANZA: verifica recaudación y documentos
+- runFlow: prinorte/11-cobranza.yaml
+
+# ── Precios y fotos ──────────────────────────────────
+# Verifica que precios no son $0 e imágenes cargan correctamente
+- runFlow: prinorte/12-precios-fotos.yaml
