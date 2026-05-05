@@ -47,6 +47,8 @@
   .issue-detail p { font-size: 13px; color: #3a3a3c; margin-bottom: 4px; }
   .accionable-table td:nth-child(4) { font-size: 12px; }
   pre { background: #1d1d1f; color: #e5e5e7; padding: 16px; border-radius: 8px; font-size: 13px; overflow-x: auto; white-space: pre-wrap; }
+  .resolved { text-decoration: line-through; color: #6e6e73; }
+  .new-tag { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 11px; font-weight: 600; background: #dff0d8; color: #3c763d; margin-left: 6px; }
 </style>
 </head>
 <body>
@@ -54,11 +56,11 @@
 <div class="header">
   <a href="../">← Dashboard</a>
   <h1>QA Report: Caren</h1>
-  <div class="meta">2026-05-05 · Maestro APP Android · Staging — caren.solopide.me</div>
+  <div class="meta">2026-05-05 · Maestro APP Android · Staging — caren.solopide.me · Flows 01–15 (actualizado)</div>
 </div>
 
 <div class="executive-summary con_condiciones">
-  CON_CONDICIONES | Score 78/100 | 1 issue crítico (P0: 0, P1: 1)
+  CON_CONDICIONES | Score 67/100 | 4 issues críticos (P0: 0, P1: 4) — 2 bloqueantes de alcance detectados
 </div>
 
 <div class="container">
@@ -68,7 +70,7 @@
     <h2>Resumen</h2>
     <div class="summary-grid">
       <div class="summary-card">
-        <div class="val score-big">78</div>
+        <div class="val score-big">67</div>
         <div class="lbl">Health Score</div>
       </div>
       <div class="summary-card">
@@ -76,11 +78,11 @@
         <div class="lbl">Veredicto</div>
       </div>
       <div class="summary-card">
-        <div class="val">11/11</div>
+        <div class="val">16/16</div>
         <div class="lbl">Flows ejecutados</div>
       </div>
       <div class="summary-card">
-        <div class="val" style="color:#cf222e">1</div>
+        <div class="val" style="color:#cf222e">4</div>
         <div class="lbl">Issues P1</div>
       </div>
       <div class="summary-card">
@@ -95,16 +97,17 @@
     <h2>Health Score</h2>
     <table>
       <tr><th>Categoría</th><th>Peso</th><th>Score</th><th>Ponderado</th></tr>
-      <tr><td>Flujos core</td><td>25%</td><td>95/100</td><td>23.75</td></tr>
-      <tr><td>Datos y catálogo</td><td>20%</td><td>85/100</td><td>17.0</td></tr>
-      <tr><td>Integraciones</td><td>20%</td><td>45/100</td><td>9.0</td></tr>
-      <tr><td>Features</td><td>15%</td><td>80/100</td><td>12.0</td></tr>
-      <tr><td>UX y visual</td><td>10%</td><td>80/100</td><td>8.0</td></tr>
+      <tr><td>Flujos core</td><td>25%</td><td>90/100</td><td>22.5</td></tr>
+      <tr><td>Datos y catálogo</td><td>20%</td><td>75/100</td><td>15.0</td></tr>
+      <tr><td>Integraciones</td><td>20%</td><td>35/100</td><td>7.0</td></tr>
+      <tr><td>Features</td><td>15%</td><td>70/100</td><td>10.5</td></tr>
+      <tr><td>UX y visual</td><td>10%</td><td>40/100</td><td>4.0</td></tr>
       <tr><td>Performance</td><td>5%</td><td>85/100</td><td>4.25</td></tr>
       <tr><td>Consola/Errores</td><td>3%</td><td>75/100</td><td>2.25</td></tr>
       <tr><td>Accesibilidad</td><td>2%</td><td>75/100</td><td>1.5</td></tr>
-      <tr style="font-weight:700"><td>TOTAL</td><td>100%</td><td></td><td>78</td></tr>
+      <tr style="font-weight:700"><td>TOTAL</td><td>100%</td><td></td><td>67</td></tr>
     </table>
+    <p style="font-size:12px;color:#6e6e73;margin-top:8px">Integraciones baja de 45→35: assignedSellers (P1 persistente) + selector CD no funcional + fecha despacho no funcional. UX baja de 50→40: blockedClientAlert aparece en todos los comercios.</p>
   </section>
 
   <!-- FLOWS MAESTRO -->
@@ -112,19 +115,24 @@
     <h2>Resultados Maestro — Flows APP</h2>
     <table>
       <tr><th>Flow</th><th>Nombre</th><th>Estado</th><th>Nota</th></tr>
-      <tr><td>01</td><td>Comercios disponibles</td><td class="pass">✅ PASS</td><td>Visitó 4 comercios por ID numérico</td></tr>
+      <tr><td>01</td><td>Comercios disponibles</td><td class="pass">✅ PASS</td><td>Visitó comercios por ID numérico</td></tr>
       <tr><td>02</td><td>Pedido completo</td><td class="pass">✅ PASS</td><td>Pedido enviado exitosamente en staging</td></tr>
       <tr><td>03</td><td>Comercios bloqueados</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado (CAREN-QA-001)</td></tr>
-      <tr><td>04</td><td>Features ON-OFF</td><td class="pass">✅ PASS</td><td>Generado desde MongoDB — 5 assertions, todas PASS</td></tr>
+      <tr><td>04</td><td>Features ON-OFF</td><td class="pass">✅ PASS</td><td>Generado desde MongoDB — 5 assertions PASS</td></tr>
       <tr><td>05</td><td>Tomador pedido bloqueado</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado</td></tr>
       <tr><td>05b</td><td>Carrito limpio bloqueado</td><td class="warn">✅ PASS*</td><td>Saltado — sin badges Bloqueado</td></tr>
-      <tr><td>06</td><td>Lista completa comercios</td><td class="pass">✅ PASS</td><td>Scrolleó y visitó 4 comercios</td></tr>
+      <tr><td>06</td><td>Lista completa comercios</td><td class="pass">✅ PASS</td><td>Scrolleó y visitó todos los comercios</td></tr>
       <tr><td>07</td><td>Historial pedidos</td><td class="pass">✅ PASS</td><td>Historial encontrado, detalle abierto</td></tr>
-      <tr><td>08</td><td>Búsqueda comercios</td><td class="warn">✅ PASS*</td><td>Selector Maestro no encontró la barra — requiere ajuste de selector</td></tr>
+      <tr><td>08</td><td>Búsqueda comercios</td><td class="warn">✅ PASS*</td><td>5 métodos probados, ninguno activó la barra — CAREN-QA-003 es bug de app confirmado</td></tr>
       <tr><td>09</td><td>Datos de comercio</td><td class="warn">✅ PASS*</td><td>Disponible OK; bloqueados saltados</td></tr>
       <tr><td>10</td><td>Catálogo detallado</td><td class="warn">✅ PASS*</td><td>Disponible OK; tabs no encontrados (CAREN-QA-004)</td></tr>
+      <tr><td>11 <span class="new-tag">NEW</span></td><td>Selector CD pre-catálogo</td><td class="warn">✅ PASS*</td><td>Selector no aparece aunque <code>enableDistributionCentersSelector=true</code> — CAREN-QA-006 (P1)</td></tr>
+      <tr><td>12 <span class="new-tag">NEW</span></td><td>Fecha de despacho</td><td class="warn">✅ PASS*</td><td>Campo no visible en checkout aunque <code>enableAskDeliveryDate=true</code> — CAREN-QA-007 (P1)</td></tr>
+      <tr><td>13 <span class="new-tag">NEW</span></td><td>Descuento vendedor</td><td class="pass">✅ PASS</td><td>Campo descuento visible en checkout — <code>enableSellerDiscount=true</code> operativo</td></tr>
+      <tr><td>14 <span class="new-tag">NEW</span></td><td>Cobranza / documentos</td><td class="warn">✅ PASS*</td><td>Sección Cobranza accesible; datos de crédito en ficha de comercio no visibles (requiere más navegación)</td></tr>
+      <tr><td>15 <span class="new-tag">NEW</span></td><td>Gestor de tareas</td><td class="warn">✅ PASS*</td><td>Accesible vía menú hamburger; sin tareas asignadas en staging</td></tr>
     </table>
-    <p style="font-size:12px;color:#6e6e73;margin-top:8px">* PASS con cobertura parcial — bloque condicional saltado por bug conocido o UI no encontrada.</p>
+    <p style="font-size:12px;color:#6e6e73;margin-top:8px">* PASS con cobertura parcial — bloque condicional saltado por bug conocido, feature no funcional, o sin datos en staging.</p>
   </section>
 
   <!-- ISSUES -->
@@ -136,13 +144,31 @@
         <td>CAREN-QA-001</td>
         <td><span class="badge p1">P1</span></td>
         <td>Integración / Sync</td>
-        <td><code>assignedSellers</code> siempre falla con 0 requests — sin badges Disponible/Bloqueado en lista de comercios</td>
+        <td><code>assignedSellers</code> falla con 0 requests — sin badges Disponible/Bloqueado</td>
       </tr>
       <tr>
-        <td>CAREN-QA-002</td>
+        <td>CAREN-QA-005</td>
+        <td><span class="badge p1">P1</span></td>
+        <td>UX / Bug</td>
+        <td><code>blockedClientAlert</code> aparece en TODOS los comercios al entrar, incluyendo disponibles</td>
+      </tr>
+      <tr>
+        <td>CAREN-QA-006 <span class="new-tag">NEW</span></td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Integración / Alcance</td>
+        <td>Selector de CD no aparece pre-catálogo aunque <code>enableDistributionCentersSelector=true</code> — bloqueante alcance sec. 4</td>
+      </tr>
+      <tr>
+        <td>CAREN-QA-007 <span class="new-tag">NEW</span></td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Integración / Alcance</td>
+        <td>Fecha de despacho no aparece en checkout aunque <code>enableAskDeliveryDate=true</code> — bloqueante alcance sec. 4</td>
+      </tr>
+      <tr>
+        <td>CAREN-QA-003</td>
         <td><span class="badge p2">P2</span></td>
-        <td>Features / Bug</td>
-        <td>Formulario "Crear Comercio" abre pero no carga campos — pantalla vacía con spinner</td>
+        <td>UX / Bug</td>
+        <td>Barra de búsqueda inaccesible — 5 métodos probados, ninguno la activa (confirmado bug de app, no de selector)</td>
       </tr>
       <tr>
         <td>CAREN-QA-004</td>
@@ -150,25 +176,58 @@
         <td>UX / Catálogo</td>
         <td>Tabs "Sugerencias", "Todos", "Categoría" no visibles en catálogo del comercio visitado</td>
       </tr>
+      <tr>
+        <td class="resolved">CAREN-QA-002</td>
+        <td><span class="badge p3">—</span></td>
+        <td class="resolved">Features</td>
+        <td class="resolved">enableCreateCommerce — RESUELTO: flag cambió a true en staging, comportamiento correcto</td>
+      </tr>
     </table>
+
+    <h3>CAREN-QA-006 — Selector CD no aparece pre-catálogo</h3>
+    <div class="issue-detail">
+      <p><strong>Severidad:</strong> P1 · Bloqueante de alcance (sec. 4)</p>
+      <p><strong>Descripción:</strong> Con <code>enableDistributionCentersSelector=true</code> y <code>hasSingleDistributionCenter=false</code>, el flujo de "Hacer Pedido" debería presentar una pantalla de selección de Centro de Distribución antes de mostrar el catálogo. En staging, el catálogo carga directamente sin paso de selección de CD.</p>
+      <p><strong>Evidencia:</strong> Flow 11 — <code>assertVisible</code> del selector CD devolvió WARNED. El flow pasó directo al catálogo (<code>Agregar</code> visible) sin pantalla intermedia.</p>
+      <p><strong>Probable causa:</strong> Mismo patrón que <code>assignedSellers</code> — la feature puede estar habilitada en el flag pero no configurada/desplegada en el site de staging.</p>
+      <p><strong>Impacto:</strong> El catálogo muestra stock sin filtrar por CD. Stock incorrecto para el vendedor. Bloqueante para go-live según alcance.</p>
+    </div>
+
+    <h3>CAREN-QA-007 — Fecha de despacho no aparece en checkout</h3>
+    <div class="issue-detail">
+      <p><strong>Severidad:</strong> P1 · Bloqueante de alcance (sec. 4)</p>
+      <p><strong>Descripción:</strong> Con <code>enableAskDeliveryDate=true</code>, el carrito de compras debería mostrar un selector de fecha de despacho antes de finalizar el pedido. En staging, el checkout no muestra ningún campo de fecha.</p>
+      <p><strong>Evidencia:</strong> Flow 12 — <code>assertVisible</code> de fecha despacho devolvió WARNED. El checkout mostró resumen de pedido sin selector de fecha.</p>
+      <p><strong>Impacto:</strong> El vendedor no puede seleccionar fecha de entrega. Reglas de despacho por CD no validables. Bloqueante para go-live según alcance.</p>
+    </div>
 
     <h3>CAREN-QA-001 — assignedSellers falla con 0 requests</h3>
     <div class="issue-detail">
-      <p><strong>Severidad:</strong> P1 · Bug de integración</p>
-      <p><strong>Descripción:</strong> El request <code>assignedSellers</code> falla con 0 requests durante cada sync. La lista de comercios no muestra badges de estado (Disponible / Bloqueado), impidiendo identificar comercios bloqueados y bloqueando la validación de 4 flows (03, 05, 05b, parciales 09 y 10).</p>
-      <p><strong>Evidencia:</strong> Capturado en logcat (QA/Caren/2026-04-23/logcat-sync2.log) — <code>assignedSellers: 0 requests</code> en todas las syncs monitoreadas.</p>
-      <p><strong>Impacto:</strong> Feature de bloqueo crediticio no validable. Vendedor no puede distinguir comercios disponibles de bloqueados.</p>
+      <p><strong>Severidad:</strong> P1 · Bug de integración (persistente desde Apr 23)</p>
+      <p><strong>Descripción:</strong> El sub-sync <code>assignedSellers</code> ejecuta 0 requests en cada sync. La causa raíz identificada (sync-analysis 2026-04-23): la feature no está configurada en el site config de Caren → la app la marca como <code>failed</code> en vez de <code>skipped</code>. La lista de comercios no muestra badges de estado (Disponible/Bloqueado).</p>
+      <p><strong>Impacto:</strong> Feature de bloqueo crediticio no validable. Vendedor no distingue comercios disponibles de bloqueados. Flows 03, 05, 05b bloqueados.</p>
     </div>
 
-    <h3>CAREN-QA-002 — "Crear Comercio" visible pero funcionalidad no operativa</h3>
+    <h3>CAREN-QA-005 — blockedClientAlert en todos los comercios</h3>
     <div class="issue-detail">
-      <p><strong>Severidad:</strong> P2 · Features / Integración</p>
-      <p><strong>Descripción:</strong> Al tocar "Crear Comercio", se abre la pantalla "Crear nuevo comercio" con el texto "Ingresa datos de comercio" pero sin campos de formulario — solo spinner y botón "Enviar formulario" vacío. La pantalla está en blanco.</p>
-      <p><strong>Causa a investigar:</strong> La API que entrega la definición del formulario puede estar retornando vacío o error, o hay un bug de renderizado en frontend.</p>
-      <p><strong>Referencia alcance:</strong> Sección 2.2 — "Solicitud de creación de comercios."</p>
-      <p><strong>Evidencia:</strong> Screenshot manual — pantalla vacía con spinner (2026-05-05).</p>
+      <p><strong>Severidad:</strong> P1 · Bug UX</p>
+      <p><strong>Descripción:</strong> Al entrar a cualquier comercio, aparece el popup "Este comercio se encuentra bloqueado por estado crediticio" con botón "Continuar", independiente del estado real del comercio. El vendedor debe tocar "Continuar" en cada comercio. Probable consecuencia del bug <code>assignedSellers</code> (CAREN-QA-001): sin estado real, la app asume bloqueado por defecto.</p>
+      <p><strong>Impacto:</strong> UX degradada — fricción extra en cada visita a un comercio.</p>
     </div>
 
+  </section>
+
+  <!-- NUEVOS FLOWS — HALLAZGOS POSITIVOS -->
+  <section>
+    <h2>Nuevas áreas cubiertas (flows 11–15)</h2>
+    <table>
+      <tr><th>Área</th><th>Config</th><th>Estado</th></tr>
+      <tr><td>Descuento manual vendedor</td><td><code>enableSellerDiscount=true</code></td><td class="pass">✅ Operativo — campo visible en checkout</td></tr>
+      <tr><td>Cobranza / sección pagos</td><td><code>enablePayments=true, enableInvoicesList=true</code></td><td class="warn">⚠️ Sección accesible — datos de crédito en ficha comercio requieren más navegación</td></tr>
+      <tr><td>Gestor de tareas</td><td><code>enableTask=true</code></td><td class="warn">⚠️ Accesible vía hamburger — sin tareas asignadas en staging</td></tr>
+      <tr><td>Selector CD pre-catálogo</td><td><code>enableDistributionCentersSelector=true</code></td><td class="fail">❌ No aparece — CAREN-QA-006 (P1 · bloqueante alcance)</td></tr>
+      <tr><td>Fecha de despacho</td><td><code>enableAskDeliveryDate=true</code></td><td class="fail">❌ No aparece en checkout — CAREN-QA-007 (P1 · bloqueante alcance)</td></tr>
+    </table>
   </section>
 
   <!-- STAGING BLOCKERS -->
@@ -176,30 +235,42 @@
     <h2>Staging Blockers</h2>
     <table>
       <tr><th>Caso no ejecutable</th><th>Motivo</th><th>Para desbloquear</th></tr>
-      <tr>
-        <td>Flows 03, 05, 05b — comercios bloqueados</td>
-        <td><code>assignedSellers</code> falla → sin badges Bloqueado</td>
-        <td>Corregir bug CAREN-QA-001 en API</td>
-      </tr>
-      <tr>
-        <td>Flow 08 — búsqueda de comercios</td>
-        <td>Selector Maestro no encontró la barra de búsqueda</td>
-        <td>Actualizar selector en flow 08 con coordenadas correctas</td>
-      </tr>
+      <tr><td>Flows 03, 05, 05b — comercios bloqueados</td><td><code>assignedSellers</code> falla → sin badges Bloqueado</td><td>Configurar assignedSellers en site config de Caren staging</td></tr>
+      <tr><td>Flow 08 — búsqueda de comercios</td><td>Barra de búsqueda inaccesible (bug app confirmado)</td><td>Fix en app — no es problema de selector</td></tr>
+      <tr><td>Flow 11 — selector CD</td><td>Pantalla de selección CD no aparece en staging</td><td>Desplegar feature selector CD en staging</td></tr>
+      <tr><td>Flow 12 — fecha de despacho</td><td>Campo fecha no visible en checkout</td><td>Desplegar feature fecha despacho en staging</td></tr>
     </table>
   </section>
 
   <!-- ACCIONABLES -->
   <section>
     <h2>Accionables</h2>
-    <p style="font-size:13px;color:#6e6e73;margin-bottom:12px">Solo P0 y P1. P2/P3 en Issues detallados.</p>
+    <p style="font-size:13px;color:#6e6e73;margin-bottom:12px">P1 ordenados por impacto en go-live.</p>
     <table class="accionable-table">
       <tr><th>Issue</th><th>Severidad</th><th>Dueño</th><th>Plazo</th></tr>
       <tr>
-        <td>assignedSellers falla con 0 requests — sin badges de estado en comercios</td>
+        <td>Configurar assignedSellers en site config — sin esto el bloqueo crediticio no funciona</td>
         <td><span class="badge p1">P1</span></td>
         <td>Tech</td>
-        <td>2-5 días (esta semana)</td>
+        <td>Esta semana</td>
+      </tr>
+      <tr>
+        <td>Desplegar selector CD en staging — bloqueante go-live alcance sec. 4</td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Tech</td>
+        <td>Esta semana</td>
+      </tr>
+      <tr>
+        <td>Desplegar fecha de despacho en staging — bloqueante go-live alcance sec. 4</td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Tech</td>
+        <td>Esta semana</td>
+      </tr>
+      <tr>
+        <td>Fix blockedClientAlert — aparece en todos los comercios</td>
+        <td><span class="badge p1">P1</span></td>
+        <td>Tech</td>
+        <td>Esta semana</td>
       </tr>
     </table>
   </section>
@@ -209,29 +280,38 @@
     <h2>Gate de Rollout</h2>
     <table>
       <tr><th>Criterio</th><th>Estado</th></tr>
-      <tr><td>Flujos core (login, lista, pedido)</td><td class="pass">✅ OK</td></tr>
-      <tr><td>Integridad de sync (catalogs, documents)</td><td class="pass">✅ OK</td></tr>
-      <tr><td>Features ON-OFF (8 flags)</td><td class="pass">✅ OK — flow 04 PASS</td></tr>
-      <tr><td>Historial pedidos</td><td class="pass">✅ OK</td></tr>
-      <tr><td>Badges de estado (Disponible/Bloqueado)</td><td class="fail">❌ FALLA — assignedSellers bug (CAREN-QA-001)</td></tr>
-      <tr><td>Formulario Crear Comercio</td><td class="fail">❌ FALLA — campos no cargan (CAREN-QA-002)</td></tr>
+      <tr><td>Flujos core (login, lista, pedido, historial)</td><td class="pass">✅ OK</td></tr>
+      <tr><td>Features ON-OFF</td><td class="pass">✅ OK — flow 04 PASS</td></tr>
+      <tr><td>Descuento manual vendedor</td><td class="pass">✅ OK — flow 13 PASS</td></tr>
+      <tr><td>Cobranza / sección pagos</td><td class="warn">⚠️ Parcial — sección accesible, datos crédito requieren validación adicional</td></tr>
+      <tr><td>Badges estado (Disponible/Bloqueado)</td><td class="fail">❌ FALLA — assignedSellers bug (CAREN-QA-001)</td></tr>
+      <tr><td>blockedClientAlert correcto</td><td class="fail">❌ FALLA — aparece en todos los comercios (CAREN-QA-005)</td></tr>
+      <tr><td>Selector CD pre-catálogo</td><td class="fail">❌ FALLA — no desplegado en staging (CAREN-QA-006 · bloqueante alcance)</td></tr>
+      <tr><td>Fecha de despacho en checkout</td><td class="fail">❌ FALLA — no desplegado en staging (CAREN-QA-007 · bloqueante alcance)</td></tr>
+      <tr><td>Búsqueda de comercios</td><td class="fail">❌ FALLA — inaccesible (CAREN-QA-003)</td></tr>
     </table>
-    <p style="margin-top:16px;font-size:14px"><strong>Veredicto: CON_CONDICIONES</strong> — Flujos core funcionan. El bug <code>assignedSellers</code> (P1) impide validar bloqueo crediticio, core para Caren. Formulario "Crear Comercio" no carga campos. Apto para uso básico, no apto para release hasta corregir ambos issues.</p>
+    <p style="margin-top:16px;font-size:14px"><strong>Veredicto: CON_CONDICIONES</strong> — Flujos core OK. Cuatro P1 abiertos, dos de ellos son bloqueantes del alcance contractual (sec. 4). No apto para go-live hasta resolver selector CD, fecha despacho, assignedSellers y blockedClientAlert.</p>
   </section>
 
   <!-- SHIP READINESS -->
   <section>
     <h2>Ship Readiness</h2>
-    <pre>QA Caren APP (staging) — 2026-05-05
-Veredicto: CON_CONDICIONES (78/100)
+    <pre>QA Caren APP (staging) — 2026-05-05 (actualizado — 16 flows)
+Veredicto: CON_CONDICIONES (67/100)
 
 ✅ Login, lista comercios, pedido, historial: OK
-✅ Features ON-OFF: 5 assertions PASS (generado desde MongoDB real)
-❌ assignedSellers falla → sin badges Disponible/Bloqueado (P1)
-⚠️ Formulario "Crear Comercio" abre pero no carga campos (P2)
+✅ Features ON-OFF: 5 assertions PASS
+✅ Descuento vendedor: visible y operativo
+✅ Cobranza: sección accesible
+✅ Gestor de tareas: accesible
+❌ assignedSellers → sin badges Disponible/Bloqueado (P1)
+❌ blockedClientAlert en TODOS los comercios al entrar (P1)
+❌ Selector CD no aparece pre-catálogo (P1 · bloqueante alcance sec. 4)
+❌ Fecha de despacho no aparece en checkout (P1 · bloqueante alcance sec. 4)
+⚠️ Búsqueda de comercios inaccesible (P2 · bug confirmado)
 
-Flows: 11/11 ejecutados · 3 con cobertura parcial por bug assignedSellers
-Acción requerida: Fix assignedSellers antes de release a producción</pre>
+Flows: 16/16 ejecutados · 8 con cobertura parcial
+Acción requerida: 4 P1 antes de go-live (2 son bloqueantes de alcance contractual)</pre>
   </section>
 
 </div>

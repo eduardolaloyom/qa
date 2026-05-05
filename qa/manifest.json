@@ -6,11 +6,11 @@
       "date": "2026-05-05",
       "file": "qa-reports/Caren-2026-05-05.html",
       "verdict": "CON_CONDICIONES",
-      "health": 78,
-      "passed": 11,
+      "health": 67,
+      "passed": 16,
       "failed": 0,
       "skipped": 0,
-      "total": 11,
+      "total": 16,
       "platform": "app",
       "environment": "staging",
       "issues": [
@@ -21,10 +21,28 @@
           "area": "Sync"
         },
         {
-          "id": "CAREN-QA-002",
+          "id": "CAREN-QA-005",
+          "severity": "P1",
+          "title": "blockedClientAlert aparece en TODOS los comercios al entrar",
+          "area": "UX / Bug"
+        },
+        {
+          "id": "CAREN-QA-006",
+          "severity": "P1",
+          "title": "Selector CD no aparece pre-catálogo — bloqueante alcance sec. 4",
+          "area": "Integración / Alcance"
+        },
+        {
+          "id": "CAREN-QA-007",
+          "severity": "P1",
+          "title": "Fecha de despacho no aparece en checkout — bloqueante alcance sec. 4",
+          "area": "Integración / Alcance"
+        },
+        {
+          "id": "CAREN-QA-003",
           "severity": "P2",
-          "title": "Formulario 'Crear Comercio' abre pero no carga campos — pantalla vacía con spinner",
-          "area": "Features / Bug"
+          "title": "Búsqueda de comercios inaccesible — bug de app confirmado",
+          "area": "UX"
         },
         {
           "id": "CAREN-QA-004",
