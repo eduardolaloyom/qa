@@ -23,6 +23,7 @@ name: "CAREN: 05b — Verificación P1 carrito limpio (CAREN-QA-002)"
           text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
           optional: true
       - inputText: ${TEST_SELLER_PASSWORD}
+      - hideKeyboard
       - tapOn:
           text: ".*[Ii]niciar [Ss]esi[oó]n.*|.*[Ll]ogin.*|.*[Ee]ntrar.*|.*INGRESAR.*|.*[Aa]cceder.*"
           optional: true
@@ -46,6 +47,9 @@ name: "CAREN: 05b — Verificación P1 carrito limpio (CAREN-QA-002)"
 - tapOn:
     text: "CANCELAR"
     optional: true
+- tapOn:
+    text: "Seguir sin sincronizar"
+    optional: true
 - waitForAnimationToEnd
 
 - extendedWaitUntil:
@@ -64,7 +68,10 @@ name: "CAREN: 05b — Verificación P1 carrito limpio (CAREN-QA-002)"
           text: ".*[Bb]loqueado.*"
           index: 0
           optional: true
-      - waitForAnimationToEnd
+      - extendedWaitUntil:
+          visible:
+            text: "Continuar|Hacer pedido|.*[Tt]areas.*"
+          timeout: 15000
       - tapOn:
           text: "Continuar"
           optional: true

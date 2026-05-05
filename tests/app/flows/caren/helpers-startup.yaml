@@ -28,6 +28,7 @@ appId: ${APP_PACKAGE}
                 text: ".*[Cc]ontraseña.*|.*[Pp]assword.*|.*[Cc]lave.*"
                 optional: true
             - inputText: ${TEST_SELLER_PASSWORD}
+            - hideKeyboard
             - tapOn:
                 text: ".*[Ii]niciar [Ss]esi[oó]n.*|.*[Ll]ogin.*|.*[Ee]ntrar.*|.*INGRESAR.*|.*[Aa]cceder.*"
                 optional: true
@@ -50,9 +51,12 @@ appId: ${APP_PACKAGE}
                   text: ".*[Ss]incronizando.*"
                 timeout: 300000
 
-      # Descartar popup si aparece
+      # Descartar popups post-sync
       - tapOn:
           text: "CANCELAR"
+          optional: true
+      - tapOn:
+          text: "Seguir sin sincronizar"
           optional: true
       - waitForAnimationToEnd
 

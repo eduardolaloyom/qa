@@ -13,6 +13,13 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
     text: ".*\\d{7,}.*"
     index: 0
     optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*|.*Listado de comercios.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
 - waitForAnimationToEnd
 
 # Si no entramos, intentar vía cualquier tarjeta visible
@@ -24,6 +31,13 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
       - tapOn:
           text: ".*[Cc]omerci.*"
           index: 1
+          optional: true
+      - extendedWaitUntil:
+          visible:
+            text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Tt]areas.*"
+          timeout: 15000
+      - tapOn:
+          text: "Continuar"
           optional: true
       - waitForAnimationToEnd
 
@@ -54,6 +68,13 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
     text: ".*\\d{7,}.*"
     index: 1
     optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*|.*Listado de comercios.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
 - waitForAnimationToEnd
 
 - runFlow:
@@ -81,6 +102,13 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
     text: ".*\\d{7,}.*"
     index: 2
     optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*|.*Listado de comercios.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
 - waitForAnimationToEnd
 
 - runFlow:
@@ -107,6 +135,13 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
 - tapOn:
     text: ".*\\d{7,}.*"
     index: 3
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*|.*Listado de comercios.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
     optional: true
 - waitForAnimationToEnd
 

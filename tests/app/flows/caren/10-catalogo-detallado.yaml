@@ -14,6 +14,13 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios, stock)"
     text: ".*\\d{7,}.*"
     index: 0
     optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*|.*Listado de comercios.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
 - waitForAnimationToEnd
 
 - runFlow:
@@ -25,6 +32,14 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios, stock)"
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
           optional: true
       - waitForAnimationToEnd
+      - runFlow:
+          when:
+            visible:
+              text: "Continuar"
+          commands:
+            - tapOn:
+                text: "Continuar"
+            - waitForAnimationToEnd
 
       # ── Tab Sugerencias ──────────────────────────────────────────────────────
       - tapOn:

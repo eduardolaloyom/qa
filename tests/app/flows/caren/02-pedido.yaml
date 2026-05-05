@@ -10,6 +10,13 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
     text: ".*\\d{7,}.*"
     index: 0
     optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
 - waitForAnimationToEnd
 
 - tapOn:

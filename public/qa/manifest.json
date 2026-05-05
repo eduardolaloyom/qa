@@ -6,7 +6,7 @@
       "date": "2026-05-05",
       "file": "qa-reports/Caren-2026-05-05.html",
       "verdict": "CON_CONDICIONES",
-      "health": 73,
+      "health": 70,
       "passed": 11,
       "failed": 0,
       "skipped": 0,
@@ -14,6 +14,12 @@
       "platform": "app",
       "environment": "staging",
       "issues": [
+        {
+          "id": "CAREN-QA-005",
+          "severity": "P1",
+          "title": "blockedClientAlert aparece en todos los comercios al entrar",
+          "area": "UX"
+        },
         {
           "id": "CAREN-QA-001",
           "severity": "P1",

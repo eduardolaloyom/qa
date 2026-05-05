@@ -16,7 +16,10 @@ name: "CAREN: 05 — Bug catálogo bloqueado (acceso a Tomador de Pedido)"
           text: ".*[Bb]loqueado.*"
           index: 0
           optional: true
-      - waitForAnimationToEnd
+      - extendedWaitUntil:
+          visible:
+            text: "Continuar|Hacer pedido|.*[Tt]areas.*"
+          timeout: 15000
       - tapOn:
           text: "Continuar"
           optional: true
