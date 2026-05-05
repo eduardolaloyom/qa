@@ -97,6 +97,13 @@ export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
 mkdir -p "$OUTPUT_DIR" "$HTML_DIR"
 
+# Live log — permite seguir el run desde otra terminal con: tail -f <ruta>
+LIVE_LOG="${OUTPUT_DIR}/maestro-live.log"
+: > "$LIVE_LOG"
+exec > >(tee "$LIVE_LOG") 2>&1
+echo "📺  Live log activo: tail -f ${LIVE_LOG}"
+echo ""
+
 echo "📱 Maestro QA — ${CLIENTE_CAP} — ${DATE}"
 echo "   ${FLOW_COUNT} ${FLOW_DESC} encontrado(s)"
 [ -n "$SKIP_TO" ] && echo "   ⏭ Saltando hasta: ${SKIP_TO}"
