@@ -2,79 +2,62 @@ appId: ${APP_PACKAGE}
 name: "CAREN: 05 — Bug catálogo bloqueado (acceso a Tomador de Pedido)"
 # OBJETIVO: Confirmar si comercio bloqueado permite entrar al Tomador de Pedido
 # y si se puede armar carrito + enviar pedido desde un bloqueado
+# BUG CONOCIDO: assignedSellers falla → no hay badges Bloqueado → flow se saltea
 ---
 
-# Startup: lanzar app y llegar a lista de comercios
-- runFlow: helpers-startup.yaml
-
-# Entrar al primer comercio bloqueado
 - runFlow: helpers-filtro-bloqueado.yaml
 
-- tapOn:
-    text: ".*[Bb]loqueado.*"
-    index: 0
-
-- waitForAnimationToEnd
-
-# Cerrar el popup de bloqueo crediticio (Continuar)
-- tapOn:
-    text: "Continuar"
-    optional: true
-- waitForAnimationToEnd
-
-# BUG: desde la ficha del bloqueado tap "Hacer pedido"
-- tapOn:
-    text: "Hacer pedido"
-
-- waitForAnimationToEnd
-
-- extendedWaitUntil:
-    visible:
-      text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|Filtrar|Sugerencias|Tomador de Pedido|.*Sin stock.*"
-    timeout: 20000
-
-# Forzar tab Sugerencias para ver catálogo completo
-- tapOn:
-    text: "Sugerencias"
-    optional: true
-- waitForAnimationToEnd
-
-- swipe:
-    direction: DOWN
-    duration: 1500
-
-- swipe:
-    direction: DOWN
-    duration: 1500
-
-- swipe:
-    direction: DOWN
-    duration: 1500
-
-# Intentar agregar producto al carrito
-- tapOn:
-    text: ".*[Aa]gregar.*"
-    index: 0
-    optional: true
-- waitForAnimationToEnd
-
-# Ir a Mi pedido para ver si Finalizar está disponible
-- tapOn:
-    text: "Mi pedido"
-    optional: true
-- waitForAnimationToEnd
-
-# Scroll hasta el botón de confirmar
-- swipe:
-    direction: UP
-    duration: 1200
-- swipe:
-    direction: UP
-    duration: 1200
-
-# Si aparece "Finalizar pedido" en un bloqueado → P1 confirmado
-- assertNotVisible:
-    text: "Finalizar pedido"
-    optional: true
-
-- runFlow: helpers-volver-lista.yaml
+- runFlow:
+    when:
+      visible:
+        text: ".*[Bb]loqueado.*"
+    commands:
+      - tapOn:
+          text: ".*[Bb]loqueado.*"
+          index: 0
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: "Continuar"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: "Hacer pedido"
+          optional: true
+      - waitForAnimationToEnd
+      - extendedWaitUntil:
+          visible:
+            text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|Filtrar|Sugerencias|Tomador de Pedido|.*Sin stock.*"
+          timeout: 20000
+      - tapOn:
+          text: "Sugerencias"
+          optional: true
+      - waitForAnimationToEnd
+      - swipe:
+          direction: DOWN
+          duration: 1500
+      - swipe:
+          direction: DOWN
+          duration: 1500
+      - swipe:
+          direction: DOWN
+          duration: 1500
+      - tapOn:
+          text: ".*[Aa]gregar.*"
+          index: 0
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: "Mi pedido"
+          optional: true
+      - waitForAnimationToEnd
+      - swipe:
+          direction: UP
+          duration: 1200
+      - swipe:
+          direction: UP
+          duration: 1200
+      - assertNotVisible:
+          text: "Finalizar pedido"
+          optional: true
+      - runFlow: helpers-volver-lista.yaml

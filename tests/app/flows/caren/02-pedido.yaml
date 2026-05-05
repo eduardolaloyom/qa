@@ -3,30 +3,18 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
 # STAGING: se envía el pedido (diferente a producción donde se detiene antes de confirmar)
 # Verifica: carrito funciona, precio sin IVA, sin descuento vendedor, se confirma exitosamente
 ---
-# Estamos en lista de comercios con filtro Disponible activo (post 01)
-# Entrar al primer comercio disponible
+- runFlow: helpers-filtro-disponible.yaml
+
+# Entrar al primer comercio
 - tapOn:
-    text: ".*\\d{7,8}-\\d.*"
+    text: ".*\\d{7,}.*"
     index: 0
     optional: true
-
-- runFlow:
-    when:
-      notVisible:
-        text: ".*\\d{7,8}-\\d.*"
-    commands:
-      - tapOn:
-          text: ".*[Dd]isponible.*"
-          index: 0
-          optional: true
-
 - waitForAnimationToEnd
 
 - tapOn:
-    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
     optional: true
-
-# Forzar tab "Sugerencias" (la app puede recordar tab "Mi pedido" del run anterior)
 - tapOn:
     text: "Sugerencias"
     optional: true
@@ -37,23 +25,19 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
       text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|Filtrar|Sugerencias|Tomador de Pedido"
     timeout: 20000
 
-- takeScreenshot: /tmp/caren-pedido-catalogo
-
-# Agregar primer producto al carro (optional — puede ya estar en cart de run anterior)
+# Agregar primer producto al carro
 - tapOn:
     text: ".*[Aa]gregar.*"
     index: 0
     optional: true
-
 - waitForAnimationToEnd
-- takeScreenshot: /tmp/caren-pedido-producto-agregado
 
-# Verificar que NO hay descuento vendedor (enableSellerDiscount: false)
+# Verificar que NO hay descuento vendedor
 - assertNotVisible:
     text: ".*[Dd]escuento [Vv]endedor.*|.*[Aa]plicar [Dd]escuento.*"
     optional: true
 
-# Ir al pedido — tab "Mi pedido" en la parte superior del Tomador de Pedido
+# Ir a "Mi pedido"
 - tapOn:
     text: "Mi pedido"
     optional: true
@@ -64,14 +48,12 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
       text: ".*[Cc]onfirmar.*|.*[Rr]esumen.*|.*[Ee]nviar.*|.*[Tt]otal.*|.*[Mm]i pedido.*"
     timeout: 20000
 
-- takeScreenshot: /tmp/caren-pedido-resumen
-
-# Verificar precios — sin IVA incluido (includeTaxRateInPrices: false)
+# Verificar sin IVA incluido
 - assertNotVisible:
     text: ".*IVA [Ii]ncluido.*|.*incl\\..*IVA.*"
     optional: true
 
-# Seleccionar dirección de despacho si es requerida
+# Seleccionar dirección si es requerida
 - runFlow:
     when:
       visible:
@@ -87,24 +69,19 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
           optional: true
       - waitForAnimationToEnd
 
-# Scroll para revelar botón confirmar (puede estar muy abajo)
 - swipe:
     direction: UP
     duration: 1200
 - swipe:
     direction: UP
     duration: 1200
-
-- takeScreenshot: /tmp/caren-pedido-confirmacion-scroll
 
 # STAGING: finalizar y enviar el pedido
 - tapOn:
     text: "Finalizar pedido"
     optional: true
-
 - waitForAnimationToEnd
 
-# Diálogo de confirmación "¿Estás seguro de enviar el pedido?"
 - runFlow:
     when:
       visible:
@@ -114,14 +91,10 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
           text: "ACEPTAR"
       - waitForAnimationToEnd
 
-- takeScreenshot: /tmp/caren-pedido-confirmacion
-
-# Esperar confirmación exitosa o retorno al listado
+# Esperar confirmación
 - extendedWaitUntil:
     visible:
       text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*Listado de comercios.*|.*Seleccionar filtros.*|.*[Cc]omercio.*"
     timeout: 30000
-
-- takeScreenshot: /tmp/caren-pedido-resultado
 
 - runFlow: helpers-volver-lista.yaml

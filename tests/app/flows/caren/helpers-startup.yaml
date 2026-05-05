@@ -33,11 +33,11 @@ appId: ${APP_PACKAGE}
                 optional: true
             - waitForAnimationToEnd
 
-      # Esperar pantalla post-login
+      # Esperar pantalla post-login (sync puede tardar hasta 90s)
       - extendedWaitUntil:
           visible:
             text: "Seleccionar filtros|Listado de comercios|.*[Ss]incronizando.*|.*[Cc]omercio.*|.*[Dd]isponible.*|.*[Bb]loqueado.*"
-          timeout: 30000
+          timeout: 90000
 
       # Si hay sync automático, esperar que termine
       - runFlow:
@@ -56,10 +56,25 @@ appId: ${APP_PACKAGE}
           optional: true
       - waitForAnimationToEnd
 
+      # Si no hay comercios, triggear sync manual
+      - runFlow:
+          when:
+            visible:
+              text: "No se encontraron comercios|SINCRONIZAR"
+          commands:
+            - tapOn:
+                text: "SINCRONIZAR"
+                optional: true
+            - extendedWaitUntil:
+                notVisible:
+                  text: ".*[Ss]incronizando.*|SINCRONIZAR"
+                timeout: 300000
+            - waitForAnimationToEnd
+
       # Confirmar lista lista
       - extendedWaitUntil:
           visible:
-            text: "Seleccionar filtros|Listado de comercios|.*[Dd]isponible.*|.*[Bb]loqueado.*"
-          timeout: 30000
+            text: "Seleccionar filtros|.*Listado de comercios.*|.*[Dd]isponible.*|.*[Bb]loqueado.*|Crear comercio"
+          timeout: 60000
 
       - waitForAnimationToEnd

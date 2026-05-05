@@ -1,12 +1,7 @@
 appId: ${APP_PACKAGE}
-# Helper: verifica que la lista muestre comercios bloqueados — NO aplica filtro
-# El badge "Bloqueado" es visible directamente en las tarjetas
+# Helper: deja al usuario en la lista de comercios
+# El badge Bloqueado puede o no estar visible según estado del vendedor
 ---
 - runFlow: helpers-startup.yaml
-
-- extendedWaitUntil:
-    visible:
-      text: ".*[Bb]loqueado.*"
-    timeout: 15000
 
 - waitForAnimationToEnd

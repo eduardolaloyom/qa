@@ -1,46 +1,26 @@
 appId: ${APP_PACKAGE}
 name: "CAREN: 06 — Lista completa de comercios (con scroll)"
-# OBJETIVO: Documentar TODOS los comercios del vendedor (disponibles + bloqueados)
-# con scroll completo de la lista para no perder los que no son visibles al inicio
+# OBJETIVO: Documentar TODOS los comercios del vendedor con scroll completo
+# Usa IDs numéricos para entrar (no badges Disponible/Bloqueado por bug assignedSellers)
 ---
 
-# Startup: lanzar app y llegar a lista de comercios
-- runFlow: helpers-startup.yaml
-
-# Asegurar que no hay filtro activo
-- runFlow: helpers-volver-lista.yaml
-
-- swipe:
-    direction: DOWN
-    duration: 1500
-
-- swipe:
-    direction: DOWN
-    duration: 1500
-
-- swipe:
-    direction: DOWN
-    duration: 1500
-
-# Ahora filtrar solo disponibles y hacer scroll completo
 - runFlow: helpers-filtro-disponible.yaml
 
 - swipe:
     direction: DOWN
     duration: 1500
-
+- swipe:
+    direction: DOWN
+    duration: 1500
 - swipe:
     direction: DOWN
     duration: 1500
 
-# Visitar TODOS los disponibles (hasta 4) y documentar cuántos productos tiene cada uno
-
-# Disponible 1 — obligatorio
-- runFlow: helpers-volver-lista.yaml
+# ─── Comercio 1 ────────────────────────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
 
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 0
     optional: true
 - waitForAnimationToEnd
@@ -48,7 +28,7 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
@@ -71,10 +51,11 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
           duration: 1500
       - runFlow: helpers-volver-lista.yaml
 
-# Disponible 2 (condicional)
+# ─── Comercio 2 ────────────────────────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
+
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 1
     optional: true
 - waitForAnimationToEnd
@@ -82,7 +63,7 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
@@ -105,10 +86,11 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
           duration: 1500
       - runFlow: helpers-volver-lista.yaml
 
-# Disponible 3 (condicional)
+# ─── Comercio 3 ────────────────────────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
+
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 2
     optional: true
 - waitForAnimationToEnd
@@ -116,7 +98,7 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
@@ -139,10 +121,11 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
           duration: 1500
       - runFlow: helpers-volver-lista.yaml
 
-# Disponible 4 (condicional)
+# ─── Comercio 4 ────────────────────────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
+
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 3
     optional: true
 - waitForAnimationToEnd
@@ -150,7 +133,7 @@ name: "CAREN: 06 — Lista completa de comercios (con scroll)"
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"

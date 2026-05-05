@@ -3,6 +3,17 @@
     {
       "client": "Caren",
       "client_slug": "caren",
+      "date": "2026-05-05",
+      "file": "qa-reports/Caren-2026-05-05.html",
+      "verdict": "CON_CONDICIONES",
+      "score": 73,
+      "modes_done": ["01","02","03","04","05","05b","06","07","08","09","10"],
+      "platform": "app",
+      "environment": "staging"
+    },
+    {
+      "client": "Caren",
+      "client_slug": "caren",
       "date": "2026-04-22",
       "file": "app-reports/caren-2026-04-22.html",
       "platform": "app",

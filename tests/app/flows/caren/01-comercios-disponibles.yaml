@@ -1,37 +1,35 @@
 appId: ${APP_PACKAGE}
 name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
 # OBJETIVO: documentar cuántos productos muestra cada comercio disponible
-# BUG SOSPECHADO: comercios disponibles muestran solo ~5 productos (debería ser catálogo completo)
-# Visita hasta 4 comercios disponibles; los que no existan se saltean automáticamente
+# Caren usa IDs numéricos (ej: 0010008876), no formato RUT
+# Visita hasta 4 comercios; los que no existan se saltean automáticamente
 ---
 
-# ─── COMERCIO DISPONIBLE 1 (obligatorio — debe existir al menos 1) ─────────────
+# ─── COMERCIO 1 (obligatorio) ─────────────────────────────────────────────────
 - runFlow: helpers-filtro-disponible.yaml
 
-- takeScreenshot: /tmp/caren-disponibles-lista
-
+# Entrar al primer comercio (por ID numérico o por nombre)
 - tapOn:
-    text: ".*\\d{7,8}-\\d.*"
+    text: ".*\\d{7,}.*"
     index: 0
     optional: true
-
-- runFlow:
-    when:
-      notVisible:
-        text: ".*\\d{7,8}-\\d.*"
-    commands:
-      - tapOn:
-          text: ".*[Dd]isponible.*"
-          index: 0
-          optional: true
-
 - waitForAnimationToEnd
 
-- tapOn:
-    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
-    optional: true
+# Si no entramos, intentar vía cualquier tarjeta visible
+- runFlow:
+    when:
+      visible:
+        text: ".*Listado de comercios.*|Crear comercio"
+    commands:
+      - tapOn:
+          text: ".*[Cc]omerci.*"
+          index: 1
+          optional: true
+      - waitForAnimationToEnd
 
-# Forzar tab "Sugerencias" (la app puede recordar tab "Mi pedido" del run anterior)
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
+    optional: true
 - tapOn:
     text: "Sugerencias"
     optional: true
@@ -42,52 +40,45 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
       text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
     timeout: 20000
 
-- takeScreenshot: /tmp/caren-catalogo-disponible-1-top
 - swipe:
     direction: DOWN
     duration: 1500
-- takeScreenshot: /tmp/caren-catalogo-disponible-1-mid
 - swipe:
     direction: DOWN
     duration: 1500
-- takeScreenshot: /tmp/caren-catalogo-disponible-1-bottom
 
 - runFlow: helpers-volver-lista.yaml
 
-# ─── COMERCIO DISPONIBLE 2 (condicional — solo si existe) ─────────────────────
+# ─── COMERCIO 2 (condicional) ─────────────────────────────────────────────────
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 1
     optional: true
 - waitForAnimationToEnd
 
-# Si entramos al comercio ("Seleccionar filtros" ya no visible), documentar catálogo
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
-          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
           optional: true
       - extendedWaitUntil:
           visible:
             text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
           timeout: 20000
-      - takeScreenshot: /tmp/caren-catalogo-disponible-2-top
       - swipe:
           direction: DOWN
           duration: 1500
-      - takeScreenshot: /tmp/caren-catalogo-disponible-2-mid
       - swipe:
           direction: DOWN
           duration: 1500
-      - takeScreenshot: /tmp/caren-catalogo-disponible-2-bottom
       - runFlow: helpers-volver-lista.yaml
 
-# ─── COMERCIO DISPONIBLE 3 (condicional) ──────────────────────────────────────
+# ─── COMERCIO 3 (condicional) ─────────────────────────────────────────────────
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 2
     optional: true
 - waitForAnimationToEnd
@@ -95,29 +86,26 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
-          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
           optional: true
       - extendedWaitUntil:
           visible:
             text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
           timeout: 20000
-      - takeScreenshot: /tmp/caren-catalogo-disponible-3-top
       - swipe:
           direction: DOWN
           duration: 1500
-      - takeScreenshot: /tmp/caren-catalogo-disponible-3-mid
       - swipe:
           direction: DOWN
           duration: 1500
-      - takeScreenshot: /tmp/caren-catalogo-disponible-3-bottom
       - runFlow: helpers-volver-lista.yaml
 
-# ─── COMERCIO DISPONIBLE 4 (condicional) ──────────────────────────────────────
+# ─── COMERCIO 4 (condicional) ─────────────────────────────────────────────────
 - tapOn:
-    text: ".*[Dd]isponible.*"
+    text: ".*\\d{7,}.*"
     index: 3
     optional: true
 - waitForAnimationToEnd
@@ -125,22 +113,19 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
 - runFlow:
     when:
       notVisible:
-        text: "Seleccionar filtros"
+        text: ".*Listado de comercios.*|Crear comercio"
     commands:
       - tapOn:
-          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
           optional: true
       - extendedWaitUntil:
           visible:
             text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
           timeout: 20000
-      - takeScreenshot: /tmp/caren-catalogo-disponible-4-top
       - swipe:
           direction: DOWN
           duration: 1500
-      - takeScreenshot: /tmp/caren-catalogo-disponible-4-mid
       - swipe:
           direction: DOWN
           duration: 1500
-      - takeScreenshot: /tmp/caren-catalogo-disponible-4-bottom
       - runFlow: helpers-volver-lista.yaml
