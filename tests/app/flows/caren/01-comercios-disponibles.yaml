@@ -2,7 +2,7 @@ appId: ${APP_PACKAGE}
 name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
 # OBJETIVO: documentar cuántos productos muestra cada comercio disponible
 # Caren usa IDs numéricos (ej: 0010008876), no formato RUT
-# Visita hasta 4 comercios; los que no existan se saltean automáticamente
+# Visita hasta 3 comercios; los que no existan se saltean automáticamente
 ---
 
 # ─── COMERCIO 1 (obligatorio) ─────────────────────────────────────────────────
@@ -44,6 +44,15 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
 - tapOn:
     text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
     optional: true
+- waitForAnimationToEnd
+- runFlow:
+    when:
+      visible:
+        text: "Continuar"
+    commands:
+      - tapOn:
+          text: "Continuar"
+      - waitForAnimationToEnd
 - tapOn:
     text: "Sugerencias"
     optional: true
@@ -54,9 +63,6 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
       text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
     timeout: 20000
 
-- swipe:
-    direction: DOWN
-    duration: 1500
 - swipe:
     direction: DOWN
     duration: 1500
@@ -85,13 +91,19 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
       - tapOn:
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
           optional: true
+      - waitForAnimationToEnd
+      - runFlow:
+          when:
+            visible:
+              text: "Continuar"
+          commands:
+            - tapOn:
+                text: "Continuar"
+            - waitForAnimationToEnd
       - extendedWaitUntil:
           visible:
             text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
           timeout: 20000
-      - swipe:
-          direction: DOWN
-          duration: 1500
       - swipe:
           direction: DOWN
           duration: 1500
@@ -119,47 +131,19 @@ name: "CAREN: 01 — Catálogo comercios DISPONIBLES"
       - tapOn:
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
           optional: true
+      - waitForAnimationToEnd
+      - runFlow:
+          when:
+            visible:
+              text: "Continuar"
+          commands:
+            - tapOn:
+                text: "Continuar"
+            - waitForAnimationToEnd
       - extendedWaitUntil:
           visible:
             text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
           timeout: 20000
-      - swipe:
-          direction: DOWN
-          duration: 1500
-      - swipe:
-          direction: DOWN
-          duration: 1500
-      - runFlow: helpers-volver-lista.yaml
-
-# ─── COMERCIO 4 (condicional) ─────────────────────────────────────────────────
-- tapOn:
-    text: ".*\\d{7,}.*"
-    index: 3
-    optional: true
-- extendedWaitUntil:
-    visible:
-      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Tt]areas.*|.*Listado de comercios.*"
-    timeout: 15000
-- tapOn:
-    text: "Continuar"
-    optional: true
-- waitForAnimationToEnd
-
-- runFlow:
-    when:
-      notVisible:
-        text: ".*Listado de comercios.*|Crear comercio"
-    commands:
-      - tapOn:
-          text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
-          optional: true
-      - extendedWaitUntil:
-          visible:
-            text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|.*[Cc]ategor.*|Filtrar|Sugerencias|Tomador de Pedido"
-          timeout: 20000
-      - swipe:
-          direction: DOWN
-          duration: 1500
       - swipe:
           direction: DOWN
           duration: 1500

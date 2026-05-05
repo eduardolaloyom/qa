@@ -3,6 +3,15 @@ appId: ${APP_PACKAGE}
 # NO-OP si ya estamos en la lista (detecta por badges Disponible/Bloqueado o header)
 ---
 
+# Cerrar menú lateral si está abierto (evita falso positivo en "Listado de comercios")
+- runFlow:
+    when:
+      visible:
+        text: "Cerrar sesión"
+    commands:
+      - pressKey: BACK
+      - waitForAnimationToEnd
+
 # Si ya hay comercios visibles en pantalla, no hacer nada
 - runFlow:
     when:
@@ -38,7 +47,7 @@ appId: ${APP_PACKAGE}
       - extendedWaitUntil:
           visible:
             text: "Seleccionar filtros|Listado de comercios|.*[Ss]incronizando.*|.*[Cc]omercio.*|.*[Dd]isponible.*|.*[Bb]loqueado.*"
-          timeout: 90000
+          timeout: 45000
 
       # Si hay sync automático, esperar que termine
       - runFlow:
@@ -49,7 +58,7 @@ appId: ${APP_PACKAGE}
             - extendedWaitUntil:
                 notVisible:
                   text: ".*[Ss]incronizando.*"
-                timeout: 300000
+                timeout: 90000
 
       # Descartar popups post-sync
       - tapOn:

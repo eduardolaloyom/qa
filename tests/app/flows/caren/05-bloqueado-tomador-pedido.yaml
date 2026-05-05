@@ -28,6 +28,14 @@ name: "CAREN: 05 — Bug catálogo bloqueado (acceso a Tomador de Pedido)"
           text: "Hacer pedido"
           optional: true
       - waitForAnimationToEnd
+      - runFlow:
+          when:
+            visible:
+              text: "Continuar"
+          commands:
+            - tapOn:
+                text: "Continuar"
+            - waitForAnimationToEnd
       - extendedWaitUntil:
           visible:
             text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|.*[Ss]in.*productos.*|Filtrar|Sugerencias|Tomador de Pedido|.*Sin stock.*"

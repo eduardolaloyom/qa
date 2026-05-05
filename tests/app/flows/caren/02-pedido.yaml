@@ -22,6 +22,15 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
 - tapOn:
     text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
     optional: true
+- waitForAnimationToEnd
+- runFlow:
+    when:
+      visible:
+        text: "Continuar"
+    commands:
+      - tapOn:
+          text: "Continuar"
+      - waitForAnimationToEnd
 - tapOn:
     text: "Sugerencias"
     optional: true

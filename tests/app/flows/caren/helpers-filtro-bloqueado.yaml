@@ -3,5 +3,3 @@ appId: ${APP_PACKAGE}
 # El badge Bloqueado puede o no estar visible según estado del vendedor
 ---
 - runFlow: helpers-startup.yaml
-
-- waitForAnimationToEnd
