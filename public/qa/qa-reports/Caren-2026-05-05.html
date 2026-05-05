@@ -84,7 +84,7 @@
         <div class="lbl">Issues P1</div>
       </div>
       <div class="summary-card">
-        <div class="val" style="color:#9a6700">1</div>
+        <div class="val" style="color:#9a6700">2</div>
         <div class="lbl">Issues P2</div>
       </div>
     </div>
@@ -144,11 +144,11 @@
         <td>UX / Bug</td>
         <td>Popup "Este comercio se encuentra bloqueado" aparece en TODOS los comercios al entrar (incluyendo disponibles), bloqueando el acceso al catálogo</td>
       </tr>
-      <tr style="opacity:0.5;text-decoration:line-through">
+      <tr>
         <td>CAREN-QA-002</td>
         <td><span class="badge p2">P2</span></td>
-        <td>Config / Features</td>
-        <td>RESUELTO — <code>enableCreateCommerce</code> cambió a <code>true</code> en staging. Comportamiento correcto.</td>
+        <td>Features / Integración</td>
+        <td>Botón "Crear Comercio" visible pero funcionalidad no operativa — API Caren (Sección 2.2 alcance) no expuesta en staging</td>
       </tr>
       <tr>
         <td>CAREN-QA-003</td>
@@ -180,9 +180,12 @@
       <p><strong>Impacto:</strong> Feature de bloqueo crediticio no validable. Vendedor no puede distinguir comercios disponibles de bloqueados.</p>
     </div>
 
-    <h3 style="text-decoration:line-through;opacity:0.5">CAREN-QA-002 — RESUELTO</h3>
-    <div class="issue-detail" style="opacity:0.5">
-      <p><strong>Estado:</strong> Resuelto — el flag <code>enableCreateCommerce</code> cambió a <code>true</code> en MongoDB staging. El botón "Crear Comercio" es visible porque está habilitado. Flow 04 ejecuta <code>assertVisible</code> y pasa correctamente.</p>
+    <h3>CAREN-QA-002 — "Crear Comercio" visible pero funcionalidad no operativa</h3>
+    <div class="issue-detail">
+      <p><strong>Severidad:</strong> P2 · Features / Integración</p>
+      <p><strong>Descripción:</strong> El botón "Crear Comercio" aparece en lista de comercios (<code>enableCreateCommerce: true</code>), pero al intentar crear un comercio la funcionalidad no opera. Causa probable: la API de Caren para solicitudes de creación de comercios (Sección 2.2 del alcance) no está expuesta en staging.</p>
+      <p><strong>Referencia alcance:</strong> Sección 2.2 — "Solicitud de creación de comercios: API que recibe las solicitudes y se le puede preguntar por el estado de las solicitudes enviadas."</p>
+      <p><strong>Acción requerida:</strong> Caren debe exponer la API en staging para validar el flujo end-to-end.</p>
     </div>
 
     <h3>CAREN-QA-003 — Barra de búsqueda no encontrada</h3>
@@ -240,7 +243,7 @@
       <tr><td>Integridad de sync (catalogs, documents)</td><td class="pass">✅ OK</td></tr>
       <tr><td>Badges de estado (Disponible/Bloqueado)</td><td class="fail">❌ FALLA — assignedSellers bug</td></tr>
       <tr><td>blockedClientAlert solo en bloqueados</td><td class="fail">❌ FALLA — aparece en todos los comercios</td></tr>
-      <tr><td>Config features respetadas</td><td class="pass">✅ OK — enableCreateCommerce ahora true, flow 04 PASS</td></tr>
+      <tr><td>Crear Comercio funcional (API Caren)</td><td class="warn">⚠ No validable — API Caren Sección 2.2 no expuesta en staging</td></tr>
       <tr><td>Historial pedidos</td><td class="pass">✅ OK</td></tr>
     </table>
     <p style="margin-top:16px;font-size:14px"><strong>Veredicto: CON_CONDICIONES</strong> — Flujos core funcionan correctamente. El bug de <code>assignedSellers</code> (P1) impide validar la feature de bloqueo crediticio. Apto para uso básico (catálogo, pedidos, historial), no apto para validar gestión de crédito hasta corregir la sync.</p>

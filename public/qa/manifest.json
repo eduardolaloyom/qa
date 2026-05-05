@@ -28,9 +28,9 @@
         },
         {
           "id": "CAREN-QA-002",
-          "severity": "RESUELTO",
-          "title": "enableCreateCommerce cambió a true — comportamiento correcto",
-          "area": "Config"
+          "severity": "P2",
+          "title": "Botón 'Crear Comercio' visible pero funcionalidad no operativa — API Caren no expuesta",
+          "area": "Features / Integración"
         },
         {
           "id": "CAREN-QA-003",
