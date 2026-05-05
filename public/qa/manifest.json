@@ -6,7 +6,7 @@
       "date": "2026-05-05",
       "file": "qa-reports/Caren-2026-05-05.html",
       "verdict": "CON_CONDICIONES",
-      "health": 70,
+      "health": 72,
       "passed": 11,
       "failed": 0,
       "skipped": 0,
@@ -28,8 +28,8 @@
         },
         {
           "id": "CAREN-QA-002",
-          "severity": "P2",
-          "title": "Botón \"Crear Comercio\" visible con enableCreateCommerce: false",
+          "severity": "RESUELTO",
+          "title": "enableCreateCommerce cambió a true — comportamiento correcto",
           "area": "Config"
         },
         {
