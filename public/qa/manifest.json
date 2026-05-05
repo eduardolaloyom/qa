@@ -48,47 +48,6 @@
       }
     },
     {
-      "client": "Caren",
-      "client_slug": "caren",
-      "date": "2026-04-22",
-      "file": "app-reports/caren-2026-04-22.html",
-      "platform": "app",
-      "environment": "staging",
-      "passed": 10,
-      "manual": 0,
-      "failed": 0,
-      "skipped": 0,
-      "total": 10,
-      "health": 55,
-      "verdict": "CON BUGS",
-      "syncWarnings": [
-        {
-          "actionType": "commerces",
-          "syncTimeSeconds": 414.4,
-          "documentsCount": 11500,
-          "requests": 115,
-          "slow": true,
-          "successful": true
-        },
-        {
-          "actionType": "stock",
-          "syncTimeSeconds": 276.6,
-          "documentsCount": 108496,
-          "requests": 1085,
-          "slow": true,
-          "successful": true
-        },
-        {
-          "actionType": "commerceDistributionCenter",
-          "syncTimeSeconds": 94.3,
-          "documentsCount": 620000,
-          "requests": 1,
-          "slow": true,
-          "successful": true
-        }
-      ]
-    },
-    {
       "client": "Prinorte",
       "client_slug": "prinorte",
       "date": "2026-04-21",
