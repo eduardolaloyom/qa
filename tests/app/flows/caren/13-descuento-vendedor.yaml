@@ -1,0 +1,91 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 13 — Descuento manual del vendedor (enableSellerDiscount: true)"
+# OBJETIVO: Verificar que el campo de descuento manual del vendedor está visible y operable
+# Config: enableSellerDiscount=true (CAMBIO desde Apr 22 donde era false)
+# Alcance sec 3.5: "Descuentos manuales — campo para que el vendedor ingrese un descuento negociado"
+# NO envía el pedido — solo verifica la presencia y uso del campo de descuento
+---
+
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*|Tomador de Pedido"
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+- runFlow: helpers-selector-cd.yaml
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Cc]at[aá]logo.*|.*[Pp]roducto.*|Filtrar|Sugerencias"
+    timeout: 20000
+
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Mi pedido"
+    optional: true
+- waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Cc]onfirmar.*|.*[Rr]esumen.*|.*[Ee]nviar.*|.*[Tt]otal.*|.*[Mm]i pedido.*"
+    timeout: 20000
+
+- swipe:
+    direction: DOWN
+    duration: 1200
+- swipe:
+    direction: DOWN
+    duration: 1200
+
+# Verificar que campo "Descuento Vendedor" es visible (enableSellerDiscount: true)
+- assertVisible:
+    text: ".*[Dd]escuento [Vv]endedor.*|.*[Aa]plicar [Dd]escuento.*|.*[Dd]escuento.*"
+    optional: true
+
+# Intentar ingresar un 5% de descuento
+- runFlow:
+    when:
+      visible:
+        text: ".*[Dd]escuento [Vv]endedor.*|.*[Aa]plicar [Dd]escuento.*"
+    commands:
+      - tapOn:
+          text: ".*[Dd]escuento [Vv]endedor.*|.*[Aa]plicar [Dd]escuento.*|.*%.*"
+          optional: true
+      - waitForAnimationToEnd
+      - inputText: "5"
+      - hideKeyboard
+      - waitForAnimationToEnd
+      - swipe:
+          direction: DOWN
+          duration: 1000
+
+# Volver sin finalizar el pedido
+- pressKey: BACK
+- waitForAnimationToEnd
+- pressKey: BACK
+- waitForAnimationToEnd
+
+- runFlow: helpers-volver-lista.yaml

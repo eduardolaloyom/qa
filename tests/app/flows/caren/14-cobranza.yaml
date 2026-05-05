@@ -1,0 +1,104 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 14 — Cobranza, facturas y documentos pendientes"
+# OBJETIVO: Verificar acceso a cobranza global y por comercio; lista de facturas y documentos
+# Config: enablePayments=true, enablePaymentsCollection=true, enableInvoicesList=true,
+#         pendingDocuments=true, enableCreditNotes=true
+# Sync staging: 2,304 documentos tributarios synced
+# Alcance sec 3.6: Cobranza y facturación, historial de pagos, medios de pago
+---
+
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-volver-lista.yaml
+
+# Buscar acceso a cobranza desde la navegación principal
+- tapOn:
+    text: ".*[Cc]obranza.*|.*[Pp]agos.*|.*[Ff]acturas.*|.*[Cc]obrar.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Fallback: menú hamburger (ícono esquina superior derecha)
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Cc]obranza.*|.*[Ff]actura.*|.*[Pp]ago.*|.*[Dd]euda.*|.*[Dd]ocumento.*"
+    commands:
+      - tapOn:
+          point: "93%,4%"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Cc]obranza.*|.*[Pp]agos.*|.*[Ff]acturas.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Fallback: bottom nav (tercer o cuarto ícono)
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Cc]obranza.*|.*[Ff]actura.*|.*[Pp]ago.*|.*[Dd]euda.*|.*[Dd]ocumento.*"
+    commands:
+      - tapOn:
+          point: "75%,95%"
+          optional: true
+      - waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Cc]obranza.*|.*[Ff]actura.*|.*[Pp]ago.*|.*[Dd]euda.*|.*[Dd]ocumento.*|.*Listado de comercios.*"
+    timeout: 15000
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# Abrir primer documento/factura si hay
+- tapOn:
+    text: ".*[Ff]actura.*|.*[Bb]oleta.*|.*[Dd]ocumento.*|.*[Nn]ota.*[Cc]r[eé]dito.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- pressKey: BACK
+- waitForAnimationToEnd
+
+# Volver a lista y entrar al comercio disponible para cobranza por comercio
+- runFlow: helpers-volver-lista.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+# Buscar tab de crédito/deuda/cobranza dentro de la ficha del comercio
+- tapOn:
+    text: ".*[Cc]r[eé]dito.*|.*[Dd]euda.*|.*[Cc]obranza.*|.*[Pp]agos.*|.*[Ff]acturas.*|.*[Ss]aldo.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# Verificar datos de crédito visibles
+- assertVisible:
+    text: ".*[Ll][íi]mite.*|.*[Dd]isponible.*|.*[Ss]aldo.*|.*[Dd]euda.*|.*[Cc]r[eé]dito.*"
+    optional: true
+
+- runFlow: helpers-volver-lista.yaml

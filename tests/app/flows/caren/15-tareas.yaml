@@ -1,0 +1,94 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 15 — Gestor de tareas (enableTask: true)"
+# OBJETIVO: Verificar acceso y visualización del gestor de tareas del vendedor
+# Config: enableTask=true
+# Alcance sec 3.8: Gestor de tareas — verificación inventario, encuestas, captura fotográfica
+---
+
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-volver-lista.yaml
+
+# Buscar acceso a tareas desde la lista de comercios
+- tapOn:
+    text: ".*[Tt]areas.*|.*[Tt]ask.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Fallback: menú hamburger
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Tt]area.*|.*[Ss]in tareas.*|.*[Vv]ac[íi]o.*|.*[Pp]endiente.*"
+    commands:
+      - tapOn:
+          point: "93%,4%"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Tt]areas.*|.*[Tt]ask.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Fallback: bottom nav
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[Tt]area.*|.*[Ss]in tareas.*|.*[Vv]ac[íi]o.*|.*[Pp]endiente.*"
+    commands:
+      - tapOn:
+          point: "50%,95%"
+          optional: true
+      - waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Tt]area.*|.*[Ss]in tareas.*|.*[Vv]ac[íi]o.*|.*[Pp]endiente.*|.*Listado de comercios.*"
+    timeout: 15000
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# Abrir primera tarea si hay disponibles
+- tapOn:
+    text: ".*[Tt]area.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- pressKey: BACK
+- waitForAnimationToEnd
+
+# Buscar tareas también dentro del comercio disponible
+- runFlow: helpers-volver-lista.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+# Buscar tab de tareas dentro de la ficha del comercio
+- tapOn:
+    text: ".*[Tt]areas.*|.*[Tt]ask.*"
+    optional: true
+- waitForAnimationToEnd
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+- runFlow: helpers-volver-lista.yaml

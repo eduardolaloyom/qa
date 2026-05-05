@@ -1,0 +1,20 @@
+appId: ${APP_PACKAGE}
+# Helper: selecciona el primer CD disponible si el selector aparece pre-catálogo
+# Config: enableDistributionCentersSelector=true, hasSingleDistributionCenter=false
+# NO-OP si el selector no está visible (safe para clientes sin multi-CD)
+---
+
+- runFlow:
+    when:
+      visible:
+        text: ".*[Cc]entro.*[Dd]istribuci[oó]n.*|.*[Ss]eleccionar.*[Cc][Dd].*|.*[Dd]istribuci[oó]n.*|.*[Bb]odega.*|.*[Ww]arehouse.*"
+    commands:
+      - tapOn:
+          text: ".*[Cc]entro.*|.*[Dd]istribuci[oó]n.*|.*[Bb]odega.*"
+          index: 0
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Cc]onfirmar.*|.*[Aa]ceptar.*|.*[Ss]eleccionar.*|.*[Cc]ontinuar.*|.*[Oo][Kk].*"
+          optional: true
+      - waitForAnimationToEnd
