@@ -1,37 +1,27 @@
 appId: ${APP_PACKAGE}
 name: "CAREN: 08 — Búsqueda en lista de comercios"
 # OBJETIVO: Verificar funcionalidad de búsqueda en la lista de comercios
-# Chequea: barra de búsqueda visible, resultados por nombre, por ID, limpieza de búsqueda
+# HALLAZGO: lupa está al costado derecho del header "Listado de comercios (D)"
+# No es texto visible — es un ícono, se accede por coordenada extrema derecha del header
 ---
 
 - runFlow: helpers-startup.yaml
 - runFlow: helpers-volver-lista.yaml
 
-# Intentar activar barra de búsqueda (texto o ícono)
+# Tap en lupa: costado derecho del header "Listado de comercios (D)"
 - tapOn:
-    text: ".*[Bb]uscar.*|.*[Ss]earch.*|.*[Ff]iltrar.*"
+    point: "95%,6%"
     optional: true
 - waitForAnimationToEnd
 
-# Fallback 1: ícono lupa top-right
+# Fallback: un poco más abajo si el header está corrido
 - runFlow:
     when:
       notVisible:
-        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*"
+        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
     commands:
       - tapOn:
-          point: "85%,8%"
-          optional: true
-      - waitForAnimationToEnd
-
-# Fallback 2: top-center
-- runFlow:
-    when:
-      notVisible:
-        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*"
-    commands:
-      - tapOn:
-          point: "50%,8%"
+          point: "95%,8%"
           optional: true
       - waitForAnimationToEnd
 
@@ -39,7 +29,7 @@ name: "CAREN: 08 — Búsqueda en lista de comercios"
 - runFlow:
     when:
       visible:
-        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*"
+        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
     commands:
       - inputText: "MARIA"
       - waitForAnimationToEnd
