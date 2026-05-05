@@ -165,5 +165,80 @@
       "alto": 4,
       "medio": 0
     }
+  },
+  {
+    "date": "2026-05-05",
+    "patterns": [
+      {
+        "id": "block_5. Cuadratura",
+        "title": "5. Cuadratura genera bloqueos recurrentes",
+        "type": "bloqueo",
+        "severity": "critico",
+        "clients": [
+          "Caren",
+          "Coéxito",
+          "Prinorte"
+        ],
+        "count": 3
+      },
+      {
+        "id": "block_4. Integraciones",
+        "title": "4. Integraciones genera bloqueos recurrentes",
+        "type": "bloqueo",
+        "severity": "alto",
+        "clients": [
+          "Bastién",
+          "Caren"
+        ],
+        "count": 2
+      },
+      {
+        "id": "overdue_4. Integraciones",
+        "title": "4. Integraciones acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 3
+      },
+      {
+        "id": "overdue_5. Cuadratura",
+        "title": "5. Cuadratura acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren",
+          "Codelpa Perú"
+        ],
+        "count": 4
+      },
+      {
+        "id": "overdue_7. Configuraciones",
+        "title": "7. Configuraciones acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 3
+      },
+      {
+        "id": "concentrated_Caren",
+        "title": "Caren concentra problemas",
+        "type": "concentracion",
+        "severity": "critico",
+        "clients": [
+          "Caren"
+        ],
+        "count": 16
+      }
+    ],
+    "summary": {
+      "total": 6,
+      "critico": 2,
+      "alto": 4,
+      "medio": 0
+    }
   }
 ]
