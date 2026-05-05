@@ -1,6 +1,6 @@
 appId: ${APP_PACKAGE}
-name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
-# OBJETIVO: Auditar catálogo de cada comercio — tabs, scroll, SKUs, precios
+name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios, stock)"
+# OBJETIVO: Auditar catálogo — tabs, scroll, SKUs, precios, stock e imágenes de productos
 # Disponibles: por ID numérico. Bloqueados: condicional (assignedSellers bug)
 ---
 
@@ -25,23 +25,55 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
           text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
           optional: true
       - waitForAnimationToEnd
+
+      # ── Tab Sugerencias ──────────────────────────────────────────────────────
       - tapOn:
           text: "Sugerencias"
           optional: true
       - waitForAnimationToEnd
+
+      # Verificar imágenes y stock en los primeros productos visibles
+      - assertVisible:
+          text: ".*[Aa]gregar.*|.*[Pp]roducto.*|.*[Ss]in.*[Pp]roductos.*"
+          optional: true
+      - assertNotVisible:
+          text: ".*[Ii]magen.*[Rr]ota.*|.*image.*broken.*|.*error.*foto.*"
+          optional: true
+      - assertVisible:
+          text: ".*\\$[\\d\\.]+.*|.*[Pp]recio.*|.*[Uu]nid.*|.*[Ss]tock.*|.*[Ss]in [Ss]tock.*|.*[Aa]gotar.*"
+          optional: true
+
       - swipe:
           direction: DOWN
           duration: 1500
       - swipe:
           direction: DOWN
           duration: 1500
+
+      # Verificar indicadores de stock en productos scrolleados
+      - assertVisible:
+          text: ".*[Ss]tock.*|.*[Uu]nidades.*|.*[Ss]in [Ss]tock.*|.*[Aa]gotado.*|.*[Aa]gregar.*"
+          optional: true
+
       - swipe:
           direction: DOWN
           duration: 1500
+
+      # ── Tab Todos / Productos ────────────────────────────────────────────────
       - tapOn:
           text: ".*[Tt]odos.*|.*[Tt]odo.*|.*[Pp]roductos.*"
           optional: true
       - waitForAnimationToEnd
+
+      - assertVisible:
+          text: ".*[Aa]gregar.*|.*[Pp]roducto.*|.*[Ss]in.*[Pp]roductos.*"
+          optional: true
+
+      # Verificar precios visibles
+      - assertVisible:
+          text: ".*\\$[\\d\\.]+.*|.*[Pp]recio.*"
+          optional: true
+
       - swipe:
           direction: DOWN
           duration: 1500
@@ -51,6 +83,8 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
       - swipe:
           direction: DOWN
           duration: 1500
+
+      # ── Tab Categoría ────────────────────────────────────────────────────────
       - tapOn:
           text: ".*[Cc]ategor[ií]a.*"
           optional: true
@@ -58,6 +92,7 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
       - swipe:
           direction: DOWN
           duration: 1500
+
       - runFlow: helpers-volver-lista.yaml
 
 # ── 2–5. Bloqueados (condicional) ─────────────────────────────────────────────
@@ -85,6 +120,12 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
           text: "Sugerencias"
           optional: true
       - waitForAnimationToEnd
+      - assertVisible:
+          text: ".*[Ss]tock.*|.*[Uu]nidades.*|.*[Ss]in [Ss]tock.*|.*[Aa]gotado.*|.*[Aa]gregar.*|.*[Pp]roducto.*"
+          optional: true
+      - assertVisible:
+          text: ".*\\$[\\d\\.]+.*|.*[Pp]recio.*"
+          optional: true
       - swipe:
           direction: DOWN
           duration: 1500
@@ -128,6 +169,12 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
           text: "Sugerencias"
           optional: true
       - waitForAnimationToEnd
+      - assertVisible:
+          text: ".*[Ss]tock.*|.*[Uu]nidades.*|.*[Ss]in [Ss]tock.*|.*[Aa]gotado.*|.*[Aa]gregar.*|.*[Pp]roducto.*"
+          optional: true
+      - assertVisible:
+          text: ".*\\$[\\d\\.]+.*|.*[Pp]recio.*"
+          optional: true
       - swipe:
           direction: DOWN
           duration: 1500
@@ -171,6 +218,12 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
           text: "Sugerencias"
           optional: true
       - waitForAnimationToEnd
+      - assertVisible:
+          text: ".*[Ss]tock.*|.*[Uu]nidades.*|.*[Ss]in [Ss]tock.*|.*[Aa]gotado.*|.*[Aa]gregar.*|.*[Pp]roducto.*"
+          optional: true
+      - assertVisible:
+          text: ".*\\$[\\d\\.]+.*|.*[Pp]recio.*"
+          optional: true
       - swipe:
           direction: DOWN
           duration: 1500
@@ -214,6 +267,12 @@ name: "CAREN: 10 — Catálogo de comercios (fotos, SKUs, tabs, precios)"
           text: "Sugerencias"
           optional: true
       - waitForAnimationToEnd
+      - assertVisible:
+          text: ".*[Ss]tock.*|.*[Uu]nidades.*|.*[Ss]in [Ss]tock.*|.*[Aa]gotado.*|.*[Aa]gregar.*|.*[Pp]roducto.*"
+          optional: true
+      - assertVisible:
+          text: ".*\\$[\\d\\.]+.*|.*[Pp]recio.*"
+          optional: true
       - swipe:
           direction: DOWN
           duration: 1500
