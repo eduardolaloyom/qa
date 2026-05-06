@@ -1,0 +1,151 @@
+{
+  "capturedAt": null,
+  "totalSeconds": 47.17,
+  "successful": false,
+  "appVersion": "7.5.1",
+  "deviceModel": "Google sdk_gphone64_arm64",
+  "freeRam": "521MB",
+  "freeRamPct": "26.43%",
+  "actions": [
+    {
+      "type": "site",
+      "docs": 1,
+      "requests": 1,
+      "seconds": 0.602,
+      "ok": true
+    },
+    {
+      "type": "SalesTerms",
+      "docs": 1,
+      "requests": 1,
+      "seconds": 0.184,
+      "ok": true
+    },
+    {
+      "type": "user",
+      "docs": 1,
+      "requests": 1,
+      "seconds": 0.157,
+      "ok": true
+    },
+    {
+      "type": "seller",
+      "docs": 1,
+      "requests": 2,
+      "seconds": 0.384,
+      "ok": true
+    },
+    {
+      "type": "assignedSellers",
+      "docs": 0,
+      "requests": 0,
+      "seconds": 0.161,
+      "ok": false
+    },
+    {
+      "type": "commerces",
+      "docs": 39,
+      "requests": 1,
+      "seconds": 0.276,
+      "ok": true
+    },
+    {
+      "type": "defaultSegments",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.183,
+      "ok": true
+    },
+    {
+      "type": "categories",
+      "docs": 884,
+      "requests": 5,
+      "seconds": 0.989,
+      "ok": true
+    },
+    {
+      "type": "catalogs",
+      "docs": 23695,
+      "requests": 40,
+      "seconds": 20.812,
+      "ok": true
+    },
+    {
+      "type": "suggestionsSeller",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.257,
+      "ok": true
+    },
+    {
+      "type": "productsGroupDescription",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.186,
+      "ok": true
+    },
+    {
+      "type": "promotions",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.263,
+      "ok": true
+    },
+    {
+      "type": "routes",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.206,
+      "ok": true
+    },
+    {
+      "type": "taskManager",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.215,
+      "ok": true
+    },
+    {
+      "type": "surveys",
+      "docs": 0,
+      "requests": 0,
+      "seconds": 0.0,
+      "ok": false
+    },
+    {
+      "type": "syncQuestions",
+      "docs": 0,
+      "requests": 0,
+      "seconds": 0.0,
+      "ok": false
+    },
+    {
+      "type": "documents",
+      "docs": 1864,
+      "requests": 38,
+      "seconds": 21.578,
+      "ok": true
+    },
+    {
+      "type": "processingPayments",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.55,
+      "ok": true
+    },
+    {
+      "type": "banks",
+      "docs": 0,
+      "requests": 1,
+      "seconds": 0.17,
+      "ok": true
+    },
+    {
+      "type": "overdueDebt",
+      "docs": 0,
+      "requests": 0,
+      "seconds": 0.0,
+      "ok": false
+    }
+  ]
+}
