@@ -61,10 +61,9 @@ name: "CAREN: 12 — Fecha de despacho en checkout (enableAskDeliveryDate)"
     direction: DOWN
     duration: 1200
 
-# Verificar que el selector de fecha de despacho es visible
+# HARD: selector de fecha debe aparecer en el carrito — bloqueante alcance sec. 4
 - assertVisible:
     text: ".*[Ff]echa.*[Dd]espacho.*|.*[Ff]echa.*[Ee]ntr.*|.*[Dd][íi]a.*[Ee]ntr.*|.*[Ss]eleccionar.*[Ff]echa.*|.*[Ee]ntrega.*"
-    optional: true
 
 # Intentar abrir el picker de fecha
 - runFlow:

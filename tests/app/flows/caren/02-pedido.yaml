@@ -93,9 +93,9 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
     duration: 1200
 
 # STAGING: finalizar y enviar el pedido
+# HARD: si el botón no aparece el flow falla — el pedido debe poder enviarse
 - tapOn:
-    text: "Finalizar pedido"
-    optional: true
+    text: ".*[Ff]inalizar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*"
 - waitForAnimationToEnd
 
 - runFlow:
@@ -107,10 +107,10 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
           text: "ACEPTAR"
       - waitForAnimationToEnd
 
-# Esperar confirmación
+# HARD: solo acepta confirmación real del pedido — no "Listado de comercios"
 - extendedWaitUntil:
     visible:
-      text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*Listado de comercios.*|.*Seleccionar filtros.*|.*[Cc]omercio.*"
+      text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*[Pp]edido.*[Cc]reado.*"
     timeout: 30000
 
 - runFlow: helpers-volver-lista.yaml

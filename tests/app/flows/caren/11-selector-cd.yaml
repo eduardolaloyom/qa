@@ -35,10 +35,9 @@ name: "CAREN: 11 — Selector de Centro de Distribución pre-catálogo"
       text: ".*[Cc]entro.*[Dd]istribuci[oó]n.*|.*[Ss]eleccionar.*[Cc][Dd].*|.*[Bb]odega.*|.*[Aa]gregar.*|.*[Ss]ugerencias.*|.*[Pp]roductos.*"
     timeout: 20000
 
-# Documentar si el selector de CD está presente (assertion soft — bloqueante del scope)
+# HARD: selector de CD debe aparecer antes del catálogo — bloqueante alcance sec. 4
 - assertVisible:
     text: ".*[Cc]entro.*[Dd]istribuci[oó]n.*|.*[Ss]eleccionar.*[Cc][Dd].*|.*[Dd]istribuci[oó]n.*|.*[Bb]odega.*"
-    optional: true
 
 # Seleccionar primer CD disponible
 - runFlow: helpers-selector-cd.yaml

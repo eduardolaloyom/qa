@@ -61,7 +61,11 @@ name: "CAREN: 08 — Búsqueda en lista de comercios"
           optional: true
       - waitForAnimationToEnd
 
-# Solo ejecutar búsqueda si se activó el campo
+# HARD: si ningún intento encontró la barra de búsqueda → FAIL
+- assertVisible:
+    text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
+
+# Ejecutar búsqueda solo si se activó el campo
 - runFlow:
     when:
       visible:
