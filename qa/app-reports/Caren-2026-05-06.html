@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APP QA — Caren — 2026-05-06</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fb;padding:0 0 40px}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.site-header{background:#fff;border-bottom:1px solid #e2e5e9;padding:14px 24px;margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.back-link{color:#4f6ef7;text-decoration:none;font-size:.88em;font-weight:600}
+.site-header h1{font-size:1.25em;font-weight:700;color:#1a1d23}
+.site-header p{font-size:.85em;color:#64748b}
+.partial-banner{background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;padding:10px 16px;font-size:.85em;color:#92400e;margin-bottom:16px;font-weight:500}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.06)}
+.card-title{font-size:1em;font-weight:700;color:#111827;margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid #e5e7eb}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:20px}
+.stat{padding:14px;border-radius:10px;text-align:center;color:#fff}
+.stat.blue{background:linear-gradient(135deg,#4f6ef7,#3b5bdb)}
+.stat.green{background:linear-gradient(135deg,#10b981,#059669)}
+.stat.red{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.stat.amber{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.stat.gray{background:linear-gradient(135deg,#9ca3af,#6b7280)}
+.stat-value{font-size:1.6em;font-weight:800;line-height:1}
+.stat-label{font-size:.68em;opacity:.9;font-weight:600;margin-top:4px}
+.verdict-badge{display:inline-block;padding:6px 18px;border-radius:99px;font-weight:700;font-size:.9em;margin-bottom:14px}
+.verdict-listo{background:#d1fae5;color:#065f46}
+.verdict-condiciones{background:#fef3c7;color:#92400e}
+.verdict-bloqueado{background:#fee2e2;color:#991b1b}
+.health-meta{display:flex;justify-content:space-between;font-size:.82em;color:#6b7280;font-weight:600;margin-bottom:5px}
+.health-meta strong{color:#111827}
+.health-track{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}
+.health-fill{height:100%;border-radius:99px;background:#ef4444}
+.linear-btn{display:inline-block;margin-left:6px;padding:2px 8px;background:#4f6ef7;color:#fff;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle}
+table{width:100%;border-collapse:collapse}
+th{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb}
+td{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr.batch-header td{background:#f1f5f9;color:#475569;font-size:.78em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;border-bottom:1.5px solid #e2e8f0}
+.badge{padding:2px 10px;border-radius:99px;font-size:.75em;font-weight:700}
+.badge.pass{background:#d1fae5;color:#065f46}
+.badge.manual{background:#dbeafe;color:#1e40af}
+.badge.skip{background:#f3f4f6;color:#6b7280}
+.badge.fail{background:#fee2e2;color:#991b1b}
+.flow-error{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}
+.flow-icon{margin-right:4px}
+.duration{color:#9ca3af;white-space:nowrap}
+footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a href="../" class="back-link">← Dashboard</a>
+  <div>
+    <h1>📱 APP QA — Caren</h1>
+    <p>Maestro · 2026-05-06 · staging · Batches completados: 1/3</p>
+  </div>
+</div>
+<div class="container">
+
+    <div class="partial-banner">
+        ⏳ Reporte parcial — faltan batch(es): 2, 3 de 3 · Se actualiza automáticamente al correr cada batch
+    </div>
+<div class="card">
+  <div class="card-title">Resumen</div>
+  <span class="verdict-badge verdict-bloqueado">BLOQUEADO</span>
+  <a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20BLOQUEADO%20%282/5%20flows%2C%202026-05-06%29&description=%23%23%20APP%20QA%20%E2%80%94%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AHealth%3A%2040/100%20%20%7C%20%20Flows%3A%202/5%20%20%7C%20%20Veredicto%3A%20BLOQUEADO%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn" style="font-size:.85em;padding:6px 14px;margin-left:10px;">🔗 Crear ticket</a>
+  <div class="stats" style="margin-top:16px">
+    <div class="stat blue"><div class="stat-value">5</div><div class="stat-label">Flows</div></div>
+    <div class="stat green"><div class="stat-value">2</div><div class="stat-label">PASS</div></div>
+    <div class="stat red"><div class="stat-value">3</div><div class="stat-label">FAIL</div></div>
+    <div class="stat gray"><div class="stat-value">0</div><div class="stat-label">SKIP</div></div>
+    <div class="stat amber"><div class="stat-value">40%</div><div class="stat-label">Health</div></div>
+  </div>
+  <div>
+    <div class="health-meta"><span>Health score</span><strong>40%</strong></div>
+    <div class="health-track"><div class="health-fill" style="width:40%"></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Flows por batch</div>
+  <table>
+    <thead><tr><th>Flow</th><th>Estado</th><th>Duración</th></tr></thead>
+    <tbody><tr class="batch-header"><td colspan="3">Batch 1 — Core</td></tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> 01-comercios-disponibles.yaml</td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">3m 3s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 02-pedido.yaml<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_101228</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%2002-pedido.yaml%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%2002-pedido.yaml%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_101228%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 24s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 04-features.yaml<div class="flow-error">╰─────────────────────────────────────────────────────────────────────────────────────────────────╯</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%2004-features.yaml%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%2004-features.yaml%0AError%3A%20%E2%95%B0%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%95%AF%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">4s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 06-lista-todos-comercios.yaml<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_101355</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%2006-lista-todos-comercios.yaml%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%2006-lista-todos-comercios.yaml%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_101355%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">39s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> 07-historial-pedidos.yaml</td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">48s</td>
+        </tr></tbody>
+  </table>
+</div>
+<footer>Generado 2026-05-06 10:15 · Batches completados: [1] de 3</footer>
+</div>
+</body>
+</html>
