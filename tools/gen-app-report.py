@@ -57,7 +57,7 @@ def render_checklist_html(items):
 def read_yaml_context(yaml_filename, client_slug, qa_root):
     """Lee comentarios de cabecera de un flow YAML para enriquecer tickets Linear."""
     yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
-    ctx = {'objetivo': '', 'config': '', 'alcance': '', 'bug': ''}
+    ctx = {'objetivo': '', 'config': '', 'alcance': '', 'bug': '', 'pasos': ''}
     if not yaml_path.exists():
         return ctx
     for line in yaml_path.read_text().splitlines():
@@ -71,6 +71,8 @@ def read_yaml_context(yaml_filename, client_slug, qa_root):
                 ctx['alcance'] = line.lstrip('# ').strip()
         elif line.startswith('# BUG CONOCIDO:'):
             ctx['bug'] = line.replace('# BUG CONOCIDO:', '').strip()
+        elif line.startswith('# PASOS:'):
+            ctx['pasos'] = line.replace('# PASOS:', '').strip()
     return ctx
 
 # ── Args ──────────────────────────────────────────────────────
@@ -223,15 +225,17 @@ for f in flows:
                 desc_parts += ['', f'Assertion fallida: {failed_assertion}']
         if ctx.get('bug'):
             desc_parts += ['', f'Contexto adicional: {ctx["bug"]}']
-        desc_parts += [
-            '',
-            'Pasos para reproducir:',
-            f'1. Login como vendedor en me.youorder.yomventas.debug ({environment}, {domain})',
-            f'2. Navegar según el flow: {yaml_file or f["name"]}',
-            '3. Reproducir la condición descrita en "Comportamiento actual"',
-            '',
-            f'Reporte QA: {dashboard_url}',
-        ]
+        desc_parts += ['', 'Pasos para reproducir:']
+        if ctx.get('pasos'):
+            for step in ctx['pasos'].split(' | '):
+                desc_parts.append(f'  {step.strip()}')
+        else:
+            desc_parts += [
+                f'  1. Login como vendedor en me.youorder.yomventas.debug ({environment}, {domain})',
+                f'  2. Navegar según el flow: {yaml_file or f["name"]}',
+                '  3. Reproducir la condición descrita en "Comportamiento actual"',
+            ]
+        desc_parts += ['', f'Reporte QA: {dashboard_url}']
         if github_flow:
             desc_parts.append(f'Flow YAML: {github_flow}')
         lt = quote(f'APP {client_cap}: {f["name"]} — fallo QA ({date_str})')
@@ -296,6 +300,60 @@ if sync_data:
     <tbody>{sync_rows}</tbody>
   </table></div>
 </div>"""
+
+# ── Slack deliverable ─────────────────────────────────────────
+slack_lines = [
+    f'📱 QA APP {client_cap} — {date_str} | {environment} ({domain_all})',
+    f'Veredicto: *{verdict}* | Health: {health}/100',
+    '',
+    '*Resultados:*',
+    f'✅ PASS: {passed} flows',
+]
+if fixed_count:
+    slack_lines.append(f'🔧 FIXED: {fixed_count} (errores de test corregidos — pasarán en próximo run)')
+if real_failed:
+    slack_lines.append(f'❌ FAIL real: {real_failed} flows')
+    for f in flows:
+        if f['status'] == 'failed' and not fixes.get(f['name']):
+            slack_lines.append(f'   • {f["name"]}')
+
+if sync_data:
+    sync_total = sync_data.get('totalSeconds', 0)
+    sync_ok_icon = '✅' if sync_data.get('successful', False) else '⚠️'
+    slack_lines += ['', f'*Sync inicial:* {sync_total:.1f}s {sync_ok_icon}']
+
+# Features checklist desde flow 04
+features_yaml = '04-features.yaml'
+chk_items = parse_yaml_checklist(features_yaml, client_slug, QA_ROOT)
+if chk_items:
+    slack_lines += ['', '*Features ON/OFF (config Caren):*']
+    cur_sec = None
+    for it in chk_items:
+        if it['section'] != cur_sec:
+            cur_sec = it['section']
+            slack_lines.append(f'_{cur_sec}_')
+        bug_note = ' ⚠️ (bug staging)' if 'CD' in it['desc'] or 'fecha' in it['desc'].lower() or 'despacho' in it['desc'].lower() else ''
+        icon_s = '🟢' if it['state'] == 'VISIBLE' else '⚫'
+        slack_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
+
+slack_lines += ['', f'*Reporte completo:* {dashboard_url_all}']
+slack_text = '\n'.join(slack_lines)
+
+slack_card = f"""
+<div class="card" id="slack-card">
+  <div class="card-title">💬 Resumen para Slack</div>
+  <button onclick="copySlack()" style="float:right;margin-top:-32px;padding:6px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
+  <pre id="slack-pre" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-top:8px">{escape(slack_text)}</pre>
+</div>
+<script>
+function copySlack(){{
+  var t=document.getElementById('slack-pre').innerText;
+  navigator.clipboard.writeText(t).then(function(){{
+    var b=document.querySelector('#slack-card button');
+    b.textContent='✅ Copiado';setTimeout(function(){{b.textContent='📋 Copiar'}},2000);
+  }});
+}}
+</script>"""
 
 HTML_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -394,6 +452,7 @@ footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
     <tbody>{rows}</tbody>
   </table></div>
 </div>
+{slack_card}
 <footer>Generado {generated_at} · Batches completados: {sorted(batches_done)} de {total_batches}</footer>
 </div>
 </body>

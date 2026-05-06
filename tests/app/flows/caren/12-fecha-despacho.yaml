@@ -3,6 +3,7 @@ name: "CAREN: 12 — Fecha de despacho en checkout (enableAskDeliveryDate)"
 # OBJETIVO: Verificar que el selector de fecha de despacho aparece en el carrito/checkout
 # Config: enableAskDeliveryDate=true
 # Alcance sec 4 (bloqueante): "Lógica configurable de fechas de despacho según CD y reglas de Caren"
+# PASOS: 1. Login como vendedor | 2. Ir a lista de comercios | 3. Tap en comercio disponible → "Hacer Pedido" | 4. Agregar un producto al carrito | 5. Tap "Mi pedido" → ir al resumen del carrito | 6. Scroll hacia abajo | 7. Esperado: aparece selector de fecha de despacho | 8. Actual: el campo de fecha no aparece en el carrito
 # NO envía el pedido — solo verifica que el campo es visible y operable
 ---
 
