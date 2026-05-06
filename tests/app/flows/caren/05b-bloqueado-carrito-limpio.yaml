@@ -94,7 +94,14 @@ name: "CAREN: 05b — Verificación P1 carrito limpio (CAREN-QA-002)"
           text: ".*[Cc]arrito.*|.*[Pp]edido.*|.*[Vv]er [Pp]edido.*"
           optional: true
       - waitForAnimationToEnd
+      # HARD: el mensaje de comercio bloqueado debe aparecer
+      - assertVisible:
+          text: ".*[Cc]omercio [Bb]loqueado.*|Este comercio se encuentra bloqueado"
+      # HARD: no debe ser posible finalizar pedido en comercio bloqueado
       - assertNotVisible:
-          text: "Finalizar pedido"
+          text: ".*[Ff]inalizar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+      - tapOn:
+          text: ".*[Xx].*|.*[Cc]errar.*"
           optional: true
+      - waitForAnimationToEnd
       - runFlow: helpers-volver-lista.yaml

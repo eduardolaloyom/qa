@@ -1,12 +1,11 @@
 appId: ${APP_PACKAGE}
 name: "CAREN: 03 — Catálogo comercios BLOQUEADOS"
-# OBJETIVO: documentar cuántos productos muestra cada comercio bloqueado
-# BUG CONOCIDO: assignedSellers falla con 0 requests → no aparecen badges Bloqueado/Disponible
-# Si no hay badges visibles, el flow pasa de largo (hallazgo documentado aparte)
-# Verifica además que no se puede hacer pedido en ningún bloqueado
+# OBJETIVO: Entrar a comercios bloqueados y verificar que NO se puede hacer pedido
+# HARD: assertVisible "Comercio Bloqueado" confirma que realmente entró a uno bloqueado
+# HARD: assertNotVisible "Finalizar/Confirmar Pedido" confirma que el pedido está bloqueado
 ---
 
-# ─── COMERCIO BLOQUEADO 1 (condicional) ───────────────────────────────────────
+# ─── COMERCIO BLOQUEADO 1 ───────────────────────────────────────────────────
 - runFlow: helpers-filtro-bloqueado.yaml
 
 - runFlow:
@@ -32,12 +31,19 @@ name: "CAREN: 03 — Catálogo comercios BLOQUEADOS"
       - swipe:
           direction: DOWN
           duration: 1500
+      # HARD: el popup/banner "Comercio Bloqueado" debe aparecer
+      - assertVisible:
+          text: ".*[Cc]omercio [Bb]loqueado.*|.*[Bb]loqueado.*|Este comercio se encuentra bloqueado"
+      # HARD: nunca debe ser posible finalizar un pedido en comercio bloqueado
       - assertNotVisible:
-          text: ".*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+          text: ".*[Ff]inalizar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+      - tapOn:
+          text: ".*[Xx].*|.*[Cc]errar.*"
           optional: true
+      - waitForAnimationToEnd
       - runFlow: helpers-volver-lista.yaml
 
-# ─── COMERCIO BLOQUEADO 2 (condicional) ───────────────────────────────────────
+# ─── COMERCIO BLOQUEADO 2 ───────────────────────────────────────────────────
 - runFlow:
     when:
       visible:
@@ -66,12 +72,17 @@ name: "CAREN: 03 — Catálogo comercios BLOQUEADOS"
             - swipe:
                 direction: DOWN
                 duration: 1500
+            - assertVisible:
+                text: ".*[Cc]omercio [Bb]loqueado.*|.*[Bb]loqueado.*|Este comercio se encuentra bloqueado"
             - assertNotVisible:
-                text: ".*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+                text: ".*[Ff]inalizar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+            - tapOn:
+                text: ".*[Xx].*|.*[Cc]errar.*"
                 optional: true
+            - waitForAnimationToEnd
             - runFlow: helpers-volver-lista.yaml
 
-# ─── COMERCIO BLOQUEADO 3 (condicional) ───────────────────────────────────────
+# ─── COMERCIO BLOQUEADO 3 ───────────────────────────────────────────────────
 - runFlow:
     when:
       visible:
@@ -100,12 +111,17 @@ name: "CAREN: 03 — Catálogo comercios BLOQUEADOS"
             - swipe:
                 direction: DOWN
                 duration: 1500
+            - assertVisible:
+                text: ".*[Cc]omercio [Bb]loqueado.*|.*[Bb]loqueado.*|Este comercio se encuentra bloqueado"
             - assertNotVisible:
-                text: ".*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+                text: ".*[Ff]inalizar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+            - tapOn:
+                text: ".*[Xx].*|.*[Cc]errar.*"
                 optional: true
+            - waitForAnimationToEnd
             - runFlow: helpers-volver-lista.yaml
 
-# ─── COMERCIO BLOQUEADO 4 (condicional) ───────────────────────────────────────
+# ─── COMERCIO BLOQUEADO 4 ───────────────────────────────────────────────────
 - runFlow:
     when:
       visible:
@@ -134,7 +150,12 @@ name: "CAREN: 03 — Catálogo comercios BLOQUEADOS"
             - swipe:
                 direction: DOWN
                 duration: 1500
+            - assertVisible:
+                text: ".*[Cc]omercio [Bb]loqueado.*|.*[Bb]loqueado.*|Este comercio se encuentra bloqueado"
             - assertNotVisible:
-                text: ".*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+                text: ".*[Ff]inalizar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*"
+            - tapOn:
+                text: ".*[Xx].*|.*[Cc]errar.*"
                 optional: true
+            - waitForAnimationToEnd
             - runFlow: helpers-volver-lista.yaml
