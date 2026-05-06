@@ -241,5 +241,91 @@
       "alto": 4,
       "medio": 0
     }
+  },
+  {
+    "date": "2026-05-06",
+    "patterns": [
+      {
+        "id": "block_5. Cuadratura",
+        "title": "5. Cuadratura genera bloqueos recurrentes",
+        "type": "bloqueo",
+        "severity": "critico",
+        "clients": [
+          "Caren",
+          "Codelpa Perú",
+          "Coéxito",
+          "Prinorte"
+        ],
+        "count": 4
+      },
+      {
+        "id": "block_4. Integraciones",
+        "title": "4. Integraciones genera bloqueos recurrentes",
+        "type": "bloqueo",
+        "severity": "alto",
+        "clients": [
+          "Bastién",
+          "Caren"
+        ],
+        "count": 2
+      },
+      {
+        "id": "overdue_4. Integraciones",
+        "title": "4. Integraciones acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 3
+      },
+      {
+        "id": "overdue_8. QA y Testing",
+        "title": "8. QA y Testing acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 4
+      },
+      {
+        "id": "overdue_5. Cuadratura",
+        "title": "5. Cuadratura acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren",
+          "Codelpa Perú"
+        ],
+        "count": 4
+      },
+      {
+        "id": "overdue_7. Configuraciones",
+        "title": "7. Configuraciones acumula atrasos",
+        "type": "atraso",
+        "severity": "alto",
+        "clients": [
+          "Caren"
+        ],
+        "count": 3
+      },
+      {
+        "id": "concentrated_Caren",
+        "title": "Caren concentra problemas",
+        "type": "concentracion",
+        "severity": "critico",
+        "clients": [
+          "Caren"
+        ],
+        "count": 18
+      }
+    ],
+    "summary": {
+      "total": 7,
+      "critico": 2,
+      "alto": 5,
+      "medio": 0
+    }
   }
 ]
