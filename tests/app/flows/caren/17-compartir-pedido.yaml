@@ -3,6 +3,10 @@ name: "CAREN: 17 — Compartir pedido"
 # OBJETIVO: Verificar que el botón compartir está disponible en el resumen del pedido
 # Alcance 3.4: "Compartir detalles del pedido por distintos canales"
 ---
+- stopApp
+- launchApp:
+    clearState: false
+- waitForAnimationToEnd
 - runFlow: helpers-startup.yaml
 - runFlow: helpers-filtro-disponible.yaml
 

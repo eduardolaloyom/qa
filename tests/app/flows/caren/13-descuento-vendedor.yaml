@@ -6,6 +6,10 @@ name: "CAREN: 13 — Descuento manual del vendedor (enableSellerDiscount: true)"
 # NO envía el pedido — solo verifica la presencia y uso del campo de descuento
 ---
 
+- stopApp
+- launchApp:
+    clearState: false
+- waitForAnimationToEnd
 - runFlow: helpers-startup.yaml
 - runFlow: helpers-filtro-disponible.yaml
 
