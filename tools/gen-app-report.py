@@ -370,58 +370,120 @@ fail_real    = [f for f in flows if f['status'] == 'failed' and not fixes.get(f[
 fail_fixed   = [f for f in flows if f['status'] == 'failed' and fixes.get(f['name'])]
 ok_flows     = pass_flows + fail_fixed  # fixed = probado físicamente, funciona bien
 
-slack_lines = [
-    f'📱 *QA APP {client_cap} — {date_str}* | {environment} ({domain_all})',
-    f'Veredicto: *{verdict}* | Health: {health}/100',
-]
+# ── Textos para Slack (separados para interactividad) ─────────
+STAGING_BUGS = {'enableDistributionCentersSelector', 'enableAskDeliveryDate'}
 
+ok_labels   = [flow_label(f['name'], client_slug, QA_ROOT) for f in ok_flows]
+fail_labels = [flow_label(f['name'], client_slug, QA_ROOT) for f in fail_real]
+
+# Texto estático: header + funciona bien
+header_lines = [f'📱 *{environment.upper()} ({domain_all})*', '']
 if ok_flows:
-    slack_lines += ['', f'*Lo que funciona bien ✅ ({len(ok_flows)})*']
-    for f in ok_flows:
-        slack_lines.append(f'  • {flow_label(f["name"], client_slug, QA_ROOT)}')
+    header_lines += [f'*Lo que funciona ✅ ({len(ok_flows)})*']
+    header_lines += [f'  • {l}' for l in ok_labels]
 
-if fail_real:
-    slack_lines += ['', f'*Lo que no funciona ❌ ({len(fail_real)})*']
-    for f in fail_real:
-        slack_lines.append(f'  • {flow_label(f["name"], client_slug, QA_ROOT)}')
-
+# Texto estático: sync + features + link (va después de los fails)
+footer_lines = []
 if sync_data:
     sync_total = sync_data.get('totalSeconds', 0)
     sync_ok_icon = '✅' if sync_data.get('successful', False) else '⚠️'
-    slack_lines += ['', f'*Sync inicial:* {sync_total:.1f}s {sync_ok_icon}']
+    footer_lines += ['', f'*Sync inicial:* {sync_total:.1f}s {sync_ok_icon}']
 
-# Features checklist desde qa-matrix (live)
-STAGING_BUGS = {'enableDistributionCentersSelector', 'enableAskDeliveryDate'}
 chk_items = get_features_from_matrix(client_slug, QA_ROOT)
+# Filtrar sección login (no relevante para el equipo)
+chk_items = [it for it in chk_items if it['section'] != 'Pantalla de login']
 if chk_items:
-    slack_lines += ['', f'*Features configuradas en {client_cap}:*']
+    footer_lines += ['', f'*Features configuradas en {client_cap}:*']
     cur_sec = None
     for it in chk_items:
         if it['section'] != cur_sec:
             cur_sec = it['section']
-            slack_lines.append(f'_{cur_sec}_')
+            footer_lines.append(f'_{cur_sec}_')
         is_bug = it.get('flag') in STAGING_BUGS and it['state'] == 'VISIBLE'
         icon_s = '🔴' if is_bug else ('🟢' if it['state'] == 'VISIBLE' else '➖')
         bug_note = ' (configurado ON — no funciona en staging)' if is_bug else ''
-        slack_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
+        footer_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
+footer_lines += ['', f'*Reporte completo:* {dashboard_url_all}']
 
-slack_lines += ['', f'*Reporte completo:* {dashboard_url_all}']
-slack_text = '\n'.join(slack_lines)
+header_text = '\n'.join(header_lines)
+footer_text = '\n'.join(footer_lines)
+
+# HTML checkboxes para fallas
+fail_checks_html = ''
+for i, label in enumerate(fail_labels):
+    fid = f'fail-{i}'
+    fail_checks_html += (
+        f'<label id="lbl-{fid}" style="display:flex;align-items:center;gap:8px;padding:5px 0;'
+        f'border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em">'
+        f'<input type="checkbox" id="{fid}" onchange="toggleFail(\'{fid}\')" style="width:15px;height:15px;cursor:pointer">'
+        f'<span id="txt-{fid}">❌ {escape(label)}</span></label>\n'
+    )
+
+fail_items_js = json.dumps(fail_labels)
+ls_key = f'slack-fails-{client_slug}-{date_str}'
 
 slack_card = f"""
 <div class="card" id="slack-card">
-  <div class="card-title">💬 Resumen para Slack</div>
-  <button onclick="copySlack()" style="float:right;margin-top:-32px;padding:6px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
-  <pre id="slack-pre" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-top:8px">{escape(slack_text)}</pre>
+  <div class="card-title">💬 Resumen para Slack
+    <button onclick="copySlack()" style="float:right;margin-top:-4px;padding:5px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
+  </div>
+  <pre style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-bottom:12px">{escape(header_text)}</pre>
+  <div style="margin-bottom:8px">
+    <div style="font-size:.82em;font-weight:700;color:#991b1b;margin-bottom:6px">❌ Lo que no funciona — marca lo que se resuelva:</div>
+    {fail_checks_html}
+  </div>
+  <pre id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word">{escape(footer_text)}</pre>
 </div>
 <script>
+var _failLabels={fail_items_js};
+var _lsKey='{ls_key}';
+var _headerText={json.dumps(header_text)};
+var _footerText={json.dumps(footer_text)};
+function loadChecks(){{
+  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{{}}');
+  _failLabels.forEach(function(l,i){{
+    var fid='fail-'+i;
+    var checked=saved[fid]||false;
+    document.getElementById(fid).checked=checked;
+    applyStyle(fid,checked);
+  }});
+}}
+function applyStyle(fid,checked){{
+  var span=document.getElementById('txt-'+fid);
+  var lbl=document.getElementById('lbl-'+fid);
+  if(checked){{
+    span.style.textDecoration='line-through';span.style.color='#10b981';
+    span.textContent='✅ '+span.textContent.replace(/^[✅❌]\s*/,'');
+    lbl.style.opacity='0.6';
+  }}else{{
+    span.style.textDecoration='';span.style.color='';
+    span.textContent='❌ '+span.textContent.replace(/^[✅❌]\s*/,'');
+    lbl.style.opacity='1';
+  }}
+}}
+function toggleFail(fid){{
+  var checked=document.getElementById(fid).checked;
+  applyStyle(fid,checked);
+  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{{}}');
+  saved[fid]=checked;
+  localStorage.setItem(_lsKey,JSON.stringify(saved));
+}}
 function copySlack(){{
-  var t=document.getElementById('slack-pre').innerText;
-  navigator.clipboard.writeText(t).then(function(){{
+  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{{}}');
+  var pending=_failLabels.filter(function(l,i){{return !saved['fail-'+i];}});
+  var lines=[_headerText,''];
+  if(pending.length){{
+    lines.push('*Lo que no funciona ❌ ('+pending.length+')*');
+    pending.forEach(function(l){{lines.push('  • '+l);}});
+  }}
+  lines.push(_footerText);
+  var text=lines.join('\\n');
+  navigator.clipboard.writeText(text).then(function(){{
     var b=document.querySelector('#slack-card button');
     b.textContent='✅ Copiado';setTimeout(function(){{b.textContent='📋 Copiar'}},2000);
   }});
 }}
+window.addEventListener('DOMContentLoaded',loadChecks);
 </script>"""
 
 HTML_DIR.mkdir(parents=True, exist_ok=True)
@@ -513,6 +575,7 @@ footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
     <div class="health-track"><div class="health-fill" style="width:{health}%"></div></div>
   </div>
 </div>
+{slack_card}
 {sync_card}
 <div class="card">
   <div class="card-title">Flows por batch</div>
@@ -521,7 +584,6 @@ footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
     <tbody>{rows}</tbody>
   </table></div>
 </div>
-{slack_card}
 <footer>Generado {generated_at} · Batches completados: {sorted(batches_done)} de {total_batches}</footer>
 </div>
 </body>
