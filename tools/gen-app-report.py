@@ -92,7 +92,8 @@ def render_checklist_html(items):
         if it['section'] != cur_sec:
             cur_sec = it['section']
             rows_html += f'<tr><td colspan="3" class="chk-section">{escape(cur_sec)}</td></tr>'
-        icon = '🟢' if it['state'] == 'VISIBLE' else '➖'
+        is_bug = it.get('flag') in {'enableDistributionCentersSelector', 'enableAskDeliveryDate'} and it['state'] == 'VISIBLE'
+        icon = '🔴' if is_bug else ('🟢' if it['state'] == 'VISIBLE' else '➖')
         rows_html += (f'<tr><td class="chk-icon">{icon}</td>'
                       f'<td class="chk-desc">{escape(it["desc"])}</td>'
                       f'<td class="chk-config">{escape(it["config"])}</td></tr>')
@@ -399,8 +400,9 @@ if chk_items:
         if it['section'] != cur_sec:
             cur_sec = it['section']
             slack_lines.append(f'_{cur_sec}_')
-        bug_note = ' ⚠️ (bug en staging)' if it.get('flag') in STAGING_BUGS and it['state'] == 'VISIBLE' else ''
-        icon_s = '🟢' if it['state'] == 'VISIBLE' else '➖'
+        is_bug = it.get('flag') in STAGING_BUGS and it['state'] == 'VISIBLE'
+        icon_s = '🔴' if is_bug else ('🟢' if it['state'] == 'VISIBLE' else '➖')
+        bug_note = ' (configurado ON — no funciona en staging)' if is_bug else ''
         slack_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
 
 slack_lines += ['', f'*Reporte completo:* {dashboard_url_all}']
