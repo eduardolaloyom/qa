@@ -1,5 +1,32 @@
 appId: ${APP_PACKAGE}
-# Helper: deja al usuario en la lista de comercios
-# Los badges Disponible/Bloqueado pueden o no estar visibles según el estado del vendedor
+# Helper: startup + aplica filtro "Disponible" en la lista de comercios
+# Garantiza que el primer comercio de la lista sea uno disponible (para hacer pedidos)
 ---
 - runFlow: helpers-startup.yaml
+
+# Intentar abrir el panel de filtros
+- tapOn:
+    text: ".*[Ff]iltrar.*|Filtros"
+    optional: true
+- waitForAnimationToEnd
+
+# Seleccionar opción "Disponible" si aparece el panel
+- runFlow:
+    when:
+      visible:
+        text: ".*[Dd]isponible.*|.*[Ee]stado.*|.*[Ff]iltro.*"
+    commands:
+      - tapOn:
+          text: ".*[Dd]isponible.*"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Aa]plicar.*|.*[Cc]onfirmar.*|.*[Aa]ceptar.*|.*[Ll]isto.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Esperar lista de comercios con al menos un resultado
+- extendedWaitUntil:
+    visible:
+      text: ".*Listado de comercios.*|Crear comercio|.*\\d{7,}.*"
+    timeout: 15000

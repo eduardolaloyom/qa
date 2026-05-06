@@ -1,5 +1,32 @@
 appId: ${APP_PACKAGE}
-# Helper: deja al usuario en la lista de comercios
-# El badge Bloqueado puede o no estar visible según estado del vendedor
+# Helper: startup + aplica filtro "Bloqueado" en la lista de comercios
+# Garantiza que el primer comercio de la lista sea uno bloqueado
 ---
 - runFlow: helpers-startup.yaml
+
+# Intentar abrir el panel de filtros
+- tapOn:
+    text: ".*[Ff]iltrar.*|Filtros"
+    optional: true
+- waitForAnimationToEnd
+
+# Seleccionar opción "Bloqueado" si aparece el panel
+- runFlow:
+    when:
+      visible:
+        text: ".*[Bb]loqueado.*|.*[Ee]stado.*|.*[Ff]iltro.*"
+    commands:
+      - tapOn:
+          text: ".*[Bb]loqueado.*"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Aa]plicar.*|.*[Cc]onfirmar.*|.*[Aa]ceptar.*|.*[Ll]isto.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# Esperar lista de comercios con al menos un resultado
+- extendedWaitUntil:
+    visible:
+      text: ".*Listado de comercios.*|Crear comercio|.*\\d{7,}.*"
+    timeout: 15000
