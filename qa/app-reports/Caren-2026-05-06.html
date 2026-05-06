@@ -31,7 +31,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .health-meta{display:flex;justify-content:space-between;font-size:.82em;color:#6b7280;font-weight:600;margin-bottom:5px}
 .health-meta strong{color:#111827}
 .health-track{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}
-.health-fill{height:100%;border-radius:99px;background:#f59e0b}
+.health-fill{height:100%;border-radius:99px;background:#ef4444}
 .linear-btn{display:inline-block;margin-left:6px;padding:2px 8px;background:#4f6ef7;color:#fff;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;table-layout:fixed}
@@ -55,28 +55,28 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
   <a href="../" class="back-link">← Dashboard</a>
   <div>
     <h1>📱 APP QA — Caren</h1>
-    <p>Maestro · 2026-05-06 · staging · Batches completados: 1/3</p>
+    <p>Maestro · 2026-05-06 · staging · Batches completados: 1/2/3</p>
   </div>
 </div>
 <div class="container">
 
     <div class="partial-banner">
-        ⏳ Reporte parcial — faltan batch(es): 2, 3 de 3 · Se actualiza automáticamente al correr cada batch
+        ⏳ Reporte parcial — faltan batch(es): 3 de 3 · Se actualiza automáticamente al correr cada batch
     </div>
 <div class="card">
   <div class="card-title">Resumen</div>
   <span class="verdict-badge verdict-bloqueado">BLOQUEADO</span>
-  <a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20BLOQUEADO%20%283/5%20flows%2C%202026-05-06%29&description=%23%23%20APP%20QA%20%E2%80%94%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AHealth%3A%2060/100%20%20%7C%20%20Flows%3A%203/5%20%20%7C%20%20Veredicto%3A%20BLOQUEADO%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn" style="font-size:.85em;padding:6px 14px;margin-left:10px;">🔗 Crear ticket</a>
+  <a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20BLOQUEADO%20%288/16%20flows%2C%202026-05-06%29&description=%23%23%20APP%20QA%20%E2%80%94%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AHealth%3A%2050/100%20%20%7C%20%20Flows%3A%208/16%20%20%7C%20%20Veredicto%3A%20BLOQUEADO%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn" style="font-size:.85em;padding:6px 14px;margin-left:10px;">🔗 Crear ticket</a>
   <div class="stats" style="margin-top:16px">
-    <div class="stat blue"><div class="stat-value">5</div><div class="stat-label">Flows</div></div>
-    <div class="stat green"><div class="stat-value">3</div><div class="stat-label">PASS</div></div>
-    <div class="stat red"><div class="stat-value">2</div><div class="stat-label">FAIL</div></div>
+    <div class="stat blue"><div class="stat-value">16</div><div class="stat-label">Flows</div></div>
+    <div class="stat green"><div class="stat-value">8</div><div class="stat-label">PASS</div></div>
+    <div class="stat red"><div class="stat-value">8</div><div class="stat-label">FAIL</div></div>
     <div class="stat gray"><div class="stat-value">0</div><div class="stat-label">SKIP</div></div>
-    <div class="stat amber"><div class="stat-value">60%</div><div class="stat-label">Health</div></div>
+    <div class="stat amber"><div class="stat-value">50%</div><div class="stat-label">Health</div></div>
   </div>
   <div>
-    <div class="health-meta"><span>Health score</span><strong>60%</strong></div>
-    <div class="health-track"><div class="health-fill" style="width:60%"></div></div>
+    <div class="health-meta"><span>Health score</span><strong>50%</strong></div>
+    <div class="health-track"><div class="health-fill" style="width:50%"></div></div>
   </div>
 </div>
 
@@ -117,10 +117,65 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
             <td><span class="flow-icon">✅</span> 07-historial-pedidos.yaml</td>
             <td><span class="badge pass">PASS</span></td>
             <td class="duration">45s</td>
+        </tr><tr class="batch-header"><td colspan="3">Batch 2 — Alcance</td></tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> CAREN: 03 — Catálogo comercios BLOQUEADOS</td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">1m 47s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> CAREN: 05 — Bug catálogo bloqueado<div class="flow-error">1m 14s) (/Users/lalojimenez/.maestro/tests/2026-05-06_105830</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2005%20%E2%80%94%20Bug%20cat%C3%A1logo%20bloqueado%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2005%20%E2%80%94%20Bug%20cat%C3%A1logo%20bloqueado%0AError%3A%201m%2014s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_105830%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">acceso a Tomador de Pedido</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> CAREN: 05b — Verificación P1 carrito limpio<div class="flow-error">2m 39s) (/Users/lalojimenez/.maestro/tests/2026-05-06_105944</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2005b%20%E2%80%94%20Verificaci%C3%B3n%20P1%20carrito%20limpio%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2005b%20%E2%80%94%20Verificaci%C3%B3n%20P1%20carrito%20limpio%0AError%3A%202m%2039s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_105944%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">CAREN-QA-002</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> CAREN: 08 — Búsqueda en lista de comercios<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_110224</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2008%20%E2%80%94%20B%C3%BAsqueda%20en%20lista%20de%20comercios%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2008%20%E2%80%94%20B%C3%BAsqueda%20en%20lista%20de%20comercios%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_110224%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 18s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> CAREN: 09 — Datos de comercios<div class="flow-error">3m 37s</div></td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">ficha, dirección, crédito</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> CAREN: 10 — Catálogo de comercios<div class="flow-error">6m 34s</div></td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">fotos, SKUs, tabs, precios, stock</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> CAREN: 11 — Selector de Centro de Distribución pre-catálogo<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_111352</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2011%20%E2%80%94%20Selector%20de%20Centro%20de%20Distribuci%C3%B3n%20pre-cat%C3%A1logo%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2011%20%E2%80%94%20Selector%20de%20Centro%20de%20Distribuci%C3%B3n%20pre-cat%C3%A1logo%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_111352%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 5s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> CAREN: 12 — Fecha de despacho en checkout<div class="flow-error">1m 46s) (/Users/lalojimenez/.maestro/tests/2026-05-06_111457</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2012%20%E2%80%94%20Fecha%20de%20despacho%20en%20checkout%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2012%20%E2%80%94%20Fecha%20de%20despacho%20en%20checkout%0AError%3A%201m%2046s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_111457%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">enableAskDeliveryDate</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> CAREN: 13 — Descuento manual del vendedor<div class="flow-error">43s) (/Users/lalojimenez/.maestro/tests/2026-05-06_111644</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2013%20%E2%80%94%20Descuento%20manual%20del%20vendedor%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2013%20%E2%80%94%20Descuento%20manual%20del%20vendedor%0AError%3A%2043s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_111644%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">enableSellerDiscount: true</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> CAREN: 14 — Cobranza, facturas y documentos pendientes</td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">3m 58s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> CAREN: 15 — Gestor de tareas<div class="flow-error">1m 59s</div></td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">enableTask: true</td>
         </tr></tbody>
   </table></div>
 </div>
-<footer>Generado 2026-05-06 10:54 · Batches completados: [1] de 3</footer>
+<footer>Generado 2026-05-06 11:25 · Batches completados: [1, 2] de 3</footer>
 </div>
 </body>
 </html>
