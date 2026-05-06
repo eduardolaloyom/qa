@@ -102,6 +102,25 @@ def render_checklist_html(items):
             f'<th></th><th>Feature</th><th>Config</th></tr></thead>'
             f'<tbody>{rows_html}</tbody></table></details>')
 
+def render_slack_html(text):
+    """Convierte texto con formato Slack a HTML limpio para el dashboard."""
+    lines = text.split('\n')
+    parts = []
+    for line in lines:
+        if not line.strip():
+            parts.append('<div style="height:6px"></div>')
+            continue
+        safe = escape(line)
+        safe = re.sub(r'\*([^*]+)\*', r'<strong>\1</strong>', safe)
+        safe = re.sub(r'_([^_]+)_', r'<em style="color:#6b7280">\1</em>', safe)
+        if line.strip().startswith('•') or line.strip().startswith('  •'):
+            parts.append(f'<div style="padding:1px 0 1px 14px;color:#374151">{safe}</div>')
+        elif re.match(r'^\s*\*', line):
+            parts.append(f'<div style="padding:3px 0;font-size:.9em">{safe}</div>')
+        else:
+            parts.append(f'<div style="padding:1px 0;font-size:.85em;color:#6b7280">{safe}</div>')
+    return '\n'.join(parts)
+
 def read_yaml_context(yaml_filename, client_slug, qa_root):
     """Lee comentarios de cabecera de un flow YAML para enriquecer tickets Linear."""
     yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
@@ -469,12 +488,12 @@ slack_card = f"""
     <span id="save-status" style="float:right;font-size:.78em;font-weight:400;color:#6b7280;margin-top:3px;margin-left:8px"></span>
     <button onclick="copySlack()" style="float:right;margin-top:-4px;padding:5px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
   </div>
-  <pre style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-bottom:12px">{escape(header_text)}</pre>
+  <div style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;margin-bottom:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">{render_slack_html(header_text)}</div>
   <div style="margin-bottom:8px">
     <div style="font-size:.82em;font-weight:700;color:#991b1b;margin-bottom:6px">❌ Lo que no funciona — marca lo que se resuelva:</div>
     {fail_checks_html}
   </div>
-  <pre id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word">{escape(footer_text)}</pre>
+  <div id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">{render_slack_html(footer_text)}</div>
 </div>
 <script>
 var _binId={json.dumps(jsonbin_bin_id)};
