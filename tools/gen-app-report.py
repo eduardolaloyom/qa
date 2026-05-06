@@ -148,10 +148,10 @@ if sync_data:
 <div class="card">
   <div class="card-title">{sync_icon} Sync inicial — {sync_total:.1f}s total{sync_note}</div>
   <p style="font-size:.8em;color:#6b7280;margin-bottom:12px">{device} · RAM libre: {ram} · App {escape(sync_data.get('appVersion',''))}</p>
-  <table>
+  <div class="table-wrap"><table>
     <thead><tr><th>Acción</th><th style="text-align:right">Docs</th><th style="text-align:right">Requests</th><th style="text-align:right">Tiempo</th><th style="text-align:right">%</th></tr></thead>
     <tbody>{sync_rows}</tbody>
-  </table>
+  </table></div>
 </div>"""
 
 HTML_DIR.mkdir(parents=True, exist_ok=True)
@@ -191,9 +191,10 @@ body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 .health-track{{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}}
 .health-fill{{height:100%;border-radius:99px;background:{health_color}}}
 .linear-btn{{display:inline-block;margin-left:6px;padding:2px 8px;background:#4f6ef7;color:#fff;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle}}
-table{{width:100%;border-collapse:collapse}}
-th{{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb}}
-td{{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top}}
+.table-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch}}
+table{{width:100%;border-collapse:collapse;min-width:0}}
+th{{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb;white-space:nowrap}}
+td{{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}}
 tr:last-child td{{border-bottom:none}}
 tr.batch-header td{{background:#f1f5f9;color:#475569;font-size:.78em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;border-bottom:1.5px solid #e2e8f0}}
 .badge{{padding:2px 10px;border-radius:99px;font-size:.75em;font-weight:700}}
@@ -236,10 +237,10 @@ footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
 {sync_card}
 <div class="card">
   <div class="card-title">Flows por batch</div>
-  <table>
-    <thead><tr><th>Flow</th><th>Estado</th><th>Duración</th></tr></thead>
+  <div class="table-wrap"><table>
+    <thead><tr><th style="width:65%">Flow</th><th style="width:20%">Estado</th><th style="width:15%">Duración</th></tr></thead>
     <tbody>{rows}</tbody>
-  </table>
+  </table></div>
 </div>
 <footer>Generado {generated_at} · Batches completados: {sorted(batches_done)} de {total_batches}</footer>
 </div>
