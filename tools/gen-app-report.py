@@ -192,7 +192,7 @@ body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 .health-fill{{height:100%;border-radius:99px;background:{health_color}}}
 .linear-btn{{display:inline-block;margin-left:6px;padding:2px 8px;background:#4f6ef7;color:#fff;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle}}
 .table-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch}}
-table{{width:100%;border-collapse:collapse;min-width:0}}
+table{{width:100%;border-collapse:collapse;table-layout:fixed}}
 th{{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb;white-space:nowrap}}
 td{{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}}
 tr:last-child td{{border-bottom:none}}
