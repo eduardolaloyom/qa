@@ -34,6 +34,15 @@ MANIFEST    = QA_ROOT / "public" / "qa" / "manifest.json"
 REPORT_FILE = f"{client_cap}-{date_str}.html"
 REPORT_PATH = HTML_DIR / REPORT_FILE
 
+# ── Leer sync data si existe ─────────────────────────────────
+sync_data = None
+sync_json_path = OUTPUT_DIR / "sync-data.json"
+if sync_json_path.exists():
+    try:
+        sync_data = json.loads(sync_json_path.read_text())
+    except Exception:
+        pass
+
 # ── Leer batch logs en orden ──────────────────────────────────
 batch_logs = sorted(OUTPUT_DIR.glob("batch-*.log"))
 
@@ -120,6 +129,31 @@ if is_partial:
 lt_all = quote(f'fix(app): {client_cap} — {verdict} ({passed+manual}/{total} flows, {date_str})')
 ld_all = quote(f'## APP QA — Maestro\n\nCliente: {client_cap}  |  Fecha: {date_str}\nHealth: {health}/100  |  Flows: {passed+manual}/{total}  |  Veredicto: {verdict}\n\n---\n_QA Dashboard — YOM APP_')
 
+# ── Sync card ──────────────────────────────────────────────────
+sync_card = ''
+if sync_data:
+    sync_ok    = sync_data.get('successful', False)
+    sync_total = sync_data.get('totalSeconds', 0)
+    sync_icon  = '✅' if sync_ok else '⚠️'
+    sync_note  = '' if sync_ok else '<span style="color:#92400e;font-size:.82em;margin-left:8px">sub-syncs sin config marcados como failed (bug conocido)</span>'
+    sync_rows  = ''
+    for a in sync_data.get('actions', []):
+        row_ok   = a.get('ok', False)
+        row_icon = '✅' if row_ok else '❌'
+        pct      = f"{a['seconds']/sync_total*100:.0f}%" if sync_total > 0 else ''
+        sync_rows += f"<tr><td>{row_icon} {escape(a['type'])}</td><td style='text-align:right'>{a['docs']}</td><td style='text-align:right'>{a['requests']}</td><td style='text-align:right;color:#6b7280'>{a['seconds']}s</td><td style='text-align:right;color:#9ca3af;font-size:.8em'>{pct}</td></tr>"
+    device = escape(sync_data.get('deviceModel', ''))
+    ram    = escape(sync_data.get('freeRam', ''))
+    sync_card = f"""
+<div class="card">
+  <div class="card-title">{sync_icon} Sync inicial — {sync_total:.1f}s total{sync_note}</div>
+  <p style="font-size:.8em;color:#6b7280;margin-bottom:12px">{device} · RAM libre: {ram} · App {escape(sync_data.get('appVersion',''))}</p>
+  <table>
+    <thead><tr><th>Acción</th><th style="text-align:right">Docs</th><th style="text-align:right">Requests</th><th style="text-align:right">Tiempo</th><th style="text-align:right">%</th></tr></thead>
+    <tbody>{sync_rows}</tbody>
+  </table>
+</div>"""
+
 HTML_DIR.mkdir(parents=True, exist_ok=True)
 
 html = f"""<!DOCTYPE html>
@@ -199,6 +233,7 @@ footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
     <div class="health-track"><div class="health-fill" style="width:{health}%"></div></div>
   </div>
 </div>
+{sync_card}
 <div class="card">
   <div class="card-title">Flows por batch</div>
   <table>

@@ -108,8 +108,14 @@ fi
 DATE_RUN=$(date '+%Y-%m-%d')
 LOG_DIR="$QA_ROOT/QA/Caren/$DATE_RUN"
 LOG_FILE="$LOG_DIR/batch-${BATCH}.log"
+LOGCAT_TMP="/tmp/logcat-caren-batch${BATCH}.txt"
 mkdir -p "$LOG_DIR"
 > "$LOG_FILE"   # limpiar log anterior del mismo batch
+
+# Capturar logcat en background para extraer sync timing (batch 1 hace startup)
+adb logcat -c 2>/dev/null || true
+adb logcat -v time > "$LOGCAT_TMP" 2>/dev/null &
+LOGCAT_PID=$!
 
 echo ""
 echo "▶  Caren — Batch $BATCH: $BATCH_NAME"
@@ -170,6 +176,19 @@ if [ ${#FAILED_NAMES[@]} -gt 0 ]; then
     done
 fi
 echo ""
+
+# ── Extraer sync timing del logcat ────────────────────────────
+kill "$LOGCAT_PID" 2>/dev/null || true
+sleep 1
+SYNC_JSON="$LOG_DIR/sync-data.json"
+if [ -f "$LOGCAT_TMP" ]; then
+    python3 "$QA_ROOT/tools/parse-sync-logcat.py" "$LOGCAT_TMP" "$SYNC_JSON" 2>/dev/null || true
+    # Guardar logcat completo solo si hubo sync (contiene sync-use-info)
+    if grep -q "sync-use-info" "$LOGCAT_TMP" 2>/dev/null; then
+        cp "$LOGCAT_TMP" "$LOG_DIR/logcat-batch${BATCH}.log"
+    fi
+    rm -f "$LOGCAT_TMP"
+fi
 
 # ── Generar / actualizar reporte HTML y manifest ──────────────
 echo "📊 Generando reporte parcial…"
