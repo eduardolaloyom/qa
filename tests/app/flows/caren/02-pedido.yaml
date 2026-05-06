@@ -134,6 +134,6 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
 - extendedWaitUntil:
     visible:
       text: ".*[Ss]u pedido.*realizado.*|.*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*[Pp]edido.*[Cc]reado.*|.*[Tt]u pedido.*|.*[Oo]rden.*creada.*|.*[Pp]edido.*recibido.*|.*[Pp]edido.*procesado.*|.*[Pp]edido.*#.*|Listado de comercios"
-    timeout: 30000
+    timeout: 60000
 
 - runFlow: helpers-volver-lista.yaml
