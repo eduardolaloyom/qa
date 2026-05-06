@@ -17,6 +17,25 @@ from html import escape
 from urllib.parse import quote
 from pathlib import Path
 
+def read_yaml_context(yaml_filename, client_slug, qa_root):
+    """Lee comentarios de cabecera de un flow YAML para enriquecer tickets Linear."""
+    yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
+    ctx = {'objetivo': '', 'config': '', 'alcance': '', 'bug': ''}
+    if not yaml_path.exists():
+        return ctx
+    for line in yaml_path.read_text().splitlines():
+        line = line.strip()
+        if line.startswith('# OBJETIVO:'):
+            ctx['objetivo'] = line.replace('# OBJETIVO:', '').strip()
+        elif line.startswith('# Config:'):
+            ctx['config'] = line.replace('# Config:', '').strip()
+        elif 'Alcance' in line and line.startswith('#'):
+            if not ctx['alcance']:
+                ctx['alcance'] = line.lstrip('# ').strip()
+        elif line.startswith('# BUG CONOCIDO:'):
+            ctx['bug'] = line.replace('# BUG CONOCIDO:', '').strip()
+    return ctx
+
 # ── Args ──────────────────────────────────────────────────────
 args = sys.argv[1:]
 client_slug = args[0] if len(args) > 0 else ""
@@ -85,6 +104,15 @@ total_batches = 3  # convención: siempre 3 batches
 is_partial = max(batches_done) < total_batches if batches_done else True
 partial_note = f" · Batches completados: {'/'.join(str(b) for b in sorted(batches_done))}/{total_batches}" if is_partial else ""
 
+# ── Leer fixes.json si existe ─────────────────────────────────
+fixes = {}
+fixes_path = OUTPUT_DIR / "fixes.json"
+if fixes_path.exists():
+    try:
+        fixes = json.loads(fixes_path.read_text())
+    except Exception:
+        pass
+
 # ── Tabla de flows ─────────────────────────────────────────────
 rows = ''
 current_batch = None
@@ -121,24 +149,45 @@ for f in flows:
 
     err_html = f'<div class="flow-error">{escape(failed_assertion[:120])}</div>' if failed_assertion else ''
     linear_btn = ''
+    fix_badge = ''
+    if yaml_file and fixes.get(yaml_file):
+        fix_badge = f'<span class="badge fixed" title="{escape(fixes[yaml_file])}">FIXED</span> '
     if s == 'failed':
         domain = f'{client_slug}.solopide.me' if environment == 'staging' else f'{client_slug}.youorder.me'
         dashboard_url = f'https://yomcl.github.io/qa/qa/app-reports/{client_cap}-{date_str}.html'
         github_flow = f'https://github.com/YOMCL/qa/blob/main/tests/app/flows/{client_slug}/{yaml_file}' if yaml_file else ''
+        ctx = read_yaml_context(yaml_file, client_slug, QA_ROOT) if yaml_file else {}
         desc_parts = [
             f'Cliente: {client_cap} | Ambiente: {environment} ({domain}) | Fecha: {date_str}',
-            f'Flow: {f["name"]}',
         ]
+        if ctx.get('objetivo'):
+            desc_parts += ['', f'Descripción: {ctx["objetivo"]}']
+        if ctx.get('config'):
+            desc_parts.append(f'Configuración: {ctx["config"]}')
+        if ctx.get('alcance'):
+            desc_parts.append(f'Alcance: {ctx["alcance"]}')
         if yaml_file:
             desc_parts.append(f'Archivo: tests/app/flows/{client_slug}/{yaml_file}')
         if failed_assertion:
-            desc_parts += ['', f'Assertion fallida: {failed_assertion}']
+            # Derivar expected vs actual desde el mensaje de assertion
+            if 'is visible' in failed_assertion and 'not visible' not in failed_assertion:
+                assertion_text = re.sub(r'Assertion is false: ', '', failed_assertion).replace(' is visible', '')
+                desc_parts += ['', f'Comportamiento esperado: elemento visible → {assertion_text}',
+                               f'Comportamiento actual: el elemento NO aparece en pantalla']
+            elif 'is not visible' in failed_assertion:
+                assertion_text = re.sub(r'Assertion is false: ', '', failed_assertion).replace(' is not visible', '')
+                desc_parts += ['', f'Comportamiento esperado: elemento oculto → {assertion_text}',
+                               f'Comportamiento actual: el elemento SÍ aparece en pantalla (no debería)']
+            else:
+                desc_parts += ['', f'Assertion fallida: {failed_assertion}']
+        if ctx.get('bug'):
+            desc_parts += ['', f'Contexto adicional: {ctx["bug"]}']
         desc_parts += [
             '',
             'Pasos para reproducir:',
             f'1. Login como vendedor en me.youorder.yomventas.debug ({environment}, {domain})',
-            '2. Seguir el flujo hasta la pantalla descrita en la assertion',
-            '3. Observar el comportamiento inesperado',
+            f'2. Navegar según el flow: {yaml_file or f["name"]}',
+            '3. Reproducir la condición descrita en "Comportamiento actual"',
             '',
             f'Reporte QA: {dashboard_url}',
         ]
@@ -151,7 +200,7 @@ for f in flows:
     rows += f"""
         <tr>
             <td><span class="flow-icon">{icon}</span> {escape(f['name'])}{err_html}</td>
-            <td><span class="badge {badge_cls}">{label}</span>{linear_btn}</td>
+            <td>{fix_badge}<span class="badge {badge_cls}">{label}</span>{linear_btn}</td>
             <td class="duration">{escape(f['duration'])}</td>
         </tr>"""
 
@@ -250,6 +299,7 @@ tr.batch-header td{{background:#f1f5f9;color:#475569;font-size:.78em;font-weight
 .badge.manual{{background:#dbeafe;color:#1e40af}}
 .badge.skip{{background:#f3f4f6;color:#6b7280}}
 .badge.fail{{background:#fee2e2;color:#991b1b}}
+.badge.fixed{{background:#e0f2fe;color:#0369a1;margin-right:4px}}
 .flow-error{{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}}
 .flow-icon{{margin-right:4px}}
 .duration{{color:#9ca3af;white-space:nowrap}}
