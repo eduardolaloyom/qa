@@ -17,6 +17,43 @@ from html import escape
 from urllib.parse import quote
 from pathlib import Path
 
+def parse_yaml_checklist(yaml_filename, client_slug, qa_root):
+    """Parsea comentarios '# Desc — VISIBLE/INVISIBLE (config)' de un flow YAML."""
+    yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
+    if not yaml_path.exists():
+        return []
+    items = []
+    section = ''
+    for line in yaml_path.read_text().splitlines():
+        line = line.strip()
+        sec_m = re.match(r'#\s+──+\s+(.+?)\s+──+', line)
+        if sec_m:
+            section = sec_m.group(1).strip()
+            continue
+        chk_m = re.match(r'#\s+(.+?)\s+—\s+(VISIBLE|INVISIBLE)\s+\((.+?)\)', line)
+        if chk_m:
+            items.append({'section': section, 'desc': chk_m.group(1),
+                          'state': chk_m.group(2), 'config': chk_m.group(3)})
+    return items
+
+def render_checklist_html(items):
+    if not items:
+        return ''
+    rows_html = ''
+    cur_sec = None
+    for it in items:
+        if it['section'] != cur_sec:
+            cur_sec = it['section']
+            rows_html += f'<tr><td colspan="3" class="chk-section">{escape(cur_sec)}</td></tr>'
+        icon = '🟢' if it['state'] == 'VISIBLE' else '⚫'
+        rows_html += (f'<tr><td class="chk-icon">{icon}</td>'
+                      f'<td class="chk-desc">{escape(it["desc"])}</td>'
+                      f'<td class="chk-config">{escape(it["config"])}</td></tr>')
+    return (f'<details class="chk-details"><summary>Ver checklist de features</summary>'
+            f'<table class="chk-table"><thead><tr>'
+            f'<th></th><th>Feature</th><th>Config</th></tr></thead>'
+            f'<tbody>{rows_html}</tbody></table></details>')
+
 def read_yaml_context(yaml_filename, client_slug, qa_root):
     """Lee comentarios de cabecera de un flow YAML para enriquecer tickets Linear."""
     yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
@@ -201,9 +238,14 @@ for f in flows:
         ld = quote('\n'.join(desc_parts))
         linear_btn = f'<a href="https://linear.app/yom-tech/new?title={lt}&description={ld}" target="_blank" class="linear-btn">🔗 Ticket</a>'
 
+    checklist_html = ''
+    if yaml_file:
+        chk_items = parse_yaml_checklist(yaml_file, client_slug, QA_ROOT)
+        if chk_items:
+            checklist_html = render_checklist_html(chk_items)
     rows += f"""
         <tr>
-            <td><span class="flow-icon">{icon}</span> {escape(f['name'])}{err_html}{fix_note}</td>
+            <td><span class="flow-icon">{icon}</span> {escape(f['name'])}{err_html}{fix_note}{checklist_html}</td>
             <td><span class="badge {badge_cls}">{label}</span>{linear_btn}</td>
             <td class="duration">{escape(f['duration'])}</td>
         </tr>"""
@@ -307,6 +349,13 @@ tr.batch-header td{{background:#f1f5f9;color:#475569;font-size:.78em;font-weight
 .badge.fixed-fail{{background:#fef9c3;color:#854d0e}}
 .flow-error{{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}}
 .flow-icon{{margin-right:4px}}
+.chk-details{{margin-top:6px;font-size:.8em}}
+.chk-details summary{{cursor:pointer;color:#4f6ef7;font-weight:600}}
+.chk-table{{width:100%;margin-top:6px;border-collapse:collapse}}
+.chk-table td,.chk-table th{{padding:3px 8px;border-bottom:1px solid #f3f4f6;font-size:.8em}}
+.chk-section{{background:#f8fafc;color:#475569;font-weight:700;padding:5px 8px}}
+.chk-icon{{width:24px;text-align:center}}
+.chk-config{{color:#9ca3af;font-style:italic}}
 .duration{{color:#9ca3af;white-space:nowrap}}
 footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
 </style>
