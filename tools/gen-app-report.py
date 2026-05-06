@@ -11,7 +11,7 @@ Ejemplo:
     python3 tools/gen-app-report.py caren Caren 2026-05-06 --env staging
 """
 
-import sys, re, json, os, glob
+import sys, re, json, os, glob, urllib.request, urllib.error
 from datetime import datetime
 from html import escape
 from urllib.parse import quote
@@ -142,6 +142,16 @@ MANIFEST    = QA_ROOT / "public" / "qa" / "manifest.json"
 REPORT_FILE = f"{client_cap}-{date_str}.html"
 REPORT_PATH = HTML_DIR / REPORT_FILE
 
+# ── Leer JSONBIN_KEY ──────────────────────────────────────────
+jsonbin_key = os.environ.get('JSONBIN_KEY', '')
+if not jsonbin_key:
+    _env_path = QA_ROOT / '.env'
+    if _env_path.exists():
+        for _line in _env_path.read_text().splitlines():
+            if _line.startswith('JSONBIN_KEY='):
+                jsonbin_key = _line.split('=', 1)[1].strip().strip('"').strip("'")
+                break
+
 # ── Leer sync data si existe ─────────────────────────────────
 sync_data = None
 sync_json_path = OUTPUT_DIR / "sync-data.json"
@@ -201,7 +211,7 @@ fixed_count = sum(1 for f in flows if f['status'] == 'failed' and fixes.get(f['n
 real_failed = failed - fixed_count
 health  = round((passed + manual + fixed_count) / effective * 100) if effective > 0 else 0
 
-health_color = '#10b981' if health >= 80 else '#f59e0b' if health >= 60 else '#ef4444'
+health_color = '#00A76F' if health >= 80 else '#FFAB00' if health >= 60 else '#FF5630'
 verdict      = 'LISTO' if health == 100 and real_failed == 0 else 'CON OBSERVACIONES' if health >= 70 else 'BLOQUEADO'
 verdict_cls  = 'listo' if health == 100 and real_failed == 0 else 'condiciones' if health >= 70 else 'bloqueado'
 
@@ -370,11 +380,30 @@ fail_real    = [f for f in flows if f['status'] == 'failed' and not fixes.get(f[
 fail_fixed   = [f for f in flows if f['status'] == 'failed' and fixes.get(f['name'])]
 ok_flows     = pass_flows + fail_fixed  # fixed = probado físicamente, funciona bien
 
-# ── Crear resolutions.json si no existe ──────────────────────
-resolutions_path = OUTPUT_DIR / "resolutions.json"
-if not resolutions_path.exists() and fail_real:
+# ── Crear/leer JSONBin para resolutions ──────────────────────
+jsonbin_id_path = OUTPUT_DIR / "jsonbin-id.txt"
+jsonbin_bin_id = ''
+if jsonbin_id_path.exists():
+    jsonbin_bin_id = jsonbin_id_path.read_text().strip()
+elif fail_real and jsonbin_key:
     initial = {fl['name']: {'resolved': False, 'comment': ''} for fl in fail_real}
-    resolutions_path.write_text(json.dumps(initial, indent=2, ensure_ascii=False))
+    try:
+        req = urllib.request.Request(
+            'https://api.jsonbin.io/v3/b',
+            data=json.dumps(initial).encode('utf-8'),
+            method='POST'
+        )
+        req.add_header('Content-Type', 'application/json')
+        req.add_header('X-Master-Key', jsonbin_key)
+        req.add_header('X-Bin-Name', f'QA-{client_cap}-{date_str}')
+        req.add_header('X-Bin-Private', 'false')
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            result = json.loads(resp.read())
+            jsonbin_bin_id = result['metadata']['id']
+            jsonbin_id_path.write_text(jsonbin_bin_id)
+            print(f'✅ JSONBin creado: {jsonbin_bin_id}')
+    except Exception as e:
+        print(f'⚠️ JSONBin create failed: {e}')
 
 # ── Textos para Slack (separados para interactividad) ─────────
 STAGING_BUGS = {'enableDistributionCentersSelector', 'enableAskDeliveryDate'}
@@ -440,11 +469,6 @@ slack_card = f"""
     <span id="save-status" style="float:right;font-size:.78em;font-weight:400;color:#6b7280;margin-top:3px;margin-left:8px"></span>
     <button onclick="copySlack()" style="float:right;margin-top:-4px;padding:5px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
   </div>
-  <div id="token-banner" style="display:none;align-items:center;gap:8px;background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:.82em">
-    <span>🔑 Ingresa tu GitHub token para sincronizar estado entre dispositivos:</span>
-    <input type="password" id="token-input" placeholder="ghp_..." style="flex:1;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;font-size:.9em">
-    <button onclick="saveToken()" style="padding:4px 12px;background:#4f6ef7;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:.9em;font-weight:600">Guardar</button>
-  </div>
   <pre style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-bottom:12px">{escape(header_text)}</pre>
   <div style="margin-bottom:8px">
     <div style="font-size:.82em;font-weight:700;color:#991b1b;margin-bottom:6px">❌ Lo que no funciona — marca lo que se resuelva:</div>
@@ -453,37 +477,22 @@ slack_card = f"""
   <pre id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word">{escape(footer_text)}</pre>
 </div>
 <script>
-var _ghRepo='YOMCL/qa';
-var _ghPath='QA/{client_cap}/{date_str}/resolutions.json';
-var _ghSha='';
+var _binId={json.dumps(jsonbin_bin_id)};
+var _binKey={json.dumps(jsonbin_key)};
 var _resolutions={{}};
 var _failYamls={fail_yamls_js};
 var _failLabels={fail_items_js};
 var _headerText={json.dumps(header_text)};
 var _footerText={json.dumps(footer_text)};
 var _saveTimer=null;
-function getToken(){{return localStorage.getItem('yom-gh-token')||'';}}
-function showTokenBanner(){{
-  var b=document.getElementById('token-banner');
-  if(b)b.style.display='flex';
-}}
-function saveToken(){{
-  var t=document.getElementById('token-input').value.trim();
-  if(!t)return;
-  localStorage.setItem('yom-gh-token',t);
-  document.getElementById('token-banner').style.display='none';
-  loadResolutions();
-}}
 async function loadResolutions(){{
-  var tok=getToken();
-  if(!tok){{showTokenBanner();return;}}
+  if(!_binId)return;
   try{{
-    var res=await fetch('https://api.github.com/repos/'+_ghRepo+'/contents/'+_ghPath,
-      {{headers:{{Authorization:'token '+tok,Accept:'application/vnd.github.v3+json'}}}});
+    var res=await fetch('https://api.jsonbin.io/v3/b/'+_binId+'/latest',
+      {{headers:{{'X-Master-Key':_binKey}}}});
     if(!res.ok)return;
     var data=await res.json();
-    _resolutions=JSON.parse(atob(data.content.replace(/\n/g,'')));
-    _ghSha=data.sha;
+    _resolutions=data.record||{{}};
     applyResolutions();
   }}catch(e){{}}
 }}
@@ -532,15 +541,12 @@ function scheduleSave(){{
   _saveTimer=setTimeout(saveResolutions,800);
 }}
 async function saveResolutions(){{
-  var tok=getToken();
-  if(!tok){{showTokenBanner();return;}}
+  if(!_binId)return;
   try{{
-    var payload={{message:'chore: update resolutions {client_cap}/{date_str}',content:btoa(unescape(encodeURIComponent(JSON.stringify(_resolutions,null,2))))}};
-    if(_ghSha)payload.sha=_ghSha;
-    var res=await fetch('https://api.github.com/repos/'+_ghRepo+'/contents/'+_ghPath,
-      {{method:'PUT',headers:{{Authorization:'token '+tok,'Content-Type':'application/json'}},body:JSON.stringify(payload)}});
+    var res=await fetch('https://api.jsonbin.io/v3/b/'+_binId,
+      {{method:'PUT',headers:{{'X-Master-Key':_binKey,'Content-Type':'application/json','X-Bin-Versioning':'false'}},
+        body:JSON.stringify(_resolutions)}});
     if(res.ok){{
-      var d=await res.json();_ghSha=d.content.sha;
       setSaveStatus('✅ Guardado');
       setTimeout(function(){{setSaveStatus('');}},2000);
     }}else{{setSaveStatus('⚠️ Error al guardar');}}
@@ -569,59 +575,66 @@ html = f"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>APP QA — {escape(client_cap)} — {date_str}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <style>
+:root{{--green:#00A76F;--green-lt:#C8FAD6;--green-dk:#007867;--amber:#FFAB00;--amber-lt:#FFF5CC;--red:#FF5630;--red-lt:#FFE9D5;--bg:#F4F6F8;--surface:#fff;--border:#E0E5EA;--text:#161C24;--dim:#637381;--faint:#919EAB}}
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fb;padding:0 0 40px}}
+body{{font-family:'Lato',sans-serif;background:var(--bg);padding:0 0 40px;color:var(--text)}}
+h1,h2,.card-title,.stat-label,.stat-value{{font-family:'Barlow',sans-serif}}
 .container{{max-width:1100px;margin:0 auto;padding:0 24px}}
-.site-header{{background:#fff;border-bottom:1px solid #e2e5e9;padding:14px 24px;margin-bottom:24px;display:flex;align-items:center;gap:16px}}
-.back-link{{color:#4f6ef7;text-decoration:none;font-size:.88em;font-weight:600}}
-.site-header h1{{font-size:1.25em;font-weight:700;color:#1a1d23}}
-.site-header p{{font-size:.85em;color:#64748b}}
-.partial-banner{{background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;padding:10px 16px;font-size:.85em;color:#92400e;margin-bottom:16px;font-weight:500}}
-.card{{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.06)}}
-.card-title{{font-size:1em;font-weight:700;color:#111827;margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid #e5e7eb}}
+.site-header{{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;margin-bottom:24px;display:flex;align-items:center;gap:16px}}
+.back-link{{color:var(--green);text-decoration:none;font-size:.88em;font-weight:700}}
+.back-link:hover{{text-decoration:underline}}
+.site-header h1{{font-size:1.2em;font-weight:700;color:var(--text)}}
+.site-header p{{font-size:.85em;color:var(--dim)}}
+.partial-banner{{background:var(--amber-lt);border:1px solid var(--amber);border-radius:8px;padding:10px 16px;font-size:.85em;color:#7A4100;margin-bottom:16px;font-weight:500}}
+.card{{background:var(--surface);border-radius:14px;padding:24px;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.07)}}
+.card-title{{font-size:1em;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:10px;border-bottom:1.5px solid var(--border)}}
 .stats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin-bottom:20px}}
 .stat{{padding:14px;border-radius:10px;text-align:center;color:#fff}}
-.stat.blue{{background:linear-gradient(135deg,#4f6ef7,#3b5bdb)}}
-.stat.green{{background:linear-gradient(135deg,#10b981,#059669)}}
-.stat.red{{background:linear-gradient(135deg,#ef4444,#dc2626)}}
-.stat.amber{{background:linear-gradient(135deg,#f59e0b,#d97706)}}
-.stat.gray{{background:linear-gradient(135deg,#9ca3af,#6b7280)}}
+.stat.blue{{background:linear-gradient(135deg,var(--green),var(--green-dk))}}
+.stat.green{{background:linear-gradient(135deg,var(--green),var(--green-dk))}}
+.stat.red{{background:linear-gradient(135deg,var(--red),#B71D18)}}
+.stat.amber{{background:linear-gradient(135deg,var(--amber),#B76E00)}}
+.stat.gray{{background:linear-gradient(135deg,#919EAB,#637381)}}
 .stat-value{{font-size:1.6em;font-weight:800;line-height:1}}
-.stat-label{{font-size:.68em;opacity:.9;font-weight:600;margin-top:4px}}
-.verdict-badge{{display:inline-block;padding:6px 18px;border-radius:99px;font-weight:700;font-size:.9em;margin-bottom:14px}}
-.verdict-listo{{background:#d1fae5;color:#065f46}}
-.verdict-condiciones{{background:#fef3c7;color:#92400e}}
-.verdict-bloqueado{{background:#fee2e2;color:#991b1b}}
-.health-meta{{display:flex;justify-content:space-between;font-size:.82em;color:#6b7280;font-weight:600;margin-bottom:5px}}
-.health-meta strong{{color:#111827}}
-.health-track{{height:10px;background:#f3f4f6;border-radius:99px;overflow:hidden}}
+.stat-label{{font-size:.68em;opacity:.9;font-weight:700;margin-top:4px}}
+.verdict-badge{{display:inline-block;padding:6px 18px;border-radius:99px;font-weight:700;font-size:.9em;margin-bottom:14px;font-family:'Barlow',sans-serif}}
+.verdict-listo{{background:var(--green-lt);color:var(--green-dk)}}
+.verdict-condiciones{{background:var(--amber-lt);color:#7A4100}}
+.verdict-bloqueado{{background:var(--red-lt);color:#7A0916}}
+.health-meta{{display:flex;justify-content:space-between;font-size:.82em;color:var(--dim);font-weight:600;margin-bottom:5px}}
+.health-meta strong{{color:var(--text)}}
+.health-track{{height:10px;background:var(--bg);border-radius:99px;overflow:hidden}}
 .health-fill{{height:100%;border-radius:99px;background:{health_color}}}
-.linear-btn{{display:inline-block;margin-left:6px;padding:2px 8px;background:#4f6ef7;color:#fff;border-radius:5px;font-size:.72em;font-weight:600;text-decoration:none;vertical-align:middle}}
+.linear-btn{{display:inline-block;margin-left:6px;padding:2px 8px;background:var(--green);color:#fff;border-radius:5px;font-size:.72em;font-weight:700;text-decoration:none;vertical-align:middle}}
 .table-wrap{{overflow-x:auto;-webkit-overflow-scrolling:touch}}
 table{{width:100%;border-collapse:collapse;table-layout:fixed}}
-th{{background:#f9fafb;text-align:left;padding:10px 14px;font-size:.78em;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-bottom:1.5px solid #e5e7eb;white-space:nowrap}}
-td{{padding:10px 14px;border-bottom:1px solid #f3f4f6;font-size:.88em;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}}
+th{{background:var(--bg);text-align:left;padding:10px 14px;font-size:.75em;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-bottom:1.5px solid var(--border);white-space:nowrap;font-family:'Barlow',sans-serif}}
+td{{padding:10px 14px;border-bottom:1px solid var(--border);font-size:.88em;vertical-align:top;word-break:break-word;overflow-wrap:anywhere}}
 tr:last-child td{{border-bottom:none}}
-tr.batch-header td{{background:#f1f5f9;color:#475569;font-size:.78em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;border-bottom:1.5px solid #e2e8f0}}
+tr:hover td{{background:#FAFBFC}}
+tr.batch-header td{{background:#EEF2F6;color:var(--dim);font-size:.75em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:7px 14px;border-bottom:1.5px solid var(--border);font-family:'Barlow',sans-serif}}
 .badge{{padding:2px 10px;border-radius:99px;font-size:.75em;font-weight:700}}
-.badge.pass{{background:#d1fae5;color:#065f46}}
-.badge.manual{{background:#dbeafe;color:#1e40af}}
-.badge.skip{{background:#f3f4f6;color:#6b7280}}
-.badge.fail{{background:#fee2e2;color:#991b1b}}
-.badge.fixed{{background:#e0f2fe;color:#0369a1;margin-right:4px}}
-.badge.fixed-fail{{background:#fef9c3;color:#854d0e}}
-.flow-error{{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}}
+.badge.pass{{background:var(--green-lt);color:var(--green-dk)}}
+.badge.manual{{background:#EFD6FF;color:#5119B7}}
+.badge.skip{{background:var(--bg);color:var(--dim)}}
+.badge.fail{{background:var(--red-lt);color:#7A0916}}
+.badge.fixed{{background:#CAFDF5;color:#006C9C;margin-right:4px}}
+.badge.fixed-fail{{background:var(--amber-lt);color:#7A4100}}
+.flow-error{{font-size:.8em;color:var(--faint);margin-top:3px;font-style:italic}}
 .flow-icon{{margin-right:4px}}
 .chk-details{{margin-top:6px;font-size:.8em}}
-.chk-details summary{{cursor:pointer;color:#4f6ef7;font-weight:600}}
+.chk-details summary{{cursor:pointer;color:var(--green);font-weight:700}}
 .chk-table{{width:100%;margin-top:6px;border-collapse:collapse}}
-.chk-table td,.chk-table th{{padding:3px 8px;border-bottom:1px solid #f3f4f6;font-size:.8em}}
-.chk-section{{background:#f8fafc;color:#475569;font-weight:700;padding:5px 8px}}
+.chk-table td,.chk-table th{{padding:3px 8px;border-bottom:1px solid var(--border);font-size:.8em}}
+.chk-section{{background:var(--bg);color:var(--dim);font-weight:700;padding:5px 8px}}
 .chk-icon{{width:24px;text-align:center}}
-.chk-config{{color:#9ca3af;font-style:italic}}
-.duration{{color:#9ca3af;white-space:nowrap}}
-footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
+.chk-config{{color:var(--faint);font-style:italic}}
+.duration{{color:var(--faint);white-space:nowrap}}
+footer{{color:var(--faint);font-size:.82em;text-align:center;margin-top:24px}}
 </style>
 </head>
 <body>
