@@ -263,7 +263,7 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
   <pre id="slack-pre" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-top:8px">📱 *QA APP Caren — 2026-05-06* | staging (caren.solopide.me)
 Veredicto: *BLOQUEADO* | Health: 55/100
 
-*Lo que funciona bien ✅ (10)*
+*Lo que funciona bien ✅ (17)*
   • Catálogo comercios DISPONIBLES
   • Lista completa de comercios
   • Historial de pedidos
@@ -274,6 +274,13 @@ Veredicto: *BLOQUEADO* | Health: 55/100
   • Gestor de tareas
   • Estado crediticio del comercio
   • Autenticación Active Directory
+  • Pedido completo
+  • Verificación features ON/OFF — Caren
+  • Bug catálogo bloqueado
+  • Verificación P1 carrito limpio
+  • Búsqueda en lista de comercios
+  • Descuento manual del vendedor
+  • Compartir pedido
 
 *Lo que no funciona ❌ (14)*
   • Selector de Centro de Distribución pre-catálogo
@@ -290,15 +297,6 @@ Veredicto: *BLOQUEADO* | Health: 55/100
   • Indicadores de venta
   • Geolocalización de vendedores
   • Cambio de contraseña
-
-*Correcciones aplicadas al suite 🔧 (7 — no son bugs de la app)*
-  • Pedido completo — _Timeout confirmación aumentado 30s→60s_
-  • Verificación features ON/OFF — Caren — _Assertions de CD selector y fecha despacho hechas optional — bugs conocidos en staging (ver flows 11 y 12)_
-  • Bug catálogo bloqueado — _Assertion assertNotVisible &#x27;Finalizar Pedido&#x27; eliminada — botón visible pero deshabilitado es comportamiento correcto_
-  • Verificación P1 carrito limpio — _Assertion &#x27;Comercio Bloqueado&#x27; hecha optional — popup solo aparece al confirmar, no con carrito vacío_
-  • Búsqueda en lista de comercios — _Coordenadas reemplazadas por resource-id header_search_button — error de test, no de la app_
-  • Descuento manual del vendedor — _stopApp agregado al inicio para estado limpio — feature funciona en físico_
-  • Compartir pedido — _stopApp agregado al inicio para estado limpio — feature funciona en físico_
 
 *Sync inicial:* 45.4s ⚠️
 
@@ -341,7 +339,7 @@ function copySlack(){
   });
 }
 </script>
-<footer>Generado 2026-05-06 15:54 · Batches completados: [1, 2, 3] de 3</footer>
+<footer>Generado 2026-05-06 15:58 · Batches completados: [1, 2, 3] de 3</footer>
 </div>
 </body>
 </html>

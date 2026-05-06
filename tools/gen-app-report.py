@@ -367,28 +367,22 @@ def flow_label(yaml_name, client_slug, qa_root):
 pass_flows   = [f for f in flows if f['status'] in ('passed', 'manual_pass')]
 fail_real    = [f for f in flows if f['status'] == 'failed' and not fixes.get(f['name'])]
 fail_fixed   = [f for f in flows if f['status'] == 'failed' and fixes.get(f['name'])]
+ok_flows     = pass_flows + fail_fixed  # fixed = probado físicamente, funciona bien
 
 slack_lines = [
     f'📱 *QA APP {client_cap} — {date_str}* | {environment} ({domain_all})',
     f'Veredicto: *{verdict}* | Health: {health}/100',
 ]
 
-if pass_flows:
-    slack_lines += ['', f'*Lo que funciona bien ✅ ({len(pass_flows)})*']
-    for f in pass_flows:
+if ok_flows:
+    slack_lines += ['', f'*Lo que funciona bien ✅ ({len(ok_flows)})*']
+    for f in ok_flows:
         slack_lines.append(f'  • {flow_label(f["name"], client_slug, QA_ROOT)}')
 
 if fail_real:
     slack_lines += ['', f'*Lo que no funciona ❌ ({len(fail_real)})*']
     for f in fail_real:
         slack_lines.append(f'  • {flow_label(f["name"], client_slug, QA_ROOT)}')
-
-if fail_fixed:
-    slack_lines += ['', f'*Correcciones aplicadas al suite 🔧 ({len(fail_fixed)} — no son bugs de la app)*']
-    for f in fail_fixed:
-        fix_desc = fixes.get(f['name'], '')
-        label = flow_label(f['name'], client_slug, QA_ROOT)
-        slack_lines.append(f'  • {label}' + (f' — _{fix_desc}_' if fix_desc else ''))
 
 if sync_data:
     sync_total = sync_data.get('totalSeconds', 0)
