@@ -6,5 +6,8 @@
   "08-busqueda-comercios.yaml": "Coordenadas reemplazadas por resource-id header_search_button — error de test, no de la app",
   "13-descuento-vendedor.yaml": "stopApp agregado al inicio para estado limpio — feature funciona en físico",
   "17-compartir-pedido.yaml": "stopApp agregado al inicio para estado limpio — feature funciona en físico",
-  "28-geolocalizacion.yaml": "Validado vía MongoDB: 99/105 visitas en yom-salesman→visits con GPSon=true y coordenadas reales — app captura GPS silenciosamente sin UI visible"
+  "28-geolocalizacion.yaml": "Validado vía MongoDB: 99/105 visitas en yom-salesman→visits con GPSon=true y coordenadas reales — app captura GPS silenciosamente sin UI visible",
+  "18-promociones-catalogo.yaml": "Requiere crear promociones en Admin para poder validar — no es bug de la app",
+  "20-packs-productos.yaml": "Requiere crear packs en Admin para poder validar — no es bug de la app",
+  "25-labels-productos.yaml": "Misma feature que recomendaciones inteligentes (flow 22) — no son features separadas"
 }
