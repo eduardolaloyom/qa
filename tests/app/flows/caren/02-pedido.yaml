@@ -85,6 +85,29 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
           optional: true
       - waitForAnimationToEnd
 
+# Seleccionar fecha de despacho si es requerida (enableAskDeliveryDate=true, shippingHook=true)
+- swipe:
+    direction: DOWN
+    duration: 1000
+- runFlow:
+    when:
+      visible:
+        text: ".*[Ff]echa.*[Dd]espacho.*|.*[Ss]eleccionar.*[Ff]echa.*|.*[Ff]echa.*[Ee]ntr.*|No disponible.*Actualizar"
+    commands:
+      - tapOn:
+          text: ".*[Ff]echa.*[Dd]espacho.*|.*[Ss]eleccionar.*[Ff]echa.*|No disponible.*Actualizar|.*Actualizar"
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Ll]unes.*|.*[Mm]artes.*|.*[Mm]i[eé]rcoles.*|.*[Jj]ueves.*|.*[Vv]iernes.*"
+          index: 0
+          optional: true
+      - waitForAnimationToEnd
+      - tapOn:
+          text: ".*[Aa]ceptar.*|.*[Cc]onfirmar.*|.*[Oo][Kk].*|.*[Ll]isto.*"
+          optional: true
+      - waitForAnimationToEnd
+
 - swipe:
     direction: UP
     duration: 1200
