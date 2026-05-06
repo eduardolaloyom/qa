@@ -1,0 +1,44 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 22 — Recomendaciones inteligentes (canasta base)"
+# OBJETIVO: Verificar que la sección de recomendaciones/sugerencias muestra productos
+# Alcance 3.7: "Canasta base — recomendaciones basadas en historial de compras"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ss]ugerencias.*|.*[Rr]ecomend.*|.*[Aa]gregar.*"
+    timeout: 20000
+
+# Navegar a tab de sugerencias
+- tapOn:
+    text: ".*[Ss]ugerencias.*|.*[Rr]ecomendaciones.*"
+    optional: true
+- waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Ss]ugerencias.*|.*[Rr]ecomend.*|.*[Aa]gregar.*"
+    timeout: 10000
+
+# HARD ASSERT: al menos un producto recomendado visible
+- assertVisible:
+    text: ".*[Aa]gregar.*"
+
+- runFlow: helpers-volver-lista.yaml

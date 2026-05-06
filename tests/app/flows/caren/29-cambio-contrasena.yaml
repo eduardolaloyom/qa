@@ -1,0 +1,24 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 29 — Cambio de contraseña"
+# OBJETIVO: Verificar que el vendedor puede acceder a la opción de cambiar contraseña
+# Alcance 3.1: "Recuperación de contraseña vía email"
+---
+- runFlow: helpers-startup.yaml
+
+# Abrir menú lateral
+- tapOn:
+    text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
+    optional: true
+- waitForAnimationToEnd
+
+# Buscar opción de perfil o contraseña
+- tapOn:
+    text: ".*[Pp]erfil.*|.*[Cc]uenta.*|.*[Cc]onfiguraci[oó]n.*"
+    optional: true
+- waitForAnimationToEnd
+
+# HARD ASSERT: opción de cambio/recuperación de contraseña visible
+- assertVisible:
+    text: ".*[Cc]ambiar.*[Cc]ontrase[nñ]a.*|.*[Cc]ontrase[nñ]a.*|.*[Pp]assword.*|.*[Rr]establecer.*"
+
+- runFlow: helpers-volver-lista.yaml

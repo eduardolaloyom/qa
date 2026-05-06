@@ -1,0 +1,23 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 24 — Manejo de leads"
+# OBJETIVO: Verificar que existe la opción de crear/gestionar leads (comercios que aún no están en ERP)
+# Alcance 3.2: "Generar acciones para comercios que aún no existen en el ERP"
+---
+- runFlow: helpers-startup.yaml
+
+# Buscar opción de leads en lista de comercios o menú lateral
+- runFlow:
+    when:
+      visible:
+        text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
+    commands:
+      - tapOn:
+          text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
+          optional: true
+      - waitForAnimationToEnd
+
+# HARD ASSERT: opción de leads visible (en menú o en lista de comercios)
+- assertVisible:
+    text: ".*[Ll]ead.*|.*[Pp]rospecto.*|.*[Nn]uevo [Cc]liente.*|.*[Cc]liente [Pp]otencial.*"
+
+- runFlow: helpers-volver-lista.yaml

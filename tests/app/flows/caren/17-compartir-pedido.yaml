@@ -1,0 +1,48 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 17 — Compartir pedido"
+# OBJETIVO: Verificar que el botón compartir está disponible en el resumen del pedido
+# Alcance 3.4: "Compartir detalles del pedido por distintos canales"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Mm]i [Pp]edido.*|.*[Vv]er [Cc]arrito.*|.*[Cc]arrito.*"
+    optional: true
+- waitForAnimationToEnd
+
+- extendedWaitUntil:
+    visible:
+      text: ".*[Tt]otal.*|.*[Rr]esumen.*|.*[Cc]onfirmar.*"
+    timeout: 15000
+
+# HARD ASSERT: botón compartir visible
+- assertVisible:
+    text: ".*[Cc]ompartir.*|.*[Ss]hare.*"
+
+- runFlow: helpers-volver-lista.yaml

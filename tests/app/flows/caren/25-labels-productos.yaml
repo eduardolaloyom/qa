@@ -1,0 +1,37 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 25 — Labels en productos"
+# OBJETIVO: Verificar que los productos muestran etiquetas visuales configurables
+# Alcance 3.3: "Etiquetas visuales configurables en productos"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# HARD ASSERT: al menos un label/etiqueta visible en productos
+- assertVisible:
+    text: ".*[Nn]uevo.*|.*[Dd]estacado.*|.*[Ee]tiqueta.*|.*[Ll]abel.*|.*[Tt]op.*|.*[Ee]xclusivo.*|.*[Ll]imitado.*"
+
+- runFlow: helpers-volver-lista.yaml

@@ -1,0 +1,32 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 23 — Estado crediticio del comercio"
+# OBJETIVO: Verificar que se muestra el estado financiero del comercio (límite, uso, condiciones)
+# Alcance 3.2: "Visualización del estado financiero: condiciones de pago, uso y límite de crédito"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Dd]atos.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+
+# Navegar a datos/detalle del comercio (no al catálogo)
+- tapOn:
+    text: ".*[Dd]atos.*[Cc]omercio.*|.*[Ii]nformaci[oó]n.*|.*[Pp]erfil.*"
+    optional: true
+- waitForAnimationToEnd
+
+# HARD ASSERT: información crediticia visible
+- assertVisible:
+    text: ".*[Cc]r[eé]dito.*|.*[Ll][íi]mite.*|.*[Ss]aldo.*|.*[Cc]ondiciones.*[Pp]ago.*|.*[Dd]euda.*"
+
+- runFlow: helpers-volver-lista.yaml

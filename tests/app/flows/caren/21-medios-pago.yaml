@@ -1,0 +1,52 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 21 — Medios de pago en checkout"
+# OBJETIVO: Verificar que los medios de pago (tarjeta, cheque, efectivo) están disponibles
+# Alcance 3.6: "Tarjeta, cheque, efectivo"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+- tapOn:
+    text: ".*[Aa]gregar.*"
+    index: 0
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Mm]i [Pp]edido.*|.*[Vv]er [Cc]arrito.*|.*[Cc]arrito.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Tt]otal.*|.*[Rr]esumen.*|.*[Cc]onfirmar.*"
+    timeout: 15000
+
+# Ir a sección de pago
+- tapOn:
+    text: ".*[Pp]ago.*|.*[Mm]edio.*[Pp]ago.*|.*[Ff]orma.*[Pp]ago.*"
+    optional: true
+- waitForAnimationToEnd
+
+# HARD ASSERT: al menos un medio de pago visible
+- assertVisible:
+    text: ".*[Tt]arjeta.*|.*[Cc]heque.*|.*[Ee]fectivo.*|.*[Tt]ransferencia.*"
+
+- runFlow: helpers-volver-lista.yaml

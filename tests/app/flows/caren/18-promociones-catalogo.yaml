@@ -1,0 +1,37 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 18 — Promociones en catálogo"
+# OBJETIVO: Verificar que productos con promociones muestran badge o descuento visible
+# Alcance 3.5: "Descuentos porcentuales o fijos aplicados sobre el stock original"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# HARD ASSERT: badge de promoción visible en catálogo
+- assertVisible:
+    text: ".*[Pp]romoci[oó]n.*|.*[Pp]romo.*|.*-[0-9]+%.*|.*[Oo]ferta.*|.*[Dd]escuento.*%.*"
+
+- runFlow: helpers-volver-lista.yaml

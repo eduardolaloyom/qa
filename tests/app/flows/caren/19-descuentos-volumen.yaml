@@ -1,0 +1,37 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 19 — Descuentos por volumen"
+# OBJETIVO: Verificar que se muestran descuentos escalonados por cantidad
+# Alcance 3.5: "Descuentos escalonados (simples o combinados) según cantidad"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# HARD ASSERT: indicador de descuento por volumen visible
+- assertVisible:
+    text: ".*[Vv]olumen.*|.*[Ee]scalonado.*|.*[Pp]or [Cc]antidad.*|.*[Cc]ompra [0-9].*[Dd]escuento.*|.*[Tt]iers.*"
+
+- runFlow: helpers-volver-lista.yaml

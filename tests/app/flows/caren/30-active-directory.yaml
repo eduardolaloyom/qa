@@ -1,0 +1,14 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 30 — Autenticación Active Directory (Microsoft)"
+# OBJETIVO: Verificar que el botón de login con Microsoft/Active Directory está disponible
+# Alcance 3.1: "Autenticación por Microsoft Active Directory"
+# NOTA: Requiere que la feature esté habilitada en site config de Caren
+---
+- launchApp:
+    clearState: true
+- waitForAnimationToEnd
+
+# HARD ASSERT: botón de login con Microsoft/AD visible en pantalla de login
+- assertVisible:
+    text: ".*[Mm]icrosoft.*|.*[Aa]ctive [Dd]irectory.*|.*[Aa][Dd].*[Ll]ogin.*|.*[Ee]mpresa.*|.*[Cc]orporativo.*"
+

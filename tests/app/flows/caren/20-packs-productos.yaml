@@ -1,0 +1,37 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 20 — Packs de productos"
+# OBJETIVO: Verificar que los packs aparecen en el catálogo con su agrupación y precio especial
+# Alcance 3.5: "Agrupación de productos con descuentos especiales por pack"
+---
+- runFlow: helpers-startup.yaml
+- runFlow: helpers-filtro-disponible.yaml
+
+- tapOn:
+    text: ".*\\d{7,}.*"
+    index: 0
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: "Continuar|.*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*"
+    timeout: 15000
+- tapOn:
+    text: "Continuar"
+    optional: true
+- waitForAnimationToEnd
+- tapOn:
+    text: ".*[Hh]acer [Pp]edido.*|.*[Cc]at[aá]logo.*|.*[Pp]roductos.*"
+    optional: true
+- extendedWaitUntil:
+    visible:
+      text: ".*[Aa]gregar.*|.*[Pp]roducto.*"
+    timeout: 20000
+
+- swipe:
+    direction: DOWN
+    duration: 1500
+
+# HARD ASSERT: sección o producto tipo pack visible
+- assertVisible:
+    text: ".*[Pp]ack.*|.*[Kk]it.*|.*[Cc]ombo.*|.*[Aa]grupaci[oó]n.*"
+
+- runFlow: helpers-volver-lista.yaml

@@ -1,0 +1,18 @@
+appId: ${APP_PACKAGE}
+name: "CAREN: 27 — Indicadores de venta"
+# OBJETIVO: Verificar que el vendedor puede ver sus KPIs y métricas de desempeño
+# Alcance 3.8: "Métricas y KPIs de venta para seguimiento del desempeño"
+---
+- runFlow: helpers-startup.yaml
+
+# Abrir menú lateral
+- tapOn:
+    text: ".*[Mm]en[úu].*|.*[Hh]amburger.*"
+    optional: true
+- waitForAnimationToEnd
+
+# HARD ASSERT: opción de indicadores/métricas visible en menú
+- assertVisible:
+    text: ".*[Ii]ndicadores.*|.*[Mm][eé]tricas.*|.*[Rr]esultados.*|.*[Kk][Pp][Ii].*|.*[Dd]esempe[nñ]o.*|.*[Ee]stad[íi]sticas.*"
+
+- runFlow: helpers-volver-lista.yaml
