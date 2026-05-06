@@ -94,11 +94,6 @@ failed  = sum(1 for f in flows if f['status'] == 'failed')
 skipped = sum(1 for f in flows if f['status'] == 'skipped')
 total   = len(flows)
 effective = total - skipped
-health  = round((passed + manual) / effective * 100) if effective > 0 else 0
-
-health_color = '#10b981' if health >= 80 else '#f59e0b' if health >= 60 else '#ef4444'
-verdict      = 'LISTO' if health == 100 and failed == 0 else 'CON OBSERVACIONES' if health >= 70 else 'BLOQUEADO'
-verdict_cls  = 'listo' if health == 100 and failed == 0 else 'condiciones' if health >= 70 else 'bloqueado'
 
 total_batches = 3  # convención: siempre 3 batches
 is_partial = max(batches_done) < total_batches if batches_done else True
@@ -113,6 +108,14 @@ if fixes_path.exists():
     except Exception:
         pass
 
+fixed_count = sum(1 for f in flows if f['status'] == 'failed' and fixes.get(f['name']))
+real_failed = failed - fixed_count
+health  = round((passed + manual + fixed_count) / effective * 100) if effective > 0 else 0
+
+health_color = '#10b981' if health >= 80 else '#f59e0b' if health >= 60 else '#ef4444'
+verdict      = 'LISTO' if health == 100 and real_failed == 0 else 'CON OBSERVACIONES' if health >= 70 else 'BLOQUEADO'
+verdict_cls  = 'listo' if health == 100 and real_failed == 0 else 'condiciones' if health >= 70 else 'bloqueado'
+
 # ── Tabla de flows ─────────────────────────────────────────────
 rows = ''
 current_batch = None
@@ -124,15 +127,18 @@ for f in flows:
         rows += f'<tr class="batch-header"><td colspan="3">{label}</td></tr>'
 
     s = f['status']
-    if s == 'passed':      icon, badge_cls, label = '✅', 'pass', 'PASS'
+    # f['name'] es el yaml filename (ej: "02-pedido.yaml") — usar para lookup en fixes
+    is_fixed = (s == 'failed') and bool(fixes.get(f['name']))
+    if s == 'passed':        icon, badge_cls, label = '✅', 'pass', 'PASS'
     elif s == 'manual_pass': icon, badge_cls, label = '👤', 'manual', 'MANUAL'
-    elif s == 'skipped':   icon, badge_cls, label = '⏭', 'skip', 'SKIP'
-    else:                  icon, badge_cls, label = '❌', 'fail', 'FAIL'
+    elif s == 'skipped':     icon, badge_cls, label = '⏭', 'skip', 'SKIP'
+    elif is_fixed:           icon, badge_cls, label = '🔧', 'fixed-fail', 'FIXED'
+    else:                    icon, badge_cls, label = '❌', 'fail', 'FAIL'
 
     # Extraer assertion fallida desde directorio Maestro si existe
     maestro_dir = f['error'] if f['error'] and os.path.isdir(f['error']) else None
     failed_assertion = ''
-    yaml_file = ''
+    yaml_file = f['name']  # fallback al nombre del flow
     if maestro_dir:
         cmd_files = sorted(glob.glob(f'{maestro_dir}/commands-*.json'))
         if cmd_files:
@@ -149,10 +155,8 @@ for f in flows:
 
     err_html = f'<div class="flow-error">{escape(failed_assertion[:120])}</div>' if failed_assertion else ''
     linear_btn = ''
-    fix_badge = ''
-    if yaml_file and fixes.get(yaml_file):
-        fix_badge = f'<span class="badge fixed" title="{escape(fixes[yaml_file])}">FIXED</span> '
-    if s == 'failed':
+    fix_note = f'<div class="flow-error" style="color:#854d0e">{escape(fixes.get(f["name"], ""))}</div>' if is_fixed else ''
+    if s == 'failed' and not is_fixed:
         domain = f'{client_slug}.solopide.me' if environment == 'staging' else f'{client_slug}.youorder.me'
         dashboard_url = f'https://yomcl.github.io/qa/qa/app-reports/{client_cap}-{date_str}.html'
         github_flow = f'https://github.com/YOMCL/qa/blob/main/tests/app/flows/{client_slug}/{yaml_file}' if yaml_file else ''
@@ -199,8 +203,8 @@ for f in flows:
 
     rows += f"""
         <tr>
-            <td><span class="flow-icon">{icon}</span> {escape(f['name'])}{err_html}</td>
-            <td>{fix_badge}<span class="badge {badge_cls}">{label}</span>{linear_btn}</td>
+            <td><span class="flow-icon">{icon}</span> {escape(f['name'])}{err_html}{fix_note}</td>
+            <td><span class="badge {badge_cls}">{label}</span>{linear_btn}</td>
             <td class="duration">{escape(f['duration'])}</td>
         </tr>"""
 
@@ -300,6 +304,7 @@ tr.batch-header td{{background:#f1f5f9;color:#475569;font-size:.78em;font-weight
 .badge.skip{{background:#f3f4f6;color:#6b7280}}
 .badge.fail{{background:#fee2e2;color:#991b1b}}
 .badge.fixed{{background:#e0f2fe;color:#0369a1;margin-right:4px}}
+.badge.fixed-fail{{background:#fef9c3;color:#854d0e}}
 .flow-error{{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}}
 .flow-icon{{margin-right:4px}}
 .duration{{color:#9ca3af;white-space:nowrap}}
@@ -323,8 +328,8 @@ footer{{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}}
   <div class="stats" style="margin-top:16px">
     <div class="stat blue"><div class="stat-value">{total}</div><div class="stat-label">Flows</div></div>
     <div class="stat green"><div class="stat-value">{passed}</div><div class="stat-label">PASS</div></div>
-    <div class="stat red"><div class="stat-value">{failed}</div><div class="stat-label">FAIL</div></div>
-    <div class="stat gray"><div class="stat-value">{skipped}</div><div class="stat-label">SKIP</div></div>
+    <div class="stat red"><div class="stat-value">{real_failed}</div><div class="stat-label">FAIL</div></div>
+    <div class="stat" style="background:linear-gradient(135deg,#ca8a04,#a16207)"><div class="stat-value">{fixed_count}</div><div class="stat-label">FIXED</div></div>
     <div class="stat amber"><div class="stat-value">{health}%</div><div class="stat-label">Health</div></div>
   </div>
   <div>
