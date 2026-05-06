@@ -960,21 +960,44 @@ function renderDashboard() {
   if (qaGroups.length) {
     const ownerColor = { dev: 'var(--blue)', qa: 'var(--orange)' };
     const ownerLabel = { dev: '👨‍💻 Dev', qa: '🧪 QA' };
-    const catColor = { bug: 'var(--red)', ux: 'var(--orange)', ambiente: 'var(--blue)', selector: 'var(--text-dim)', flaky: 'var(--text-dim)' };
+    const catColor = { bug: 'var(--red)', ux: 'var(--orange)', ambiente: 'var(--blue)', selector: 'var(--text-dim)', flaky: '#16a34a' };
+    function fmtClientTag(slug) {
+      const isProd = slug.endsWith('-prod') || slug.includes('youorder');
+      const isStg  = slug.endsWith('-staging') || slug.includes('solopide');
+      let name = slug.replace(/-prod$/, '').replace(/-staging$/, '').replace(/-/g, ' ');
+      name = name.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      const badge = isProd
+        ? `<span style="font-size:9px;background:#fef3c7;color:#92400e;padding:1px 5px;border-radius:99px;font-weight:700;vertical-align:middle">PROD</span>`
+        : isStg
+        ? `<span style="font-size:9px;background:#eff6ff;color:#1e40af;padding:1px 5px;border-radius:99px;font-weight:700;vertical-align:middle">STG</span>`
+        : '';
+      return `<span style="font-size:11px;color:var(--text-dim)">${name}</span>${badge}`;
+    }
+    const isProdGroup = g => (g.clients||[]).some(c => c.endsWith('-prod') || c.includes('youorder'));
+    const sorted = [...qaGroups].sort((a,b) => isProdGroup(b) - isProdGroup(a));
+    const nProd = sorted.filter(isProdGroup).length;
+    const nStg  = sorted.length - nProd;
     h += '<div class="card" style="margin-bottom:24px;border-left:3px solid var(--red)">';
-    h += `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div class="section-title" style="margin:0">⚠️ QA Accionables — ${qaGroups[0].date}</div><a href="qa/" style="font-size:12px;color:var(--accent)">Ver QA Dashboard →</a></div>`;
-    qaGroups.forEach(function(g) {
-      const clients = (g.clients || []).join(', ');
+    h += `<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px">`;
+    h += `<div class="section-title" style="margin:0">⚠️ QA Accionables <span style="font-size:12px;font-weight:400;color:var(--text-dim)">${qaGroups[0].date}</span></div>`;
+    h += `<div style="display:flex;align-items:center;gap:8px">`;
+    if (nProd) h += `<span style="font-size:11px;background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:99px;font-weight:700">${nProd} prod</span>`;
+    if (nStg)  h += `<span style="font-size:11px;background:#eff6ff;color:#1e40af;padding:2px 8px;border-radius:99px;font-weight:700">${nStg} staging</span>`;
+    h += `<a href="qa/" style="font-size:12px;color:var(--accent)">Ver QA →</a></div></div>`;
+    sorted.forEach(function(g) {
+      const clientsRaw = (g.clients || []).join(', ');
+      const clientsHtml = (g.clients || []).map(fmtClientTag).join(' ');
       const lTitle = encodeURIComponent(`fix(${g.category||'qa'}): ${(g.reason||'').slice(0,80)}`);
-      const lDesc  = encodeURIComponent(`## ${g.label||'Bug'}\n\n${g.reason}\n\n**Acción:** ${g.action}\n**Clientes:** ${clients}\n**Owner:** ${g.owner}\n\n---\n_QA Dashboard — YOM B2B_`);
+      const lDesc  = encodeURIComponent(`## ${g.label||'Bug'}\n\n${g.reason}\n\n**Acción:** ${g.action}\n**Clientes:** ${clientsRaw}\n**Owner:** ${g.owner}\n\n---\n_QA Dashboard — YOM B2B_`);
+      const borderProd = isProdGroup(g) ? 'border-left:2px solid #f59e0b;padding-left:8px;' : '';
       h += `<div style="padding:10px 0;border-bottom:1px solid var(--border)">`;
-      h += `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">`;
+      h += `<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px;${borderProd}">`;
       h += `<span style="font-size:11px;font-weight:700;color:${catColor[g.category]||'var(--text-dim)'};background:var(--surface2);padding:2px 8px;border-radius:99px">${g.label||g.category}</span>`;
       h += `<span style="font-size:11px;color:${ownerColor[g.owner]||'var(--text-dim)'};font-weight:600">${ownerLabel[g.owner]||g.owner}</span>`;
-      if (clients) h += `<span style="font-size:11px;color:var(--text-dim)">${clients}</span>`;
+      if (clientsHtml) h += `<span style="display:inline-flex;align-items:center;gap:4px">${clientsHtml}</span>`;
       h += `<span style="font-size:11px;color:var(--text-dim);margin-left:auto">${g.count} test${g.count!==1?'s':''}</span>`;
       h += `</div>`;
-      h += `<div style="font-size:13px;color:var(--text);margin-bottom:3px">${g.reason}</div>`;
+      h += `<div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:2px">${g.reason}</div>`;
       h += `<div style="font-size:12px;color:var(--text-dim)">→ ${g.action}</div>`;
       h += `<div style="margin-top:6px"><a href="https://linear.app/yom-tech/new?title=${lTitle}&description=${lDesc}" target="_blank" style="font-size:11px;background:var(--surface2);border:1px solid var(--border);color:var(--accent);padding:3px 10px;border-radius:6px;text-decoration:none;font-weight:600">🎫 Crear en Linear</a></div>`;
       h += `</div>`;
