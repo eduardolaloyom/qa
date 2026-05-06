@@ -1,101 +1,101 @@
 {
   "capturedAt": null,
-  "totalSeconds": 49.43,
+  "totalSeconds": 45.44,
   "successful": false,
   "appVersion": "7.5.1",
   "deviceModel": "Google sdk_gphone64_arm64",
-  "freeRam": "573MB",
-  "freeRamPct": "29.11%",
+  "freeRam": "581MB",
+  "freeRamPct": "29.48%",
   "actions": [
     {
       "type": "site",
       "docs": 1,
       "requests": 1,
-      "seconds": 0.254,
+      "seconds": 0.258,
       "ok": true
     },
     {
       "type": "SalesTerms",
       "docs": 1,
       "requests": 1,
-      "seconds": 0.186,
+      "seconds": 0.193,
       "ok": true
     },
     {
       "type": "user",
       "docs": 1,
       "requests": 1,
-      "seconds": 0.167,
+      "seconds": 0.178,
       "ok": true
     },
     {
       "type": "seller",
       "docs": 1,
       "requests": 2,
-      "seconds": 0.782,
+      "seconds": 0.395,
       "ok": true
     },
     {
       "type": "assignedSellers",
       "docs": 0,
       "requests": 0,
-      "seconds": 0.167,
+      "seconds": 0.172,
       "ok": false
     },
     {
       "type": "commerces",
       "docs": 39,
       "requests": 1,
-      "seconds": 0.266,
+      "seconds": 0.269,
       "ok": true
     },
     {
       "type": "defaultSegments",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.175,
+      "seconds": 0.181,
       "ok": true
     },
     {
       "type": "categories",
       "docs": 884,
       "requests": 5,
-      "seconds": 1.165,
+      "seconds": 1.003,
       "ok": true
     },
     {
       "type": "catalogs",
       "docs": 23695,
       "requests": 40,
-      "seconds": 22.909,
+      "seconds": 19.677,
       "ok": true
     },
     {
       "type": "suggestionsSeller",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.218,
+      "seconds": 0.228,
       "ok": true
     },
     {
       "type": "productsGroupDescription",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.171,
+      "seconds": 0.173,
       "ok": true
     },
     {
       "type": "promotions",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.226,
+      "seconds": 0.197,
       "ok": true
     },
     {
       "type": "routes",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.205,
+      "seconds": 0.19,
       "ok": true
     },
     {
@@ -123,21 +123,21 @@
       "type": "documents",
       "docs": 1871,
       "requests": 38,
-      "seconds": 21.736,
+      "seconds": 21.574,
       "ok": true
     },
     {
       "type": "processingPayments",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.452,
+      "seconds": 0.401,
       "ok": true
     },
     {
       "type": "banks",
       "docs": 0,
       "requests": 1,
-      "seconds": 0.162,
+      "seconds": 0.166,
       "ok": true
     },
     {
