@@ -86,6 +86,130 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
   </div>
 </div>
 
+<div class="card" id="slack-card">
+  <div class="card-title">💬 Resumen para Slack
+    <button onclick="copySlack()" style="float:right;margin-top:-4px;padding:5px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
+  </div>
+  <pre style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-bottom:12px">📱 *STAGING (caren.solopide.me)*
+
+*Lo que funciona ✅ (25)*
+  • Catálogo comercios DISPONIBLES
+  • Lista completa de comercios
+  • Historial de pedidos
+  • Catálogo comercios BLOQUEADOS
+  • Datos de comercios
+  • Catálogo de comercios
+  • Cobranza, facturas y documentos pendientes
+  • Gestor de tareas
+  • Medios de pago en checkout
+  • Estado crediticio del comercio
+  • Listas de precio por segmento
+  • Indicadores de venta
+  • Geolocalización de vendedores
+  • Cambio de contraseña
+  • Autenticación Active Directory
+  • Pedido completo
+  • Verificación features ON/OFF — Caren
+  • Bug catálogo bloqueado
+  • Verificación P1 carrito limpio
+  • Búsqueda en lista de comercios
+  • Descuento manual del vendedor
+  • Compartir pedido
+  • Promociones en catálogo
+  • Packs de productos
+  • Labels en productos</pre>
+  <div style="margin-bottom:8px">
+    <div style="font-size:.82em;font-weight:700;color:#991b1b;margin-bottom:6px">❌ Lo que no funciona — marca lo que se resuelva:</div>
+    <label id="lbl-fail-0" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-0" onchange="toggleFail('fail-0')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-0">❌ Selector de Centro de Distribución pre-catálogo</span></label>
+<label id="lbl-fail-1" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-1" onchange="toggleFail('fail-1')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-1">❌ Fecha de despacho en checkout</span></label>
+<label id="lbl-fail-2" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-2" onchange="toggleFail('fail-2')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-2">❌ Costo de despacho en carrito</span></label>
+<label id="lbl-fail-3" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-3" onchange="toggleFail('fail-3')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-3">❌ Descuentos por volumen</span></label>
+<label id="lbl-fail-4" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-4" onchange="toggleFail('fail-4')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-4">❌ Recomendaciones inteligentes</span></label>
+<label id="lbl-fail-5" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-5" onchange="toggleFail('fail-5')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-5">❌ Manejo de leads</span></label>
+
+  </div>
+  <pre id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word">
+*Sync inicial:* 45.4s ⚠️
+
+*Features configuradas en Caren:*
+_Lista de comercios_
+  🟢 Botón &#x27;Crear Comercio&#x27;
+  🟢 Filtro &#x27;Sin venta&#x27; en lista de comercios
+  ➖ Banner de mantenimiento en la app
+_Menú lateral (drawer)_
+  🟢 Módulo Pagos en menú lateral
+  🟢 Módulo Cobros en menú lateral
+  🟢 Módulo Tareas en menú lateral
+  🟢 Módulo Notas de crédito en menú lateral
+  🟢 Módulo Facturas en menú lateral
+  🟢 Módulo Documentos pendientes en menú lateral
+  ➖ Módulo Puntos en menú lateral
+  🟢 Opción &#x27;Razón de no venta&#x27;
+_Catálogo_
+  ➖ Selector DIS/UND (multi-unidad)
+  🟢 Indicador de stock en productos
+  🔴 Selector de centros de distribución (configurado ON — no funciona en staging)
+_Carrito / checkout_
+  🟢 Descuento manual del vendedor
+  🟢 Cupones en carrito
+  ➖ Campo Orden de compra / Nº pedido
+  🔴 Selector de fecha de entrega (configurado ON — no funciona en staging)
+  ➖ Resumen de impuestos/IVA
+
+*Reporte completo:* https://yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html</pre>
+</div>
+<script>
+var _failLabels=["Selector de Centro de Distribuci\u00f3n pre-cat\u00e1logo", "Fecha de despacho en checkout", "Costo de despacho en carrito", "Descuentos por volumen", "Recomendaciones inteligentes", "Manejo de leads"];
+var _lsKey='slack-fails-caren-2026-05-06';
+var _headerText="\ud83d\udcf1 *STAGING (caren.solopide.me)*\n\n*Lo que funciona \u2705 (25)*\n  \u2022 Cat\u00e1logo comercios DISPONIBLES\n  \u2022 Lista completa de comercios\n  \u2022 Historial de pedidos\n  \u2022 Cat\u00e1logo comercios BLOQUEADOS\n  \u2022 Datos de comercios\n  \u2022 Cat\u00e1logo de comercios\n  \u2022 Cobranza, facturas y documentos pendientes\n  \u2022 Gestor de tareas\n  \u2022 Medios de pago en checkout\n  \u2022 Estado crediticio del comercio\n  \u2022 Listas de precio por segmento\n  \u2022 Indicadores de venta\n  \u2022 Geolocalizaci\u00f3n de vendedores\n  \u2022 Cambio de contrase\u00f1a\n  \u2022 Autenticaci\u00f3n Active Directory\n  \u2022 Pedido completo\n  \u2022 Verificaci\u00f3n features ON/OFF \u2014 Caren\n  \u2022 Bug cat\u00e1logo bloqueado\n  \u2022 Verificaci\u00f3n P1 carrito limpio\n  \u2022 B\u00fasqueda en lista de comercios\n  \u2022 Descuento manual del vendedor\n  \u2022 Compartir pedido\n  \u2022 Promociones en cat\u00e1logo\n  \u2022 Packs de productos\n  \u2022 Labels en productos";
+var _footerText="\n*Sync inicial:* 45.4s \u26a0\ufe0f\n\n*Features configuradas en Caren:*\n_Lista de comercios_\n  \ud83d\udfe2 Bot\u00f3n 'Crear Comercio'\n  \ud83d\udfe2 Filtro 'Sin venta' en lista de comercios\n  \u2796 Banner de mantenimiento en la app\n_Men\u00fa lateral (drawer)_\n  \ud83d\udfe2 M\u00f3dulo Pagos en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Cobros en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Tareas en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Notas de cr\u00e9dito en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Facturas en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Documentos pendientes en men\u00fa lateral\n  \u2796 M\u00f3dulo Puntos en men\u00fa lateral\n  \ud83d\udfe2 Opci\u00f3n 'Raz\u00f3n de no venta'\n_Cat\u00e1logo_\n  \u2796 Selector DIS/UND (multi-unidad)\n  \ud83d\udfe2 Indicador de stock en productos\n  \ud83d\udd34 Selector de centros de distribuci\u00f3n (configurado ON \u2014 no funciona en staging)\n_Carrito / checkout_\n  \ud83d\udfe2 Descuento manual del vendedor\n  \ud83d\udfe2 Cupones en carrito\n  \u2796 Campo Orden de compra / N\u00ba pedido\n  \ud83d\udd34 Selector de fecha de entrega (configurado ON \u2014 no funciona en staging)\n  \u2796 Resumen de impuestos/IVA\n\n*Reporte completo:* https://yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html";
+function loadChecks(){
+  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{}');
+  _failLabels.forEach(function(l,i){
+    var fid='fail-'+i;
+    var checked=saved[fid]||false;
+    document.getElementById(fid).checked=checked;
+    applyStyle(fid,checked);
+  });
+}
+function applyStyle(fid,checked){
+  var span=document.getElementById('txt-'+fid);
+  var lbl=document.getElementById('lbl-'+fid);
+  if(checked){
+    span.style.textDecoration='line-through';span.style.color='#10b981';
+    span.textContent='✅ '+span.textContent.replace(/^[✅❌]\s*/,'');
+    lbl.style.opacity='0.6';
+  }else{
+    span.style.textDecoration='';span.style.color='';
+    span.textContent='❌ '+span.textContent.replace(/^[✅❌]\s*/,'');
+    lbl.style.opacity='1';
+  }
+}
+function toggleFail(fid){
+  var checked=document.getElementById(fid).checked;
+  applyStyle(fid,checked);
+  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{}');
+  saved[fid]=checked;
+  localStorage.setItem(_lsKey,JSON.stringify(saved));
+}
+function copySlack(){
+  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{}');
+  var pending=_failLabels.filter(function(l,i){return !saved['fail-'+i];});
+  var lines=[_headerText,''];
+  if(pending.length){
+    lines.push('*Lo que no funciona ❌ ('+pending.length+')*');
+    pending.forEach(function(l){lines.push('  • '+l);});
+  }
+  lines.push(_footerText);
+  var text=lines.join('\n');
+  navigator.clipboard.writeText(text).then(function(){
+    var b=document.querySelector('#slack-card button');
+    b.textContent='✅ Copiado';setTimeout(function(){b.textContent='📋 Copiar'},2000);
+  });
+}
+window.addEventListener('DOMContentLoaded',loadChecks);
+</script>
+
 <div class="card">
   <div class="card-title">⚠️ Sync inicial — 45.4s total<span style="color:#92400e;font-size:.82em;margin-left:8px">sub-syncs sin config marcados como failed (bug conocido)</span></div>
   <p style="font-size:.8em;color:#6b7280;margin-bottom:12px">Google sdk_gphone64_arm64 · RAM libre: 581MB · App 7.5.1</p>
@@ -256,90 +380,7 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
         </tr></tbody>
   </table></div>
 </div>
-
-<div class="card" id="slack-card">
-  <div class="card-title">💬 Resumen para Slack</div>
-  <button onclick="copySlack()" style="float:right;margin-top:-32px;padding:6px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
-  <pre id="slack-pre" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-top:8px">📱 *QA APP Caren — 2026-05-06* | staging (caren.solopide.me)
-Veredicto: *CON OBSERVACIONES* | Health: 81/100
-
-*Lo que funciona bien ✅ (25)*
-  • Catálogo comercios DISPONIBLES
-  • Lista completa de comercios
-  • Historial de pedidos
-  • Catálogo comercios BLOQUEADOS
-  • Datos de comercios
-  • Catálogo de comercios
-  • Cobranza, facturas y documentos pendientes
-  • Gestor de tareas
-  • Medios de pago en checkout
-  • Estado crediticio del comercio
-  • Listas de precio por segmento
-  • Indicadores de venta
-  • Geolocalización de vendedores
-  • Cambio de contraseña
-  • Autenticación Active Directory
-  • Pedido completo
-  • Verificación features ON/OFF — Caren
-  • Bug catálogo bloqueado
-  • Verificación P1 carrito limpio
-  • Búsqueda en lista de comercios
-  • Descuento manual del vendedor
-  • Compartir pedido
-  • Promociones en catálogo
-  • Packs de productos
-  • Labels en productos
-
-*Lo que no funciona ❌ (6)*
-  • Selector de Centro de Distribución pre-catálogo
-  • Fecha de despacho en checkout
-  • Costo de despacho en carrito
-  • Descuentos por volumen
-  • Recomendaciones inteligentes
-  • Manejo de leads
-
-*Sync inicial:* 45.4s ⚠️
-
-*Features configuradas en Caren:*
-_Pantalla de login_
-  ➖ Botón login con Facebook
-  ➖ Botón login con Google
-_Lista de comercios_
-  🟢 Botón &#x27;Crear Comercio&#x27;
-  🟢 Filtro &#x27;Sin venta&#x27; en lista de comercios
-  ➖ Banner de mantenimiento en la app
-_Menú lateral (drawer)_
-  🟢 Módulo Pagos en menú lateral
-  🟢 Módulo Cobros en menú lateral
-  🟢 Módulo Tareas en menú lateral
-  🟢 Módulo Notas de crédito en menú lateral
-  🟢 Módulo Facturas en menú lateral
-  🟢 Módulo Documentos pendientes en menú lateral
-  ➖ Módulo Puntos en menú lateral
-  🟢 Opción &#x27;Razón de no venta&#x27;
-_Catálogo_
-  ➖ Selector DIS/UND (multi-unidad)
-  🟢 Indicador de stock en productos
-  🔴 Selector de centros de distribución (configurado ON — no funciona en staging)
-_Carrito / checkout_
-  🟢 Descuento manual del vendedor
-  🟢 Cupones en carrito
-  ➖ Campo Orden de compra / Nº pedido
-  🔴 Selector de fecha de entrega (configurado ON — no funciona en staging)
-  ➖ Resumen de impuestos/IVA
-
-*Reporte completo:* https://yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html</pre>
-</div>
-<script>
-function copySlack(){
-  var t=document.getElementById('slack-pre').innerText;
-  navigator.clipboard.writeText(t).then(function(){
-    var b=document.querySelector('#slack-card button');
-    b.textContent='✅ Copiado';setTimeout(function(){b.textContent='📋 Copiar'},2000);
-  });
-}
-</script>
-<footer>Generado 2026-05-06 17:05 · Batches completados: [1, 2, 3] de 3</footer>
+<footer>Generado 2026-05-06 17:07 · Batches completados: [1, 2, 3] de 3</footer>
 </div>
 </body>
 </html>
