@@ -55,28 +55,25 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
   <a href="../" class="back-link">← Dashboard</a>
   <div>
     <h1>📱 APP QA — Caren</h1>
-    <p>Maestro · 2026-05-06 · staging · Batches completados: 1/2/3</p>
+    <p>Maestro · 2026-05-06 · staging</p>
   </div>
 </div>
 <div class="container">
 
-    <div class="partial-banner">
-        ⏳ Reporte parcial — faltan batch(es): 3 de 3 · Se actualiza automáticamente al correr cada batch
-    </div>
 <div class="card">
   <div class="card-title">Resumen</div>
   <span class="verdict-badge verdict-bloqueado">BLOQUEADO</span>
-  <a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20BLOQUEADO%20%288/16%20flows%2C%202026-05-06%29&description=%23%23%20APP%20QA%20%E2%80%94%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AHealth%3A%2050/100%20%20%7C%20%20Flows%3A%208/16%20%20%7C%20%20Veredicto%3A%20BLOQUEADO%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn" style="font-size:.85em;padding:6px 14px;margin-left:10px;">🔗 Crear ticket</a>
+  <a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%20resumen%20QA%20Maestro%20%E2%80%94%20BLOQUEADO%20%289/26%20flows%2C%202026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AHealth%3A%2035/100%20%7C%20Flows%3A%209/26%20PASS%20%C2%B7%2017%20FAIL%20%7C%20Veredicto%3A%20BLOQUEADO%0A%0AFlows%20fallidos%3A%0A-%2002-pedido.yaml%0A-%2004-features.yaml%0A-%2005-bloqueado-tomador-pedido.yaml%0A-%2005b-bloqueado-carrito-limpio.yaml%0A-%2008-busqueda-comercios.yaml%0A-%2011-selector-cd.yaml%0A-%2012-fecha-despacho.yaml%0A-%2013-descuento-vendedor.yaml%0A-%2016-costo-despacho.yaml%0A-%2017-compartir-pedido.yaml%0A-%2018-promociones-catalogo.yaml%0A-%2019-descuentos-volumen.yaml%0A-%2020-packs-productos.yaml%0A-%2021-medios-pago.yaml%0A-%2022-recomendaciones.yaml%0A-%2024-leads.yaml%0A-%2025-labels-productos.yaml%0A%0AReporte%20completo%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html" target="_blank" class="linear-btn" style="font-size:.85em;padding:6px 14px;margin-left:10px;">🔗 Crear ticket</a>
   <div class="stats" style="margin-top:16px">
-    <div class="stat blue"><div class="stat-value">16</div><div class="stat-label">Flows</div></div>
-    <div class="stat green"><div class="stat-value">8</div><div class="stat-label">PASS</div></div>
-    <div class="stat red"><div class="stat-value">8</div><div class="stat-label">FAIL</div></div>
+    <div class="stat blue"><div class="stat-value">26</div><div class="stat-label">Flows</div></div>
+    <div class="stat green"><div class="stat-value">9</div><div class="stat-label">PASS</div></div>
+    <div class="stat red"><div class="stat-value">17</div><div class="stat-label">FAIL</div></div>
     <div class="stat gray"><div class="stat-value">0</div><div class="stat-label">SKIP</div></div>
-    <div class="stat amber"><div class="stat-value">50%</div><div class="stat-label">Health</div></div>
+    <div class="stat amber"><div class="stat-value">35%</div><div class="stat-label">Health</div></div>
   </div>
   <div>
-    <div class="health-meta"><span>Health score</span><strong>50%</strong></div>
-    <div class="health-track"><div class="health-fill" style="width:50%"></div></div>
+    <div class="health-meta"><span>Health score</span><strong>35%</strong></div>
+    <div class="health-track"><div class="health-fill" style="width:35%"></div></div>
   </div>
 </div>
 
@@ -99,13 +96,13 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
             <td class="duration">2m 5s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> 02-pedido.yaml<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_104516</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%2002-pedido.yaml%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%2002-pedido.yaml%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_104516%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td><span class="flow-icon">❌</span> 02-pedido.yaml<div class="flow-error">Assertion is false: &quot;.*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*[Pp]edido.*[Cc]reado.*|</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2002-pedido.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2002-pedido.yaml%0AArchivo%3A%20tests/app/flows/caren/02-pedido.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BPp%5Dedido.%2A%5BEe%5Dnviado.%2A%7C.%2A%5BEe%5Dxitoso.%2A%7C.%2A%5BCc%5Donfirmado.%2A%7C.%2A%5BGg%5Dracias.%2A%7C.%2A%5BPp%5Dedido.%2A%5BCc%5Dreado.%2A%7C.%2A%5BTt%5Du%20pedido.%2A%7C.%2A%5BOo%5Drden.%2Acreada.%2A%7C.%2A%5BPp%5Dedido.%2Arecibido.%2A%7C.%2A%5BPp%5Dedido.%2Aprocesado.%2A%7C.%2A%5BPp%5Dedido.%2A%23.%2A%7CListado%20de%20comercios%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/02-pedido.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
             <td class="duration">1m 53s</td>
         </tr>
         <tr>
             <td><span class="flow-icon">❌</span> 04-features.yaml</td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%2004-features.yaml%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%2004-features.yaml%0A%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2004-features.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2004-features.yaml%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html" target="_blank" class="linear-btn">🔗 Ticket</a></td>
             <td class="duration">1m 52s</td>
         </tr>
         <tr>
@@ -119,63 +116,113 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
             <td class="duration">45s</td>
         </tr><tr class="batch-header"><td colspan="3">Batch 2 — Alcance</td></tr>
         <tr>
-            <td><span class="flow-icon">✅</span> CAREN: 03 — Catálogo comercios BLOQUEADOS</td>
+            <td><span class="flow-icon">✅</span> 03-comercios-bloqueados.yaml</td>
             <td><span class="badge pass">PASS</span></td>
             <td class="duration">1m 47s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> CAREN: 05 — Bug catálogo bloqueado<div class="flow-error">1m 14s) (/Users/lalojimenez/.maestro/tests/2026-05-06_105830</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2005%20%E2%80%94%20Bug%20cat%C3%A1logo%20bloqueado%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2005%20%E2%80%94%20Bug%20cat%C3%A1logo%20bloqueado%0AError%3A%201m%2014s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_105830%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
-            <td class="duration">acceso a Tomador de Pedido</td>
+            <td><span class="flow-icon">❌</span> 05-bloqueado-tomador-pedido.yaml<div class="flow-error">Assertion is false: &quot;.*[Ff]inalizar [Pp]edido.*|.*[Cc]onfirmar [Pp]edido.*|.*[Ee]nviar [Pp]edido.*&quot; is not visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2005-bloqueado-tomador-pedido.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2005-bloqueado-tomador-pedido.yaml%0AArchivo%3A%20tests/app/flows/caren/05-bloqueado-tomador-pedido.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BFf%5Dinalizar%20%5BPp%5Dedido.%2A%7C.%2A%5BCc%5Donfirmar%20%5BPp%5Dedido.%2A%7C.%2A%5BEe%5Dnviar%20%5BPp%5Dedido.%2A%22%20is%20not%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/05-bloqueado-tomador-pedido.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 14s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> CAREN: 05b — Verificación P1 carrito limpio<div class="flow-error">2m 39s) (/Users/lalojimenez/.maestro/tests/2026-05-06_105944</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2005b%20%E2%80%94%20Verificaci%C3%B3n%20P1%20carrito%20limpio%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2005b%20%E2%80%94%20Verificaci%C3%B3n%20P1%20carrito%20limpio%0AError%3A%202m%2039s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_105944%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
-            <td class="duration">CAREN-QA-002</td>
+            <td><span class="flow-icon">❌</span> 05b-bloqueado-carrito-limpio.yaml<div class="flow-error">Assertion is false: &quot;.*[Cc]omercio [Bb]loqueado.*|Este comercio se encuentra bloqueado&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2005b-bloqueado-carrito-limpio.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2005b-bloqueado-carrito-limpio.yaml%0AArchivo%3A%20tests/app/flows/caren/05b-bloqueado-carrito-limpio.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BCc%5Domercio%20%5BBb%5Dloqueado.%2A%7CEste%20comercio%20se%20encuentra%20bloqueado%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/05b-bloqueado-carrito-limpio.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">2m 39s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> CAREN: 08 — Búsqueda en lista de comercios<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_110224</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2008%20%E2%80%94%20B%C3%BAsqueda%20en%20lista%20de%20comercios%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2008%20%E2%80%94%20B%C3%BAsqueda%20en%20lista%20de%20comercios%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_110224%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td><span class="flow-icon">❌</span> 08-busqueda-comercios.yaml<div class="flow-error">Assertion is false: &quot;.*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2008-busqueda-comercios.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2008-busqueda-comercios.yaml%0AArchivo%3A%20tests/app/flows/caren/08-busqueda-comercios.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BBb%5Duscar.%2A%7C.%2A%5BEe%5Dscribe.%2A%7C.%2A%5BIi%5Dngresa.%2A%7C.%2A%5BFf%5Diltrar.%2A%7C.%2A%5BSs%5Dearch.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/08-busqueda-comercios.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
             <td class="duration">1m 18s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">✅</span> CAREN: 09 — Datos de comercios<div class="flow-error">3m 37s</div></td>
+            <td><span class="flow-icon">✅</span> 09-datos-comercio.yaml</td>
             <td><span class="badge pass">PASS</span></td>
-            <td class="duration">ficha, dirección, crédito</td>
+            <td class="duration">3m 37s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">✅</span> CAREN: 10 — Catálogo de comercios<div class="flow-error">6m 34s</div></td>
+            <td><span class="flow-icon">✅</span> 10-catalogo-detallado.yaml</td>
             <td><span class="badge pass">PASS</span></td>
-            <td class="duration">fotos, SKUs, tabs, precios, stock</td>
+            <td class="duration">6m 34s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> CAREN: 11 — Selector de Centro de Distribución pre-catálogo<div class="flow-error">/Users/lalojimenez/.maestro/tests/2026-05-06_111352</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2011%20%E2%80%94%20Selector%20de%20Centro%20de%20Distribuci%C3%B3n%20pre-cat%C3%A1logo%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2011%20%E2%80%94%20Selector%20de%20Centro%20de%20Distribuci%C3%B3n%20pre-cat%C3%A1logo%0AError%3A%20/Users/lalojimenez/.maestro/tests/2026-05-06_111352%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td><span class="flow-icon">❌</span> 11-selector-cd.yaml<div class="flow-error">Assertion is false: &quot;.*[Cc]entro.*[Dd]istribuci[oó]n.*|.*[Ss]eleccionar.*[Cc][Dd].*|.*[Dd]istribuci[oó]n.*|.*[Bb]odega.*</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2011-selector-cd.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2011-selector-cd.yaml%0AArchivo%3A%20tests/app/flows/caren/11-selector-cd.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BCc%5Dentro.%2A%5BDd%5Distribuci%5Bo%C3%B3%5Dn.%2A%7C.%2A%5BSs%5Deleccionar.%2A%5BCc%5D%5BDd%5D.%2A%7C.%2A%5BDd%5Distribuci%5Bo%C3%B3%5Dn.%2A%7C.%2A%5BBb%5Dodega.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/11-selector-cd.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
             <td class="duration">1m 5s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> CAREN: 12 — Fecha de despacho en checkout<div class="flow-error">1m 46s) (/Users/lalojimenez/.maestro/tests/2026-05-06_111457</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2012%20%E2%80%94%20Fecha%20de%20despacho%20en%20checkout%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2012%20%E2%80%94%20Fecha%20de%20despacho%20en%20checkout%0AError%3A%201m%2046s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_111457%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
-            <td class="duration">enableAskDeliveryDate</td>
+            <td><span class="flow-icon">❌</span> 12-fecha-despacho.yaml<div class="flow-error">Assertion is false: &quot;.*[Ff]echa.*[Dd]espacho.*|.*[Ff]echa.*[Ee]ntr.*|.*[Dd][íi]a.*[Ee]ntr.*|.*[Ss]eleccionar.*[Ff]echa.*</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2012-fecha-despacho.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2012-fecha-despacho.yaml%0AArchivo%3A%20tests/app/flows/caren/12-fecha-despacho.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BFf%5Decha.%2A%5BDd%5Despacho.%2A%7C.%2A%5BFf%5Decha.%2A%5BEe%5Dntr.%2A%7C.%2A%5BDd%5D%5B%C3%ADi%5Da.%2A%5BEe%5Dntr.%2A%7C.%2A%5BSs%5Deleccionar.%2A%5BFf%5Decha.%2A%7C.%2A%5BEe%5Dntrega.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/12-fecha-despacho.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 46s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">❌</span> CAREN: 13 — Descuento manual del vendedor<div class="flow-error">43s) (/Users/lalojimenez/.maestro/tests/2026-05-06_111644</div></td>
-            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=fix%28app%29%3A%20Caren%20%E2%80%94%20CAREN%3A%2013%20%E2%80%94%20Descuento%20manual%20del%20vendedor%20%282026-05-06%29&description=%23%23%20Flow%20fallido%20%E2%80%94%20APP%20Maestro%0A%0ACliente%3A%20Caren%20%20%7C%20%20Fecha%3A%202026-05-06%0AFlow%3A%20CAREN%3A%2013%20%E2%80%94%20Descuento%20manual%20del%20vendedor%0AError%3A%2043s%29%20%28/Users/lalojimenez/.maestro/tests/2026-05-06_111644%0A%0A---%0A_QA%20Dashboard%20%E2%80%94%20YOM%20APP_" target="_blank" class="linear-btn">🔗 Ticket</a></td>
-            <td class="duration">enableSellerDiscount: true</td>
+            <td><span class="flow-icon">❌</span> 13-descuento-vendedor.yaml<div class="flow-error">Assertion is false: &quot;.*Listado de comercios.*|Crear comercio|.*\d{7,}.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2013-descuento-vendedor.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2013-descuento-vendedor.yaml%0AArchivo%3A%20tests/app/flows/caren/13-descuento-vendedor.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2AListado%20de%20comercios.%2A%7CCrear%20comercio%7C.%2A%5Cd%7B7%2C%7D.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/13-descuento-vendedor.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">43s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">✅</span> CAREN: 14 — Cobranza, facturas y documentos pendientes</td>
+            <td><span class="flow-icon">✅</span> 14-cobranza.yaml</td>
             <td><span class="badge pass">PASS</span></td>
             <td class="duration">3m 58s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">✅</span> CAREN: 15 — Gestor de tareas<div class="flow-error">1m 59s</div></td>
+            <td><span class="flow-icon">✅</span> 15-tareas.yaml</td>
             <td><span class="badge pass">PASS</span></td>
-            <td class="duration">enableTask: true</td>
+            <td class="duration">1m 59s</td>
+        </tr><tr class="batch-header"><td colspan="3">Batch 3 — Pendientes</td></tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 16-costo-despacho.yaml<div class="flow-error">Assertion is false: &quot;.*[Tt]otal.*|.*[Rr]esumen.*|.*[Cc]onfirmar.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2016-costo-despacho.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2016-costo-despacho.yaml%0AArchivo%3A%20tests/app/flows/caren/16-costo-despacho.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BTt%5Dotal.%2A%7C.%2A%5BRr%5Desumen.%2A%7C.%2A%5BCc%5Donfirmar.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/16-costo-despacho.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 0s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 17-compartir-pedido.yaml<div class="flow-error">Assertion is false: &quot;.*[Tt]otal.*|.*[Rr]esumen.*|.*[Cc]onfirmar.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2017-compartir-pedido.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2017-compartir-pedido.yaml%0AArchivo%3A%20tests/app/flows/caren/17-compartir-pedido.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BTt%5Dotal.%2A%7C.%2A%5BRr%5Desumen.%2A%7C.%2A%5BCc%5Donfirmar.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/17-compartir-pedido.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 28s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 18-promociones-catalogo.yaml<div class="flow-error">Assertion is false: &quot;.*[Aa]gregar.*|.*[Pp]roducto.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2018-promociones-catalogo.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2018-promociones-catalogo.yaml%0AArchivo%3A%20tests/app/flows/caren/18-promociones-catalogo.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BAa%5Dgregar.%2A%7C.%2A%5BPp%5Droducto.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/18-promociones-catalogo.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 27s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 19-descuentos-volumen.yaml<div class="flow-error">Assertion is false: &quot;.*[Aa]gregar.*|.*[Pp]roducto.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2019-descuentos-volumen.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2019-descuentos-volumen.yaml%0AArchivo%3A%20tests/app/flows/caren/19-descuentos-volumen.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BAa%5Dgregar.%2A%7C.%2A%5BPp%5Droducto.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/19-descuentos-volumen.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 26s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 20-packs-productos.yaml<div class="flow-error">Assertion is false: &quot;.*[Aa]gregar.*|.*[Pp]roducto.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2020-packs-productos.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2020-packs-productos.yaml%0AArchivo%3A%20tests/app/flows/caren/20-packs-productos.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BAa%5Dgregar.%2A%7C.%2A%5BPp%5Droducto.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/20-packs-productos.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 26s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 21-medios-pago.yaml<div class="flow-error">Assertion is false: &quot;.*[Aa]gregar.*|.*[Pp]roducto.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2021-medios-pago.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2021-medios-pago.yaml%0AArchivo%3A%20tests/app/flows/caren/21-medios-pago.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BAa%5Dgregar.%2A%7C.%2A%5BPp%5Droducto.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/21-medios-pago.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 28s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 22-recomendaciones.yaml<div class="flow-error">Assertion is false: &quot;.*[Aa]gregar.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2022-recomendaciones.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2022-recomendaciones.yaml%0AArchivo%3A%20tests/app/flows/caren/22-recomendaciones.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BAa%5Dgregar.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/22-recomendaciones.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">1m 26s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">✅</span> 23-estado-crediticio.yaml</td>
+            <td><span class="badge pass">PASS</span></td>
+            <td class="duration">1m 14s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 24-leads.yaml<div class="flow-error">Assertion is false: &quot;.*[Ll]ead.*|.*[Pp]rospecto.*|.*[Nn]uevo [Cc]liente.*|.*[Cc]liente [Pp]otencial.*&quot; is visible</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2024-leads.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2024-leads.yaml%0AArchivo%3A%20tests/app/flows/caren/24-leads.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BLl%5Dead.%2A%7C.%2A%5BPp%5Drospecto.%2A%7C.%2A%5BNn%5Duevo%20%5BCc%5Dliente.%2A%7C.%2A%5BCc%5Dliente%20%5BPp%5Dotencial.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/24-leads.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">27s</td>
+        </tr>
+        <tr>
+            <td><span class="flow-icon">❌</span> 25-labels-productos.yaml<div class="flow-error">Assertion is false: &quot;.*[Nn]uevo.*|.*[Dd]estacado.*|.*[Ee]tiqueta.*|.*[Ll]abel.*|.*[Tt]op.*|.*[Ee]xclusivo.*|.*[Ll]imitad</div></td>
+            <td><span class="badge fail">FAIL</span><a href="https://linear.app/yom-tech/new?title=APP%20Caren%3A%2025-labels-productos.yaml%20%E2%80%94%20fallo%20QA%20%282026-05-06%29&description=Cliente%3A%20Caren%20%7C%20Ambiente%3A%20staging%20%28caren.solopide.me%29%20%7C%20Fecha%3A%202026-05-06%0AFlow%3A%2025-labels-productos.yaml%0AArchivo%3A%20tests/app/flows/caren/25-labels-productos.yaml%0A%0AAssertion%20fallida%3A%20Assertion%20is%20false%3A%20%22.%2A%5BNn%5Duevo.%2A%7C.%2A%5BDd%5Destacado.%2A%7C.%2A%5BEe%5Dtiqueta.%2A%7C.%2A%5BLl%5Dabel.%2A%7C.%2A%5BTt%5Dop.%2A%7C.%2A%5BEe%5Dxclusivo.%2A%7C.%2A%5BLl%5Dimitado.%2A%22%20is%20visible%0A%0APasos%20para%20reproducir%3A%0A1.%20Login%20como%20vendedor%20en%20me.youorder.yomventas.debug%20%28staging%2C%20caren.solopide.me%29%0A2.%20Seguir%20el%20flujo%20hasta%20la%20pantalla%20descrita%20en%20la%20assertion%0A3.%20Observar%20el%20comportamiento%20inesperado%0A%0AReporte%20QA%3A%20https%3A//yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html%0AFlow%20YAML%3A%20https%3A//github.com/YOMCL/qa/blob/main/tests/app/flows/caren/25-labels-productos.yaml" target="_blank" class="linear-btn">🔗 Ticket</a></td>
+            <td class="duration">58s</td>
         </tr></tbody>
   </table></div>
 </div>
-<footer>Generado 2026-05-06 11:25 · Batches completados: [1, 2] de 3</footer>
+<footer>Generado 2026-05-06 11:38 · Batches completados: [1, 2, 3] de 3</footer>
 </div>
 </body>
 </html>
