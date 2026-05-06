@@ -57,11 +57,13 @@ def render_checklist_html(items):
 def read_yaml_context(yaml_filename, client_slug, qa_root):
     """Lee comentarios de cabecera de un flow YAML para enriquecer tickets Linear."""
     yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
-    ctx = {'objetivo': '', 'config': '', 'alcance': '', 'bug': '', 'pasos': ''}
+    ctx = {'objetivo': '', 'config': '', 'alcance': '', 'bug': '', 'pasos': '', 'flow_name': ''}
     if not yaml_path.exists():
         return ctx
     for line in yaml_path.read_text().splitlines():
         line = line.strip()
+        if line.startswith('name:') and not ctx['flow_name']:
+            ctx['flow_name'] = line.replace('name:', '').strip().strip('"').strip("'")
         if line.startswith('# OBJETIVO:'):
             ctx['objetivo'] = line.replace('# OBJETIVO:', '').strip()
         elif line.startswith('# Config:'):
@@ -302,20 +304,41 @@ if sync_data:
 </div>"""
 
 # ── Slack deliverable ─────────────────────────────────────────
+def flow_label(yaml_name, client_slug, qa_root):
+    """Devuelve nombre legible del flow: strip 'CLIENTE: NN — ' prefix y sufijos técnicos."""
+    ctx = read_yaml_context(yaml_name, client_slug, qa_root)
+    name = ctx.get('flow_name') or yaml_name
+    # strip "CAREN: 12 — " or "CAREN: 05b — " style prefix
+    name = re.sub(r'^[A-Z][A-Z\s]+:\s*\d+[a-z]?\s*[—-]\s*', '', name).strip()
+    # strip "(enableXxx)" or "(CLIENTE-QA-NNN)" style suffixes
+    name = re.sub(r'\s*\([^\)]{3,40}\)', '', name).strip()
+    return name
+
+pass_flows   = [f for f in flows if f['status'] in ('passed', 'manual_pass')]
+fail_real    = [f for f in flows if f['status'] == 'failed' and not fixes.get(f['name'])]
+fail_fixed   = [f for f in flows if f['status'] == 'failed' and fixes.get(f['name'])]
+
 slack_lines = [
-    f'📱 QA APP {client_cap} — {date_str} | {environment} ({domain_all})',
+    f'📱 *QA APP {client_cap} — {date_str}* | {environment} ({domain_all})',
     f'Veredicto: *{verdict}* | Health: {health}/100',
-    '',
-    '*Resultados:*',
-    f'✅ PASS: {passed} flows',
 ]
-if fixed_count:
-    slack_lines.append(f'🔧 FIXED: {fixed_count} (errores de test corregidos — pasarán en próximo run)')
-if real_failed:
-    slack_lines.append(f'❌ FAIL real: {real_failed} flows')
-    for f in flows:
-        if f['status'] == 'failed' and not fixes.get(f['name']):
-            slack_lines.append(f'   • {f["name"]}')
+
+if pass_flows:
+    slack_lines += ['', f'*Lo que funciona bien ✅ ({len(pass_flows)})*']
+    for f in pass_flows:
+        slack_lines.append(f'  • {flow_label(f["name"], client_slug, QA_ROOT)}')
+
+if fail_real:
+    slack_lines += ['', f'*Lo que no funciona ❌ ({len(fail_real)})*']
+    for f in fail_real:
+        slack_lines.append(f'  • {flow_label(f["name"], client_slug, QA_ROOT)}')
+
+if fail_fixed:
+    slack_lines += ['', f'*Correcciones aplicadas al suite 🔧 ({len(fail_fixed)} — no son bugs de la app)*']
+    for f in fail_fixed:
+        fix_desc = fixes.get(f['name'], '')
+        label = flow_label(f['name'], client_slug, QA_ROOT)
+        slack_lines.append(f'  • {label}' + (f' — _{fix_desc}_' if fix_desc else ''))
 
 if sync_data:
     sync_total = sync_data.get('totalSeconds', 0)
@@ -326,13 +349,13 @@ if sync_data:
 features_yaml = '04-features.yaml'
 chk_items = parse_yaml_checklist(features_yaml, client_slug, QA_ROOT)
 if chk_items:
-    slack_lines += ['', '*Features ON/OFF (config Caren):*']
+    slack_lines += ['', f'*Features configuradas en {client_cap}:*']
     cur_sec = None
     for it in chk_items:
         if it['section'] != cur_sec:
             cur_sec = it['section']
             slack_lines.append(f'_{cur_sec}_')
-        bug_note = ' ⚠️ (bug staging)' if 'CD' in it['desc'] or 'fecha' in it['desc'].lower() or 'despacho' in it['desc'].lower() else ''
+        bug_note = ' ⚠️ (bug en staging)' if 'CD' in it['desc'] or 'fecha' in it['desc'].lower() or 'despacho' in it['desc'].lower() else ''
         icon_s = '🟢' if it['state'] == 'VISIBLE' else '⚫'
         slack_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
 

@@ -260,31 +260,49 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
 <div class="card" id="slack-card">
   <div class="card-title">💬 Resumen para Slack</div>
   <button onclick="copySlack()" style="float:right;margin-top:-32px;padding:6px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
-  <pre id="slack-pre" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-top:8px">📱 QA APP Caren — 2026-05-06 | staging (caren.solopide.me)
+  <pre id="slack-pre" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-top:8px">📱 *QA APP Caren — 2026-05-06* | staging (caren.solopide.me)
 Veredicto: *BLOQUEADO* | Health: 55/100
 
-*Resultados:*
-✅ PASS: 10 flows
-🔧 FIXED: 7 (errores de test corregidos — pasarán en próximo run)
-❌ FAIL real: 14 flows
-   • 11-selector-cd.yaml
-   • 12-fecha-despacho.yaml
-   • 16-costo-despacho.yaml
-   • 18-promociones-catalogo.yaml
-   • 19-descuentos-volumen.yaml
-   • 20-packs-productos.yaml
-   • 21-medios-pago.yaml
-   • 22-recomendaciones.yaml
-   • 24-leads.yaml
-   • 25-labels-productos.yaml
-   • 26-listas-precio.yaml
-   • 27-indicadores-venta.yaml
-   • 28-geolocalizacion.yaml
-   • 29-cambio-contrasena.yaml
+*Lo que funciona bien ✅ (10)*
+  • Catálogo comercios DISPONIBLES
+  • Lista completa de comercios
+  • Historial de pedidos
+  • Catálogo comercios BLOQUEADOS
+  • Datos de comercios
+  • Catálogo de comercios
+  • Cobranza, facturas y documentos pendientes
+  • Gestor de tareas
+  • Estado crediticio del comercio
+  • Autenticación Active Directory
+
+*Lo que no funciona ❌ (14)*
+  • Selector de Centro de Distribución pre-catálogo
+  • Fecha de despacho en checkout
+  • Costo de despacho en carrito
+  • Promociones en catálogo
+  • Descuentos por volumen
+  • Packs de productos
+  • Medios de pago en checkout
+  • Recomendaciones inteligentes
+  • Manejo de leads
+  • Labels en productos
+  • Listas de precio por segmento
+  • Indicadores de venta
+  • Geolocalización de vendedores
+  • Cambio de contraseña
+
+*Correcciones aplicadas al suite 🔧 (7 — no son bugs de la app)*
+  • Pedido completo — _Timeout confirmación aumentado 30s→60s_
+  • Verificación features ON/OFF — Caren — _Assertions de CD selector y fecha despacho hechas optional — bugs conocidos en staging (ver flows 11 y 12)_
+  • Bug catálogo bloqueado — _Assertion assertNotVisible &#x27;Finalizar Pedido&#x27; eliminada — botón visible pero deshabilitado es comportamiento correcto_
+  • Verificación P1 carrito limpio — _Assertion &#x27;Comercio Bloqueado&#x27; hecha optional — popup solo aparece al confirmar, no con carrito vacío_
+  • Búsqueda en lista de comercios — _Coordenadas reemplazadas por resource-id header_search_button — error de test, no de la app_
+  • Descuento manual del vendedor — _stopApp agregado al inicio para estado limpio — feature funciona en físico_
+  • Compartir pedido — _stopApp agregado al inicio para estado limpio — feature funciona en físico_
 
 *Sync inicial:* 45.4s ⚠️
 
-*Features ON/OFF (config Caren):*
+*Features configuradas en Caren:*
 _Pantalla de login_
   ⚫ Botón login con Facebook
   ⚫ Botón login con Google
@@ -309,7 +327,7 @@ _Carrito: checks de features_
   🟢 Opción &#x27;Descuento Vendedor&#x27;
   🟢 Sección de cupones en carrito
   ⚫ Campo Orden de compra / Nº pedido
-  🟢 Selector de fecha de entrega ⚠️ (bug staging)
+  🟢 Selector de fecha de entrega ⚠️ (bug en staging)
   ⚫ Resumen de impuestos/IVA en carrito
 
 *Reporte completo:* https://yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html</pre>
@@ -323,7 +341,7 @@ function copySlack(){
   });
 }
 </script>
-<footer>Generado 2026-05-06 15:30 · Batches completados: [1, 2, 3] de 3</footer>
+<footer>Generado 2026-05-06 15:39 · Batches completados: [1, 2, 3] de 3</footer>
 </div>
 </body>
 </html>
