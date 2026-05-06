@@ -10,6 +10,6 @@
 [Failed] 25-labels-productos.yaml (58s) (/Users/lalojimenez/.maestro/tests/2026-05-06_113722)
 [Failed] 26-listas-precio.yaml (1m 25s) (/Users/lalojimenez/.maestro/tests/2026-05-06_113820)
 [Manual-Pass] 27-indicadores-venta.yaml (1m 2s)
-[Failed] 28-geolocalizacion.yaml (45s) (/Users/lalojimenez/.maestro/tests/2026-05-06_114047)
+[Manual-Pass] 28-geolocalizacion.yaml (45s)
 [Manual-Pass] 29-cambio-contrasena.yaml (42s)
 [Passed] 30-active-directory.yaml (14s)

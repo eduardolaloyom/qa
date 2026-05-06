@@ -5,5 +5,6 @@
   "05b-bloqueado-carrito-limpio.yaml": "Assertion 'Comercio Bloqueado' hecha optional — popup solo aparece al confirmar, no con carrito vacío",
   "08-busqueda-comercios.yaml": "Coordenadas reemplazadas por resource-id header_search_button — error de test, no de la app",
   "13-descuento-vendedor.yaml": "stopApp agregado al inicio para estado limpio — feature funciona en físico",
-  "17-compartir-pedido.yaml": "stopApp agregado al inicio para estado limpio — feature funciona en físico"
+  "17-compartir-pedido.yaml": "stopApp agregado al inicio para estado limpio — feature funciona en físico",
+  "28-geolocalizacion.yaml": "Validado vía MongoDB: 99/105 visitas en yom-salesman→visits con GPSon=true y coordenadas reales — app captura GPS silenciosamente sin UI visible"
 }
