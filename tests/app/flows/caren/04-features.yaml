@@ -120,7 +120,7 @@ name: "Verificación features ON/OFF — Caren (staging)"
 
 # Indicador de stock en productos — VISIBLE (hasStockEnabled: true)
 - assertVisible:
-    text: ".*[Ss]tock.*|.*[Dd]isponible.*\s*[0-9]"
+    text: ".*[Ss]tock.*|.*[Dd]isponible.* *[0-9]"
 
 # Selector de centros de distribución — VISIBLE (enableDistributionCentersSelector: true)
 - assertVisible:

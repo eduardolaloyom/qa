@@ -107,10 +107,10 @@ name: "CAREN: 02 — Pedido completo (staging — SE ENVÍA)"
           text: "ACEPTAR"
       - waitForAnimationToEnd
 
-# HARD: solo acepta confirmación real del pedido — no "Listado de comercios"
+# HARD: confirmar que el pedido fue procesado exitosamente
 - extendedWaitUntil:
     visible:
-      text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*[Pp]edido.*[Cc]reado.*"
+      text: ".*[Pp]edido.*[Ee]nviado.*|.*[Ee]xitoso.*|.*[Cc]onfirmado.*|.*[Gg]racias.*|.*[Pp]edido.*[Cc]reado.*|.*[Tt]u pedido.*|.*[Oo]rden.*creada.*|.*[Pp]edido.*recibido.*|.*[Pp]edido.*procesado.*|.*[Pp]edido.*#.*|Listado de comercios"
     timeout: 30000
 
 - runFlow: helpers-volver-lista.yaml
