@@ -9,55 +9,20 @@ name: "CAREN: 08 — Búsqueda en lista de comercios"
 - runFlow: helpers-startup.yaml
 - runFlow: helpers-volver-lista.yaml
 
-# Intento 1: lupa superior derecha (posición histórica)
+# Tap por resource-id (robusto, independiente de resolución)
 - tapOn:
-    point: "95%,6%"
+    id: "me.youorder.yomventas.debug:id/header_search_button"
     optional: true
 - waitForAnimationToEnd
 
-# Intento 2: lupa corrida hacia abajo
+# Fallback: tap por coordenada si el id no activó la búsqueda
 - runFlow:
     when:
       notVisible:
         text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
     commands:
       - tapOn:
-          point: "95%,8%"
-          optional: true
-      - waitForAnimationToEnd
-
-# Intento 3: swipe down desde el top expone un search bar colapsado
-- runFlow:
-    when:
-      notVisible:
-        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
-    commands:
-      - swipe:
-          direction: DOWN
-          startY: "10%"
-          endY: "30%"
-          duration: 500
-      - waitForAnimationToEnd
-
-# Intento 4: texto accesibilidad "Buscar" directo
-- runFlow:
-    when:
-      notVisible:
-        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
-    commands:
-      - tapOn:
-          text: ".*[Bb]uscar.*|[Ss]earch"
-          optional: true
-      - waitForAnimationToEnd
-
-# Intento 5: lupa en esquina 90%,5% (variante de resolución)
-- runFlow:
-    when:
-      notVisible:
-        text: ".*[Bb]uscar.*|.*[Ee]scribe.*|.*[Ii]ngresa.*|.*[Ff]iltrar.*|.*[Ss]earch.*"
-    commands:
-      - tapOn:
-          point: "90%,5%"
+          point: "95%,6%"
           optional: true
       - waitForAnimationToEnd
 
