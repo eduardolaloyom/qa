@@ -17,6 +17,53 @@ from html import escape
 from urllib.parse import quote
 from pathlib import Path
 
+# Flags con manifestación visual en la APP — (sección, descripción legible)
+FEATURE_DISPLAY = [
+    ('loginButtons.facebook',             'Pantalla de login',            "Botón login con Facebook"),
+    ('loginButtons.google',               'Pantalla de login',            "Botón login con Google"),
+    ('commerce.enableCreateCommerce',     'Lista de comercios',           "Botón 'Crear Comercio'"),
+    ('hasNoSaleFilter',                   'Lista de comercios',           "Filtro 'Sin venta' en lista de comercios"),
+    ('inMaintenance',                     'Lista de comercios',           "Banner de mantenimiento en la app"),
+    ('enablePayments',                    'Menú lateral (drawer)',        "Módulo Pagos en menú lateral"),
+    ('enablePaymentsCollection',          'Menú lateral (drawer)',        "Módulo Cobros en menú lateral"),
+    ('enableTask',                        'Menú lateral (drawer)',        "Módulo Tareas en menú lateral"),
+    ('enableCreditNotes',                 'Menú lateral (drawer)',        "Módulo Notas de crédito en menú lateral"),
+    ('enableInvoicesList',                'Menú lateral (drawer)',        "Módulo Facturas en menú lateral"),
+    ('pendingDocuments',                  'Menú lateral (drawer)',        "Módulo Documentos pendientes en menú lateral"),
+    ('pointsEnabled',                     'Menú lateral (drawer)',        "Módulo Puntos en menú lateral"),
+    ('enableDialogNoSellReason',          'Menú lateral (drawer)',        "Opción 'Razón de no venta'"),
+    ('hasMultiUnitEnabled',               'Catálogo',                     "Selector DIS/UND (multi-unidad)"),
+    ('hasStockEnabled',                   'Catálogo',                     "Indicador de stock en productos"),
+    ('enableDistributionCentersSelector', 'Catálogo',                     "Selector de centros de distribución"),
+    ('enableSellerDiscount',              'Carrito / checkout',           "Descuento manual del vendedor"),
+    ('enableCoupons',                     'Carrito / checkout',           "Cupones en carrito"),
+    ('purchaseOrderEnabled',              'Carrito / checkout',           "Campo Orden de compra / Nº pedido"),
+    ('enableAskDeliveryDate',             'Carrito / checkout',           "Selector de fecha de entrega"),
+    ('taxes.showSummary',                 'Carrito / checkout',           "Resumen de impuestos/IVA"),
+]
+
+def get_features_from_matrix(client_slug, qa_root):
+    """Lee feature flags desde qa-matrix-staging.json para el cliente dado."""
+    matrix_path = qa_root / 'data' / 'qa-matrix-staging.json'
+    if not matrix_path.exists():
+        return []
+    try:
+        matrix = json.loads(matrix_path.read_text())
+        clients_data = matrix.get('clients', {})
+        client_key = next((k for k in clients_data if client_slug in k.lower()), None)
+        if not client_key:
+            return []
+        variables = clients_data[client_key].get('variables', {})
+    except Exception:
+        return []
+    items = []
+    for flag, section, desc in FEATURE_DISPLAY:
+        val = variables.get(flag, False)
+        state = 'VISIBLE' if val else 'INVISIBLE'
+        items.append({'section': section, 'desc': desc, 'state': state,
+                      'config': f'{flag}: {str(val).lower()}', 'flag': flag})
+    return items
+
 def parse_yaml_checklist(yaml_filename, client_slug, qa_root):
     """Parsea comentarios '# Desc — VISIBLE/INVISIBLE (config)' de un flow YAML."""
     yaml_path = qa_root / 'tests' / 'app' / 'flows' / client_slug / yaml_filename
@@ -33,7 +80,7 @@ def parse_yaml_checklist(yaml_filename, client_slug, qa_root):
         chk_m = re.match(r'#\s+(.+?)\s+—\s+(VISIBLE|INVISIBLE)\s+\((.+?)\)', line)
         if chk_m:
             items.append({'section': section, 'desc': chk_m.group(1),
-                          'state': chk_m.group(2), 'config': chk_m.group(3)})
+                          'state': chk_m.group(2), 'config': chk_m.group(3), 'flag': ''})
     return items
 
 def render_checklist_html(items):
@@ -246,7 +293,10 @@ for f in flows:
 
     checklist_html = ''
     if yaml_file:
-        chk_items = parse_yaml_checklist(yaml_file, client_slug, QA_ROOT)
+        if yaml_file == '04-features.yaml':
+            chk_items = get_features_from_matrix(client_slug, QA_ROOT)
+        else:
+            chk_items = parse_yaml_checklist(yaml_file, client_slug, QA_ROOT)
         if chk_items:
             checklist_html = render_checklist_html(chk_items)
     rows += f"""
@@ -345,9 +395,9 @@ if sync_data:
     sync_ok_icon = '✅' if sync_data.get('successful', False) else '⚠️'
     slack_lines += ['', f'*Sync inicial:* {sync_total:.1f}s {sync_ok_icon}']
 
-# Features checklist desde flow 04
-features_yaml = '04-features.yaml'
-chk_items = parse_yaml_checklist(features_yaml, client_slug, QA_ROOT)
+# Features checklist desde qa-matrix (live)
+STAGING_BUGS = {'enableDistributionCentersSelector', 'enableAskDeliveryDate'}
+chk_items = get_features_from_matrix(client_slug, QA_ROOT)
 if chk_items:
     slack_lines += ['', f'*Features configuradas en {client_cap}:*']
     cur_sec = None
@@ -355,7 +405,7 @@ if chk_items:
         if it['section'] != cur_sec:
             cur_sec = it['section']
             slack_lines.append(f'_{cur_sec}_')
-        bug_note = ' ⚠️ (bug en staging)' if 'CD' in it['desc'] or 'fecha' in it['desc'].lower() or 'despacho' in it['desc'].lower() else ''
+        bug_note = ' ⚠️ (bug en staging)' if it.get('flag') in STAGING_BUGS and it['state'] == 'VISIBLE' else ''
         icon_s = '🟢' if it['state'] == 'VISIBLE' else '➖'
         slack_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
 
