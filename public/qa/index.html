@@ -3550,7 +3550,7 @@ async function loadAppReports() {
             const historyHtml = reps.slice(1).map(rep => {
                 const hc = rep.health >= 80 ? '#10b981' : rep.health >= 60 ? '#f59e0b' : '#ef4444';
                 const vc = rep.verdict === 'LISTO' ? 'verdict-listo' : (rep.verdict === 'CON OBSERVACIONES' || rep.verdict === 'CON_CONDICIONES' || rep.verdict === 'CON CONDICIONES' || rep.verdict === 'CON BUGS') ? 'verdict-condiciones' : 'verdict-bloqueado';
-                return `<a href="${rep.file}" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:#f9fafb;text-decoration:none;font-size:12px;color:#374151;margin-bottom:4px;">
+                return `<a href="${rep.file}" target="_blank" style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:#f9fafb;text-decoration:none;font-size:12px;color:#374151;margin-bottom:4px;">
                     <span style="color:#9ca3af;">${rep.date}</span>
                     <span style="font-weight:600;color:${hc}">${rep.health}/100</span>
                     <span style="font-size:11px;">${rep.passed}/${rep.total} flows</span>
@@ -3575,7 +3575,7 @@ async function loadAppReports() {
                 </div>
                 <div class="app-client-body">
                     <!-- Latest report link -->
-                    <a href="${latest.file}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;background:#fff;margin-bottom:8px;">
+                    <a href="${latest.file}" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;background:#fff;margin-bottom:8px;">
                         <span style="font-size:13px;font-weight:600;color:#111827;">Ver reporte completo</span>
                         <span style="color:#9ca3af;font-size:12px;">${latest.date}</span>
                         <span style="margin-left:auto;font-size:12px;color:#4f6ef7;">↗</span>
