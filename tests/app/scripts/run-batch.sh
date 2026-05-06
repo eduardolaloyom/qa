@@ -119,8 +119,14 @@ if ! adb devices 2>/dev/null | grep -q "device$"; then
     exit 1
 fi
 
-# ── Correr batch ──────────────────────────────────────────────
+# ── Log setup ────────────────────────────────────────────────
 CLIENTE_CAP=$(python3 -c "print('$CLIENTE'.capitalize())")
+DATE_RUN=$(date '+%Y-%m-%d')
+LOG_DIR="$QA_ROOT/QA/$CLIENTE_CAP/$DATE_RUN"
+LOG_FILE="$LOG_DIR/batch-${BATCH}.log"
+mkdir -p "$LOG_DIR"
+> "$LOG_FILE"
+
 echo ""
 echo "▶  $CLIENTE_CAP — Batch $BATCH: $BATCH_NAME"
 echo "   ${#BATCH_FLOWS[@]} flows · $(date '+%H:%M')"
@@ -145,14 +151,24 @@ except:
 
     printf "  %-55s" "$flow_name"
 
+    t_start=$SECONDS
     if maestro test "${ENV_ARGS[@]}" "$flow_path" > /tmp/maestro_batch_out.txt 2>&1; then
+        t_elapsed=$((SECONDS - t_start))
+        t_fmt="${t_elapsed}s"
+        [ "$t_elapsed" -ge 60 ] && t_fmt="$((t_elapsed/60))m $((t_elapsed%60))s"
         echo "✅ PASS"
         PASSED=$((PASSED+1))
+        echo "[Passed] $flow_name ($t_fmt)" >> "$LOG_FILE"
     else
+        t_elapsed=$((SECONDS - t_start))
+        t_fmt="${t_elapsed}s"
+        [ "$t_elapsed" -ge 60 ] && t_fmt="$((t_elapsed/60))m $((t_elapsed%60))s"
+        err_msg=$(tail -1 /tmp/maestro_batch_out.txt 2>/dev/null | sed 's/^[[:space:]]*//' | cut -c1-100)
         echo "❌ FAIL"
         FAILED=$((FAILED+1))
         FAILED_NAMES+=("$flow_name")
         tail -3 /tmp/maestro_batch_out.txt | sed 's/^/       /'
+        echo "[Failed] $flow_name ($t_fmt) ($err_msg)" >> "$LOG_FILE"
     fi
 done
 
@@ -165,6 +181,24 @@ if [ ${#FAILED_NAMES[@]} -gt 0 ]; then
     for n in "${FAILED_NAMES[@]}"; do
         echo "    ✗ $n"
     done
+fi
+echo ""
+
+# ── Generar / actualizar reporte HTML y manifest ──────────────
+echo "📊 Generando reporte parcial…"
+python3 "$QA_ROOT/tools/gen-app-report.py" "$CLIENTE" "$CLIENTE_CAP" "$DATE_RUN" --env staging
+
+# ── Commit + push ─────────────────────────────────────────────
+cd "$QA_ROOT"
+git add "QA/$CLIENTE_CAP/$DATE_RUN/" "public/qa/app-reports/" "public/qa/manifest.json" 2>/dev/null || true
+if ! git diff --cached --quiet; then
+    git commit -m "chore(app/$CLIENTE): batch $BATCH results — $PASSED pass $FAILED fail ($DATE_RUN)"
+    if ! git push 2>/dev/null; then
+        git pull --rebase && git push
+    fi
+    echo "✅ Dashboard actualizado — $(date '+%H:%M')"
+else
+    echo "ℹ  Sin cambios nuevos en git"
 fi
 echo ""
 

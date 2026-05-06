@@ -104,6 +104,13 @@ if ! adb devices 2>/dev/null | grep -q "device$"; then
     exit 1
 fi
 
+# ── Log setup ────────────────────────────────────────────────
+DATE_RUN=$(date '+%Y-%m-%d')
+LOG_DIR="$QA_ROOT/QA/Caren/$DATE_RUN"
+LOG_FILE="$LOG_DIR/batch-${BATCH}.log"
+mkdir -p "$LOG_DIR"
+> "$LOG_FILE"   # limpiar log anterior del mismo batch
+
 echo ""
 echo "▶  Caren — Batch $BATCH: $BATCH_NAME"
 echo "   ${#FLOWS_LIST[@]} flows · $(date '+%H:%M')"
@@ -115,7 +122,6 @@ FAILED_NAMES=()
 
 for flow_file in "${FLOWS_LIST[@]}"; do
     flow_path="$FLOWS/$flow_file"
-    flow_num="${flow_file%%-*}"
 
     if [ ! -f "$flow_path" ]; then
         echo "  ⚠  No encontrado: $flow_file — saltando"
@@ -132,15 +138,24 @@ print(d.get('name', '$flow_file') if isinstance(d, dict) else '$flow_file')
 
     printf "  %-55s" "$flow_name"
 
+    t_start=$SECONDS
     if maestro test "${ENV_ARGS[@]}" "$flow_path" > /tmp/maestro_out.txt 2>&1; then
+        t_elapsed=$((SECONDS - t_start))
+        t_fmt="${t_elapsed}s"
+        [ "$t_elapsed" -ge 60 ] && t_fmt="$((t_elapsed/60))m $((t_elapsed%60))s"
         echo "✅ PASS"
         PASSED=$((PASSED+1))
+        echo "[Passed] $flow_name ($t_fmt)" >> "$LOG_FILE"
     else
+        t_elapsed=$((SECONDS - t_start))
+        t_fmt="${t_elapsed}s"
+        [ "$t_elapsed" -ge 60 ] && t_fmt="$((t_elapsed/60))m $((t_elapsed%60))s"
+        err_msg=$(tail -1 /tmp/maestro_out.txt 2>/dev/null | sed 's/^[[:space:]]*//' | cut -c1-100)
         echo "❌ FAIL"
         FAILED=$((FAILED+1))
         FAILED_NAMES+=("$flow_name")
-        # Mostrar última línea del error
         tail -3 /tmp/maestro_out.txt | sed 's/^/       /'
+        echo "[Failed] $flow_name ($t_fmt) ($err_msg)" >> "$LOG_FILE"
     fi
 done
 
@@ -153,6 +168,24 @@ if [ ${#FAILED_NAMES[@]} -gt 0 ]; then
     for n in "${FAILED_NAMES[@]}"; do
         echo "    ✗ $n"
     done
+fi
+echo ""
+
+# ── Generar / actualizar reporte HTML y manifest ──────────────
+echo "📊 Generando reporte parcial…"
+python3 "$QA_ROOT/tools/gen-app-report.py" caren Caren "$DATE_RUN" --env staging
+
+# ── Commit + push ─────────────────────────────────────────────
+cd "$QA_ROOT"
+git add "QA/Caren/$DATE_RUN/" "public/qa/app-reports/" "public/qa/manifest.json" 2>/dev/null || true
+if ! git diff --cached --quiet; then
+    git commit -m "chore(app/caren): batch $BATCH results — $PASSED pass $FAILED fail ($DATE_RUN)"
+    if ! git push 2>/dev/null; then
+        git pull --rebase && git push
+    fi
+    echo "✅ Dashboard actualizado — $(date '+%H:%M')"
+else
+    echo "ℹ  Sin cambios nuevos en git"
 fi
 echo ""
 
