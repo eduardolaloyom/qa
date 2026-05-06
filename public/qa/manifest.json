@@ -8,10 +8,10 @@
       "platform": "app",
       "environment": "staging",
       "passed": 10,
-      "failed": 21,
+      "failed": 19,
       "skipped": 0,
       "total": 31,
-      "health": 55,
+      "health": 61,
       "verdict": "BLOQUEADO",
       "partial": false,
       "batches_done": [
