@@ -45,7 +45,7 @@ def render_checklist_html(items):
         if it['section'] != cur_sec:
             cur_sec = it['section']
             rows_html += f'<tr><td colspan="3" class="chk-section">{escape(cur_sec)}</td></tr>'
-        icon = '🟢' if it['state'] == 'VISIBLE' else '⚫'
+        icon = '🟢' if it['state'] == 'VISIBLE' else '➖'
         rows_html += (f'<tr><td class="chk-icon">{icon}</td>'
                       f'<td class="chk-desc">{escape(it["desc"])}</td>'
                       f'<td class="chk-config">{escape(it["config"])}</td></tr>')
@@ -356,7 +356,7 @@ if chk_items:
             cur_sec = it['section']
             slack_lines.append(f'_{cur_sec}_')
         bug_note = ' ⚠️ (bug en staging)' if 'CD' in it['desc'] or 'fecha' in it['desc'].lower() or 'despacho' in it['desc'].lower() else ''
-        icon_s = '🟢' if it['state'] == 'VISIBLE' else '⚫'
+        icon_s = '🟢' if it['state'] == 'VISIBLE' else '➖'
         slack_lines.append(f'  {icon_s} {it["desc"]}{bug_note}')
 
 slack_lines += ['', f'*Reporte completo:* {dashboard_url_all}']
