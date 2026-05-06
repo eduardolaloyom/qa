@@ -101,11 +101,51 @@ for f in flows:
     elif s == 'skipped':   icon, badge_cls, label = '⏭', 'skip', 'SKIP'
     else:                  icon, badge_cls, label = '❌', 'fail', 'FAIL'
 
-    err_html = f'<div class="flow-error">{escape(f["error"][:120])}</div>' if f['error'] else ''
+    # Extraer assertion fallida desde directorio Maestro si existe
+    maestro_dir = f['error'] if f['error'] and os.path.isdir(f['error']) else None
+    failed_assertion = ''
+    yaml_file = ''
+    if maestro_dir:
+        cmd_files = sorted(glob.glob(f'{maestro_dir}/commands-*.json'))
+        if cmd_files:
+            yaml_file = re.sub(r'^commands-\((.+)\)\.json$', r'\1', os.path.basename(cmd_files[0]))
+            try:
+                cmds = json.loads(open(cmd_files[0]).read())
+                for cmd in cmds:
+                    meta = cmd.get('metadata', {})
+                    if meta.get('status') in ('FAILED', 'ERROR'):
+                        failed_assertion = meta.get('error', {}).get('message', '')[:280]
+                        break
+            except Exception:
+                pass
+
+    err_html = f'<div class="flow-error">{escape(failed_assertion[:120])}</div>' if failed_assertion else ''
     linear_btn = ''
     if s == 'failed':
-        lt = quote(f'fix(app): {client_cap} — {f["name"]} ({date_str})')
-        ld = quote(f'## Flow fallido — APP Maestro\n\nCliente: {client_cap}  |  Fecha: {date_str}\nFlow: {f["name"]}\n{"Error: " + f["error"] if f["error"] else ""}\n\n---\n_QA Dashboard — YOM APP_')
+        domain = f'{client_slug}.solopide.me' if environment == 'staging' else f'{client_slug}.youorder.me'
+        dashboard_url = f'https://yomcl.github.io/qa/qa/app-reports/{client_cap}-{date_str}.html'
+        github_flow = f'https://github.com/YOMCL/qa/blob/main/tests/app/flows/{client_slug}/{yaml_file}' if yaml_file else ''
+        desc_parts = [
+            f'Cliente: {client_cap} | Ambiente: {environment} ({domain}) | Fecha: {date_str}',
+            f'Flow: {f["name"]}',
+        ]
+        if yaml_file:
+            desc_parts.append(f'Archivo: tests/app/flows/{client_slug}/{yaml_file}')
+        if failed_assertion:
+            desc_parts += ['', f'Assertion fallida: {failed_assertion}']
+        desc_parts += [
+            '',
+            'Pasos para reproducir:',
+            f'1. Login como vendedor en me.youorder.yomventas.debug ({environment}, {domain})',
+            '2. Seguir el flujo hasta la pantalla descrita en la assertion',
+            '3. Observar el comportamiento inesperado',
+            '',
+            f'Reporte QA: {dashboard_url}',
+        ]
+        if github_flow:
+            desc_parts.append(f'Flow YAML: {github_flow}')
+        lt = quote(f'APP {client_cap}: {f["name"]} — fallo QA ({date_str})')
+        ld = quote('\n'.join(desc_parts))
         linear_btn = f'<a href="https://linear.app/yom-tech/new?title={lt}&description={ld}" target="_blank" class="linear-btn">🔗 Ticket</a>'
 
     rows += f"""
@@ -126,8 +166,16 @@ if is_partial:
         ⏳ Reporte parcial — faltan batch(es): {remaining_str} de {total_batches} · Se actualiza automáticamente al correr cada batch
     </div>'''
 
-lt_all = quote(f'fix(app): {client_cap} — {verdict} ({passed+manual}/{total} flows, {date_str})')
-ld_all = quote(f'## APP QA — Maestro\n\nCliente: {client_cap}  |  Fecha: {date_str}\nHealth: {health}/100  |  Flows: {passed+manual}/{total}  |  Veredicto: {verdict}\n\n---\n_QA Dashboard — YOM APP_')
+domain_all = f'{client_slug}.solopide.me' if environment == 'staging' else f'{client_slug}.youorder.me'
+dashboard_url_all = f'https://yomcl.github.io/qa/qa/app-reports/{client_cap}-{date_str}.html'
+failed_flows_list = '\n'.join(f'- {f["name"]}' for f in flows if f['status'] == 'failed')
+lt_all = quote(f'APP {client_cap}: resumen QA Maestro — {verdict} ({passed+manual}/{total} flows, {date_str})')
+ld_all = quote(
+    f'Cliente: {client_cap} | Ambiente: {environment} ({domain_all}) | Fecha: {date_str}\n'
+    f'Health: {health}/100 | Flows: {passed+manual}/{total} PASS · {failed} FAIL | Veredicto: {verdict}\n'
+    + (f'\nFlows fallidos:\n{failed_flows_list}\n' if failed_flows_list else '\nTodos los flows pasaron.\n')
+    + f'\nReporte completo: {dashboard_url_all}'
+)
 
 # ── Sync card ──────────────────────────────────────────────────
 sync_card = ''
