@@ -87,8 +87,14 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
 </div>
 
 <div class="card" id="slack-card">
-  <div class="card-title">💬 Resumen para Slack
+  <div class="card-title">📋 Reporte
+    <span id="save-status" style="float:right;font-size:.78em;font-weight:400;color:#6b7280;margin-top:3px;margin-left:8px"></span>
     <button onclick="copySlack()" style="float:right;margin-top:-4px;padding:5px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
+  </div>
+  <div id="token-banner" style="display:none;align-items:center;gap:8px;background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:.82em">
+    <span>🔑 Ingresa tu GitHub token para sincronizar estado entre dispositivos:</span>
+    <input type="password" id="token-input" placeholder="ghp_..." style="flex:1;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;font-size:.9em">
+    <button onclick="saveToken()" style="padding:4px 12px;background:#4f6ef7;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:.9em;font-weight:600">Guardar</button>
   </div>
   <pre style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-bottom:12px">📱 *STAGING (caren.solopide.me)*
 
@@ -120,12 +126,12 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
   • Labels en productos</pre>
   <div style="margin-bottom:8px">
     <div style="font-size:.82em;font-weight:700;color:#991b1b;margin-bottom:6px">❌ Lo que no funciona — marca lo que se resuelva:</div>
-    <label id="lbl-fail-0" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-0" onchange="toggleFail('fail-0')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-0">❌ Selector de Centro de Distribución pre-catálogo</span></label>
-<label id="lbl-fail-1" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-1" onchange="toggleFail('fail-1')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-1">❌ Fecha de despacho en checkout</span></label>
-<label id="lbl-fail-2" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-2" onchange="toggleFail('fail-2')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-2">❌ Costo de despacho en carrito</span></label>
-<label id="lbl-fail-3" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-3" onchange="toggleFail('fail-3')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-3">❌ Descuentos por volumen</span></label>
-<label id="lbl-fail-4" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-4" onchange="toggleFail('fail-4')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-4">❌ Recomendaciones inteligentes</span></label>
-<label id="lbl-fail-5" style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-5" onchange="toggleFail('fail-5')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-5">❌ Manejo de leads</span></label>
+    <div id="row-fail-0" style="padding:6px 0;border-bottom:1px solid #f3f4f6"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-0" data-yaml="11-selector-cd.yaml" onchange="toggleFail('fail-0')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-0">❌ Selector de Centro de Distribución pre-catálogo</span></label><input type="text" id="cmt-fail-0" data-yaml="11-selector-cd.yaml" placeholder="Comentario..." oninput="updateComment('fail-0')" style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb"></div>
+<div id="row-fail-1" style="padding:6px 0;border-bottom:1px solid #f3f4f6"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-1" data-yaml="12-fecha-despacho.yaml" onchange="toggleFail('fail-1')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-1">❌ Fecha de despacho en checkout</span></label><input type="text" id="cmt-fail-1" data-yaml="12-fecha-despacho.yaml" placeholder="Comentario..." oninput="updateComment('fail-1')" style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb"></div>
+<div id="row-fail-2" style="padding:6px 0;border-bottom:1px solid #f3f4f6"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-2" data-yaml="16-costo-despacho.yaml" onchange="toggleFail('fail-2')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-2">❌ Costo de despacho en carrito</span></label><input type="text" id="cmt-fail-2" data-yaml="16-costo-despacho.yaml" placeholder="Comentario..." oninput="updateComment('fail-2')" style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb"></div>
+<div id="row-fail-3" style="padding:6px 0;border-bottom:1px solid #f3f4f6"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-3" data-yaml="19-descuentos-volumen.yaml" onchange="toggleFail('fail-3')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-3">❌ Descuentos por volumen</span></label><input type="text" id="cmt-fail-3" data-yaml="19-descuentos-volumen.yaml" placeholder="Comentario..." oninput="updateComment('fail-3')" style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb"></div>
+<div id="row-fail-4" style="padding:6px 0;border-bottom:1px solid #f3f4f6"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-4" data-yaml="22-recomendaciones.yaml" onchange="toggleFail('fail-4')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-4">❌ Recomendaciones inteligentes</span></label><input type="text" id="cmt-fail-4" data-yaml="22-recomendaciones.yaml" placeholder="Comentario..." oninput="updateComment('fail-4')" style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb"></div>
+<div id="row-fail-5" style="padding:6px 0;border-bottom:1px solid #f3f4f6"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em"><input type="checkbox" id="fail-5" data-yaml="24-leads.yaml" onchange="toggleFail('fail-5')" style="width:15px;height:15px;cursor:pointer"><span id="txt-fail-5">❌ Manejo de leads</span></label><input type="text" id="cmt-fail-5" data-yaml="24-leads.yaml" placeholder="Comentario..." oninput="updateComment('fail-5')" style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb"></div>
 
   </div>
   <pre id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word">
@@ -159,55 +165,113 @@ _Carrito / checkout_
 *Reporte completo:* https://yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html</pre>
 </div>
 <script>
+var _ghRepo='YOMCL/qa';
+var _ghPath='QA/Caren/2026-05-06/resolutions.json';
+var _ghSha='';
+var _resolutions={};
+var _failYamls=["11-selector-cd.yaml", "12-fecha-despacho.yaml", "16-costo-despacho.yaml", "19-descuentos-volumen.yaml", "22-recomendaciones.yaml", "24-leads.yaml"];
 var _failLabels=["Selector de Centro de Distribuci\u00f3n pre-cat\u00e1logo", "Fecha de despacho en checkout", "Costo de despacho en carrito", "Descuentos por volumen", "Recomendaciones inteligentes", "Manejo de leads"];
-var _lsKey='slack-fails-caren-2026-05-06';
 var _headerText="\ud83d\udcf1 *STAGING (caren.solopide.me)*\n\n*Lo que funciona \u2705 (25)*\n  \u2022 Cat\u00e1logo comercios DISPONIBLES\n  \u2022 Lista completa de comercios\n  \u2022 Historial de pedidos\n  \u2022 Cat\u00e1logo comercios BLOQUEADOS\n  \u2022 Datos de comercios\n  \u2022 Cat\u00e1logo de comercios\n  \u2022 Cobranza, facturas y documentos pendientes\n  \u2022 Gestor de tareas\n  \u2022 Medios de pago en checkout\n  \u2022 Estado crediticio del comercio\n  \u2022 Listas de precio por segmento\n  \u2022 Indicadores de venta\n  \u2022 Geolocalizaci\u00f3n de vendedores\n  \u2022 Cambio de contrase\u00f1a\n  \u2022 Autenticaci\u00f3n Active Directory\n  \u2022 Pedido completo\n  \u2022 Verificaci\u00f3n features ON/OFF \u2014 Caren\n  \u2022 Bug cat\u00e1logo bloqueado\n  \u2022 Verificaci\u00f3n P1 carrito limpio\n  \u2022 B\u00fasqueda en lista de comercios\n  \u2022 Descuento manual del vendedor\n  \u2022 Compartir pedido\n  \u2022 Promociones en cat\u00e1logo\n  \u2022 Packs de productos\n  \u2022 Labels en productos";
 var _footerText="\n*Sync inicial:* 45.4s \u26a0\ufe0f\n\n*Features configuradas en Caren:*\n_Lista de comercios_\n  \ud83d\udfe2 Bot\u00f3n 'Crear Comercio'\n  \ud83d\udfe2 Filtro 'Sin venta' en lista de comercios\n  \u2796 Banner de mantenimiento en la app\n_Men\u00fa lateral (drawer)_\n  \ud83d\udfe2 M\u00f3dulo Pagos en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Cobros en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Tareas en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Notas de cr\u00e9dito en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Facturas en men\u00fa lateral\n  \ud83d\udfe2 M\u00f3dulo Documentos pendientes en men\u00fa lateral\n  \u2796 M\u00f3dulo Puntos en men\u00fa lateral\n  \ud83d\udfe2 Opci\u00f3n 'Raz\u00f3n de no venta'\n_Cat\u00e1logo_\n  \u2796 Selector DIS/UND (multi-unidad)\n  \ud83d\udfe2 Indicador de stock en productos\n  \ud83d\udd34 Selector de centros de distribuci\u00f3n (configurado ON \u2014 no funciona en staging)\n_Carrito / checkout_\n  \ud83d\udfe2 Descuento manual del vendedor\n  \ud83d\udfe2 Cupones en carrito\n  \u2796 Campo Orden de compra / N\u00ba pedido\n  \ud83d\udd34 Selector de fecha de entrega (configurado ON \u2014 no funciona en staging)\n  \u2796 Resumen de impuestos/IVA\n\n*Reporte completo:* https://yomcl.github.io/qa/qa/app-reports/Caren-2026-05-06.html";
-function loadChecks(){
-  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{}');
-  _failLabels.forEach(function(l,i){
+var _saveTimer=null;
+function getToken(){return localStorage.getItem('yom-gh-token')||'';}
+function showTokenBanner(){
+  var b=document.getElementById('token-banner');
+  if(b)b.style.display='flex';
+}
+function saveToken(){
+  var t=document.getElementById('token-input').value.trim();
+  if(!t)return;
+  localStorage.setItem('yom-gh-token',t);
+  document.getElementById('token-banner').style.display='none';
+  loadResolutions();
+}
+async function loadResolutions(){
+  var tok=getToken();
+  if(!tok){showTokenBanner();return;}
+  try{
+    var res=await fetch('https://api.github.com/repos/'+_ghRepo+'/contents/'+_ghPath,
+      {headers:{Authorization:'token '+tok,Accept:'application/vnd.github.v3+json'}});
+    if(!res.ok)return;
+    var data=await res.json();
+    _resolutions=JSON.parse(atob(data.content.replace(/
+/g,'')));
+    _ghSha=data.sha;
+    applyResolutions();
+  }catch(e){}
+}
+function applyResolutions(){
+  _failYamls.forEach(function(yaml,i){
     var fid='fail-'+i;
-    var checked=saved[fid]||false;
-    document.getElementById(fid).checked=checked;
-    applyStyle(fid,checked);
+    var r=_resolutions[yaml]||{resolved:false,comment:''};
+    var cb=document.getElementById(fid);
+    var cmt=document.getElementById('cmt-'+fid);
+    if(cb)cb.checked=r.resolved;
+    if(cmt)cmt.value=r.comment||'';
+    applyStyle(fid,r.resolved);
   });
 }
 function applyStyle(fid,checked){
   var span=document.getElementById('txt-'+fid);
-  var lbl=document.getElementById('lbl-'+fid);
+  var row=document.getElementById('row-'+fid);
+  if(!span)return;
   if(checked){
     span.style.textDecoration='line-through';span.style.color='#10b981';
     span.textContent='✅ '+span.textContent.replace(/^[✅❌]\s*/,'');
-    lbl.style.opacity='0.6';
+    if(row)row.style.opacity='0.6';
   }else{
     span.style.textDecoration='';span.style.color='';
     span.textContent='❌ '+span.textContent.replace(/^[✅❌]\s*/,'');
-    lbl.style.opacity='1';
+    if(row)row.style.opacity='1';
   }
 }
 function toggleFail(fid){
+  var yaml=document.getElementById(fid).dataset.yaml;
   var checked=document.getElementById(fid).checked;
+  if(!_resolutions[yaml])_resolutions[yaml]={resolved:false,comment:''};
+  _resolutions[yaml].resolved=checked;
   applyStyle(fid,checked);
-  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{}');
-  saved[fid]=checked;
-  localStorage.setItem(_lsKey,JSON.stringify(saved));
+  scheduleSave();
 }
+function updateComment(fid){
+  var el=document.getElementById('cmt-'+fid);
+  if(!_resolutions[el.dataset.yaml])_resolutions[el.dataset.yaml]={resolved:false,comment:''};
+  _resolutions[el.dataset.yaml].comment=el.value;
+  scheduleSave();
+}
+function scheduleSave(){
+  clearTimeout(_saveTimer);
+  setSaveStatus('⏳ Guardando...');
+  _saveTimer=setTimeout(saveResolutions,800);
+}
+async function saveResolutions(){
+  var tok=getToken();
+  if(!tok){showTokenBanner();return;}
+  try{
+    var payload={message:'chore: update resolutions Caren/2026-05-06',content:btoa(unescape(encodeURIComponent(JSON.stringify(_resolutions,null,2))))};
+    if(_ghSha)payload.sha=_ghSha;
+    var res=await fetch('https://api.github.com/repos/'+_ghRepo+'/contents/'+_ghPath,
+      {method:'PUT',headers:{Authorization:'token '+tok,'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(res.ok){
+      var d=await res.json();_ghSha=d.content.sha;
+      setSaveStatus('✅ Guardado');
+      setTimeout(function(){setSaveStatus('');},2000);
+    }else{setSaveStatus('⚠️ Error al guardar');}
+  }catch(e){setSaveStatus('⚠️ Sin conexión');}
+}
+function setSaveStatus(msg){var el=document.getElementById('save-status');if(el)el.textContent=msg;}
 function copySlack(){
-  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{}');
-  var pending=_failLabels.filter(function(l,i){return !saved['fail-'+i];});
+  var pending=_failLabels.filter(function(l,i){return !(_resolutions[_failYamls[i]]&&_resolutions[_failYamls[i]].resolved);});
   var lines=[_headerText,''];
-  if(pending.length){
-    lines.push('*Lo que no funciona ❌ ('+pending.length+')*');
-    pending.forEach(function(l){lines.push('  • '+l);});
-  }
+  if(pending.length){lines.push('*Lo que no funciona ❌ ('+pending.length+')*');pending.forEach(function(l){lines.push('  • '+l);});}
   lines.push(_footerText);
   var text=lines.join('\n');
   navigator.clipboard.writeText(text).then(function(){
     var b=document.querySelector('#slack-card button');
-    b.textContent='✅ Copiado';setTimeout(function(){b.textContent='📋 Copiar'},2000);
+    b.textContent='✅ Copiado';setTimeout(function(){b.textContent='📋 Copiar';},2000);
   });
 }
-window.addEventListener('DOMContentLoaded',loadChecks);
+window.addEventListener('DOMContentLoaded',loadResolutions);
 </script>
 
 <div class="card">
@@ -380,7 +444,7 @@ window.addEventListener('DOMContentLoaded',loadChecks);
         </tr></tbody>
   </table></div>
 </div>
-<footer>Generado 2026-05-06 17:07 · Batches completados: [1, 2, 3] de 3</footer>
+<footer>Generado 2026-05-06 17:44 · Batches completados: [1, 2, 3] de 3</footer>
 </div>
 </body>
 </html>

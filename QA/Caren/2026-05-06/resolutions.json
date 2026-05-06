@@ -1,0 +1,26 @@
+{
+  "11-selector-cd.yaml": {
+    "resolved": false,
+    "comment": ""
+  },
+  "12-fecha-despacho.yaml": {
+    "resolved": false,
+    "comment": ""
+  },
+  "16-costo-despacho.yaml": {
+    "resolved": false,
+    "comment": ""
+  },
+  "19-descuentos-volumen.yaml": {
+    "resolved": false,
+    "comment": ""
+  },
+  "22-recomendaciones.yaml": {
+    "resolved": false,
+    "comment": ""
+  },
+  "24-leads.yaml": {
+    "resolved": false,
+    "comment": ""
+  }
+}

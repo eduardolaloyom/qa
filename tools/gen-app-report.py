@@ -370,6 +370,12 @@ fail_real    = [f for f in flows if f['status'] == 'failed' and not fixes.get(f[
 fail_fixed   = [f for f in flows if f['status'] == 'failed' and fixes.get(f['name'])]
 ok_flows     = pass_flows + fail_fixed  # fixed = probado físicamente, funciona bien
 
+# ── Crear resolutions.json si no existe ──────────────────────
+resolutions_path = OUTPUT_DIR / "resolutions.json"
+if not resolutions_path.exists() and fail_real:
+    initial = {fl['name']: {'resolved': False, 'comment': ''} for fl in fail_real}
+    resolutions_path.write_text(json.dumps(initial, indent=2, ensure_ascii=False))
+
 # ── Textos para Slack (separados para interactividad) ─────────
 STAGING_BUGS = {'enableDistributionCentersSelector', 'enableAskDeliveryDate'}
 
@@ -410,22 +416,34 @@ footer_text = '\n'.join(footer_lines)
 
 # HTML checkboxes para fallas
 fail_checks_html = ''
-for i, label in enumerate(fail_labels):
+for i, (label, fl) in enumerate(zip(fail_labels, fail_real)):
     fid = f'fail-{i}'
     fail_checks_html += (
-        f'<label id="lbl-{fid}" style="display:flex;align-items:center;gap:8px;padding:5px 0;'
-        f'border-bottom:1px solid #f3f4f6;cursor:pointer;font-size:.88em">'
-        f'<input type="checkbox" id="{fid}" onchange="toggleFail(\'{fid}\')" style="width:15px;height:15px;cursor:pointer">'
-        f'<span id="txt-{fid}">❌ {escape(label)}</span></label>\n'
+        f'<div id="row-{fid}" style="padding:6px 0;border-bottom:1px solid #f3f4f6">'
+        f'<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88em">'
+        f'<input type="checkbox" id="{fid}" data-yaml="{escape(fl["name"])}" '
+        f'onchange="toggleFail(\'{fid}\')" style="width:15px;height:15px;cursor:pointer">'
+        f'<span id="txt-{fid}">❌ {escape(label)}</span></label>'
+        f'<input type="text" id="cmt-{fid}" data-yaml="{escape(fl["name"])}" placeholder="Comentario..." '
+        f'oninput="updateComment(\'{fid}\')" '
+        f'style="margin-top:4px;margin-left:23px;width:calc(100% - 23px);padding:4px 8px;'
+        f'font-size:.82em;border:1px solid #e5e7eb;border-radius:5px;color:#374151;background:#f9fafb">'
+        f'</div>\n'
     )
 
 fail_items_js = json.dumps(fail_labels)
-ls_key = f'slack-fails-{client_slug}-{date_str}'
+fail_yamls_js = json.dumps([fl['name'] for fl in fail_real])
 
 slack_card = f"""
 <div class="card" id="slack-card">
-  <div class="card-title">💬 Resumen para Slack
+  <div class="card-title">📋 Reporte
+    <span id="save-status" style="float:right;font-size:.78em;font-weight:400;color:#6b7280;margin-top:3px;margin-left:8px"></span>
     <button onclick="copySlack()" style="float:right;margin-top:-4px;padding:5px 14px;background:#4f6ef7;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600">📋 Copiar</button>
+  </div>
+  <div id="token-banner" style="display:none;align-items:center;gap:8px;background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:.82em">
+    <span>🔑 Ingresa tu GitHub token para sincronizar estado entre dispositivos:</span>
+    <input type="password" id="token-input" placeholder="ghp_..." style="flex:1;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;font-size:.9em">
+    <button onclick="saveToken()" style="padding:4px 12px;background:#4f6ef7;color:#fff;border:none;border-radius:5px;cursor:pointer;font-size:.9em;font-weight:600">Guardar</button>
   </div>
   <pre style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word;margin-bottom:12px">{escape(header_text)}</pre>
   <div style="margin-bottom:8px">
@@ -435,55 +453,112 @@ slack_card = f"""
   <pre id="slack-footer" style="background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:.82em;white-space:pre-wrap;word-break:break-word">{escape(footer_text)}</pre>
 </div>
 <script>
+var _ghRepo='YOMCL/qa';
+var _ghPath='QA/{client_cap}/{date_str}/resolutions.json';
+var _ghSha='';
+var _resolutions={{}};
+var _failYamls={fail_yamls_js};
 var _failLabels={fail_items_js};
-var _lsKey='{ls_key}';
 var _headerText={json.dumps(header_text)};
 var _footerText={json.dumps(footer_text)};
-function loadChecks(){{
-  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{{}}');
-  _failLabels.forEach(function(l,i){{
+var _saveTimer=null;
+function getToken(){{return localStorage.getItem('yom-gh-token')||'';}}
+function showTokenBanner(){{
+  var b=document.getElementById('token-banner');
+  if(b)b.style.display='flex';
+}}
+function saveToken(){{
+  var t=document.getElementById('token-input').value.trim();
+  if(!t)return;
+  localStorage.setItem('yom-gh-token',t);
+  document.getElementById('token-banner').style.display='none';
+  loadResolutions();
+}}
+async function loadResolutions(){{
+  var tok=getToken();
+  if(!tok){{showTokenBanner();return;}}
+  try{{
+    var res=await fetch('https://api.github.com/repos/'+_ghRepo+'/contents/'+_ghPath,
+      {{headers:{{Authorization:'token '+tok,Accept:'application/vnd.github.v3+json'}}}});
+    if(!res.ok)return;
+    var data=await res.json();
+    _resolutions=JSON.parse(atob(data.content.replace(/\n/g,'')));
+    _ghSha=data.sha;
+    applyResolutions();
+  }}catch(e){{}}
+}}
+function applyResolutions(){{
+  _failYamls.forEach(function(yaml,i){{
     var fid='fail-'+i;
-    var checked=saved[fid]||false;
-    document.getElementById(fid).checked=checked;
-    applyStyle(fid,checked);
+    var r=_resolutions[yaml]||{{resolved:false,comment:''}};
+    var cb=document.getElementById(fid);
+    var cmt=document.getElementById('cmt-'+fid);
+    if(cb)cb.checked=r.resolved;
+    if(cmt)cmt.value=r.comment||'';
+    applyStyle(fid,r.resolved);
   }});
 }}
 function applyStyle(fid,checked){{
   var span=document.getElementById('txt-'+fid);
-  var lbl=document.getElementById('lbl-'+fid);
+  var row=document.getElementById('row-'+fid);
+  if(!span)return;
   if(checked){{
     span.style.textDecoration='line-through';span.style.color='#10b981';
     span.textContent='✅ '+span.textContent.replace(/^[✅❌]\s*/,'');
-    lbl.style.opacity='0.6';
+    if(row)row.style.opacity='0.6';
   }}else{{
     span.style.textDecoration='';span.style.color='';
     span.textContent='❌ '+span.textContent.replace(/^[✅❌]\s*/,'');
-    lbl.style.opacity='1';
+    if(row)row.style.opacity='1';
   }}
 }}
 function toggleFail(fid){{
+  var yaml=document.getElementById(fid).dataset.yaml;
   var checked=document.getElementById(fid).checked;
+  if(!_resolutions[yaml])_resolutions[yaml]={{resolved:false,comment:''}};
+  _resolutions[yaml].resolved=checked;
   applyStyle(fid,checked);
-  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{{}}');
-  saved[fid]=checked;
-  localStorage.setItem(_lsKey,JSON.stringify(saved));
+  scheduleSave();
 }}
+function updateComment(fid){{
+  var el=document.getElementById('cmt-'+fid);
+  if(!_resolutions[el.dataset.yaml])_resolutions[el.dataset.yaml]={{resolved:false,comment:''}};
+  _resolutions[el.dataset.yaml].comment=el.value;
+  scheduleSave();
+}}
+function scheduleSave(){{
+  clearTimeout(_saveTimer);
+  setSaveStatus('⏳ Guardando...');
+  _saveTimer=setTimeout(saveResolutions,800);
+}}
+async function saveResolutions(){{
+  var tok=getToken();
+  if(!tok){{showTokenBanner();return;}}
+  try{{
+    var payload={{message:'chore: update resolutions {client_cap}/{date_str}',content:btoa(unescape(encodeURIComponent(JSON.stringify(_resolutions,null,2))))}};
+    if(_ghSha)payload.sha=_ghSha;
+    var res=await fetch('https://api.github.com/repos/'+_ghRepo+'/contents/'+_ghPath,
+      {{method:'PUT',headers:{{Authorization:'token '+tok,'Content-Type':'application/json'}},body:JSON.stringify(payload)}});
+    if(res.ok){{
+      var d=await res.json();_ghSha=d.content.sha;
+      setSaveStatus('✅ Guardado');
+      setTimeout(function(){{setSaveStatus('');}},2000);
+    }}else{{setSaveStatus('⚠️ Error al guardar');}}
+  }}catch(e){{setSaveStatus('⚠️ Sin conexión');}}
+}}
+function setSaveStatus(msg){{var el=document.getElementById('save-status');if(el)el.textContent=msg;}}
 function copySlack(){{
-  var saved=JSON.parse(localStorage.getItem(_lsKey)||'{{}}');
-  var pending=_failLabels.filter(function(l,i){{return !saved['fail-'+i];}});
+  var pending=_failLabels.filter(function(l,i){{return !(_resolutions[_failYamls[i]]&&_resolutions[_failYamls[i]].resolved);}});
   var lines=[_headerText,''];
-  if(pending.length){{
-    lines.push('*Lo que no funciona ❌ ('+pending.length+')*');
-    pending.forEach(function(l){{lines.push('  • '+l);}});
-  }}
+  if(pending.length){{lines.push('*Lo que no funciona ❌ ('+pending.length+')*');pending.forEach(function(l){{lines.push('  • '+l);}});}}
   lines.push(_footerText);
   var text=lines.join('\\n');
   navigator.clipboard.writeText(text).then(function(){{
     var b=document.querySelector('#slack-card button');
-    b.textContent='✅ Copiado';setTimeout(function(){{b.textContent='📋 Copiar'}},2000);
+    b.textContent='✅ Copiado';setTimeout(function(){{b.textContent='📋 Copiar';}},2000);
   }});
 }}
-window.addEventListener('DOMContentLoaded',loadChecks);
+window.addEventListener('DOMContentLoaded',loadResolutions);
 </script>"""
 
 HTML_DIR.mkdir(parents=True, exist_ok=True)
