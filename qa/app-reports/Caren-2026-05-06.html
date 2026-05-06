@@ -48,6 +48,13 @@ tr.batch-header td{background:#f1f5f9;color:#475569;font-size:.78em;font-weight:
 .badge.fixed-fail{background:#fef9c3;color:#854d0e}
 .flow-error{font-size:.8em;color:#9ca3af;margin-top:3px;font-style:italic}
 .flow-icon{margin-right:4px}
+.chk-details{margin-top:6px;font-size:.8em}
+.chk-details summary{cursor:pointer;color:#4f6ef7;font-weight:600}
+.chk-table{width:100%;margin-top:6px;border-collapse:collapse}
+.chk-table td,.chk-table th{padding:3px 8px;border-bottom:1px solid #f3f4f6;font-size:.8em}
+.chk-section{background:#f8fafc;color:#475569;font-weight:700;padding:5px 8px}
+.chk-icon{width:24px;text-align:center}
+.chk-config{color:#9ca3af;font-style:italic}
 .duration{color:#9ca3af;white-space:nowrap}
 footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
 </style>
@@ -103,7 +110,7 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
             <td class="duration">1m 53s</td>
         </tr>
         <tr>
-            <td><span class="flow-icon">🔧</span> 04-features.yaml<div class="flow-error" style="color:#854d0e">Assertions de CD selector y fecha despacho hechas optional — bugs conocidos en staging (ver flows 11 y 12)</div></td>
+            <td><span class="flow-icon">🔧</span> 04-features.yaml<div class="flow-error" style="color:#854d0e">Assertions de CD selector y fecha despacho hechas optional — bugs conocidos en staging (ver flows 11 y 12)</div><details class="chk-details"><summary>Ver checklist de features</summary><table class="chk-table"><thead><tr><th></th><th>Feature</th><th>Config</th></tr></thead><tbody><tr><td colspan="3" class="chk-section">Pantalla de login</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Botón login con Facebook</td><td class="chk-config">loginButtons.facebook: false</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Botón login con Google</td><td class="chk-config">loginButtons.google: false</td></tr><tr><td colspan="3" class="chk-section">Lista de comercios</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Botón &#x27;Crear Comercio&#x27;</td><td class="chk-config">commerce.enableCreateCommerce: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Filtro &#x27;Sin venta&#x27; en lista de comercios</td><td class="chk-config">hasNoSaleFilter: true</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Banner de mantenimiento en la app</td><td class="chk-config">inMaintenance: false</td></tr><tr><td colspan="3" class="chk-section">Menú lateral (drawer)</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Módulo Pagos en menú lateral</td><td class="chk-config">enablePayments: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Módulo Cobros en menú lateral</td><td class="chk-config">enablePaymentsCollection: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Módulo Tareas en menú lateral</td><td class="chk-config">enableTask: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Módulo Notas de crédito en menú lateral</td><td class="chk-config">enableCreditNotes: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Módulo Facturas en menú lateral</td><td class="chk-config">enableInvoicesList: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Módulo Documentos pendientes en menú lateral</td><td class="chk-config">pendingDocuments: true</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Módulo Puntos en menú lateral</td><td class="chk-config">pointsEnabled: false</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Opción &#x27;Razón de no venta&#x27;</td><td class="chk-config">enableDialogNoSellReason: true</td></tr><tr><td colspan="3" class="chk-section">Catálogo: checks de features</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Selector DIS/UND (multi-unidad)</td><td class="chk-config">hasMultiUnitEnabled: false</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Indicador de stock en productos</td><td class="chk-config">hasStockEnabled: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Selector de centros de distribución</td><td class="chk-config">enableDistributionCentersSelector: true</td></tr><tr><td colspan="3" class="chk-section">Carrito: checks de features</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Opción &#x27;Descuento Vendedor&#x27;</td><td class="chk-config">enableSellerDiscount: true</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Sección de cupones en carrito</td><td class="chk-config">enableCoupons: true</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Campo Orden de compra / Nº pedido</td><td class="chk-config">purchaseOrderEnabled: false</td></tr><tr><td class="chk-icon">🟢</td><td class="chk-desc">Selector de fecha de entrega</td><td class="chk-config">enableAskDeliveryDate: true</td></tr><tr><td class="chk-icon">⚫</td><td class="chk-desc">Resumen de impuestos/IVA en carrito</td><td class="chk-config">taxes.showSummary: false</td></tr></tbody></table></details></td>
             <td><span class="badge fixed-fail">FIXED</span></td>
             <td class="duration">1m 52s</td>
         </tr>
@@ -249,7 +256,7 @@ footer{color:#9ca3af;font-size:.82em;text-align:center;margin-top:24px}
         </tr></tbody>
   </table></div>
 </div>
-<footer>Generado 2026-05-06 12:55 · Batches completados: [1, 2, 3] de 3</footer>
+<footer>Generado 2026-05-06 14:58 · Batches completados: [1, 2, 3] de 3</footer>
 </div>
 </body>
 </html>
