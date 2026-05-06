@@ -1,0 +1,5 @@
+[Passed] 01-comercios-disponibles.yaml (3m 3s)
+[Failed] 02-pedido.yaml (1m 24s) (/Users/lalojimenez/.maestro/tests/2026-05-06_101228)
+[Failed] 04-features.yaml (4s) (╰─────────────────────────────────────────────────────────────────────────────────────────────────╯)
+[Failed] 06-lista-todos-comercios.yaml (39s) (/Users/lalojimenez/.maestro/tests/2026-05-06_101355)
+[Passed] 07-historial-pedidos.yaml (48s)

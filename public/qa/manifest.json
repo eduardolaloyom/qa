@@ -3,6 +3,24 @@
     {
       "client": "Caren",
       "client_slug": "caren",
+      "date": "2026-05-06",
+      "file": "app-reports/Caren-2026-05-06.html",
+      "platform": "app",
+      "environment": "staging",
+      "passed": 2,
+      "failed": 3,
+      "skipped": 0,
+      "total": 5,
+      "health": 40,
+      "verdict": "BLOQUEADO",
+      "partial": true,
+      "batches_done": [
+        1
+      ]
+    },
+    {
+      "client": "Caren",
+      "client_slug": "caren",
       "date": "2026-05-05",
       "file": "qa-reports/Caren-2026-05-05.html",
       "verdict": "CON_CONDICIONES",
